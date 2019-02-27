@@ -1,0 +1,7 @@
+rqa.tokens.embedding.cove\_embedding module
+===========================================
+
+.. automodule:: rqa.tokens.embedding.cove_embedding
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,7 @@
+rqa.tokens.tokenizer.word\_tokenizer.kor module
+===============================================
+
+.. automodule:: rqa.tokens.tokenizer.word_tokenizer.kor
+    :members:
+    :undoc-members:
+    :show-inheritance:

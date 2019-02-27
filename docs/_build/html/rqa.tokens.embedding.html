@@ -1,0 +1,985 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.tokens.embedding package &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rqa.tokens.indexer package" href="rqa.tokens.indexer.html" />
+    <link rel="prev" title="rqa.tokens package" href="rqa.tokens.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rqa.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.html">modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rqa.tokens.html">tokens</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="rqa.tokens.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">rqa.tokens.embedding package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-rqa.tokens.embedding.base">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-rqa.tokens.embedding">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.indexer.html">rqa.tokens.indexer package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.token_embedder.html">rqa.tokens.token_embedder package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.tokenizer.html">rqa.tokens.tokenizer package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.tokens.html#module-rqa.tokens.cove">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.tokens.html#module-rqa.tokens">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="rqa.tokens.html">rqa.tokens package</a> &raquo;</li>
+        
+      <li>rqa.tokens.embedding package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.tokens.embedding.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rqa-tokens-embedding-package">
+<h1>rqa.tokens.embedding package<a class="headerlink" href="#rqa-tokens-embedding-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-rqa.tokens.embedding.base">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-rqa.tokens.embedding.base" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.tokens.embedding.base.TokenEmbedding">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.base.</code><code class="descname">TokenEmbedding</code><span class="sig-paren">(</span><em>vocab</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/base.html#TokenEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.base.TokenEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Token Embedding</p>
+<p>It can be embedding matrix, language model (ELMo), neural machine translation model (CoVe) and features.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>vocab: Vocab (rqa.tokens.vocab)</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.base.TokenEmbedding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/base.html#TokenEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.base.TokenEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>embedding look-up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.base.TokenEmbedding.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/base.html#TokenEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.base.TokenEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>get embedding dimension</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.base.TokenEmbedding.get_vocab_size">
+<code class="descname">get_vocab_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/base.html#TokenEmbedding.get_vocab_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.base.TokenEmbedding.get_vocab_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.tokens.embedding.bert_embedding"></span><dl class="class">
+<dt id="rqa.tokens.embedding.bert_embedding.BertEmbedding">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.bert_embedding.</code><code class="descname">BertEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>pretrained_model_name=None</em>, <em>trainable=False</em>, <em>unit='subword'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/bert_embedding.html#BertEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.bert_embedding.BertEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.tokens.embedding.base.TokenEmbedding" title="rqa.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.tokens.embedding.base.TokenEmbedding</span></code></a></p>
+<p>BERT Embedding(Encoder)</p>
+<p>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+(<a class="reference external" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>vocab: Vocab (rqa.tokens.vocab)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>pretrained_model_name: …
+use_as_embedding: …
+trainable: Finetune or fixed</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.bert_embedding.BertEmbedding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/bert_embedding.html#BertEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.bert_embedding.BertEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>embedding look-up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.bert_embedding.BertEmbedding.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/bert_embedding.html#BertEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.bert_embedding.BertEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>get embedding dimension</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.bert_embedding.BertEmbedding.remove_cls_sep_token">
+<code class="descname">remove_cls_sep_token</code><span class="sig-paren">(</span><em>inputs</em>, <em>outputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/bert_embedding.html#BertEmbedding.remove_cls_sep_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.bert_embedding.BertEmbedding.remove_cls_sep_token" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.tokens.embedding.char_embedding"></span><dl class="class">
+<dt id="rqa.tokens.embedding.char_embedding.CharEmbedding">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.char_embedding.</code><code class="descname">CharEmbedding</code><span class="sig-paren">(</span><em>vocab, dropout=0.2, embed_dim=16, kernel_sizes=[5], num_filter=100, activation='relu'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/char_embedding.html#CharEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.char_embedding.CharEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.tokens.embedding.base.TokenEmbedding" title="rqa.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.tokens.embedding.base.TokenEmbedding</span></code></a></p>
+<p>Character Embedding (CharCNN)
+(<a class="reference external" href="https://arxiv.org/abs/1509.01626">https://arxiv.org/abs/1509.01626</a>)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>vocab: Vocab (rqa.tokens.vocab)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>dropout: The number of dropout probability
+embed_dim: The number of embedding dimension
+kernel_sizes: The list of kernel size (n-gram)
+num_filter: The number of cnn filter
+activation: Activation Function (eg. ReLU)</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.char_embedding.CharEmbedding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/char_embedding.html#CharEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.char_embedding.CharEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>embedding look-up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.char_embedding.CharEmbedding.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/char_embedding.html#CharEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.char_embedding.CharEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>get embedding dimension</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.tokens.embedding.cove_embedding"></span><dl class="class">
+<dt id="rqa.tokens.embedding.cove_embedding.CoveEmbedding">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.cove_embedding.</code><code class="descname">CoveEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>glove_pretrained_path=None</em>, <em>model_pretrained_path=None</em>, <em>dropout=0.2</em>, <em>trainable=False</em>, <em>project_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/cove_embedding.html#CoveEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.cove_embedding.CoveEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.tokens.embedding.base.TokenEmbedding" title="rqa.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.tokens.embedding.base.TokenEmbedding</span></code></a></p>
+<p>Cove Embedding</p>
+<p>Learned in Translation: Contextualized Word Vectors
+(<a class="reference external" href="http://papers.nips.cc/paper/7209-learned-in-translation-contextualized-word-vectors.pdf">http://papers.nips.cc/paper/7209-learned-in-translation-contextualized-word-vectors.pdf</a>)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>vocab: Vocab (rqa.tokens.vocab)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>dropout: The number of dropout probability
+pretrained_path: pretrained vector path (eg. GloVe)
+trainable: finetune or fixed
+project_dim: The number of project (linear) dimension</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.cove_embedding.CoveEmbedding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>words</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/cove_embedding.html#CoveEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.cove_embedding.CoveEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>embedding look-up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.cove_embedding.CoveEmbedding.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/cove_embedding.html#CoveEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.cove_embedding.CoveEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>get embedding dimension</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.tokens.embedding.elmo_embedding"></span><dl class="class">
+<dt id="rqa.tokens.embedding.elmo_embedding.ELMoEmbedding">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.elmo_embedding.</code><code class="descname">ELMoEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>options_file='elmo_2x4096_512_2048cnn_2xhighway_options.json'</em>, <em>weight_file='elmo_2x4096_512_2048cnn_2xhighway_weights.hdf5'</em>, <em>do_layer_norm=False</em>, <em>dropout=0.5</em>, <em>trainable=False</em>, <em>project_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/elmo_embedding.html#ELMoEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.elmo_embedding.ELMoEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.tokens.embedding.base.TokenEmbedding" title="rqa.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.tokens.embedding.base.TokenEmbedding</span></code></a></p>
+<p>ELMo Embedding
+Embedding From Language Model</p>
+<p>Deep contextualized word representations
+(<a class="reference external" href="https://arxiv.org/abs/1802.0536">https://arxiv.org/abs/1802.0536</a>)</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">vocab: Vocab (rqa.tokens.vocab)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><p class="first">options_file: ELMo model config file path
+weight_file: ELMo model weight file path
+do_layer_norm: Should we apply layer normalization (passed to <code class="docutils literal notranslate"><span class="pre">ScalarMix</span></code>)?</p>
+<blockquote>
+<div><p>default is False</p>
+</div></blockquote>
+<p class="last">dropout: The number of dropout probability
+trainable: Finetune or fixed
+project_dim: The number of project (linear) dimension</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.elmo_embedding.ELMoEmbedding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/elmo_embedding.html#ELMoEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.elmo_embedding.ELMoEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>embedding look-up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.elmo_embedding.ELMoEmbedding.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/elmo_embedding.html#ELMoEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.elmo_embedding.ELMoEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>get embedding dimension</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.tokens.embedding.frequent_word_embedding"></span><dl class="class">
+<dt id="rqa.tokens.embedding.frequent_word_embedding.FrequentTuningWordEmbedding">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.frequent_word_embedding.</code><code class="descname">FrequentTuningWordEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>dropout=0.2</em>, <em>embed_dim=100</em>, <em>padding_idx=None</em>, <em>max_norm=None</em>, <em>norm_type=2</em>, <em>scale_grad_by_freq=False</em>, <em>sparse=False</em>, <em>pretrained_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.frequent_word_embedding.FrequentTuningWordEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.tokens.embedding.base.TokenEmbedding" title="rqa.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.tokens.embedding.base.TokenEmbedding</span></code></a></p>
+<p>Frequent Word Finetuning Embedding
+Finetuning embedding matrix, according to ‘threshold_index’</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">vocab: Vocab (rqa.tokens.vocab)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><p class="first">dropout: The number of dropout probability
+embed_dim: The number of embedding dimension
+padding_idx: If given, pads the output with the embedding vector at padding_idx</p>
+<blockquote>
+<div><p>(initialized to zeros) whenever it encounters the index.</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>max_norm: If given, will renormalize the embedding vectors to have a norm lesser</dt>
+<dd><p class="first last">than this before extracting. Note: this will modify weight in-place.</p>
+</dd>
+</dl>
+<p>norm_type: The p of the p-norm to compute for the max_norm option. Default 2.
+scale_grad_by_freq: if given, this will scale gradients by the inverse of</p>
+<blockquote>
+<div><p>frequency of the words in the mini-batch. Default False.</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>sparse: if True, gradient w.r.t. weight will be a sparse tensor.</dt>
+<dd><p class="first last">See Notes under torch.nn.Embedding for more details regarding sparse gradients.</p>
+</dd>
+</dl>
+<p class="last">pretrained_path: pretrained vector path (eg. GloVe)
+trainable: finetune or fixed</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.frequent_word_embedding.FrequentTuningWordEmbedding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>words</em>, <em>frequent_tuning=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.frequent_word_embedding.FrequentTuningWordEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>embedding look-up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.frequent_word_embedding.FrequentTuningWordEmbedding.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.frequent_word_embedding.FrequentTuningWordEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>get embedding dimension</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.tokens.embedding.sparse_feature"></span><dl class="class">
+<dt id="rqa.tokens.embedding.sparse_feature.OneHotEncoding">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.sparse_feature.</code><code class="descname">OneHotEncoding</code><span class="sig-paren">(</span><em>index</em>, <em>token_name</em>, <em>classes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/sparse_feature.html#OneHotEncoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.sparse_feature.OneHotEncoding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Sparse to one-hot encoding</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>vocab: Vocab (rqa.tokens.vocab)</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.sparse_feature.OneHotEncoding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/sparse_feature.html#OneHotEncoding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.sparse_feature.OneHotEncoding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.sparse_feature.OneHotEncoding.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/sparse_feature.html#OneHotEncoding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.sparse_feature.OneHotEncoding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.tokens.embedding.sparse_feature.SparseFeature">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.sparse_feature.</code><code class="descname">SparseFeature</code><span class="sig-paren">(</span><em>vocab</em>, <em>embed_type</em>, <em>feature_count</em>, <em>params={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/sparse_feature.html#SparseFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.sparse_feature.SparseFeature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.tokens.embedding.base.TokenEmbedding" title="rqa.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.tokens.embedding.base.TokenEmbedding</span></code></a></p>
+<p>Sparse Feature</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>…</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>…</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.sparse_feature.SparseFeature.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/sparse_feature.html#SparseFeature.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.sparse_feature.SparseFeature.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>embedding look-up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.sparse_feature.SparseFeature.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/sparse_feature.html#SparseFeature.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.sparse_feature.SparseFeature.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>get embedding dimension</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.tokens.embedding.sparse_feature.SparseToEmbedding">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.sparse_feature.</code><code class="descname">SparseToEmbedding</code><span class="sig-paren">(</span><em>index</em>, <em>token_name</em>, <em>classes</em>, <em>dropout=0</em>, <em>embed_dim=15</em>, <em>trainable=True</em>, <em>padding_idx=None</em>, <em>max_norm=None</em>, <em>norm_type=2</em>, <em>scale_grad_by_freq=False</em>, <em>sparse=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/sparse_feature.html#SparseToEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.sparse_feature.SparseToEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Sparse to Embedding</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_name: token_name</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><p class="first">dropout: The number of dropout probability
+embed_dim: The number of embedding dimension
+padding_idx: If given, pads the output with the embedding vector at padding_idx</p>
+<blockquote>
+<div><p>(initialized to zeros) whenever it encounters the index.</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>max_norm: If given, will renormalize the embedding vectors to have a norm lesser</dt>
+<dd><p class="first last">than this before extracting. Note: this will modify weight in-place.</p>
+</dd>
+</dl>
+<p>norm_type: The p of the p-norm to compute for the max_norm option. Default 2.
+scale_grad_by_freq: if given, this will scale gradients by the inverse of</p>
+<blockquote>
+<div><p>frequency of the words in the mini-batch. Default False.</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>sparse: if True, gradient w.r.t. weight will be a sparse tensor.</dt>
+<dd><p class="first last">See Notes under torch.nn.Embedding for more details regarding sparse gradients.</p>
+</dd>
+</dl>
+<p class="last">pretrained_path: pretrained vector path (eg. GloVe)
+trainable: finetune or fixed</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.sparse_feature.SparseToEmbedding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/sparse_feature.html#SparseToEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.sparse_feature.SparseToEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.sparse_feature.SparseToEmbedding.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/sparse_feature.html#SparseToEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.sparse_feature.SparseToEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.tokens.embedding.word_embedding"></span><dl class="class">
+<dt id="rqa.tokens.embedding.word_embedding.WordEmbedding">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.word_embedding.</code><code class="descname">WordEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>dropout=0.2</em>, <em>embed_dim=100</em>, <em>padding_idx=None</em>, <em>max_norm=None</em>, <em>norm_type=2</em>, <em>scale_grad_by_freq=False</em>, <em>sparse=False</em>, <em>pretrained_path=None</em>, <em>trainable=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/word_embedding.html#WordEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.word_embedding.WordEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.tokens.embedding.base.TokenEmbedding" title="rqa.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.tokens.embedding.base.TokenEmbedding</span></code></a></p>
+<p>Word Embedding
+Default Token Embedding</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">vocab: Vocab (rqa.tokens.vocab)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><p class="first">dropout: The number of dropout probability
+embed_dim: The number of embedding dimension
+padding_idx: If given, pads the output with the embedding vector at padding_idx</p>
+<blockquote>
+<div><p>(initialized to zeros) whenever it encounters the index.</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>max_norm: If given, will renormalize the embedding vectors to have a norm lesser</dt>
+<dd><p class="first last">than this before extracting. Note: this will modify weight in-place.</p>
+</dd>
+</dl>
+<p>norm_type: The p of the p-norm to compute for the max_norm option. Default 2.
+scale_grad_by_freq: if given, this will scale gradients by the inverse of</p>
+<blockquote>
+<div><p>frequency of the words in the mini-batch. Default False.</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>sparse: if True, gradient w.r.t. weight will be a sparse tensor.</dt>
+<dd><p class="first last">See Notes under torch.nn.Embedding for more details regarding sparse gradients.</p>
+</dd>
+</dl>
+<p class="last">pretrained_path: pretrained vector path (eg. GloVe)
+trainable: finetune or fixed</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.word_embedding.WordEmbedding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>words</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/word_embedding.html#WordEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.word_embedding.WordEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>embedding look-up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.word_embedding.WordEmbedding.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/word_embedding.html#WordEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.word_embedding.WordEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>get embedding dimension</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-rqa.tokens.embedding">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rqa.tokens.embedding" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.tokens.embedding.BertEmbedding">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.</code><code class="descname">BertEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>pretrained_model_name=None</em>, <em>trainable=False</em>, <em>unit='subword'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/bert_embedding.html#BertEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.BertEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.tokens.embedding.base.TokenEmbedding" title="rqa.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.tokens.embedding.base.TokenEmbedding</span></code></a></p>
+<p>BERT Embedding(Encoder)</p>
+<p>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+(<a class="reference external" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>vocab: Vocab (rqa.tokens.vocab)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>pretrained_model_name: …
+use_as_embedding: …
+trainable: Finetune or fixed</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.BertEmbedding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/bert_embedding.html#BertEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.BertEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>embedding look-up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.BertEmbedding.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/bert_embedding.html#BertEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.BertEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>get embedding dimension</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.BertEmbedding.remove_cls_sep_token">
+<code class="descname">remove_cls_sep_token</code><span class="sig-paren">(</span><em>inputs</em>, <em>outputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/bert_embedding.html#BertEmbedding.remove_cls_sep_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.BertEmbedding.remove_cls_sep_token" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.tokens.embedding.CharEmbedding">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.</code><code class="descname">CharEmbedding</code><span class="sig-paren">(</span><em>vocab, dropout=0.2, embed_dim=16, kernel_sizes=[5], num_filter=100, activation='relu'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/char_embedding.html#CharEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.CharEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.tokens.embedding.base.TokenEmbedding" title="rqa.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.tokens.embedding.base.TokenEmbedding</span></code></a></p>
+<p>Character Embedding (CharCNN)
+(<a class="reference external" href="https://arxiv.org/abs/1509.01626">https://arxiv.org/abs/1509.01626</a>)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>vocab: Vocab (rqa.tokens.vocab)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>dropout: The number of dropout probability
+embed_dim: The number of embedding dimension
+kernel_sizes: The list of kernel size (n-gram)
+num_filter: The number of cnn filter
+activation: Activation Function (eg. ReLU)</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.CharEmbedding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/char_embedding.html#CharEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.CharEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>embedding look-up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.CharEmbedding.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/char_embedding.html#CharEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.CharEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>get embedding dimension</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.tokens.embedding.CoveEmbedding">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.</code><code class="descname">CoveEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>glove_pretrained_path=None</em>, <em>model_pretrained_path=None</em>, <em>dropout=0.2</em>, <em>trainable=False</em>, <em>project_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/cove_embedding.html#CoveEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.CoveEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.tokens.embedding.base.TokenEmbedding" title="rqa.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.tokens.embedding.base.TokenEmbedding</span></code></a></p>
+<p>Cove Embedding</p>
+<p>Learned in Translation: Contextualized Word Vectors
+(<a class="reference external" href="http://papers.nips.cc/paper/7209-learned-in-translation-contextualized-word-vectors.pdf">http://papers.nips.cc/paper/7209-learned-in-translation-contextualized-word-vectors.pdf</a>)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>vocab: Vocab (rqa.tokens.vocab)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>dropout: The number of dropout probability
+pretrained_path: pretrained vector path (eg. GloVe)
+trainable: finetune or fixed
+project_dim: The number of project (linear) dimension</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.CoveEmbedding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>words</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/cove_embedding.html#CoveEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.CoveEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>embedding look-up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.CoveEmbedding.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/cove_embedding.html#CoveEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.CoveEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>get embedding dimension</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.tokens.embedding.ELMoEmbedding">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.</code><code class="descname">ELMoEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>options_file='elmo_2x4096_512_2048cnn_2xhighway_options.json'</em>, <em>weight_file='elmo_2x4096_512_2048cnn_2xhighway_weights.hdf5'</em>, <em>do_layer_norm=False</em>, <em>dropout=0.5</em>, <em>trainable=False</em>, <em>project_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/elmo_embedding.html#ELMoEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.ELMoEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.tokens.embedding.base.TokenEmbedding" title="rqa.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.tokens.embedding.base.TokenEmbedding</span></code></a></p>
+<p>ELMo Embedding
+Embedding From Language Model</p>
+<p>Deep contextualized word representations
+(<a class="reference external" href="https://arxiv.org/abs/1802.0536">https://arxiv.org/abs/1802.0536</a>)</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">vocab: Vocab (rqa.tokens.vocab)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><p class="first">options_file: ELMo model config file path
+weight_file: ELMo model weight file path
+do_layer_norm: Should we apply layer normalization (passed to <code class="docutils literal notranslate"><span class="pre">ScalarMix</span></code>)?</p>
+<blockquote>
+<div><p>default is False</p>
+</div></blockquote>
+<p class="last">dropout: The number of dropout probability
+trainable: Finetune or fixed
+project_dim: The number of project (linear) dimension</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.ELMoEmbedding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/elmo_embedding.html#ELMoEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.ELMoEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>embedding look-up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.ELMoEmbedding.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/elmo_embedding.html#ELMoEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.ELMoEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>get embedding dimension</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.tokens.embedding.FrequentTuningWordEmbedding">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.</code><code class="descname">FrequentTuningWordEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>dropout=0.2</em>, <em>embed_dim=100</em>, <em>padding_idx=None</em>, <em>max_norm=None</em>, <em>norm_type=2</em>, <em>scale_grad_by_freq=False</em>, <em>sparse=False</em>, <em>pretrained_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.FrequentTuningWordEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.tokens.embedding.base.TokenEmbedding" title="rqa.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.tokens.embedding.base.TokenEmbedding</span></code></a></p>
+<p>Frequent Word Finetuning Embedding
+Finetuning embedding matrix, according to ‘threshold_index’</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">vocab: Vocab (rqa.tokens.vocab)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><p class="first">dropout: The number of dropout probability
+embed_dim: The number of embedding dimension
+padding_idx: If given, pads the output with the embedding vector at padding_idx</p>
+<blockquote>
+<div><p>(initialized to zeros) whenever it encounters the index.</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>max_norm: If given, will renormalize the embedding vectors to have a norm lesser</dt>
+<dd><p class="first last">than this before extracting. Note: this will modify weight in-place.</p>
+</dd>
+</dl>
+<p>norm_type: The p of the p-norm to compute for the max_norm option. Default 2.
+scale_grad_by_freq: if given, this will scale gradients by the inverse of</p>
+<blockquote>
+<div><p>frequency of the words in the mini-batch. Default False.</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>sparse: if True, gradient w.r.t. weight will be a sparse tensor.</dt>
+<dd><p class="first last">See Notes under torch.nn.Embedding for more details regarding sparse gradients.</p>
+</dd>
+</dl>
+<p class="last">pretrained_path: pretrained vector path (eg. GloVe)
+trainable: finetune or fixed</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.FrequentTuningWordEmbedding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>words</em>, <em>frequent_tuning=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.FrequentTuningWordEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>embedding look-up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.FrequentTuningWordEmbedding.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.FrequentTuningWordEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>get embedding dimension</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.tokens.embedding.SparseFeature">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.</code><code class="descname">SparseFeature</code><span class="sig-paren">(</span><em>vocab</em>, <em>embed_type</em>, <em>feature_count</em>, <em>params={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/sparse_feature.html#SparseFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.SparseFeature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.tokens.embedding.base.TokenEmbedding" title="rqa.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.tokens.embedding.base.TokenEmbedding</span></code></a></p>
+<p>Sparse Feature</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>…</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>…</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.SparseFeature.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/sparse_feature.html#SparseFeature.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.SparseFeature.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>embedding look-up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.SparseFeature.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/sparse_feature.html#SparseFeature.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.SparseFeature.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>get embedding dimension</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.tokens.embedding.WordEmbedding">
+<em class="property">class </em><code class="descclassname">rqa.tokens.embedding.</code><code class="descname">WordEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>dropout=0.2</em>, <em>embed_dim=100</em>, <em>padding_idx=None</em>, <em>max_norm=None</em>, <em>norm_type=2</em>, <em>scale_grad_by_freq=False</em>, <em>sparse=False</em>, <em>pretrained_path=None</em>, <em>trainable=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/word_embedding.html#WordEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.WordEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.tokens.embedding.base.TokenEmbedding" title="rqa.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.tokens.embedding.base.TokenEmbedding</span></code></a></p>
+<p>Word Embedding
+Default Token Embedding</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">vocab: Vocab (rqa.tokens.vocab)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><p class="first">dropout: The number of dropout probability
+embed_dim: The number of embedding dimension
+padding_idx: If given, pads the output with the embedding vector at padding_idx</p>
+<blockquote>
+<div><p>(initialized to zeros) whenever it encounters the index.</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>max_norm: If given, will renormalize the embedding vectors to have a norm lesser</dt>
+<dd><p class="first last">than this before extracting. Note: this will modify weight in-place.</p>
+</dd>
+</dl>
+<p>norm_type: The p of the p-norm to compute for the max_norm option. Default 2.
+scale_grad_by_freq: if given, this will scale gradients by the inverse of</p>
+<blockquote>
+<div><p>frequency of the words in the mini-batch. Default False.</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>sparse: if True, gradient w.r.t. weight will be a sparse tensor.</dt>
+<dd><p class="first last">See Notes under torch.nn.Embedding for more details regarding sparse gradients.</p>
+</dd>
+</dl>
+<p class="last">pretrained_path: pretrained vector path (eg. GloVe)
+trainable: finetune or fixed</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.tokens.embedding.WordEmbedding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>words</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/word_embedding.html#WordEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.WordEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>embedding look-up</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.embedding.WordEmbedding.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/embedding/word_embedding.html#WordEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.embedding.WordEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>get embedding dimension</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rqa.tokens.indexer.html" class="btn btn-neutral float-right" title="rqa.tokens.indexer package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rqa.tokens.html" class="btn btn-neutral" title="rqa.tokens package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

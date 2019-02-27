@@ -1,0 +1,59 @@
+rqa.tokens package
+==================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    rqa.tokens.embedding
+    rqa.tokens.indexer
+    rqa.tokens.token_embedder
+    rqa.tokens.tokenizer
+
+Submodules
+----------
+
+.. automodule:: rqa.tokens.cove
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.tokens.elmo
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.tokens.hangul
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.tokens.linguistic
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.tokens.text_handler
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.tokens.token_maker
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.tokens.vocabulary
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: rqa.tokens
+    :members:
+    :undoc-members:
+    :show-inheritance:

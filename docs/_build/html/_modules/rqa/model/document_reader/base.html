@@ -1,0 +1,566 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.model.document_reader.base &mdash; reasoning-qa 0.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/model.html">Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rqa.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rqa.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rqa.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>rqa.model.document_reader.base</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rqa.model.document_reader.base</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">overrides</span> <span class="k">import</span> <span class="n">overrides</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+
+<span class="kn">from</span> <span class="nn">rqa.metric</span> <span class="k">import</span> <span class="n">squad_eval_v1</span><span class="p">,</span> <span class="n">squad_eval_v2</span>
+<span class="kn">from</span> <span class="nn">rqa.model.base</span> <span class="k">import</span> <span class="n">ModelBase</span>
+<span class="kn">from</span> <span class="nn">rqa.tokens.tokenizer</span> <span class="k">import</span> <span class="n">WordTokenizer</span>
+
+
+<div class="viewcode-block" id="DocumentReaderBase"><a class="viewcode-back" href="../../../../rqa.model.document_reader.html#rqa.model.document_reader.base.DocumentReaderBase">[docs]</a><span class="k">class</span> <span class="nc">DocumentReaderBase</span><span class="p">(</span><span class="n">ModelBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Document Reader Model Base</span>
+
+<span class="sd">    * Args:</span>
+<span class="sd">        token_embedder: &#39;QATokenEmbedder&#39;, Used to embed the &#39;context&#39; and &#39;question&#39;.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token_embedder</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DocumentReaderBase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">token_embedder</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DocumentReaderBase.forward"><a class="viewcode-back" href="../../../../rqa.model.document_reader.html#rqa.model.document_reader.base.DocumentReaderBase.forward">[docs]</a>    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; batch (features and labels) -&gt; logits -&gt; loss &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="DocumentReaderBase.get_best_span"><a class="viewcode-back" href="../../../../rqa.model.document_reader.html#rqa.model.document_reader.base.DocumentReaderBase.get_best_span">[docs]</a>    <span class="k">def</span> <span class="nf">get_best_span</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">span_start_logits</span><span class="p">,</span> <span class="n">span_end_logits</span><span class="p">,</span> <span class="n">answer_maxlen</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Take argmax of constrained score_s * score_e.</span>
+
+<span class="sd">        * Args:</span>
+<span class="sd">            span_start_logits: independent start logits</span>
+<span class="sd">            span_end_logits: independent end logits</span>
+
+<span class="sd">        * Kwargs:</span>
+<span class="sd">            answer_maxlen: max span length to consider (default is None -&gt; All)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">B</span> <span class="o">=</span> <span class="n">span_start_logits</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">best_word_span</span> <span class="o">=</span> <span class="n">span_start_logits</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">((</span><span class="n">B</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+
+        <span class="n">score_starts</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">span_start_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">score_ends</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">span_end_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">max_len</span> <span class="o">=</span> <span class="n">answer_maxlen</span> <span class="ow">or</span> <span class="n">score_starts</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">score_starts</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)):</span>
+            <span class="c1"># Outer product of scores to get full p_s * p_e matrix</span>
+            <span class="n">scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ger</span><span class="p">(</span><span class="n">score_starts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">score_ends</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="c1"># Zero out negative length and over-length span scores</span>
+            <span class="n">scores</span><span class="o">.</span><span class="n">triu_</span><span class="p">()</span><span class="o">.</span><span class="n">tril_</span><span class="p">(</span><span class="n">max_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># Take argmax or top n</span>
+            <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="n">scores_flat</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+            <span class="n">idx_sort</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">scores_flat</span><span class="p">)]</span>
+
+            <span class="n">s_idx</span><span class="p">,</span> <span class="n">e_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">idx_sort</span><span class="p">,</span> <span class="n">scores</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="n">best_word_span</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s_idx</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">best_word_span</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">e_idx</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">best_word_span</span></div>
+
+    <span class="k">def</span> <span class="nf">_make_span_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; span accuracy metrics &quot;&quot;&quot;</span>
+        <span class="n">start_accuracy</span><span class="p">,</span> <span class="n">end_accuracy</span><span class="p">,</span> <span class="n">span_accuracy</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">preds</span> <span class="ow">in</span> <span class="n">predictions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">answer_start</span><span class="p">,</span> <span class="n">answer_end</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_ground_truths</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+
+            <span class="n">start_acc</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">preds</span><span class="p">[</span><span class="s2">&quot;pred_span_start&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">answer_start</span> <span class="k">else</span> <span class="mi">0</span>
+            <span class="n">end_acc</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">preds</span><span class="p">[</span><span class="s2">&quot;pred_span_end&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">answer_end</span> <span class="k">else</span> <span class="mi">0</span>
+            <span class="n">span_acc</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">start_acc</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">end_acc</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
+
+            <span class="n">start_accuracy</span> <span class="o">+=</span> <span class="n">start_acc</span>
+            <span class="n">end_accuracy</span> <span class="o">+=</span> <span class="n">end_acc</span>
+            <span class="n">span_accuracy</span> <span class="o">+=</span> <span class="n">span_acc</span>
+
+        <span class="n">start_accuracy</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="n">start_accuracy</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="p">)</span>
+        <span class="n">end_accuracy</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="n">end_accuracy</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="p">)</span>
+        <span class="n">span_accuracy</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="n">span_accuracy</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;start_acc&quot;</span><span class="p">:</span> <span class="n">start_accuracy</span><span class="p">,</span> <span class="s2">&quot;end_acc&quot;</span><span class="p">:</span> <span class="n">end_accuracy</span><span class="p">,</span> <span class="s2">&quot;span_acc&quot;</span><span class="p">:</span> <span class="n">span_accuracy</span><span class="p">}</span>
+
+<div class="viewcode-block" id="DocumentReaderBase.make_predictions"><a class="viewcode-back" href="../../../../rqa.model.document_reader.html#rqa.model.document_reader.base.DocumentReaderBase.make_predictions">[docs]</a>    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">make_predictions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make predictions with model&#39;s output_dict</span>
+
+<span class="sd">        * Args:</span>
+<span class="sd">            output_dict: model&#39;s output dictionary consisting of</span>
+<span class="sd">                - answer_idx: question id</span>
+<span class="sd">                - best_span: calculate the span_start_logits and span_end_logits to what is the best span</span>
+<span class="sd">                - start_logits: span start logits</span>
+<span class="sd">                - end_logits: span end logits</span>
+
+<span class="sd">        * Returns:</span>
+<span class="sd">            predictions: prediction dictionary consisting of</span>
+<span class="sd">                - key: &#39;id&#39; (question id)</span>
+<span class="sd">                - value: consisting of dictionary</span>
+<span class="sd">                    predict_text, pred_span_start, pred_span_end, span_start_prob, span_end_prob</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">data_indices</span> <span class="o">=</span> <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;answer_idx&quot;</span><span class="p">]</span>
+        <span class="n">best_word_span</span> <span class="o">=</span> <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;best_span&quot;</span><span class="p">]</span>
+
+        <span class="n">span_start_probs</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;start_logits&quot;</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">span_end_probs</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;end_logits&quot;</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">OrderedDict</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">(</span>
+                    <span class="n">index</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="p">{</span>
+                        <span class="s2">&quot;predict_text&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_text_with_index</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">best_span</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">best_span</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                        <span class="s2">&quot;pred_span_start&quot;</span><span class="p">:</span> <span class="n">best_span</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                        <span class="s2">&quot;pred_span_end&quot;</span><span class="p">:</span> <span class="n">best_span</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="s2">&quot;span_start_prob&quot;</span><span class="p">:</span> <span class="n">span_start_prob</span><span class="p">,</span>
+                        <span class="s2">&quot;span_end_prob&quot;</span><span class="p">:</span> <span class="n">span_end_prob</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+                <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">best_span</span><span class="p">,</span> <span class="n">span_start_prob</span><span class="p">,</span> <span class="n">span_end_prob</span>
+                <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">data_indices</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="n">best_word_span</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="n">span_start_probs</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="n">span_end_probs</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+            <span class="p">]</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="DocumentReaderBase.predict"><a class="viewcode-back" href="../../../../rqa.model.document_reader.html#rqa.model.document_reader.base.DocumentReaderBase.predict">[docs]</a>    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_dict</span><span class="p">,</span> <span class="n">raw_feature</span><span class="p">,</span> <span class="n">token_data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inference by raw_feature</span>
+
+<span class="sd">        * Args:</span>
+<span class="sd">            output_dict: model&#39;s output dictionary consisting of</span>
+<span class="sd">                - answer_idx: question id</span>
+<span class="sd">                - best_span: calculate the span_start_logits and span_end_logits to what is the best span</span>
+<span class="sd">            raw_feature: raw feature dictionary consisting of</span>
+<span class="sd">                - context: paragraph tensor</span>
+<span class="sd">                - question: query tensor</span>
+<span class="sd">            token_data: Token (tokenizer, indexer, vocab and embedding)</span>
+
+<span class="sd">        * Returns:</span>
+<span class="sd">            predict_text: convert best_span to text</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">span_start</span><span class="p">,</span> <span class="n">span_end</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;best_span&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">span_start</span> <span class="o">=</span> <span class="n">span_start</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="n">span_end</span> <span class="o">=</span> <span class="n">span_end</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+        <span class="n">word_tokenizer</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">token_name</span><span class="p">,</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">token_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">)</span> <span class="o">==</span> <span class="n">WordTokenizer</span><span class="p">:</span>
+                <span class="n">word_tokenizer</span> <span class="o">=</span> <span class="n">token</span><span class="o">.</span><span class="n">tokenizer</span>
+
+        <span class="c1"># TODO: need to use text_spans</span>
+        <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">word_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">raw_feature</span><span class="p">[</span><span class="s2">&quot;context&quot;</span><span class="p">])[</span><span class="n">span_start</span> <span class="p">:</span> <span class="n">span_end</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="DocumentReaderBase.print_examples"><a class="viewcode-back" href="../../../../rqa.model.document_reader.html#rqa.model.document_reader.base.DocumentReaderBase.print_examples">[docs]</a>    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">print_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Print evaluation examples</span>
+
+<span class="sd">        * Args:</span>
+<span class="sd">            index: data index</span>
+<span class="sd">            inputs: mini-batch inputs</span>
+<span class="sd">            predictions: prediction dictionary consisting of</span>
+<span class="sd">                - key: &#39;id&#39; (question id)</span>
+<span class="sd">                - value: consisting of dictionary</span>
+<span class="sd">                    predict_text, pred_span_start, pred_span_end, span_start_prob, span_end_prob</span>
+
+<span class="sd">        * Returns:</span>
+<span class="sd">            print(Context, Question, Answers and Predict)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data_index</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">][</span><span class="s2">&quot;answer_idx&quot;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="n">data_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">data_index</span><span class="p">)</span>
+
+        <span class="n">meta_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">meta_data</span>
+
+        <span class="n">context</span> <span class="o">=</span> <span class="n">meta_data</span><span class="p">[</span><span class="s2">&quot;examples&quot;</span><span class="p">][</span><span class="n">data_id</span><span class="p">][</span><span class="s2">&quot;context&quot;</span><span class="p">]</span>
+        <span class="n">question</span> <span class="o">=</span> <span class="n">meta_data</span><span class="p">[</span><span class="s2">&quot;examples&quot;</span><span class="p">][</span><span class="n">data_id</span><span class="p">][</span><span class="s2">&quot;question&quot;</span><span class="p">]</span>
+        <span class="n">answers</span> <span class="o">=</span> <span class="n">meta_data</span><span class="p">[</span><span class="s2">&quot;examples&quot;</span><span class="p">][</span><span class="n">data_id</span><span class="p">][</span><span class="s2">&quot;answers&quot;</span><span class="p">]</span>
+
+        <span class="n">predict_text</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="n">data_index</span><span class="p">][</span><span class="s2">&quot;predict_text&quot;</span><span class="p">]</span>
+
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Context:&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Question:&quot;</span><span class="p">,</span> <span class="n">question</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Answers:&quot;</span><span class="p">,</span> <span class="n">answers</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Predict:&quot;</span><span class="p">,</span> <span class="n">predict_text</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span></div></div>
+
+
+<div class="viewcode-block" id="SQuADv1ModelBase"><a class="viewcode-back" href="../../../../rqa.model.document_reader.html#rqa.model.document_reader.base.SQuADv1ModelBase">[docs]</a><span class="k">class</span> <span class="nc">SQuADv1ModelBase</span><span class="p">(</span><span class="n">DocumentReaderBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Question Answering Model Base</span>
+<span class="sd">        with SQuAD v1.1 evaluation</span>
+
+<span class="sd">    * Args:</span>
+<span class="sd">        token_embedder: &#39;QATokenEmbedder&#39;, Used to embed the &#39;context&#39; and &#39;question&#39;.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token_embedder</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SQuADv1ModelBase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">token_embedder</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SQuADv1ModelBase.forward"><a class="viewcode-back" href="../../../../rqa.model.document_reader.html#rqa.model.document_reader.base.SQuADv1ModelBase.forward">[docs]</a>    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; batch (features and labels) -&gt; logits -&gt; loss &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="SQuADv1ModelBase.make_metrics"><a class="viewcode-back" href="../../../../rqa.model.document_reader.html#rqa.model.document_reader.base.SQuADv1ModelBase.make_metrics">[docs]</a>    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">make_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make metrics with prediction dictionary</span>
+
+<span class="sd">        * Args:</span>
+<span class="sd">            predictions: prediction dictionary consisting of</span>
+<span class="sd">                - key: &#39;id&#39; (question id)</span>
+<span class="sd">                - value: (predict_text, pred_span_start, pred_span_end)</span>
+
+<span class="sd">        * Returns:</span>
+<span class="sd">            metrics: metric dictionary consisting of</span>
+<span class="sd">                - &#39;em&#39;: exact_match (SQuAD v1.1 official evaluation)</span>
+<span class="sd">                - &#39;f1&#39;: f1 (SQuAD v1.1 official evaluation)</span>
+<span class="sd">                - &#39;start_acc&#39;: span_start accuracy</span>
+<span class="sd">                - &#39;end_acc&#39;: span_end accuracy</span>
+<span class="sd">                - &#39;span_acc&#39;: span accuracy (start and end)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">preds</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">prediction</span> <span class="ow">in</span> <span class="n">predictions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">answer_start</span><span class="p">,</span> <span class="n">answer_end</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_ground_truths</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+
+            <span class="n">data_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+            <span class="n">preds</span><span class="p">[</span><span class="n">data_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;predict_text&quot;</span><span class="p">]</span>
+
+        <span class="n">squad_offical_metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_metrics_with_official</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
+
+        <span class="n">metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_span_metrics</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+        <span class="n">metrics</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">squad_offical_metrics</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">metrics</span></div>
+
+    <span class="k">def</span> <span class="nf">_make_metrics_with_official</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">preds</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; SQuAD v1.1 official evaluation &quot;&quot;&quot;</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">raw_dataset</span>
+
+        <span class="n">squad_scores</span> <span class="o">=</span> <span class="n">squad_eval_v1</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">squad_scores</span></div>
+
+
+<div class="viewcode-block" id="SQuADv2ModelBase"><a class="viewcode-back" href="../../../../rqa.model.document_reader.html#rqa.model.document_reader.base.SQuADv2ModelBase">[docs]</a><span class="k">class</span> <span class="nc">SQuADv2ModelBase</span><span class="p">(</span><span class="n">SQuADv1ModelBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Question Answering Model Base</span>
+<span class="sd">        with SQuAD v2.0 evaluation</span>
+
+<span class="sd">    * Args:</span>
+<span class="sd">        token_embedder: &#39;QATokenEmbedder&#39;, Used to embed the &#39;context&#39; and &#39;question&#39;.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token_embedder</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SQuADv2ModelBase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">token_embedder</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SQuADv2ModelBase.forward"><a class="viewcode-back" href="../../../../rqa.model.document_reader.html#rqa.model.document_reader.base.SQuADv2ModelBase.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; batch (features and labels) -&gt; logits -&gt; loss &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="SQuADv2ModelBase.make_metrics"><a class="viewcode-back" href="../../../../rqa.model.document_reader.html#rqa.model.document_reader.base.SQuADv2ModelBase.make_metrics">[docs]</a>    <span class="k">def</span> <span class="nf">make_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make metrics with prediction dictionary</span>
+
+<span class="sd">        * Args:</span>
+<span class="sd">            predictions: prediction dictionary consisting of</span>
+<span class="sd">                - key: &#39;id&#39; (question id)</span>
+<span class="sd">                - value: consisting of dictionary</span>
+<span class="sd">                    predict_text, pred_span_start, pred_span_end, span_start_prob, span_end_prob</span>
+
+<span class="sd">        * Returns:</span>
+<span class="sd">            metrics: metric dictionary consisting of</span>
+<span class="sd">                - &#39;start_acc&#39;: span_start accuracy</span>
+<span class="sd">                - &#39;end_acc&#39;: span_end accuracy</span>
+<span class="sd">                - &#39;span_acc&#39;: span accuracy (start and end)</span>
+<span class="sd">                - &#39;em&#39;: exact_match (SQuAD v2.0 official evaluation)</span>
+<span class="sd">                - &#39;f1&#39;: f1 (SQuAD v2.0 official evaluation)</span>
+<span class="sd">                - &#39;HasAns_exact&#39;: has answer exact_match</span>
+<span class="sd">                - &#39;HasAns_f1&#39;: has answer f1</span>
+<span class="sd">                - &#39;NoAns_exact&#39;: no answer exact_match</span>
+<span class="sd">                - &#39;NoAns_f1&#39;: no answer f1</span>
+<span class="sd">                - &#39;best_exact&#39;: best exact_match score with best_exact_thresh</span>
+<span class="sd">                - &#39;best_exact_thresh&#39;: best exact_match answerable threshold</span>
+<span class="sd">                - &#39;best_f1&#39;: best f1 score with best_f1_thresh</span>
+<span class="sd">                - &#39;best_f1_thresh&#39;: best f1 answerable threshold</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">preds</span><span class="p">,</span> <span class="n">na_probs</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">prediction</span> <span class="ow">in</span> <span class="n">predictions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">answer_start</span><span class="p">,</span> <span class="n">answer_end</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_ground_truths</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+
+            <span class="c1"># Metrics (SQuAD official metric)</span>
+            <span class="n">predict_text</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;predict_text&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">predict_text</span> <span class="o">==</span> <span class="s2">&quot;&lt;noanswer&gt;&quot;</span><span class="p">:</span>
+                <span class="n">predict_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+            <span class="n">data_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+            <span class="n">preds</span><span class="p">[</span><span class="n">data_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">predict_text</span>
+
+            <span class="n">start_no_prob</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;span_start_prob&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">end_no_prob</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;span_end_prob&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">no_answer_prob</span> <span class="o">=</span> <span class="n">start_no_prob</span> <span class="o">*</span> <span class="n">end_no_prob</span>
+            <span class="n">na_probs</span><span class="p">[</span><span class="n">data_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">no_answer_prob</span>
+
+        <span class="n">squad_offical_metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_metrics_with_official</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">)</span>
+
+        <span class="n">metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_span_metrics</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+        <span class="n">metrics</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">squad_offical_metrics</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">metrics</span></div>
+
+    <span class="k">def</span> <span class="nf">_make_metrics_with_official</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">na_prob_thresh</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; SQuAD 2.0 official evaluation &quot;&quot;&quot;</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">raw_dataset</span>
+
+        <span class="n">squad_scores</span> <span class="o">=</span> <span class="n">squad_eval_v2</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+        <span class="n">squad_scores</span><span class="p">[</span><span class="s2">&quot;em&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">squad_scores</span><span class="p">[</span><span class="s2">&quot;exact&quot;</span><span class="p">]</span>
+
+        <span class="n">remove_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">,</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span> <span class="s2">&quot;HasAns_total&quot;</span><span class="p">,</span> <span class="s2">&quot;NoAns_total&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">remove_keys</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">squad_scores</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">squad_scores</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">squad_scores</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'0.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.model package &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rqa.model.reading_comprehension package" href="rqa.model.reading_comprehension.html" />
+    <link rel="prev" title="rqa.metric package" href="rqa.metric.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rqa.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rqa.model.reading_comprehension.html">rqa.model.reading_comprehension package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.model.semantic_parsing.html">rqa.model.semantic_parsing package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.model.sequence_classification.html">rqa.model.sequence_classification package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.model.token_classification.html">rqa.model.token_classification package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rqa.model.base">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rqa.model">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>rqa.model package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.model.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rqa-model-package">
+<h1>rqa.model package<a class="headerlink" href="#rqa-model-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.reading_comprehension.html">rqa.model.reading_comprehension package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rqa.model.reading_comprehension.html#module-rqa.model.reading_comprehension.bert_for_qa">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.model.reading_comprehension.html#module-rqa.model.reading_comprehension">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.semantic_parsing.html">rqa.model.semantic_parsing package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rqa.model.semantic_parsing.html#module-rqa.model.semantic_parsing.mixin">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.model.semantic_parsing.html#module-rqa.model.semantic_parsing">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.sequence_classification.html">rqa.model.sequence_classification package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rqa.model.sequence_classification.html#module-rqa.model.sequence_classification.bert_for_seq_cls">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.model.sequence_classification.html#module-rqa.model.sequence_classification">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.token_classification.html">rqa.model.token_classification package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rqa.model.token_classification.html#module-rqa.model.token_classification.bert_for_tok_cls">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.model.token_classification.html#module-rqa.model.token_classification">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-rqa.model.base">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-rqa.model.base" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.model.base.ModelBase">
+<em class="property">class </em><code class="descclassname">rqa.model.base.</code><code class="descname">ModelBase</code><a class="reference internal" href="_modules/rqa/model/base.html#ModelBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.base.ModelBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Model Base Class</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>token_embedder: (rqa.tokens.token_embedder.base) TokenEmbedder</dd>
+</dl>
+<dl class="attribute">
+<dt id="rqa.model.base.ModelBase.config">
+<code class="descname">config</code><a class="headerlink" href="#rqa.model.base.ModelBase.config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.model.base.ModelBase.dataset">
+<code class="descname">dataset</code><a class="headerlink" href="#rqa.model.base.ModelBase.dataset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.base.ModelBase.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/base.html#ModelBase.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.base.ModelBase.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.model.base.ModelBase.log_dir">
+<code class="descname">log_dir</code><a class="headerlink" href="#rqa.model.base.ModelBase.log_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.base.ModelBase.make_metrics">
+<code class="descname">make_metrics</code><span class="sig-paren">(</span><em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/base.html#ModelBase.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.base.ModelBase.make_metrics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.base.ModelBase.make_predictions">
+<code class="descname">make_predictions</code><span class="sig-paren">(</span><em>features</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/base.html#ModelBase.make_predictions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.base.ModelBase.make_predictions" title="Permalink to this definition">¶</a></dt>
+<dd><p>for Metrics</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.model.base.ModelBase.metrics">
+<code class="descname">metrics</code><a class="headerlink" href="#rqa.model.base.ModelBase.metrics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.base.ModelBase.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>features</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/base.html#ModelBase.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.base.ModelBase.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inference</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.base.ModelBase.print_examples">
+<code class="descname">print_examples</code><span class="sig-paren">(</span><em>params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/base.html#ModelBase.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.base.ModelBase.print_examples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print evaluation examples</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.model.base.ModelBase.train_counter">
+<code class="descname">train_counter</code><a class="headerlink" href="#rqa.model.base.ModelBase.train_counter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.model.base.ModelBase.vocabs">
+<code class="descname">vocabs</code><a class="headerlink" href="#rqa.model.base.ModelBase.vocabs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.base.ModelBase.write_predictions">
+<code class="descname">write_predictions</code><span class="sig-paren">(</span><em>predictions</em>, <em>file_path=None</em>, <em>is_dict=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/base.html#ModelBase.write_predictions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.base.ModelBase.write_predictions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.model.base.ModelWithTokenEmbedder">
+<em class="property">class </em><code class="descclassname">rqa.model.base.</code><code class="descname">ModelWithTokenEmbedder</code><span class="sig-paren">(</span><em>token_embedder</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/base.html#ModelWithTokenEmbedder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.base.ModelWithTokenEmbedder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.model.base.ModelBase" title="rqa.model.base.ModelBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.base.ModelBase</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.model.base.ModelWithoutTokenEmbedder">
+<em class="property">class </em><code class="descclassname">rqa.model.base.</code><code class="descname">ModelWithoutTokenEmbedder</code><span class="sig-paren">(</span><em>token_makers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/base.html#ModelWithoutTokenEmbedder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.base.ModelWithoutTokenEmbedder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.model.base.ModelBase" title="rqa.model.base.ModelBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.base.ModelBase</span></code></a></p>
+</dd></dl>
+
+<span class="target" id="module-rqa.model.cls_utils"></span><dl class="function">
+<dt id="rqa.model.cls_utils.get_tag_dict">
+<code class="descclassname">rqa.model.cls_utils.</code><code class="descname">get_tag_dict</code><span class="sig-paren">(</span><em>sequence</em>, <em>tag_texts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/cls_utils.html#get_tag_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.cls_utils.get_tag_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.model.cls_utils.write_confusion_matrix_to_csv">
+<code class="descclassname">rqa.model.cls_utils.</code><code class="descname">write_confusion_matrix_to_csv</code><span class="sig-paren">(</span><em>file_path</em>, <em>pycm_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/cls_utils.html#write_confusion_matrix_to_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.cls_utils.write_confusion_matrix_to_csv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-rqa.model">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rqa.model" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rqa.model.reading_comprehension.html" class="btn btn-neutral float-right" title="rqa.model.reading_comprehension package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rqa.metric.html" class="btn btn-neutral" title="rqa.metric package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

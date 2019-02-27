@@ -1,0 +1,19 @@
+rqa.machine.components.retrieval package
+========================================
+
+Submodules
+----------
+
+.. automodule:: rqa.machine.components.retrieval.tfidf
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: rqa.machine.components.retrieval
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.machine package &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rqa.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>rqa.machine package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.machine.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rqa-machine-package">
+<h1>rqa.machine package<a class="headerlink" href="#rqa-machine-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rqa.machine.components.html">rqa.machine.components package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rqa.machine.components.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rqa.machine.components.retrieval.html">rqa.machine.components.retrieval package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rqa.machine.components.retrieval.html#module-rqa.machine.components.retrieval.tfidf">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rqa.machine.components.retrieval.html#module-rqa.machine.components.retrieval">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.machine.components.html#module-rqa.machine.components">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-rqa.machine.base">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-rqa.machine.base" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.machine.base.ReasoningQA">
+<em class="property">class </em><code class="descclassname">rqa.machine.base.</code><code class="descname">ReasoningQA</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/machine/base.html#ReasoningQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.machine.base.ReasoningQA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Doc-String</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>config: machine_config</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.machine.base.ReasoningQA.get_answer">
+<code class="descname">get_answer</code><span class="sig-paren">(</span><em>question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/machine/base.html#ReasoningQA.get_answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.machine.base.ReasoningQA.get_answer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.machine.base.ReasoningQA.load">
+<code class="descname">load</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/machine/base.html#ReasoningQA.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.machine.base.ReasoningQA.load" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.machine.base.ReasoningQA.make_module">
+<code class="descname">make_module</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/machine/base.html#ReasoningQA.make_module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.machine.base.ReasoningQA.make_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make component or experiment for RQA Machine’s module</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><ul class="first last">
+<li>config: module’s config (rqa.config.namespace.NestedNamespace)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.machine.module"></span><dl class="class">
+<dt id="rqa.machine.module.Module">
+<em class="property">class </em><code class="descclassname">rqa.machine.module.</code><code class="descname">Module</code><a class="reference internal" href="_modules/rqa/machine/module.html#Module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.machine.module.Module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Machine Flag class</p>
+<dl class="attribute">
+<dt id="rqa.machine.module.Module.COMPONENT">
+<code class="descname">COMPONENT</code><em class="property"> = 'component'</em><a class="headerlink" href="#rqa.machine.module.Module.COMPONENT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.machine.module.Module.EXPERIMENT">
+<code class="descname">EXPERIMENT</code><em class="property"> = 'experiment'</em><a class="headerlink" href="#rqa.machine.module.Module.EXPERIMENT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.machine.module.Module.KNOWLEDGE_BASE">
+<code class="descname">KNOWLEDGE_BASE</code><em class="property"> = 'knowledge_base'</em><a class="headerlink" href="#rqa.machine.module.Module.KNOWLEDGE_BASE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-rqa.machine">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rqa.machine" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.machine.OpenQA">
+<em class="property">class </em><code class="descclassname">rqa.machine.</code><code class="descname">OpenQA</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/machine/open_qa/pipeline.html#OpenQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.machine.OpenQA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.machine.base.ReasoningQA" title="rqa.machine.base.ReasoningQA"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.machine.base.ReasoningQA</span></code></a></p>
+<p>Doc-String</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>config: machine_config</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.machine.OpenQA.get_answer">
+<code class="descname">get_answer</code><span class="sig-paren">(</span><em>question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/machine/open_qa/pipeline.html#OpenQA.get_answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.machine.OpenQA.get_answer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.machine.OpenQA.load">
+<code class="descname">load</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/machine/open_qa/pipeline.html#OpenQA.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.machine.OpenQA.load" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.machine.OpenQA.machine_reading">
+<code class="descname">machine_reading</code><span class="sig-paren">(</span><em>context</em>, <em>question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/machine/open_qa/pipeline.html#OpenQA.machine_reading"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.machine.OpenQA.machine_reading" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.machine.OpenQA.search_documents">
+<code class="descname">search_documents</code><span class="sig-paren">(</span><em>question</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/machine/open_qa/pipeline.html#OpenQA.search_documents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.machine.OpenQA.search_documents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.machine.NLU">
+<em class="property">class </em><code class="descclassname">rqa.machine.</code><code class="descname">NLU</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/machine/nlu/pipeline.html#NLU"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.machine.NLU" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.machine.base.ReasoningQA" title="rqa.machine.base.ReasoningQA"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.machine.base.ReasoningQA</span></code></a></p>
+<p>Doc-String</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>config: machine_config</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.machine.NLU.get_answer">
+<code class="descname">get_answer</code><span class="sig-paren">(</span><em>utterance</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/machine/nlu/pipeline.html#NLU.get_answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.machine.NLU.get_answer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.machine.NLU.intent_classification">
+<code class="descname">intent_classification</code><span class="sig-paren">(</span><em>utterance</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/machine/nlu/pipeline.html#NLU.intent_classification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.machine.NLU.intent_classification" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.machine.NLU.load">
+<code class="descname">load</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/machine/nlu/pipeline.html#NLU.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.machine.NLU.load" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.machine.NLU.slot_filling">
+<code class="descname">slot_filling</code><span class="sig-paren">(</span><em>utterance</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/machine/nlu/pipeline.html#NLU.slot_filling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.machine.NLU.slot_filling" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

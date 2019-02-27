@@ -1,0 +1,588 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.tokens.hangul &mdash; reasoning-qa 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../tokens.html">rqa.tokens</a> &raquo;</li>
+        
+      <li>rqa.tokens.hangul</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rqa.tokens.hangul</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># encoding: utf-8</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Hangulpy.py</span>
+<span class="sd">Copyright (C) 2012 Ryan Rho, Hyunwoo Cho</span>
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy of</span>
+<span class="sd">this software and associated documentation files (the &quot;Software&quot;), to deal in</span>
+<span class="sd">the Software without restriction, including without limitation the rights to</span>
+<span class="sd">use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies</span>
+<span class="sd">of the Software, and to permit persons to whom the Software is furnished to do</span>
+<span class="sd">so, subject to the following conditions:</span>
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c1">################################################################################</span>
+<span class="c1"># Hangul Unicode Variables</span>
+<span class="c1">################################################################################</span>
+
+<span class="c1"># Code = 0xAC00 + (Chosung_index * NUM_JOONGSUNGS * NUM_JONGSUNGS) + (Joongsung_index * NUM_JONGSUNGS) + (Jongsung_index)</span>
+<span class="n">CHOSUNGS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;ㄱ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄲ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄴ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄷ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄸ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄹ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅁ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅂ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅃ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅅ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅆ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅇ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅈ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅉ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅊ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅋ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅌ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅍ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅎ&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">JOONGSUNGS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;ㅏ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅐ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅑ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅒ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅓ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅔ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅕ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅖ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅗ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅘ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅙ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅚ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅛ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅜ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅝ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅞ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅟ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅠ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅡ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅢ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅣ&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">JONGSUNGS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄱ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄲ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄳ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄴ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄵ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄶ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄷ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄹ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄺ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄻ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄼ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄽ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄾ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㄿ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅀ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅁ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅂ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅄ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅅ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅆ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅇ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅈ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅊ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅋ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅌ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅍ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ㅎ&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">NUM_CHOSUNGS</span> <span class="o">=</span> <span class="mi">19</span>
+<span class="n">NUM_JOONGSUNGS</span> <span class="o">=</span> <span class="mi">21</span>
+<span class="n">NUM_JONGSUNGS</span> <span class="o">=</span> <span class="mi">28</span>
+
+<span class="n">FIRST_HANGUL_UNICODE</span> <span class="o">=</span> <span class="mh">0xAC00</span>  <span class="c1"># &#39;가&#39;</span>
+<span class="n">LAST_HANGUL_UNICODE</span> <span class="o">=</span> <span class="mh">0xD7A3</span>  <span class="c1"># &#39;힣&#39;</span>
+
+<span class="c1">################################################################################</span>
+<span class="c1"># Boolean Hangul functions</span>
+<span class="c1">################################################################################</span>
+
+
+<div class="viewcode-block" id="is_hangul"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.is_hangul">[docs]</a><span class="k">def</span> <span class="nf">is_hangul</span><span class="p">(</span><span class="n">phrase</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;Check whether the phrase is Hangul.</span>
+<span class="sd">    This method ignores white spaces, punctuations, and numbers.</span>
+<span class="sd">    @param phrase a target string</span>
+<span class="sd">    @return True if the phrase is Hangul. False otherwise.&quot;&quot;&quot;</span>
+
+    <span class="c1"># If the input is only one character, test whether the character is Hangul.</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">phrase</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">is_all_hangul</span><span class="p">(</span><span class="n">phrase</span><span class="p">)</span>
+
+    <span class="c1"># Remove all white spaces, punctuations, numbers.</span>
+    <span class="n">exclude</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">whitespace</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span> <span class="o">+</span> <span class="s2">&quot;0123456789&quot;</span><span class="p">)</span>
+    <span class="n">phrase</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ch</span> <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">phrase</span> <span class="k">if</span> <span class="n">ch</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exclude</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">is_all_hangul</span><span class="p">(</span><span class="n">phrase</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="is_all_hangul"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.is_all_hangul">[docs]</a><span class="k">def</span> <span class="nf">is_all_hangul</span><span class="p">(</span><span class="n">phrase</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;Check whether the phrase contains all Hangul letters</span>
+<span class="sd">    @param phrase a target string</span>
+<span class="sd">    @return True if the phrase only consists of Hangul. False otherwise.&quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">unicode_value</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">letter</span><span class="p">:</span> <span class="nb">ord</span><span class="p">(</span><span class="n">letter</span><span class="p">),</span> <span class="n">phrase</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">unicode_value</span> <span class="o">&lt;</span> <span class="n">FIRST_HANGUL_UNICODE</span> <span class="ow">or</span> <span class="n">unicode_value</span> <span class="o">&gt;</span> <span class="n">LAST_HANGUL_UNICODE</span><span class="p">:</span>
+            <span class="c1"># Check whether the letter is chosungs, joongsungs, or jongsungs.</span>
+            <span class="k">if</span> <span class="n">unicode_value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="nb">ord</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">CHOSUNGS</span> <span class="o">+</span> <span class="n">JOONGSUNGS</span> <span class="o">+</span> <span class="n">JONGSUNGS</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="has_jongsung"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.has_jongsung">[docs]</a><span class="k">def</span> <span class="nf">has_jongsung</span><span class="p">(</span><span class="n">letter</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;Check whether this letter contains Jongsung&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;The target string must be one letter.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_hangul</span><span class="p">(</span><span class="n">letter</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">NotHangulException</span><span class="p">(</span><span class="s2">&quot;The target string must be Hangul&quot;</span><span class="p">)</span>
+
+    <span class="n">unicode_value</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">unicode_value</span> <span class="o">-</span> <span class="n">FIRST_HANGUL_UNICODE</span><span class="p">)</span> <span class="o">%</span> <span class="n">NUM_JONGSUNGS</span> <span class="o">&gt;</span> <span class="mi">0</span></div>
+
+
+<div class="viewcode-block" id="has_batchim"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.has_batchim">[docs]</a><span class="k">def</span> <span class="nf">has_batchim</span><span class="p">(</span><span class="n">letter</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;This method is the same as has_jongsung()&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">has_jongsung</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="has_approximant"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.has_approximant">[docs]</a><span class="k">def</span> <span class="nf">has_approximant</span><span class="p">(</span><span class="n">letter</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;Approximant makes complex vowels, such as ones starting with y or w.</span>
+<span class="sd">    In Korean there is a unique approximant euㅡ making uiㅢ, but ㅢ does not make many irregularities.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;The target string must be one letter.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_hangul</span><span class="p">(</span><span class="n">letter</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">NotHangulException</span><span class="p">(</span><span class="s2">&quot;The target string must be Hangul&quot;</span><span class="p">)</span>
+
+    <span class="n">jaso</span> <span class="o">=</span> <span class="n">decompose</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+    <span class="n">diphthong</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
+    <span class="c1"># [u&#39;ㅑ&#39;,u&#39;ㅒ&#39;,&#39;,u&#39;ㅕ&#39;,u&#39;ㅖ&#39;,u&#39;ㅘ&#39;,u&#39;ㅙ&#39;,u&#39;ㅛ&#39;,u&#39;ㅝ&#39;,u&#39;ㅞ&#39;,u&#39;ㅠ&#39;]</span>
+    <span class="c1"># excluded &#39;ㅢ&#39; because y- and w-based complex vowels are irregular.</span>
+    <span class="c1"># vowels with umlauts (ㅐ, ㅔ, ㅚ, ㅟ) are not considered complex vowels.</span>
+    <span class="k">return</span> <span class="n">jaso</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">diphthong</span></div>
+
+
+<span class="c1">################################################################################</span>
+<span class="c1"># Decomposition &amp; Combination</span>
+<span class="c1">################################################################################</span>
+
+
+<div class="viewcode-block" id="compose"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.compose">[docs]</a><span class="k">def</span> <span class="nf">compose</span><span class="p">(</span><span class="n">chosung</span><span class="p">,</span> <span class="n">joongsung</span><span class="p">,</span> <span class="n">jongsung</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;This function returns a Hangul letter by composing the specified chosung, joongsung, and jongsung.</span>
+<span class="sd">    @param chosung</span>
+<span class="sd">    @param joongsung</span>
+<span class="sd">    @param jongsung the terminal Hangul letter. This is optional if you do not need a jongsung.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">jongsung</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">jongsung</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">chosung_index</span> <span class="o">=</span> <span class="n">CHOSUNGS</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">chosung</span><span class="p">)</span>
+        <span class="n">joongsung_index</span> <span class="o">=</span> <span class="n">JOONGSUNGS</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">joongsung</span><span class="p">)</span>
+        <span class="n">jongsung_index</span> <span class="o">=</span> <span class="n">JONGSUNGS</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">jongsung</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">NotHangulException</span><span class="p">(</span>
+            <span class="s2">&quot;No valid Hangul character can be generated using given combination of chosung, joongsung, and jongsung.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">chr</span><span class="p">(</span>
+        <span class="mh">0xAC00</span>
+        <span class="o">+</span> <span class="n">chosung_index</span> <span class="o">*</span> <span class="n">NUM_JOONGSUNGS</span> <span class="o">*</span> <span class="n">NUM_JONGSUNGS</span>
+        <span class="o">+</span> <span class="n">joongsung_index</span> <span class="o">*</span> <span class="n">NUM_JONGSUNGS</span>
+        <span class="o">+</span> <span class="n">jongsung_index</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="decompose"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.decompose">[docs]</a><span class="k">def</span> <span class="nf">decompose</span><span class="p">(</span><span class="n">hangul_letter</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;This function returns letters by decomposing the specified Hangul letter.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hangul_letter</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">NotLetterException</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">is_hangul</span><span class="p">(</span><span class="n">hangul_letter</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">NotHangulException</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">code</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">hangul_letter</span><span class="p">)</span> <span class="o">-</span> <span class="n">FIRST_HANGUL_UNICODE</span>
+    <span class="n">jongsung_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">code</span> <span class="o">%</span> <span class="n">NUM_JONGSUNGS</span><span class="p">)</span>
+    <span class="n">code</span> <span class="o">/=</span> <span class="n">NUM_JONGSUNGS</span>
+    <span class="n">joongsung_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">code</span> <span class="o">%</span> <span class="n">NUM_JOONGSUNGS</span><span class="p">)</span>
+    <span class="n">code</span> <span class="o">/=</span> <span class="n">NUM_JOONGSUNGS</span>
+    <span class="n">chosung_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">CHOSUNGS</span><span class="p">[</span><span class="n">chosung_index</span><span class="p">],</span> <span class="n">JOONGSUNGS</span><span class="p">[</span><span class="n">joongsung_index</span><span class="p">],</span> <span class="n">JONGSUNGS</span><span class="p">[</span><span class="n">jongsung_index</span><span class="p">])</span></div>
+
+
+<span class="c1">################################################################################</span>
+<span class="c1"># Josa functions</span>
+<span class="c1">################################################################################</span>
+
+
+<div class="viewcode-block" id="josa_en"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.josa_en">[docs]</a><span class="k">def</span> <span class="nf">josa_en</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;add josa either &#39;은&#39; or &#39;는&#39; at the end of this word&quot;&quot;&quot;</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_hangul</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">NotHangulException</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">last_letter</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">josa</span> <span class="o">=</span> <span class="s2">&quot;은&quot;</span> <span class="k">if</span> <span class="n">has_jongsung</span><span class="p">(</span><span class="n">last_letter</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;는&quot;</span>
+    <span class="k">return</span> <span class="n">word</span> <span class="o">+</span> <span class="n">josa</span></div>
+
+
+<div class="viewcode-block" id="josa_eg"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.josa_eg">[docs]</a><span class="k">def</span> <span class="nf">josa_eg</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;add josa either &#39;이&#39; or &#39;가&#39; at the end of this word&quot;&quot;&quot;</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_hangul</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">NotHangulException</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">last_letter</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">josa</span> <span class="o">=</span> <span class="s2">&quot;이&quot;</span> <span class="k">if</span> <span class="n">has_jongsung</span><span class="p">(</span><span class="n">last_letter</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;가&quot;</span>
+    <span class="k">return</span> <span class="n">word</span> <span class="o">+</span> <span class="n">josa</span></div>
+
+
+<div class="viewcode-block" id="josa_el"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.josa_el">[docs]</a><span class="k">def</span> <span class="nf">josa_el</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;add josa either &#39;을&#39; or &#39;를&#39; at the end of this word&quot;&quot;&quot;</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_hangul</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">NotHangulException</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">last_letter</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">josa</span> <span class="o">=</span> <span class="s2">&quot;을&quot;</span> <span class="k">if</span> <span class="n">has_jongsung</span><span class="p">(</span><span class="n">last_letter</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;를&quot;</span>
+    <span class="k">return</span> <span class="n">word</span> <span class="o">+</span> <span class="n">josa</span></div>
+
+
+<div class="viewcode-block" id="josa_ro"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.josa_ro">[docs]</a><span class="k">def</span> <span class="nf">josa_ro</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;add josa either &#39;으로&#39; or &#39;로&#39; at the end of this word&quot;&quot;&quot;</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_hangul</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">NotHangulException</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">last_letter</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_jongsung</span><span class="p">(</span><span class="n">last_letter</span><span class="p">):</span>
+        <span class="n">josa</span> <span class="o">=</span> <span class="s2">&quot;로&quot;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">last_letter</span><span class="p">)</span> <span class="o">-</span> <span class="n">FIRST_HANGUL_UNICODE</span><span class="p">)</span> <span class="o">%</span> <span class="n">NUM_JONGSUNGS</span> <span class="o">==</span> <span class="mi">9</span><span class="p">:</span>  <span class="c1"># ㄹ</span>
+        <span class="n">josa</span> <span class="o">=</span> <span class="s2">&quot;로&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">josa</span> <span class="o">=</span> <span class="s2">&quot;으로&quot;</span>
+
+    <span class="k">return</span> <span class="n">word</span> <span class="o">+</span> <span class="n">josa</span></div>
+
+
+<div class="viewcode-block" id="josa_gwa"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.josa_gwa">[docs]</a><span class="k">def</span> <span class="nf">josa_gwa</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;add josa either &#39;과&#39; or &#39;와&#39; at the end of this word&quot;&quot;&quot;</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_hangul</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">NotHangulException</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">last_letter</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">josa</span> <span class="o">=</span> <span class="s2">&quot;과&quot;</span> <span class="k">if</span> <span class="n">has_jongsung</span><span class="p">(</span><span class="n">last_letter</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;와&quot;</span>
+    <span class="k">return</span> <span class="n">word</span> <span class="o">+</span> <span class="n">josa</span></div>
+
+
+<div class="viewcode-block" id="josa_ida"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.josa_ida">[docs]</a><span class="k">def</span> <span class="nf">josa_ida</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;add josa either &#39;이다&#39; or &#39;다&#39; at the end of this word&quot;&quot;&quot;</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_hangul</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">NotHangulException</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">last_letter</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">josa</span> <span class="o">=</span> <span class="s2">&quot;이다&quot;</span> <span class="k">if</span> <span class="n">has_jongsung</span><span class="p">(</span><span class="n">last_letter</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;다&quot;</span>
+    <span class="k">return</span> <span class="n">word</span> <span class="o">+</span> <span class="n">josa</span></div>
+
+
+<span class="c1">################################################################################</span>
+<span class="c1"># Prefixes and suffixes</span>
+<span class="c1"># Practice area; need more organization</span>
+<span class="c1">################################################################################</span>
+
+
+<div class="viewcode-block" id="add_ryul"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.add_ryul">[docs]</a><span class="k">def</span> <span class="nf">add_ryul</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;add suffix either &#39;률&#39; or &#39;율&#39; at the end of this word&quot;&quot;&quot;</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_hangul</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">NotHangulException</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">last_letter</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_jongsung</span><span class="p">(</span><span class="n">last_letter</span><span class="p">):</span>
+        <span class="n">ryul</span> <span class="o">=</span> <span class="s2">&quot;율&quot;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">last_letter</span><span class="p">)</span> <span class="o">-</span> <span class="n">FIRST_HANGUL_UNICODE</span><span class="p">)</span> <span class="o">%</span> <span class="n">NUM_JONGSUNGS</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>  <span class="c1"># ㄴ</span>
+        <span class="n">ryul</span> <span class="o">=</span> <span class="s2">&quot;율&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ryul</span> <span class="o">=</span> <span class="s2">&quot;률&quot;</span>
+
+    <span class="k">return</span> <span class="n">word</span> <span class="o">+</span> <span class="n">ryul</span></div>
+
+
+<span class="c1">################################################################################</span>
+<span class="c1"># The formatter, or ultimately, a template system</span>
+<span class="c1"># Practice area; need more organization</span>
+<span class="c1">################################################################################</span>
+
+
+<div class="viewcode-block" id="ili"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.ili">[docs]</a><span class="k">def</span> <span class="nf">ili</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;convert {가} or {이} to their correct respective particles automagically.&quot;&quot;&quot;</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_hangul</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">NotHangulException</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">last_letter</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="n">word</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{가}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{가}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;이&quot;</span> <span class="k">if</span> <span class="n">has_jongsung</span><span class="p">(</span><span class="n">last_letter</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;가&quot;</span><span class="p">))</span>
+
+    <span class="n">last_letter</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="n">word</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{이}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{이}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;이&quot;</span> <span class="k">if</span> <span class="n">has_jongsung</span><span class="p">(</span><span class="n">last_letter</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;가&quot;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">word</span></div>
+
+
+<span class="c1">################################################################################</span>
+<span class="c1"># Exceptions</span>
+<span class="c1">################################################################################</span>
+
+
+<div class="viewcode-block" id="NotHangulException"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.NotHangulException">[docs]</a><span class="k">class</span> <span class="nc">NotHangulException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="NotLetterException"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.NotLetterException">[docs]</a><span class="k">class</span> <span class="nc">NotLetterException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="NotWordException"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.hangul.NotWordException">[docs]</a><span class="k">class</span> <span class="nc">NotWordException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="k">pass</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

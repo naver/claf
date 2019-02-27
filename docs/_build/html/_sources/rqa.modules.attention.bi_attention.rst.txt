@@ -1,0 +1,7 @@
+rqa.modules.attention.bi\_attention module
+==========================================
+
+.. automodule:: rqa.modules.attention.bi_attention
+    :members:
+    :undoc-members:
+    :show-inheritance:

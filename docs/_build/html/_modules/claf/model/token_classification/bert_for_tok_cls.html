@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>claf.model.token_classification.bert_for_tok_cls &mdash; CLaF 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>claf.model.token_classification.bert_for_tok_cls</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for claf.model.token_classification.bert_for_tok_cls</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">overrides</span> <span class="k">import</span> <span class="n">overrides</span>
+<span class="kn">from</span> <span class="nn">pytorch_pretrained_bert.modeling</span> <span class="k">import</span> <span class="n">BertModel</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+
+<span class="kn">from</span> <span class="nn">claf.data.data_handler</span> <span class="k">import</span> <span class="n">CachePath</span>
+<span class="kn">from</span> <span class="nn">claf.decorator</span> <span class="k">import</span> <span class="n">register</span>
+<span class="kn">from</span> <span class="nn">claf.model.base</span> <span class="k">import</span> <span class="n">ModelWithoutTokenEmbedder</span>
+<span class="kn">from</span> <span class="nn">claf.model.token_classification.mixin</span> <span class="k">import</span> <span class="n">TokenClassification</span>
+
+<span class="kn">from</span> <span class="nn">claf.model</span> <span class="k">import</span> <span class="n">cls_utils</span>
+
+
+<div class="viewcode-block" id="BertForTokCls"><a class="viewcode-back" href="../../../../claf.model.token_classification.html#claf.model.token_classification.bert_for_tok_cls.BertForTokCls">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="s2">&quot;model:bert_for_tok_cls&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">BertForTokCls</span><span class="p">(</span><span class="n">TokenClassification</span><span class="p">,</span> <span class="n">ModelWithoutTokenEmbedder</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implementation of Single Sentence Tagging model presented in</span>
+<span class="sd">    BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</span>
+<span class="sd">    (https://arxiv.org/abs/1810.04805)</span>
+
+<span class="sd">    * Args:</span>
+<span class="sd">        token_embedder: used to embed the sequence</span>
+<span class="sd">        num_tags: number of classified tags</span>
+<span class="sd">        ignore_tag_idx: index of the tag to ignore when calculating loss (tag pad value)</span>
+
+<span class="sd">    * Kwargs:</span>
+<span class="sd">        pretrained_model_name: the name of a pre-trained model</span>
+<span class="sd">        dropout: classification layer dropout</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">token_makers</span><span class="p">,</span> <span class="n">num_tags</span><span class="p">,</span> <span class="n">ignore_tag_idx</span><span class="p">,</span> <span class="n">pretrained_model_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.2</span>
+    <span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">BertForTokCls</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">token_makers</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bert</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># for optimizer&#39;s model parameters</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ignore_tag_idx</span> <span class="o">=</span> <span class="n">ignore_tag_idx</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_tags</span> <span class="o">=</span> <span class="n">num_tags</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="n">BertModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+            <span class="n">pretrained_model_name</span><span class="p">,</span> <span class="n">cache_dir</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">CachePath</span><span class="o">.</span><span class="n">ROOT</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">num_tags</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">init_bert_weights</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">(</span><span class="n">ignore_index</span><span class="o">=</span><span class="n">ignore_tag_idx</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BertForTokCls.forward"><a class="viewcode-back" href="../../../../claf.model.token_classification.html#claf.model.token_classification.bert_for_tok_cls.BertForTokCls.forward">[docs]</a>    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        * Args:</span>
+<span class="sd">            features: feature dictionary like below.</span>
+<span class="sd">            {</span>
+<span class="sd">                &quot;bert_input&quot;: {</span>
+<span class="sd">                    &quot;feature&quot;: [</span>
+<span class="sd">                        [100, 576, 21, 45, 7, 91, 101, 0, 0, ...],</span>
+<span class="sd">                        ...,</span>
+<span class="sd">                    ]</span>
+<span class="sd">                }</span>
+<span class="sd">                &quot;token_type&quot;: {</span>
+<span class="sd">                    &quot;feature&quot;: [</span>
+<span class="sd">                        [0, 0, 0, 0, 0, 0, 0, 0, 0, ...],</span>
+<span class="sd">                        ...,</span>
+<span class="sd">                    ]</span>
+<span class="sd">                },</span>
+<span class="sd">                &quot;tagged_sub_token_idxs&quot;: {</span>
+<span class="sd">                    [</span>
+<span class="sd">                        [1, 3, 4, 0, 0, 0, 0, 0, 0, ...],</span>
+<span class="sd">                        ...,</span>
+<span class="sd">                    ]</span>
+<span class="sd">                }</span>
+<span class="sd">            }</span>
+
+<span class="sd">        * Kwargs:</span>
+<span class="sd">            label: label dictionary like below.</span>
+<span class="sd">            {</span>
+<span class="sd">                &quot;class_idx&quot;: [2, 1, 0, 4, 5, ...]</span>
+<span class="sd">                &quot;data_idx&quot;: [2, 4, 5, 7, 2, 1, ...]</span>
+<span class="sd">            }</span>
+<span class="sd">            Do not calculate loss when there is no label. (inference/predict mode)</span>
+
+<span class="sd">        * Returns: output_dict (dict) consisting of</span>
+<span class="sd">            - sequence_embed: embedding vector of the sequence</span>
+<span class="sd">            - tag_logits: representing unnormalized log probabilities of the tags.</span>
+
+<span class="sd">            - tag_idxs: target class idx</span>
+<span class="sd">            - data_idx: data idx</span>
+<span class="sd">            - loss: a scalar loss to be optimized</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">bert_inputs</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="s2">&quot;bert_input&quot;</span><span class="p">][</span><span class="s2">&quot;feature&quot;</span><span class="p">]</span>
+        <span class="n">token_type_ids</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="s2">&quot;token_type&quot;</span><span class="p">][</span><span class="s2">&quot;feature&quot;</span><span class="p">]</span>
+        <span class="n">tagged_sub_token_idxs</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="s2">&quot;tagged_sub_token_idxs&quot;</span><span class="p">][</span><span class="s2">&quot;feature&quot;</span><span class="p">]</span>
+        <span class="n">num_tokens</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="s2">&quot;num_tokens&quot;</span><span class="p">][</span><span class="s2">&quot;feature&quot;</span><span class="p">]</span>
+
+        <span class="n">attention_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">bert_inputs</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+
+        <span class="n">token_encodings</span><span class="p">,</span> <span class="n">sequence_embed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">(</span>
+            <span class="n">bert_inputs</span><span class="p">,</span> <span class="n">token_type_ids</span><span class="p">,</span> <span class="n">attention_mask</span><span class="p">,</span> <span class="n">output_all_encoded_layers</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="n">tag_logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span><span class="p">(</span><span class="n">token_encodings</span><span class="p">)</span>  <span class="c1"># [B, L, num_tags]</span>
+
+        <span class="c1"># gather the logits of the tagged token positions.</span>
+        <span class="n">gather_token_pos_idxs</span> <span class="o">=</span> <span class="n">tagged_sub_token_idxs</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_tags</span><span class="p">)</span>
+        <span class="n">token_tag_logits</span> <span class="o">=</span> <span class="n">tag_logits</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">gather_token_pos_idxs</span><span class="p">)</span>  <span class="c1"># [B, num_tokens, num_tags]</span>
+
+        <span class="n">sliced_token_tag_logits</span> <span class="o">=</span> <span class="p">[</span><span class="n">token_tag_logits</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="p">:</span><span class="n">n</span><span class="p">,</span> <span class="p">:]</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">num_tokens</span><span class="p">)]</span>
+
+        <span class="n">output_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;sequence_embed&quot;</span><span class="p">:</span> <span class="n">sequence_embed</span><span class="p">,</span> <span class="s2">&quot;tag_logits&quot;</span><span class="p">:</span> <span class="n">sliced_token_tag_logits</span><span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">labels</span><span class="p">:</span>
+            <span class="n">tag_idxs</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="s2">&quot;tag_idxs&quot;</span><span class="p">]</span>
+            <span class="n">data_idx</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="s2">&quot;data_idx&quot;</span><span class="p">]</span>
+
+            <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;tag_idxs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag_idxs</span>
+            <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;data_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_idx</span>
+
+            <span class="c1"># Loss</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span><span class="p">(</span><span class="n">token_tag_logits</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_tags</span><span class="p">),</span> <span class="n">tag_idxs</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+            <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;loss&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">loss</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># NOTE: DataParallel concat Error</span>
+
+        <span class="k">return</span> <span class="n">output_dict</span></div>
+
+<div class="viewcode-block" id="BertForTokCls.print_examples"><a class="viewcode-back" href="../../../../claf.model.token_classification.html#claf.model.token_classification.bert_for_tok_cls.BertForTokCls.print_examples">[docs]</a>    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">print_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Print evaluation examples</span>
+
+<span class="sd">        * Args:</span>
+<span class="sd">            index: data index</span>
+<span class="sd">            inputs: mini-batch inputs</span>
+<span class="sd">            predictions: prediction dictionary consisting of</span>
+<span class="sd">                - key: &#39;id&#39; (sequence id)</span>
+<span class="sd">                - value: dictionary consisting of</span>
+<span class="sd">                    - class_idx</span>
+
+<span class="sd">        * Returns:</span>
+<span class="sd">            print(Sequence, Sequence Tokens, Target Tags, Target Slots, Predicted Tags, Predicted Slots)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">data_idx</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">][</span><span class="s2">&quot;data_idx&quot;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="n">data_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">data_idx</span><span class="p">)</span>
+
+        <span class="n">helper</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">helper</span>
+        <span class="n">sequence</span> <span class="o">=</span> <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;examples&quot;</span><span class="p">][</span><span class="n">data_id</span><span class="p">][</span><span class="s2">&quot;sequence&quot;</span><span class="p">]</span>
+        <span class="n">target_tag_texts</span> <span class="o">=</span> <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;examples&quot;</span><span class="p">][</span><span class="n">data_id</span><span class="p">][</span><span class="s2">&quot;tag_texts&quot;</span><span class="p">]</span>
+
+        <span class="n">pred_tag_idxs</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="n">data_id</span><span class="p">][</span><span class="s2">&quot;tag_idxs&quot;</span><span class="p">]</span>
+        <span class="n">pred_tag_texts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_tag_texts_with_idxs</span><span class="p">(</span><span class="n">pred_tag_idxs</span><span class="p">)</span>
+
+        <span class="n">sequence_tokens</span> <span class="o">=</span> <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;examples&quot;</span><span class="p">][</span><span class="n">data_id</span><span class="p">][</span><span class="s2">&quot;sequence_sub_tokens&quot;</span><span class="p">]</span>
+
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Sequence:&quot;</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Sequence Tokens:&quot;</span><span class="p">,</span> <span class="n">sequence_tokens</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Target:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Tags:&quot;</span><span class="p">,</span> <span class="n">target_tag_texts</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    (Slots)&quot;</span><span class="p">,</span> <span class="n">cls_utils</span><span class="o">.</span><span class="n">get_tag_dict</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">target_tag_texts</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Predict:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Tags:&quot;</span><span class="p">,</span> <span class="n">pred_tag_texts</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    (Slots)&quot;</span><span class="p">,</span> <span class="n">cls_utils</span><span class="o">.</span><span class="n">get_tag_dict</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">pred_tag_texts</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+ {
+     "data_reader": {
+         "dataset": "squad",
+         "train_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v2.0.json",
+         "valid_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v2.0.json"
+     },
+     "iterator": {
+         "batch_size": 10
+     },
+     "token": {
+         "names": ["char", "glove"],
+         "types": ["char", "word"],
+         "tokenizer": {
+             "char": {
+                 "name": "character"
+             },
+             "word": {
+                 "name": "treebank_en",
+                 "split_with_regex": true
+             }
+         },
+         "char": {
+             "vocab": {
+                 "start_token": "<s>",
+                 "end_token": "</s>",
+                 "max_vocab_size": 260
+             },
+             "indexer": {
+                 "insert_char_start": true,
+                 "insert_char_end": true
+             },
+             "embedding": {
+                 "embed_dim": 16,
+                 "kernel_sizes": [5],
+                 "num_filter": 100,
+                 "activation": "relu",
+                 "dropout": 0.2
+             }
+         },
+         "glove": {
+             "vocab": {},
+             "indexer": {
+                 "lowercase": true
+             },
+             "embedding": {
+                 "embed_dim": 50,
+                 "trainable": false,
+                 "dropout": 0.2
+             }
+         }
+     },
+     "model": {
+         "name": "bidaf_no_answer",
+         "bidaf": {
+             "model_dim": 50,
+             "dropout": 0.2
+         }
+     },
+     "trainer": {
+         "log_dir": "logs/test/bidaf_no_answer/",
+         "num_epochs": 2,
+         "early_stopping_threshold": 2,
+         "metric_key": "em",
+         "verbose_step_count": 1,
+         "eval_and_save_step_count": 3
+     },
+     "optimizer": {
+         "op_type": "adadelta",
+         "learning_rate": 1,
+         "exponential_moving_average": 0.999
+     },
+     "seed_num": 25
+ }

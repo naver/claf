@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.tokens.vocabulary module &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="HistoryQA" href="reports/historyqa.html" />
+    <link rel="prev" title="rqa.tokens.utils module" href="rqa.tokens.utils.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/experiments.html">Experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.html">modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rqa.tokens.html">tokens</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="rqa.tokens.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="rqa.tokens.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.cove.html">rqa.tokens.cove module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.elmo.html">rqa.tokens.elmo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.hangul.html">rqa.tokens.hangul module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.linguistic.html">rqa.tokens.linguistic module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.text_handler.html">rqa.tokens.text_handler module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.token_maker.html">rqa.tokens.token_maker module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.utils.html">rqa.tokens.utils module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">rqa.tokens.vocabulary module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.tokens.html#module-rqa.tokens">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="rqa.tokens.html">rqa.tokens package</a> &raquo;</li>
+        
+      <li>rqa.tokens.vocabulary module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.tokens.vocabulary.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-rqa.tokens.vocabulary">
+<span id="rqa-tokens-vocabulary-module"></span><h1>rqa.tokens.vocabulary module<a class="headerlink" href="#module-rqa.tokens.vocabulary" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="rqa.tokens.vocabulary.Vocab">
+<em class="property">class </em><code class="descclassname">rqa.tokens.vocabulary.</code><code class="descname">Vocab</code><span class="sig-paren">(</span><em>token_name</em>, <em>pad_token=None</em>, <em>oov_token=None</em>, <em>start_token=None</em>, <em>end_token=None</em>, <em>min_count=None</em>, <em>max_vocab_size=None</em>, <em>frequent_count=None</em>, <em>pretrained_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/vocabulary.html#Vocab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<blockquote>
+<div><p>Vocaburary Class</p>
+<p>Vocab consists of token_to_index and index_to_token.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_name: Token name (Token and Vocab is one-to-one relationship)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><p class="first">pad_token: padding token value (eg. &lt;pad&gt;)
+oov_token: out-of-vocaburary token value (eg. &lt;unk&gt;)
+start_token: start token value (eg. &lt;s&gt;, &lt;bos&gt;)
+end_token: end token value (eg. &lt;/s&gt;, &lt;eos&gt;)
+min_count: token’s minimal frequent count.</p>
+<blockquote>
+<div><p>when you define min_count, tokens remain that bigger than min_count.</p>
+</div></blockquote>
+<dl class="last docutils">
+<dt>max_vocab_size: vocaburary’s maximun size.</dt>
+<dd><p class="first last">when you define max_vocab_size, tokens are selected according to frequent count.</p>
+</dd>
+<dt>frequent_count: get frequent_count threshold_index.</dt>
+<dd><p class="first last">(eg. frequent_count = 1000, threshold_index is the tokens that frequent_count is 999 index number.)</p>
+</dd>
+<dt>pretrained_path: pretrained vocab file path</dt>
+<dd><p class="first last">(format: A</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>B
+C
+D
+…)</p>
+<dl class="attribute">
+<dt id="rqa.tokens.vocabulary.Vocab.OOV_INDEX">
+<code class="descname">OOV_INDEX</code><em class="property"> = 1</em><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab.OOV_INDEX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.tokens.vocabulary.Vocab.OOV_TOKEN">
+<code class="descname">OOV_TOKEN</code><em class="property"> = '&lt;unk&gt;'</em><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab.OOV_TOKEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.tokens.vocabulary.Vocab.PAD_INDEX">
+<code class="descname">PAD_INDEX</code><em class="property"> = 0</em><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab.PAD_INDEX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.tokens.vocabulary.Vocab.PAD_TOKEN">
+<code class="descname">PAD_TOKEN</code><em class="property"> = '&lt;pad&gt;'</em><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab.PAD_TOKEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.vocabulary.Vocab.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>token</em>, <em>predefine_vocab=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/vocabulary.html#Vocab.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.vocabulary.Vocab.build">
+<code class="descname">build</code><span class="sig-paren">(</span><em>token_counter</em>, <em>predefine_vocab=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/vocabulary.html#Vocab.build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>build token with token_counter</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>token_counter: (collections.Counter) token’s frequent_count Counter.</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.vocabulary.Vocab.build_with_pretrained_file">
+<code class="descname">build_with_pretrained_file</code><span class="sig-paren">(</span><em>token_counter</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/vocabulary.html#Vocab.build_with_pretrained_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab.build_with_pretrained_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.vocabulary.Vocab.doc2bow">
+<code class="descname">doc2bow</code><span class="sig-paren">(</span><em>tokens</em>, <em>return_missing=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/vocabulary.html#Vocab.doc2bow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab.doc2bow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert <cite>document</cite> (a list of words) into the bag-of-words format = list
+of <cite>(token_id, token_count)</cite> 2-tuples. Each word is assumed to be a
+<strong>tokenized and normalized</strong> string (either unicode or utf8-encoded). No further preprocessing
+is done on the words in <cite>document</cite>; apply tokenization, stemming etc. before
+calling this method.</p>
+<p>If <cite>allow_update</cite> is set, then also update dictionary in the process: create
+ids for new words. At the same time, update document frequencies – for
+each word appearing in this document, increase its document frequency (<cite>self.dfs</cite>)
+by one.</p>
+<p>If <cite>allow_update</cite> is <strong>not</strong> set, this function is <cite>const</cite>, aka read-only.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.vocabulary.Vocab.from_text">
+<code class="descname">from_text</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/vocabulary.html#Vocab.from_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab.from_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.vocabulary.Vocab.get_all_tokens">
+<code class="descname">get_all_tokens</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/vocabulary.html#Vocab.get_all_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab.get_all_tokens" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.vocabulary.Vocab.get_index">
+<code class="descname">get_index</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/vocabulary.html#Vocab.get_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab.get_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.vocabulary.Vocab.get_token">
+<code class="descname">get_token</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/vocabulary.html#Vocab.get_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab.get_token" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.vocabulary.Vocab.get_token_counter">
+<code class="descname">get_token_counter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/vocabulary.html#Vocab.get_token_counter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab.get_token_counter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.vocabulary.Vocab.init">
+<code class="descname">init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/vocabulary.html#Vocab.init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab.init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.vocabulary.Vocab.to_text">
+<code class="descname">to_text</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/vocabulary.html#Vocab.to_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.vocabulary.Vocab.to_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.tokens.vocabulary.VocabDict">
+<em class="property">class </em><code class="descclassname">rqa.tokens.vocabulary.</code><code class="descname">VocabDict</code><span class="sig-paren">(</span><em>pad_value=None</em>, <em>oov_value=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/vocabulary.html#VocabDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.vocabulary.VocabDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.defaultdict" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.defaultdict</span></code></a></p>
+<p>Vocab DefaultDict Class</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>pad_value: padding token value (eg. &lt;pad&gt;)
+oov_value: out-of-vocaburary token value (eg. &lt;unk&gt;)</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="reports/historyqa.html" class="btn btn-neutral float-right" title="HistoryQA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rqa.tokens.utils.html" class="btn btn-neutral" title="rqa.tokens.utils module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

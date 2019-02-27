@@ -1,0 +1,7 @@
+rqa.data.collate module
+=======================
+
+.. automodule:: rqa.data.collate
+    :members:
+    :undoc-members:
+    :show-inheritance:

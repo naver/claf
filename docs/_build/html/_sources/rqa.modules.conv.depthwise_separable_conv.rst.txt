@@ -1,0 +1,7 @@
+rqa.modules.conv.depthwise\_separable\_conv module
+==================================================
+
+.. automodule:: rqa.modules.conv.depthwise_separable_conv
+    :members:
+    :undoc-members:
+    :show-inheritance:

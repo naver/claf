@@ -1,0 +1,406 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.model.reading_comprehension.bert_for_qa &mdash; reasoning-qa 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>rqa.model.reading_comprehension.bert_for_qa</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rqa.model.reading_comprehension.bert_for_qa</h1><div class="highlight"><pre>
+<span></span>
+
+<span class="kn">from</span> <span class="nn">overrides</span> <span class="k">import</span> <span class="n">overrides</span>
+<span class="kn">from</span> <span class="nn">pytorch_pretrained_bert.modeling</span> <span class="k">import</span> <span class="n">BertForQuestionAnswering</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+
+<span class="kn">from</span> <span class="nn">rqa.data.data_handler</span> <span class="k">import</span> <span class="n">CachePath</span>
+<span class="kn">from</span> <span class="nn">rqa.decorator</span> <span class="k">import</span> <span class="n">register</span>
+<span class="kn">from</span> <span class="nn">rqa.model.base</span> <span class="k">import</span> <span class="n">ModelWithoutTokenEmbedder</span>
+<span class="kn">from</span> <span class="nn">rqa.model.reading_comprehension.mixin</span> <span class="k">import</span> <span class="n">SQuADv1</span>
+
+
+<div class="viewcode-block" id="BertForQA"><a class="viewcode-back" href="../../../../rqa.model.reading_comprehension.html#rqa.model.reading_comprehension.bert_for_qa.BertForQA">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="s2">&quot;model:bert_for_qa&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">BertForQA</span><span class="p">(</span><span class="n">SQuADv1</span><span class="p">,</span> <span class="n">ModelWithoutTokenEmbedder</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Document Reader Model. `Span Detector`</span>
+
+<span class="sd">        Implementation of model presented in</span>
+<span class="sd">        BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</span>
+<span class="sd">        (https://arxiv.org/abs/1810.04805)</span>
+
+<span class="sd">        * Args:</span>
+<span class="sd">            token_embedder: &#39;QATokenEmbedder&#39;, Used to embed the &#39;context&#39; and &#39;question&#39;.</span>
+
+<span class="sd">        * Kwargs:</span>
+<span class="sd">            pretrained_model_name: the name of a pre-trained model</span>
+<span class="sd">            answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token_makers</span><span class="p">,</span> <span class="n">pretrained_model_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">answer_maxlen</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BertForQA</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">token_makers</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bert</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># for optimizer&#39;s model parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">answer_maxlen</span> <span class="o">=</span> <span class="n">answer_maxlen</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">BertForQuestionAnswering</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+            <span class="n">pretrained_model_name</span><span class="p">,</span> <span class="n">cache_dir</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">CachePath</span><span class="o">.</span><span class="n">ROOT</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+
+<div class="viewcode-block" id="BertForQA.forward"><a class="viewcode-back" href="../../../../rqa.model.reading_comprehension.html#rqa.model.reading_comprehension.bert_for_qa.BertForQA.forward">[docs]</a>    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            * Args:</span>
+<span class="sd">                features: feature dictionary like below.</span>
+<span class="sd">                    {&quot;feature_name1&quot;: {</span>
+<span class="sd">                         &quot;token_name1&quot;: tensor,</span>
+<span class="sd">                         &quot;toekn_name2&quot;: tensor},</span>
+<span class="sd">                     &quot;feature_name2&quot;: ...}</span>
+
+<span class="sd">            * Kwargs:</span>
+<span class="sd">                label: label dictionary like below.</span>
+<span class="sd">                    {&quot;label_name1&quot;: tensor,</span>
+<span class="sd">                     &quot;label_name2&quot;: tensor}</span>
+<span class="sd">                     Do not calculate loss when there is no label. (inference/predict mode)</span>
+
+<span class="sd">            * Returns: output_dict (dict) consisting of</span>
+<span class="sd">                - start_logits: representing unnormalized log probabilities of the span start position.</span>
+<span class="sd">                - end_logits: representing unnormalized log probabilities of the span end position.</span>
+<span class="sd">                - best_span: the string from the original passage that the model thinks is the best answer to the question.</span>
+<span class="sd">                - answer_idx: the question id, mapping with answer</span>
+<span class="sd">                - loss: A scalar loss to be optimised.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">bert_inputs</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="s2">&quot;bert_input&quot;</span><span class="p">][</span><span class="s2">&quot;feature&quot;</span><span class="p">]</span>
+        <span class="n">token_type_ids</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="s2">&quot;token_type&quot;</span><span class="p">][</span><span class="s2">&quot;feature&quot;</span><span class="p">]</span>
+        <span class="n">attention_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">bert_inputs</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+
+        <span class="n">span_start_logits</span><span class="p">,</span> <span class="n">span_end_logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span>
+            <span class="n">bert_inputs</span><span class="p">,</span> <span class="n">token_type_ids</span><span class="o">=</span><span class="n">token_type_ids</span><span class="p">,</span> <span class="n">attention_mask</span><span class="o">=</span><span class="n">attention_mask</span>
+        <span class="p">)</span>
+
+        <span class="n">output_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;start_logits&quot;</span><span class="p">:</span> <span class="n">span_start_logits</span><span class="p">,</span>
+            <span class="s2">&quot;end_logits&quot;</span><span class="p">:</span> <span class="n">span_end_logits</span><span class="p">,</span>
+            <span class="s2">&quot;best_span&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_best_span</span><span class="p">(</span>
+                <span class="n">span_start_logits</span><span class="p">,</span> <span class="n">span_end_logits</span><span class="p">,</span> <span class="n">answer_maxlen</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">answer_maxlen</span>
+            <span class="p">),</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">labels</span><span class="p">:</span>
+            <span class="n">answer_idx</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="s2">&quot;answer_idx&quot;</span><span class="p">]</span>
+            <span class="n">answer_start_idx</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="s2">&quot;answer_start_idx&quot;</span><span class="p">]</span>
+            <span class="n">answer_end_idx</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="s2">&quot;answer_end_idx&quot;</span><span class="p">]</span>
+
+            <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;answer_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">answer_idx</span>
+
+            <span class="c1"># If we are on multi-GPU, split add a dimension</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">answer_start_idx</span><span class="o">.</span><span class="n">size</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">answer_start_idx</span> <span class="o">=</span> <span class="n">answer_start_idx</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">answer_end_idx</span><span class="o">.</span><span class="n">size</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">answer_end_idx</span> <span class="o">=</span> <span class="n">answer_end_idx</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="c1"># sometimes the start/end positions are outside our model inputs, we ignore these terms</span>
+            <span class="n">ignored_index</span> <span class="o">=</span> <span class="n">span_start_logits</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">answer_start_idx</span><span class="o">.</span><span class="n">clamp_</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ignored_index</span><span class="p">)</span>
+            <span class="n">answer_end_idx</span><span class="o">.</span><span class="n">clamp_</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ignored_index</span><span class="p">)</span>
+
+            <span class="c1"># Loss</span>
+            <span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">(</span><span class="n">ignore_index</span><span class="o">=</span><span class="n">ignored_index</span><span class="p">)</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">span_start_logits</span><span class="p">,</span> <span class="n">answer_start_idx</span><span class="p">)</span>
+            <span class="n">loss</span> <span class="o">+=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">span_end_logits</span><span class="p">,</span> <span class="n">answer_end_idx</span><span class="p">)</span>
+            <span class="n">loss</span> <span class="o">/=</span> <span class="mi">2</span>  <span class="c1"># (start + end)</span>
+            <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;loss&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">loss</span>
+
+        <span class="k">return</span> <span class="n">output_dict</span></div>
+
+<div class="viewcode-block" id="BertForQA.make_metrics"><a class="viewcode-back" href="../../../../rqa.model.reading_comprehension.html#rqa.model.reading_comprehension.bert_for_qa.BertForQA.make_metrics">[docs]</a>    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">make_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; BERT predictions need to get nbest result &quot;&quot;&quot;</span>
+
+        <span class="n">best_predictions</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">prediction</span> <span class="ow">in</span> <span class="n">predictions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">qid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_qid</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+
+            <span class="n">predict_text</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;predict_text&quot;</span><span class="p">]</span>
+
+            <span class="n">start_logit</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;start_logits&quot;</span><span class="p">][</span><span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;pred_span_start&quot;</span><span class="p">]]</span>
+            <span class="n">end_logit</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;end_logits&quot;</span><span class="p">][</span><span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;pred_span_end&quot;</span><span class="p">]]</span>
+            <span class="n">predict_score</span> <span class="o">=</span> <span class="n">start_logit</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">+</span> <span class="n">end_logit</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">qid</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">best_predictions</span><span class="p">:</span>
+                <span class="n">best_predictions</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">best_predictions</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">predict_text</span><span class="p">,</span> <span class="n">predict_score</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">qid</span><span class="p">,</span> <span class="n">predictions</span> <span class="ow">in</span> <span class="n">best_predictions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">sorted_predictions</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">best_predictions</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span> <span class="o">=</span> <span class="n">sorted_predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_predictions</span><span class="p">(</span><span class="n">best_predictions</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_metrics_with_official</span><span class="p">(</span><span class="n">best_predictions</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BertForQA.predict"><a class="viewcode-back" href="../../../../rqa.model.reading_comprehension.html#rqa.model.reading_comprehension.bert_for_qa.BertForQA.predict">[docs]</a>    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_dict</span><span class="p">,</span> <span class="n">arguments</span><span class="p">,</span> <span class="n">helper</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inference by raw_feature</span>
+
+<span class="sd">        * Args:</span>
+<span class="sd">            output_dict: model&#39;s output dictionary consisting of</span>
+<span class="sd">                - answer_idx: question id</span>
+<span class="sd">                - best_span: calculate the span_start_logits and span_end_logits to what is the best span</span>
+<span class="sd">            arguments: arguments dictionary consisting of user_input</span>
+<span class="sd">            helper: dictionary for helping get answer</span>
+
+<span class="sd">        * Returns:</span>
+<span class="sd">            span: predict best_span</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">context_text</span> <span class="o">=</span> <span class="n">arguments</span><span class="p">[</span><span class="s2">&quot;context&quot;</span><span class="p">]</span>
+        <span class="n">bert_tokens</span> <span class="o">=</span> <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;bert_token&quot;</span><span class="p">]</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">best_span</span><span class="p">,</span> <span class="n">start_logits</span><span class="p">,</span> <span class="n">end_logits</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">best_span</span><span class="p">,</span> <span class="n">start_logits</span><span class="p">,</span> <span class="n">end_logits</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                <span class="nb">list</span><span class="p">(</span><span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;best_span&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
+                <span class="nb">list</span><span class="p">(</span><span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;start_logits&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
+                <span class="nb">list</span><span class="p">(</span><span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;end_logits&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="n">best_predictions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">prediction</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">predictions</span><span class="p">):</span>
+            <span class="n">bert_token</span> <span class="o">=</span> <span class="n">bert_tokens</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+            <span class="n">best_span</span><span class="p">,</span> <span class="n">start_logits</span><span class="p">,</span> <span class="n">end_logits</span> <span class="o">=</span> <span class="n">prediction</span>
+            <span class="n">pred_start</span><span class="p">,</span> <span class="n">pred_end</span> <span class="o">=</span> <span class="n">best_span</span>
+
+            <span class="n">predict_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="n">pred_start</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">bert_token</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="n">pred_end</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">bert_token</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="n">bert_token</span><span class="p">[</span><span class="n">pred_start</span><span class="p">]</span><span class="o">.</span><span class="n">text_span</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="ow">and</span> <span class="n">bert_token</span><span class="p">[</span><span class="n">pred_end</span><span class="p">]</span><span class="o">.</span><span class="n">text_span</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="p">):</span>
+                <span class="n">char_start</span> <span class="o">=</span> <span class="n">bert_token</span><span class="p">[</span><span class="n">pred_start</span><span class="p">]</span><span class="o">.</span><span class="n">text_span</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">char_end</span> <span class="o">=</span> <span class="n">bert_token</span><span class="p">[</span><span class="n">pred_end</span><span class="p">]</span><span class="o">.</span><span class="n">text_span</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">predict_text</span> <span class="o">=</span> <span class="n">context_text</span><span class="p">[</span><span class="n">char_start</span><span class="p">:</span><span class="n">char_end</span><span class="p">]</span>
+
+            <span class="n">start_logit</span> <span class="o">=</span> <span class="n">start_logits</span><span class="p">[</span><span class="n">pred_start</span><span class="p">]</span>
+            <span class="n">end_logit</span> <span class="o">=</span> <span class="n">end_logits</span><span class="p">[</span><span class="n">pred_end</span><span class="p">]</span>
+            <span class="n">predict_score</span> <span class="o">=</span> <span class="n">start_logit</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">+</span> <span class="n">end_logit</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+            <span class="n">best_predictions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">predict_text</span><span class="p">,</span> <span class="n">predict_score</span><span class="p">))</span>
+
+        <span class="n">sorted_predictions</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">best_predictions</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">sorted_predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">sorted_predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]}</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

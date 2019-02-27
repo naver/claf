@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.config package &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rqa.config.factory package" href="rqa.config.factory.html" />
+    <link rel="prev" title="Tokens" href="contents/tokens.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">config</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rqa.config.factory.html">rqa.config.factory package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rqa.config.args">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rqa.config">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>rqa.config package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.config.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rqa-config-package">
+<h1>rqa.config package<a class="headerlink" href="#rqa-config-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rqa.config.factory.html">rqa.config.factory package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rqa.config.factory.html#module-rqa.config.factory.base">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.config.factory.html#module-rqa.config.factory">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-rqa.config.args">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-rqa.config.args" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="rqa.config.args.arg_str2bool">
+<code class="descclassname">rqa.config.args.</code><code class="descname">arg_str2bool</code><span class="sig-paren">(</span><em>v</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#arg_str2bool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.arg_str2bool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.base_config">
+<code class="descclassname">rqa.config.args.</code><code class="descname">base_config</code><span class="sig-paren">(</span><em>parser</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#base_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.base_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.config">
+<code class="descclassname">rqa.config.args.</code><code class="descname">config</code><span class="sig-paren">(</span><em>argv=None</em>, <em>mode=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.data">
+<code class="descclassname">rqa.config.args.</code><code class="descname">data</code><span class="sig-paren">(</span><em>parser</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.evaluate">
+<code class="descclassname">rqa.config.args.</code><code class="descname">evaluate</code><span class="sig-paren">(</span><em>parser</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.general">
+<code class="descclassname">rqa.config.args.</code><code class="descname">general</code><span class="sig-paren">(</span><em>parser</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#general"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.general" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.get_input_arguments">
+<code class="descclassname">rqa.config.args.</code><code class="descname">get_input_arguments</code><span class="sig-paren">(</span><em>parser</em>, <em>input_arguments</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#get_input_arguments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.get_input_arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.model">
+<code class="descclassname">rqa.config.args.</code><code class="descname">model</code><span class="sig-paren">(</span><em>parser</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.nsml">
+<code class="descclassname">rqa.config.args.</code><code class="descname">nsml</code><span class="sig-paren">(</span><em>parser</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#nsml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.nsml" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.optimize_config">
+<code class="descclassname">rqa.config.args.</code><code class="descname">optimize_config</code><span class="sig-paren">(</span><em>config</em>, <em>is_test=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#optimize_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.optimize_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.predict">
+<code class="descclassname">rqa.config.args.</code><code class="descname">predict</code><span class="sig-paren">(</span><em>parser</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.qa_machine">
+<code class="descclassname">rqa.config.args.</code><code class="descname">qa_machine</code><span class="sig-paren">(</span><em>parser</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#qa_machine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.qa_machine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.set_batch_size">
+<code class="descclassname">rqa.config.args.</code><code class="descname">set_batch_size</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#set_batch_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.set_batch_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.set_gpu_env">
+<code class="descclassname">rqa.config.args.</code><code class="descname">set_gpu_env</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#set_gpu_env"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.set_gpu_env" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.token">
+<code class="descclassname">rqa.config.args.</code><code class="descname">token</code><span class="sig-paren">(</span><em>parser</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.token" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.train_config">
+<code class="descclassname">rqa.config.args.</code><code class="descname">train_config</code><span class="sig-paren">(</span><em>parser</em>, <em>input_argv=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#train_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.train_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.args.trainer">
+<code class="descclassname">rqa.config.args.</code><code class="descname">trainer</code><span class="sig-paren">(</span><em>parser</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/args.html#trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.args.trainer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<span class="target" id="module-rqa.config.namespace"></span><dl class="class">
+<dt id="rqa.config.namespace.NestedNamespace">
+<em class="property">class </em><code class="descclassname">rqa.config.namespace.</code><code class="descname">NestedNamespace</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/namespace.html#NestedNamespace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.namespace.NestedNamespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.Namespace" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">argparse.Namespace</span></code></a></p>
+<p>Nested Namespace
+(Simple class used by default by parse_args() to create</p>
+<blockquote>
+<div>an object holding attributes and return it.)</div></blockquote>
+<dl class="method">
+<dt id="rqa.config.namespace.NestedNamespace.delete_unselected">
+<code class="descname">delete_unselected</code><span class="sig-paren">(</span><em>namespace</em>, <em>excepts=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/namespace.html#NestedNamespace.delete_unselected"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.namespace.NestedNamespace.delete_unselected" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.config.namespace.NestedNamespace.load_from_json">
+<code class="descname">load_from_json</code><span class="sig-paren">(</span><em>dict_data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/namespace.html#NestedNamespace.load_from_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.namespace.NestedNamespace.load_from_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.config.namespace.NestedNamespace.overwrite">
+<code class="descname">overwrite</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/namespace.html#NestedNamespace.overwrite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.namespace.NestedNamespace.overwrite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.config.pattern"></span><dl class="class">
+<dt id="rqa.config.pattern.Singleton">
+<em class="property">class </em><code class="descclassname">rqa.config.pattern.</code><code class="descname">Singleton</code><a class="reference internal" href="_modules/rqa/config/pattern.html#Singleton"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.pattern.Singleton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a></p>
+<p>Design Pattern Base</p>
+<p>Singleton Meta Class
+the singleton pattern is a software design pattern that restricts the
+instantiation of a class to one object.</p>
+</dd></dl>
+
+<span class="target" id="module-rqa.config.registry"></span><dl class="class">
+<dt id="rqa.config.registry.Registry">
+<em class="property">class </em><code class="descclassname">rqa.config.registry.</code><code class="descname">Registry</code><a class="reference internal" href="_modules/rqa/config/registry.html#Registry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.registry.Registry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Registry class (Singleton)</p>
+<dl class="method">
+<dt id="rqa.config.registry.Registry.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>name</em>, <em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/registry.html#Registry.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.registry.Registry.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.config.registry.Registry.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/registry.html#Registry.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.registry.Registry.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.config.utils"></span><dl class="function">
+<dt id="rqa.config.utils.convert_config2dict">
+<code class="descclassname">rqa.config.utils.</code><code class="descname">convert_config2dict</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/utils.html#convert_config2dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.utils.convert_config2dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.utils.pretty_json_dumps">
+<code class="descclassname">rqa.config.utils.</code><code class="descname">pretty_json_dumps</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/utils.html#pretty_json_dumps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.utils.pretty_json_dumps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.utils.remove_none">
+<code class="descclassname">rqa.config.utils.</code><code class="descname">remove_none</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/utils.html#remove_none"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.utils.remove_none" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.utils.set_global_seed">
+<code class="descclassname">rqa.config.utils.</code><code class="descname">set_global_seed</code><span class="sig-paren">(</span><em>seed=21</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/utils.html#set_global_seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.utils.set_global_seed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-rqa.config">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rqa.config" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rqa.config.factory.html" class="btn btn-neutral float-right" title="rqa.config.factory package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="contents/tokens.html" class="btn btn-neutral" title="Tokens" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

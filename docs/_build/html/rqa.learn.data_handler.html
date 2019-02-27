@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.learn.data_handler module &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rqa.learn.experiment module" href="rqa.learn.experiment.html" />
+    <link rel="prev" title="rqa.learn package" href="rqa.learn.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/experiments.html">Experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rqa.learn.html">learn</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="rqa.learn.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">rqa.learn.data_handler module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.learn.experiment.html">rqa.learn.experiment module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.learn.mode.html">rqa.learn.mode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.learn.tensorboard.html">rqa.learn.tensorboard module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.learn.trainer.html">rqa.learn.trainer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.learn.utils.html">rqa.learn.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.learn.html#module-rqa.learn">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="rqa.learn.html">rqa.learn package</a> &raquo;</li>
+        
+      <li>rqa.learn.data_handler module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.learn.data_handler.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-rqa.learn.data_handler">
+<span id="rqa-learn-data-handler-module"></span><h1>rqa.learn.data_handler module<a class="headerlink" href="#module-rqa.learn.data_handler" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="rqa.learn.data_handler.DataHandler">
+<em class="property">class </em><code class="descclassname">rqa.learn.data_handler.</code><code class="descname">DataHandler</code><a class="reference internal" href="_modules/rqa/learn/data_handler.html#DataHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.learn.data_handler.DataHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="attribute">
+<dt id="rqa.learn.data_handler.DataHandler.CACHE_ROOT">
+<code class="descname">CACHE_ROOT</code><em class="property"> = PosixPath('/Users/user/.rqa_cache')</em><a class="headerlink" href="#rqa.learn.data_handler.DataHandler.CACHE_ROOT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.learn.data_handler.DataHandler.cache">
+<code class="descname">cache</code><span class="sig-paren">(</span><em>path</em>, <em>obj=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/learn/data_handler.html#DataHandler.cache"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.learn.data_handler.DataHandler.cache" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.learn.data_handler.DataHandler.cache_token_counter">
+<code class="descname">cache_token_counter</code><span class="sig-paren">(</span><em>data_reader_config</em>, <em>tokenizer_name</em>, <em>obj=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/learn/data_handler.html#DataHandler.cache_token_counter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.learn.data_handler.DataHandler.cache_token_counter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.learn.data_handler.DataHandler.read">
+<code class="descname">read</code><span class="sig-paren">(</span><em>file_path</em>, <em>encoding='utf-8'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/learn/data_handler.html#DataHandler.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.learn.data_handler.DataHandler.read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.learn.data_handler.DataHandler.read_pickle">
+<code class="descname">read_pickle</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/learn/data_handler.html#DataHandler.read_pickle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.learn.data_handler.DataHandler.read_pickle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.learn.data_handler.DataHandler.write_pickle">
+<code class="descname">write_pickle</code><span class="sig-paren">(</span><em>file_path</em>, <em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/learn/data_handler.html#DataHandler.write_pickle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.learn.data_handler.DataHandler.write_pickle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rqa.learn.experiment.html" class="btn btn-neutral float-right" title="rqa.learn.experiment module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rqa.learn.html" class="btn btn-neutral" title="rqa.learn package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+rqa.tokens.tokenizer.char module
+================================
+
+.. automodule:: rqa.tokens.tokenizer.char
+    :members:
+    :undoc-members:
+    :show-inheritance:

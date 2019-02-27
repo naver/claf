@@ -1,0 +1,7 @@
+rqa.learn.tensorboard module
+============================
+
+.. automodule:: rqa.learn.tensorboard
+    :members:
+    :undoc-members:
+    :show-inheritance:

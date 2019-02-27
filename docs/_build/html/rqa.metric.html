@@ -1,0 +1,412 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.metric package &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rqa.model package" href="rqa.model.html" />
+    <link rel="prev" title="rqa.learn package" href="rqa.learn.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rqa.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.learn.html">learn</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">metric</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-rqa.metric.classification">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rqa.metric">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>rqa.metric package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.metric.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rqa-metric-package">
+<h1>rqa.metric package<a class="headerlink" href="#rqa-metric-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-rqa.metric.classification">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-rqa.metric.classification" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="rqa.metric.classification.f1">
+<code class="descclassname">rqa.metric.classification.</code><code class="descname">f1</code><span class="sig-paren">(</span><em>pycm_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/classification.html#f1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.classification.f1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.classification.macro_f1">
+<code class="descclassname">rqa.metric.classification.</code><code class="descname">macro_f1</code><span class="sig-paren">(</span><em>pycm_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/classification.html#macro_f1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.classification.macro_f1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.classification.macro_precision">
+<code class="descclassname">rqa.metric.classification.</code><code class="descname">macro_precision</code><span class="sig-paren">(</span><em>pycm_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/classification.html#macro_precision"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.classification.macro_precision" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.classification.macro_recall">
+<code class="descclassname">rqa.metric.classification.</code><code class="descname">macro_recall</code><span class="sig-paren">(</span><em>pycm_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/classification.html#macro_recall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.classification.macro_recall" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.classification.precision">
+<code class="descclassname">rqa.metric.classification.</code><code class="descname">precision</code><span class="sig-paren">(</span><em>pycm_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/classification.html#precision"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.classification.precision" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.classification.recall">
+<code class="descclassname">rqa.metric.classification.</code><code class="descname">recall</code><span class="sig-paren">(</span><em>pycm_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/classification.html#recall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.classification.recall" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<span class="target" id="module-rqa.metric.squad_v1_official"></span><p>Official evaluation script for v1.1 of the SQuAD dataset.</p>
+<dl class="function">
+<dt id="rqa.metric.squad_v1_official.evaluate">
+<code class="descclassname">rqa.metric.squad_v1_official.</code><code class="descname">evaluate</code><span class="sig-paren">(</span><em>dataset</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v1_official.html#evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v1_official.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v1_official.exact_match_score">
+<code class="descclassname">rqa.metric.squad_v1_official.</code><code class="descname">exact_match_score</code><span class="sig-paren">(</span><em>prediction</em>, <em>ground_truth</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v1_official.html#exact_match_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v1_official.exact_match_score" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v1_official.f1_score">
+<code class="descclassname">rqa.metric.squad_v1_official.</code><code class="descname">f1_score</code><span class="sig-paren">(</span><em>prediction</em>, <em>ground_truth</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v1_official.html#f1_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v1_official.f1_score" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v1_official.metric_max_over_ground_truths">
+<code class="descclassname">rqa.metric.squad_v1_official.</code><code class="descname">metric_max_over_ground_truths</code><span class="sig-paren">(</span><em>metric_fn</em>, <em>prediction</em>, <em>ground_truths</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v1_official.html#metric_max_over_ground_truths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v1_official.metric_max_over_ground_truths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v1_official.normalize_answer">
+<code class="descclassname">rqa.metric.squad_v1_official.</code><code class="descname">normalize_answer</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v1_official.html#normalize_answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v1_official.normalize_answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lower text and remove punctuation, articles and extra whitespace.</p>
+</dd></dl>
+
+<span class="target" id="module-rqa.metric.squad_v2_official"></span><p>Official evaluation script for SQuAD version 2.0.</p>
+<p>In addition to basic functionality, we also compute additional statistics and
+plot precision-recall curves if an additional na_prob.json file is provided.
+This file is expected to map question ID’s to the model’s predicted probability
+that a question is unanswerable.</p>
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.apply_no_ans_threshold">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">apply_no_ans_threshold</code><span class="sig-paren">(</span><em>scores</em>, <em>na_probs</em>, <em>qid_to_has_ans</em>, <em>na_prob_thresh</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#apply_no_ans_threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.apply_no_ans_threshold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.compute_exact">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">compute_exact</code><span class="sig-paren">(</span><em>a_gold</em>, <em>a_pred</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#compute_exact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.compute_exact" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.compute_f1">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">compute_f1</code><span class="sig-paren">(</span><em>a_gold</em>, <em>a_pred</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#compute_f1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.compute_f1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.evaluate">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">evaluate</code><span class="sig-paren">(</span><em>dataset</em>, <em>na_probs</em>, <em>preds</em>, <em>na_prob_thresh=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.find_all_best_thresh">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">find_all_best_thresh</code><span class="sig-paren">(</span><em>main_eval</em>, <em>preds</em>, <em>exact_raw</em>, <em>f1_raw</em>, <em>na_probs</em>, <em>qid_to_has_ans</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#find_all_best_thresh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.find_all_best_thresh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.find_best_thresh">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">find_best_thresh</code><span class="sig-paren">(</span><em>preds</em>, <em>scores</em>, <em>na_probs</em>, <em>qid_to_has_ans</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#find_best_thresh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.find_best_thresh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.get_raw_scores">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">get_raw_scores</code><span class="sig-paren">(</span><em>dataset</em>, <em>preds</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#get_raw_scores"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.get_raw_scores" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.get_tokens">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">get_tokens</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#get_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.get_tokens" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.histogram_na_prob">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">histogram_na_prob</code><span class="sig-paren">(</span><em>na_probs</em>, <em>qid_list</em>, <em>image_dir</em>, <em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#histogram_na_prob"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.histogram_na_prob" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.main">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.make_eval_dict">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">make_eval_dict</code><span class="sig-paren">(</span><em>exact_scores</em>, <em>f1_scores</em>, <em>qid_list=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#make_eval_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.make_eval_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.make_precision_recall_eval">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">make_precision_recall_eval</code><span class="sig-paren">(</span><em>scores</em>, <em>na_probs</em>, <em>num_true_pos</em>, <em>qid_to_has_ans</em>, <em>out_image=None</em>, <em>title=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#make_precision_recall_eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.make_precision_recall_eval" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.make_qid_to_has_ans">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">make_qid_to_has_ans</code><span class="sig-paren">(</span><em>dataset</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#make_qid_to_has_ans"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.make_qid_to_has_ans" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.merge_eval">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">merge_eval</code><span class="sig-paren">(</span><em>main_eval</em>, <em>new_eval</em>, <em>prefix</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#merge_eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.merge_eval" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.normalize_answer">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">normalize_answer</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#normalize_answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.normalize_answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lower text and remove punctuation, articles and extra whitespace.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.parse_args">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">parse_args</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#parse_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.parse_args" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.plot_pr_curve">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">plot_pr_curve</code><span class="sig-paren">(</span><em>precisions</em>, <em>recalls</em>, <em>out_image</em>, <em>title</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#plot_pr_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.plot_pr_curve" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.squad_v2_official.run_precision_recall_analysis">
+<code class="descclassname">rqa.metric.squad_v2_official.</code><code class="descname">run_precision_recall_analysis</code><span class="sig-paren">(</span><em>main_eval</em>, <em>exact_raw</em>, <em>f1_raw</em>, <em>na_probs</em>, <em>qid_to_has_ans</em>, <em>out_image_dir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/squad_v2_official.html#run_precision_recall_analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.squad_v2_official.run_precision_recall_analysis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<span class="target" id="module-rqa.metric.wikisql_official"></span><p>Official evaluation script for WikiSQL dataset.</p>
+<dl class="function">
+<dt id="rqa.metric.wikisql_official.count_lines">
+<code class="descclassname">rqa.metric.wikisql_official.</code><code class="descname">count_lines</code><span class="sig-paren">(</span><em>fname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/wikisql_official.html#count_lines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.wikisql_official.count_lines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.metric.wikisql_official.evaluate">
+<code class="descclassname">rqa.metric.wikisql_official.</code><code class="descname">evaluate</code><span class="sig-paren">(</span><em>labels</em>, <em>predictions</em>, <em>db_path</em>, <em>ordered=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/metric/wikisql_official.html#evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.metric.wikisql_official.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>labels and predictions: dictionary {data_uid: sql_data, …}</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-rqa.metric">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rqa.metric" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rqa.model.html" class="btn btn-neutral float-right" title="rqa.model package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rqa.learn.html" class="btn btn-neutral" title="rqa.learn package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,620 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.model.semantic_parsing package &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rqa.model.sequence_classification package" href="rqa.model.sequence_classification.html" />
+    <link rel="prev" title="rqa.model.reading_comprehension package" href="rqa.model.reading_comprehension.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rqa.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rqa.model.html">model</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="rqa.model.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="rqa.model.reading_comprehension.html">rqa.model.reading_comprehension package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">rqa.model.semantic_parsing package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-rqa.model.semantic_parsing.mixin">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-rqa.model.semantic_parsing">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.model.sequence_classification.html">rqa.model.sequence_classification package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.model.token_classification.html">rqa.model.token_classification package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.model.html#module-rqa.model.base">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.model.html#module-rqa.model">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="rqa.model.html">rqa.model package</a> &raquo;</li>
+        
+      <li>rqa.model.semantic_parsing package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.model.semantic_parsing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rqa-model-semantic-parsing-package">
+<h1>rqa.model.semantic_parsing package<a class="headerlink" href="#rqa-model-semantic-parsing-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-rqa.model.semantic_parsing.mixin">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-rqa.model.semantic_parsing.mixin" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.model.semantic_parsing.mixin.WikiSQL">
+<em class="property">class </em><code class="descclassname">rqa.model.semantic_parsing.mixin.</code><code class="descname">WikiSQL</code><a class="reference internal" href="_modules/rqa/model/semantic_parsing/mixin.html#WikiSQL"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.mixin.WikiSQL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="docutils">
+<dt>WikiSQL Mixin Class</dt>
+<dd>with official evaluation</dd>
+</dl>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>token_embedder: ‘TokenEmbedder’</dd>
+</dl>
+</li>
+</ul>
+<dl class="attribute">
+<dt id="rqa.model.semantic_parsing.mixin.WikiSQL.AGG_OPS">
+<code class="descname">AGG_OPS</code><em class="property"> = ['None', 'MAX', 'MIN', 'COUNT', 'SUM', 'AVG']</em><a class="headerlink" href="#rqa.model.semantic_parsing.mixin.WikiSQL.AGG_OPS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.model.semantic_parsing.mixin.WikiSQL.COND_OPS">
+<code class="descname">COND_OPS</code><em class="property"> = ['EQL', 'GT', 'LT']</em><a class="headerlink" href="#rqa.model.semantic_parsing.mixin.WikiSQL.COND_OPS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.mixin.WikiSQL.decode_pointer">
+<code class="descname">decode_pointer</code><span class="sig-paren">(</span><em>tokenized_question</em>, <em>cond_value_logits</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/mixin.html#WikiSQL.decode_pointer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.mixin.WikiSQL.decode_pointer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.mixin.WikiSQL.generate_queries">
+<code class="descname">generate_queries</code><span class="sig-paren">(</span><em>output_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/mixin.html#WikiSQL.generate_queries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.mixin.WikiSQL.generate_queries" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.mixin.WikiSQL.make_metrics">
+<code class="descname">make_metrics</code><span class="sig-paren">(</span><em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/mixin.html#WikiSQL.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.mixin.WikiSQL.make_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>aggregator, select_column, conditions accuracy</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.mixin.WikiSQL.make_predictions">
+<code class="descname">make_predictions</code><span class="sig-paren">(</span><em>output_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/mixin.html#WikiSQL.make_predictions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.mixin.WikiSQL.make_predictions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.mixin.WikiSQL.merge_tokens">
+<code class="descname">merge_tokens</code><span class="sig-paren">(</span><em>tok_list</em>, <em>raw_tok_str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/mixin.html#WikiSQL.merge_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.mixin.WikiSQL.merge_tokens" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.mixin.WikiSQL.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#rqa.model.semantic_parsing.mixin.WikiSQL.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.mixin.WikiSQL.print_examples">
+<code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/mixin.html#WikiSQL.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.mixin.WikiSQL.print_examples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print evaluation examples</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first">index: data index
+inputs: mini-batch inputs
+predictions: prediction dictionary consisting of</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>key: ‘id’ (question id)</li>
+<li><dl class="first docutils">
+<dt>value: consisting of dictionary</dt>
+<dd>table_id, query (agg, sel, conds)</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><p class="first last">print(Context, Question, Answers and Predict)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.model.semantic_parsing.sqlnet"></span><dl class="class">
+<dt id="rqa.model.semantic_parsing.sqlnet.AggPredictor">
+<em class="property">class </em><code class="descclassname">rqa.model.semantic_parsing.sqlnet.</code><code class="descname">AggPredictor</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>model_dim</em>, <em>rnn_num_layer</em>, <em>dropout</em>, <em>agg_count</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#AggPredictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.AggPredictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.sqlnet.AggPredictor.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>question_embed</em>, <em>question_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#AggPredictor.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.AggPredictor.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.model.semantic_parsing.sqlnet.CondsColPredictor">
+<em class="property">class </em><code class="descclassname">rqa.model.semantic_parsing.sqlnet.</code><code class="descname">CondsColPredictor</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>model_dim</em>, <em>rnn_num_layer</em>, <em>dropout</em>, <em>column_attention=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#CondsColPredictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.CondsColPredictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.sqlnet.CondsColPredictor.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>question_embed</em>, <em>question_mask</em>, <em>column_embed</em>, <em>column_name_mask</em>, <em>column_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#CondsColPredictor.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.CondsColPredictor.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.model.semantic_parsing.sqlnet.CondsNumPredictor">
+<em class="property">class </em><code class="descclassname">rqa.model.semantic_parsing.sqlnet.</code><code class="descname">CondsNumPredictor</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>model_dim</em>, <em>rnn_num_layer</em>, <em>dropout</em>, <em>column_maxlen</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#CondsNumPredictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.CondsNumPredictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.sqlnet.CondsNumPredictor.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>question_embed</em>, <em>question_mask</em>, <em>column_embed</em>, <em>column_name_mask</em>, <em>column_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#CondsNumPredictor.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.CondsNumPredictor.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.model.semantic_parsing.sqlnet.CondsOpPredictor">
+<em class="property">class </em><code class="descclassname">rqa.model.semantic_parsing.sqlnet.</code><code class="descname">CondsOpPredictor</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>model_dim</em>, <em>rnn_num_layer</em>, <em>dropout</em>, <em>op_count</em>, <em>column_maxlen</em>, <em>column_attention=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#CondsOpPredictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.CondsOpPredictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.sqlnet.CondsOpPredictor.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>question_embed</em>, <em>question_mask</em>, <em>column_embed</em>, <em>column_name_mask</em>, <em>col_idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#CondsOpPredictor.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.CondsOpPredictor.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.model.semantic_parsing.sqlnet.CondsPredictor">
+<em class="property">class </em><code class="descclassname">rqa.model.semantic_parsing.sqlnet.</code><code class="descname">CondsPredictor</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>model_dim</em>, <em>rnn_num_layer</em>, <em>dropout</em>, <em>conds_op_count</em>, <em>column_maxlen</em>, <em>token_maxlen</em>, <em>column_attention=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#CondsPredictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.CondsPredictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.sqlnet.CondsPredictor.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>question_embed</em>, <em>question_mask</em>, <em>column_embed</em>, <em>column_name_mask</em>, <em>column_mask</em>, <em>col_idx</em>, <em>conds_val_pos</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#CondsPredictor.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.CondsPredictor.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.model.semantic_parsing.sqlnet.CondsValuePointer">
+<em class="property">class </em><code class="descclassname">rqa.model.semantic_parsing.sqlnet.</code><code class="descname">CondsValuePointer</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>model_dim</em>, <em>rnn_num_layer</em>, <em>dropout</em>, <em>column_maxlen</em>, <em>token_maxlen</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#CondsValuePointer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.CondsValuePointer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.sqlnet.CondsValuePointer.concat_start_and_end_zero_padding">
+<code class="descname">concat_start_and_end_zero_padding</code><span class="sig-paren">(</span><em>question_embed</em>, <em>mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#CondsValuePointer.concat_start_and_end_zero_padding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.CondsValuePointer.concat_start_and_end_zero_padding" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.sqlnet.CondsValuePointer.decode_then_output">
+<code class="descname">decode_then_output</code><span class="sig-paren">(</span><em>encoded_used_column</em>, <em>encoded_question</em>, <em>question_mask</em>, <em>decoder_input</em>, <em>decoder_hidden=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#CondsValuePointer.decode_then_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.CondsValuePointer.decode_then_output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.sqlnet.CondsValuePointer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>question_embed</em>, <em>question_mask</em>, <em>column_embed</em>, <em>column_name_mask</em>, <em>col_idx</em>, <em>conds_val_pos</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#CondsValuePointer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.CondsValuePointer.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.model.semantic_parsing.sqlnet.SQLNet">
+<em class="property">class </em><code class="descclassname">rqa.model.semantic_parsing.sqlnet.</code><code class="descname">SQLNet</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>column_attention=None</em>, <em>model_dim=100</em>, <em>rnn_num_layer=2</em>, <em>dropout=0.3</em>, <em>column_maxlen=4</em>, <em>token_maxlen=200</em>, <em>conds_column_loss_alpha=3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#SQLNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.SQLNet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.model.semantic_parsing.mixin.WikiSQL" title="rqa.model.semantic_parsing.mixin.WikiSQL"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.semantic_parsing.mixin.WikiSQL</span></code></a>, <a class="reference internal" href="rqa.model.html#rqa.model.base.ModelWithTokenEmbedder" title="rqa.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Nature Language to SQL Query Model. <cite>Semantic Parsing</cite>, <cite>NL2SQL</cite></p>
+<p>Implementation of model presented in
+SQLNet: Generating Structured Queries From Natural Language</p>
+<blockquote>
+<div>Without Reinforcement Learning</div></blockquote>
+<p>(<a class="reference external" href="https://arxiv.org/abs/1711.04436">https://arxiv.org/abs/1711.04436</a>)</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_embedder: ‘WikiSQLTokenEmbedder’, Used to embed the ‘column’ and ‘question’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>column_attention: highlight that column attention is a special instance of</dt>
+<dd><p class="first last">the generic attention mechanism to compute the attention map on a question
+conditioned on the column names.</p>
+</dd>
+</dl>
+<p class="last">model_dim: the number of model dimension
+rnn_num_layer: the number of recurrent layers (all of rnn)
+column_maxlen: an upper-bound N on the number of columns to choose
+token_maxlen: conds value slot - pointer network an upper-bound N on the number of token
+conds_column_loss_alpha: balance the positive data versus negative data</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.sqlnet.SQLNet.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#SQLNet.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.SQLNet.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.model.semantic_parsing.sqlnet.SelPredictor">
+<em class="property">class </em><code class="descclassname">rqa.model.semantic_parsing.sqlnet.</code><code class="descname">SelPredictor</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>model_dim</em>, <em>rnn_num_layer</em>, <em>dropout</em>, <em>column_attention=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#SelPredictor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.SelPredictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.sqlnet.SelPredictor.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>question_embed</em>, <em>question_mask</em>, <em>column_embed</em>, <em>column_name_mask</em>, <em>column_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#SelPredictor.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.sqlnet.SelPredictor.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.model.semantic_parsing.utils"></span><dl class="function">
+<dt id="rqa.model.semantic_parsing.utils.convert_position_to_decoder_input">
+<code class="descclassname">rqa.model.semantic_parsing.utils.</code><code class="descname">convert_position_to_decoder_input</code><span class="sig-paren">(</span><em>conds_val_pos</em>, <em>token_maxlen=200</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/utils.html#convert_position_to_decoder_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.utils.convert_position_to_decoder_input" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.model.semantic_parsing.utils.encode_column">
+<code class="descclassname">rqa.model.semantic_parsing.utils.</code><code class="descname">encode_column</code><span class="sig-paren">(</span><em>column_embed</em>, <em>column_name_mask</em>, <em>rnn_module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/utils.html#encode_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.utils.encode_column" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.model.semantic_parsing.utils.filter_used_column">
+<code class="descclassname">rqa.model.semantic_parsing.utils.</code><code class="descname">filter_used_column</code><span class="sig-paren">(</span><em>encoded_columns</em>, <em>col_idx</em>, <em>padding_count=4</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/utils.html#filter_used_column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.utils.filter_used_column" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.model.semantic_parsing.utils.get_column_lengths">
+<code class="descclassname">rqa.model.semantic_parsing.utils.</code><code class="descname">get_column_lengths</code><span class="sig-paren">(</span><em>column_embed</em>, <em>column_name_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/utils.html#get_column_lengths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.utils.get_column_lengths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-rqa.model.semantic_parsing">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rqa.model.semantic_parsing" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.model.semantic_parsing.SQLNet">
+<em class="property">class </em><code class="descclassname">rqa.model.semantic_parsing.</code><code class="descname">SQLNet</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>column_attention=None</em>, <em>model_dim=100</em>, <em>rnn_num_layer=2</em>, <em>dropout=0.3</em>, <em>column_maxlen=4</em>, <em>token_maxlen=200</em>, <em>conds_column_loss_alpha=3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#SQLNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.SQLNet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.model.semantic_parsing.mixin.WikiSQL" title="rqa.model.semantic_parsing.mixin.WikiSQL"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.semantic_parsing.mixin.WikiSQL</span></code></a>, <a class="reference internal" href="rqa.model.html#rqa.model.base.ModelWithTokenEmbedder" title="rqa.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Nature Language to SQL Query Model. <cite>Semantic Parsing</cite>, <cite>NL2SQL</cite></p>
+<p>Implementation of model presented in
+SQLNet: Generating Structured Queries From Natural Language</p>
+<blockquote>
+<div>Without Reinforcement Learning</div></blockquote>
+<p>(<a class="reference external" href="https://arxiv.org/abs/1711.04436">https://arxiv.org/abs/1711.04436</a>)</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_embedder: ‘WikiSQLTokenEmbedder’, Used to embed the ‘column’ and ‘question’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>column_attention: highlight that column attention is a special instance of</dt>
+<dd><p class="first last">the generic attention mechanism to compute the attention map on a question
+conditioned on the column names.</p>
+</dd>
+</dl>
+<p class="last">model_dim: the number of model dimension
+rnn_num_layer: the number of recurrent layers (all of rnn)
+column_maxlen: an upper-bound N on the number of columns to choose
+token_maxlen: conds value slot - pointer network an upper-bound N on the number of token
+conds_column_loss_alpha: balance the positive data versus negative data</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.model.semantic_parsing.SQLNet.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/semantic_parsing/sqlnet.html#SQLNet.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.semantic_parsing.SQLNet.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rqa.model.sequence_classification.html" class="btn btn-neutral float-right" title="rqa.model.sequence_classification package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rqa.model.reading_comprehension.html" class="btn btn-neutral" title="rqa.model.reading_comprehension package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

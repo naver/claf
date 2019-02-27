@@ -1,0 +1,32 @@
+ {
+  "name": "open_qa",
+  "user_input": "Question",
+  "system_response": "Answer",
+  "open_qa": {
+      "tokenizers": {
+          "sent": {
+              "name": "punkt"
+          },
+          "word": {
+              "name": "mecab_ko",
+              "split_with_regex": true
+          }
+      },
+      "knowledge_base": {
+          "wiki": "<WikiExtractor output_path with --json>"
+      },
+      "reasoning": {
+          "document_retrieval": {
+              "type": "component",
+              "name": "tfidf",
+              "tfidf": {
+                  "k": 5
+              }
+          },
+          "reading_comprehension": {
+              "type": "experiment",
+              "checkpoint_path": "<checkpoint_path>"
+          }
+      }
+    }
+ }

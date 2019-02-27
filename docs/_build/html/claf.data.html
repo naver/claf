@@ -1,0 +1,540 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>claf.data package &mdash; CLaF 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="claf.data.dataset package" href="claf.data.dataset.html" />
+    <link rel="prev" title="claf.config.factory package" href="claf.config.factory.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="claf.config.html">config</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="claf.data.dataset.html">claf.data.dataset package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="claf.data.reader.html">claf.data.reader package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-claf.data.batch">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-claf.data">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>claf.data package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/claf.data.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="claf-data-package">
+<h1>claf.data package<a class="headerlink" href="#claf-data-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="claf.data.dataset.html">claf.data.dataset package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="claf.data.dataset.html#module-claf.data.dataset.base">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.data.dataset.html#module-claf.data.dataset">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.data.reader.html">claf.data.reader package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="claf.data.reader.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="claf.data.reader.bert.html">claf.data.reader.bert package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.data.reader.bert.html#module-claf.data.reader.bert.cola">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.data.reader.bert.html#module-claf.data.reader.bert">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="claf.data.reader.html#module-claf.data.reader.base">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.data.reader.html#module-claf.data.reader">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-claf.data.batch">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.data.batch" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="claf.data.batch.Batch">
+<em class="property">class </em><code class="descclassname">claf.data.batch.</code><code class="descname">Batch</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/batch.html#Batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.batch.Batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Batch Data Transfer Object (DTO) Class</p>
+<dl class="docutils">
+<dt>dictionary consisting of</dt>
+<dd><ul class="first last simple">
+<li>features: (dict) input</li>
+<li>labels: (dict) output</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="claf.data.batch.Batch.sort_by_key">
+<code class="descname">sort_by_key</code><span class="sig-paren">(</span><em>sort_key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/batch.html#Batch.sort_by_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.batch.Batch.sort_by_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.batch.Batch.to_dict">
+<code class="descname">to_dict</code><span class="sig-paren">(</span><em>flatten=False</em>, <em>recursive=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/batch.html#Batch.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.batch.Batch.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.data.batch.make_batch">
+<code class="descclassname">claf.data.batch.</code><code class="descname">make_batch</code><span class="sig-paren">(</span><em>features</em>, <em>labels</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/batch.html#make_batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.batch.make_batch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<span class="target" id="module-claf.data.collate"></span><dl class="class">
+<dt id="claf.data.collate.FeatLabelPadCollator">
+<em class="property">class </em><code class="descclassname">claf.data.collate.</code><code class="descname">FeatLabelPadCollator</code><span class="sig-paren">(</span><em>cuda_device_id=None, skip_keys=['text']</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/collate.html#FeatLabelPadCollator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.collate.FeatLabelPadCollator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.data.collate.PadCollator" title="claf.data.collate.PadCollator"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.collate.PadCollator</span></code></a></p>
+<p>Collator apply pad and make tensor
+Minimizes amount of padding needed while producing mini-batch.</p>
+<p>FeatLabelPadCollator allows applying pad to not only features, but also labels.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>cuda_device_id: tensor assign to cuda device id</dt>
+<dd><p class="first last">Default is None (CPU)</p>
+</dd>
+</dl>
+<p class="last">skip_keys: skip to make tensor</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.data.collate.FeatLabelPadCollator.collate">
+<code class="descname">collate</code><span class="sig-paren">(</span><em>datas</em>, <em>apply_pad=True</em>, <em>apply_pad_labels=()</em>, <em>apply_pad_values=()</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/collate.html#FeatLabelPadCollator.collate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.collate.FeatLabelPadCollator.collate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.data.collate.PadCollator">
+<em class="property">class </em><code class="descclassname">claf.data.collate.</code><code class="descname">PadCollator</code><span class="sig-paren">(</span><em>cuda_device_id=None, skip_keys=['text']</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/collate.html#PadCollator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.collate.PadCollator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Collator apply pad and make tensor
+Minimizes amount of padding needed while producing mini-batch.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>cuda_device_id: tensor assign to cuda device id</dt>
+<dd><p class="first last">Default is None (CPU)</p>
+</dd>
+</dl>
+<p class="last">skip_keys: skip to make tensor</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.data.collate.PadCollator.collate">
+<code class="descname">collate</code><span class="sig-paren">(</span><em>datas</em>, <em>apply_pad=True</em>, <em>pad_value=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/collate.html#PadCollator.collate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.collate.PadCollator.collate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-claf.data.data_handler"></span><dl class="class">
+<dt id="claf.data.data_handler.CachePath">
+<em class="property">class </em><code class="descclassname">claf.data.data_handler.</code><code class="descname">CachePath</code><a class="reference internal" href="_modules/claf/data/data_handler.html#CachePath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.CachePath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="attribute">
+<dt id="claf.data.data_handler.CachePath.DATASET">
+<code class="descname">DATASET</code><em class="property"> = PosixPath('/Users/user/.claf_cache/dataset')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.DATASET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.data_handler.CachePath.MACHINE">
+<code class="descname">MACHINE</code><em class="property"> = PosixPath('/Users/user/.claf_cache/machine')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.MACHINE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.data_handler.CachePath.PRETRAINED_VECTOR">
+<code class="descname">PRETRAINED_VECTOR</code><em class="property"> = PosixPath('/Users/user/.claf_cache/pretrained_vector')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.PRETRAINED_VECTOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.data_handler.CachePath.ROOT">
+<code class="descname">ROOT</code><em class="property"> = PosixPath('/Users/user/.claf_cache')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.ROOT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.data_handler.CachePath.TOKEN_COUNTER">
+<code class="descname">TOKEN_COUNTER</code><em class="property"> = PosixPath('/Users/user/.claf_cache/token_counter')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.TOKEN_COUNTER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.data_handler.CachePath.VOCAB">
+<code class="descname">VOCAB</code><em class="property"> = PosixPath('/Users/user/.claf_cache/vocab')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.VOCAB" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.data.data_handler.DataHandler">
+<em class="property">class </em><code class="descclassname">claf.data.data_handler.</code><code class="descname">DataHandler</code><span class="sig-paren">(</span><em>cache_path=PosixPath('/Users/user/.claf_cache')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>DataHandler with CachePath</p>
+<ul class="simple">
+<li>read (from_path, from_http)</li>
+<li>dump (.msgpack or .pkl (pickle))</li>
+<li>load</li>
+</ul>
+<dl class="method">
+<dt id="claf.data.data_handler.DataHandler.cache_token_counter">
+<code class="descname">cache_token_counter</code><span class="sig-paren">(</span><em>data_reader_config</em>, <em>tokenizer_name</em>, <em>obj=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.cache_token_counter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.cache_token_counter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.data_handler.DataHandler.convert_cache_path">
+<code class="descname">convert_cache_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.convert_cache_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.convert_cache_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.data_handler.DataHandler.dump">
+<code class="descname">dump</code><span class="sig-paren">(</span><em>file_path</em>, <em>obj</em>, <em>encoding='utf-8'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.dump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.dump" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.data_handler.DataHandler.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>file_path</em>, <em>encoding='utf-8'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.load" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.data_handler.DataHandler.read">
+<code class="descname">read</code><span class="sig-paren">(</span><em>file_path</em>, <em>encoding='utf-8'</em>, <em>return_path=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.data_handler.DataHandler.read_embedding">
+<code class="descname">read_embedding</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.read_embedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.read_embedding" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-claf.data.utils"></span><dl class="function">
+<dt id="claf.data.utils.get_is_head_of_word">
+<code class="descclassname">claf.data.utils.</code><code class="descname">get_is_head_of_word</code><span class="sig-paren">(</span><em>naive_tokens</em>, <em>sequence_tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#get_is_head_of_word"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.get_is_head_of_word" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of flags whether the token is head(prefix) of naively split tokens</p>
+<dl class="docutils">
+<dt>ex) naive_tokens: [“hello.”, “how”, “are”, “you?”]</dt>
+<dd><p class="first">sequence_tokens: [“hello”, “.”, “how”, “are”, “you”, “?”]</p>
+<p class="last">=&gt; [1, 0, 1, 1, 1, 0]</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>naive_tokens: a list of tokens, naively split by whitespace
+sequence_tokens: a list of tokens, split by ‘word_tokenizer’</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><dl class="first last docutils">
+<dt>is_head_of_word: a list with its length the same as that of ‘sequence_tokens’.</dt>
+<dd>has 1 if the tokenized word at the position is head(prefix) of a <cite>naive_token</cite>
+and 0 if otherwise.</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.data.utils.get_token_dim">
+<code class="descclassname">claf.data.utils.</code><code class="descname">get_token_dim</code><span class="sig-paren">(</span><em>tokens</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#get_token_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.get_token_dim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="claf.data.utils.get_token_type">
+<code class="descclassname">claf.data.utils.</code><code class="descname">get_token_type</code><span class="sig-paren">(</span><em>tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#get_token_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.get_token_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="claf.data.utils.is_lazy">
+<code class="descclassname">claf.data.utils.</code><code class="descname">is_lazy</code><span class="sig-paren">(</span><em>tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#is_lazy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.is_lazy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="claf.data.utils.make_bert_token_type">
+<code class="descclassname">claf.data.utils.</code><code class="descname">make_bert_token_type</code><span class="sig-paren">(</span><em>bert_input_text</em>, <em>SEP_token='[SEP]'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#make_bert_token_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.make_bert_token_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="claf.data.utils.make_bert_token_types">
+<code class="descclassname">claf.data.utils.</code><code class="descname">make_bert_token_types</code><span class="sig-paren">(</span><em>bert_inputs</em>, <em>SEP_token='[SEP]'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#make_bert_token_types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.make_bert_token_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bert Inputs segment_ids</p>
+<p>ex) [CLS] hi [SEP] he ##llo [SEP] =&gt; 0 0 0 1 1 1</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>bert_inputs: feature dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>text: text from data_reader</li>
+<li>token_name: text converted to corresponding token_type</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>SEP_token: SEP special token for BERT</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.data.utils.padding_tokens">
+<code class="descclassname">claf.data.utils.</code><code class="descname">padding_tokens</code><span class="sig-paren">(</span><em>tokens</em>, <em>max_len=None</em>, <em>token_name=None</em>, <em>pad_value=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#padding_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.padding_tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Padding tokens according to token’s dimension</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.data.utils.sanity_check_iob">
+<code class="descclassname">claf.data.utils.</code><code class="descname">sanity_check_iob</code><span class="sig-paren">(</span><em>naive_tokens</em>, <em>tag_texts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#sanity_check_iob"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.sanity_check_iob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the IOB tags are valid.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>naive_tokens: tokens split by .split()
+tag_texts: list of tags in IOB format</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.data.utils.transpose">
+<code class="descclassname">claf.data.utils.</code><code class="descname">transpose</code><span class="sig-paren">(</span><em>list_of_dict</em>, <em>skip_keys=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#transpose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.transpose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-claf.data">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.data" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="claf.data.dataset.html" class="btn btn-neutral float-right" title="claf.data.dataset package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="claf.config.factory.html" class="btn btn-neutral" title="claf.config.factory package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

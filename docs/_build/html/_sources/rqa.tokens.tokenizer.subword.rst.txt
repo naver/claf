@@ -1,0 +1,7 @@
+rqa.tokens.tokenizer.subword module
+===================================
+
+.. automodule:: rqa.tokens.tokenizer.subword
+    :members:
+    :undoc-members:
+    :show-inheritance:

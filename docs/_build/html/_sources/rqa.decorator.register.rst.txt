@@ -1,0 +1,7 @@
+rqa.decorator.register module
+=============================
+
+.. automodule:: rqa.decorator.register
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,7 @@
+rqa.model.document\_retrieval.tfidf module
+==========================================
+
+.. automodule:: rqa.model.document_retrieval.tfidf
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,87 @@
+{
+  "data_reader": {
+    "dataset": "cola",
+    "train_file_path": "<CoLA train.tsv path>",
+    "valid_file_path": "<CoLA dev.tsv path>",
+    "cola": {
+      "sequence_max_length": 128
+    }
+  },
+  "iterator": {
+    "batch_size": 32
+  },
+  "token": {
+    "names": ["char", "glove"],
+    "types": ["char", "word"],
+    "tokenizer": {
+      "char": {
+        "name": "character"
+      },
+      "word": {
+        "name": "treebank_en",
+        "split_with_regex": true
+      }
+    },
+    "char": {
+      "vocab": {
+        "start_token": "<s>",
+        "end_token": "</s>",
+        "max_vocab_size": 260
+      },
+      "indexer": {
+        "insert_char_start": true,
+        "insert_char_end": true
+      },
+      "embedding": {
+        "embed_dim": 16,
+        "kernel_sizes": [5],
+        "num_filter": 100,
+        "activation": "relu",
+        "dropout": 0.2
+      }
+    },
+    "glove": {
+      "vocab": {
+        "pretrained_path": "http://dev-reasoning-qa-data-ncl.nfra.io:7778/data/glove.6B.vocab.txt",
+        "pretrained_token": "intersect"
+      },
+      "indexer": {
+        "lowercase": true
+      },
+      "embedding": {
+        "embed_dim": 100,
+        "pretrained_path": "http://dev-reasoning-qa-data-ncl.nfra.io:7778/data/glove.6B.100d.txt",
+        "trainable": false,
+        "dropout": 0.2
+      }
+    }
+  },
+  "model": {
+    "name": "structured_self_attention",
+    "structured_self_attention": {
+      "encoding_rnn_hidden_dim": 300,
+      "encoding_rnn_num_layer": 2,
+      "encoding_rnn_dropout": 0,
+      "attention_dim": 350,
+      "num_attention_heads": 30,
+      "sequence_embed_dim": 2000,
+      "dropout": 0.5,
+      "penalization_coefficient": 1
+    }
+  },
+  "trainer": {
+    "log_dir": "logs/cola",
+    "num_epochs": 50,
+    "early_stopping_threshold": 10,
+    "grad_max_norm": 5.0,
+    "metric_key": "accuracy",
+    "verbose_step_count": 100,
+    "eval_and_save_step_count": "epoch"
+  },
+  "optimizer": {
+    "op_type": "adam",
+    "learning_rate": 0.001,
+    "exponential_moving_average": 0.999
+  },
+  "seed_num": 42
+}

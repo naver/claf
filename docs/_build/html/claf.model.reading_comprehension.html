@@ -1,0 +1,1979 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>claf.model.reading_comprehension package &mdash; CLaF 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="claf.model.semantic_parsing package" href="claf.model.semantic_parsing.html" />
+    <link rel="prev" title="claf.model package" href="claf.model.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.metric.html">metric</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="claf.model.html">model</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="claf.model.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">claf.model.reading_comprehension package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-claf.model.reading_comprehension.bert_for_qa">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-claf.model.reading_comprehension">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="claf.model.semantic_parsing.html">claf.model.semantic_parsing package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="claf.model.sequence_classification.html">claf.model.sequence_classification package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="claf.model.token_classification.html">claf.model.token_classification package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="claf.model.html#module-claf.model.base">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.model.html#module-claf.model">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="claf.model.html">claf.model package</a> &raquo;</li>
+        
+      <li>claf.model.reading_comprehension package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/claf.model.reading_comprehension.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="claf-model-reading-comprehension-package">
+<h1>claf.model.reading_comprehension package<a class="headerlink" href="#claf-model-reading-comprehension-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-claf.model.reading_comprehension.bert_for_qa">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.model.reading_comprehension.bert_for_qa" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="claf.model.reading_comprehension.bert_for_qa.BertForQA">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.bert_for_qa.</code><code class="descname">BertForQA</code><span class="sig-paren">(</span><em>token_makers</em>, <em>pretrained_model_name=None</em>, <em>answer_maxlen=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bert_for_qa.html#BertForQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.bert_for_qa.BertForQA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithoutTokenEmbedder" title="claf.model.base.ModelWithoutTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithoutTokenEmbedder</span></code></a></p>
+<p>Document Reader Model. <cite>Span Detector</cite></p>
+<p>Implementation of model presented in
+BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+(<a class="reference external" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>pretrained_model_name: the name of a pre-trained model
+answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.bert_for_qa.BertForQA.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bert_for_qa.html#BertForQA.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.bert_for_qa.BertForQA.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>features: feature dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“feature_name1”: {</dt>
+<dd><blockquote class="first">
+<div><p>“token_name1”: tensor,
+“toekn_name2”: tensor},</p>
+</div></blockquote>
+<p class="last">“feature_name2”: …}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first last docutils">
+<dt>label: label dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“label_name1”: tensor,</dt>
+<dd><p class="first last">“label_name2”: tensor}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>start_logits: representing unnormalized log probabilities of the span start position.</li>
+<li>end_logits: representing unnormalized log probabilities of the span end position.</li>
+<li>best_span: the string from the original passage that the model thinks is the best answer to the question.</li>
+<li>answer_idx: the question id, mapping with answer</li>
+<li>loss: A scalar loss to be optimised.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.model.reading_comprehension.bert_for_qa.BertForQA.make_metrics">
+<code class="descname">make_metrics</code><span class="sig-paren">(</span><em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bert_for_qa.html#BertForQA.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.bert_for_qa.BertForQA.make_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>BERT predictions need to get nbest result</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.model.reading_comprehension.bert_for_qa.BertForQA.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>output_dict</em>, <em>arguments</em>, <em>helper</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bert_for_qa.html#BertForQA.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.bert_for_qa.BertForQA.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inference by raw_feature</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first docutils">
+<dt>output_dict: model’s output dictionary consisting of</dt>
+<dd><ul class="first last simple">
+<li>answer_idx: question id</li>
+<li>best_span: calculate the span_start_logits and span_end_logits to what is the best span</li>
+</ul>
+</dd>
+</dl>
+<p class="last">arguments: arguments dictionary consisting of user_input
+helper: dictionary for helping get answer</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><p class="first last">span: predict best_span</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-claf.model.reading_comprehension.bidaf"></span><dl class="class">
+<dt id="claf.model.reading_comprehension.bidaf.BiDAF">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.bidaf.</code><code class="descname">BiDAF</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=100</em>, <em>contextual_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf.html#BiDAF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.bidaf.BiDAF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Document Reader Model. <cite>Span Detector</cite></p>
+<p>Implementation of model presented in
+BiDAF: Bidirectional Attention Flow for Machine Comprehension
+(<a class="reference external" href="https://arxiv.org/abs/1611.01603">https://arxiv.org/abs/1611.01603</a>)</p>
+<ul class="simple">
+<li>Embedding (Word + Char -&gt; Contextual)</li>
+<li>Attention Flow</li>
+<li>Modeling (RNN)</li>
+<li>Output</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
+<dd><p class="first last">captures the similarity between pi and each question words q_j.
+these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
+it only apply to ‘context_embed’.</p>
+</dd>
+</dl>
+<p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
+model_dim: the number of model dimension
+contextual_rnn_num_layer: the number of recurrent layers (contextual)
+modeling_rnn_num_layer: the number of recurrent layers (modeling)
+predict_rnn_num_layer: the number of recurrent layers (predict)
+dropout: the dropout probability</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.bidaf.BiDAF.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf.html#BiDAF.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.bidaf.BiDAF.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>features: feature dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“feature_name1”: {</dt>
+<dd><blockquote class="first">
+<div><p>“token_name1”: tensor,
+“toekn_name2”: tensor},</p>
+</div></blockquote>
+<p class="last">“feature_name2”: …}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first last docutils">
+<dt>label: label dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“label_name1”: tensor,</dt>
+<dd><p class="first last">“label_name2”: tensor}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>start_logits: representing unnormalized log probabilities of the span start position.</li>
+<li>end_logits: representing unnormalized log probabilities of the span end position.</li>
+<li>best_span: the string from the original passage that the model thinks is the best answer to the question.</li>
+<li>answer_idx: the question id, mapping with answer</li>
+<li>loss: A scalar loss to be optimised.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-claf.model.reading_comprehension.bidaf_no_answer"></span><dl class="class">
+<dt id="claf.model.reading_comprehension.bidaf_no_answer.BiDAF_No_Answer">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.bidaf_no_answer.</code><code class="descname">BiDAF_No_Answer</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=100</em>, <em>contextual_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf_no_answer.html#BiDAF_No_Answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.bidaf_no_answer.BiDAF_No_Answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv2" title="claf.model.reading_comprehension.mixin.SQuADv2"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv2</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Question Answering Model. <cite>Span Detector</cite>, <cite>No Answer</cite></p>
+<p>Bidirectional Attention Flow for Machine Comprehension + Bias (No_Answer)</p>
+<ul class="simple">
+<li>Embedding (Word + Char -&gt; Contextual)</li>
+<li>Attention Flow</li>
+<li>Modeling (RNN)</li>
+<li>Output</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
+<dd><p class="first last">captures the similarity between pi and each question words q_j.
+these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
+it only apply to ‘context_embed’.</p>
+</dd>
+</dl>
+<p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
+model_dim: the number of model dimension
+dropout: the dropout probability</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.bidaf_no_answer.BiDAF_No_Answer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf_no_answer.html#BiDAF_No_Answer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.bidaf_no_answer.BiDAF_No_Answer.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>features: feature dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“feature_name1”: {</dt>
+<dd><blockquote class="first">
+<div><p>“token_name1”: tensor,
+“toekn_name2”: tensor},</p>
+</div></blockquote>
+<p class="last">“feature_name2”: …}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first last docutils">
+<dt>label: label dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“label_name1”: tensor,</dt>
+<dd><p class="first last">“label_name2”: tensor}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>start_logits: representing unnormalized log probabilities of the span start position.</li>
+<li>end_logits: representing unnormalized log probabilities of the span end position.</li>
+<li>best_span: the string from the original passage that the model thinks is the best answer to the question.</li>
+<li>answer_idx: the question id, mapping with answer</li>
+<li>loss: A scalar loss to be optimised.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-claf.model.reading_comprehension.docqa"></span><dl class="class">
+<dt id="claf.model.reading_comprehension.docqa.DocQA">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.docqa.</code><code class="descname">DocQA</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=17</em>, <em>rnn_dim=100</em>, <em>linear_dim=200</em>, <em>preprocess_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa.html#DocQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.docqa.DocQA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Document Reader Model. <cite>Span Detector</cite></p>
+<p>Implementation of model presented in
+Simple and Effective Multi-Paragraph Reading Comprehension
+(<a class="reference external" href="https://arxiv.org/abs/1710.10723">https://arxiv.org/abs/1710.10723</a>)</p>
+<ul class="simple">
+<li>Embedding (Word + Char -&gt; Contextual)</li>
+<li>Attention</li>
+<li>Residual self-attention</li>
+<li>Output</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
+<dd><p class="first last">captures the similarity between pi and each question words q_j.
+these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
+it only apply to ‘context_embed’.</p>
+</dd>
+</dl>
+<p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
+rnn_dim: the number of RNN cell dimension
+linear_dim: the number of attention linear dimension
+preprocess_rnn_num_layer: the number of recurrent layers (preprocess)
+modeling_rnn_num_layer: the number of recurrent layers (modeling)
+predict_rnn_num_layer: the number of recurrent layers (predict)
+dropout: the dropout probability</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.docqa.DocQA.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa.html#DocQA.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.docqa.DocQA.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>features: feature dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“feature_name1”: {</dt>
+<dd><blockquote class="first">
+<div><p>“token_name1”: tensor,
+“toekn_name2”: tensor},</p>
+</div></blockquote>
+<p class="last">“feature_name2”: …}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first last docutils">
+<dt>label: label dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“label_name1”: tensor,</dt>
+<dd><p class="first last">“label_name2”: tensor}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>start_logits: representing unnormalized log probabilities of the span start position.</li>
+<li>end_logits: representing unnormalized log probabilities of the span end position.</li>
+<li>best_span: the string from the original passage that the model thinks is the best answer to the question.</li>
+<li>answer_idx: the question id, mapping with answer</li>
+<li>loss: A scalar loss to be optimised.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.model.reading_comprehension.docqa.SelfAttention">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.docqa.</code><code class="descname">SelfAttention</code><span class="sig-paren">(</span><em>rnn_dim</em>, <em>linear_dim</em>, <em>dropout=0.2</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa.html#SelfAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.docqa.SelfAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Same bi-attention mechanism, only now between the passage and itself.</p>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.docqa.SelfAttention.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>context</em>, <em>context_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa.html#SelfAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.docqa.SelfAttention.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-claf.model.reading_comprehension.docqa_no_answer"></span><dl class="class">
+<dt id="claf.model.reading_comprehension.docqa_no_answer.DocQA_No_Answer">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.docqa_no_answer.</code><code class="descname">DocQA_No_Answer</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=17</em>, <em>rnn_dim=100</em>, <em>linear_dim=200</em>, <em>preprocess_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa_no_answer.html#DocQA_No_Answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.docqa_no_answer.DocQA_No_Answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv2" title="claf.model.reading_comprehension.mixin.SQuADv2"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv2</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Question Answering Model. <cite>Span Detector</cite>, <cite>No Answer</cite></p>
+<p>Implementation of model presented in
+Simple and Effective Multi-Paragraph Reading Comprehension + No_Asnwer
+(<a class="reference external" href="https://arxiv.org/abs/1710.10723">https://arxiv.org/abs/1710.10723</a>)</p>
+<ul class="simple">
+<li>Embedding (Word + Char -&gt; Contextual)</li>
+<li>Attention</li>
+<li>Residual self-attention</li>
+<li>Output</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
+<dd><p class="first last">captures the similarity between pi and each question words q_j.
+these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
+it only apply to ‘context_embed’.</p>
+</dd>
+</dl>
+<p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
+rnn_dim: the number of RNN cell dimension
+linear_dim: the number of attention linear dimension
+preprocess_rnn_num_layer: the number of recurrent layers (preprocess)
+modeling_rnn_num_layer: the number of recurrent layers (modeling)
+predict_rnn_num_layer: the number of recurrent layers (predict)
+dropout: the dropout probability</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.docqa_no_answer.DocQA_No_Answer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa_no_answer.html#DocQA_No_Answer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.docqa_no_answer.DocQA_No_Answer.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>features: feature dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“feature_name1”: {</dt>
+<dd><blockquote class="first">
+<div><p>“token_name1”: tensor,
+“toekn_name2”: tensor},</p>
+</div></blockquote>
+<p class="last">“feature_name2”: …}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first last docutils">
+<dt>label: label dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“label_name1”: tensor,</dt>
+<dd><p class="first last">“label_name2”: tensor}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>start_logits: representing unnormalized log probabilities of the span start position.</li>
+<li>end_logits: representing unnormalized log probabilities of the span end position.</li>
+<li>best_span: the string from the original passage that the model thinks is the best answer to the question.</li>
+<li>answer_idx: the question id, mapping with answer</li>
+<li>loss: A scalar loss to be optimised.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.model.reading_comprehension.docqa_no_answer.NoAnswer">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.docqa_no_answer.</code><code class="descname">NoAnswer</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>bias_hidden_dim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa_no_answer.html#NoAnswer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.docqa_no_answer.NoAnswer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>No-Answer Option</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>embed_dim: the number of passage embedding dimension
+bias_hidden_dim: bias use two layer mlp, the number of hidden_size</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.docqa_no_answer.NoAnswer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>context_embed</em>, <em>span_start_logits</em>, <em>span_end_logits</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa_no_answer.html#NoAnswer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.docqa_no_answer.NoAnswer.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.model.reading_comprehension.docqa_no_answer.SelfAttention">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.docqa_no_answer.</code><code class="descname">SelfAttention</code><span class="sig-paren">(</span><em>rnn_dim</em>, <em>linear_dim</em>, <em>dropout=0.2</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa_no_answer.html#SelfAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.docqa_no_answer.SelfAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Same bi-attention mechanism, only now between the passage and itself.</p>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.docqa_no_answer.SelfAttention.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>context</em>, <em>context_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa_no_answer.html#SelfAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.docqa_no_answer.SelfAttention.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-claf.model.reading_comprehension.drqa"></span><dl class="class">
+<dt id="claf.model.reading_comprehension.drqa.DrQA">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.drqa.</code><code class="descname">DrQA</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=128</em>, <em>dropout=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/drqa.html#DrQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.drqa.DrQA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Document Reader Model. <cite>Span Detector</cite></p>
+<p>Implementation of model presented in
+Reading Wikipedia to Answer Open-Domain Questions
+(<a class="reference external" href="https://arxiv.org/abs/1704.00051">https://arxiv.org/abs/1704.00051</a>)</p>
+<ul class="simple">
+<li>Embedding + features</li>
+<li>Align question embedding</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
+<dd><p class="first last">captures the similarity between pi and each question words q_j.
+these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
+it only apply to ‘context_embed’.</p>
+</dd>
+</dl>
+<p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
+model_dim: the number of model dimension
+dropout: the dropout probability</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.drqa.DrQA.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/drqa.html#DrQA.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.drqa.DrQA.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>features: feature dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“feature_name1”: {</dt>
+<dd><blockquote class="first">
+<div><p>“token_name1”: tensor,
+“toekn_name2”: tensor},</p>
+</div></blockquote>
+<p class="last">“feature_name2”: …}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first last docutils">
+<dt>label: label dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“label_name1”: tensor,</dt>
+<dd><p class="first last">“label_name2”: tensor}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>start_logits: representing unnormalized log probabilities of the span start position.</li>
+<li>end_logits: representing unnormalized log probabilities of the span end position.</li>
+<li>best_span: the string from the original passage that the model thinks is the best answer to the question.</li>
+<li>answer_idx: the question id, mapping with answer</li>
+<li>loss: A scalar loss to be optimised.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-claf.model.reading_comprehension.mixin"></span><dl class="class">
+<dt id="claf.model.reading_comprehension.mixin.ReadingComprehension">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.mixin.</code><code class="descname">ReadingComprehension</code><a class="reference internal" href="_modules/claf/model/reading_comprehension/mixin.html#ReadingComprehension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.mixin.ReadingComprehension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Reading Comprehension Mixin Class</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>token_embedder: ‘RCTokenEmbedder’, Used to embed the ‘context’ and ‘question’.</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.mixin.ReadingComprehension.get_best_span">
+<code class="descname">get_best_span</code><span class="sig-paren">(</span><em>span_start_logits</em>, <em>span_end_logits</em>, <em>answer_maxlen=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/mixin.html#ReadingComprehension.get_best_span"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.mixin.ReadingComprehension.get_best_span" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take argmax of constrained score_s * score_e.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>span_start_logits: independent start logits
+span_end_logits: independent end logits</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>answer_maxlen: max span length to consider (default is None -&gt; All)</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.model.reading_comprehension.mixin.ReadingComprehension.make_predictions">
+<code class="descname">make_predictions</code><span class="sig-paren">(</span><em>output_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/mixin.html#ReadingComprehension.make_predictions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.mixin.ReadingComprehension.make_predictions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make predictions with model’s output_dict</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>output_dict: model’s output dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>answer_idx: question id</li>
+<li>best_span: calculate the span_start_logits and span_end_logits to what is the best span</li>
+<li>start_logits: span start logits</li>
+<li>end_logits: span end logits</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><dl class="first last docutils">
+<dt>predictions: prediction dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>key: ‘id’ (question id)</li>
+<li><dl class="first docutils">
+<dt>value: consisting of dictionary</dt>
+<dd>predict_text, pred_span_start, pred_span_end, span_start_prob, span_end_prob</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.model.reading_comprehension.mixin.ReadingComprehension.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#claf.model.reading_comprehension.mixin.ReadingComprehension.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.model.reading_comprehension.mixin.ReadingComprehension.print_examples">
+<code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/mixin.html#ReadingComprehension.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.mixin.ReadingComprehension.print_examples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print evaluation examples</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first">index: data index
+inputs: mini-batch inputs
+predictions: prediction dictionary consisting of</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>key: ‘id’ (question id)</li>
+<li><dl class="first docutils">
+<dt>value: consisting of dictionary</dt>
+<dd>predict_text, pred_span_start, pred_span_end, span_start_prob, span_end_prob</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><p class="first last">print(Context, Question, Answers and Predict)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.model.reading_comprehension.mixin.SQuADv1">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.mixin.</code><code class="descname">SQuADv1</code><a class="reference internal" href="_modules/claf/model/reading_comprehension/mixin.html#SQuADv1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.ReadingComprehension" title="claf.model.reading_comprehension.mixin.ReadingComprehension"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.ReadingComprehension</span></code></a></p>
+<dl class="docutils">
+<dt>Reading Comprehension Mixin Class</dt>
+<dd>with SQuAD v1.1 evaluation</dd>
+</dl>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.mixin.SQuADv1.make_metrics">
+<code class="descname">make_metrics</code><span class="sig-paren">(</span><em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/mixin.html#SQuADv1.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.mixin.SQuADv1.make_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make metrics with prediction dictionary</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>predictions: prediction dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>key: ‘id’ (question id)</li>
+<li>value: (predict_text, pred_span_start, pred_span_end)</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><dl class="first last docutils">
+<dt>metrics: metric dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>‘em’: exact_match (SQuAD v1.1 official evaluation)</li>
+<li>‘f1’: f1 (SQuAD v1.1 official evaluation)</li>
+<li>‘start_acc’: span_start accuracy</li>
+<li>‘end_acc’: span_end accuracy</li>
+<li>‘span_acc’: span accuracy (start and end)</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.model.reading_comprehension.mixin.SQuADv2">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.mixin.</code><code class="descname">SQuADv2</code><a class="reference internal" href="_modules/claf/model/reading_comprehension/mixin.html#SQuADv2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.mixin.SQuADv2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.ReadingComprehension" title="claf.model.reading_comprehension.mixin.ReadingComprehension"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.ReadingComprehension</span></code></a></p>
+<dl class="docutils">
+<dt>Reading Comprehension Mixin Class</dt>
+<dd>with SQuAD v2.0 evaluation</dd>
+</dl>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>token_embedder: ‘RCTokenEmbedder’, Used to embed the ‘context’ and ‘question’.</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.mixin.SQuADv2.make_metrics">
+<code class="descname">make_metrics</code><span class="sig-paren">(</span><em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/mixin.html#SQuADv2.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.mixin.SQuADv2.make_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make metrics with prediction dictionary</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>predictions: prediction dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>key: ‘id’ (question id)</li>
+<li><dl class="first docutils">
+<dt>value: consisting of dictionary</dt>
+<dd>predict_text, pred_span_start, pred_span_end, span_start_prob, span_end_prob</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><dl class="first last docutils">
+<dt>metrics: metric dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>‘start_acc’: span_start accuracy</li>
+<li>‘end_acc’: span_end accuracy</li>
+<li>‘span_acc’: span accuracy (start and end)</li>
+<li>‘em’: exact_match (SQuAD v2.0 official evaluation)</li>
+<li>‘f1’: f1 (SQuAD v2.0 official evaluation)</li>
+<li>‘HasAns_exact’: has answer exact_match</li>
+<li>‘HasAns_f1’: has answer f1</li>
+<li>‘NoAns_exact’: no answer exact_match</li>
+<li>‘NoAns_f1’: no answer f1</li>
+<li>‘best_exact’: best exact_match score with best_exact_thresh</li>
+<li>‘best_exact_thresh’: best exact_match answerable threshold</li>
+<li>‘best_f1’: best f1 score with best_f1_thresh</li>
+<li>‘best_f1_thresh’: best f1 answerable threshold</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-claf.model.reading_comprehension.qanet"></span><dl class="class">
+<dt id="claf.model.reading_comprehension.qanet.EncoderBlock">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.qanet.</code><code class="descname">EncoderBlock</code><span class="sig-paren">(</span><em>model_dim=128</em>, <em>num_head=8</em>, <em>kernel_size=5</em>, <em>num_conv_block=4</em>, <em>dropout=0.1</em>, <em>layer_dropout=0.9</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/qanet.html#EncoderBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.qanet.EncoderBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Encoder Block</p>
+<p>[]: residual
+position_encoding -&gt; [convolution-layer] x # -&gt; [self-attention-layer] -&gt; [feed-forward-layer]</p>
+<ul class="simple">
+<li>convolution-layer: depthwise separable convolutions</li>
+<li>self-attention-layer: multi-head attention</li>
+<li>feed-forward-layer: pointwise convolution</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first">model_dim: the number of model dimension
+num_heads: the number of head in multi-head attention
+kernel_size: convolution kernel size
+num_conv_block: the number of convolution block
+dropout: the dropout probability
+layer_dropout: the layer dropout probability</p>
+<blockquote class="last">
+<div><p>(cf. Deep Networks with Stochastic Depth(<a class="reference external" href="https://arxiv.org/abs/1603.09382">https://arxiv.org/abs/1603.09382</a>) )</p>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.qanet.EncoderBlock.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/qanet.html#EncoderBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.qanet.EncoderBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.model.reading_comprehension.qanet.QANet">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.qanet.</code><code class="descname">QANet</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=128</em>, <em>kernel_size_in_embedding=7</em>, <em>num_head_in_embedding=8</em>, <em>num_conv_block_in_embedding=4</em>, <em>num_embedding_encoder_block=1</em>, <em>kernel_size_in_modeling=5</em>, <em>num_head_in_modeling=8</em>, <em>num_conv_block_in_modeling=2</em>, <em>num_modeling_encoder_block=7</em>, <em>dropout=0.1</em>, <em>layer_dropout=0.9</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/qanet.html#QANet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.qanet.QANet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Document Reader Model. <cite>Span Detector</cite></p>
+<p>Implementation of model presented in
+QANet:Combining Local Convolution with Global Self-Attention for Reading Comprehension
+(https://arxiv.org/abs/1804.09541)</p>
+<ul class="simple">
+<li>Input Embedding Layer</li>
+<li>Embedding Encoder Layer</li>
+<li>Context-Query Attention Layer</li>
+<li>Model Encoder Layer</li>
+<li>Output Layer</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
+<dd><p class="first last">captures the similarity between pi and each question words q_j.
+these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
+it only apply to ‘context_embed’.</p>
+</dd>
+</dl>
+<p>answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
+model_dim: the number of model dimension</p>
+<ul>
+<li><p class="first">Encoder Block Parameters (embedding, modeling)
+kernel_size: convolution kernel size in encoder block
+num_head: the number of multi-head attention’s head
+num_conv_block: the number of convolution block in encoder block</p>
+<blockquote>
+<div><p>[Layernorm -&gt; Conv (residual)]</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>num_encoder_block: the number of the encoder block</dt>
+<dd><dl class="first last docutils">
+<dt>[position_encoding -&gt; [n repeat conv block] -&gt; Layernorm -&gt; Self-attention (residual)</dt>
+<dd><p class="first last">-&gt; Layernorm -&gt; Feedforward (residual)]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+<p>dropout: the dropout probability
+layer_dropout: the layer dropout probability</p>
+<blockquote class="last">
+<div><p>(cf. Deep Networks with Stochastic Depth(<a class="reference external" href="https://arxiv.org/abs/1603.09382">https://arxiv.org/abs/1603.09382</a>) )</p>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.qanet.QANet.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/qanet.html#QANet.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.qanet.QANet.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>features: feature dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“feature_name1”: {</dt>
+<dd><blockquote class="first">
+<div><p>“token_name1”: tensor,
+“toekn_name2”: tensor},</p>
+</div></blockquote>
+<p class="last">“feature_name2”: …}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first last docutils">
+<dt>label: label dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“label_name1”: tensor,</dt>
+<dd><p class="first last">“label_name2”: tensor}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>start_logits: representing unnormalized log probabilities of the span start position.</li>
+<li>end_logits: representing unnormalized log probabilities of the span end position.</li>
+<li>best_span: the string from the original passage that the model thinks is the best answer to the question.</li>
+<li>answer_idx: the question id, mapping with answer</li>
+<li>loss: A scalar loss to be optimised.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-claf.model.reading_comprehension">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.model.reading_comprehension" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="claf.model.reading_comprehension.BertForQA">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">BertForQA</code><span class="sig-paren">(</span><em>token_makers</em>, <em>pretrained_model_name=None</em>, <em>answer_maxlen=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bert_for_qa.html#BertForQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BertForQA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithoutTokenEmbedder" title="claf.model.base.ModelWithoutTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithoutTokenEmbedder</span></code></a></p>
+<p>Document Reader Model. <cite>Span Detector</cite></p>
+<p>Implementation of model presented in
+BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+(<a class="reference external" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>pretrained_model_name: the name of a pre-trained model
+answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.BertForQA.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bert_for_qa.html#BertForQA.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BertForQA.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>features: feature dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“feature_name1”: {</dt>
+<dd><blockquote class="first">
+<div><p>“token_name1”: tensor,
+“toekn_name2”: tensor},</p>
+</div></blockquote>
+<p class="last">“feature_name2”: …}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first last docutils">
+<dt>label: label dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“label_name1”: tensor,</dt>
+<dd><p class="first last">“label_name2”: tensor}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>start_logits: representing unnormalized log probabilities of the span start position.</li>
+<li>end_logits: representing unnormalized log probabilities of the span end position.</li>
+<li>best_span: the string from the original passage that the model thinks is the best answer to the question.</li>
+<li>answer_idx: the question id, mapping with answer</li>
+<li>loss: A scalar loss to be optimised.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.model.reading_comprehension.BertForQA.make_metrics">
+<code class="descname">make_metrics</code><span class="sig-paren">(</span><em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bert_for_qa.html#BertForQA.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BertForQA.make_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>BERT predictions need to get nbest result</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.model.reading_comprehension.BertForQA.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>output_dict</em>, <em>arguments</em>, <em>helper</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bert_for_qa.html#BertForQA.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BertForQA.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inference by raw_feature</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first docutils">
+<dt>output_dict: model’s output dictionary consisting of</dt>
+<dd><ul class="first last simple">
+<li>answer_idx: question id</li>
+<li>best_span: calculate the span_start_logits and span_end_logits to what is the best span</li>
+</ul>
+</dd>
+</dl>
+<p class="last">arguments: arguments dictionary consisting of user_input
+helper: dictionary for helping get answer</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><p class="first last">span: predict best_span</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.model.reading_comprehension.BiDAF">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">BiDAF</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=100</em>, <em>contextual_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf.html#BiDAF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BiDAF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Document Reader Model. <cite>Span Detector</cite></p>
+<p>Implementation of model presented in
+BiDAF: Bidirectional Attention Flow for Machine Comprehension
+(<a class="reference external" href="https://arxiv.org/abs/1611.01603">https://arxiv.org/abs/1611.01603</a>)</p>
+<ul class="simple">
+<li>Embedding (Word + Char -&gt; Contextual)</li>
+<li>Attention Flow</li>
+<li>Modeling (RNN)</li>
+<li>Output</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
+<dd><p class="first last">captures the similarity between pi and each question words q_j.
+these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
+it only apply to ‘context_embed’.</p>
+</dd>
+</dl>
+<p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
+model_dim: the number of model dimension
+contextual_rnn_num_layer: the number of recurrent layers (contextual)
+modeling_rnn_num_layer: the number of recurrent layers (modeling)
+predict_rnn_num_layer: the number of recurrent layers (predict)
+dropout: the dropout probability</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.BiDAF.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf.html#BiDAF.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BiDAF.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>features: feature dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“feature_name1”: {</dt>
+<dd><blockquote class="first">
+<div><p>“token_name1”: tensor,
+“toekn_name2”: tensor},</p>
+</div></blockquote>
+<p class="last">“feature_name2”: …}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first last docutils">
+<dt>label: label dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“label_name1”: tensor,</dt>
+<dd><p class="first last">“label_name2”: tensor}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>start_logits: representing unnormalized log probabilities of the span start position.</li>
+<li>end_logits: representing unnormalized log probabilities of the span end position.</li>
+<li>best_span: the string from the original passage that the model thinks is the best answer to the question.</li>
+<li>answer_idx: the question id, mapping with answer</li>
+<li>loss: A scalar loss to be optimised.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.model.reading_comprehension.QANet">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">QANet</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=128</em>, <em>kernel_size_in_embedding=7</em>, <em>num_head_in_embedding=8</em>, <em>num_conv_block_in_embedding=4</em>, <em>num_embedding_encoder_block=1</em>, <em>kernel_size_in_modeling=5</em>, <em>num_head_in_modeling=8</em>, <em>num_conv_block_in_modeling=2</em>, <em>num_modeling_encoder_block=7</em>, <em>dropout=0.1</em>, <em>layer_dropout=0.9</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/qanet.html#QANet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.QANet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Document Reader Model. <cite>Span Detector</cite></p>
+<p>Implementation of model presented in
+QANet:Combining Local Convolution with Global Self-Attention for Reading Comprehension
+(https://arxiv.org/abs/1804.09541)</p>
+<ul class="simple">
+<li>Input Embedding Layer</li>
+<li>Embedding Encoder Layer</li>
+<li>Context-Query Attention Layer</li>
+<li>Model Encoder Layer</li>
+<li>Output Layer</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
+<dd><p class="first last">captures the similarity between pi and each question words q_j.
+these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
+it only apply to ‘context_embed’.</p>
+</dd>
+</dl>
+<p>answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
+model_dim: the number of model dimension</p>
+<ul>
+<li><p class="first">Encoder Block Parameters (embedding, modeling)
+kernel_size: convolution kernel size in encoder block
+num_head: the number of multi-head attention’s head
+num_conv_block: the number of convolution block in encoder block</p>
+<blockquote>
+<div><p>[Layernorm -&gt; Conv (residual)]</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>num_encoder_block: the number of the encoder block</dt>
+<dd><dl class="first last docutils">
+<dt>[position_encoding -&gt; [n repeat conv block] -&gt; Layernorm -&gt; Self-attention (residual)</dt>
+<dd><p class="first last">-&gt; Layernorm -&gt; Feedforward (residual)]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+<p>dropout: the dropout probability
+layer_dropout: the layer dropout probability</p>
+<blockquote class="last">
+<div><p>(cf. Deep Networks with Stochastic Depth(<a class="reference external" href="https://arxiv.org/abs/1603.09382">https://arxiv.org/abs/1603.09382</a>) )</p>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.QANet.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/qanet.html#QANet.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.QANet.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>features: feature dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“feature_name1”: {</dt>
+<dd><blockquote class="first">
+<div><p>“token_name1”: tensor,
+“toekn_name2”: tensor},</p>
+</div></blockquote>
+<p class="last">“feature_name2”: …}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first last docutils">
+<dt>label: label dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“label_name1”: tensor,</dt>
+<dd><p class="first last">“label_name2”: tensor}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>start_logits: representing unnormalized log probabilities of the span start position.</li>
+<li>end_logits: representing unnormalized log probabilities of the span end position.</li>
+<li>best_span: the string from the original passage that the model thinks is the best answer to the question.</li>
+<li>answer_idx: the question id, mapping with answer</li>
+<li>loss: A scalar loss to be optimised.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.model.reading_comprehension.DocQA">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">DocQA</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=17</em>, <em>rnn_dim=100</em>, <em>linear_dim=200</em>, <em>preprocess_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa.html#DocQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.DocQA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Document Reader Model. <cite>Span Detector</cite></p>
+<p>Implementation of model presented in
+Simple and Effective Multi-Paragraph Reading Comprehension
+(<a class="reference external" href="https://arxiv.org/abs/1710.10723">https://arxiv.org/abs/1710.10723</a>)</p>
+<ul class="simple">
+<li>Embedding (Word + Char -&gt; Contextual)</li>
+<li>Attention</li>
+<li>Residual self-attention</li>
+<li>Output</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
+<dd><p class="first last">captures the similarity between pi and each question words q_j.
+these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
+it only apply to ‘context_embed’.</p>
+</dd>
+</dl>
+<p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
+rnn_dim: the number of RNN cell dimension
+linear_dim: the number of attention linear dimension
+preprocess_rnn_num_layer: the number of recurrent layers (preprocess)
+modeling_rnn_num_layer: the number of recurrent layers (modeling)
+predict_rnn_num_layer: the number of recurrent layers (predict)
+dropout: the dropout probability</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.DocQA.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa.html#DocQA.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.DocQA.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>features: feature dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“feature_name1”: {</dt>
+<dd><blockquote class="first">
+<div><p>“token_name1”: tensor,
+“toekn_name2”: tensor},</p>
+</div></blockquote>
+<p class="last">“feature_name2”: …}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first last docutils">
+<dt>label: label dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“label_name1”: tensor,</dt>
+<dd><p class="first last">“label_name2”: tensor}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>start_logits: representing unnormalized log probabilities of the span start position.</li>
+<li>end_logits: representing unnormalized log probabilities of the span end position.</li>
+<li>best_span: the string from the original passage that the model thinks is the best answer to the question.</li>
+<li>answer_idx: the question id, mapping with answer</li>
+<li>loss: A scalar loss to be optimised.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.model.reading_comprehension.DrQA">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">DrQA</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=128</em>, <em>dropout=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/drqa.html#DrQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.DrQA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Document Reader Model. <cite>Span Detector</cite></p>
+<p>Implementation of model presented in
+Reading Wikipedia to Answer Open-Domain Questions
+(<a class="reference external" href="https://arxiv.org/abs/1704.00051">https://arxiv.org/abs/1704.00051</a>)</p>
+<ul class="simple">
+<li>Embedding + features</li>
+<li>Align question embedding</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
+<dd><p class="first last">captures the similarity between pi and each question words q_j.
+these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
+it only apply to ‘context_embed’.</p>
+</dd>
+</dl>
+<p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
+model_dim: the number of model dimension
+dropout: the dropout probability</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.DrQA.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/drqa.html#DrQA.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.DrQA.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>features: feature dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“feature_name1”: {</dt>
+<dd><blockquote class="first">
+<div><p>“token_name1”: tensor,
+“toekn_name2”: tensor},</p>
+</div></blockquote>
+<p class="last">“feature_name2”: …}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first last docutils">
+<dt>label: label dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“label_name1”: tensor,</dt>
+<dd><p class="first last">“label_name2”: tensor}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>start_logits: representing unnormalized log probabilities of the span start position.</li>
+<li>end_logits: representing unnormalized log probabilities of the span end position.</li>
+<li>best_span: the string from the original passage that the model thinks is the best answer to the question.</li>
+<li>answer_idx: the question id, mapping with answer</li>
+<li>loss: A scalar loss to be optimised.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.model.reading_comprehension.BiDAF_No_Answer">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">BiDAF_No_Answer</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=100</em>, <em>contextual_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf_no_answer.html#BiDAF_No_Answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BiDAF_No_Answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv2" title="claf.model.reading_comprehension.mixin.SQuADv2"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv2</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Question Answering Model. <cite>Span Detector</cite>, <cite>No Answer</cite></p>
+<p>Bidirectional Attention Flow for Machine Comprehension + Bias (No_Answer)</p>
+<ul class="simple">
+<li>Embedding (Word + Char -&gt; Contextual)</li>
+<li>Attention Flow</li>
+<li>Modeling (RNN)</li>
+<li>Output</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
+<dd><p class="first last">captures the similarity between pi and each question words q_j.
+these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
+it only apply to ‘context_embed’.</p>
+</dd>
+</dl>
+<p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
+model_dim: the number of model dimension
+dropout: the dropout probability</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.BiDAF_No_Answer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf_no_answer.html#BiDAF_No_Answer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BiDAF_No_Answer.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>features: feature dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“feature_name1”: {</dt>
+<dd><blockquote class="first">
+<div><p>“token_name1”: tensor,
+“toekn_name2”: tensor},</p>
+</div></blockquote>
+<p class="last">“feature_name2”: …}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first last docutils">
+<dt>label: label dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“label_name1”: tensor,</dt>
+<dd><p class="first last">“label_name2”: tensor}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>start_logits: representing unnormalized log probabilities of the span start position.</li>
+<li>end_logits: representing unnormalized log probabilities of the span end position.</li>
+<li>best_span: the string from the original passage that the model thinks is the best answer to the question.</li>
+<li>answer_idx: the question id, mapping with answer</li>
+<li>loss: A scalar loss to be optimised.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.model.reading_comprehension.DocQA_No_Answer">
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">DocQA_No_Answer</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=17</em>, <em>rnn_dim=100</em>, <em>linear_dim=200</em>, <em>preprocess_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa_no_answer.html#DocQA_No_Answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.DocQA_No_Answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv2" title="claf.model.reading_comprehension.mixin.SQuADv2"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv2</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Question Answering Model. <cite>Span Detector</cite>, <cite>No Answer</cite></p>
+<p>Implementation of model presented in
+Simple and Effective Multi-Paragraph Reading Comprehension + No_Asnwer
+(<a class="reference external" href="https://arxiv.org/abs/1710.10723">https://arxiv.org/abs/1710.10723</a>)</p>
+<ul class="simple">
+<li>Embedding (Word + Char -&gt; Contextual)</li>
+<li>Attention</li>
+<li>Residual self-attention</li>
+<li>Output</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first docutils">
+<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
+<dd><p class="first last">captures the similarity between pi and each question words q_j.
+these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
+it only apply to ‘context_embed’.</p>
+</dd>
+</dl>
+<p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
+rnn_dim: the number of RNN cell dimension
+linear_dim: the number of attention linear dimension
+preprocess_rnn_num_layer: the number of recurrent layers (preprocess)
+modeling_rnn_num_layer: the number of recurrent layers (modeling)
+predict_rnn_num_layer: the number of recurrent layers (predict)
+dropout: the dropout probability</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.DocQA_No_Answer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa_no_answer.html#DocQA_No_Answer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.DocQA_No_Answer.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>features: feature dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“feature_name1”: {</dt>
+<dd><blockquote class="first">
+<div><p>“token_name1”: tensor,
+“toekn_name2”: tensor},</p>
+</div></blockquote>
+<p class="last">“feature_name2”: …}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><dl class="first last docutils">
+<dt>label: label dictionary like below.</dt>
+<dd><dl class="first last docutils">
+<dt>{“label_name1”: tensor,</dt>
+<dd><p class="first last">“label_name2”: tensor}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>start_logits: representing unnormalized log probabilities of the span start position.</li>
+<li>end_logits: representing unnormalized log probabilities of the span end position.</li>
+<li>best_span: the string from the original passage that the model thinks is the best answer to the question.</li>
+<li>answer_idx: the question id, mapping with answer</li>
+<li>loss: A scalar loss to be optimised.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="claf.model.semantic_parsing.html" class="btn btn-neutral float-right" title="claf.model.semantic_parsing package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="claf.model.html" class="btn btn-neutral" title="claf.model package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

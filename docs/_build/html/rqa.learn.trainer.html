@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.learn.trainer module &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rqa.learn.utils module" href="rqa.learn.utils.html" />
+    <link rel="prev" title="rqa.learn.tensorboard module" href="rqa.learn.tensorboard.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/experiments.html">Experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rqa.learn.html">learn</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="rqa.learn.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="rqa.learn.data_handler.html">rqa.learn.data_handler module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.learn.experiment.html">rqa.learn.experiment module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.learn.mode.html">rqa.learn.mode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.learn.tensorboard.html">rqa.learn.tensorboard module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">rqa.learn.trainer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.learn.utils.html">rqa.learn.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.learn.html#module-rqa.learn">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="rqa.learn.html">rqa.learn package</a> &raquo;</li>
+        
+      <li>rqa.learn.trainer module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.learn.trainer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-rqa.learn.trainer">
+<span id="rqa-learn-trainer-module"></span><h1>rqa.learn.trainer module<a class="headerlink" href="#module-rqa.learn.trainer" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="rqa.learn.trainer.Trainer">
+<em class="property">class </em><code class="descclassname">rqa.learn.trainer.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>config</em>, <em>cuda_devices</em>, <em>model</em>, <em>log_dir='logs/experiment'</em>, <em>grad_clipping=None</em>, <em>grad_norm=None</em>, <em>learning_rate_scheduler=None</em>, <em>exponential_moving_average=None</em>, <em>num_epochs=20</em>, <em>early_stopping_threshold=10</em>, <em>max_eval_examples=5</em>, <em>metric_key=None</em>, <em>verbose_step_count=100</em>, <em>save_epoch_count=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/learn/trainer.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.learn.trainer.Trainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Run experiment</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">config: experiment overall config
+cuda_devices: cuda device ids (None is CPU, len(cuda_devices) &gt; 1, Multi-GPU)
+model: Model based on torch.nn.Module</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><p class="first">log_dir: path to directory for save model and other options
+grad_clipping: If provided, gradients will be clipped <cite>during the backward pass</cite> to have an (absolute)</p>
+<blockquote>
+<div><p>maximum of this value.</p>
+</div></blockquote>
+<p>grad_norm: If provided, gradient norms will be rescaled to have a maximum of this value.
+learning_rate_scheduler: PyTorch’s Learning Rate Scheduler.</p>
+<blockquote>
+<div><p>(<a class="reference external" href="https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html">https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html</a>)</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>exponential_moving_average: the moving averages of all weights of the model are maintained</dt>
+<dd><p class="first last">with the exponential decay rate of {ema}.</p>
+</dd>
+</dl>
+<p class="last">num_epochs: the number of maximun epochs (Default is 20)
+early_stopping_threshold: the number of early stopping threshold (Default is 10)
+max_eval_examples: print evaluation examples
+metric_key: metric score’s control point
+verbose_step_count: print verbose step count (Default is 100)
+save_epoch_count: save checkpoint epoch count (Default is 1)</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.learn.trainer.Trainer.evaluate">
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/learn/trainer.html#Trainer.evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.learn.trainer.Trainer.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.learn.trainer.Trainer.evaluate_inference_latency">
+<code class="descname">evaluate_inference_latency</code><span class="sig-paren">(</span><em>raw_features</em>, <em>raw_to_tensor_fn</em>, <em>token_key=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/learn/trainer.html#Trainer.evaluate_inference_latency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.learn.trainer.Trainer.evaluate_inference_latency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate with focusing inferece latency</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>inference_latency: raw_data -&gt; pre-processing -&gt; model -&gt; predict_value</dt>
+<dd>(elapsed_time)               (elapsed_time)</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.learn.trainer.Trainer.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>raw_feature</em>, <em>raw_to_tensor_fn</em>, <em>token_data</em>, <em>arguments</em>, <em>interactive=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/learn/trainer.html#Trainer.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.learn.trainer.Trainer.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inference / Predict</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.learn.trainer.Trainer.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>epoch</em>, <em>optimizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/learn/trainer.html#Trainer.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.learn.trainer.Trainer.save" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.learn.trainer.Trainer.train">
+<code class="descname">train</code><span class="sig-paren">(</span><em>data_loader</em>, <em>optimizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/learn/trainer.html#Trainer.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.learn.trainer.Trainer.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.learn.trainer.Trainer.train_and_evaluate">
+<code class="descname">train_and_evaluate</code><span class="sig-paren">(</span><em>train_loader</em>, <em>valid_loader</em>, <em>optimizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/learn/trainer.html#Trainer.train_and_evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.learn.trainer.Trainer.train_and_evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train and Evaluate</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rqa.learn.utils.html" class="btn btn-neutral float-right" title="rqa.learn.utils module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rqa.learn.tensorboard.html" class="btn btn-neutral" title="rqa.learn.tensorboard module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

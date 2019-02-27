@@ -1,0 +1,86 @@
+{
+     "data_reader": {
+         "dataset": "squad",
+         "train_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json",
+         "valid_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json"
+     },
+     "iterator": {
+         "batch_size": 10
+     },
+     "token": {
+         "names": ["char", "glove"],
+         "types": ["char", "word"],
+         "tokenizer": {
+             "char": {
+                 "name": "character"
+             },
+             "word": {
+                 "name": "treebank_en",
+                 "split_with_regex": true
+             }
+         },
+         "char": {
+             "vocab": {
+                 "max_vocab_size": 260,
+                 "start_token": "<s>",
+                 "end_token": "</s>"
+             },
+             "indexer": {
+                 "insert_char_start": true,
+                 "insert_char_end": true
+             },
+             "embedding": {
+                 "embed_dim": 20,
+                 "kernel_sizes": [5],
+                 "num_filter": 50,
+                 "activation": "relu",
+                 "dropout": 0.05
+             }
+         },
+         "glove": {
+             "vocab": {},
+             "indexer": {
+                 "lowercase": false
+             },
+             "embedding": {
+                 "embed_dim": 50,
+                 "trainable": true,
+                 "dropout": 0.1
+             }
+         }
+     },
+     "model": {
+         "name": "qanet",
+         "qanet": {
+             "answer_maxlen": 30,
+             "model_dim": 128,
+             "kernel_size_in_embedding": 7,
+             "num_head_in_embedding": 8,
+             "num_conv_block_in_embedding": 4,
+             "num_embedding_encoder_block": 1,
+             "kernel_size_in_modeling": 5,
+             "num_head_in_modeling": 8,
+             "num_conv_block_in_modeling": 2,
+             "num_modeling_encoder_block": 7,
+             "layer_dropout": 0.9,
+             "dropout": 0.1
+         }
+     },
+     "trainer": {
+         "log_dir": "logs/test/qanet/",
+         "num_epochs": 1,
+         "early_stopping_threshold": 1,
+         "metric_key": "em",
+         "verbose_step_count": 1,
+         "eval_and_save_step_count": 1
+     },
+     "optimizer": {
+         "op_type": "adam",
+         "learning_rate": 0.001,
+         "lr_scheduler_type": "warmup",
+         "warmup": {
+             "final_step": 1000
+         }
+     },
+     "seed_num": 25
+ }

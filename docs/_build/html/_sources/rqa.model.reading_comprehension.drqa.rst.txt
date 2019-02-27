@@ -1,0 +1,7 @@
+rqa.model.reading\_comprehension.drqa module
+============================================
+
+.. automodule:: rqa.model.reading_comprehension.drqa
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,673 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.modules.attention package &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rqa.modules.conv package" href="rqa.modules.conv.html" />
+    <link rel="prev" title="rqa.modules package" href="rqa.modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rqa.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.html">model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rqa.modules.html">modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="rqa.modules.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">rqa.modules.attention package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-rqa.modules.attention.bi_attention">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-rqa.modules.attention">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.modules.conv.html">rqa.modules.conv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.modules.encoder.html">rqa.modules.encoder package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.modules.layer.html">rqa.modules.layer package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.modules.html#module-rqa.modules.activation">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.modules.html#module-rqa.modules">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="rqa.modules.html">rqa.modules package</a> &raquo;</li>
+        
+      <li>rqa.modules.attention package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.modules.attention.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rqa-modules-attention-package">
+<h1>rqa.modules.attention package<a class="headerlink" href="#rqa-modules-attention-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-rqa.modules.attention.bi_attention">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-rqa.modules.attention.bi_attention" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.modules.attention.bi_attention.BiAttention">
+<em class="property">class </em><code class="descclassname">rqa.modules.attention.bi_attention.</code><code class="descname">BiAttention</code><span class="sig-paren">(</span><em>model_dim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/bi_attention.html#BiAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.bi_attention.BiAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="docutils">
+<dt>Attention Flow Layer</dt>
+<dd>in BiDAF (<a class="reference external" href="https://arxiv.org/pdf/1611.01603.pdf">https://arxiv.org/pdf/1611.01603.pdf</a>)</dd>
+</dl>
+<p>The Similarity matrix
+Context-to-query Attention (C2Q)
+Query-to-context Attention (Q2C)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>model_dim: The number of module dimension</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.modules.attention.bi_attention.BiAttention.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>context</em>, <em>context_mask</em>, <em>query</em>, <em>query_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/bi_attention.html#BiAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.bi_attention.BiAttention.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.modules.attention.co_attention"></span><dl class="class">
+<dt id="rqa.modules.attention.co_attention.CoAttention">
+<em class="property">class </em><code class="descclassname">rqa.modules.attention.co_attention.</code><code class="descname">CoAttention</code><span class="sig-paren">(</span><em>embed_dim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/co_attention.html#CoAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.co_attention.CoAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="docutils">
+<dt>CoAttention encoder</dt>
+<dd>in Dynamic Coattention Networks For Question Answering (<a class="reference external" href="https://arxiv.org/abs/1611.01604">https://arxiv.org/abs/1611.01604</a>)</dd>
+</dl>
+<p>check the Figure 2 in paper</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>embed_dim: the number of input embedding dimension</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.modules.attention.co_attention.CoAttention.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>context_embed</em>, <em>question_embed</em>, <em>context_mask=None</em>, <em>question_mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/co_attention.html#CoAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.co_attention.CoAttention.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.modules.attention.docqa_attention"></span><dl class="class">
+<dt id="rqa.modules.attention.docqa_attention.DocQAAttention">
+<em class="property">class </em><code class="descclassname">rqa.modules.attention.docqa_attention.</code><code class="descname">DocQAAttention</code><span class="sig-paren">(</span><em>rnn_dim</em>, <em>linear_dim</em>, <em>self_attn=False</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/docqa_attention.html#DocQAAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.docqa_attention.DocQAAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="docutils">
+<dt>Bi-Attention Layer + (Self-Attention)</dt>
+<dd>in DocumentQA (<a class="reference external" href="https://arxiv.org/abs/1710.10723">https://arxiv.org/abs/1710.10723</a>)</dd>
+</dl>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>rnn_dim: the number of GRU cell hidden size
+linear_dim: the number of linear hidden size</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>self_attn: (bool) self-attention
+weight_init: (bool) weight initialization</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.modules.attention.docqa_attention.DocQAAttention.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>x_mask</em>, <em>key</em>, <em>key_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/docqa_attention.html#DocQAAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.docqa_attention.DocQAAttention.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.modules.attention.multi_head_attention"></span><dl class="class">
+<dt id="rqa.modules.attention.multi_head_attention.MultiHeadAttention">
+<em class="property">class </em><code class="descclassname">rqa.modules.attention.multi_head_attention.</code><code class="descname">MultiHeadAttention</code><span class="sig-paren">(</span><em>num_head=8</em>, <em>model_dim=100</em>, <em>dropout=0.1</em>, <em>linear_key_dim=None</em>, <em>linear_value_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/multi_head_attention.html#MultiHeadAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.multi_head_attention.MultiHeadAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="docutils">
+<dt>Transformer’s Multi-Head Attention</dt>
+<dd>in “Attention is All You Need” (<a class="reference external" href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>)</dd>
+</dl>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>num_head: the number of Head
+model_dim: the number of model dimension
+linear_key_dim: the number of linear key dimemsion
+linear_value_dim: the number of linear value dimension</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.modules.attention.multi_head_attention.MultiHeadAttention.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>q</em>, <em>k</em>, <em>v</em>, <em>mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/multi_head_attention.html#MultiHeadAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.multi_head_attention.MultiHeadAttention.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.modules.attention.seq_attention"></span><p>original code from: <a class="reference external" href="https://github.com/facebookresearch/DrQA/blob/master/drqa/reader/layers.py">https://github.com/facebookresearch/DrQA/blob/master/drqa/reader/layers.py</a></p>
+<dl class="class">
+<dt id="rqa.modules.attention.seq_attention.BilinearSeqAttn">
+<em class="property">class </em><code class="descclassname">rqa.modules.attention.seq_attention.</code><code class="descname">BilinearSeqAttn</code><span class="sig-paren">(</span><em>x_size</em>, <em>y_size</em>, <em>identity=False</em>, <em>normalize=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/seq_attention.html#BilinearSeqAttn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.seq_attention.BilinearSeqAttn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>A bilinear attention layer over a sequence X w.r.t y:
+* o_i = softmax(x_i’Wy) for x_i in X.
+Optionally don’t normalize output weights.</p>
+<dl class="method">
+<dt id="rqa.modules.attention.seq_attention.BilinearSeqAttn.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>x_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/seq_attention.html#BilinearSeqAttn.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.seq_attention.BilinearSeqAttn.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.modules.attention.seq_attention.LinearSeqAttn">
+<em class="property">class </em><code class="descclassname">rqa.modules.attention.seq_attention.</code><code class="descname">LinearSeqAttn</code><span class="sig-paren">(</span><em>input_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/seq_attention.html#LinearSeqAttn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.seq_attention.LinearSeqAttn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Self attention over a sequence:
+* o_i = softmax(Wx_i) for x_i in X.</p>
+<dl class="method">
+<dt id="rqa.modules.attention.seq_attention.LinearSeqAttn.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>x_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/seq_attention.html#LinearSeqAttn.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.seq_attention.LinearSeqAttn.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.modules.attention.seq_attention.SeqAttnMatch">
+<em class="property">class </em><code class="descclassname">rqa.modules.attention.seq_attention.</code><code class="descname">SeqAttnMatch</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>identity=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/seq_attention.html#SeqAttnMatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.seq_attention.SeqAttnMatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Given sequences X and Y, match sequence Y to each element in X.
+* o_i = sum(alpha_j * y_j) for i in X
+* alpha_j = softmax(y_j * x_i)</p>
+<dl class="method">
+<dt id="rqa.modules.attention.seq_attention.SeqAttnMatch.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>y_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/seq_attention.html#SeqAttnMatch.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.seq_attention.SeqAttnMatch.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-rqa.modules.attention">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rqa.modules.attention" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.modules.attention.BiAttention">
+<em class="property">class </em><code class="descclassname">rqa.modules.attention.</code><code class="descname">BiAttention</code><span class="sig-paren">(</span><em>model_dim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/bi_attention.html#BiAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.BiAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="docutils">
+<dt>Attention Flow Layer</dt>
+<dd>in BiDAF (<a class="reference external" href="https://arxiv.org/pdf/1611.01603.pdf">https://arxiv.org/pdf/1611.01603.pdf</a>)</dd>
+</dl>
+<p>The Similarity matrix
+Context-to-query Attention (C2Q)
+Query-to-context Attention (Q2C)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>model_dim: The number of module dimension</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.modules.attention.BiAttention.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>context</em>, <em>context_mask</em>, <em>query</em>, <em>query_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/bi_attention.html#BiAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.BiAttention.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.modules.attention.CoAttention">
+<em class="property">class </em><code class="descclassname">rqa.modules.attention.</code><code class="descname">CoAttention</code><span class="sig-paren">(</span><em>embed_dim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/co_attention.html#CoAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.CoAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="docutils">
+<dt>CoAttention encoder</dt>
+<dd>in Dynamic Coattention Networks For Question Answering (<a class="reference external" href="https://arxiv.org/abs/1611.01604">https://arxiv.org/abs/1611.01604</a>)</dd>
+</dl>
+<p>check the Figure 2 in paper</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>embed_dim: the number of input embedding dimension</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.modules.attention.CoAttention.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>context_embed</em>, <em>question_embed</em>, <em>context_mask=None</em>, <em>question_mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/co_attention.html#CoAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.CoAttention.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.modules.attention.MultiHeadAttention">
+<em class="property">class </em><code class="descclassname">rqa.modules.attention.</code><code class="descname">MultiHeadAttention</code><span class="sig-paren">(</span><em>num_head=8</em>, <em>model_dim=100</em>, <em>dropout=0.1</em>, <em>linear_key_dim=None</em>, <em>linear_value_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/multi_head_attention.html#MultiHeadAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.MultiHeadAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="docutils">
+<dt>Transformer’s Multi-Head Attention</dt>
+<dd>in “Attention is All You Need” (<a class="reference external" href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>)</dd>
+</dl>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>num_head: the number of Head
+model_dim: the number of model dimension
+linear_key_dim: the number of linear key dimemsion
+linear_value_dim: the number of linear value dimension</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.modules.attention.MultiHeadAttention.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>q</em>, <em>k</em>, <em>v</em>, <em>mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/multi_head_attention.html#MultiHeadAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.MultiHeadAttention.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.modules.attention.DocQAAttention">
+<em class="property">class </em><code class="descclassname">rqa.modules.attention.</code><code class="descname">DocQAAttention</code><span class="sig-paren">(</span><em>rnn_dim</em>, <em>linear_dim</em>, <em>self_attn=False</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/docqa_attention.html#DocQAAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.DocQAAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="docutils">
+<dt>Bi-Attention Layer + (Self-Attention)</dt>
+<dd>in DocumentQA (<a class="reference external" href="https://arxiv.org/abs/1710.10723">https://arxiv.org/abs/1710.10723</a>)</dd>
+</dl>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>rnn_dim: the number of GRU cell hidden size
+linear_dim: the number of linear hidden size</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>self_attn: (bool) self-attention
+weight_init: (bool) weight initialization</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.modules.attention.DocQAAttention.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>x_mask</em>, <em>key</em>, <em>key_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/docqa_attention.html#DocQAAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.DocQAAttention.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.modules.attention.SeqAttnMatch">
+<em class="property">class </em><code class="descclassname">rqa.modules.attention.</code><code class="descname">SeqAttnMatch</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>identity=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/seq_attention.html#SeqAttnMatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.SeqAttnMatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Given sequences X and Y, match sequence Y to each element in X.
+* o_i = sum(alpha_j * y_j) for i in X
+* alpha_j = softmax(y_j * x_i)</p>
+<dl class="method">
+<dt id="rqa.modules.attention.SeqAttnMatch.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>y_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/seq_attention.html#SeqAttnMatch.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.SeqAttnMatch.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.modules.attention.LinearSeqAttn">
+<em class="property">class </em><code class="descclassname">rqa.modules.attention.</code><code class="descname">LinearSeqAttn</code><span class="sig-paren">(</span><em>input_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/seq_attention.html#LinearSeqAttn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.LinearSeqAttn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Self attention over a sequence:
+* o_i = softmax(Wx_i) for x_i in X.</p>
+<dl class="method">
+<dt id="rqa.modules.attention.LinearSeqAttn.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>x_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/seq_attention.html#LinearSeqAttn.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.LinearSeqAttn.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.modules.attention.BilinearSeqAttn">
+<em class="property">class </em><code class="descclassname">rqa.modules.attention.</code><code class="descname">BilinearSeqAttn</code><span class="sig-paren">(</span><em>x_size</em>, <em>y_size</em>, <em>identity=False</em>, <em>normalize=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/seq_attention.html#BilinearSeqAttn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.BilinearSeqAttn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>A bilinear attention layer over a sequence X w.r.t y:
+* o_i = softmax(x_i’Wy) for x_i in X.
+Optionally don’t normalize output weights.</p>
+<dl class="method">
+<dt id="rqa.modules.attention.BilinearSeqAttn.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>x_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/attention/seq_attention.html#BilinearSeqAttn.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.attention.BilinearSeqAttn.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rqa.modules.conv.html" class="btn btn-neutral float-right" title="rqa.modules.conv package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rqa.modules.html" class="btn btn-neutral" title="rqa.modules package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+rqa.tokens.tokenizer.word\_tokenizer package
+============================================
+
+Submodules
+----------
+
+.. toctree::
+
+   rqa.tokens.tokenizer.word_tokenizer.eng
+   rqa.tokens.tokenizer.word_tokenizer.kor
+
+Module contents
+---------------
+
+.. automodule:: rqa.tokens.tokenizer.word_tokenizer
+    :members:
+    :undoc-members:
+    :show-inheritance:

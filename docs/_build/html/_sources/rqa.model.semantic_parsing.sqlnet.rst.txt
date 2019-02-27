@@ -1,0 +1,7 @@
+rqa.model.semantic\_parsing.sqlnet module
+=========================================
+
+.. automodule:: rqa.model.semantic_parsing.sqlnet
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,7 @@
+rqa.tokens.embedding.word\_embedding module
+===========================================
+
+.. automodule:: rqa.tokens.embedding.word_embedding
+    :members:
+    :undoc-members:
+    :show-inheritance:

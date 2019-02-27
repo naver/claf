@@ -1,0 +1,7 @@
+rqa.model.document\_retrieval.base module
+=========================================
+
+.. automodule:: rqa.model.document_retrieval.base
+    :members:
+    :undoc-members:
+    :show-inheritance:

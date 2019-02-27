@@ -1,0 +1,770 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>claf.learn.trainer &mdash; CLaF 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>claf.learn.trainer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for claf.learn.trainer</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="kn">from</span> <span class="nn">torch.nn.utils</span> <span class="k">import</span> <span class="n">clip_grad_norm_</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">claf.config.utils</span> <span class="k">import</span> <span class="n">pretty_json_dumps</span>
+<span class="kn">from</span> <span class="nn">claf.learn.optimization.exponential_moving_avarage</span> <span class="k">import</span> <span class="n">EMA</span>
+<span class="kn">from</span> <span class="nn">claf.learn.tensorboard</span> <span class="k">import</span> <span class="n">TensorBoard</span>
+<span class="kn">from</span> <span class="nn">claf.learn</span> <span class="k">import</span> <span class="n">utils</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Trainer"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.trainer.Trainer">[docs]</a><span class="k">class</span> <span class="nc">Trainer</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Trainer</span>
+<span class="sd">    Run experiment</span>
+
+<span class="sd">    - train</span>
+<span class="sd">    - train_and_evaluate</span>
+<span class="sd">    - evaluate</span>
+<span class="sd">    - evaluate_inference_latency</span>
+<span class="sd">    - predict</span>
+
+<span class="sd">    * Args:</span>
+<span class="sd">        config: experiment overall config</span>
+<span class="sd">        cuda_devices: cuda device ids (None is CPU, len(cuda_devices) &gt; 1, Multi-GPU)</span>
+<span class="sd">        model: Model based on torch.nn.Module</span>
+
+<span class="sd">    * Kwargs:</span>
+<span class="sd">        log_dir: path to directory for save model and other options</span>
+<span class="sd">        grad_max_norm: Clips gradient norm of an iterable of parameters.</span>
+<span class="sd">        learning_rate_scheduler: PyTorch&#39;s Learning Rate Scheduler.</span>
+<span class="sd">            (https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html)</span>
+<span class="sd">        exponential_moving_average: the moving averages of all weights of the model are maintained</span>
+<span class="sd">            with the exponential decay rate of {ema}.</span>
+<span class="sd">        num_epochs: the number of maximun epochs (Default is 20)</span>
+<span class="sd">        early_stopping_threshold: the number of early stopping threshold (Default is 10)</span>
+<span class="sd">        max_eval_examples: print evaluation examples</span>
+<span class="sd">        metric_key: metric score&#39;s control point</span>
+<span class="sd">        verbose_step_count: print verbose step count (Default is 100)</span>
+<span class="sd">        eval_and_save_step_count: evaluate valid_dataset then save every n step_count (Default is &#39;epoch&#39;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">,</span>
+        <span class="n">cuda_devices</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">,</span>
+        <span class="n">log_dir</span><span class="o">=</span><span class="s2">&quot;logs/experiment&quot;</span><span class="p">,</span>
+        <span class="n">grad_max_norm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">gradient_accumulation_steps</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">learning_rate_scheduler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">exponential_moving_average</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">num_epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="n">early_stopping_threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">max_eval_examples</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">metric_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">verbose_step_count</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">eval_and_save_step_count</span><span class="o">=</span><span class="s2">&quot;epoch&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+
+        <span class="c1"># CUDA</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cuda_devices</span> <span class="o">=</span> <span class="n">cuda_devices</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_multi_gpu</span> <span class="o">=</span> <span class="n">cuda_devices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">cuda_devices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;train_counter&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">train_counter</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">TrainCounter</span><span class="p">(</span><span class="n">display_unit</span><span class="o">=</span><span class="n">eval_and_save_step_count</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_model_base_properties</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">log_dir</span><span class="p">)</span>
+
+        <span class="c1"># Logs</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">log_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tensorboard</span> <span class="o">=</span> <span class="n">TensorBoard</span><span class="p">(</span><span class="n">log_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric_logs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;best_epoch&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;best_global_step&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;best&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;best_score&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_logs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;early_stopping_count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+
+        <span class="c1"># optimization options</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grad_max_norm</span> <span class="o">=</span> <span class="n">grad_max_norm</span>
+
+        <span class="k">if</span> <span class="n">gradient_accumulation_steps</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">gradient_accumulation_steps</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gradient_accumulation_steps</span> <span class="o">=</span> <span class="n">gradient_accumulation_steps</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate_scheduler</span> <span class="o">=</span> <span class="n">learning_rate_scheduler</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exponential_moving_average</span> <span class="o">=</span> <span class="n">exponential_moving_average</span>
+        <span class="k">if</span> <span class="n">exponential_moving_average</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exponential_moving_average</span> <span class="o">=</span> <span class="n">EMA</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">exponential_moving_average</span><span class="p">)</span>
+
+        <span class="c1"># property</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_epochs</span> <span class="o">=</span> <span class="n">num_epochs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">early_stopping</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">early_stopping_threshold</span> <span class="o">=</span> <span class="n">early_stopping_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_eval_examples</span> <span class="o">=</span> <span class="n">max_eval_examples</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric_key</span> <span class="o">=</span> <span class="n">metric_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose_step_count</span> <span class="o">=</span> <span class="n">verbose_step_count</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eval_and_save_step_count</span> <span class="o">=</span> <span class="n">eval_and_save_step_count</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_dir</span> <span class="o">=</span> <span class="n">log_dir</span>
+
+<div class="viewcode-block" id="Trainer.set_model_base_properties"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.trainer.Trainer.set_model_base_properties">[docs]</a>    <span class="k">def</span> <span class="nf">set_model_base_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">log_dir</span><span class="p">):</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_multi_gpu</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">module</span>
+
+        <span class="n">model</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">log_dir</span> <span class="o">=</span> <span class="n">log_dir</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">train_counter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span>
+        <span class="k">assert</span> <span class="n">model</span><span class="o">.</span><span class="n">is_ready</span><span class="p">()</span> <span class="o">==</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="Trainer.train_and_evaluate"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.trainer.Trainer.train_and_evaluate">[docs]</a>    <span class="k">def</span> <span class="nf">train_and_evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Train and Evaluate &quot;&quot;&quot;</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_epochs</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span>
+
+            <span class="c1"># Training with metrics</span>
+            <span class="n">train_metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_epoch</span><span class="p">(</span>
+                <span class="n">train_loader</span><span class="p">,</span>
+                <span class="n">valid_loader</span><span class="o">=</span><span class="n">valid_loader</span><span class="p">,</span>
+                <span class="n">is_training</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span>
+                <span class="n">verbose_step_count</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose_step_count</span><span class="p">,</span>
+                <span class="n">eval_and_save_step_count</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">eval_and_save_step_count</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="n">valid_metrics</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval_and_save_step_count</span> <span class="o">==</span> <span class="s2">&quot;epoch&quot;</span><span class="p">:</span>
+                <span class="n">valid_metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_epoch</span><span class="p">(</span><span class="n">valid_loader</span><span class="p">,</span> <span class="n">is_training</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_check_valid_results</span><span class="p">(</span><span class="n">valid_metrics</span><span class="p">,</span> <span class="n">report</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">optimizer</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report_metrics</span><span class="p">(</span><span class="n">train_metrics</span><span class="o">=</span><span class="n">train_metrics</span><span class="p">,</span> <span class="n">valid_metrics</span><span class="o">=</span><span class="n">valid_metrics</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_estimate_remainig_time</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">early_stopping</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_report_trainings</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="n">train_loader</span><span class="o">=</span><span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="o">=</span><span class="n">valid_loader</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Trainer.train"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.trainer.Trainer.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_loader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Train &quot;&quot;&quot;</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_epochs</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span>
+
+            <span class="n">metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_epoch</span><span class="p">(</span>
+                <span class="n">data_loader</span><span class="p">,</span>
+                <span class="n">is_training</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span>
+                <span class="n">verbose_step_count</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose_step_count</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report_metrics</span><span class="p">(</span><span class="n">train_metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_estimate_remainig_time</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">optimizer</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_report_trainings</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="n">train_loader</span><span class="o">=</span><span class="n">data_loader</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Trainer.evaluate"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.trainer.Trainer.evaluate">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_loader</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Evaluate &quot;&quot;&quot;</span>
+        <span class="n">eval_metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_epoch</span><span class="p">(</span><span class="n">data_loader</span><span class="p">,</span> <span class="n">is_training</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">disable_prograss_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_report_metrics</span><span class="p">(</span><span class="n">tensorboard</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">valid_metrics</span><span class="o">=</span><span class="n">eval_metrics</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Trainer.evaluate_inference_latency"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.trainer.Trainer.evaluate_inference_latency">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate_inference_latency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_examples</span><span class="p">,</span> <span class="n">raw_to_tensor_fn</span><span class="p">,</span> <span class="n">token_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_latency</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Evaluate with focusing inferece latency</span>
+<span class="sd">        (Note: must use sorted synthetic data)</span>
+
+<span class="sd">        * inference_latency: raw_data -&gt; pre-processing -&gt; model -&gt; predict_value</span>
+<span class="sd">                                (elapsed_time)               (elapsed_time)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># Evaluate Inference Latency Mode.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+        <span class="n">total_raw_to_tensor_time</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">tensor_to_predicts</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">raw_example_items</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">raw_examples</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">raw_example</span> <span class="ow">in</span> <span class="n">raw_example_items</span><span class="p">:</span>
+            <span class="c1"># raw_data -&gt; tensor</span>
+            <span class="n">raw_to_tensor_start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">feature</span><span class="p">,</span> <span class="n">helper</span> <span class="o">=</span> <span class="n">raw_to_tensor_fn</span><span class="p">(</span><span class="n">raw_example</span><span class="p">)</span>
+            <span class="n">raw_to_tensor_elapsted_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">raw_to_tensor_start_time</span>
+            <span class="n">raw_to_tensor_elapsted_time</span> <span class="o">*=</span> <span class="mi">1000</span>  <span class="c1"># unit: sec -&gt; ms</span>
+
+            <span class="n">total_raw_to_tensor_time</span> <span class="o">+=</span> <span class="n">raw_to_tensor_elapsted_time</span>
+
+            <span class="c1"># tensor to predict</span>
+            <span class="n">tensor_to_predict_start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">output_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+            <span class="n">tensor_to_predict_elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">tensor_to_predict_start_time</span>
+
+            <span class="k">if</span> <span class="s2">&quot;token_key&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">helper</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;helper must have &#39;token_key&#39; data for 1-example inference latency.&quot;</span>
+                <span class="p">)</span>
+
+            <span class="n">tensor_to_predict_elapsed_time</span> <span class="o">*=</span> <span class="mi">1000</span>  <span class="c1"># unit: sec -&gt; ms</span>
+            <span class="n">tensor_to_predict</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;elapsed_time&quot;</span><span class="p">:</span> <span class="n">tensor_to_predict_elapsed_time</span><span class="p">,</span>
+                <span class="s2">&quot;token_count&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">helper</span><span class="p">[</span><span class="n">helper</span><span class="p">[</span><span class="s2">&quot;token_key&quot;</span><span class="p">]]),</span>
+            <span class="p">}</span>
+            <span class="n">tensor_to_predicts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tensor_to_predict</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">tensor_to_predict_elapsed_time</span> <span class="o">&gt;</span> <span class="n">max_latency</span><span class="p">:</span>
+                <span class="n">raw_example_items</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="k">break</span>
+
+        <span class="n">total_tensor_to_predict</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">tensor_to_predict</span><span class="p">[</span><span class="s2">&quot;elapsed_time&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">tensor_to_predict</span> <span class="ow">in</span> <span class="n">tensor_to_predicts</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">max_token_count_per_times</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">max_times</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_latency</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">t2p</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">tensor_to_predicts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;token_count&quot;</span><span class="p">]):</span>
+            <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">t2p</span><span class="p">[</span><span class="s2">&quot;elapsed_time&quot;</span><span class="p">]</span>
+            <span class="n">token_count</span> <span class="o">=</span> <span class="n">t2p</span><span class="p">[</span><span class="s2">&quot;token_count&quot;</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">max_time</span> <span class="ow">in</span> <span class="n">max_times</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">elapsed_time</span> <span class="o">&lt;</span> <span class="n">max_time</span><span class="p">:</span>
+                    <span class="n">max_token_count_per_times</span><span class="p">[</span><span class="n">max_time</span><span class="p">]</span> <span class="o">=</span> <span class="n">token_count</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;average_raw_to_tensor&quot;</span><span class="p">:</span> <span class="n">total_raw_to_tensor_time</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw_examples</span><span class="p">),</span>
+            <span class="s2">&quot;average_tensor_to_predict&quot;</span><span class="p">:</span> <span class="n">total_tensor_to_predict</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw_examples</span><span class="p">),</span>
+            <span class="s2">&quot;average_end_to_end&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">total_raw_to_tensor_time</span> <span class="o">+</span> <span class="n">total_tensor_to_predict</span><span class="p">)</span>
+            <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw_examples</span><span class="p">),</span>
+            <span class="s2">&quot;tensor_to_predicts&quot;</span><span class="p">:</span> <span class="n">tensor_to_predicts</span><span class="p">,</span>
+            <span class="s2">&quot;max_token_count_per_time&quot;</span><span class="p">:</span> <span class="n">max_token_count_per_times</span>
+        <span class="p">}</span>
+
+        <span class="n">env</span> <span class="o">=</span> <span class="s2">&quot;gpu&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cuda_devices</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.model_name}</span><span class="s2">-</span><span class="si">{env}</span><span class="s2">.json&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;saved inference_latency results. </span><span class="si">{file_name}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_is_early_stopping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">metrics</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_key</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_logs</span><span class="p">[</span><span class="s2">&quot;best_score&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">training_logs</span><span class="p">[</span><span class="s2">&quot;early_stopping_count&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">training_logs</span><span class="p">[</span><span class="s2">&quot;early_stopping_count&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_logs</span><span class="p">[</span><span class="s2">&quot;early_stopping_count&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">early_stopping_threshold</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">training_logs</span><span class="p">[</span><span class="s2">&quot;early_stopping&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">_report_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tensorboard</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">train_metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">valid_metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="n">total_metrics</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">def</span> <span class="nf">update_metrics</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">metrics</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">metrics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">total_metrics</span><span class="p">[</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{category}</span><span class="s2">/</span><span class="si">{k}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+
+        <span class="n">update_metrics</span><span class="p">(</span><span class="n">train_metrics</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">)</span>
+        <span class="n">update_metrics</span><span class="p">(</span><span class="n">valid_metrics</span><span class="p">,</span> <span class="s2">&quot;valid&quot;</span><span class="p">)</span>
+
+        <span class="c1"># TensorBoard</span>
+        <span class="k">if</span> <span class="n">tensorboard</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tensorboard</span><span class="o">.</span><span class="n">scalar_summaries</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span><span class="o">.</span><span class="n">get_display</span><span class="p">(),</span> <span class="n">total_metrics</span><span class="p">)</span>
+
+        <span class="c1"># Console</span>
+        <span class="n">metric_console</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">train_metrics</span><span class="p">:</span>
+            <span class="n">metric_console</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="n">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># Epoch: [</span><span class="si">{self.train_counter.epoch}</span><span class="s2">/</span><span class="si">{self.num_epochs}</span><span class="s2">]: Metrics </span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="n">metric_console</span> <span class="o">+=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">total_metrics</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">metric_console</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">valid_metrics</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update_metric_logs</span><span class="p">(</span><span class="n">total_metrics</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_update_metric_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_metrics</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">total_metrics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_logs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">metric_logs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">metric_logs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+        <span class="n">valid_score</span> <span class="o">=</span> <span class="n">total_metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;valid/</span><span class="si">{self.metric_key}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">valid_score</span> <span class="ow">and</span> <span class="n">valid_score</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_logs</span><span class="p">[</span><span class="s2">&quot;best_score&quot;</span><span class="p">]:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot; * Best validation score so far. (</span><span class="si">{self.metric_key}</span><span class="s2">) : </span><span class="si">{valid_score}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metric_logs</span><span class="p">[</span><span class="s2">&quot;best_score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">valid_score</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metric_logs</span><span class="p">[</span><span class="s2">&quot;best&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">total_metrics</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metric_logs</span><span class="p">[</span><span class="s2">&quot;best_epoch&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span><span class="o">.</span><span class="n">epoch</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metric_logs</span><span class="p">[</span><span class="s2">&quot;best_global_step&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span><span class="o">.</span><span class="n">global_step</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="n">f</span><span class="s2">&quot; * Current best validation score. (</span><span class="si">{self.metric_key}</span><span class="s2">) : </span><span class="si">{self.metric_logs[&#39;best_score&#39;]}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_estimate_remainig_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_time</span><span class="p">):</span>
+        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+        <span class="n">estimated_time_remaining</span> <span class="o">=</span> <span class="n">elapsed_time</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_epochs</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span><span class="o">.</span><span class="n">epoch</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span><span class="o">.</span><span class="n">epoch</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="p">)</span>
+        <span class="n">formatted_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%H:%M:%S&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">(</span><span class="n">estimated_time_remaining</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Estimated training time remaining: </span><span class="si">{formatted_time}</span><span class="s2"> &quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_report_trainings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">train_loader</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">valid_loader</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_logs</span><span class="p">[</span><span class="s2">&quot;elapsed_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%H:%M:%S&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">(</span><span class="n">elapsed_time</span><span class="p">)),)</span>
+
+        <span class="k">if</span> <span class="n">train_loader</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">training_logs</span><span class="p">[</span><span class="s2">&quot;train_dataset&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">train_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">valid_loader</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">training_logs</span><span class="p">[</span><span class="s2">&quot;valid_dataset&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">valid_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_run_epoch</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">data_loader</span><span class="p">,</span>
+        <span class="n">valid_loader</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">is_training</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">optimizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">disable_prograss_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">verbose_step_count</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">eval_and_save_step_count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run Epoch</span>
+
+<span class="sd">        1. forward inputs to model</span>
+<span class="sd">        2. (trainig) backprobagation</span>
+<span class="sd">        3. update predictions</span>
+<span class="sd">        4. make metrics</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">is_training</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;# Train Mode.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;# Evaluate Mode.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+        <span class="c1"># set dataset (train/valid)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_dataset_to_model</span><span class="p">(</span><span class="n">data_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+
+        <span class="n">metrics</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">epoch_loss</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">epoch_start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">step_start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+        <span class="n">eval_example_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">num_train_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">data_loader</span><span class="p">)</span>
+            <span class="o">/</span> <span class="n">data_loader</span><span class="o">.</span><span class="n">batch_size</span>
+            <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">gradient_accumulation_steps</span>
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_epochs</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">num_train_steps</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">num_train_steps</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">for</span> <span class="n">step</span><span class="p">,</span> <span class="n">batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tqdm</span><span class="p">(</span><span class="n">data_loader</span><span class="p">,</span> <span class="n">disable</span><span class="o">=</span><span class="n">disable_prograss_bar</span><span class="p">)):</span>
+            <span class="n">inputs</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>  <span class="c1"># for DataParallel</span>
+            <span class="n">output_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;loss&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_multi_gpu</span><span class="p">:</span>
+                <span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gradient_accumulation_steps</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">gradient_accumulation_steps</span>
+
+            <span class="n">epoch_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">is_training</span><span class="p">:</span>
+                <span class="c1"># Training Verbose</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span><span class="o">.</span><span class="n">global_step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;  Start - Batch Loss: {loss.item():.5f}&quot;</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span><span class="o">.</span><span class="n">global_step</span> <span class="o">!=</span> <span class="mi">0</span>
+                    <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span><span class="o">.</span><span class="n">global_step</span> <span class="o">%</span> <span class="n">verbose_step_count</span> <span class="o">==</span> <span class="mi">0</span>
+                <span class="p">):</span>
+                    <span class="n">step_elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">step_start_time</span>
+
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                        <span class="n">f</span><span class="s2">&quot;  Step: </span><span class="si">{self.train_counter.global_step}</span><span class="s2"> Batch Loss: {loss.item():.5f}  </span><span class="si">{step_elapsed_time:.5f}</span><span class="s2"> sec&quot;</span>
+                    <span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">tensorboard</span><span class="o">.</span><span class="n">scalar_summary</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span><span class="o">.</span><span class="n">global_step</span><span class="p">,</span> <span class="s2">&quot;train/batch_loss&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+                    <span class="p">)</span>
+
+                    <span class="n">step_start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+                <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grad_max_norm</span><span class="p">:</span>
+                    <span class="n">clip_grad_norm_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_model_parameters</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">grad_max_norm</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">step</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">gradient_accumulation_steps</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># Backpropagation</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate_scheduler</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate_scheduler</span><span class="o">.</span><span class="n">step_batch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span><span class="o">.</span><span class="n">global_step</span><span class="p">)</span>
+
+                    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+                    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span><span class="o">.</span><span class="n">global_step</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exponential_moving_average</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+                            <span class="k">if</span> <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">:</span>
+                                <span class="n">param</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exponential_moving_average</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+                    <span class="c1"># Evaluate then Save checkpoint</span>
+                    <span class="k">if</span> <span class="p">(</span>
+                        <span class="n">valid_loader</span>
+                        <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">eval_and_save_step_count</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span>
+                        <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span><span class="o">.</span><span class="n">global_step</span> <span class="o">%</span> <span class="n">eval_and_save_step_count</span> <span class="o">==</span> <span class="mi">0</span>
+                    <span class="p">):</span>
+
+                        <span class="n">valid_metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_epoch</span><span class="p">(</span><span class="n">valid_loader</span><span class="p">,</span> <span class="n">is_training</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_check_valid_results</span><span class="p">(</span><span class="n">valid_metrics</span><span class="p">,</span> <span class="n">report</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">optimizer</span><span class="p">)</span>
+
+                        <span class="k">if</span> <span class="n">is_training</span><span class="p">:</span>  <span class="c1"># roll-back to train mode</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_set_dataset_to_model</span><span class="p">(</span><span class="n">data_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">eval_example_count</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_eval_examples</span><span class="p">:</span>
+                    <span class="n">total_step_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_loader</span><span class="p">)</span> <span class="o">/</span> <span class="n">data_loader</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+                    <span class="n">random_num</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_step_count</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">random_num</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_eval_examples</span><span class="p">:</span>
+                        <span class="n">eval_example_predictions</span> <span class="o">=</span> <span class="p">{}</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_update_predictions</span><span class="p">(</span><span class="n">eval_example_predictions</span><span class="p">,</span> <span class="n">output_dict</span><span class="p">)</span>
+
+                        <span class="n">random_index</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">data_loader</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_print_examples</span><span class="p">(</span><span class="n">random_index</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">eval_example_predictions</span><span class="p">)</span>
+                        <span class="n">eval_example_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update_predictions</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">output_dict</span><span class="p">)</span>
+
+        <span class="n">epoch_loss</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_loader</span><span class="p">)</span>
+        <span class="n">epoch_elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">epoch_start_time</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Epoch duration: &quot;</span> <span class="o">+</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%H:%M:%S&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">(</span><span class="n">epoch_elapsed_time</span><span class="p">)))</span>
+
+        <span class="c1"># Updat metrics</span>
+        <span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;loss&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">epoch_loss</span>
+        <span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;epoch_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">epoch_elapsed_time</span>
+        <span class="n">metrics</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_make_metrics</span><span class="p">(</span><span class="n">predictions</span><span class="p">))</span>  <span class="c1"># model metric</span>
+
+        <span class="k">return</span> <span class="n">metrics</span>
+
+    <span class="k">def</span> <span class="nf">_set_dataset_to_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_multi_gpu</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span>
+
+    <span class="k">def</span> <span class="nf">_get_model_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_multi_gpu</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_check_valid_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">report</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate_scheduler</span><span class="p">:</span>
+            <span class="c1"># The LRScheduler API is agnostic to whether your schedule requires a validation metric -</span>
+            <span class="c1"># if it doesn&#39;t, the validation metric passed here is ignored.</span>
+            <span class="n">this_epoch_val_metric</span> <span class="o">=</span> <span class="n">metrics</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_key</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate_scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">this_epoch_val_metric</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span><span class="o">.</span><span class="n">global_step</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_early_stopping</span><span class="p">(</span><span class="n">metrics</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">early_stopping</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot; --- Early Stopping. --- &quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">report</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report_metrics</span><span class="p">(</span><span class="n">valid_metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_multi_gpu</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">module</span>
+
+        <span class="n">model</span><span class="o">.</span><span class="n">train_counter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span>
+        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">make_metrics</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_update_predictions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">output_dict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_multi_gpu</span><span class="p">:</span>
+            <span class="n">predictions</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">make_predictions</span><span class="p">(</span><span class="n">output_dict</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">predictions</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">make_predictions</span><span class="p">(</span><span class="n">output_dict</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_print_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_multi_gpu</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">print_examples</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">print_examples</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+<div class="viewcode-block" id="Trainer.predict"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.trainer.Trainer.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_feature</span><span class="p">,</span> <span class="n">raw_to_tensor_fn</span><span class="p">,</span> <span class="n">arguments</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Inference / Predict &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">interactive</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">raw_feature</span><span class="p">:</span>
+                    <span class="n">raw_feature</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">get_user_input</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+                <span class="n">tensor_feature</span><span class="p">,</span> <span class="n">helper</span> <span class="o">=</span> <span class="n">raw_to_tensor_fn</span><span class="p">(</span><span class="n">raw_feature</span><span class="p">)</span>
+                <span class="n">output_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">tensor_feature</span><span class="p">)</span>
+
+                <span class="n">arguments</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">raw_feature</span><span class="p">)</span>
+                <span class="n">predict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">output_dict</span><span class="p">,</span> <span class="n">arguments</span><span class="p">,</span> <span class="n">helper</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Predict: {pretty_json_dumps(predict)} </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tensor_feature</span><span class="p">,</span> <span class="n">helper</span> <span class="o">=</span> <span class="n">raw_to_tensor_fn</span><span class="p">(</span><span class="n">raw_feature</span><span class="p">)</span>
+            <span class="n">output_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">tensor_feature</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">output_dict</span><span class="p">,</span> <span class="n">arguments</span><span class="p">,</span> <span class="n">helper</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Trainer.save"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.trainer.Trainer.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">):</span>
+        <span class="c1"># set all config to model</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_multi_gpu</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">module</span>
+
+        <span class="n">model</span><span class="o">.</span><span class="n">train_counter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_counter</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_logs</span>
+
+        <span class="n">utils</span><span class="o">.</span><span class="n">save_checkpoint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_dir</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

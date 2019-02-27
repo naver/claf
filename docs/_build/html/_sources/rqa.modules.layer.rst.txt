@@ -1,0 +1,39 @@
+rqa.modules.layer package
+=========================
+
+Submodules
+----------
+
+.. automodule:: rqa.modules.layer.highway
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.modules.layer.normalization
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.modules.layer.positionwise
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.modules.layer.residual
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.modules.layer.scalar_mix
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: rqa.modules.layer
+    :members:
+    :undoc-members:
+    :show-inheritance:

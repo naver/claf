@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>claf.data.reader.bert package &mdash; CLaF 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="claf.learn package" href="claf.learn.html" />
+    <link rel="prev" title="claf.data.reader package" href="claf.data.reader.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="claf.config.html">config</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="claf.data.html">data</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="claf.data.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="claf.data.dataset.html">claf.data.dataset package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="claf.data.reader.html">claf.data.reader package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="claf.data.reader.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.data.reader.html#module-claf.data.reader.base">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.data.reader.html#module-claf.data.reader">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="claf.data.html#module-claf.data.batch">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.data.html#module-claf.data">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="claf.data.html">claf.data package</a> &raquo;</li>
+        
+          <li><a href="claf.data.reader.html">claf.data.reader package</a> &raquo;</li>
+        
+      <li>claf.data.reader.bert package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/claf.data.reader.bert.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="claf-data-reader-bert-package">
+<h1>claf.data.reader.bert package<a class="headerlink" href="#claf-data-reader-bert-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-claf.data.reader.bert.cola">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.data.reader.bert.cola" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="claf.data.reader.bert.cola.CoLABertReader">
+<em class="property">class </em><code class="descclassname">claf.data.reader.bert.cola.</code><code class="descname">CoLABertReader</code><span class="sig-paren">(</span><em>file_paths</em>, <em>tokenizers</em>, <em>sequence_max_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/reader/bert/cola.html#CoLABertReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.reader.bert.cola.CoLABertReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.data.reader.bert.seq_cls.SeqClsBertReader" title="claf.data.reader.bert.seq_cls.SeqClsBertReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.reader.bert.seq_cls.SeqClsBertReader</span></code></a></p>
+<p>CoLA DataReader for BERT</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>file_paths: .tsv file paths (train and dev)
+tokenizers: defined tokenizers config</dd>
+</dl>
+</li>
+</ul>
+<dl class="attribute">
+<dt id="claf.data.reader.bert.cola.CoLABertReader.CLS_TOKEN">
+<code class="descname">CLS_TOKEN</code><em class="property"> = '[CLS]'</em><a class="headerlink" href="#claf.data.reader.bert.cola.CoLABertReader.CLS_TOKEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.reader.bert.cola.CoLABertReader.CONTINUE_SYMBOL">
+<code class="descname">CONTINUE_SYMBOL</code><em class="property"> = '##'</em><a class="headerlink" href="#claf.data.reader.bert.cola.CoLABertReader.CONTINUE_SYMBOL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.reader.bert.cola.CoLABertReader.SEP_TOKEN">
+<code class="descname">SEP_TOKEN</code><em class="property"> = '[SEP]'</em><a class="headerlink" href="#claf.data.reader.bert.cola.CoLABertReader.SEP_TOKEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.reader.bert.cola.CoLABertReader.UNK_TOKEN">
+<code class="descname">UNK_TOKEN</code><em class="property"> = '[UNK]'</em><a class="headerlink" href="#claf.data.reader.bert.cola.CoLABertReader.UNK_TOKEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-claf.data.reader.bert.conll2003"></span><dl class="class">
+<dt id="claf.data.reader.bert.conll2003.CoNLL2003BertReader">
+<em class="property">class </em><code class="descclassname">claf.data.reader.bert.conll2003.</code><code class="descname">CoNLL2003BertReader</code><span class="sig-paren">(</span><em>file_paths</em>, <em>tokenizers</em>, <em>sequence_max_length=None</em>, <em>ignore_tag_idx=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/reader/bert/conll2003.html#CoNLL2003BertReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.reader.bert.conll2003.CoNLL2003BertReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.data.reader.bert.tok_cls.TokClsBertReader" title="claf.data.reader.bert.tok_cls.TokClsBertReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.reader.bert.tok_cls.TokClsBertReader</span></code></a></p>
+<blockquote>
+<div>CoNLL2003 for BERT</div></blockquote>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>file_paths: file paths (train and dev)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>ignore_tag_idx: prediction results that have this number as ground-truth idx are ignored</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<span class="target" id="module-claf.data.reader.bert.seq_cls"></span><dl class="class">
+<dt id="claf.data.reader.bert.seq_cls.SeqClsBertReader">
+<em class="property">class </em><code class="descclassname">claf.data.reader.bert.seq_cls.</code><code class="descname">SeqClsBertReader</code><span class="sig-paren">(</span><em>file_paths</em>, <em>tokenizers</em>, <em>sequence_max_length=None</em>, <em>class_key='class'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/reader/bert/seq_cls.html#SeqClsBertReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.reader.bert.seq_cls.SeqClsBertReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="claf.data.reader.html#claf.data.reader.base.DataReader" title="claf.data.reader.base.DataReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.reader.base.DataReader</span></code></a></p>
+<p>DataReader for Sequence Classification using BERT</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>file_paths: .json file paths (train and dev)
+tokenizers: define tokenizers config (subword)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>class_key: name of the label in .json file to use for classification</dd>
+</dl>
+</li>
+</ul>
+<dl class="attribute">
+<dt id="claf.data.reader.bert.seq_cls.SeqClsBertReader.CLS_TOKEN">
+<code class="descname">CLS_TOKEN</code><em class="property"> = '[CLS]'</em><a class="headerlink" href="#claf.data.reader.bert.seq_cls.SeqClsBertReader.CLS_TOKEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.reader.bert.seq_cls.SeqClsBertReader.CONTINUE_SYMBOL">
+<code class="descname">CONTINUE_SYMBOL</code><em class="property"> = '##'</em><a class="headerlink" href="#claf.data.reader.bert.seq_cls.SeqClsBertReader.CONTINUE_SYMBOL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.reader.bert.seq_cls.SeqClsBertReader.SEP_TOKEN">
+<code class="descname">SEP_TOKEN</code><em class="property"> = '[SEP]'</em><a class="headerlink" href="#claf.data.reader.bert.seq_cls.SeqClsBertReader.SEP_TOKEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.reader.bert.seq_cls.SeqClsBertReader.UNK_TOKEN">
+<code class="descname">UNK_TOKEN</code><em class="property"> = '[UNK]'</em><a class="headerlink" href="#claf.data.reader.bert.seq_cls.SeqClsBertReader.UNK_TOKEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.reader.bert.seq_cls.SeqClsBertReader.read_one_example">
+<code class="descname">read_one_example</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/reader/bert/seq_cls.html#SeqClsBertReader.read_one_example"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.reader.bert.seq_cls.SeqClsBertReader.read_one_example" title="Permalink to this definition">¶</a></dt>
+<dd><p>inputs keys: sequence</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-claf.data.reader.bert.squad"></span><dl class="class">
+<dt id="claf.data.reader.bert.squad.SQuADBertReader">
+<em class="property">class </em><code class="descclassname">claf.data.reader.bert.squad.</code><code class="descname">SQuADBertReader</code><span class="sig-paren">(</span><em>file_paths</em>, <em>lang_code</em>, <em>tokenizers</em>, <em>max_seq_length=384</em>, <em>context_stride=128</em>, <em>max_question_length=64</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/reader/bert/squad.html#SQuADBertReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.reader.bert.squad.SQuADBertReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="claf.data.reader.html#claf.data.reader.base.DataReader" title="claf.data.reader.base.DataReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.reader.base.DataReader</span></code></a></p>
+<p>SQuAD DataReader for BERT</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>file_paths: .json file paths (train and dev)
+tokenizers: defined tokenizers config (char/word)</dd>
+</dl>
+</li>
+</ul>
+<dl class="attribute">
+<dt id="claf.data.reader.bert.squad.SQuADBertReader.CLS_TOKEN">
+<code class="descname">CLS_TOKEN</code><em class="property"> = '[CLS]'</em><a class="headerlink" href="#claf.data.reader.bert.squad.SQuADBertReader.CLS_TOKEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.reader.bert.squad.SQuADBertReader.SEP_TOKEN">
+<code class="descname">SEP_TOKEN</code><em class="property"> = '[SEP]'</em><a class="headerlink" href="#claf.data.reader.bert.squad.SQuADBertReader.SEP_TOKEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.reader.bert.squad.SQuADBertReader.read_one_example">
+<code class="descname">read_one_example</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/reader/bert/squad.html#SQuADBertReader.read_one_example"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.reader.bert.squad.SQuADBertReader.read_one_example" title="Permalink to this definition">¶</a></dt>
+<dd><p>inputs keys: question, context</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.data.reader.bert.squad.Token">
+<em class="property">class </em><code class="descclassname">claf.data.reader.bert.squad.</code><code class="descname">Token</code><span class="sig-paren">(</span><em>text</em>, <em>text_span=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/reader/bert/squad.html#Token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.reader.bert.squad.Token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+</dd></dl>
+
+<span class="target" id="module-claf.data.reader.bert.tok_cls"></span><dl class="class">
+<dt id="claf.data.reader.bert.tok_cls.TokClsBertReader">
+<em class="property">class </em><code class="descclassname">claf.data.reader.bert.tok_cls.</code><code class="descname">TokClsBertReader</code><span class="sig-paren">(</span><em>file_paths</em>, <em>tokenizers</em>, <em>lang_code=None</em>, <em>sequence_max_length=None</em>, <em>tag_key='tags'</em>, <em>ignore_tag_idx=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/reader/bert/tok_cls.html#TokClsBertReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.reader.bert.tok_cls.TokClsBertReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="claf.data.reader.html#claf.data.reader.base.DataReader" title="claf.data.reader.base.DataReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.reader.base.DataReader</span></code></a></p>
+<p>DataReader for Token Classification using BERT</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>file_paths: .json file paths (train and dev)
+tokenizers: define tokenizers config (subword)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>lang_code: language code: set as ‘ko’ if using BERT model trained with mecab-tokenized data
+tag_key: name of the label in .json file to use for classification
+ignore_tag_idx: prediction results that have this number as ground-truth idx are ignored</dd>
+</dl>
+</li>
+</ul>
+<dl class="attribute">
+<dt id="claf.data.reader.bert.tok_cls.TokClsBertReader.CLS_TOKEN">
+<code class="descname">CLS_TOKEN</code><em class="property"> = '[CLS]'</em><a class="headerlink" href="#claf.data.reader.bert.tok_cls.TokClsBertReader.CLS_TOKEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.reader.bert.tok_cls.TokClsBertReader.CONTINUE_SYMBOL">
+<code class="descname">CONTINUE_SYMBOL</code><em class="property"> = '##'</em><a class="headerlink" href="#claf.data.reader.bert.tok_cls.TokClsBertReader.CONTINUE_SYMBOL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.reader.bert.tok_cls.TokClsBertReader.SEP_TOKEN">
+<code class="descname">SEP_TOKEN</code><em class="property"> = '[SEP]'</em><a class="headerlink" href="#claf.data.reader.bert.tok_cls.TokClsBertReader.SEP_TOKEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.reader.bert.tok_cls.TokClsBertReader.UNK_TOKEN">
+<code class="descname">UNK_TOKEN</code><em class="property"> = '[UNK]'</em><a class="headerlink" href="#claf.data.reader.bert.tok_cls.TokClsBertReader.UNK_TOKEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.reader.bert.tok_cls.TokClsBertReader.read_one_example">
+<code class="descname">read_one_example</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/reader/bert/tok_cls.html#TokClsBertReader.read_one_example"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.reader.bert.tok_cls.TokClsBertReader.read_one_example" title="Permalink to this definition">¶</a></dt>
+<dd><p>inputs keys: sequence</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-claf.data.reader.bert">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.data.reader.bert" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="claf.learn.html" class="btn btn-neutral float-right" title="claf.learn package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="claf.data.reader.html" class="btn btn-neutral" title="claf.data.reader package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

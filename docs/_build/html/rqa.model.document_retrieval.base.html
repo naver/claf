@@ -1,0 +1,339 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.model.document_retrieval.base module &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rqa.model.document_retrieval.tfidf module" href="rqa.model.document_retrieval.tfidf.html" />
+    <link rel="prev" title="rqa.model.document_retrieval package" href="rqa.model.document_retrieval.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/experiments.html">Experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rqa.model.html">model</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="rqa.model.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="rqa.model.document_retrieval.html">rqa.model.document_retrieval package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="rqa.model.document_retrieval.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rqa.model.document_retrieval.html#module-rqa.model.document_retrieval">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.model.reading_comprehension.html">rqa.model.reading_comprehension package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.model.semantic_parsing.html">rqa.model.semantic_parsing package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.model.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.model.html#module-rqa.model">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="rqa.model.html">rqa.model package</a> &raquo;</li>
+        
+          <li><a href="rqa.model.document_retrieval.html">rqa.model.document_retrieval package</a> &raquo;</li>
+        
+      <li>rqa.model.document_retrieval.base module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.model.document_retrieval.base.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-rqa.model.document_retrieval.base">
+<span id="rqa-model-document-retrieval-base-module"></span><h1>rqa.model.document_retrieval.base module<a class="headerlink" href="#module-rqa.model.document_retrieval.base" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="rqa.model.document_retrieval.base.RetrievalIndependentModelBase">
+<em class="property">class </em><code class="descclassname">rqa.model.document_retrieval.base.</code><code class="descname">RetrievalIndependentModelBase</code><span class="sig-paren">(</span><em>docs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/document_retrieval/base.html#RetrievalIndependentModelBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.document_retrieval.base.RetrievalIndependentModelBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="rqa.model.base.html#rqa.model.base.ModelBase" title="rqa.model.base.ModelBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.base.ModelBase</span></code></a></p>
+<p>Document Retrieval Model (Independent)
+Model Base</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>docs: documents consisting of title and content</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.model.document_retrieval.base.RetrievalIndependentModelBase.make_metrics">
+<code class="descname">make_metrics</code><span class="sig-paren">(</span><em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/document_retrieval/base.html#RetrievalIndependentModelBase.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.document_retrieval.base.RetrievalIndependentModelBase.make_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>need to implement</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.document_retrieval.base.RetrievalIndependentModelBase.make_predictions">
+<code class="descname">make_predictions</code><span class="sig-paren">(</span><em>output_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/document_retrieval/base.html#RetrievalIndependentModelBase.make_predictions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.document_retrieval.base.RetrievalIndependentModelBase.make_predictions" title="Permalink to this definition">¶</a></dt>
+<dd><p>need to implement</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.document_retrieval.base.RetrievalIndependentModelBase.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>output_dict</em>, <em>raw_feature</em>, <em>token_data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/document_retrieval/base.html#RetrievalIndependentModelBase.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.document_retrieval.base.RetrievalIndependentModelBase.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>need to implement</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.document_retrieval.base.RetrievalIndependentModelBase.print_examples">
+<code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/document_retrieval/base.html#RetrievalIndependentModelBase.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.document_retrieval.base.RetrievalIndependentModelBase.print_examples" title="Permalink to this definition">¶</a></dt>
+<dd><p>need to implement</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.model.document_retrieval.base.RetrievalModelBase">
+<em class="property">class </em><code class="descclassname">rqa.model.document_retrieval.base.</code><code class="descname">RetrievalModelBase</code><span class="sig-paren">(</span><em>token_embedder</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/document_retrieval/base.html#RetrievalModelBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.document_retrieval.base.RetrievalModelBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="rqa.model.base.html#rqa.model.base.ModelBase" title="rqa.model.base.ModelBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.base.ModelBase</span></code></a></p>
+<p>Document Retrieval Model (trainable + End2End)
+Model Base</p>
+<p># TODO: need to define detail spec</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>token_embedder: ‘TokenEmbedder’, Used to embed the inputs.</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.model.document_retrieval.base.RetrievalModelBase.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>batch</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/document_retrieval/base.html#RetrievalModelBase.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.document_retrieval.base.RetrievalModelBase.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>batch (features and labels) -&gt; logits -&gt; loss</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.document_retrieval.base.RetrievalModelBase.make_metrics">
+<code class="descname">make_metrics</code><span class="sig-paren">(</span><em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/document_retrieval/base.html#RetrievalModelBase.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.document_retrieval.base.RetrievalModelBase.make_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>need to implement</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.document_retrieval.base.RetrievalModelBase.make_predictions">
+<code class="descname">make_predictions</code><span class="sig-paren">(</span><em>output_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/document_retrieval/base.html#RetrievalModelBase.make_predictions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.document_retrieval.base.RetrievalModelBase.make_predictions" title="Permalink to this definition">¶</a></dt>
+<dd><p>need to implement</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.document_retrieval.base.RetrievalModelBase.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>output_dict</em>, <em>raw_feature</em>, <em>token_data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/document_retrieval/base.html#RetrievalModelBase.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.document_retrieval.base.RetrievalModelBase.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>need to implement</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.document_retrieval.base.RetrievalModelBase.print_examples">
+<code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/document_retrieval/base.html#RetrievalModelBase.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.document_retrieval.base.RetrievalModelBase.print_examples" title="Permalink to this definition">¶</a></dt>
+<dd><p>need to implement</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rqa.model.document_retrieval.tfidf.html" class="btn btn-neutral float-right" title="rqa.model.document_retrieval.tfidf module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rqa.model.document_retrieval.html" class="btn btn-neutral" title="rqa.model.document_retrieval package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

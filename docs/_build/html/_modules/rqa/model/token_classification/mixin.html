@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.model.token_classification.mixin &mdash; reasoning-qa 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>rqa.model.token_classification.mixin</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rqa.model.token_classification.mixin</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">pycm</span>
+
+<span class="kn">from</span> <span class="nn">rqa.decorator</span> <span class="k">import</span> <span class="n">arguments_required</span>
+<span class="kn">import</span> <span class="nn">rqa.utils</span> <span class="k">as</span> <span class="nn">common_utils</span>
+<span class="kn">from</span> <span class="nn">rqa.model</span> <span class="k">import</span> <span class="n">cls_utils</span>
+<span class="kn">from</span> <span class="nn">rqa.metric.classification</span> <span class="k">import</span> <span class="n">macro_f1</span><span class="p">,</span> <span class="n">macro_precision</span><span class="p">,</span> <span class="n">macro_recall</span>
+
+
+<div class="viewcode-block" id="TokenClassification"><a class="viewcode-back" href="../../../../rqa.model.token_classification.html#rqa.model.token_classification.mixin.TokenClassification">[docs]</a><span class="k">class</span> <span class="nc">TokenClassification</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Token Classification Mixin Class &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TokenClassification.make_predictions"><a class="viewcode-back" href="../../../../rqa.model.token_classification.html#rqa.model.token_classification.mixin.TokenClassification.make_predictions">[docs]</a>    <span class="k">def</span> <span class="nf">make_predictions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make predictions with model&#39;s output_dict</span>
+
+<span class="sd">        * Args:</span>
+<span class="sd">            output_dict: model&#39;s output dictionary consisting of</span>
+<span class="sd">                - sequence_embed: embedding vector of the sequence</span>
+<span class="sd">                - tag_logits: representing unnormalized log probabilities of the tag</span>
+
+<span class="sd">                - tag_idxs: target tag idxs</span>
+<span class="sd">                - data_idx: data idx</span>
+<span class="sd">                - loss: a scalar loss to be optimized</span>
+
+<span class="sd">        * Returns:</span>
+<span class="sd">            predictions: prediction dictionary consisting of</span>
+<span class="sd">                - key: &#39;id&#39; (sequence id)</span>
+<span class="sd">                - value: dictionary consisting of</span>
+<span class="sd">                    - tag_idxs</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="n">data_indices</span> <span class="o">=</span> <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;data_idx&quot;</span><span class="p">]</span>
+        <span class="n">pred_tag_logits</span> <span class="o">=</span> <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;tag_logits&quot;</span><span class="p">]</span>
+        <span class="n">pred_tag_idxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">pred_tag_logit</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                         <span class="k">for</span> <span class="n">pred_tag_logit</span> <span class="ow">in</span> <span class="n">pred_tag_logits</span><span class="p">]</span>
+
+        <span class="n">predictions</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">data_idx</span><span class="o">.</span><span class="n">item</span><span class="p">()):</span> <span class="p">{</span>
+                <span class="s2">&quot;tag_idxs&quot;</span><span class="p">:</span> <span class="n">pred_tag_idx</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="k">for</span> <span class="n">data_idx</span><span class="p">,</span> <span class="n">pred_tag_idx</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                <span class="nb">list</span><span class="p">(</span><span class="n">data_indices</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
+                <span class="n">pred_tag_idxs</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">predictions</span></div>
+
+    <span class="nd">@arguments_required</span><span class="p">([</span><span class="s2">&quot;sequence&quot;</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_dict</span><span class="p">,</span> <span class="n">arguments</span><span class="p">,</span> <span class="n">helper</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inference by raw_feature</span>
+
+<span class="sd">        * Args:</span>
+<span class="sd">            output_dict: model&#39;s output dictionary consisting of</span>
+<span class="sd">                - sequence_embed: embedding vector of the sequence</span>
+<span class="sd">                - tag_logits: representing unnormalized log probabilities of the tags.</span>
+<span class="sd">            arguments: arguments dictionary consisting of user_input</span>
+<span class="sd">            helper: dictionary to get the classification result, consisting of</span>
+<span class="sd">                - tag_idx2text: dictionary converting tag_idx to tag_text</span>
+
+<span class="sd">        * Returns: output dict (dict) consisting of</span>
+<span class="sd">            - tag_logits: representing unnormalized log probabilities of the tags</span>
+<span class="sd">            - tag_idxs: predicted tag idxs</span>
+<span class="sd">            - tag_texts: predicted tag texts</span>
+<span class="sd">            - tag_slots: predicted tag slots</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">sequence</span> <span class="o">=</span> <span class="n">arguments</span><span class="p">[</span><span class="s2">&quot;sequence&quot;</span><span class="p">]</span>
+        <span class="n">tag_logits</span> <span class="o">=</span> <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;tag_logits&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">tag_idxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">tag_logit</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">tag_logit</span> <span class="ow">in</span> <span class="n">tag_logits</span><span class="p">]</span>
+        <span class="n">tag_texts</span> <span class="o">=</span> <span class="p">[</span><span class="n">helper</span><span class="p">[</span><span class="s2">&quot;tag_idx2text&quot;</span><span class="p">][</span><span class="n">tag_idx</span><span class="o">.</span><span class="n">item</span><span class="p">()]</span> <span class="k">for</span> <span class="n">tag_idx</span> <span class="ow">in</span> <span class="n">tag_idxs</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;tag_logits&quot;</span><span class="p">:</span> <span class="n">tag_logits</span><span class="p">,</span>
+            <span class="s2">&quot;tag_idxs&quot;</span><span class="p">:</span> <span class="n">tag_idxs</span><span class="p">,</span>
+            <span class="s2">&quot;tag_texts&quot;</span><span class="p">:</span> <span class="n">tag_texts</span><span class="p">,</span>
+            <span class="s2">&quot;tag_dict&quot;</span><span class="p">:</span> <span class="n">cls_utils</span><span class="o">.</span><span class="n">get_tag_dict</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">tag_texts</span><span class="p">)</span>
+        <span class="p">}</span>
+
+<div class="viewcode-block" id="TokenClassification.make_metrics"><a class="viewcode-back" href="../../../../rqa.model.token_classification.html#rqa.model.token_classification.mixin.TokenClassification.make_metrics">[docs]</a>    <span class="k">def</span> <span class="nf">make_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make metrics with prediction dictionary</span>
+
+<span class="sd">        * Args:</span>
+<span class="sd">            predictions: prediction dictionary consisting of</span>
+<span class="sd">                - key: &#39;id&#39; (sequence id)</span>
+<span class="sd">                - value: dictionary consisting of</span>
+<span class="sd">                    - tag_idxs</span>
+
+<span class="sd">        * Returns:</span>
+<span class="sd">            metrics: metric dictionary consisting of</span>
+<span class="sd">                - &#39;accuracy&#39;: sequence level accuracy</span>
+<span class="sd">                - &#39;tag_accuracy&#39;: tag level accuracy</span>
+<span class="sd">                - &#39;macro_f1&#39;: tag prediction macro(unweighted mean) f1</span>
+<span class="sd">                - &#39;macro_precision&#39;: tag prediction macro(unweighted mean) precision</span>
+<span class="sd">                - &#39;macro_recall&#39;: tag prediction macro(unweighted mean) recall</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">pred_tag_idxs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">target_tag_idxs</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">accurate_sequence</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">data_idx</span><span class="p">,</span> <span class="n">pred</span> <span class="ow">in</span> <span class="n">predictions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_ground_truth</span><span class="p">(</span><span class="n">data_idx</span><span class="p">)</span>
+
+            <span class="n">pred_tag_idxs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="s2">&quot;tag_idxs&quot;</span><span class="p">])</span>
+            <span class="n">target_tag_idxs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;tag_idxs&quot;</span><span class="p">])</span>
+
+            <span class="n">accurate_sequence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;tag_idxs&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="s2">&quot;tag_idxs&quot;</span><span class="p">]))</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+                                <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">pred_tag_idxs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">common_utils</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">pred_tag_idxs</span><span class="p">))</span>
+        <span class="n">target_tag_idxs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">common_utils</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">target_tag_idxs</span><span class="p">))</span>
+
+        <span class="c1"># confusion matrix</span>
+        <span class="n">pycm_obj</span> <span class="o">=</span> <span class="n">pycm</span><span class="o">.</span><span class="n">ConfusionMatrix</span><span class="p">(</span><span class="n">actual_vector</span><span class="o">=</span><span class="n">target_tag_idxs</span><span class="p">,</span> <span class="n">predict_vector</span><span class="o">=</span><span class="n">pred_tag_idxs</span><span class="p">)</span>
+        <span class="n">pycm_obj_mappings</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">tag_idx</span><span class="p">:</span> <span class="n">tag_text</span>
+            <span class="k">for</span> <span class="n">tag_idx</span><span class="p">,</span> <span class="n">tag_text</span>
+            <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">tag_idx2text</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">tag_idx</span> <span class="ow">in</span> <span class="n">pycm_obj</span><span class="o">.</span><span class="n">classes</span>
+        <span class="p">}</span>
+        <span class="n">pycm_obj</span><span class="o">.</span><span class="n">relabel</span><span class="p">(</span><span class="n">pycm_obj_mappings</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_predictions</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;targets&quot;</span><span class="p">:</span> <span class="n">target_tag_idxs</span><span class="p">,</span>
+                <span class="s2">&quot;predict&quot;</span><span class="p">:</span> <span class="n">pred_tag_idxs</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="n">pycm_obj</span><span class="o">=</span><span class="n">pycm_obj</span>
+        <span class="p">)</span>
+
+        <span class="n">sequence_accuracy</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">accurate_sequence</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">accurate_sequence</span><span class="p">)</span>
+
+        <span class="n">metrics</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">sequence_accuracy</span><span class="p">,</span>
+            <span class="s2">&quot;tag_accuracy&quot;</span><span class="p">:</span> <span class="n">pycm_obj</span><span class="o">.</span><span class="n">Overall_ACC</span><span class="p">,</span>
+            <span class="s2">&quot;macro_f1&quot;</span><span class="p">:</span> <span class="n">macro_f1</span><span class="p">(</span><span class="n">pycm_obj</span><span class="p">),</span>
+            <span class="s2">&quot;macro_precision&quot;</span><span class="p">:</span> <span class="n">macro_precision</span><span class="p">(</span><span class="n">pycm_obj</span><span class="p">),</span>
+            <span class="s2">&quot;macro_recall&quot;</span><span class="p">:</span> <span class="n">macro_recall</span><span class="p">(</span><span class="n">pycm_obj</span><span class="p">),</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">metrics</span></div>
+
+<div class="viewcode-block" id="TokenClassification.write_predictions"><a class="viewcode-back" href="../../../../rqa.model.token_classification.html#rqa.model.token_classification.mixin.TokenClassification.write_predictions">[docs]</a>    <span class="k">def</span> <span class="nf">write_predictions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pycm_obj</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Override write_predictions() in ModelBase to log confusion matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">TokenClassification</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">write_predictions</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span> <span class="n">is_dict</span><span class="o">=</span><span class="n">is_dict</span><span class="p">)</span>
+
+        <span class="n">data_type</span> <span class="o">=</span> <span class="s2">&quot;train&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span> <span class="k">else</span> <span class="s2">&quot;valid&quot;</span>
+
+        <span class="k">if</span> <span class="n">pycm_obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">stats_file_path</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;predictions-</span><span class="si">{data_type}</span><span class="s2">-{self._train_counter.get_display()}-stats&quot;</span>
+            <span class="n">pycm_obj</span><span class="o">.</span><span class="n">save_csv</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_dir</span><span class="p">)</span> <span class="o">/</span> <span class="n">stats_file_path</span><span class="p">))</span>
+
+            <span class="n">confusion_matrix_file_path</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;predictions-</span><span class="si">{data_type}</span><span class="s2">-{self._train_counter.get_display()}-confusion_matrix&quot;</span>
+            <span class="n">cls_utils</span><span class="o">.</span><span class="n">write_confusion_matrix_to_csv</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_dir</span><span class="p">)</span> <span class="o">/</span> <span class="n">confusion_matrix_file_path</span><span class="p">),</span> <span class="n">pycm_obj</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TokenClassification.print_examples"><a class="viewcode-back" href="../../../../rqa.model.token_classification.html#rqa.model.token_classification.mixin.TokenClassification.print_examples">[docs]</a>    <span class="k">def</span> <span class="nf">print_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Print evaluation examples</span>
+
+<span class="sd">        * Args:</span>
+<span class="sd">            index: data index</span>
+<span class="sd">            inputs: mini-batch inputs</span>
+<span class="sd">            predictions: prediction dictionary consisting of</span>
+<span class="sd">                - key: &#39;id&#39; (sequence id)</span>
+<span class="sd">                - value: dictionary consisting of</span>
+<span class="sd">                    - class_idx</span>
+
+<span class="sd">        * Returns:</span>
+<span class="sd">            print(Sequence, Target Tags, Target Slots, Predicted Tags, Predicted Slots)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">data_idx</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">][</span><span class="s2">&quot;data_idx&quot;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="n">data_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">data_idx</span><span class="p">)</span>
+
+        <span class="n">helper</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">helper</span>
+        <span class="n">sequence</span> <span class="o">=</span> <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;examples&quot;</span><span class="p">][</span><span class="n">data_id</span><span class="p">][</span><span class="s2">&quot;sequence&quot;</span><span class="p">]</span>
+        <span class="n">target_tag_texts</span> <span class="o">=</span> <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;examples&quot;</span><span class="p">][</span><span class="n">data_id</span><span class="p">][</span><span class="s2">&quot;tag_texts&quot;</span><span class="p">]</span>
+
+        <span class="n">pred_tag_idxs</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="n">data_id</span><span class="p">][</span><span class="s2">&quot;tag_idxs&quot;</span><span class="p">]</span>
+        <span class="n">pred_tag_texts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_tag_texts_with_idxs</span><span class="p">(</span><span class="n">pred_tag_idxs</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Sequence:&quot;</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Target:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Tags:&quot;</span><span class="p">,</span> <span class="n">target_tag_texts</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    (Slots)&quot;</span><span class="p">,</span> <span class="n">cls_utils</span><span class="o">.</span><span class="n">get_tag_dict</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">target_tag_texts</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Predict:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Tags:&quot;</span><span class="p">,</span> <span class="n">pred_tag_texts</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    (Slots)&quot;</span><span class="p">,</span> <span class="n">cls_utils</span><span class="o">.</span><span class="n">get_tag_dict</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">pred_tag_texts</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

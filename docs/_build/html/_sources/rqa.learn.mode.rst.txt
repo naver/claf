@@ -1,0 +1,7 @@
+rqa.learn.mode module
+=====================
+
+.. automodule:: rqa.learn.mode
+    :members:
+    :undoc-members:
+    :show-inheritance:

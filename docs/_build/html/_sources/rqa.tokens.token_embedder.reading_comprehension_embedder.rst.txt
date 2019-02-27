@@ -1,0 +1,7 @@
+rqa.tokens.token\_embedder.reading\_comprehension\_embedder module
+==================================================================
+
+.. automodule:: rqa.tokens.token_embedder.reading_comprehension_embedder
+    :members:
+    :undoc-members:
+    :show-inheritance:

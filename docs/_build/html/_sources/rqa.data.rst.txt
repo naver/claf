@@ -1,0 +1,42 @@
+rqa.data package
+================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    rqa.data.dataset
+    rqa.data.reader
+
+Submodules
+----------
+
+.. automodule:: rqa.data.batch
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.data.collate
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.data.data_handler
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.data.utils
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: rqa.data
+    :members:
+    :undoc-members:
+    :show-inheritance:

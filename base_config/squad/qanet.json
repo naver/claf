@@ -1,0 +1,95 @@
+{
+     "data_reader": {
+         "dataset": "squad",
+         "train_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/train-v1.1.json",
+         "valid_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json",
+         "squad": {
+             "context_max_length": 400
+         }
+     },
+     "iterator": {
+         "batch_size": 6
+     },
+     "token": {
+         "names": ["char", "glove"],
+         "types": ["char", "word"],
+         "tokenizer": {
+             "char": {
+                 "name": "character"
+             },
+             "word": {
+                 "name": "treebank_en",
+                 "split_with_regex": true
+             }
+         },
+         "char": {
+             "vocab": {
+                 "max_vocab_size": 260,
+                 "start_token": "<s>",
+                 "end_token": "</s>"
+             },
+             "indexer": {
+                 "insert_char_start": true,
+                 "insert_char_end": true
+             },
+             "embedding": {
+                 "embed_dim": 64,
+                 "kernel_sizes": [5],
+                 "num_filter": 200,
+                 "activation": "relu",
+                 "dropout": 0.05
+             }
+         },
+         "glove": {
+             "vocab": {
+                "pretrained_path": "<glove.840B.vocab.txt path>",
+                "pretrained_token": "intersect"
+             },
+             "indexer": {
+                 "lowercase": false
+             },
+             "embedding": {
+                 "embed_dim": 300,
+                 "pretrained_path": "<glove.840B.300d.txt path>",
+                 "trainable": false,
+                 "dropout": 0.1
+             }
+         }
+     },
+     "model": {
+         "name": "qanet",
+         "qanet": {
+             "answer_maxlen": 30,
+             "model_dim": 128,
+             "kernel_size_in_embedding": 7,
+             "num_head_in_embedding": 8,
+             "num_conv_block_in_embedding": 4,
+             "num_embedding_encoder_block": 1,
+             "kernel_size_in_modeling": 5,
+             "num_head_in_modeling": 8,
+             "num_conv_block_in_modeling": 2,
+             "num_modeling_encoder_block": 7,
+             "layer_dropout": 0.9,
+             "dropout": 0.1
+         }
+     },
+     "trainer": {
+         "log_dir": "logs/squad_qanet",
+         "num_epochs": 100,
+         "early_stopping_threshold": 10,
+         "metric_key": "f1",
+         "verbose_step_count": 100,
+         "eval_and_save_step_count": "epoch"
+     },
+     "optimizer": {
+         "op_type": "adamax",
+         "learning_rate": 0.002,
+         "lr_scheduler_type": "reduce_on_plateau",
+         "reduce_on_plateau": {
+             "factor": 0.5,
+             "mode": "max",
+             "patience": 2
+         }
+     },
+     "seed_num": 2
+ }

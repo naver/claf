@@ -1,0 +1,7 @@
+rqa.tokens.embedding.frequent\_word\_embedding module
+=====================================================
+
+.. automodule:: rqa.tokens.embedding.frequent_word_embedding
+    :members:
+    :undoc-members:
+    :show-inheritance:

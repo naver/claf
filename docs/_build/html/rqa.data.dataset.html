@@ -1,0 +1,973 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.data.dataset package &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rqa.data.reader package" href="rqa.data.reader.html" />
+    <link rel="prev" title="rqa.data package" href="rqa.data.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rqa.config.html">config</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rqa.data.html">data</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="rqa.data.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">rqa.data.dataset package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-rqa.data.dataset.base">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-rqa.data.dataset">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.data.reader.html">rqa.data.reader package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.data.html#module-rqa.data.batch">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.data.html#module-rqa.data">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="rqa.data.html">rqa.data package</a> &raquo;</li>
+        
+      <li>rqa.data.dataset package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.data.dataset.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rqa-data-dataset-package">
+<h1>rqa.data.dataset package<a class="headerlink" href="#rqa-data-dataset-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-rqa.data.dataset.base">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-rqa.data.dataset.base" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.data.dataset.base.DatasetBase">
+<em class="property">class </em><code class="descclassname">rqa.data.dataset.base.</code><code class="descname">DatasetBase</code><a class="reference internal" href="_modules/rqa/data/dataset/base.html#DatasetBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.base.DatasetBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.dataset.Dataset</span></code></p>
+<p>Dataset Base Model
+An abstract class representing a Dataset.</p>
+<dl class="method">
+<dt id="rqa.data.dataset.base.DatasetBase.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/base.html#DatasetBase.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.base.DatasetBase.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.base.DatasetBase.get_ground_truth">
+<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/base.html#DatasetBase.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.base.DatasetBase.get_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.base.DatasetBase.get_ground_truths">
+<code class="descname">get_ground_truths</code><span class="sig-paren">(</span><em>data_idxs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/base.html#DatasetBase.get_ground_truths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.base.DatasetBase.get_ground_truths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.base.DatasetBase.get_predict">
+<code class="descname">get_predict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/base.html#DatasetBase.get_predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.base.DatasetBase.get_predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.base.DatasetBase.lazy_evaluation">
+<code class="descname">lazy_evaluation</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/base.html#DatasetBase.lazy_evaluation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.base.DatasetBase.lazy_evaluation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.data.dataset.seq_cls"></span><dl class="class">
+<dt id="rqa.data.dataset.seq_cls.SeqClsDataset">
+<em class="property">class </em><code class="descclassname">rqa.data.dataset.seq_cls.</code><code class="descname">SeqClsDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls.html#SeqClsDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.seq_cls.SeqClsDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.data.dataset.base.DatasetBase" title="rqa.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.data.dataset.base.DatasetBase</span></code></a></p>
+<p>Dataset for Sequence Classification</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>batch: Batch DTO (rqa.data.batch)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>helper: helper from data_reader</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.data.dataset.seq_cls.SeqClsDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls.html#SeqClsDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.seq_cls.SeqClsDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.seq_cls.SeqClsDataset.get_class_text_with_idx">
+<code class="descname">get_class_text_with_idx</code><span class="sig-paren">(</span><em>class_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls.html#SeqClsDataset.get_class_text_with_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.seq_cls.SeqClsDataset.get_class_text_with_idx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.seq_cls.SeqClsDataset.get_ground_truth">
+<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls.html#SeqClsDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.seq_cls.SeqClsDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.seq_cls.SeqClsDataset.get_id">
+<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls.html#SeqClsDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.seq_cls.SeqClsDataset.get_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.seq_cls.SeqClsDataset.num_classes">
+<code class="descname">num_classes</code><a class="headerlink" href="#rqa.data.dataset.seq_cls.SeqClsDataset.num_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.seq_cls.SeqClsDataset.sequence_maxlen">
+<code class="descname">sequence_maxlen</code><a class="headerlink" href="#rqa.data.dataset.seq_cls.SeqClsDataset.sequence_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.data.dataset.seq_cls_bert"></span><dl class="class">
+<dt id="rqa.data.dataset.seq_cls_bert.SeqClsBertDataset">
+<em class="property">class </em><code class="descclassname">rqa.data.dataset.seq_cls_bert.</code><code class="descname">SeqClsBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls_bert.html#SeqClsBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.seq_cls_bert.SeqClsBertDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.data.dataset.base.DatasetBase" title="rqa.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.data.dataset.base.DatasetBase</span></code></a></p>
+<p>Dataset for Sequence Classification using BERT</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>batch: Batch DTO (rqa.data.batch)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>helper: helper from data_reader</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.data.dataset.seq_cls_bert.SeqClsBertDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls_bert.html#SeqClsBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.seq_cls_bert.SeqClsBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.seq_cls_bert.SeqClsBertDataset.get_class_text_with_idx">
+<code class="descname">get_class_text_with_idx</code><span class="sig-paren">(</span><em>class_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls_bert.html#SeqClsBertDataset.get_class_text_with_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.seq_cls_bert.SeqClsBertDataset.get_class_text_with_idx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.seq_cls_bert.SeqClsBertDataset.get_ground_truth">
+<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls_bert.html#SeqClsBertDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.seq_cls_bert.SeqClsBertDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.seq_cls_bert.SeqClsBertDataset.get_id">
+<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls_bert.html#SeqClsBertDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.seq_cls_bert.SeqClsBertDataset.get_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.seq_cls_bert.SeqClsBertDataset.num_classes">
+<code class="descname">num_classes</code><a class="headerlink" href="#rqa.data.dataset.seq_cls_bert.SeqClsBertDataset.num_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.seq_cls_bert.SeqClsBertDataset.sequence_maxlen">
+<code class="descname">sequence_maxlen</code><a class="headerlink" href="#rqa.data.dataset.seq_cls_bert.SeqClsBertDataset.sequence_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.data.dataset.squad"></span><dl class="class">
+<dt id="rqa.data.dataset.squad.SQuADDataset">
+<em class="property">class </em><code class="descclassname">rqa.data.dataset.squad.</code><code class="descname">SQuADDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad.SQuADDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.data.dataset.base.DatasetBase" title="rqa.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.data.dataset.base.DatasetBase</span></code></a></p>
+<dl class="docutils">
+<dt>SQuAD Dataset</dt>
+<dd>compatible with v1.1 and v2.0</dd>
+</dl>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>batch: Batch DTO (rqa.data.batch)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>helper: helper from data_reader</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.data.dataset.squad.SQuADDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad.SQuADDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.squad.SQuADDataset.context_maxlen">
+<code class="descname">context_maxlen</code><a class="headerlink" href="#rqa.data.dataset.squad.SQuADDataset.context_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.squad.SQuADDataset.get_context">
+<code class="descname">get_context</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset.get_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad.SQuADDataset.get_context" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.squad.SQuADDataset.get_ground_truths">
+<code class="descname">get_ground_truths</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset.get_ground_truths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad.SQuADDataset.get_ground_truths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.squad.SQuADDataset.get_predict">
+<code class="descname">get_predict</code><span class="sig-paren">(</span><em>data_index</em>, <em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset.get_predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad.SQuADDataset.get_predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.squad.SQuADDataset.get_qid">
+<code class="descname">get_qid</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset.get_qid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad.SQuADDataset.get_qid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.squad.SQuADDataset.get_text_span">
+<code class="descname">get_text_span</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset.get_text_span"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad.SQuADDataset.get_text_span" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.squad.SQuADDataset.get_text_with_index">
+<code class="descname">get_text_with_index</code><span class="sig-paren">(</span><em>data_index</em>, <em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset.get_text_with_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad.SQuADDataset.get_text_with_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.squad.SQuADDataset.question_maxlen">
+<code class="descname">question_maxlen</code><a class="headerlink" href="#rqa.data.dataset.squad.SQuADDataset.question_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.data.dataset.squad_bert"></span><dl class="class">
+<dt id="rqa.data.dataset.squad_bert.SQuADBertDataset">
+<em class="property">class </em><code class="descclassname">rqa.data.dataset.squad_bert.</code><code class="descname">SQuADBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad_bert.SQuADBertDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.data.dataset.base.DatasetBase" title="rqa.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.data.dataset.base.DatasetBase</span></code></a></p>
+<dl class="docutils">
+<dt>SQuAD Dataset for BERT</dt>
+<dd>compatible with v1.1 and v2.0</dd>
+</dl>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>batch: Batch DTO (rqa.data.batch)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>helper: helper from data_reader</dd>
+</dl>
+</li>
+</ul>
+<dl class="attribute">
+<dt id="rqa.data.dataset.squad_bert.SQuADBertDataset.bert_input_maxlen">
+<code class="descname">bert_input_maxlen</code><a class="headerlink" href="#rqa.data.dataset.squad_bert.SQuADBertDataset.bert_input_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.squad_bert.SQuADBertDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad_bert.SQuADBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.squad_bert.SQuADBertDataset.get_bert_tokens">
+<code class="descname">get_bert_tokens</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.get_bert_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad_bert.SQuADBertDataset.get_bert_tokens" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.squad_bert.SQuADBertDataset.get_context">
+<code class="descname">get_context</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.get_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad_bert.SQuADBertDataset.get_context" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.squad_bert.SQuADBertDataset.get_ground_truths">
+<code class="descname">get_ground_truths</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.get_ground_truths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad_bert.SQuADBertDataset.get_ground_truths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.squad_bert.SQuADBertDataset.get_predict">
+<code class="descname">get_predict</code><span class="sig-paren">(</span><em>data_index</em>, <em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.get_predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad_bert.SQuADBertDataset.get_predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.squad_bert.SQuADBertDataset.get_qid">
+<code class="descname">get_qid</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.get_qid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad_bert.SQuADBertDataset.get_qid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.squad_bert.SQuADBertDataset.get_qid_index">
+<code class="descname">get_qid_index</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.get_qid_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad_bert.SQuADBertDataset.get_qid_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.squad_bert.SQuADBertDataset.get_text_with_index">
+<code class="descname">get_text_with_index</code><span class="sig-paren">(</span><em>data_index</em>, <em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.get_text_with_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.squad_bert.SQuADBertDataset.get_text_with_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.data.dataset.tok_cls_bert"></span><dl class="class">
+<dt id="rqa.data.dataset.tok_cls_bert.TokClsBertDataset">
+<em class="property">class </em><code class="descclassname">rqa.data.dataset.tok_cls_bert.</code><code class="descname">TokClsBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/tok_cls_bert.html#TokClsBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.tok_cls_bert.TokClsBertDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.data.dataset.base.DatasetBase" title="rqa.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.data.dataset.base.DatasetBase</span></code></a></p>
+<p>Dataset for Token Classification</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>batch: Batch DTO (rqa.data.batch)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>helper: helper from data_reader</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.data.dataset.tok_cls_bert.TokClsBertDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/tok_cls_bert.html#TokClsBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.tok_cls_bert.TokClsBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.tok_cls_bert.TokClsBertDataset.get_ground_truth">
+<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.tok_cls_bert.TokClsBertDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.tok_cls_bert.TokClsBertDataset.get_id">
+<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.tok_cls_bert.TokClsBertDataset.get_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.tok_cls_bert.TokClsBertDataset.get_tag_text_with_idx">
+<code class="descname">get_tag_text_with_idx</code><span class="sig-paren">(</span><em>tag_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_tag_text_with_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.tok_cls_bert.TokClsBertDataset.get_tag_text_with_idx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.tok_cls_bert.TokClsBertDataset.get_tag_texts_with_idxs">
+<code class="descname">get_tag_texts_with_idxs</code><span class="sig-paren">(</span><em>tag_idxs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_tag_texts_with_idxs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.tok_cls_bert.TokClsBertDataset.get_tag_texts_with_idxs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.tok_cls_bert.TokClsBertDataset.num_tags">
+<code class="descname">num_tags</code><a class="headerlink" href="#rqa.data.dataset.tok_cls_bert.TokClsBertDataset.num_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.tok_cls_bert.TokClsBertDataset.sequence_maxlen">
+<code class="descname">sequence_maxlen</code><a class="headerlink" href="#rqa.data.dataset.tok_cls_bert.TokClsBertDataset.sequence_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.data.dataset.wikisql"></span><dl class="class">
+<dt id="rqa.data.dataset.wikisql.WikiSQLDataset">
+<em class="property">class </em><code class="descclassname">rqa.data.dataset.wikisql.</code><code class="descname">WikiSQLDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/wikisql.html#WikiSQLDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.wikisql.WikiSQLDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.data.dataset.base.DatasetBase" title="rqa.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.data.dataset.base.DatasetBase</span></code></a></p>
+<p>WikiSQL Dataset</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>batch: Batch DTO (rqa.data.batch)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>helper: helper from data_reader</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.data.dataset.wikisql.WikiSQLDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/wikisql.html#WikiSQLDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.wikisql.WikiSQLDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.wikisql.WikiSQLDataset.get_ground_truth">
+<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/wikisql.html#WikiSQLDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.wikisql.WikiSQLDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.wikisql.WikiSQLDataset.get_id">
+<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/wikisql.html#WikiSQLDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.wikisql.WikiSQLDataset.get_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.wikisql.WikiSQLDataset.get_table_id">
+<code class="descname">get_table_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/wikisql.html#WikiSQLDataset.get_table_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.wikisql.WikiSQLDataset.get_table_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.wikisql.WikiSQLDataset.get_tokenized_question">
+<code class="descname">get_tokenized_question</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/wikisql.html#WikiSQLDataset.get_tokenized_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.wikisql.WikiSQLDataset.get_tokenized_question" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.wikisql.WikiSQLDataset.question_maxlen">
+<code class="descname">question_maxlen</code><a class="headerlink" href="#rqa.data.dataset.wikisql.WikiSQLDataset.question_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-rqa.data.dataset">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rqa.data.dataset" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.data.dataset.SQuADDataset">
+<em class="property">class </em><code class="descclassname">rqa.data.dataset.</code><code class="descname">SQuADDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.data.dataset.base.DatasetBase" title="rqa.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.data.dataset.base.DatasetBase</span></code></a></p>
+<dl class="docutils">
+<dt>SQuAD Dataset</dt>
+<dd>compatible with v1.1 and v2.0</dd>
+</dl>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>batch: Batch DTO (rqa.data.batch)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>helper: helper from data_reader</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.data.dataset.SQuADDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.SQuADDataset.context_maxlen">
+<code class="descname">context_maxlen</code><a class="headerlink" href="#rqa.data.dataset.SQuADDataset.context_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SQuADDataset.get_context">
+<code class="descname">get_context</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset.get_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADDataset.get_context" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SQuADDataset.get_ground_truths">
+<code class="descname">get_ground_truths</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset.get_ground_truths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADDataset.get_ground_truths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SQuADDataset.get_predict">
+<code class="descname">get_predict</code><span class="sig-paren">(</span><em>data_index</em>, <em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset.get_predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADDataset.get_predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SQuADDataset.get_qid">
+<code class="descname">get_qid</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset.get_qid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADDataset.get_qid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SQuADDataset.get_text_span">
+<code class="descname">get_text_span</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset.get_text_span"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADDataset.get_text_span" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SQuADDataset.get_text_with_index">
+<code class="descname">get_text_with_index</code><span class="sig-paren">(</span><em>data_index</em>, <em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad.html#SQuADDataset.get_text_with_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADDataset.get_text_with_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.SQuADDataset.question_maxlen">
+<code class="descname">question_maxlen</code><a class="headerlink" href="#rqa.data.dataset.SQuADDataset.question_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.data.dataset.SQuADBertDataset">
+<em class="property">class </em><code class="descclassname">rqa.data.dataset.</code><code class="descname">SQuADBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADBertDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.data.dataset.base.DatasetBase" title="rqa.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.data.dataset.base.DatasetBase</span></code></a></p>
+<dl class="docutils">
+<dt>SQuAD Dataset for BERT</dt>
+<dd>compatible with v1.1 and v2.0</dd>
+</dl>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>batch: Batch DTO (rqa.data.batch)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>helper: helper from data_reader</dd>
+</dl>
+</li>
+</ul>
+<dl class="attribute">
+<dt id="rqa.data.dataset.SQuADBertDataset.bert_input_maxlen">
+<code class="descname">bert_input_maxlen</code><a class="headerlink" href="#rqa.data.dataset.SQuADBertDataset.bert_input_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SQuADBertDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SQuADBertDataset.get_bert_tokens">
+<code class="descname">get_bert_tokens</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.get_bert_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADBertDataset.get_bert_tokens" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SQuADBertDataset.get_context">
+<code class="descname">get_context</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.get_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADBertDataset.get_context" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SQuADBertDataset.get_ground_truths">
+<code class="descname">get_ground_truths</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.get_ground_truths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADBertDataset.get_ground_truths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SQuADBertDataset.get_predict">
+<code class="descname">get_predict</code><span class="sig-paren">(</span><em>data_index</em>, <em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.get_predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADBertDataset.get_predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SQuADBertDataset.get_qid">
+<code class="descname">get_qid</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.get_qid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADBertDataset.get_qid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SQuADBertDataset.get_qid_index">
+<code class="descname">get_qid_index</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.get_qid_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADBertDataset.get_qid_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SQuADBertDataset.get_text_with_index">
+<code class="descname">get_text_with_index</code><span class="sig-paren">(</span><em>data_index</em>, <em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/squad_bert.html#SQuADBertDataset.get_text_with_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SQuADBertDataset.get_text_with_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.data.dataset.WikiSQLDataset">
+<em class="property">class </em><code class="descclassname">rqa.data.dataset.</code><code class="descname">WikiSQLDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/wikisql.html#WikiSQLDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.WikiSQLDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.data.dataset.base.DatasetBase" title="rqa.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.data.dataset.base.DatasetBase</span></code></a></p>
+<p>WikiSQL Dataset</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>batch: Batch DTO (rqa.data.batch)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>helper: helper from data_reader</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.data.dataset.WikiSQLDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/wikisql.html#WikiSQLDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.WikiSQLDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.WikiSQLDataset.get_ground_truth">
+<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/wikisql.html#WikiSQLDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.WikiSQLDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.WikiSQLDataset.get_id">
+<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/wikisql.html#WikiSQLDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.WikiSQLDataset.get_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.WikiSQLDataset.get_table_id">
+<code class="descname">get_table_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/wikisql.html#WikiSQLDataset.get_table_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.WikiSQLDataset.get_table_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.WikiSQLDataset.get_tokenized_question">
+<code class="descname">get_tokenized_question</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/wikisql.html#WikiSQLDataset.get_tokenized_question"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.WikiSQLDataset.get_tokenized_question" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.WikiSQLDataset.question_maxlen">
+<code class="descname">question_maxlen</code><a class="headerlink" href="#rqa.data.dataset.WikiSQLDataset.question_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.data.dataset.SeqClsDataset">
+<em class="property">class </em><code class="descclassname">rqa.data.dataset.</code><code class="descname">SeqClsDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls.html#SeqClsDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SeqClsDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.data.dataset.base.DatasetBase" title="rqa.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.data.dataset.base.DatasetBase</span></code></a></p>
+<p>Dataset for Sequence Classification</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>batch: Batch DTO (rqa.data.batch)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>helper: helper from data_reader</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.data.dataset.SeqClsDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls.html#SeqClsDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SeqClsDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SeqClsDataset.get_class_text_with_idx">
+<code class="descname">get_class_text_with_idx</code><span class="sig-paren">(</span><em>class_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls.html#SeqClsDataset.get_class_text_with_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SeqClsDataset.get_class_text_with_idx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SeqClsDataset.get_ground_truth">
+<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls.html#SeqClsDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SeqClsDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SeqClsDataset.get_id">
+<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls.html#SeqClsDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SeqClsDataset.get_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.SeqClsDataset.num_classes">
+<code class="descname">num_classes</code><a class="headerlink" href="#rqa.data.dataset.SeqClsDataset.num_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.SeqClsDataset.sequence_maxlen">
+<code class="descname">sequence_maxlen</code><a class="headerlink" href="#rqa.data.dataset.SeqClsDataset.sequence_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.data.dataset.SeqClsBertDataset">
+<em class="property">class </em><code class="descclassname">rqa.data.dataset.</code><code class="descname">SeqClsBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls_bert.html#SeqClsBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SeqClsBertDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.data.dataset.base.DatasetBase" title="rqa.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.data.dataset.base.DatasetBase</span></code></a></p>
+<p>Dataset for Sequence Classification using BERT</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>batch: Batch DTO (rqa.data.batch)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>helper: helper from data_reader</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.data.dataset.SeqClsBertDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls_bert.html#SeqClsBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SeqClsBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SeqClsBertDataset.get_class_text_with_idx">
+<code class="descname">get_class_text_with_idx</code><span class="sig-paren">(</span><em>class_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls_bert.html#SeqClsBertDataset.get_class_text_with_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SeqClsBertDataset.get_class_text_with_idx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SeqClsBertDataset.get_ground_truth">
+<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls_bert.html#SeqClsBertDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SeqClsBertDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.SeqClsBertDataset.get_id">
+<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/seq_cls_bert.html#SeqClsBertDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.SeqClsBertDataset.get_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.SeqClsBertDataset.num_classes">
+<code class="descname">num_classes</code><a class="headerlink" href="#rqa.data.dataset.SeqClsBertDataset.num_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.SeqClsBertDataset.sequence_maxlen">
+<code class="descname">sequence_maxlen</code><a class="headerlink" href="#rqa.data.dataset.SeqClsBertDataset.sequence_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.data.dataset.TokClsBertDataset">
+<em class="property">class </em><code class="descclassname">rqa.data.dataset.</code><code class="descname">TokClsBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/tok_cls_bert.html#TokClsBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.TokClsBertDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.data.dataset.base.DatasetBase" title="rqa.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.data.dataset.base.DatasetBase</span></code></a></p>
+<p>Dataset for Token Classification</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>batch: Batch DTO (rqa.data.batch)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>helper: helper from data_reader</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.data.dataset.TokClsBertDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/tok_cls_bert.html#TokClsBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.TokClsBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.TokClsBertDataset.get_ground_truth">
+<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.TokClsBertDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.TokClsBertDataset.get_id">
+<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.TokClsBertDataset.get_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.TokClsBertDataset.get_tag_text_with_idx">
+<code class="descname">get_tag_text_with_idx</code><span class="sig-paren">(</span><em>tag_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_tag_text_with_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.TokClsBertDataset.get_tag_text_with_idx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.data.dataset.TokClsBertDataset.get_tag_texts_with_idxs">
+<code class="descname">get_tag_texts_with_idxs</code><span class="sig-paren">(</span><em>tag_idxs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_tag_texts_with_idxs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.data.dataset.TokClsBertDataset.get_tag_texts_with_idxs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.TokClsBertDataset.num_tags">
+<code class="descname">num_tags</code><a class="headerlink" href="#rqa.data.dataset.TokClsBertDataset.num_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="rqa.data.dataset.TokClsBertDataset.sequence_maxlen">
+<code class="descname">sequence_maxlen</code><a class="headerlink" href="#rqa.data.dataset.TokClsBertDataset.sequence_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rqa.data.reader.html" class="btn btn-neutral float-right" title="rqa.data.reader package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rqa.data.html" class="btn btn-neutral" title="rqa.data package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

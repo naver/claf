@@ -1,0 +1,528 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.config.factory package &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rqa.data package" href="rqa.data.html" />
+    <link rel="prev" title="rqa.config package" href="rqa.config.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="rqa.config.html">config</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="rqa.config.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">rqa.config.factory package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-rqa.config.factory.base">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-rqa.config.factory">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.config.html#module-rqa.config.args">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.config.html#module-rqa.config">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="rqa.config.html">rqa.config package</a> &raquo;</li>
+        
+      <li>rqa.config.factory package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.config.factory.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rqa-config-factory-package">
+<h1>rqa.config.factory package<a class="headerlink" href="#rqa-config-factory-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-rqa.config.factory.base">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-rqa.config.factory.base" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.config.factory.base.Factory">
+<em class="property">class </em><code class="descclassname">rqa.config.factory.base.</code><code class="descname">Factory</code><a class="reference internal" href="_modules/rqa/config/factory/base.html#Factory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.base.Factory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Factory Base Class</p>
+<p>Factory method pattern</p>
+<p>In class-based programming, the factory method pattern is a creational pattern that
+uses factory methods to deal with the problem of creating objects without having to
+specify the exact class of the object that will be created. This is done by creating
+objects by calling a factory method—either specified in an interface and implemented
+by child classes, or implemented in a base class and optionally overridden by derived
+classes—rather than by calling a constructor.</p>
+<dl class="method">
+<dt id="rqa.config.factory.base.Factory.create">
+<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/base.html#Factory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.base.Factory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>interface</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.config.factory.data_loader"></span><dl class="class">
+<dt id="rqa.config.factory.data_loader.DataLoaderFactory">
+<em class="property">class </em><code class="descclassname">rqa.config.factory.data_loader.</code><code class="descname">DataLoaderFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/data_loader.html#DataLoaderFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.data_loader.DataLoaderFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.config.factory.base.Factory" title="rqa.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.config.factory.base.Factory</span></code></a></p>
+<p>DataLoader Factory Class</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>config: data_loader config from argument (config.data_loader)</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.config.factory.data_loader.DataLoaderFactory.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>datasets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/data_loader.html#DataLoaderFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.data_loader.DataLoaderFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>create train, valid and test iterator</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.config.factory.data_loader.DataLoaderFactory.make_data_loader">
+<code class="descname">make_data_loader</code><span class="sig-paren">(</span><em>dataset</em>, <em>batch_size=32</em>, <em>shuffle=True</em>, <em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/data_loader.html#DataLoaderFactory.make_data_loader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.data_loader.DataLoaderFactory.make_data_loader" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.config.factory.data_reader"></span><dl class="class">
+<dt id="rqa.config.factory.data_reader.DataReaderFactory">
+<em class="property">class </em><code class="descclassname">rqa.config.factory.data_reader.</code><code class="descname">DataReaderFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/data_reader.html#DataReaderFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.data_reader.DataReaderFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.config.factory.base.Factory" title="rqa.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.config.factory.base.Factory</span></code></a></p>
+<p>DataReader Factory Class</p>
+<p>Create Concrete reader according to config.dataset
+Get reader from reader registries (eg. &#64;register(“reader:{reader_name}”))</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>config: data_reader config from argument (config.data_reader)</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.config.factory.data_reader.DataReaderFactory.create">
+<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/data_reader.html#DataReaderFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.data_reader.DataReaderFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>interface</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.config.factory.model"></span><dl class="class">
+<dt id="rqa.config.factory.model.ModelFactory">
+<em class="property">class </em><code class="descclassname">rqa.config.factory.model.</code><code class="descname">ModelFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/model.html#ModelFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.model.ModelFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.config.factory.base.Factory" title="rqa.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.config.factory.base.Factory</span></code></a></p>
+<p>Model Factory Class</p>
+<p>Create Concrete model according to config.model_name
+Get model from model registries (eg. &#64;register(“model:{model_name}”))</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>config: model config from argument (config.model)</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.config.factory.model.ModelFactory.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>token_makers</em>, <em>**params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/model.html#ModelFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.model.ModelFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>interface</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.config.factory.model.ModelFactory.create_token_embedder">
+<code class="descname">create_token_embedder</code><span class="sig-paren">(</span><em>model</em>, <em>token_makers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/model.html#ModelFactory.create_token_embedder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.model.ModelFactory.create_token_embedder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.config.factory.optimizer"></span><dl class="class">
+<dt id="rqa.config.factory.optimizer.OptimizerFactory">
+<em class="property">class </em><code class="descclassname">rqa.config.factory.optimizer.</code><code class="descname">OptimizerFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/optimizer.html#OptimizerFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.optimizer.OptimizerFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.config.factory.base.Factory" title="rqa.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.config.factory.base.Factory</span></code></a></p>
+<p>Optimizer Factory Class</p>
+<p>include optimizer, learning_rate_scheduler and exponential_moving_average</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>config: optimizer config from argument (config.optimizer)</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.config.factory.optimizer.OptimizerFactory.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/optimizer.html#OptimizerFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.optimizer.OptimizerFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>interface</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.config.factory.tokens"></span><dl class="class">
+<dt id="rqa.config.factory.tokens.TokenMakersFactory">
+<em class="property">class </em><code class="descclassname">rqa.config.factory.tokens.</code><code class="descname">TokenMakersFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/tokens.html#TokenMakersFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.tokens.TokenMakersFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.config.factory.base.Factory" title="rqa.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.config.factory.base.Factory</span></code></a></p>
+<p>TokenMakers Factory Class</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>config: token config from argument (config.token)</dd>
+</dl>
+</li>
+</ul>
+<dl class="attribute">
+<dt id="rqa.config.factory.tokens.TokenMakersFactory.LANGS">
+<code class="descname">LANGS</code><em class="property"> = ['eng', 'kor']</em><a class="headerlink" href="#rqa.config.factory.tokens.TokenMakersFactory.LANGS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.config.factory.tokens.TokenMakersFactory.create">
+<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/tokens.html#TokenMakersFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.tokens.TokenMakersFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>interface</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.factory.tokens.make_all_tokenizers">
+<code class="descclassname">rqa.config.factory.tokens.</code><code class="descname">make_all_tokenizers</code><span class="sig-paren">(</span><em>all_tokenizer_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/tokens.html#make_all_tokenizers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.tokens.make_all_tokenizers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tokenizer is resource used all token together</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="rqa.config.factory.tokens.make_tokenizer">
+<code class="descclassname">rqa.config.factory.tokens.</code><code class="descname">make_tokenizer</code><span class="sig-paren">(</span><em>tokenizer_cls</em>, <em>tokenizer_config</em>, <em>parent_tokenizers={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/tokens.html#make_tokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.tokens.make_tokenizer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-rqa.config.factory">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rqa.config.factory" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.config.factory.DataReaderFactory">
+<em class="property">class </em><code class="descclassname">rqa.config.factory.</code><code class="descname">DataReaderFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/data_reader.html#DataReaderFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.DataReaderFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.config.factory.base.Factory" title="rqa.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.config.factory.base.Factory</span></code></a></p>
+<p>DataReader Factory Class</p>
+<p>Create Concrete reader according to config.dataset
+Get reader from reader registries (eg. &#64;register(“reader:{reader_name}”))</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>config: data_reader config from argument (config.data_reader)</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.config.factory.DataReaderFactory.create">
+<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/data_reader.html#DataReaderFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.DataReaderFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>interface</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.config.factory.DataLoaderFactory">
+<em class="property">class </em><code class="descclassname">rqa.config.factory.</code><code class="descname">DataLoaderFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/data_loader.html#DataLoaderFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.DataLoaderFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.config.factory.base.Factory" title="rqa.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.config.factory.base.Factory</span></code></a></p>
+<p>DataLoader Factory Class</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>config: data_loader config from argument (config.data_loader)</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.config.factory.DataLoaderFactory.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>datasets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/data_loader.html#DataLoaderFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.DataLoaderFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>create train, valid and test iterator</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.config.factory.DataLoaderFactory.make_data_loader">
+<code class="descname">make_data_loader</code><span class="sig-paren">(</span><em>dataset</em>, <em>batch_size=32</em>, <em>shuffle=True</em>, <em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/data_loader.html#DataLoaderFactory.make_data_loader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.DataLoaderFactory.make_data_loader" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.config.factory.ModelFactory">
+<em class="property">class </em><code class="descclassname">rqa.config.factory.</code><code class="descname">ModelFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/model.html#ModelFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.ModelFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.config.factory.base.Factory" title="rqa.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.config.factory.base.Factory</span></code></a></p>
+<p>Model Factory Class</p>
+<p>Create Concrete model according to config.model_name
+Get model from model registries (eg. &#64;register(“model:{model_name}”))</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>config: model config from argument (config.model)</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.config.factory.ModelFactory.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>token_makers</em>, <em>**params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/model.html#ModelFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.ModelFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>interface</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.config.factory.ModelFactory.create_token_embedder">
+<code class="descname">create_token_embedder</code><span class="sig-paren">(</span><em>model</em>, <em>token_makers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/model.html#ModelFactory.create_token_embedder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.ModelFactory.create_token_embedder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.config.factory.OptimizerFactory">
+<em class="property">class </em><code class="descclassname">rqa.config.factory.</code><code class="descname">OptimizerFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/optimizer.html#OptimizerFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.OptimizerFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.config.factory.base.Factory" title="rqa.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.config.factory.base.Factory</span></code></a></p>
+<p>Optimizer Factory Class</p>
+<p>include optimizer, learning_rate_scheduler and exponential_moving_average</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>config: optimizer config from argument (config.optimizer)</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.config.factory.OptimizerFactory.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/optimizer.html#OptimizerFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.OptimizerFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>interface</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.config.factory.TokenMakersFactory">
+<em class="property">class </em><code class="descclassname">rqa.config.factory.</code><code class="descname">TokenMakersFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/tokens.html#TokenMakersFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.TokenMakersFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.config.factory.base.Factory" title="rqa.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.config.factory.base.Factory</span></code></a></p>
+<p>TokenMakers Factory Class</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>config: token config from argument (config.token)</dd>
+</dl>
+</li>
+</ul>
+<dl class="attribute">
+<dt id="rqa.config.factory.TokenMakersFactory.LANGS">
+<code class="descname">LANGS</code><em class="property"> = ['eng', 'kor']</em><a class="headerlink" href="#rqa.config.factory.TokenMakersFactory.LANGS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.config.factory.TokenMakersFactory.create">
+<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/config/factory/tokens.html#TokenMakersFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.config.factory.TokenMakersFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>interface</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rqa.data.html" class="btn btn-neutral float-right" title="rqa.data package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rqa.config.html" class="btn btn-neutral" title="rqa.config package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

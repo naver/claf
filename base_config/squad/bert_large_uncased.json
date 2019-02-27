@@ -1,0 +1,67 @@
+ {
+     "data_reader": {
+         "dataset": "squad_bert",
+         "train_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/train-v1.1.json",
+         "valid_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json",
+         "squad_bert": {
+             "lang_code": "en",
+             "max_seq_length": 384,
+             "context_stride": 128,
+             "max_question_length": 64
+         }
+     },
+     "iterator": {
+         "batch_size": 8
+     },
+     "token": {
+         "names": ["feature"],
+         "types": ["feature"],
+         "tokenizer": {
+             "subword": {
+                 "name": "wordpiece",
+                 "wordpiece": {
+                     "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-uncased-vocab.txt"
+                 }
+             },
+             "word": {
+                 "name": "bert_basic",
+                 "bert_basic": {
+                     "do_lower_case": true
+                 }
+             }
+         },
+         "feature": {
+             "vocab": {
+                 "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-uncased-vocab.txt",
+                 "pretrained_token": "all"
+             },
+             "indexer": {
+                 "do_tokenize": false
+             }
+         }
+     },
+     "model": {
+         "name": "bert_for_qa",
+         "bert_for_qa": {
+             "pretrained_model_name": "bert-large-uncased",
+             "answer_maxlen": 30
+         }
+     },
+     "trainer": {
+         "log_dir": "logs/squad_bert",
+         "num_epochs": 2,
+         "early_stopping_threshold": 10,
+         "metric_key": "f1",
+         "verbose_step_count": 100,
+         "eval_and_save_step_count": 1500
+     },
+     "optimizer": {
+         "op_type": "bert_adam",
+         "learning_rate": 0.00005,
+         "bert_adam": {
+             "warmup": 0.1
+         },
+         "gradient_accumulation_steps": 2
+     },
+     "seed_num": 42
+ }

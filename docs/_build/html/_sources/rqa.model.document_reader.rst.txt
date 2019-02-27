@@ -1,0 +1,86 @@
+rqa.model.document\_reader package
+==================================
+
+Submodules
+----------
+
+rqa.model.document\_reader.base module
+--------------------------------------
+
+.. automodule:: rqa.model.document_reader.base
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+rqa.model.document\_reader.bidaf module
+---------------------------------------
+
+.. automodule:: rqa.model.document_reader.bidaf
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+rqa.model.document\_reader.bidaf\_no\_answer module
+---------------------------------------------------
+
+.. automodule:: rqa.model.document_reader.bidaf_no_answer
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+rqa.model.document\_reader.docqa module
+---------------------------------------
+
+.. automodule:: rqa.model.document_reader.docqa
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+rqa.model.document\_reader.docqa\_no\_answer module
+---------------------------------------------------
+
+.. automodule:: rqa.model.document_reader.docqa_no_answer
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+rqa.model.document\_reader.drqa module
+--------------------------------------
+
+.. automodule:: rqa.model.document_reader.drqa
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+rqa.model.document\_reader.qanet module
+---------------------------------------
+
+.. automodule:: rqa.model.document_reader.qanet
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+rqa.model.document\_reader.rqanet module
+----------------------------------------
+
+.. automodule:: rqa.model.document_reader.rqanet
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+rqa.model.document\_reader.simple module
+----------------------------------------
+
+.. automodule:: rqa.model.document_reader.simple
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: rqa.model.document_reader
+    :members:
+    :undoc-members:
+    :show-inheritance:

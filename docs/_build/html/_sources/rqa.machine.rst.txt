@@ -1,0 +1,31 @@
+rqa.machine package
+===================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    rqa.machine.components
+
+Submodules
+----------
+
+.. automodule:: rqa.machine.base
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.machine.module
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: rqa.machine
+    :members:
+    :undoc-members:
+    :show-inheritance:

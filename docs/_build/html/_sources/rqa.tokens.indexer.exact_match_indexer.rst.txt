@@ -1,0 +1,7 @@
+rqa.tokens.indexer.exact\_match\_indexer module
+===============================================
+
+.. automodule:: rqa.tokens.indexer.exact_match_indexer
+    :members:
+    :undoc-members:
+    :show-inheritance:

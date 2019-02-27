@@ -1,0 +1,79 @@
+{
+   "data_reader": {
+       "dataset": "squad",
+       "train_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json",
+       "valid_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json"
+   },
+   "iterator": {
+       "batch_size": 10
+   },
+    "token": {
+        "names": ["frequent_word", "exact_match", "linguistic"],
+        "types": ["frequent_word", "exact_match", "linguistic"],
+        "tokenizer": {
+            "word": {
+                "name": "spacy_en",
+                "split_with_regex": true
+            }
+        },
+        "frequent_word": {
+            "vocab": {
+                "frequent_count": 1000
+            },
+            "indexer": {
+                "lowercase": false
+            },
+            "embedding": {
+                "embed_dim": 50,
+                "dropout": 0.3
+            }
+        },
+        "exact_match": {
+            "indexer": {
+                "lower": true,
+                "lemma": true
+            },
+            "embedding": {
+                "type": "sparse"
+            }
+        },
+        "linguistic": {
+            "indexer": {
+                "pos_tag": true,
+                "ner": true
+            },
+            "embedding": {
+                "type": "embedding",
+                "embed_dim": 10
+            }
+        }
+    },
+    "model": {
+        "name": "drqa",
+        "drqa": {
+            "aligned_query_embedding": true,
+            "answer_maxlen": 15,
+            "model_dim": 128,
+            "dropout": 0.3
+        }
+    },
+    "trainer": {
+        "log_dir": "logs/test/drqa_with_sparse_to_embedding/",
+        "num_epochs": 1,
+        "early_stopping_threshold": 1,
+        "metric_key": "em",
+        "verbose_step_count": 1,
+        "eval_and_save_step_count": 1
+    },
+    "optimizer": {
+        "op_type": "adamax",
+        "learning_rate": 0.001,
+        "lr_scheduler_type": "reduce_on_plateau",
+        "reduce_on_plateau": {
+            "factor": 0.5,
+            "mode": "max",
+            "patience": 2
+        }
+    },
+    "seed_num": 21
+}

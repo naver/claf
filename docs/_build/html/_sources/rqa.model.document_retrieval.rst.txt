@@ -1,0 +1,30 @@
+rqa.model.document\_retrieval package
+=====================================
+
+Submodules
+----------
+
+rqa.model.document\_retrieval.base module
+-----------------------------------------
+
+.. automodule:: rqa.model.document_retrieval.base
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+rqa.model.document\_retrieval.tfidf module
+------------------------------------------
+
+.. automodule:: rqa.model.document_retrieval.tfidf
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: rqa.model.document_retrieval
+    :members:
+    :undoc-members:
+    :show-inheritance:

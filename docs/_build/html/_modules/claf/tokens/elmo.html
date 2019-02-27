@@ -1,0 +1,1216 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>claf.tokens.elmo &mdash; CLaF 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../tokens.html">claf.tokens</a> &raquo;</li>
+        
+      <li>claf.tokens.elmo</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for claf.tokens.elmo</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This code is from allenai/allennlp</span>
+<span class="sd">(https://github.com/allenai/allennlp/blob/master/allennlp/modules/elmo.py)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">overrides</span> <span class="k">import</span> <span class="n">overrides</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch.nn.utils.rnn</span> <span class="k">import</span> <span class="n">PackedSequence</span><span class="p">,</span> <span class="n">pad_packed_sequence</span>
+<span class="kn">from</span> <span class="nn">torch.nn.modules</span> <span class="k">import</span> <span class="n">Dropout</span>
+
+
+<span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>  <span class="c1"># pragma: no cover</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">h5py</span>
+
+<span class="kn">from</span> <span class="nn">claf.modules.layer</span> <span class="k">import</span> <span class="n">Highway</span><span class="p">,</span> <span class="n">ScalarMix</span>
+<span class="kn">from</span> <span class="nn">claf.modules.encoder</span> <span class="k">import</span> <span class="n">_EncoderBase</span><span class="p">,</span> <span class="n">LstmCellWithProjection</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>  <span class="c1"># pylint: disable=invalid-name</span>
+
+<span class="c1"># pylint: disable=attribute-defined-outside-init</span>
+
+
+<div class="viewcode-block" id="Elmo"><a class="viewcode-back" href="../../../claf.tokens.html#claf.tokens.elmo.Elmo">[docs]</a><span class="k">class</span> <span class="nc">Elmo</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute ELMo representations using a pre-trained bidirectional language model.</span>
+<span class="sd">    See &quot;Deep contextualized word representations&quot;, Peters et al. for details.</span>
+<span class="sd">    This module takes character id input and computes ``num_output_representations`` different layers</span>
+<span class="sd">    of ELMo representations.  Typically ``num_output_representations`` is 1 or 2.  For example, in</span>
+<span class="sd">    the case of the SRL model in the above paper, ``num_output_representations=1`` where ELMo was included at</span>
+<span class="sd">    the input token representation layer.  In the case of the SQuAD model, ``num_output_representations=2``</span>
+<span class="sd">    as ELMo was also included at the GRU output layer.</span>
+<span class="sd">    In the implementation below, we learn separate scalar weights for each output layer,</span>
+<span class="sd">    but only run the biLM once on each input sequence for efficiency.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    options_file : ``str``, required.</span>
+<span class="sd">        ELMo JSON options file</span>
+<span class="sd">    weight_file : ``str``, required.</span>
+<span class="sd">        ELMo hdf5 weight file</span>
+<span class="sd">    num_output_representations: ``int``, required.</span>
+<span class="sd">        The number of ELMo representation layers to output.</span>
+<span class="sd">    requires_grad: ``bool``, optional</span>
+<span class="sd">        If True, compute gradient of ELMo parameters for fine tuning.</span>
+<span class="sd">    do_layer_norm : ``bool``, optional, (default=False).</span>
+<span class="sd">        Should we apply layer normalization (passed to ``ScalarMix``)?</span>
+<span class="sd">    dropout : ``float``, optional, (default = 0.5).</span>
+<span class="sd">        The dropout to be applied to the ELMo representations.</span>
+<span class="sd">    vocab_to_cache : ``List[str]``, optional, (default = 0.5).</span>
+<span class="sd">        A list of words to pre-compute and cache character convolutions</span>
+<span class="sd">        for. If you use this option, Elmo expects that you pass word</span>
+<span class="sd">        indices of shape (batch_size, timesteps) to forward, instead</span>
+<span class="sd">        of character indices. If you use this option and pass a word which</span>
+<span class="sd">        wasn&#39;t pre-cached, this will break.</span>
+<span class="sd">    module : ``torch.nn.Module``, optional, (default = None).</span>
+<span class="sd">        If provided, then use this module instead of the pre-trained ELMo biLM.</span>
+<span class="sd">        If using this option, then pass ``None`` for both ``options_file``</span>
+<span class="sd">        and ``weight_file``.  The module must provide a public attribute</span>
+<span class="sd">        ``num_layers`` with the number of internal layers and its ``forward``</span>
+<span class="sd">        method must return a ``dict`` with ``activations`` and ``mask`` keys</span>
+<span class="sd">        (see `_ElmoBilm`` for an example).  Note that ``requires_grad`` is also</span>
+<span class="sd">        ignored with this option.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">options_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">weight_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">num_output_representations</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">requires_grad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">do_layer_norm</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">dropout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">vocab_to_cache</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">module</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Elmo</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initializing ELMo&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">module</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">options_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">weight_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Don&#39;t provide options_file or weight_file with module&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_elmo_lstm</span> <span class="o">=</span> <span class="n">module</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_elmo_lstm</span> <span class="o">=</span> <span class="n">_ElmoBiLm</span><span class="p">(</span>
+                <span class="n">options_file</span><span class="p">,</span>
+                <span class="n">weight_file</span><span class="p">,</span>
+                <span class="n">requires_grad</span><span class="o">=</span><span class="n">requires_grad</span><span class="p">,</span>
+                <span class="n">vocab_to_cache</span><span class="o">=</span><span class="n">vocab_to_cache</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_has_cached_vocab</span> <span class="o">=</span> <span class="n">vocab_to_cache</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dropout</span> <span class="o">=</span> <span class="n">Dropout</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scalar_mixes</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_output_representations</span><span class="p">):</span>
+            <span class="n">scalar_mix</span> <span class="o">=</span> <span class="n">ScalarMix</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_elmo_lstm</span><span class="o">.</span><span class="n">num_layers</span><span class="p">,</span> <span class="n">do_layer_norm</span><span class="o">=</span><span class="n">do_layer_norm</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="s2">&quot;scalar_mix_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">scalar_mix</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_scalar_mixes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scalar_mix</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Elmo.get_output_dim"><a class="viewcode-back" href="../../../claf.tokens.html#claf.tokens.elmo.Elmo.get_output_dim">[docs]</a>    <span class="k">def</span> <span class="nf">get_output_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elmo_lstm</span><span class="o">.</span><span class="n">get_output_dim</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Elmo.forward"><a class="viewcode-back" href="../../../claf.tokens.html#claf.tokens.elmo.Elmo.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">word_inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># pylint: disable=arguments-differ</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]]]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inputs: ``torch.Tensor``, required.</span>
+<span class="sd">        Shape ``(batch_size, timesteps, 50)`` of character ids representing the current batch.</span>
+<span class="sd">        word_inputs : ``torch.Tensor``, required.</span>
+<span class="sd">            If you passed a cached vocab, you can in addition pass a tensor of shape</span>
+<span class="sd">            ``(batch_size, timesteps)``, which represent word ids which have been pre-cached.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Dict with keys:</span>
+<span class="sd">        ``&#39;elmo_representations&#39;``: ``List[torch.Tensor]``</span>
+<span class="sd">            A ``num_output_representations`` list of ELMo representations for the input sequence.</span>
+<span class="sd">            Each representation is shape ``(batch_size, timesteps, embedding_dim)``</span>
+<span class="sd">        ``&#39;mask&#39;``:  ``torch.Tensor``</span>
+<span class="sd">            Shape ``(batch_size, timesteps)`` long tensor with sequence mask.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># reshape the input if needed</span>
+        <span class="n">original_shape</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">original_shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">timesteps</span><span class="p">,</span> <span class="n">num_characters</span> <span class="o">=</span> <span class="n">original_shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
+            <span class="n">reshaped_inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">timesteps</span><span class="p">,</span> <span class="n">num_characters</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">reshaped_inputs</span> <span class="o">=</span> <span class="n">inputs</span>
+
+        <span class="k">if</span> <span class="n">word_inputs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">original_word_size</span> <span class="o">=</span> <span class="n">word_inputs</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_cached_vocab</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">original_word_size</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">reshaped_word_inputs</span> <span class="o">=</span> <span class="n">word_inputs</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">original_word_size</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s2">&quot;Word inputs were passed to ELMo but it does not have a cached vocab.&quot;</span>
+                <span class="p">)</span>
+                <span class="n">reshaped_word_inputs</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">reshaped_word_inputs</span> <span class="o">=</span> <span class="n">word_inputs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">reshaped_word_inputs</span> <span class="o">=</span> <span class="n">word_inputs</span>
+
+        <span class="c1"># run the biLM</span>
+        <span class="n">bilm_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elmo_lstm</span><span class="p">(</span><span class="n">reshaped_inputs</span><span class="p">,</span> <span class="n">reshaped_word_inputs</span><span class="p">)</span>
+        <span class="n">layer_activations</span> <span class="o">=</span> <span class="n">bilm_output</span><span class="p">[</span><span class="s2">&quot;activations&quot;</span><span class="p">]</span>
+        <span class="n">mask_with_bos_eos</span> <span class="o">=</span> <span class="n">bilm_output</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span>
+
+        <span class="c1"># compute the elmo representations</span>
+        <span class="n">representations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_scalar_mixes</span><span class="p">)):</span>
+            <span class="n">scalar_mix</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;scalar_mix_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">representation_with_bos_eos</span> <span class="o">=</span> <span class="n">scalar_mix</span><span class="p">(</span><span class="n">layer_activations</span><span class="p">,</span> <span class="n">mask_with_bos_eos</span><span class="p">)</span>
+            <span class="n">representation_without_bos_eos</span><span class="p">,</span> <span class="n">mask_without_bos_eos</span> <span class="o">=</span> <span class="n">remove_sentence_boundaries</span><span class="p">(</span>
+                <span class="n">representation_with_bos_eos</span><span class="p">,</span> <span class="n">mask_with_bos_eos</span>
+            <span class="p">)</span>
+            <span class="n">representations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dropout</span><span class="p">(</span><span class="n">representation_without_bos_eos</span><span class="p">))</span>
+
+        <span class="c1"># reshape if necessary</span>
+        <span class="k">if</span> <span class="n">word_inputs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">original_word_size</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">mask_without_bos_eos</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">original_word_size</span><span class="p">)</span>
+            <span class="n">elmo_representations</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">representation</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">original_word_size</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,))</span>
+                <span class="k">for</span> <span class="n">representation</span> <span class="ow">in</span> <span class="n">representations</span>
+            <span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">original_shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">mask_without_bos_eos</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">original_shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">elmo_representations</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">representation</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">original_shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,))</span>
+                <span class="k">for</span> <span class="n">representation</span> <span class="ow">in</span> <span class="n">representations</span>
+            <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">mask_without_bos_eos</span>
+            <span class="n">elmo_representations</span> <span class="o">=</span> <span class="n">representations</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;elmo_representations&quot;</span><span class="p">:</span> <span class="n">elmo_representations</span><span class="p">,</span> <span class="s2">&quot;mask&quot;</span><span class="p">:</span> <span class="n">mask</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="Elmo.from_params"><a class="viewcode-back" href="../../../claf.tokens.html#claf.tokens.elmo.Elmo.from_params">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_params</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Elmo&quot;</span><span class="p">:</span>
+        <span class="c1"># Add files to archive</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">add_file_to_archive</span><span class="p">(</span><span class="s2">&quot;options_file&quot;</span><span class="p">)</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">add_file_to_archive</span><span class="p">(</span><span class="s2">&quot;weight_file&quot;</span><span class="p">)</span>
+
+        <span class="n">options_file</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;options_file&quot;</span><span class="p">)</span>
+        <span class="n">weight_file</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;weight_file&quot;</span><span class="p">)</span>
+        <span class="n">requires_grad</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;requires_grad&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">num_output_representations</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;num_output_representations&quot;</span><span class="p">)</span>
+        <span class="n">do_layer_norm</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop_bool</span><span class="p">(</span><span class="s2">&quot;do_layer_norm&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">dropout</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop_float</span><span class="p">(</span><span class="s2">&quot;dropout&quot;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">assert_empty</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">options_file</span><span class="o">=</span><span class="n">options_file</span><span class="p">,</span>
+            <span class="n">weight_file</span><span class="o">=</span><span class="n">weight_file</span><span class="p">,</span>
+            <span class="n">num_output_representations</span><span class="o">=</span><span class="n">num_output_representations</span><span class="p">,</span>
+            <span class="n">requires_grad</span><span class="o">=</span><span class="n">requires_grad</span><span class="p">,</span>
+            <span class="n">do_layer_norm</span><span class="o">=</span><span class="n">do_layer_norm</span><span class="p">,</span>
+            <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="remove_sentence_boundaries"><a class="viewcode-back" href="../../../claf.tokens.html#claf.tokens.elmo.remove_sentence_boundaries">[docs]</a><span class="k">def</span> <span class="nf">remove_sentence_boundaries</span><span class="p">(</span>
+    <span class="n">tensor</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">mask</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Remove begin/end of sentence embeddings from the batch of sentences.</span>
+<span class="sd">    Given a batch of sentences with size ``(batch_size, timesteps, dim)``</span>
+<span class="sd">    this returns a tensor of shape ``(batch_size, timesteps - 2, dim)`` after removing</span>
+<span class="sd">    the beginning and end sentence markers.  The sentences are assumed to be padded on the right,</span>
+<span class="sd">    with the beginning of each sentence assumed to occur at index 0 (i.e., ``mask[:, 0]`` is assumed</span>
+<span class="sd">    to be 1).</span>
+<span class="sd">    Returns both the new tensor and updated mask.</span>
+<span class="sd">    This function is the inverse of ``add_sentence_boundary_token_ids``.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tensor : ``torch.Tensor``</span>
+<span class="sd">        A tensor of shape ``(batch_size, timesteps, dim)``</span>
+<span class="sd">    mask : ``torch.Tensor``</span>
+<span class="sd">         A tensor of shape ``(batch_size, timesteps)``</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tensor_without_boundary_tokens : ``torch.Tensor``</span>
+<span class="sd">        The tensor after removing the boundary tokens of shape ``(batch_size, timesteps - 2, dim)``</span>
+<span class="sd">    new_mask : ``torch.Tensor``</span>
+<span class="sd">        The new mask for the tensor of shape ``(batch_size, timesteps - 2)``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: matthewp, profile this transfer</span>
+    <span class="n">sequence_lengths</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">tensor_shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">new_shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tensor_shape</span><span class="p">)</span>
+    <span class="n">new_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">tensor_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span>
+    <span class="n">tensor_without_boundary_tokens</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">(</span><span class="o">*</span><span class="n">new_shape</span><span class="p">)</span>
+    <span class="n">new_mask</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">((</span><span class="n">new_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">new_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sequence_lengths</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">tensor_without_boundary_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span> <span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="mi">2</span><span class="p">),</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span> <span class="p">:</span> <span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="p">:]</span>
+            <span class="n">new_mask</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span> <span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">tensor_without_boundary_tokens</span><span class="p">,</span> <span class="n">new_mask</span></div>
+
+
+<span class="k">class</span> <span class="nc">_ElmoBiLm</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run a pre-trained bidirectional language model, outputing the activations at each</span>
+<span class="sd">    layer for weighting together into an ELMo representation (with</span>
+<span class="sd">    ``allennlp.modules.seq2seq_encoders.Elmo``).  This is a lower level class, useful</span>
+<span class="sd">    for advanced uses, but most users should use ``allennlp.modules.seq2seq_encoders.Elmo``</span>
+<span class="sd">    directly.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    options_file : ``str``</span>
+<span class="sd">        ELMo JSON options file</span>
+<span class="sd">    weight_file : ``str``</span>
+<span class="sd">        ELMo hdf5 weight file</span>
+<span class="sd">    requires_grad: ``bool``, optional</span>
+<span class="sd">        If True, compute gradient of ELMo parameters for fine tuning.</span>
+<span class="sd">    vocab_to_cache : ``List[str]``, optional, (default = 0.5).</span>
+<span class="sd">        A list of words to pre-compute and cache character convolutions</span>
+<span class="sd">        for. If you use this option, _ElmoBiLm expects that you pass word</span>
+<span class="sd">        indices of shape (batch_size, timesteps) to forward, instead</span>
+<span class="sd">        of character indices. If you use this option and pass a word which</span>
+<span class="sd">        wasn&#39;t pre-cached, this will break.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">options_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">weight_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">requires_grad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">vocab_to_cache</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">_ElmoBiLm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_token_embedder</span> <span class="o">=</span> <span class="n">_ElmoCharacterEncoder</span><span class="p">(</span>
+            <span class="n">options_file</span><span class="p">,</span> <span class="n">weight_file</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="n">requires_grad</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_requires_grad</span> <span class="o">=</span> <span class="n">requires_grad</span>
+        <span class="k">if</span> <span class="n">requires_grad</span> <span class="ow">and</span> <span class="n">vocab_to_cache</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;You are fine tuning ELMo and caching char CNN word vectors. &quot;</span>
+                <span class="s2">&quot;This behaviour is not guaranteed to be well defined, particularly. &quot;</span>
+                <span class="s2">&quot;if not all of your inputs will occur in the vocabulary cache.&quot;</span>
+            <span class="p">)</span>
+        <span class="c1"># This is an embedding, used to look up cached</span>
+        <span class="c1"># word vectors built from character level cnn embeddings.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_word_embedding</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bos_embedding</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_eos_embedding</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">options_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fin</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fin</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">options</span><span class="p">[</span><span class="s2">&quot;lstm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;use_skip_connections&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;We only support pretrained biLMs with residual connections&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_elmo_lstm</span> <span class="o">=</span> <span class="n">ElmoLstm</span><span class="p">(</span>
+            <span class="n">input_size</span><span class="o">=</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;lstm&quot;</span><span class="p">][</span><span class="s2">&quot;projection_dim&quot;</span><span class="p">],</span>
+            <span class="n">hidden_size</span><span class="o">=</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;lstm&quot;</span><span class="p">][</span><span class="s2">&quot;projection_dim&quot;</span><span class="p">],</span>
+            <span class="n">cell_size</span><span class="o">=</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;lstm&quot;</span><span class="p">][</span><span class="s2">&quot;dim&quot;</span><span class="p">],</span>
+            <span class="n">num_layers</span><span class="o">=</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;lstm&quot;</span><span class="p">][</span><span class="s2">&quot;n_layers&quot;</span><span class="p">],</span>
+            <span class="n">memory_cell_clip_value</span><span class="o">=</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;lstm&quot;</span><span class="p">][</span><span class="s2">&quot;cell_clip&quot;</span><span class="p">],</span>
+            <span class="n">state_projection_clip_value</span><span class="o">=</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;lstm&quot;</span><span class="p">][</span><span class="s2">&quot;proj_clip&quot;</span><span class="p">],</span>
+            <span class="n">requires_grad</span><span class="o">=</span><span class="n">requires_grad</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_elmo_lstm</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="n">weight_file</span><span class="p">)</span>
+        <span class="c1"># Number of representation layers including context independent layer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_layers</span> <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="s2">&quot;lstm&quot;</span><span class="p">][</span><span class="s2">&quot;n_layers&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">get_output_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_token_embedder</span><span class="o">.</span><span class="n">get_output_dim</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">word_inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># pylint: disable=arguments-differ</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]]]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inputs: ``torch.Tensor``, required.</span>
+<span class="sd">            Shape ``(batch_size, timesteps, 50)`` of character ids representing the current batch.</span>
+<span class="sd">        word_inputs : ``torch.Tensor``, required.</span>
+<span class="sd">            If you passed a cached vocab, you can in addition pass a tensor of shape ``(batch_size, timesteps)``,</span>
+<span class="sd">            which represent word ids which have been pre-cached.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Dict with keys:</span>
+<span class="sd">        ``&#39;activations&#39;``: ``List[torch.Tensor]``</span>
+<span class="sd">            A list of activations at each layer of the network, each of shape</span>
+<span class="sd">            ``(batch_size, timesteps + 2, embedding_dim)``</span>
+<span class="sd">        ``&#39;mask&#39;``:  ``torch.Tensor``</span>
+<span class="sd">            Shape ``(batch_size, timesteps + 2)`` long tensor with sequence mask.</span>
+<span class="sd">        Note that the output tensors all include additional special begin and end of sequence</span>
+<span class="sd">        markers.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_word_embedding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">word_inputs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">mask_without_bos_eos</span> <span class="o">=</span> <span class="p">(</span><span class="n">word_inputs</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+                <span class="c1"># The character cnn part is cached - just look it up.</span>
+                <span class="n">embedded_inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_word_embedding</span><span class="p">(</span><span class="n">word_inputs</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+                <span class="c1"># shape (batch_size, timesteps + 2, embedding_dim)</span>
+                <span class="n">type_representation</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">add_sentence_boundary_token_ids</span><span class="p">(</span>
+                    <span class="n">embedded_inputs</span><span class="p">,</span> <span class="n">mask_without_bos_eos</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bos_embedding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eos_embedding</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
+                <span class="c1"># Back off to running the character convolutions,</span>
+                <span class="c1"># as we might not have the words in the cache.</span>
+                <span class="n">token_embedding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_token_embedder</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+                <span class="n">mask</span> <span class="o">=</span> <span class="n">token_embedding</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span>
+                <span class="n">type_representation</span> <span class="o">=</span> <span class="n">token_embedding</span><span class="p">[</span><span class="s2">&quot;token_embedding&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">token_embedding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_token_embedder</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">token_embedding</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span>
+            <span class="n">type_representation</span> <span class="o">=</span> <span class="n">token_embedding</span><span class="p">[</span><span class="s2">&quot;token_embedding&quot;</span><span class="p">]</span>
+        <span class="n">lstm_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elmo_lstm</span><span class="p">(</span><span class="n">type_representation</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+
+        <span class="c1"># Prepare the output.  The first layer is duplicated.</span>
+        <span class="c1"># Because of minor differences in how masking is applied depending</span>
+        <span class="c1"># on whether the char cnn layers are cached, we&#39;ll be defensive and</span>
+        <span class="c1"># multiply by the mask here. It&#39;s not strictly necessary, as the</span>
+        <span class="c1"># mask passed on is correct, but the values in the padded areas</span>
+        <span class="c1"># of the char cnn representations can change.</span>
+        <span class="n">output_tensors</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">type_representation</span><span class="p">,</span> <span class="n">type_representation</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="o">*</span> <span class="n">mask</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">layer_activations</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">chunk</span><span class="p">(</span><span class="n">lstm_outputs</span><span class="p">,</span> <span class="n">lstm_outputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+            <span class="n">output_tensors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layer_activations</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;activations&quot;</span><span class="p">:</span> <span class="n">output_tensors</span><span class="p">,</span> <span class="s2">&quot;mask&quot;</span><span class="p">:</span> <span class="n">mask</span><span class="p">}</span>
+
+
+<div class="viewcode-block" id="add_sentence_boundary_token_ids"><a class="viewcode-back" href="../../../claf.tokens.html#claf.tokens.elmo.add_sentence_boundary_token_ids">[docs]</a><span class="k">def</span> <span class="nf">add_sentence_boundary_token_ids</span><span class="p">(</span>
+    <span class="n">tensor</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">mask</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">sentence_begin_token</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">sentence_end_token</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add begin/end of sentence tokens to the batch of sentences.</span>
+<span class="sd">    Given a batch of sentences with size ``(batch_size, timesteps)`` or</span>
+<span class="sd">    ``(batch_size, timesteps, dim)`` this returns a tensor of shape</span>
+<span class="sd">    ``(batch_size, timesteps + 2)`` or ``(batch_size, timesteps + 2, dim)`` respectively.</span>
+<span class="sd">    Returns both the new tensor and updated mask.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tensor : ``torch.Tensor``</span>
+<span class="sd">        A tensor of shape ``(batch_size, timesteps)`` or ``(batch_size, timesteps, dim)``</span>
+<span class="sd">    mask : ``torch.Tensor``</span>
+<span class="sd">         A tensor of shape ``(batch_size, timesteps)``</span>
+<span class="sd">    sentence_begin_token: Any (anything that can be broadcast in torch for assignment)</span>
+<span class="sd">        For 2D input, a scalar with the &lt;S&gt; id. For 3D input, a tensor with length dim.</span>
+<span class="sd">    sentence_end_token: Any (anything that can be broadcast in torch for assignment)</span>
+<span class="sd">        For 2D input, a scalar with the &lt;/S&gt; id. For 3D input, a tensor with length dim.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tensor_with_boundary_tokens : ``torch.Tensor``</span>
+<span class="sd">        The tensor with the appended and prepended boundary tokens. If the input was 2D,</span>
+<span class="sd">        it has shape (batch_size, timesteps + 2) and if the input was 3D, it has shape</span>
+<span class="sd">        (batch_size, timesteps + 2, dim).</span>
+<span class="sd">    new_mask : ``torch.Tensor``</span>
+<span class="sd">        The new mask for the tensor, taking into account the appended tokens</span>
+<span class="sd">        marking the beginning and end of the sentence.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: matthewp, profile this transfer</span>
+    <span class="n">sequence_lengths</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">tensor_shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">new_shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tensor_shape</span><span class="p">)</span>
+    <span class="n">new_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">tensor_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span>
+    <span class="n">tensor_with_boundary_tokens</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">(</span><span class="o">*</span><span class="n">new_shape</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tensor_shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">tensor_with_boundary_tokens</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">tensor</span>
+        <span class="n">tensor_with_boundary_tokens</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">sentence_begin_token</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sequence_lengths</span><span class="p">):</span>
+            <span class="n">tensor_with_boundary_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sentence_end_token</span>
+        <span class="n">new_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">tensor_with_boundary_tokens</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">tensor_shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">tensor_with_boundary_tokens</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">tensor</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sequence_lengths</span><span class="p">):</span>
+            <span class="n">tensor_with_boundary_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">sentence_begin_token</span>
+            <span class="n">tensor_with_boundary_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">sentence_end_token</span>
+        <span class="n">new_mask</span> <span class="o">=</span> <span class="p">((</span><span class="n">tensor_with_boundary_tokens</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;add_sentence_boundary_token_ids only accepts 2D and 3D input&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tensor_with_boundary_tokens</span><span class="p">,</span> <span class="n">new_mask</span></div>
+
+
+<span class="k">def</span> <span class="nf">_make_bos_eos</span><span class="p">(</span>
+    <span class="n">character</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">padding_character</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">beginning_of_word_character</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">end_of_word_character</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">max_word_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="n">char_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">padding_character</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_word_length</span>
+    <span class="n">char_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">beginning_of_word_character</span>
+    <span class="n">char_ids</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">character</span>
+    <span class="n">char_ids</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">end_of_word_character</span>
+    <span class="k">return</span> <span class="n">char_ids</span>
+
+
+<span class="k">class</span> <span class="nc">_ElmoCharacterEncoder</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute context sensitive token representation using pretrained biLM.</span>
+<span class="sd">    This embedder has input character ids of size (batch_size, sequence_length, 50)</span>
+<span class="sd">    and returns (batch_size, sequence_length + 2, embedding_dim), where embedding_dim</span>
+<span class="sd">    is specified in the options file (typically 512).</span>
+<span class="sd">    We add special entries at the beginning and end of each sequence corresponding</span>
+<span class="sd">    to &lt;S&gt; and &lt;/S&gt;, the beginning and end of sentence tokens.</span>
+<span class="sd">    Note: this is a lower level class useful for advanced usage.  Most users should</span>
+<span class="sd">    use ``ElmoTokenEmbedder`` or ``allennlp.modules.Elmo`` instead.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    options_file : ``str``</span>
+<span class="sd">        ELMo JSON options file</span>
+<span class="sd">    weight_file : ``str``</span>
+<span class="sd">        ELMo hdf5 weight file</span>
+<span class="sd">    requires_grad: ``bool``, optional</span>
+<span class="sd">        If True, compute gradient of ELMo parameters for fine tuning.</span>
+<span class="sd">    The relevant section of the options file is something like:</span>
+<span class="sd">    .. example-code::</span>
+<span class="sd">        .. code-block:: python</span>
+<span class="sd">            {&#39;char_cnn&#39;: {</span>
+<span class="sd">                &#39;activation&#39;: &#39;relu&#39;,</span>
+<span class="sd">                &#39;embedding&#39;: {&#39;dim&#39;: 4},</span>
+<span class="sd">                &#39;filters&#39;: [[1, 4], [2, 8], [3, 16], [4, 32], [5, 64]],</span>
+<span class="sd">                &#39;max_characters_per_token&#39;: 50,</span>
+<span class="sd">                &#39;n_characters&#39;: 262,</span>
+<span class="sd">                &#39;n_highway&#39;: 2</span>
+<span class="sd">                }</span>
+<span class="sd">            }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">weight_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">requires_grad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">_ElmoCharacterEncoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">options_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fin</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fin</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_weight_file</span> <span class="o">=</span> <span class="n">weight_file</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;lstm&quot;</span><span class="p">][</span><span class="s2">&quot;projection_dim&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="n">requires_grad</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_weights</span><span class="p">()</span>
+
+        <span class="n">max_word_length</span> <span class="o">=</span> <span class="mi">50</span>
+
+        <span class="c1"># char ids 0-255 come from utf-8 encoding bytes</span>
+        <span class="c1"># assign 256-300 to special chars</span>
+        <span class="n">beginning_of_sentence_character</span> <span class="o">=</span> <span class="mi">256</span>  <span class="c1"># &lt;begin sentence&gt;</span>
+        <span class="n">end_of_sentence_character</span> <span class="o">=</span> <span class="mi">257</span>  <span class="c1"># &lt;end sentence&gt;</span>
+        <span class="n">beginning_of_word_character</span> <span class="o">=</span> <span class="mi">258</span>  <span class="c1"># &lt;begin word&gt;</span>
+        <span class="n">end_of_word_character</span> <span class="o">=</span> <span class="mi">259</span>  <span class="c1"># &lt;end word&gt;</span>
+        <span class="n">padding_character</span> <span class="o">=</span> <span class="mi">260</span>  <span class="c1"># &lt;padding&gt;</span>
+
+        <span class="n">beginning_of_sentence_characters</span> <span class="o">=</span> <span class="n">_make_bos_eos</span><span class="p">(</span>
+            <span class="n">beginning_of_sentence_character</span><span class="p">,</span>
+            <span class="n">padding_character</span><span class="p">,</span>
+            <span class="n">beginning_of_word_character</span><span class="p">,</span>
+            <span class="n">end_of_word_character</span><span class="p">,</span>
+            <span class="n">max_word_length</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">end_of_sentence_characters</span> <span class="o">=</span> <span class="n">_make_bos_eos</span><span class="p">(</span>
+            <span class="n">end_of_sentence_character</span><span class="p">,</span>
+            <span class="n">padding_character</span><span class="p">,</span>
+            <span class="n">beginning_of_word_character</span><span class="p">,</span>
+            <span class="n">end_of_word_character</span><span class="p">,</span>
+            <span class="n">max_word_length</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Cache the arrays for use in forward -- +1 due to masking.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_beginning_of_sentence_characters</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span>
+            <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">beginning_of_sentence_characters</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_end_of_sentence_characters</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span>
+            <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">end_of_sentence_characters</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_output_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_dim</span>
+
+    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>  <span class="c1"># pylint: disable=arguments-differ</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute context insensitive token embeddings for ELMo representations.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inputs: ``torch.Tensor``</span>
+<span class="sd">            Shape ``(batch_size, sequence_length, 50)`` of character ids representing the</span>
+<span class="sd">            current batch.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Dict with keys:</span>
+<span class="sd">        ``&#39;token_embedding&#39;``: ``torch.Tensor``</span>
+<span class="sd">            Shape ``(batch_size, sequence_length + 2, embedding_dim)`` tensor with context</span>
+<span class="sd">            insensitive token representations.</span>
+<span class="sd">        ``&#39;mask&#39;``:  ``torch.Tensor``</span>
+<span class="sd">            Shape ``(batch_size, sequence_length + 2)`` long tensor with sequence mask.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Add BOS/EOS</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="p">((</span><span class="n">inputs</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+        <span class="n">character_ids_with_bos_eos</span><span class="p">,</span> <span class="n">mask_with_bos_eos</span> <span class="o">=</span> <span class="n">add_sentence_boundary_token_ids</span><span class="p">(</span>
+            <span class="n">inputs</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_beginning_of_sentence_characters</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_end_of_sentence_characters</span>
+        <span class="p">)</span>
+
+        <span class="c1"># the character id embedding</span>
+        <span class="n">max_chars_per_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;char_cnn&quot;</span><span class="p">][</span><span class="s2">&quot;max_characters_per_token&quot;</span><span class="p">]</span>
+        <span class="c1"># (batch_size * sequence_length, max_chars_per_token, embed_dim)</span>
+        <span class="n">character_embedding</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span>
+            <span class="n">character_ids_with_bos_eos</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_chars_per_token</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_char_embedding_weights</span>
+        <span class="p">)</span>
+
+        <span class="c1"># run convolutions</span>
+        <span class="n">cnn_options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;char_cnn&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">cnn_options</span><span class="p">[</span><span class="s2">&quot;activation&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;tanh&quot;</span><span class="p">:</span>
+            <span class="n">activation</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">tanh</span>
+        <span class="k">elif</span> <span class="n">cnn_options</span><span class="p">[</span><span class="s2">&quot;activation&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;relu&quot;</span><span class="p">:</span>
+            <span class="n">activation</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">relu</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unknown activation&quot;</span><span class="p">)</span>
+
+        <span class="c1"># (batch_size * sequence_length, embed_dim, max_chars_per_token)</span>
+        <span class="n">character_embedding</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">character_embedding</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">convs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_convolutions</span><span class="p">)):</span>
+            <span class="n">conv</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;char_conv_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">convolved</span> <span class="o">=</span> <span class="n">conv</span><span class="p">(</span><span class="n">character_embedding</span><span class="p">)</span>
+            <span class="c1"># (batch_size * sequence_length, n_filters for this width)</span>
+            <span class="n">convolved</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">convolved</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">convolved</span> <span class="o">=</span> <span class="n">activation</span><span class="p">(</span><span class="n">convolved</span><span class="p">)</span>
+            <span class="n">convs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">convolved</span><span class="p">)</span>
+
+        <span class="c1"># (batch_size * sequence_length, n_filters)</span>
+        <span class="n">token_embedding</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">convs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># apply the highway layers (batch_size * sequence_length, n_filters)</span>
+        <span class="n">token_embedding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_highways</span><span class="p">(</span><span class="n">token_embedding</span><span class="p">)</span>
+
+        <span class="c1"># final projection  (batch_size * sequence_length, embedding_dim)</span>
+        <span class="n">token_embedding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_projection</span><span class="p">(</span><span class="n">token_embedding</span><span class="p">)</span>
+
+        <span class="c1"># reshape to (batch_size, sequence_length, embedding_dim)</span>
+        <span class="n">batch_size</span><span class="p">,</span> <span class="n">sequence_length</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">character_ids_with_bos_eos</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;mask&quot;</span><span class="p">:</span> <span class="n">mask_with_bos_eos</span><span class="p">,</span>
+            <span class="s2">&quot;token_embedding&quot;</span><span class="p">:</span> <span class="n">token_embedding</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">sequence_length</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">_load_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_char_embedding</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_cnn_weights</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_highway</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_projection</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_load_char_embedding</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_weight_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fin</span><span class="p">:</span>
+            <span class="n">char_embed_weights</span> <span class="o">=</span> <span class="n">fin</span><span class="p">[</span><span class="s2">&quot;char_embed&quot;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span>
+
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">char_embed_weights</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">char_embed_weights</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span>
+        <span class="p">)</span>
+        <span class="n">weights</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">char_embed_weights</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_char_embedding_weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">weights</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_load_cnn_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cnn_options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;char_cnn&quot;</span><span class="p">]</span>
+        <span class="n">filters</span> <span class="o">=</span> <span class="n">cnn_options</span><span class="p">[</span><span class="s2">&quot;filters&quot;</span><span class="p">]</span>
+        <span class="n">char_embed_dim</span> <span class="o">=</span> <span class="n">cnn_options</span><span class="p">[</span><span class="s2">&quot;embedding&quot;</span><span class="p">][</span><span class="s2">&quot;dim&quot;</span><span class="p">]</span>
+
+        <span class="n">convolutions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">filters</span><span class="p">):</span>
+            <span class="n">conv</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Conv1d</span><span class="p">(</span>
+                <span class="n">in_channels</span><span class="o">=</span><span class="n">char_embed_dim</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+            <span class="c1"># load the weights</span>
+            <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_weight_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fin</span><span class="p">:</span>
+                <span class="n">weight</span> <span class="o">=</span> <span class="n">fin</span><span class="p">[</span><span class="s2">&quot;CNN&quot;</span><span class="p">][</span><span class="s2">&quot;W_cnn_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)][</span><span class="o">...</span><span class="p">]</span>
+                <span class="n">bias</span> <span class="o">=</span> <span class="n">fin</span><span class="p">[</span><span class="s2">&quot;CNN&quot;</span><span class="p">][</span><span class="s2">&quot;b_cnn_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)][</span><span class="o">...</span><span class="p">]</span>
+
+            <span class="n">w_reshaped</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">weight</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">w_reshaped</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">conv</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid weight file&quot;</span><span class="p">)</span>
+            <span class="n">conv</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">w_reshaped</span><span class="p">))</span>
+            <span class="n">conv</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">bias</span><span class="p">))</span>
+
+            <span class="n">conv</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span>
+            <span class="n">conv</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span>
+
+            <span class="n">convolutions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">conv</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="s2">&quot;char_conv_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">conv</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_convolutions</span> <span class="o">=</span> <span class="n">convolutions</span>
+
+    <span class="k">def</span> <span class="nf">_load_highway</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># pylint: disable=protected-access</span>
+        <span class="c1"># the highway layers have same dimensionality as the number of cnn filters</span>
+        <span class="n">cnn_options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;char_cnn&quot;</span><span class="p">]</span>
+        <span class="n">filters</span> <span class="o">=</span> <span class="n">cnn_options</span><span class="p">[</span><span class="s2">&quot;filters&quot;</span><span class="p">]</span>
+        <span class="n">n_filters</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filters</span><span class="p">)</span>
+        <span class="n">n_highway</span> <span class="o">=</span> <span class="n">cnn_options</span><span class="p">[</span><span class="s2">&quot;n_highway&quot;</span><span class="p">]</span>
+
+        <span class="c1"># create the layers, and load the weights</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_highways</span> <span class="o">=</span> <span class="n">Highway</span><span class="p">(</span><span class="n">n_filters</span><span class="p">,</span> <span class="n">n_highway</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_highway</span><span class="p">):</span>
+            <span class="c1"># The AllenNLP highway is one matrix multplication with concatenation of</span>
+            <span class="c1"># transform and carry weights.</span>
+            <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_weight_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fin</span><span class="p">:</span>
+                <span class="c1"># The weights are transposed due to multiplication order assumptions in tf</span>
+                <span class="c1"># vs pytorch (tf.matmul(X, W) vs pytorch.matmul(W, X))</span>
+                <span class="n">w_transform</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">fin</span><span class="p">[</span><span class="s2">&quot;CNN_high_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">)][</span><span class="s2">&quot;W_transform&quot;</span><span class="p">][</span><span class="o">...</span><span class="p">])</span>
+                <span class="c1"># -1.0 since AllenNLP is g * x + (1 - g) * f(x) but tf is (1 - g) * x + g * f(x)</span>
+                <span class="n">w_carry</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">fin</span><span class="p">[</span><span class="s2">&quot;CNN_high_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">)][</span><span class="s2">&quot;W_carry&quot;</span><span class="p">][</span><span class="o">...</span><span class="p">])</span>
+                <span class="n">weight</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">w_transform</span><span class="p">,</span> <span class="n">w_carry</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_highways</span><span class="o">.</span><span class="n">_layers</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">weight</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_highways</span><span class="o">.</span><span class="n">_layers</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span>
+
+                <span class="n">b_transform</span> <span class="o">=</span> <span class="n">fin</span><span class="p">[</span><span class="s2">&quot;CNN_high_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">)][</span><span class="s2">&quot;b_transform&quot;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span>
+                <span class="n">b_carry</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">fin</span><span class="p">[</span><span class="s2">&quot;CNN_high_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">)][</span><span class="s2">&quot;b_carry&quot;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span>
+                <span class="n">bias</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">b_transform</span><span class="p">,</span> <span class="n">b_carry</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_highways</span><span class="o">.</span><span class="n">_layers</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">bias</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_highways</span><span class="o">.</span><span class="n">_layers</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span>
+
+    <span class="k">def</span> <span class="nf">_load_projection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cnn_options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;char_cnn&quot;</span><span class="p">]</span>
+        <span class="n">filters</span> <span class="o">=</span> <span class="n">cnn_options</span><span class="p">[</span><span class="s2">&quot;filters&quot;</span><span class="p">]</span>
+        <span class="n">n_filters</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filters</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_projection</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_filters</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_weight_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fin</span><span class="p">:</span>
+            <span class="n">weight</span> <span class="o">=</span> <span class="n">fin</span><span class="p">[</span><span class="s2">&quot;CNN_proj&quot;</span><span class="p">][</span><span class="s2">&quot;W_proj&quot;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span>
+            <span class="n">bias</span> <span class="o">=</span> <span class="n">fin</span><span class="p">[</span><span class="s2">&quot;CNN_proj&quot;</span><span class="p">][</span><span class="s2">&quot;b_proj&quot;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_projection</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">weight</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_projection</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">bias</span><span class="p">))</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_projection</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_projection</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span>
+
+
+<div class="viewcode-block" id="ElmoLstm"><a class="viewcode-back" href="../../../claf.tokens.html#claf.tokens.elmo.ElmoLstm">[docs]</a><span class="k">class</span> <span class="nc">ElmoLstm</span><span class="p">(</span><span class="n">_EncoderBase</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A stacked, bidirectional LSTM which uses</span>
+<span class="sd">    :class:`~allennlp.modules.lstm_cell_with_projection.LstmCellWithProjection`&#39;s</span>
+<span class="sd">    with highway layers between the inputs to layers.</span>
+<span class="sd">    The inputs to the forward and backward directions are independent - forward and backward</span>
+<span class="sd">    states are not concatenated between layers.</span>
+<span class="sd">    Additionally, this LSTM maintains its `own` state, which is updated every time</span>
+<span class="sd">    ``forward`` is called. It is dynamically resized for different batch sizes and is</span>
+<span class="sd">    designed for use with non-continuous inputs (i.e inputs which aren&#39;t formatted as a stream,</span>
+<span class="sd">    such as text used for a language modelling task, which is how stateful RNNs are typically used).</span>
+<span class="sd">    This is non-standard, but can be thought of as having an &quot;end of sentence&quot; state, which is</span>
+<span class="sd">    carried across different sentences.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    input_size : ``int``, required</span>
+<span class="sd">        The dimension of the inputs to the LSTM.</span>
+<span class="sd">    hidden_size : ``int``, required</span>
+<span class="sd">        The dimension of the outputs of the LSTM.</span>
+<span class="sd">    cell_size : ``int``, required.</span>
+<span class="sd">        The dimension of the memory cell of the</span>
+<span class="sd">        :class:`~allennlp.modules.lstm_cell_with_projection.LstmCellWithProjection`.</span>
+<span class="sd">    num_layers : ``int``, required</span>
+<span class="sd">        The number of bidirectional LSTMs to use.</span>
+<span class="sd">    requires_grad: ``bool``, optional</span>
+<span class="sd">        If True, compute gradient of ELMo parameters for fine tuning.</span>
+<span class="sd">    recurrent_dropout_probability: ``float``, optional (default = 0.0)</span>
+<span class="sd">        The dropout probability to be used in a dropout scheme as stated in</span>
+<span class="sd">        `A Theoretically Grounded Application of Dropout in Recurrent Neural Networks</span>
+<span class="sd">        &lt;https://arxiv.org/abs/1512.05287&gt;`_ .</span>
+<span class="sd">    state_projection_clip_value: ``float``, optional, (default = None)</span>
+<span class="sd">        The magnitude with which to clip the hidden_state after projecting it.</span>
+<span class="sd">    memory_cell_clip_value: ``float``, optional, (default = None)</span>
+<span class="sd">        The magnitude with which to clip the memory cell.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">input_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">hidden_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">cell_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">num_layers</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">requires_grad</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">recurrent_dropout_probability</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">memory_cell_clip_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">state_projection_clip_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ElmoLstm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">stateful</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Required to be wrapped with a :class:`PytorchSeq2SeqWrapper`.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_size</span> <span class="o">=</span> <span class="n">input_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">hidden_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_layers</span> <span class="o">=</span> <span class="n">num_layers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span> <span class="o">=</span> <span class="n">cell_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="n">requires_grad</span>
+
+        <span class="n">forward_layers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">backward_layers</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">lstm_input_size</span> <span class="o">=</span> <span class="n">input_size</span>
+        <span class="n">go_forward</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">layer_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_layers</span><span class="p">):</span>
+            <span class="n">forward_layer</span> <span class="o">=</span> <span class="n">LstmCellWithProjection</span><span class="p">(</span>
+                <span class="n">lstm_input_size</span><span class="p">,</span>
+                <span class="n">hidden_size</span><span class="p">,</span>
+                <span class="n">cell_size</span><span class="p">,</span>
+                <span class="n">go_forward</span><span class="p">,</span>
+                <span class="n">recurrent_dropout_probability</span><span class="p">,</span>
+                <span class="n">memory_cell_clip_value</span><span class="p">,</span>
+                <span class="n">state_projection_clip_value</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">backward_layer</span> <span class="o">=</span> <span class="n">LstmCellWithProjection</span><span class="p">(</span>
+                <span class="n">lstm_input_size</span><span class="p">,</span>
+                <span class="n">hidden_size</span><span class="p">,</span>
+                <span class="n">cell_size</span><span class="p">,</span>
+                <span class="ow">not</span> <span class="n">go_forward</span><span class="p">,</span>
+                <span class="n">recurrent_dropout_probability</span><span class="p">,</span>
+                <span class="n">memory_cell_clip_value</span><span class="p">,</span>
+                <span class="n">state_projection_clip_value</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">lstm_input_size</span> <span class="o">=</span> <span class="n">hidden_size</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="s2">&quot;forward_layer_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">layer_index</span><span class="p">),</span> <span class="n">forward_layer</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="s2">&quot;backward_layer_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">layer_index</span><span class="p">),</span> <span class="n">backward_layer</span><span class="p">)</span>
+            <span class="n">forward_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">forward_layer</span><span class="p">)</span>
+            <span class="n">backward_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">backward_layer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">forward_layers</span> <span class="o">=</span> <span class="n">forward_layers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">backward_layers</span> <span class="o">=</span> <span class="n">backward_layers</span>
+
+<div class="viewcode-block" id="ElmoLstm.forward"><a class="viewcode-back" href="../../../claf.tokens.html#claf.tokens.elmo.ElmoLstm.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">mask</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span>  <span class="c1"># pylint: disable=arguments-differ</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inputs : ``torch.Tensor``, required.</span>
+<span class="sd">            A Tensor of shape ``(batch_size, sequence_length, hidden_size)``.</span>
+<span class="sd">        mask : ``torch.LongTensor``, required.</span>
+<span class="sd">            A binary mask of shape ``(batch_size, sequence_length)`` representing the</span>
+<span class="sd">            non-padded elements in each sequence in the batch.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        A ``torch.Tensor`` of shape (num_layers, batch_size, sequence_length, hidden_size),</span>
+<span class="sd">        where the num_layers dimension represents the LSTM output from that layer.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">batch_size</span><span class="p">,</span> <span class="n">total_sequence_length</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="n">stacked_sequence_output</span><span class="p">,</span> <span class="n">final_states</span><span class="p">,</span> <span class="n">restoration_indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sort_and_run_forward</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lstm_forward</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">mask</span>
+        <span class="p">)</span>
+
+        <span class="n">num_layers</span><span class="p">,</span> <span class="n">num_valid</span><span class="p">,</span> <span class="n">returned_timesteps</span><span class="p">,</span> <span class="n">encoder_dim</span> <span class="o">=</span> <span class="n">stacked_sequence_output</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="c1"># Add back invalid rows which were removed in the call to sort_and_run_forward.</span>
+        <span class="k">if</span> <span class="n">num_valid</span> <span class="o">&lt;</span> <span class="n">batch_size</span><span class="p">:</span>
+            <span class="n">zeros</span> <span class="o">=</span> <span class="n">stacked_sequence_output</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">(</span>
+                <span class="n">num_layers</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">-</span> <span class="n">num_valid</span><span class="p">,</span> <span class="n">returned_timesteps</span><span class="p">,</span> <span class="n">encoder_dim</span>
+            <span class="p">)</span>
+            <span class="n">stacked_sequence_output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">stacked_sequence_output</span><span class="p">,</span> <span class="n">zeros</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># The states also need to have invalid rows added back.</span>
+            <span class="n">new_states</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">final_states</span><span class="p">:</span>
+                <span class="n">state_dim</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">zeros</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">(</span><span class="n">num_layers</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">-</span> <span class="n">num_valid</span><span class="p">,</span> <span class="n">state_dim</span><span class="p">)</span>
+                <span class="n">new_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">state</span><span class="p">,</span> <span class="n">zeros</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">final_states</span> <span class="o">=</span> <span class="n">new_states</span>
+
+        <span class="c1"># It&#39;s possible to need to pass sequences which are padded to longer than the</span>
+        <span class="c1"># max length of the sequence to a Seq2StackEncoder. However, packing and unpacking</span>
+        <span class="c1"># the sequences mean that the returned tensor won&#39;t include these dimensions, because</span>
+        <span class="c1"># the RNN did not need to process them. We add them back on in the form of zeros here.</span>
+        <span class="n">sequence_length_difference</span> <span class="o">=</span> <span class="n">total_sequence_length</span> <span class="o">-</span> <span class="n">returned_timesteps</span>
+        <span class="k">if</span> <span class="n">sequence_length_difference</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">zeros</span> <span class="o">=</span> <span class="n">stacked_sequence_output</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">(</span>
+                <span class="n">num_layers</span><span class="p">,</span>
+                <span class="n">batch_size</span><span class="p">,</span>
+                <span class="n">sequence_length_difference</span><span class="p">,</span>
+                <span class="n">stacked_sequence_output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="n">stacked_sequence_output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">stacked_sequence_output</span><span class="p">,</span> <span class="n">zeros</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_states</span><span class="p">(</span><span class="n">final_states</span><span class="p">,</span> <span class="n">restoration_indices</span><span class="p">)</span>
+
+        <span class="c1"># Restore the original indices and return the sequence.</span>
+        <span class="c1"># Has shape (num_layers, batch_size, sequence_length, hidden_size)</span>
+        <span class="k">return</span> <span class="n">stacked_sequence_output</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">restoration_indices</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_lstm_forward</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="p">:</span> <span class="n">PackedSequence</span><span class="p">,</span>
+        <span class="n">initial_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inputs : ``PackedSequence``, required.</span>
+<span class="sd">            A batch first ``PackedSequence`` to run the stacked LSTM over.</span>
+<span class="sd">        initial_state : ``Tuple[torch.Tensor, torch.Tensor]``, optional, (default = None)</span>
+<span class="sd">            A tuple (state, memory) representing the initial hidden state and memory</span>
+<span class="sd">            of the LSTM, with shape (num_layers, batch_size, 2 * hidden_size) and</span>
+<span class="sd">            (num_layers, batch_size, 2 * cell_size) respectively.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        output_sequence : ``torch.FloatTensor``</span>
+<span class="sd">            The encoded sequence of shape (num_layers, batch_size, sequence_length, hidden_size)</span>
+<span class="sd">        final_states: ``Tuple[torch.FloatTensor, torch.FloatTensor]``</span>
+<span class="sd">            The per-layer final (state, memory) states of the LSTM, with shape</span>
+<span class="sd">            (num_layers, batch_size, 2 * hidden_size) and  (num_layers, batch_size, 2 * cell_size)</span>
+<span class="sd">            respectively. The last dimension is duplicated because it contains the state/memory</span>
+<span class="sd">            for both the forward and backward layers.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">initial_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">hidden_states</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">forward_layers</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">initial_state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forward_layers</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Initial states were passed to forward() but the number of &quot;</span>
+                <span class="s2">&quot;initial states does not match the number of layers.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hidden_states</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">initial_state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">initial_state</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+
+        <span class="n">inputs</span><span class="p">,</span> <span class="n">batch_lengths</span> <span class="o">=</span> <span class="n">pad_packed_sequence</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">forward_output_sequence</span> <span class="o">=</span> <span class="n">inputs</span>
+        <span class="n">backward_output_sequence</span> <span class="o">=</span> <span class="n">inputs</span>
+
+        <span class="n">final_states</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">sequence_outputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">layer_index</span><span class="p">,</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">):</span>
+            <span class="n">forward_layer</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;forward_layer_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">layer_index</span><span class="p">))</span>
+            <span class="n">backward_layer</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;backward_layer_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">layer_index</span><span class="p">))</span>
+
+            <span class="n">forward_cache</span> <span class="o">=</span> <span class="n">forward_output_sequence</span>
+            <span class="n">backward_cache</span> <span class="o">=</span> <span class="n">backward_output_sequence</span>
+
+            <span class="k">if</span> <span class="n">state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">forward_hidden_state</span><span class="p">,</span> <span class="n">backward_hidden_state</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">forward_memory_state</span><span class="p">,</span> <span class="n">backward_memory_state</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">forward_state</span> <span class="o">=</span> <span class="p">(</span><span class="n">forward_hidden_state</span><span class="p">,</span> <span class="n">forward_memory_state</span><span class="p">)</span>
+                <span class="n">backward_state</span> <span class="o">=</span> <span class="p">(</span><span class="n">backward_hidden_state</span><span class="p">,</span> <span class="n">backward_memory_state</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">forward_state</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">backward_state</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="n">forward_output_sequence</span><span class="p">,</span> <span class="n">forward_state</span> <span class="o">=</span> <span class="n">forward_layer</span><span class="p">(</span>
+                <span class="n">forward_output_sequence</span><span class="p">,</span> <span class="n">batch_lengths</span><span class="p">,</span> <span class="n">forward_state</span>
+            <span class="p">)</span>
+            <span class="n">backward_output_sequence</span><span class="p">,</span> <span class="n">backward_state</span> <span class="o">=</span> <span class="n">backward_layer</span><span class="p">(</span>
+                <span class="n">backward_output_sequence</span><span class="p">,</span> <span class="n">batch_lengths</span><span class="p">,</span> <span class="n">backward_state</span>
+            <span class="p">)</span>
+            <span class="c1"># Skip connections, just adding the input to the output.</span>
+            <span class="k">if</span> <span class="n">layer_index</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">forward_output_sequence</span> <span class="o">+=</span> <span class="n">forward_cache</span>
+                <span class="n">backward_output_sequence</span> <span class="o">+=</span> <span class="n">backward_cache</span>
+
+            <span class="n">sequence_outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">forward_output_sequence</span><span class="p">,</span> <span class="n">backward_output_sequence</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="c1"># Append the state tuples in a list, so that we can return</span>
+            <span class="c1"># the final states for all the layers.</span>
+            <span class="n">final_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">(</span>
+                    <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">forward_state</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">backward_state</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+                    <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">forward_state</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">backward_state</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="n">stacked_sequence_outputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">sequence_outputs</span><span class="p">)</span>
+        <span class="c1"># Stack the hidden state and memory for each layer into 2 tensors of shape</span>
+        <span class="c1"># (num_layers, batch_size, hidden_size) and (num_layers, batch_size, cell_size)</span>
+        <span class="c1"># respectively.</span>
+        <span class="n">final_hidden_states</span><span class="p">,</span> <span class="n">final_memory_states</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">final_states</span><span class="p">)</span>
+        <span class="n">final_state_tuple</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">final_hidden_states</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">final_memory_states</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">stacked_sequence_outputs</span><span class="p">,</span> <span class="n">final_state_tuple</span>
+
+<div class="viewcode-block" id="ElmoLstm.load_weights"><a class="viewcode-back" href="../../../claf.tokens.html#claf.tokens.elmo.ElmoLstm.load_weights">[docs]</a>    <span class="k">def</span> <span class="nf">load_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weight_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load the pre-trained weights from the file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span>
+
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">weight_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fin</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i_layer</span><span class="p">,</span> <span class="n">lstms</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forward_layers</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">backward_layers</span><span class="p">)):</span>
+                <span class="k">for</span> <span class="n">j_direction</span><span class="p">,</span> <span class="n">lstm</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lstms</span><span class="p">):</span>
+                    <span class="c1"># lstm is an instance of LSTMCellWithProjection</span>
+                    <span class="n">cell_size</span> <span class="o">=</span> <span class="n">lstm</span><span class="o">.</span><span class="n">cell_size</span>
+
+                    <span class="n">dataset</span> <span class="o">=</span> <span class="n">fin</span><span class="p">[</span><span class="s2">&quot;RNN_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">j_direction</span><span class="p">][</span><span class="s2">&quot;RNN&quot;</span><span class="p">][</span><span class="s2">&quot;MultiRNNCell&quot;</span><span class="p">][</span>
+                        <span class="s2">&quot;Cell</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i_layer</span>
+                    <span class="p">][</span><span class="s2">&quot;LSTMCell&quot;</span><span class="p">]</span>
+
+                    <span class="c1"># tensorflow packs together both W and U matrices into one matrix,</span>
+                    <span class="c1"># but pytorch maintains individual matrices.  In addition, tensorflow</span>
+                    <span class="c1"># packs the gates as input, memory, forget, output but pytorch</span>
+                    <span class="c1"># uses input, forget, memory, output.  So we need to modify the weights.</span>
+                    <span class="n">tf_weights</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;W_0&quot;</span><span class="p">][</span><span class="o">...</span><span class="p">])</span>
+                    <span class="n">torch_weights</span> <span class="o">=</span> <span class="n">tf_weights</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+                    <span class="c1"># split the W from U matrices</span>
+                    <span class="n">input_size</span> <span class="o">=</span> <span class="n">lstm</span><span class="o">.</span><span class="n">input_size</span>
+                    <span class="n">input_weights</span> <span class="o">=</span> <span class="n">torch_weights</span><span class="p">[:,</span> <span class="p">:</span><span class="n">input_size</span><span class="p">]</span>
+                    <span class="n">recurrent_weights</span> <span class="o">=</span> <span class="n">torch_weights</span><span class="p">[:,</span> <span class="n">input_size</span><span class="p">:]</span>
+                    <span class="n">tf_input_weights</span> <span class="o">=</span> <span class="n">tf_weights</span><span class="p">[:,</span> <span class="p">:</span><span class="n">input_size</span><span class="p">]</span>
+                    <span class="n">tf_recurrent_weights</span> <span class="o">=</span> <span class="n">tf_weights</span><span class="p">[:,</span> <span class="n">input_size</span><span class="p">:]</span>
+
+                    <span class="c1"># handle the different gate order convention</span>
+                    <span class="k">for</span> <span class="n">torch_w</span><span class="p">,</span> <span class="n">tf_w</span> <span class="ow">in</span> <span class="p">[</span>
+                        <span class="p">[</span><span class="n">input_weights</span><span class="p">,</span> <span class="n">tf_input_weights</span><span class="p">],</span>
+                        <span class="p">[</span><span class="n">recurrent_weights</span><span class="p">,</span> <span class="n">tf_recurrent_weights</span><span class="p">],</span>
+                    <span class="p">]:</span>
+                        <span class="n">torch_w</span><span class="p">[(</span><span class="mi">1</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">),</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">tf_w</span><span class="p">[</span>
+                            <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">),</span> <span class="p">:</span>
+                        <span class="p">]</span>
+                        <span class="n">torch_w</span><span class="p">[(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">),</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">tf_w</span><span class="p">[</span>
+                            <span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">),</span> <span class="p">:</span>
+                        <span class="p">]</span>
+
+                    <span class="n">lstm</span><span class="o">.</span><span class="n">input_linearity</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">input_weights</span><span class="p">))</span>
+                    <span class="n">lstm</span><span class="o">.</span><span class="n">state_linearity</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">recurrent_weights</span><span class="p">))</span>
+                    <span class="n">lstm</span><span class="o">.</span><span class="n">input_linearity</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="n">requires_grad</span>
+                    <span class="n">lstm</span><span class="o">.</span><span class="n">state_linearity</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="n">requires_grad</span>
+
+                    <span class="c1"># the bias weights</span>
+                    <span class="n">tf_bias</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span>
+                    <span class="c1"># tensorflow adds 1.0 to forget gate bias instead of modifying the</span>
+                    <span class="c1"># parameters...</span>
+                    <span class="n">tf_bias</span><span class="p">[(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">torch_bias</span> <span class="o">=</span> <span class="n">tf_bias</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                    <span class="n">torch_bias</span><span class="p">[(</span><span class="mi">1</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">)]</span> <span class="o">=</span> <span class="n">tf_bias</span><span class="p">[</span>
+                        <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">)</span>
+                    <span class="p">]</span>
+                    <span class="n">torch_bias</span><span class="p">[(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">)]</span> <span class="o">=</span> <span class="n">tf_bias</span><span class="p">[</span>
+                        <span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">)</span>
+                    <span class="p">]</span>
+                    <span class="n">lstm</span><span class="o">.</span><span class="n">state_linearity</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">torch_bias</span><span class="p">))</span>
+                    <span class="n">lstm</span><span class="o">.</span><span class="n">state_linearity</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="n">requires_grad</span>
+
+                    <span class="c1"># the projection weights</span>
+                    <span class="n">proj_weights</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;W_P_0&quot;</span><span class="p">][</span><span class="o">...</span><span class="p">])</span>
+                    <span class="n">lstm</span><span class="o">.</span><span class="n">state_projection</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">proj_weights</span><span class="p">))</span>
+                    <span class="n">lstm</span><span class="o">.</span><span class="n">state_projection</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="n">requires_grad</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

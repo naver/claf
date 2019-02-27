@@ -1,0 +1,541 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>claf.tokens &mdash; CLaF 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>claf.tokens</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for claf.tokens</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">claf.decorator</span> <span class="k">import</span> <span class="n">register</span>
+<span class="kn">from</span> <span class="nn">claf.tokens</span> <span class="k">import</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">embedding</span>
+<span class="kn">from</span> <span class="nn">claf.tokens.linguistic</span> <span class="k">import</span> <span class="n">POSTag</span><span class="p">,</span> <span class="n">NER</span>
+<span class="kn">from</span> <span class="nn">claf.tokens.token_maker</span> <span class="k">import</span> <span class="n">TokenMaker</span>
+<span class="kn">from</span> <span class="nn">claf.tokens.tokenizer</span> <span class="k">import</span> <span class="n">PassText</span>
+
+
+<div class="viewcode-block" id="basic_embedding_fn"><a class="viewcode-back" href="../../claf.tokens.html#claf.tokens.basic_embedding_fn">[docs]</a><span class="k">def</span> <span class="nf">basic_embedding_fn</span><span class="p">(</span><span class="n">embedding_config</span><span class="p">,</span> <span class="n">module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">vocab</span><span class="p">):</span>
+        <span class="n">embedding_config</span><span class="p">[</span><span class="s2">&quot;vocab&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vocab</span>
+        <span class="k">return</span> <span class="n">module</span><span class="p">(</span><span class="o">**</span><span class="n">embedding_config</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span></div>
+
+
+<div class="viewcode-block" id="FeatureTokenMaker"><a class="viewcode-back" href="../../claf.tokens.html#claf.tokens.FeatureTokenMaker">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;token:</span><span class="si">{TokenMaker.FEATURE_TYPE}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">FeatureTokenMaker</span><span class="p">(</span><span class="n">TokenMaker</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Feature Token</span>
+
+<span class="sd">    Do not use Embedding function.</span>
+<span class="sd">    Just pass indexed_feature</span>
+
+<span class="sd">    example.</span>
+<span class="sd">        hello -&gt; [&#39;hello&#39;, &#39;world&#39;] -&gt; [3, 5] -&gt; tensor</span>
+
+<span class="sd">    consisting of</span>
+<span class="sd">        - tokenizer: Tokenizer (need to define unit)</span>
+<span class="sd">        - indexer: WordIndexer</span>
+<span class="sd">        - embedding: None</span>
+<span class="sd">        - vocab: Vocab</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenizers</span><span class="p">,</span> <span class="n">indexer_config</span><span class="p">,</span> <span class="n">embedding_config</span><span class="p">,</span> <span class="n">vocab_config</span><span class="p">):</span>
+        <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">PassText</span><span class="p">()</span>
+        <span class="n">do_tokenize</span> <span class="o">=</span> <span class="n">indexer_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;do_tokenize&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">do_tokenize</span><span class="p">:</span>
+            <span class="n">text_unit</span> <span class="o">=</span> <span class="n">indexer_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;unit&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">text_unit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;When use &#39;do_tokenize&#39;, &#39;unit&#39; is required. &quot;</span><span class="p">)</span>
+
+            <span class="k">del</span> <span class="n">indexer_config</span><span class="p">[</span><span class="s2">&quot;unit&quot;</span><span class="p">]</span>
+            <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizers</span><span class="p">[</span><span class="n">text_unit</span><span class="p">]</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">FeatureTokenMaker</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">TokenMaker</span><span class="o">.</span><span class="n">FEATURE_TYPE</span><span class="p">,</span>
+            <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
+            <span class="n">indexer</span><span class="o">=</span><span class="n">indexer</span><span class="o">.</span><span class="n">WordIndexer</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="o">**</span><span class="n">indexer_config</span><span class="p">),</span>
+            <span class="n">embedding_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">vocab_config</span><span class="o">=</span><span class="n">vocab_config</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BertTokenMaker"><a class="viewcode-back" href="../../claf.tokens.html#claf.tokens.BertTokenMaker">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;token:</span><span class="si">{TokenMaker.BERT_TYPE}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">BertTokenMaker</span><span class="p">(</span><span class="n">TokenMaker</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    BERT Token</span>
+<span class="sd">    Pre-training of Deep Bidirectional Transformers for Language Understanding</span>
+
+<span class="sd">    example.</span>
+<span class="sd">        hello -&gt; [&#39;[CLS]&#39;, &#39;he&#39;, &#39;##llo&#39;, [SEP]] -&gt; [1, 4, 7, 2] -&gt; BERT -&gt; tensor</span>
+
+<span class="sd">    consisting of</span>
+<span class="sd">        - tokenizer: WordTokenizer</span>
+<span class="sd">        - indexer: WordIndexer</span>
+<span class="sd">        - embedding: ELMoEmbedding (Language Modeling BiLSTM)</span>
+<span class="sd">        - vocab: Vocab</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenizers</span><span class="p">,</span> <span class="n">indexer_config</span><span class="p">,</span> <span class="n">embedding_config</span><span class="p">,</span> <span class="n">vocab_config</span><span class="p">):</span>
+        <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;subword&quot;</span><span class="p">]</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BertTokenMaker</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">TokenMaker</span><span class="o">.</span><span class="n">BERT_TYPE</span><span class="p">,</span>
+            <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
+            <span class="n">indexer</span><span class="o">=</span><span class="n">indexer</span><span class="o">.</span><span class="n">BertIndexer</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="o">**</span><span class="n">indexer_config</span><span class="p">),</span>
+            <span class="n">embedding_fn</span><span class="o">=</span><span class="n">basic_embedding_fn</span><span class="p">(</span><span class="n">embedding_config</span><span class="p">,</span> <span class="n">embedding</span><span class="o">.</span><span class="n">BertEmbedding</span><span class="p">),</span>
+            <span class="n">vocab_config</span><span class="o">=</span><span class="n">vocab_config</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CharTokenMaker"><a class="viewcode-back" href="../../claf.tokens.html#claf.tokens.CharTokenMaker">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;token:</span><span class="si">{TokenMaker.CHAR_TYPE}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">CharTokenMaker</span><span class="p">(</span><span class="n">TokenMaker</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Character Token</span>
+
+<span class="sd">    Character-level Convolutional Networks for Text Classification</span>
+<span class="sd">    (https://arxiv.org/abs/1509.01626)</span>
+
+<span class="sd">    example.</span>
+<span class="sd">        hello -&gt; [&#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;] -&gt; [2, 3, 4, 4, 5] -&gt; CharCNN -&gt; tensor</span>
+
+<span class="sd">    consisting of</span>
+<span class="sd">        - tokenizer: CharTokenizer</span>
+<span class="sd">        - indexer: CharIndexer</span>
+<span class="sd">        - embedding: CharEmbedding (CharCNN)</span>
+<span class="sd">        - vocab: Vocab</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenizers</span><span class="p">,</span> <span class="n">indexer_config</span><span class="p">,</span> <span class="n">embedding_config</span><span class="p">,</span> <span class="n">vocab_config</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CharTokenMaker</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">TokenMaker</span><span class="o">.</span><span class="n">CHAR_TYPE</span><span class="p">,</span>
+            <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;char&quot;</span><span class="p">],</span>
+            <span class="n">indexer</span><span class="o">=</span><span class="n">indexer</span><span class="o">.</span><span class="n">CharIndexer</span><span class="p">(</span><span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;char&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">indexer_config</span><span class="p">),</span>
+            <span class="n">embedding_fn</span><span class="o">=</span><span class="n">basic_embedding_fn</span><span class="p">(</span><span class="n">embedding_config</span><span class="p">,</span> <span class="n">embedding</span><span class="o">.</span><span class="n">CharEmbedding</span><span class="p">),</span>
+            <span class="n">vocab_config</span><span class="o">=</span><span class="n">vocab_config</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CoveTokenMaker"><a class="viewcode-back" href="../../claf.tokens.html#claf.tokens.CoveTokenMaker">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;token:</span><span class="si">{TokenMaker.COVE_TYPE}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">CoveTokenMaker</span><span class="p">(</span><span class="n">TokenMaker</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    CoVe Token</span>
+
+<span class="sd">    Learned in Translation: Contextualized Word Vectors (McCann et. al. 2017)</span>
+<span class="sd">    (https://github.com/salesforce/cove)</span>
+
+<span class="sd">    example.</span>
+<span class="sd">        hello -&gt; [&#39;hello&#39;] -&gt; [2] -&gt; CoVe -&gt; tensor</span>
+
+<span class="sd">    consisting of</span>
+<span class="sd">        - tokenizer: WordTokenizer</span>
+<span class="sd">        - indexer: WordIndexer</span>
+<span class="sd">        - embedding: CoveEmbedding (Machine Translation LSTM)</span>
+<span class="sd">        - vocab: Vocab</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenizers</span><span class="p">,</span> <span class="n">indexer_config</span><span class="p">,</span> <span class="n">embedding_config</span><span class="p">,</span> <span class="n">vocab_config</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CoveTokenMaker</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">TokenMaker</span><span class="o">.</span><span class="n">CHAR_TYPE</span><span class="p">,</span>
+            <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;word&quot;</span><span class="p">],</span>
+            <span class="n">indexer</span><span class="o">=</span><span class="n">indexer</span><span class="o">.</span><span class="n">WordIndexer</span><span class="p">(</span><span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;word&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">indexer_config</span><span class="p">),</span>
+            <span class="n">embedding_fn</span><span class="o">=</span><span class="n">basic_embedding_fn</span><span class="p">(</span><span class="n">embedding_config</span><span class="p">,</span> <span class="n">embedding</span><span class="o">.</span><span class="n">CoveEmbedding</span><span class="p">),</span>
+            <span class="n">vocab_config</span><span class="o">=</span><span class="n">vocab_config</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ElmoTokenMaker"><a class="viewcode-back" href="../../claf.tokens.html#claf.tokens.ElmoTokenMaker">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;token:</span><span class="si">{TokenMaker.ELMO_TYPE}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ElmoTokenMaker</span><span class="p">(</span><span class="n">TokenMaker</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ELMo Token</span>
+<span class="sd">    Embedding from Language Modeling</span>
+
+<span class="sd">    Deep contextualized word representations</span>
+<span class="sd">    (https://github.com/allenai/allennlp/blob/master/allennlp/modules/elmo.py)</span>
+
+<span class="sd">    example.</span>
+<span class="sd">        hello -&gt; [&#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;] -&gt; [2, 3, 4, 4, 5] -&gt; ELMo -&gt; tensor</span>
+
+<span class="sd">    consisting of</span>
+<span class="sd">        - tokenizer: WordTokenizer</span>
+<span class="sd">        - indexer: WordIndexer</span>
+<span class="sd">        - embedding: ELMoEmbedding (Language Modeling BiLSTM)</span>
+<span class="sd">        - vocab: Vocab</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenizers</span><span class="p">,</span> <span class="n">indexer_config</span><span class="p">,</span> <span class="n">embedding_config</span><span class="p">,</span> <span class="n">vocab_config</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ElmoTokenMaker</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">TokenMaker</span><span class="o">.</span><span class="n">WORD_TYPE</span><span class="p">,</span>
+            <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;word&quot;</span><span class="p">],</span>
+            <span class="n">indexer</span><span class="o">=</span><span class="n">indexer</span><span class="o">.</span><span class="n">ELMoIndexer</span><span class="p">(</span><span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;word&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">indexer_config</span><span class="p">),</span>
+            <span class="n">embedding_fn</span><span class="o">=</span><span class="n">basic_embedding_fn</span><span class="p">(</span><span class="n">embedding_config</span><span class="p">,</span> <span class="n">embedding</span><span class="o">.</span><span class="n">ELMoEmbedding</span><span class="p">),</span>
+            <span class="n">vocab_config</span><span class="o">=</span><span class="s2">&quot;elmo&quot;</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ExactMatchTokenMaker"><a class="viewcode-back" href="../../claf.tokens.html#claf.tokens.ExactMatchTokenMaker">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;token:</span><span class="si">{TokenMaker.EXACT_MATCH_TYPE}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ExactMatchTokenMaker</span><span class="p">(</span><span class="n">TokenMaker</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exact Match Token (Sparse Feature)</span>
+
+<span class="sd">    Three simple binary features, indicating whether p_i can be exactly matched</span>
+<span class="sd">    to one question word in q, either in its original, lowercase or lemma form.</span>
+
+<span class="sd">    example.</span>
+<span class="sd">        c: i do, q: i -&gt; [&#39;i&#39;, &#39;do&#39;] -&gt; [1, 0] -&gt; tensor</span>
+
+<span class="sd">    consisting of</span>
+<span class="sd">        - tokenizer: WordTokenizer</span>
+<span class="sd">        - indexer: WordIndexer</span>
+<span class="sd">        - embedding: SparseFeature</span>
+<span class="sd">        - vocab: Vocab</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenizers</span><span class="p">,</span> <span class="n">indexer_config</span><span class="p">,</span> <span class="n">embedding_config</span><span class="p">,</span> <span class="n">vocab_config</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ExactMatchTokenMaker</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">TokenMaker</span><span class="o">.</span><span class="n">EXACT_MATCH_TYPE</span><span class="p">,</span>
+            <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;word&quot;</span><span class="p">],</span>
+            <span class="n">indexer</span><span class="o">=</span><span class="n">indexer</span><span class="o">.</span><span class="n">ExactMatchIndexer</span><span class="p">(</span><span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;word&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">indexer_config</span><span class="p">),</span>
+            <span class="n">embedding_fn</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_embedding_fn</span><span class="p">(</span><span class="n">embedding_config</span><span class="p">,</span> <span class="n">indexer_config</span><span class="p">),</span>
+            <span class="n">vocab_config</span><span class="o">=</span><span class="n">vocab_config</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_embedding_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embedding_config</span><span class="p">,</span> <span class="n">indexer_config</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">vocab</span><span class="p">):</span>
+            <span class="n">embed_type</span> <span class="o">=</span> <span class="n">embedding_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;sparse&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">embedding_config</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">embedding_config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span>
+
+            <span class="n">binary_classes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;False&quot;</span><span class="p">,</span> <span class="s2">&quot;True&quot;</span><span class="p">]</span>
+
+            <span class="n">feature_count</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># origin</span>
+            <span class="n">embedding_config</span><span class="p">[</span><span class="s2">&quot;classes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">binary_classes</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">indexer_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lower&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+                <span class="n">feature_count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">embedding_config</span><span class="p">[</span><span class="s2">&quot;classes&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">binary_classes</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">indexer_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lemma&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+                <span class="n">feature_count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">embedding_config</span><span class="p">[</span><span class="s2">&quot;classes&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">binary_classes</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">embedding</span><span class="o">.</span><span class="n">SparseFeature</span><span class="p">(</span>
+                <span class="n">vocab</span><span class="p">,</span> <span class="n">embed_type</span><span class="p">,</span> <span class="n">feature_count</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">embedding_config</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">wrapper</span></div>
+
+
+<div class="viewcode-block" id="WordTokenMaker"><a class="viewcode-back" href="../../claf.tokens.html#claf.tokens.WordTokenMaker">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;token:</span><span class="si">{TokenMaker.WORD_TYPE}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">WordTokenMaker</span><span class="p">(</span><span class="n">TokenMaker</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Word Token (default)</span>
+
+<span class="sd">        i do -&gt; [&#39;i&#39;, &#39;do&#39;] -&gt; [1, 2] -&gt; Embedding Matrix -&gt; tensor</span>
+
+<span class="sd">    consisting of</span>
+<span class="sd">        - tokenizer: WordTokenizer</span>
+<span class="sd">        - indexer: WordIndexer</span>
+<span class="sd">        - embedding: WordEmbedding</span>
+<span class="sd">        - vocab: Vocab</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenizers</span><span class="p">,</span> <span class="n">indexer_config</span><span class="p">,</span> <span class="n">embedding_config</span><span class="p">,</span> <span class="n">vocab_config</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">WordTokenMaker</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">TokenMaker</span><span class="o">.</span><span class="n">WORD_TYPE</span><span class="p">,</span>
+            <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;word&quot;</span><span class="p">],</span>
+            <span class="n">indexer</span><span class="o">=</span><span class="n">indexer</span><span class="o">.</span><span class="n">WordIndexer</span><span class="p">(</span><span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;word&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">indexer_config</span><span class="p">),</span>
+            <span class="n">embedding_fn</span><span class="o">=</span><span class="n">basic_embedding_fn</span><span class="p">(</span><span class="n">embedding_config</span><span class="p">,</span> <span class="n">embedding</span><span class="o">.</span><span class="n">WordEmbedding</span><span class="p">),</span>
+            <span class="n">vocab_config</span><span class="o">=</span><span class="n">vocab_config</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FrequentWordTokenMaker"><a class="viewcode-back" href="../../claf.tokens.html#claf.tokens.FrequentWordTokenMaker">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;token:</span><span class="si">{TokenMaker.FREQUENT_WORD_TYPE}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">FrequentWordTokenMaker</span><span class="p">(</span><span class="n">TokenMaker</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Frequent-Tuning Word Token</span>
+
+<span class="sd">    word token + pre-trained word embeddings fixed and only fine-tune the N most frequent</span>
+
+<span class="sd">    example.</span>
+<span class="sd">        i do -&gt; [&#39;i&#39;, &#39;do&#39;] -&gt; [1, 2] -&gt; Embedding Matrix -&gt; tensor</span>
+<span class="sd">        finetuning only &#39;do&#39;</span>
+
+<span class="sd">    consisting of</span>
+<span class="sd">        - tokenizer: WordTokenizer</span>
+<span class="sd">        - indexer: WordIndexer</span>
+<span class="sd">        - embedding: FrequentTuningWordEmbedding</span>
+<span class="sd">        - vocab: Vocab</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenizers</span><span class="p">,</span> <span class="n">indexer_config</span><span class="p">,</span> <span class="n">embedding_config</span><span class="p">,</span> <span class="n">vocab_config</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FrequentWordTokenMaker</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">TokenMaker</span><span class="o">.</span><span class="n">FREQUENT_WORD_TYPE</span><span class="p">,</span>
+            <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;word&quot;</span><span class="p">],</span>
+            <span class="n">indexer</span><span class="o">=</span><span class="n">indexer</span><span class="o">.</span><span class="n">WordIndexer</span><span class="p">(</span><span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;word&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">indexer_config</span><span class="p">),</span>
+            <span class="n">embedding_fn</span><span class="o">=</span><span class="n">basic_embedding_fn</span><span class="p">(</span>
+                <span class="n">embedding_config</span><span class="p">,</span> <span class="n">embedding</span><span class="o">.</span><span class="n">FrequentTuningWordEmbedding</span>
+            <span class="p">),</span>
+            <span class="n">vocab_config</span><span class="o">=</span><span class="n">vocab_config</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="LinguisticTokenMaker"><a class="viewcode-back" href="../../claf.tokens.html#claf.tokens.LinguisticTokenMaker">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;token:</span><span class="si">{TokenMaker.LINGUISTIC_TYPE}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">LinguisticTokenMaker</span><span class="p">(</span><span class="n">TokenMaker</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exact Match Token (Sparse Feature)</span>
+
+<span class="sd">    Three simple binary features, indicating whether p_i can be exactly matched</span>
+<span class="sd">    to one question word in q, either in its original, lowercase or lemma form.</span>
+
+<span class="sd">    example.</span>
+<span class="sd">        c: i do, q: i -&gt; [&#39;i&#39;, &#39;do&#39;] -&gt; [1, 0] -&gt; tensor</span>
+
+<span class="sd">    consisting of</span>
+<span class="sd">        - tokenizer: WordTokenizer</span>
+<span class="sd">        - indexer: WordIndexer</span>
+<span class="sd">        - embedding: SparseFeature</span>
+<span class="sd">        - vocab: Vocab</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokenizers</span><span class="p">,</span> <span class="n">indexer_config</span><span class="p">,</span> <span class="n">embedding_config</span><span class="p">,</span> <span class="n">vocab_config</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">LinguisticTokenMaker</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">TokenMaker</span><span class="o">.</span><span class="n">LINGUISTIC_TYPE</span><span class="p">,</span>
+            <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;word&quot;</span><span class="p">],</span>
+            <span class="n">indexer</span><span class="o">=</span><span class="n">indexer</span><span class="o">.</span><span class="n">LinguisticIndexer</span><span class="p">(</span><span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;word&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">indexer_config</span><span class="p">),</span>
+            <span class="n">embedding_fn</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_embedding_fn</span><span class="p">(</span><span class="n">embedding_config</span><span class="p">,</span> <span class="n">indexer_config</span><span class="p">),</span>
+            <span class="n">vocab_config</span><span class="o">=</span><span class="n">vocab_config</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_embedding_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embedding_config</span><span class="p">,</span> <span class="n">indexer_config</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">vocab</span><span class="p">):</span>
+            <span class="n">embed_type</span> <span class="o">=</span> <span class="n">embedding_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;sparse&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">embedding_config</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">embedding_config</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span>
+
+            <span class="n">feature_count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">embedding_config</span><span class="p">[</span><span class="s2">&quot;classes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">if</span> <span class="n">indexer_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pos_tag&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+                <span class="n">feature_count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">embedding_config</span><span class="p">[</span><span class="s2">&quot;classes&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">POSTag</span><span class="o">.</span><span class="n">classes</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">indexer_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ner&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+                <span class="n">feature_count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">embedding_config</span><span class="p">[</span><span class="s2">&quot;classes&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NER</span><span class="o">.</span><span class="n">classes</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">embedding</span><span class="o">.</span><span class="n">SparseFeature</span><span class="p">(</span>
+                <span class="n">vocab</span><span class="p">,</span> <span class="n">embed_type</span><span class="p">,</span> <span class="n">feature_count</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">embedding_config</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">wrapper</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

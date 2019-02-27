@@ -1,0 +1,46 @@
+rqa.config package
+==================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    rqa.config.factory
+
+Submodules
+----------
+
+.. automodule:: rqa.config.args
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.config.namespace
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.config.pattern
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.config.registry
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.config.utils
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: rqa.config
+    :members:
+    :undoc-members:
+    :show-inheritance:

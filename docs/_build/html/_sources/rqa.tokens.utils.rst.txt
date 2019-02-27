@@ -1,0 +1,7 @@
+rqa.tokens.utils module
+=======================
+
+.. automodule:: rqa.tokens.utils
+    :members:
+    :undoc-members:
+    :show-inheritance:

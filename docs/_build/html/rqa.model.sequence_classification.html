@@ -1,0 +1,819 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.model.sequence_classification package &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rqa.model.token_classification package" href="rqa.model.token_classification.html" />
+    <link rel="prev" title="rqa.model.semantic_parsing package" href="rqa.model.semantic_parsing.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rqa.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rqa.model.html">model</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="rqa.model.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="rqa.model.reading_comprehension.html">rqa.model.reading_comprehension package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.model.semantic_parsing.html">rqa.model.semantic_parsing package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">rqa.model.sequence_classification package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-rqa.model.sequence_classification.bert_for_seq_cls">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-rqa.model.sequence_classification">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.model.token_classification.html">rqa.model.token_classification package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.model.html#module-rqa.model.base">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.model.html#module-rqa.model">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="rqa.model.html">rqa.model package</a> &raquo;</li>
+        
+      <li>rqa.model.sequence_classification package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.model.sequence_classification.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rqa-model-sequence-classification-package">
+<h1>rqa.model.sequence_classification package<a class="headerlink" href="#rqa-model-sequence-classification-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-rqa.model.sequence_classification.bert_for_seq_cls">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-rqa.model.sequence_classification.bert_for_seq_cls" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.model.sequence_classification.bert_for_seq_cls.BertForSeqCls">
+<em class="property">class </em><code class="descclassname">rqa.model.sequence_classification.bert_for_seq_cls.</code><code class="descname">BertForSeqCls</code><span class="sig-paren">(</span><em>token_makers</em>, <em>num_classes</em>, <em>pretrained_model_name=None</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.bert_for_seq_cls.BertForSeqCls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.model.sequence_classification.mixin.SequenceClassification" title="rqa.model.sequence_classification.mixin.SequenceClassification"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.sequence_classification.mixin.SequenceClassification</span></code></a>, <a class="reference internal" href="rqa.model.html#rqa.model.base.ModelWithoutTokenEmbedder" title="rqa.model.base.ModelWithoutTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.base.ModelWithoutTokenEmbedder</span></code></a></p>
+<p>Implementation of Single Sentence Classification model presented in
+BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+(<a class="reference external" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>token_embedder: used to embed the sequence
+num_classes: number of classified classes</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>pretrained_model_name: the name of a pre-trained model
+dropout: classification layer dropout</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.model.sequence_classification.bert_for_seq_cls.BertForSeqCls.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.bert_for_seq_cls.BertForSeqCls.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first">features: feature dictionary like below.
+{</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>“bert_input”: {</dt>
+<dd><dl class="first docutils">
+<dt>“feature”: [</dt>
+<dd><p class="first last">[3, 4, 1, 0, 0, 0, …],
+…,</p>
+</dd>
+</dl>
+<p class="last">]</p>
+</dd>
+</dl>
+<p>},
+“token_type”: {</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>“feature”: [</dt>
+<dd><p class="first last">[0, 0, 0, 0, 0, 0, …],
+…,</p>
+</dd>
+</dl>
+<p>],</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p class="last">}</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><p class="first">label: label dictionary like below.
+{</p>
+<blockquote>
+<div><p>“class_idx”: [2, 1, 0, 4, 5, …]
+“data_idx”: [2, 4, 5, 7, 2, 1, …]</p>
+</div></blockquote>
+<p class="last">}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>sequence_embed: embedding vector of the sequence</li>
+<li>class_logits: representing unnormalized log probabilities of the class.</li>
+<li>class_idx: target class idx</li>
+<li>data_idx: data idx</li>
+<li>loss: a scalar loss to be optimized</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.sequence_classification.bert_for_seq_cls.BertForSeqCls.print_examples">
+<code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.bert_for_seq_cls.BertForSeqCls.print_examples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print evaluation examples</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first">index: data index
+inputs: mini-batch inputs
+predictions: prediction dictionary consisting of</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>key: ‘id’ (sequence id)</li>
+<li><dl class="first docutils">
+<dt>value: dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>class_idx</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><p class="first last">print(Sequence, Sequence Tokens, Target Class, Predicted Class)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.model.sequence_classification.mixin"></span><dl class="class">
+<dt id="rqa.model.sequence_classification.mixin.SequenceClassification">
+<em class="property">class </em><code class="descclassname">rqa.model.sequence_classification.mixin.</code><code class="descname">SequenceClassification</code><a class="reference internal" href="_modules/rqa/model/sequence_classification/mixin.html#SequenceClassification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.mixin.SequenceClassification" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Sequence Classification Mixin Class</p>
+<dl class="method">
+<dt id="rqa.model.sequence_classification.mixin.SequenceClassification.make_metrics">
+<code class="descname">make_metrics</code><span class="sig-paren">(</span><em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/mixin.html#SequenceClassification.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.mixin.SequenceClassification.make_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make metrics with prediction dictionary</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>predictions: prediction dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>key: ‘id’ (sequence id)</li>
+<li><dl class="first docutils">
+<dt>value: dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>class_idx</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><dl class="first last docutils">
+<dt>metrics: metric dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>‘macro_f1’: class prediction macro(unweighted mean) f1</li>
+<li>‘macro_precision’: class prediction macro(unweighted mean) precision</li>
+<li>‘macro_recall’: class prediction macro(unweighted mean) recall</li>
+<li>‘accuracy’: class prediction accuracy</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.sequence_classification.mixin.SequenceClassification.make_predictions">
+<code class="descname">make_predictions</code><span class="sig-paren">(</span><em>output_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/mixin.html#SequenceClassification.make_predictions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.mixin.SequenceClassification.make_predictions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make predictions with model’s output_dict</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>output_dict: model’s output dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>sequence_embed: embedding vector of the sequence</li>
+<li>class_logits: representing unnormalized log probabilities of the class</li>
+<li>class_idx: target class idx</li>
+<li>data_idx: data idx</li>
+<li>loss: a scalar loss to be optimized</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><dl class="first last docutils">
+<dt>predictions: prediction dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>key: ‘id’ (sequence id)</li>
+<li><dl class="first docutils">
+<dt>value: dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>class_idx</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.sequence_classification.mixin.SequenceClassification.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>output_dict</em>, <em>arguments</em>, <em>helper</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/mixin.html#SequenceClassification.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.mixin.SequenceClassification.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inference by raw_feature</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first docutils">
+<dt>output_dict: model’s output dictionary consisting of</dt>
+<dd><ul class="first last simple">
+<li>sequence_embed: embedding vector of the sequence</li>
+<li>class_logits: representing unnormalized log probabilities of the class.</li>
+</ul>
+</dd>
+</dl>
+<p>arguments: arguments dictionary consisting of user_input
+helper: dictionary to get the classification result, consisting of</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>class_idx2text: dictionary converting class_idx to class_text</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>class_logits: representing unnormalized log probabilities of the class</li>
+<li>class_idx: predicted class idx</li>
+<li>class_text: predicted class text</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.sequence_classification.mixin.SequenceClassification.print_examples">
+<code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/mixin.html#SequenceClassification.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.mixin.SequenceClassification.print_examples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print evaluation examples</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first">index: data index
+inputs: mini-batch inputs
+predictions: prediction dictionary consisting of</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>key: ‘id’ (sequence id)</li>
+<li><dl class="first docutils">
+<dt>value: dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>class_idx</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><p class="first last">print(Sequence, Target Class, Predicted Class)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.sequence_classification.mixin.SequenceClassification.write_predictions">
+<code class="descname">write_predictions</code><span class="sig-paren">(</span><em>predictions</em>, <em>file_path=None</em>, <em>is_dict=True</em>, <em>pycm_obj=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/mixin.html#SequenceClassification.write_predictions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.mixin.SequenceClassification.write_predictions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override write_predictions() in ModelBase to log confusion matrix</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.model.sequence_classification.structured_self_attention"></span><dl class="class">
+<dt id="rqa.model.sequence_classification.structured_self_attention.StructuredSelfAttention">
+<em class="property">class </em><code class="descclassname">rqa.model.sequence_classification.structured_self_attention.</code><code class="descname">StructuredSelfAttention</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>num_classes</em>, <em>encoding_rnn_hidden_dim=300</em>, <em>encoding_rnn_num_layer=2</em>, <em>encoding_rnn_dropout=0.0</em>, <em>attention_dim=350</em>, <em>num_attention_heads=30</em>, <em>sequence_embed_dim=2000</em>, <em>dropout=0.5</em>, <em>penalization_coefficient=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.structured_self_attention.StructuredSelfAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.model.sequence_classification.mixin.SequenceClassification" title="rqa.model.sequence_classification.mixin.SequenceClassification"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.sequence_classification.mixin.SequenceClassification</span></code></a>, <a class="reference internal" href="rqa.model.html#rqa.model.base.ModelWithTokenEmbedder" title="rqa.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Implementation of model presented in
+A Structured Self-attentive Sentence Embedding
+(<a class="reference external" href="https://arxiv.org/abs/1703.03130">https://arxiv.org/abs/1703.03130</a>)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>token_embedder: used to embed the sequence
+num_classes: number of classified classes</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>encoding_rnn_hidden_dim: hidden dimension of rnn (unidirectional)
+encoding_rnn_num_layer: the number of rnn layers
+encoding_rnn_dropout: rnn dropout probability
+attention_dim: attention dimension  # d_a in the paper
+num_attention_heads: number of attention heads  # r in the paper
+sequence_embed_dim: dimension of sequence embedding
+dropout: classification layer dropout
+penalization_coefficient: penalty coefficient for frobenius norm</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.model.sequence_classification.structured_self_attention.StructuredSelfAttention.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.structured_self_attention.StructuredSelfAttention.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">features: feature dictionary like below.
+{“sequence”: [0, 3, 4, 1]}</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><p class="first">label: label dictionary like below.
+{“class_idx”: 2, “data_idx”: 0}</p>
+<blockquote class="last">
+<div><p>Do not calculate loss when there is no label. (inference/predict mode)</p>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>sequence_embed: embedding vector of the sequence</li>
+<li>class_logits: representing unnormalized log probabilities of the class.</li>
+<li>class_idx: target class idx</li>
+<li>data_idx: data idx</li>
+<li>loss: a scalar loss to be optimized</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.sequence_classification.structured_self_attention.StructuredSelfAttention.penalty">
+<code class="descname">penalty</code><span class="sig-paren">(</span><em>attention</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention.penalty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.structured_self_attention.StructuredSelfAttention.penalty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-rqa.model.sequence_classification">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rqa.model.sequence_classification" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.model.sequence_classification.BertForSeqCls">
+<em class="property">class </em><code class="descclassname">rqa.model.sequence_classification.</code><code class="descname">BertForSeqCls</code><span class="sig-paren">(</span><em>token_makers</em>, <em>num_classes</em>, <em>pretrained_model_name=None</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.BertForSeqCls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.model.sequence_classification.mixin.SequenceClassification" title="rqa.model.sequence_classification.mixin.SequenceClassification"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.sequence_classification.mixin.SequenceClassification</span></code></a>, <a class="reference internal" href="rqa.model.html#rqa.model.base.ModelWithoutTokenEmbedder" title="rqa.model.base.ModelWithoutTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.base.ModelWithoutTokenEmbedder</span></code></a></p>
+<p>Implementation of Single Sentence Classification model presented in
+BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+(<a class="reference external" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>token_embedder: used to embed the sequence
+num_classes: number of classified classes</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>pretrained_model_name: the name of a pre-trained model
+dropout: classification layer dropout</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.model.sequence_classification.BertForSeqCls.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.BertForSeqCls.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first">features: feature dictionary like below.
+{</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>“bert_input”: {</dt>
+<dd><dl class="first docutils">
+<dt>“feature”: [</dt>
+<dd><p class="first last">[3, 4, 1, 0, 0, 0, …],
+…,</p>
+</dd>
+</dl>
+<p class="last">]</p>
+</dd>
+</dl>
+<p>},
+“token_type”: {</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>“feature”: [</dt>
+<dd><p class="first last">[0, 0, 0, 0, 0, 0, …],
+…,</p>
+</dd>
+</dl>
+<p>],</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p class="last">}</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><p class="first">label: label dictionary like below.
+{</p>
+<blockquote>
+<div><p>“class_idx”: [2, 1, 0, 4, 5, …]
+“data_idx”: [2, 4, 5, 7, 2, 1, …]</p>
+</div></blockquote>
+<p class="last">}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>sequence_embed: embedding vector of the sequence</li>
+<li>class_logits: representing unnormalized log probabilities of the class.</li>
+<li>class_idx: target class idx</li>
+<li>data_idx: data idx</li>
+<li>loss: a scalar loss to be optimized</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.sequence_classification.BertForSeqCls.print_examples">
+<code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.BertForSeqCls.print_examples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print evaluation examples</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first">index: data index
+inputs: mini-batch inputs
+predictions: prediction dictionary consisting of</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>key: ‘id’ (sequence id)</li>
+<li><dl class="first docutils">
+<dt>value: dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>class_idx</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns:</dt>
+<dd><p class="first last">print(Sequence, Sequence Tokens, Target Class, Predicted Class)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.model.sequence_classification.StructuredSelfAttention">
+<em class="property">class </em><code class="descclassname">rqa.model.sequence_classification.</code><code class="descname">StructuredSelfAttention</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>num_classes</em>, <em>encoding_rnn_hidden_dim=300</em>, <em>encoding_rnn_num_layer=2</em>, <em>encoding_rnn_dropout=0.0</em>, <em>attention_dim=350</em>, <em>num_attention_heads=30</em>, <em>sequence_embed_dim=2000</em>, <em>dropout=0.5</em>, <em>penalization_coefficient=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.StructuredSelfAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#rqa.model.sequence_classification.mixin.SequenceClassification" title="rqa.model.sequence_classification.mixin.SequenceClassification"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.sequence_classification.mixin.SequenceClassification</span></code></a>, <a class="reference internal" href="rqa.model.html#rqa.model.base.ModelWithTokenEmbedder" title="rqa.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.model.base.ModelWithTokenEmbedder</span></code></a></p>
+<p>Implementation of model presented in
+A Structured Self-attentive Sentence Embedding
+(<a class="reference external" href="https://arxiv.org/abs/1703.03130">https://arxiv.org/abs/1703.03130</a>)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>token_embedder: used to embed the sequence
+num_classes: number of classified classes</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>encoding_rnn_hidden_dim: hidden dimension of rnn (unidirectional)
+encoding_rnn_num_layer: the number of rnn layers
+encoding_rnn_dropout: rnn dropout probability
+attention_dim: attention dimension  # d_a in the paper
+num_attention_heads: number of attention heads  # r in the paper
+sequence_embed_dim: dimension of sequence embedding
+dropout: classification layer dropout
+penalization_coefficient: penalty coefficient for frobenius norm</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.model.sequence_classification.StructuredSelfAttention.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.StructuredSelfAttention.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">features: feature dictionary like below.
+{“sequence”: [0, 3, 4, 1]}</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><p class="first">label: label dictionary like below.
+{“class_idx”: 2, “data_idx”: 0}</p>
+<blockquote class="last">
+<div><p>Do not calculate loss when there is no label. (inference/predict mode)</p>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Returns: output_dict (dict) consisting of</dt>
+<dd><ul class="first last simple">
+<li>sequence_embed: embedding vector of the sequence</li>
+<li>class_logits: representing unnormalized log probabilities of the class.</li>
+<li>class_idx: target class idx</li>
+<li>data_idx: data idx</li>
+<li>loss: a scalar loss to be optimized</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.model.sequence_classification.StructuredSelfAttention.penalty">
+<code class="descname">penalty</code><span class="sig-paren">(</span><em>attention</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention.penalty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.model.sequence_classification.StructuredSelfAttention.penalty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rqa.model.token_classification.html" class="btn btn-neutral float-right" title="rqa.model.token_classification package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rqa.model.semantic_parsing.html" class="btn btn-neutral" title="rqa.model.semantic_parsing package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

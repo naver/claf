@@ -1,0 +1,7 @@
+rqa.tokens.token\_maker module
+==============================
+
+.. automodule:: rqa.tokens.token_maker
+    :members:
+    :undoc-members:
+    :show-inheritance:

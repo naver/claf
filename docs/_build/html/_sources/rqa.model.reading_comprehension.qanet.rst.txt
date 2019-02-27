@@ -1,0 +1,7 @@
+rqa.model.reading\_comprehension.qanet module
+=============================================
+
+.. automodule:: rqa.model.reading_comprehension.qanet
+    :members:
+    :undoc-members:
+    :show-inheritance:

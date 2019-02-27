@@ -1,0 +1,62 @@
+ {
+     "data_reader": {
+         "dataset": "cola_bert",
+         "train_file_path": "<CoLA train.tsv path>",
+         "valid_file_path": "<CoLA dev.tsv path>",
+         "cola_bert": {
+             "sequence_max_length": 128
+         }
+     },
+     "iterator": {
+         "batch_size": 32
+     },
+     "token": {
+         "names": ["feature"],
+         "types": ["feature"],
+         "tokenizer": {
+             "subword": {
+                 "name": "wordpiece",
+                 "wordpiece": {
+                     "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-uncased-vocab.txt"
+                 }
+             },
+             "word": {
+                 "name": "bert_basic",
+                 "bert_basic": {
+                     "do_lower_case": true
+                 }
+             }
+         },
+         "feature": {
+             "vocab": {
+                 "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-uncased-vocab.txt",
+                 "pretrained_token": "all"
+             },
+             "indexer": {
+                 "do_tokenize": false
+             }
+         }
+     },
+     "model": {
+         "name": "bert_for_seq_cls",
+         "bert_for_seq_cls": {
+             "pretrained_model_name": "bert-large-uncased",
+             "dropout": 0.0
+         }
+     },
+     "trainer": {
+         "log_dir": "logs/cola_bert",
+         "num_epochs": 3,
+         "early_stopping_threshold": 10,
+         "metric_key": "accuracy",
+         "eval_and_save_step_count": "epoch"
+     },
+     "optimizer": {
+         "op_type": "bert_adam",
+         "learning_rate": 2e-5,
+         "bert_adam": {
+             "warmup": 0.1
+         }
+     },
+     "seed_num": 42
+ }

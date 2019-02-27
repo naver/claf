@@ -1,0 +1,39 @@
+rqa.modules.attention package
+=============================
+
+Submodules
+----------
+
+.. automodule:: rqa.modules.attention.bi_attention
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.modules.attention.co_attention
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.modules.attention.docqa_attention
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.modules.attention.multi_head_attention
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.modules.attention.seq_attention
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: rqa.modules.attention
+    :members:
+    :undoc-members:
+    :show-inheritance:

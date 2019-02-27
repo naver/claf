@@ -1,0 +1,404 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>claf package &mdash; CLaF 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>claf package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/claf.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="claf-package">
+<h1>claf package<a class="headerlink" href="#claf-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="claf.config.html">claf.config package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="claf.config.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="claf.config.factory.html">claf.config.factory package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.config.factory.html#module-claf.config.factory.base">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.config.factory.html#module-claf.config.factory">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="claf.config.html#module-claf.config.args">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.config.html#module-claf.config">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.data.html">claf.data package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="claf.data.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="claf.data.dataset.html">claf.data.dataset package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.data.dataset.html#module-claf.data.dataset.base">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.data.dataset.html#module-claf.data.dataset">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="claf.data.reader.html">claf.data.reader package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.data.reader.html#module-claf.data.reader.base">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.data.reader.html#module-claf.data.reader">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="claf.data.html#module-claf.data.batch">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.data.html#module-claf.data">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.decorator.html">claf.decorator package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="claf.decorator.html#module-claf.decorator.arguments">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.decorator.html#module-claf.decorator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.learn.html">claf.learn package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="claf.learn.html#module-claf.learn.experiment">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.learn.html#module-claf.learn">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.machine.html">claf.machine package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="claf.machine.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="claf.machine.components.html">claf.machine.components package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.machine.components.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="claf.machine.components.retrieval.html">claf.machine.components.retrieval package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="claf.machine.components.retrieval.html#module-claf.machine.components.retrieval.tfidf">Submodules</a></li>
+<li class="toctree-l6"><a class="reference internal" href="claf.machine.components.retrieval.html#module-claf.machine.components.retrieval">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="claf.machine.components.html#module-claf.machine.components">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="claf.machine.html#module-claf.machine.base">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.machine.html#module-claf.machine">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.metric.html">claf.metric package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="claf.metric.html#module-claf.metric.classification">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.metric.html#module-claf.metric">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.model.html">claf.model package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="claf.model.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="claf.model.reading_comprehension.html">claf.model.reading_comprehension package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.model.reading_comprehension.html#module-claf.model.reading_comprehension.bert_for_qa">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.model.reading_comprehension.html#module-claf.model.reading_comprehension">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="claf.model.semantic_parsing.html">claf.model.semantic_parsing package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.model.semantic_parsing.html#module-claf.model.semantic_parsing.mixin">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.model.semantic_parsing.html#module-claf.model.semantic_parsing">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="claf.model.sequence_classification.html">claf.model.sequence_classification package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.model.sequence_classification.html#module-claf.model.sequence_classification.bert_for_seq_cls">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.model.sequence_classification.html#module-claf.model.sequence_classification">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="claf.model.token_classification.html">claf.model.token_classification package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.model.token_classification.html#module-claf.model.token_classification.bert_for_tok_cls">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.model.token_classification.html#module-claf.model.token_classification">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="claf.model.html#module-claf.model.base">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.model.html#module-claf.model">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.modules.html">claf.modules package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="claf.modules.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="claf.modules.attention.html">claf.modules.attention package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.modules.attention.html#module-claf.modules.attention.bi_attention">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.modules.attention.html#module-claf.modules.attention">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="claf.modules.conv.html">claf.modules.conv package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.modules.conv.html#module-claf.modules.conv.depthwise_separable_conv">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.modules.conv.html#module-claf.modules.conv">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="claf.modules.encoder.html">claf.modules.encoder package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.modules.encoder.html#module-claf.modules.encoder.lstm_cell_with_projection">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.modules.encoder.html#module-claf.modules.encoder">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="claf.modules.layer.html">claf.modules.layer package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.modules.layer.html#module-claf.modules.layer.highway">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.modules.layer.html#module-claf.modules.layer">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="claf.modules.html#module-claf.modules.activation">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.modules.html#module-claf.modules">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.tokens.html">claf.tokens package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="claf.tokens.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="claf.tokens.embedding.html">claf.tokens.embedding package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.tokens.embedding.html#module-claf.tokens.embedding.base">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.tokens.embedding.html#module-claf.tokens.embedding">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="claf.tokens.indexer.html">claf.tokens.indexer package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.tokens.indexer.html#module-claf.tokens.indexer.base">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.tokens.indexer.html#module-claf.tokens.indexer">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="claf.tokens.token_embedder.html">claf.tokens.token_embedder package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.tokens.token_embedder.html#module-claf.tokens.token_embedder.base">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.tokens.token_embedder.html#module-claf.tokens.token_embedder">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="claf.tokens.tokenizer.html">claf.tokens.tokenizer package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="claf.tokens.tokenizer.html#module-claf.tokens.tokenizer.base">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.tokens.tokenizer.html#module-claf.tokens.tokenizer">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="claf.tokens.html#module-claf.tokens.cove">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.tokens.html#module-claf.tokens">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-claf.utils">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="claf.utils.flatten">
+<code class="descclassname">claf.utils.</code><code class="descname">flatten</code><span class="sig-paren">(</span><em>l</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/utils.html#flatten"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.utils.flatten" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="claf.utils.get_user_input">
+<code class="descclassname">claf.utils.</code><code class="descname">get_user_input</code><span class="sig-paren">(</span><em>category</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/utils.html#get_user_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.utils.get_user_input" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="claf.utils.set_logging_config">
+<code class="descclassname">claf.utils.</code><code class="descname">set_logging_config</code><span class="sig-paren">(</span><em>mode</em>, <em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/utils.html#set_logging_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.utils.set_logging_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-claf">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.data.dataset.history &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/experiments.html">Experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rqa.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rqa.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>rqa.data.dataset.history</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rqa.data.dataset.history</h1><div class="highlight"><pre>
+<span></span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">overrides</span> <span class="k">import</span> <span class="n">overrides</span>
+
+<span class="kn">from</span> <span class="nn">rqa.data</span> <span class="k">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">rqa.data.collate</span> <span class="k">import</span> <span class="n">PadCollator</span>
+<span class="kn">from</span> <span class="nn">rqa.data.dataset.base</span> <span class="k">import</span> <span class="n">DatasetBase</span>
+
+
+
+<div class="viewcode-block" id="HistoryDataset"><a class="viewcode-back" href="../../../../rqa.data.dataset.html#rqa.data.dataset.HistoryDataset">[docs]</a><span class="k">class</span> <span class="nc">HistoryDataset</span><span class="p">(</span><span class="n">DatasetBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    History Dataset</span>
+
+<span class="sd">    * Args:</span>
+<span class="sd">        batch: Batch DTO (rqa.data.batch)</span>
+
+<span class="sd">    * Kwargs:</span>
+<span class="sd">        meta_data: meta data from data_reader</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">meta_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">batch</span><span class="o">.</span><span class="n">sort_by_key</span><span class="p">(</span><span class="s2">&quot;context_words&quot;</span><span class="p">)</span>  <span class="c1"># for use GPU efficiently</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;squad&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta_data</span> <span class="o">=</span> <span class="n">meta_data</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">meta_data</span><span class="p">[</span><span class="s2">&quot;file_path&quot;</span><span class="p">])</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">dataset_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raw_dataset</span> <span class="o">=</span> <span class="n">dataset_json</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">contexts</span> <span class="o">=</span> <span class="p">{</span><span class="n">feature</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]:</span> <span class="n">feature</span><span class="p">[</span><span class="s2">&quot;context&quot;</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">batch</span><span class="o">.</span><span class="n">features</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">questions</span> <span class="o">=</span> <span class="p">{</span><span class="n">feature</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]:</span> <span class="n">feature</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">batch</span><span class="o">.</span><span class="n">features</span><span class="p">}</span>
+
+        <span class="c1"># Features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">context_idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">feature</span><span class="p">[</span><span class="s2">&quot;context&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">batch</span><span class="o">.</span><span class="n">features</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">question_idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">feature</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">batch</span><span class="o">.</span><span class="n">features</span><span class="p">]</span>
+
+        <span class="c1"># - Lazy Evaluation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">context_idx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">question_idx</span><span class="p">]</span>
+
+        <span class="c1"># Labels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_ids</span> <span class="o">=</span> <span class="p">{</span><span class="n">data_index</span><span class="p">:</span> <span class="n">label</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="p">(</span><span class="n">data_index</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">labels</span><span class="p">)}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_ids</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">answers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">label</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]:</span> <span class="p">(</span>
+                <span class="n">label</span><span class="p">[</span><span class="s2">&quot;answer_texts&quot;</span><span class="p">],</span>
+                <span class="n">label</span><span class="p">[</span><span class="s2">&quot;answerable&quot;</span><span class="p">],</span>
+                <span class="p">(</span><span class="n">label</span><span class="p">[</span><span class="s2">&quot;answer_start&quot;</span><span class="p">],</span> <span class="n">label</span><span class="p">[</span><span class="s2">&quot;answer_end&quot;</span><span class="p">]),</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">batch</span><span class="o">.</span><span class="n">labels</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">answer_starts</span> <span class="o">=</span> <span class="p">[</span><span class="n">label</span><span class="p">[</span><span class="s2">&quot;answer_start&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">batch</span><span class="o">.</span><span class="n">labels</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">answer_ends</span> <span class="o">=</span> <span class="p">[</span><span class="n">label</span><span class="p">[</span><span class="s2">&quot;answer_end&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">batch</span><span class="o">.</span><span class="n">labels</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">answerables</span> <span class="o">=</span> <span class="p">[</span><span class="n">label</span><span class="p">[</span><span class="s2">&quot;answerable&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">batch</span><span class="o">.</span><span class="n">labels</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text_spans</span> <span class="o">=</span> <span class="p">{</span><span class="n">label</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]:</span> <span class="n">label</span><span class="p">[</span><span class="s2">&quot;text_spans&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">batch</span><span class="o">.</span><span class="n">labels</span><span class="p">}</span>
+
+<div class="viewcode-block" id="HistoryDataset.collate_fn"><a class="viewcode-back" href="../../../../rqa.data.dataset.html#rqa.data.dataset.HistoryDataset.collate_fn">[docs]</a>    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">collate_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cuda_device_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; collate: indexed features and labels -&gt; tensor &quot;&quot;&quot;</span>
+        <span class="n">collator</span> <span class="o">=</span> <span class="n">PadCollator</span><span class="p">(</span><span class="n">cuda_device_id</span><span class="o">=</span><span class="n">cuda_device_id</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">make_tensor_fn</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+            <span class="n">context_idxs</span><span class="p">,</span> <span class="n">question_idxs</span><span class="p">,</span> <span class="n">data_idxs</span><span class="p">,</span> \
+                <span class="n">answer_starts</span><span class="p">,</span> <span class="n">answer_ends</span><span class="p">,</span> <span class="n">answerables</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="p">)</span>
+
+            <span class="n">features</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="n">utils</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">context_idxs</span><span class="p">,</span> <span class="n">skip_keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]),</span>
+                <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">utils</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">question_idxs</span><span class="p">,</span> <span class="n">skip_keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]),</span>
+            <span class="p">}</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;answer_idx&quot;</span><span class="p">:</span> <span class="n">data_idxs</span><span class="p">,</span>
+                <span class="s2">&quot;answer_start_idx&quot;</span><span class="p">:</span> <span class="n">answer_starts</span><span class="p">,</span>
+                <span class="s2">&quot;answer_end_idx&quot;</span><span class="p">:</span> <span class="n">answer_ends</span><span class="p">,</span>
+                <span class="s2">&quot;answerable&quot;</span><span class="p">:</span> <span class="n">answerables</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">collator</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">make_tensor_fn</span></div>
+
+    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lazy_evaluation</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">context_idx</span><span class="p">[</span><span class="n">index</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">question_idx</span><span class="p">[</span><span class="n">index</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_indices</span><span class="p">[</span><span class="n">index</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">answer_starts</span><span class="p">[</span><span class="n">index</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">answer_ends</span><span class="p">[</span><span class="n">index</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">answerables</span><span class="p">[</span><span class="n">index</span><span class="p">],</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="HistoryDataset.lazy_evaluation"><a class="viewcode-back" href="../../../../rqa.data.dataset.html#rqa.data.dataset.HistoryDataset.lazy_evaluation">[docs]</a>    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">lazy_evaluation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_count</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__len__</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">f_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">feature</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">utils</span><span class="o">.</span><span class="n">is_lazy</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+                        <span class="n">feature</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_ids</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">dataset_properties</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s2">&quot;total_count&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__len__</span><span class="p">(),</span>
+            <span class="s2">&quot;HasAns_count&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">([</span><span class="kc">True</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">answers</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]),</span>
+            <span class="s2">&quot;NoAns_count&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">([</span><span class="kc">False</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">answers</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]),</span>
+            <span class="s2">&quot;context_maxlen&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">context_maxlen</span><span class="p">,</span>
+            <span class="s2">&quot;question_maxlen&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">question_maxlen</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dataset_properties</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">context_maxlen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_feature_maxlen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context_idx</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">question_maxlen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_feature_maxlen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">question_idx</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_feature_maxlen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
+        <span class="n">max_len</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">token_name</span><span class="p">,</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">feature</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">token_name</span> <span class="o">==</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+                    <span class="k">continue</span>
+
+                <span class="n">max_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">max_len</span>
+
+<div class="viewcode-block" id="HistoryDataset.get_id"><a class="viewcode-back" href="../../../../rqa.data.dataset.html#rqa.data.dataset.HistoryDataset.get_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_index</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ids</span><span class="p">[</span><span class="n">data_index</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="HistoryDataset.get_context"><a class="viewcode-back" href="../../../../rqa.data.dataset.html#rqa.data.dataset.HistoryDataset.get_context">[docs]</a>    <span class="k">def</span> <span class="nf">get_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_index</span><span class="p">):</span>
+        <span class="n">data_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">data_index</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">contexts</span><span class="p">[</span><span class="n">data_id</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="HistoryDataset.get_ground_truths"><a class="viewcode-back" href="../../../../rqa.data.dataset.html#rqa.data.dataset.HistoryDataset.get_ground_truths">[docs]</a>    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">get_ground_truths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_index</span><span class="p">):</span>
+        <span class="n">data_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">data_index</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">answers</span><span class="p">[</span><span class="n">data_id</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="HistoryDataset.get_predict"><a class="viewcode-back" href="../../../../rqa.data.dataset.html#rqa.data.dataset.HistoryDataset.get_predict">[docs]</a>    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">get_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_index</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_text_with_index</span><span class="p">(</span><span class="n">data_index</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HistoryDataset.get_text_with_index"><a class="viewcode-back" href="../../../../rqa.data.dataset.html#rqa.data.dataset.HistoryDataset.get_text_with_index">[docs]</a>    <span class="k">def</span> <span class="nf">get_text_with_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_index</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">data_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;data_id or text is required.&quot;</span><span class="p">)</span>
+
+        <span class="n">context_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_context</span><span class="p">(</span><span class="n">data_index</span><span class="p">)</span>
+        <span class="n">text_span</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_text_span</span><span class="p">(</span><span class="n">data_index</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text_span</span><span class="p">)</span> <span class="ow">or</span> <span class="n">end</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text_span</span><span class="p">):</span>
+            <span class="c1"># No_Answer Case</span>
+            <span class="k">return</span> <span class="s2">&quot;&lt;noanswer&gt;&quot;</span>
+
+        <span class="n">char_start</span> <span class="o">=</span> <span class="n">text_span</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">char_end</span> <span class="o">=</span> <span class="n">text_span</span><span class="p">[</span><span class="n">end</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">char_start</span> <span class="o">&gt;</span> <span class="n">char_end</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">context_text</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">char_end</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">context_text</span><span class="p">[</span><span class="n">char_start</span><span class="p">:</span><span class="n">char_end</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="HistoryDataset.get_text_span"><a class="viewcode-back" href="../../../../rqa.data.dataset.html#rqa.data.dataset.HistoryDataset.get_text_span">[docs]</a>    <span class="k">def</span> <span class="nf">get_text_span</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_index</span><span class="p">):</span>
+        <span class="n">data_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">data_index</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">text_spans</span><span class="p">[</span><span class="n">data_id</span><span class="p">]</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

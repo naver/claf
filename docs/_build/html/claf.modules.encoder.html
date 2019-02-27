@@ -1,0 +1,566 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>claf.modules.encoder package &mdash; CLaF 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="claf.modules.layer package" href="claf.modules.layer.html" />
+    <link rel="prev" title="claf.modules.conv package" href="claf.modules.conv.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.model.html">model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="claf.modules.html">modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="claf.modules.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="claf.modules.attention.html">claf.modules.attention package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="claf.modules.conv.html">claf.modules.conv package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">claf.modules.encoder package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-claf.modules.encoder.lstm_cell_with_projection">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-claf.modules.encoder">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="claf.modules.layer.html">claf.modules.layer package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="claf.modules.html#module-claf.modules.activation">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.modules.html#module-claf.modules">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="claf.modules.html">claf.modules package</a> &raquo;</li>
+        
+      <li>claf.modules.encoder package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/claf.modules.encoder.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="claf-modules-encoder-package">
+<h1>claf.modules.encoder package<a class="headerlink" href="#claf-modules-encoder-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-claf.modules.encoder.lstm_cell_with_projection">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.modules.encoder.lstm_cell_with_projection" title="Permalink to this headline">¶</a></h2>
+<p>This code is from allenai/allennlp
+(<a class="reference external" href="https://github.com/allenai/allennlp/blob/master/allennlp/modules/lstm_cell_with_projection.py">https://github.com/allenai/allennlp/blob/master/allennlp/modules/lstm_cell_with_projection.py</a>)</p>
+<dl class="class">
+<dt id="claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection">
+<em class="property">class </em><code class="descclassname">claf.modules.encoder.lstm_cell_with_projection.</code><code class="descname">LstmCellWithProjection</code><span class="sig-paren">(</span><em>input_size: int</em>, <em>hidden_size: int</em>, <em>cell_size: int</em>, <em>go_forward: bool = True</em>, <em>recurrent_dropout_probability: float = 0.0</em>, <em>memory_cell_clip_value: Optional[float] = None</em>, <em>state_projection_clip_value: Optional[float] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>An LSTM with Recurrent Dropout and a projected and clipped hidden state and
+memory. Note: this implementation is slower than the native Pytorch LSTM because
+it cannot make use of CUDNN optimizations for stacked RNNs due to and
+variational dropout and the custom nature of the cell state.
+Parameters
+———-
+input_size : <code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</p>
+<blockquote>
+<div>The dimension of the inputs to the LSTM.</div></blockquote>
+<dl class="docutils">
+<dt>hidden_size <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt>
+<dd>The dimension of the outputs of the LSTM.</dd>
+<dt>cell_size <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt>
+<dd>The dimension of the memory cell used for the LSTM.</dd>
+<dt>go_forward: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional (default = True)</dt>
+<dd>The direction in which the LSTM is applied to the sequence.
+Forwards by default, or backwards if False.</dd>
+<dt>recurrent_dropout_probability: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional (default = 0.0)</dt>
+<dd>The dropout probability to be used in a dropout scheme as stated in
+<a class="reference external" href="https://arxiv.org/abs/1512.05287">A Theoretically Grounded Application of Dropout in Recurrent Neural Networks</a> . Implementation wise, this simply
+applies a fixed dropout mask per sequence to the recurrent connection of the
+LSTM.</dd>
+<dt>state_projection_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt>
+<dd>The magnitude with which to clip the hidden_state after projecting it.</dd>
+<dt>memory_cell_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt>
+<dd>The magnitude with which to clip the memory cell.</dd>
+</dl>
+<dl class="docutils">
+<dt>output_accumulator <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code></span></dt>
+<dd>The outputs of the LSTM for each timestep. A tensor of shape
+(batch_size, max_timesteps, hidden_size) where for a given batch
+element, all outputs past the sequence length for that batch are
+zero tensors.</dd>
+<dt>final_state: <code class="docutils literal notranslate"><span class="pre">Tuple[torch.FloatTensor,</span> <span class="pre">torch.FloatTensor]</span></code></dt>
+<dd>The final (state, memory) states of the LSTM, with shape
+(1, batch_size, hidden_size) and  (1, batch_size, cell_size)
+respectively. The first dimension is 1 in order to match the Pytorch
+API for returning stacked LSTM states.</dd>
+</dl>
+<dl class="method">
+<dt id="claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs: torch.FloatTensor, batch_lengths: List[int], initial_state: Optional[Tuple[torch.Tensor, torch.Tensor]] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection.forward" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>inputs <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code>, required.</span></dt>
+<dd>A tensor of shape (batch_size, num_timesteps, input_size)
+to apply the LSTM over.</dd>
+<dt>batch_lengths <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">List[int]</span></code>, required.</span></dt>
+<dd>A list of length batch_size containing the lengths of the sequences in batch.</dd>
+<dt>initial_state <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">Tuple[torch.Tensor,</span> <span class="pre">torch.Tensor]</span></code>, optional, (default = None)</span></dt>
+<dd>A tuple (state, memory) representing the initial hidden state and memory
+of the LSTM. The <code class="docutils literal notranslate"><span class="pre">state</span></code> has shape (1, batch_size, hidden_size) and the
+<code class="docutils literal notranslate"><span class="pre">memory</span></code> has shape (1, batch_size, cell_size).</dd>
+</dl>
+<dl class="docutils">
+<dt>output_accumulator <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code></span></dt>
+<dd>The outputs of the LSTM for each timestep. A tensor of shape
+(batch_size, max_timesteps, hidden_size) where for a given batch
+element, all outputs past the sequence length for that batch are
+zero tensors.</dd>
+<dt>final_state <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">Tuple[``torch.FloatTensor,</span> <span class="pre">torch.FloatTensor]</span></code></span></dt>
+<dd>A tuple (state, memory) representing the initial hidden state and memory
+of the LSTM. The <code class="docutils literal notranslate"><span class="pre">state</span></code> has shape (1, batch_size, hidden_size) and the
+<code class="docutils literal notranslate"><span class="pre">memory</span></code> has shape (1, batch_size, cell_size).</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection.reset_parameters">
+<code class="descname">reset_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection.reset_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection.reset_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.modules.encoder.lstm_cell_with_projection.block_orthogonal">
+<code class="descclassname">claf.modules.encoder.lstm_cell_with_projection.</code><code class="descname">block_orthogonal</code><span class="sig-paren">(</span><em>tensor: torch.Tensor, split_sizes: List[int], gain: float = 1.0</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#block_orthogonal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.block_orthogonal" title="Permalink to this definition">¶</a></dt>
+<dd><p>An initializer which allows initializing model parameters in “blocks”. This is helpful
+in the case of recurrent models which use multiple gates applied to linear projections,
+which can be computed efficiently if they are concatenated together. However, they are
+separate parameters which should be initialized independently.
+Parameters
+———-
+tensor : <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>, required.</p>
+<blockquote>
+<div>A tensor to initialize.</div></blockquote>
+<dl class="docutils">
+<dt>split_sizes <span class="classifier-delimiter">:</span> <span class="classifier">List[int], required.</span></dt>
+<dd>A list of length <code class="docutils literal notranslate"><span class="pre">tensor.ndim()</span></code> specifying the size of the
+blocks along that particular dimension. E.g. <code class="docutils literal notranslate"><span class="pre">[10,</span> <span class="pre">20]</span></code> would
+result in the tensor being split into chunks of size 10 along the
+first dimension and 20 along the second.</dd>
+<dt>gain <span class="classifier-delimiter">:</span> <span class="classifier">float, optional (default = 1.0)</span></dt>
+<dd>The gain (scaling) applied to the orthogonal initialization.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.modules.encoder.lstm_cell_with_projection.get_dropout_mask">
+<code class="descclassname">claf.modules.encoder.lstm_cell_with_projection.</code><code class="descname">get_dropout_mask</code><span class="sig-paren">(</span><em>dropout_probability: float</em>, <em>tensor_for_masking: torch.Tensor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#get_dropout_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.get_dropout_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes and returns an element-wise dropout mask for a given tensor, where
+each element in the mask is dropped out with probability dropout_probability.
+Note that the mask is NOT applied to the tensor - the tensor is passed to retain
+the correct CUDA tensor type for the mask.
+Parameters
+———-
+dropout_probability : float, required.</p>
+<blockquote>
+<div>Probability of dropping a dimension of the input.</div></blockquote>
+<p>tensor_for_masking : torch.Tensor, required.
+Returns
+——-
+A torch.FloatTensor consisting of the binary mask scaled by 1/ (1 - dropout_probability).
+This scaling ensures expected values and variances of the output of applying this mask</p>
+<blockquote>
+<div>and the original tensor are the same.</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.modules.encoder.lstm_cell_with_projection.sort_batch_by_length">
+<code class="descclassname">claf.modules.encoder.lstm_cell_with_projection.</code><code class="descname">sort_batch_by_length</code><span class="sig-paren">(</span><em>tensor: torch.Tensor</em>, <em>sequence_lengths: torch.Tensor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#sort_batch_by_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.sort_batch_by_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort a batch first tensor by some specified lengths.
+Parameters
+———-
+tensor : torch.FloatTensor, required.</p>
+<blockquote>
+<div>A batch first Pytorch tensor.</div></blockquote>
+<dl class="docutils">
+<dt>sequence_lengths <span class="classifier-delimiter">:</span> <span class="classifier">torch.LongTensor, required.</span></dt>
+<dd>A tensor representing the lengths of some dimension of the tensor which
+we want to sort by.</dd>
+</dl>
+<dl class="docutils">
+<dt>sorted_tensor <span class="classifier-delimiter">:</span> <span class="classifier">torch.FloatTensor</span></dt>
+<dd>The original tensor sorted along the batch dimension with respect to sequence_lengths.</dd>
+<dt>sorted_sequence_lengths <span class="classifier-delimiter">:</span> <span class="classifier">torch.LongTensor</span></dt>
+<dd>The original sequence_lengths sorted by decreasing size.</dd>
+<dt>restoration_indices <span class="classifier-delimiter">:</span> <span class="classifier">torch.LongTensor</span></dt>
+<dd>Indices into the sorted_tensor such that
+<code class="docutils literal notranslate"><span class="pre">sorted_tensor.index_select(0,</span> <span class="pre">restoration_indices)</span> <span class="pre">==</span> <span class="pre">original_tensor</span></code></dd>
+<dt>permuation_index <span class="classifier-delimiter">:</span> <span class="classifier">torch.LongTensor</span></dt>
+<dd>The indices used to sort the tensor. This is useful if you want to sort many
+tensors using the same ordering.</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-claf.modules.encoder.positional"></span><dl class="class">
+<dt id="claf.modules.encoder.positional.PositionalEncoding">
+<em class="property">class </em><code class="descclassname">claf.modules.encoder.positional.</code><code class="descname">PositionalEncoding</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>max_length=2000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/positional.html#PositionalEncoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.positional.PositionalEncoding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="docutils">
+<dt>Positional Encoding</dt>
+<dd>in “Attention is All You Need” (<a class="reference external" href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>)</dd>
+</dl>
+<p>The use of relative position is possible because sin(x+y) and cos(x+y) can be
+expressed in terms of y, sin(x) and cos(x).</p>
+<p>(cf. <a class="reference external" href="https://github.com/tensorflow/tensor2tensor/blob/42c3f377f441e5a0f431127d63e71414ead291c4/">https://github.com/tensorflow/tensor2tensor/blob/42c3f377f441e5a0f431127d63e71414ead291c4/</a>        tensor2tensor/layers/common_attention.py#L388)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>embed_dim: the number of embedding dimension</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>max_len: the number of maximum sequence length</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.modules.encoder.positional.PositionalEncoding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/positional.html#PositionalEncoding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.positional.PositionalEncoding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-claf.modules.encoder">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.modules.encoder" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="claf.modules.encoder.PositionalEncoding">
+<em class="property">class </em><code class="descclassname">claf.modules.encoder.</code><code class="descname">PositionalEncoding</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>max_length=2000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/positional.html#PositionalEncoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.PositionalEncoding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="docutils">
+<dt>Positional Encoding</dt>
+<dd>in “Attention is All You Need” (<a class="reference external" href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>)</dd>
+</dl>
+<p>The use of relative position is possible because sin(x+y) and cos(x+y) can be
+expressed in terms of y, sin(x) and cos(x).</p>
+<p>(cf. <a class="reference external" href="https://github.com/tensorflow/tensor2tensor/blob/42c3f377f441e5a0f431127d63e71414ead291c4/">https://github.com/tensorflow/tensor2tensor/blob/42c3f377f441e5a0f431127d63e71414ead291c4/</a>        tensor2tensor/layers/common_attention.py#L388)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>embed_dim: the number of embedding dimension</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>max_len: the number of maximum sequence length</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.modules.encoder.PositionalEncoding.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/positional.html#PositionalEncoding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.PositionalEncoding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.modules.encoder.LstmCellWithProjection">
+<em class="property">class </em><code class="descclassname">claf.modules.encoder.</code><code class="descname">LstmCellWithProjection</code><span class="sig-paren">(</span><em>input_size: int</em>, <em>hidden_size: int</em>, <em>cell_size: int</em>, <em>go_forward: bool = True</em>, <em>recurrent_dropout_probability: float = 0.0</em>, <em>memory_cell_clip_value: Optional[float] = None</em>, <em>state_projection_clip_value: Optional[float] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.LstmCellWithProjection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>An LSTM with Recurrent Dropout and a projected and clipped hidden state and
+memory. Note: this implementation is slower than the native Pytorch LSTM because
+it cannot make use of CUDNN optimizations for stacked RNNs due to and
+variational dropout and the custom nature of the cell state.
+Parameters
+———-
+input_size : <code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</p>
+<blockquote>
+<div>The dimension of the inputs to the LSTM.</div></blockquote>
+<dl class="docutils">
+<dt>hidden_size <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt>
+<dd>The dimension of the outputs of the LSTM.</dd>
+<dt>cell_size <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt>
+<dd>The dimension of the memory cell used for the LSTM.</dd>
+<dt>go_forward: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional (default = True)</dt>
+<dd>The direction in which the LSTM is applied to the sequence.
+Forwards by default, or backwards if False.</dd>
+<dt>recurrent_dropout_probability: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional (default = 0.0)</dt>
+<dd>The dropout probability to be used in a dropout scheme as stated in
+<a class="reference external" href="https://arxiv.org/abs/1512.05287">A Theoretically Grounded Application of Dropout in Recurrent Neural Networks</a> . Implementation wise, this simply
+applies a fixed dropout mask per sequence to the recurrent connection of the
+LSTM.</dd>
+<dt>state_projection_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt>
+<dd>The magnitude with which to clip the hidden_state after projecting it.</dd>
+<dt>memory_cell_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt>
+<dd>The magnitude with which to clip the memory cell.</dd>
+</dl>
+<dl class="docutils">
+<dt>output_accumulator <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code></span></dt>
+<dd>The outputs of the LSTM for each timestep. A tensor of shape
+(batch_size, max_timesteps, hidden_size) where for a given batch
+element, all outputs past the sequence length for that batch are
+zero tensors.</dd>
+<dt>final_state: <code class="docutils literal notranslate"><span class="pre">Tuple[torch.FloatTensor,</span> <span class="pre">torch.FloatTensor]</span></code></dt>
+<dd>The final (state, memory) states of the LSTM, with shape
+(1, batch_size, hidden_size) and  (1, batch_size, cell_size)
+respectively. The first dimension is 1 in order to match the Pytorch
+API for returning stacked LSTM states.</dd>
+</dl>
+<dl class="method">
+<dt id="claf.modules.encoder.LstmCellWithProjection.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs: torch.FloatTensor, batch_lengths: List[int], initial_state: Optional[Tuple[torch.Tensor, torch.Tensor]] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.LstmCellWithProjection.forward" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>inputs <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code>, required.</span></dt>
+<dd>A tensor of shape (batch_size, num_timesteps, input_size)
+to apply the LSTM over.</dd>
+<dt>batch_lengths <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">List[int]</span></code>, required.</span></dt>
+<dd>A list of length batch_size containing the lengths of the sequences in batch.</dd>
+<dt>initial_state <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">Tuple[torch.Tensor,</span> <span class="pre">torch.Tensor]</span></code>, optional, (default = None)</span></dt>
+<dd>A tuple (state, memory) representing the initial hidden state and memory
+of the LSTM. The <code class="docutils literal notranslate"><span class="pre">state</span></code> has shape (1, batch_size, hidden_size) and the
+<code class="docutils literal notranslate"><span class="pre">memory</span></code> has shape (1, batch_size, cell_size).</dd>
+</dl>
+<dl class="docutils">
+<dt>output_accumulator <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code></span></dt>
+<dd>The outputs of the LSTM for each timestep. A tensor of shape
+(batch_size, max_timesteps, hidden_size) where for a given batch
+element, all outputs past the sequence length for that batch are
+zero tensors.</dd>
+<dt>final_state <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">Tuple[``torch.FloatTensor,</span> <span class="pre">torch.FloatTensor]</span></code></span></dt>
+<dd>A tuple (state, memory) representing the initial hidden state and memory
+of the LSTM. The <code class="docutils literal notranslate"><span class="pre">state</span></code> has shape (1, batch_size, hidden_size) and the
+<code class="docutils literal notranslate"><span class="pre">memory</span></code> has shape (1, batch_size, cell_size).</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.modules.encoder.LstmCellWithProjection.reset_parameters">
+<code class="descname">reset_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection.reset_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.LstmCellWithProjection.reset_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="claf.modules.layer.html" class="btn btn-neutral float-right" title="claf.modules.layer package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="claf.modules.conv.html" class="btn btn-neutral" title="claf.modules.conv package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+rqa.modules.encoder.lstm\_cell\_with\_projection module
+=======================================================
+
+.. automodule:: rqa.modules.encoder.lstm_cell_with_projection
+    :members:
+    :undoc-members:
+    :show-inheritance:

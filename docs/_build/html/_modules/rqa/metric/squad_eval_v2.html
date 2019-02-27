@@ -1,0 +1,593 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.metric.squad_eval_v2 &mdash; reasoning-qa 0.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/model.html">Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../rqa.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rqa.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rqa.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>rqa.metric.squad_eval_v2</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rqa.metric.squad_eval_v2</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Official evaluation script for SQuAD version 2.0.</span>
+
+<span class="sd">In addition to basic functionality, we also compute additional statistics and</span>
+<span class="sd">plot precision-recall curves if an additional na_prob.json file is provided.</span>
+<span class="sd">This file is expected to map question ID&#39;s to the model&#39;s predicted probability</span>
+<span class="sd">that a question is unanswerable.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">OPTS</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="parse_args"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.parse_args">[docs]</a><span class="k">def</span> <span class="nf">parse_args</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="s2">&quot;Official evaluation script for SQuAD version 2.0.&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;data_file&quot;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;data.json&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Input data JSON file.&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;pred_file&quot;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;pred.json&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Model predictions.&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--out-file&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-o&quot;</span><span class="p">,</span>
+        <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;eval.json&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Write accuracy metrics to file (default is stdout).&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--na-prob-file&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-n&quot;</span><span class="p">,</span>
+        <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;na_prob.json&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Model estimates of probability of no answer.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--na-prob-thresh&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-t&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Predict &quot;&quot; if no-answer probability exceeds this (default = 1.0).&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--out-image-dir&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-p&quot;</span><span class="p">,</span>
+        <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;out_images&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Save precision-recall curves to directory.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--verbose&quot;</span><span class="p">,</span> <span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="make_qid_to_has_ans"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.make_qid_to_has_ans">[docs]</a><span class="k">def</span> <span class="nf">make_qid_to_has_ans</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span>
+    <span class="n">qid_to_has_ans</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">article</span><span class="p">[</span><span class="s2">&quot;paragraphs&quot;</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">qa</span> <span class="ow">in</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;qas&quot;</span><span class="p">]:</span>
+                <span class="n">qid_to_has_ans</span><span class="p">[</span><span class="n">qa</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">qa</span><span class="p">[</span><span class="s2">&quot;answers&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">qid_to_has_ans</span></div>
+
+
+<div class="viewcode-block" id="normalize_answer"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.normalize_answer">[docs]</a><span class="k">def</span> <span class="nf">normalize_answer</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Lower text and remove punctuation, articles and extra whitespace.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">remove_articles</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+        <span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\b(a|an|the)\b&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">UNICODE</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">white_space_fix</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">remove_punc</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+        <span class="n">exclude</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ch</span> <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">text</span> <span class="k">if</span> <span class="n">ch</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exclude</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">lower</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">white_space_fix</span><span class="p">(</span><span class="n">remove_articles</span><span class="p">(</span><span class="n">remove_punc</span><span class="p">(</span><span class="n">lower</span><span class="p">(</span><span class="n">s</span><span class="p">))))</span></div>
+
+
+<div class="viewcode-block" id="get_tokens"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.get_tokens">[docs]</a><span class="k">def</span> <span class="nf">get_tokens</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">return</span> <span class="n">normalize_answer</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="compute_exact"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.compute_exact">[docs]</a><span class="k">def</span> <span class="nf">compute_exact</span><span class="p">(</span><span class="n">a_gold</span><span class="p">,</span> <span class="n">a_pred</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">normalize_answer</span><span class="p">(</span><span class="n">a_gold</span><span class="p">)</span> <span class="o">==</span> <span class="n">normalize_answer</span><span class="p">(</span><span class="n">a_pred</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="compute_f1"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.compute_f1">[docs]</a><span class="k">def</span> <span class="nf">compute_f1</span><span class="p">(</span><span class="n">a_gold</span><span class="p">,</span> <span class="n">a_pred</span><span class="p">):</span>
+    <span class="n">gold_toks</span> <span class="o">=</span> <span class="n">get_tokens</span><span class="p">(</span><span class="n">a_gold</span><span class="p">)</span>
+    <span class="n">pred_toks</span> <span class="o">=</span> <span class="n">get_tokens</span><span class="p">(</span><span class="n">a_pred</span><span class="p">)</span>
+    <span class="n">common</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">gold_toks</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">pred_toks</span><span class="p">)</span>
+    <span class="n">num_same</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">gold_toks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">pred_toks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># If either is no-answer, then F1 is 1 if they agree, 0 otherwise</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">gold_toks</span> <span class="o">==</span> <span class="n">pred_toks</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">num_same</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">precision</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">num_same</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">pred_toks</span><span class="p">)</span>
+    <span class="n">recall</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">num_same</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">gold_toks</span><span class="p">)</span>
+    <span class="n">f1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">precision</span> <span class="o">*</span> <span class="n">recall</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">precision</span> <span class="o">+</span> <span class="n">recall</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">f1</span></div>
+
+
+<div class="viewcode-block" id="get_raw_scores"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.get_raw_scores">[docs]</a><span class="k">def</span> <span class="nf">get_raw_scores</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">preds</span><span class="p">):</span>
+    <span class="n">exact_scores</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">f1_scores</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">article</span><span class="p">[</span><span class="s2">&quot;paragraphs&quot;</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">qa</span> <span class="ow">in</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;qas&quot;</span><span class="p">]:</span>
+                <span class="n">qid</span> <span class="o">=</span> <span class="n">qa</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+                <span class="n">gold_answers</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">qa</span><span class="p">[</span><span class="s2">&quot;answers&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">normalize_answer</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])]</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">gold_answers</span><span class="p">:</span>
+                    <span class="c1"># For unanswerable questions, only correct answer is empty</span>
+                    <span class="c1"># string</span>
+                    <span class="n">gold_answers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">qid</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">preds</span><span class="p">:</span>
+                    <span class="c1"># print(&#39;Missing prediction for %s&#39; % qid)</span>
+                    <span class="k">continue</span>
+                <span class="n">a_pred</span> <span class="o">=</span> <span class="n">preds</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span>
+                <span class="c1"># Take max over all gold answers</span>
+                <span class="n">exact_scores</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">compute_exact</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a_pred</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">gold_answers</span><span class="p">)</span>
+                <span class="n">f1_scores</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">compute_f1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a_pred</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">gold_answers</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">exact_scores</span><span class="p">,</span> <span class="n">f1_scores</span></div>
+
+
+<div class="viewcode-block" id="apply_no_ans_threshold"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.apply_no_ans_threshold">[docs]</a><span class="k">def</span> <span class="nf">apply_no_ans_threshold</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">qid_to_has_ans</span><span class="p">,</span> <span class="n">na_prob_thresh</span><span class="p">):</span>
+    <span class="n">new_scores</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">qid</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">scores</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">pred_na</span> <span class="o">=</span> <span class="n">na_probs</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">na_prob_thresh</span>
+        <span class="k">if</span> <span class="n">pred_na</span><span class="p">:</span>
+            <span class="n">new_scores</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="ow">not</span> <span class="n">qid_to_has_ans</span><span class="p">[</span><span class="n">qid</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_scores</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
+    <span class="k">return</span> <span class="n">new_scores</span></div>
+
+
+<div class="viewcode-block" id="make_eval_dict"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.make_eval_dict">[docs]</a><span class="k">def</span> <span class="nf">make_eval_dict</span><span class="p">(</span><span class="n">exact_scores</span><span class="p">,</span> <span class="n">f1_scores</span><span class="p">,</span> <span class="n">qid_list</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">qid_list</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">exact_scores</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">(</span><span class="s2">&quot;exact&quot;</span><span class="p">,</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">exact_scores</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="o">/</span> <span class="n">total</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">,</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">f1_scores</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="o">/</span> <span class="n">total</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;total&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">qid_list</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">(</span><span class="s2">&quot;exact&quot;</span><span class="p">,</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">exact_scores</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">qid_list</span><span class="p">)</span> <span class="o">/</span> <span class="n">total</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">,</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">f1_scores</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">qid_list</span><span class="p">)</span> <span class="o">/</span> <span class="n">total</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;total&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="merge_eval"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.merge_eval">[docs]</a><span class="k">def</span> <span class="nf">merge_eval</span><span class="p">(</span><span class="n">main_eval</span><span class="p">,</span> <span class="n">new_eval</span><span class="p">,</span> <span class="n">prefix</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">new_eval</span><span class="p">:</span>
+        <span class="n">main_eval</span><span class="p">[</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">k</span><span class="p">)]</span> <span class="o">=</span> <span class="n">new_eval</span><span class="p">[</span><span class="n">k</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="plot_pr_curve"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.plot_pr_curve">[docs]</a><span class="k">def</span> <span class="nf">plot_pr_curve</span><span class="p">(</span><span class="n">precisions</span><span class="p">,</span> <span class="n">recalls</span><span class="p">,</span> <span class="n">out_image</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">recalls</span><span class="p">,</span> <span class="n">precisions</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">recalls</span><span class="p">,</span> <span class="n">precisions</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Recall&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Precision&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">out_image</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="make_precision_recall_eval"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.make_precision_recall_eval">[docs]</a><span class="k">def</span> <span class="nf">make_precision_recall_eval</span><span class="p">(</span>
+    <span class="n">scores</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">num_true_pos</span><span class="p">,</span> <span class="n">qid_to_has_ans</span><span class="p">,</span> <span class="n">out_image</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+    <span class="n">qid_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">na_probs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">na_probs</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+    <span class="n">true_pos</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">cur_p</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">cur_r</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">precisions</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]</span>
+    <span class="n">recalls</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span>
+    <span class="n">avg_prec</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">qid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">qid_list</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">qid_to_has_ans</span><span class="p">[</span><span class="n">qid</span><span class="p">]:</span>
+            <span class="n">true_pos</span> <span class="o">+=</span> <span class="n">scores</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span>
+        <span class="n">cur_p</span> <span class="o">=</span> <span class="n">true_pos</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">cur_r</span> <span class="o">=</span> <span class="n">true_pos</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">num_true_pos</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">qid_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">na_probs</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span> <span class="o">!=</span> <span class="n">na_probs</span><span class="p">[</span><span class="n">qid_list</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]:</span>
+            <span class="c1"># i.e., if we can put a threshold after this point</span>
+            <span class="n">avg_prec</span> <span class="o">+=</span> <span class="n">cur_p</span> <span class="o">*</span> <span class="p">(</span><span class="n">cur_r</span> <span class="o">-</span> <span class="n">recalls</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">precisions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur_p</span><span class="p">)</span>
+            <span class="n">recalls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur_r</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">out_image</span><span class="p">:</span>
+        <span class="n">plot_pr_curve</span><span class="p">(</span><span class="n">precisions</span><span class="p">,</span> <span class="n">recalls</span><span class="p">,</span> <span class="n">out_image</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;ap&quot;</span><span class="p">:</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="n">avg_prec</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="run_precision_recall_analysis"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.run_precision_recall_analysis">[docs]</a><span class="k">def</span> <span class="nf">run_precision_recall_analysis</span><span class="p">(</span>
+    <span class="n">main_eval</span><span class="p">,</span> <span class="n">exact_raw</span><span class="p">,</span> <span class="n">f1_raw</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">qid_to_has_ans</span><span class="p">,</span> <span class="n">out_image_dir</span>
+<span class="p">):</span>
+    <span class="k">if</span> <span class="n">out_image_dir</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">out_image_dir</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">out_image_dir</span><span class="p">)</span>
+    <span class="n">num_true_pos</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">qid_to_has_ans</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">num_true_pos</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">pr_exact</span> <span class="o">=</span> <span class="n">make_precision_recall_eval</span><span class="p">(</span>
+        <span class="n">exact_raw</span><span class="p">,</span>
+        <span class="n">na_probs</span><span class="p">,</span>
+        <span class="n">num_true_pos</span><span class="p">,</span>
+        <span class="n">qid_to_has_ans</span><span class="p">,</span>
+        <span class="n">out_image</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_image_dir</span><span class="p">,</span> <span class="s2">&quot;pr_exact.png&quot;</span><span class="p">),</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Precision-Recall curve for Exact Match score&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">pr_f1</span> <span class="o">=</span> <span class="n">make_precision_recall_eval</span><span class="p">(</span>
+        <span class="n">f1_raw</span><span class="p">,</span>
+        <span class="n">na_probs</span><span class="p">,</span>
+        <span class="n">num_true_pos</span><span class="p">,</span>
+        <span class="n">qid_to_has_ans</span><span class="p">,</span>
+        <span class="n">out_image</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_image_dir</span><span class="p">,</span> <span class="s2">&quot;pr_f1.png&quot;</span><span class="p">),</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Precision-Recall curve for F1 score&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">oracle_scores</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">qid_to_has_ans</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="n">pr_oracle</span> <span class="o">=</span> <span class="n">make_precision_recall_eval</span><span class="p">(</span>
+        <span class="n">oracle_scores</span><span class="p">,</span>
+        <span class="n">na_probs</span><span class="p">,</span>
+        <span class="n">num_true_pos</span><span class="p">,</span>
+        <span class="n">qid_to_has_ans</span><span class="p">,</span>
+        <span class="n">out_image</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_image_dir</span><span class="p">,</span> <span class="s2">&quot;pr_oracle.png&quot;</span><span class="p">),</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Oracle Precision-Recall curve (binary task of HasAns vs. NoAns)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">merge_eval</span><span class="p">(</span><span class="n">main_eval</span><span class="p">,</span> <span class="n">pr_exact</span><span class="p">,</span> <span class="s2">&quot;pr_exact&quot;</span><span class="p">)</span>
+    <span class="n">merge_eval</span><span class="p">(</span><span class="n">main_eval</span><span class="p">,</span> <span class="n">pr_f1</span><span class="p">,</span> <span class="s2">&quot;pr_f1&quot;</span><span class="p">)</span>
+    <span class="n">merge_eval</span><span class="p">(</span><span class="n">main_eval</span><span class="p">,</span> <span class="n">pr_oracle</span><span class="p">,</span> <span class="s2">&quot;pr_oracle&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="histogram_na_prob"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.histogram_na_prob">[docs]</a><span class="k">def</span> <span class="nf">histogram_na_prob</span><span class="p">(</span><span class="n">na_probs</span><span class="p">,</span> <span class="n">qid_list</span><span class="p">,</span> <span class="n">image_dir</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">qid_list</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">na_probs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">qid_list</span><span class="p">]</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Model probability of no-answer&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Proportion of dataset&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Histogram of no-answer probability: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span> <span class="s2">&quot;na_prob_hist_</span><span class="si">%s</span><span class="s2">.png&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="find_best_thresh"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.find_best_thresh">[docs]</a><span class="k">def</span> <span class="nf">find_best_thresh</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">qid_to_has_ans</span><span class="p">):</span>
+    <span class="n">num_no_ans</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">qid_to_has_ans</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">qid_to_has_ans</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+    <span class="n">cur_score</span> <span class="o">=</span> <span class="n">num_no_ans</span>
+    <span class="n">best_score</span> <span class="o">=</span> <span class="n">cur_score</span>
+    <span class="n">best_thresh</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">qid_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">na_probs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">na_probs</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">qid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">qid_list</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">qid</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">qid_to_has_ans</span><span class="p">[</span><span class="n">qid</span><span class="p">]:</span>
+            <span class="n">diff</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">preds</span><span class="p">[</span><span class="n">qid</span><span class="p">]:</span>
+                <span class="n">diff</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">diff</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">cur_score</span> <span class="o">+=</span> <span class="n">diff</span>
+        <span class="k">if</span> <span class="n">cur_score</span> <span class="o">&gt;</span> <span class="n">best_score</span><span class="p">:</span>
+            <span class="n">best_score</span> <span class="o">=</span> <span class="n">cur_score</span>
+            <span class="n">best_thresh</span> <span class="o">=</span> <span class="n">na_probs</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span>
+    <span class="k">return</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="n">best_score</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">scores</span><span class="p">),</span> <span class="n">best_thresh</span></div>
+
+
+<div class="viewcode-block" id="find_all_best_thresh"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.find_all_best_thresh">[docs]</a><span class="k">def</span> <span class="nf">find_all_best_thresh</span><span class="p">(</span><span class="n">main_eval</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">exact_raw</span><span class="p">,</span> <span class="n">f1_raw</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">qid_to_has_ans</span><span class="p">):</span>
+    <span class="n">best_exact</span><span class="p">,</span> <span class="n">exact_thresh</span> <span class="o">=</span> <span class="n">find_best_thresh</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">exact_raw</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">qid_to_has_ans</span><span class="p">)</span>
+    <span class="n">best_f1</span><span class="p">,</span> <span class="n">f1_thresh</span> <span class="o">=</span> <span class="n">find_best_thresh</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">f1_raw</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">qid_to_has_ans</span><span class="p">)</span>
+    <span class="n">main_eval</span><span class="p">[</span><span class="s2">&quot;best_exact&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">best_exact</span>
+    <span class="n">main_eval</span><span class="p">[</span><span class="s2">&quot;best_exact_thresh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">exact_thresh</span>
+    <span class="n">main_eval</span><span class="p">[</span><span class="s2">&quot;best_f1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">best_f1</span>
+    <span class="n">main_eval</span><span class="p">[</span><span class="s2">&quot;best_f1_thresh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f1_thresh</span></div>
+
+
+<div class="viewcode-block" id="evaluate"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.evaluate">[docs]</a><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">na_prob_thresh</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="n">qid_to_has_ans</span> <span class="o">=</span> <span class="n">make_qid_to_has_ans</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>  <span class="c1"># maps qid to True/False</span>
+    <span class="n">has_ans_qids</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">qid_to_has_ans</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span><span class="p">]</span>
+    <span class="n">no_ans_qids</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">qid_to_has_ans</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">v</span><span class="p">]</span>
+
+    <span class="n">exact_raw</span><span class="p">,</span> <span class="n">f1_raw</span> <span class="o">=</span> <span class="n">get_raw_scores</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+
+    <span class="n">exact_thresh</span> <span class="o">=</span> <span class="n">apply_no_ans_threshold</span><span class="p">(</span><span class="n">exact_raw</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">qid_to_has_ans</span><span class="p">,</span> <span class="n">na_prob_thresh</span><span class="p">)</span>
+    <span class="n">f1_thresh</span> <span class="o">=</span> <span class="n">apply_no_ans_threshold</span><span class="p">(</span><span class="n">f1_raw</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">qid_to_has_ans</span><span class="p">,</span> <span class="n">na_prob_thresh</span><span class="p">)</span>
+
+    <span class="n">out_eval</span> <span class="o">=</span> <span class="n">make_eval_dict</span><span class="p">(</span><span class="n">exact_thresh</span><span class="p">,</span> <span class="n">f1_thresh</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">has_ans_qids</span><span class="p">:</span>
+        <span class="n">has_ans_eval</span> <span class="o">=</span> <span class="n">make_eval_dict</span><span class="p">(</span><span class="n">exact_thresh</span><span class="p">,</span> <span class="n">f1_thresh</span><span class="p">,</span> <span class="n">qid_list</span><span class="o">=</span><span class="n">has_ans_qids</span><span class="p">)</span>
+        <span class="n">merge_eval</span><span class="p">(</span><span class="n">out_eval</span><span class="p">,</span> <span class="n">has_ans_eval</span><span class="p">,</span> <span class="s2">&quot;HasAns&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">no_ans_qids</span><span class="p">:</span>
+        <span class="n">no_ans_eval</span> <span class="o">=</span> <span class="n">make_eval_dict</span><span class="p">(</span><span class="n">exact_thresh</span><span class="p">,</span> <span class="n">f1_thresh</span><span class="p">,</span> <span class="n">qid_list</span><span class="o">=</span><span class="n">no_ans_qids</span><span class="p">)</span>
+        <span class="n">merge_eval</span><span class="p">(</span><span class="n">out_eval</span><span class="p">,</span> <span class="n">no_ans_eval</span><span class="p">,</span> <span class="s2">&quot;NoAns&quot;</span><span class="p">)</span>
+
+    <span class="n">find_all_best_thresh</span><span class="p">(</span><span class="n">out_eval</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">exact_raw</span><span class="p">,</span> <span class="n">f1_raw</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">qid_to_has_ans</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">out_eval</span></div>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../rqa.metric.html#rqa.metric.squad_eval_v2.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">OPTS</span><span class="o">.</span><span class="n">data_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">dataset_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_json</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">OPTS</span><span class="o">.</span><span class="n">pred_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">preds</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">OPTS</span><span class="o">.</span><span class="n">na_prob_file</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">OPTS</span><span class="o">.</span><span class="n">na_prob_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">na_probs</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">na_probs</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="mf">0.0</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">preds</span><span class="p">}</span>
+    <span class="n">qid_to_has_ans</span> <span class="o">=</span> <span class="n">make_qid_to_has_ans</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>  <span class="c1"># maps qid to True/False</span>
+    <span class="n">has_ans_qids</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">qid_to_has_ans</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span><span class="p">]</span>
+    <span class="n">no_ans_qids</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">qid_to_has_ans</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">v</span><span class="p">]</span>
+    <span class="n">exact_raw</span><span class="p">,</span> <span class="n">f1_raw</span> <span class="o">=</span> <span class="n">get_raw_scores</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+    <span class="n">exact_thresh</span> <span class="o">=</span> <span class="n">apply_no_ans_threshold</span><span class="p">(</span><span class="n">exact_raw</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">qid_to_has_ans</span><span class="p">,</span> <span class="n">OPTS</span><span class="o">.</span><span class="n">na_prob_thresh</span><span class="p">)</span>
+    <span class="n">f1_thresh</span> <span class="o">=</span> <span class="n">apply_no_ans_threshold</span><span class="p">(</span><span class="n">f1_raw</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">qid_to_has_ans</span><span class="p">,</span> <span class="n">OPTS</span><span class="o">.</span><span class="n">na_prob_thresh</span><span class="p">)</span>
+    <span class="n">out_eval</span> <span class="o">=</span> <span class="n">make_eval_dict</span><span class="p">(</span><span class="n">exact_thresh</span><span class="p">,</span> <span class="n">f1_thresh</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">has_ans_qids</span><span class="p">:</span>
+        <span class="n">has_ans_eval</span> <span class="o">=</span> <span class="n">make_eval_dict</span><span class="p">(</span><span class="n">exact_thresh</span><span class="p">,</span> <span class="n">f1_thresh</span><span class="p">,</span> <span class="n">qid_list</span><span class="o">=</span><span class="n">has_ans_qids</span><span class="p">)</span>
+        <span class="n">merge_eval</span><span class="p">(</span><span class="n">out_eval</span><span class="p">,</span> <span class="n">has_ans_eval</span><span class="p">,</span> <span class="s2">&quot;HasAns&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">no_ans_qids</span><span class="p">:</span>
+        <span class="n">no_ans_eval</span> <span class="o">=</span> <span class="n">make_eval_dict</span><span class="p">(</span><span class="n">exact_thresh</span><span class="p">,</span> <span class="n">f1_thresh</span><span class="p">,</span> <span class="n">qid_list</span><span class="o">=</span><span class="n">no_ans_qids</span><span class="p">)</span>
+        <span class="n">merge_eval</span><span class="p">(</span><span class="n">out_eval</span><span class="p">,</span> <span class="n">no_ans_eval</span><span class="p">,</span> <span class="s2">&quot;NoAns&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">OPTS</span><span class="o">.</span><span class="n">na_prob_file</span><span class="p">:</span>
+        <span class="n">find_all_best_thresh</span><span class="p">(</span><span class="n">out_eval</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="n">exact_raw</span><span class="p">,</span> <span class="n">f1_raw</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">qid_to_has_ans</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">OPTS</span><span class="o">.</span><span class="n">na_prob_file</span> <span class="ow">and</span> <span class="n">OPTS</span><span class="o">.</span><span class="n">out_image_dir</span><span class="p">:</span>
+        <span class="n">run_precision_recall_analysis</span><span class="p">(</span>
+            <span class="n">out_eval</span><span class="p">,</span> <span class="n">exact_raw</span><span class="p">,</span> <span class="n">f1_raw</span><span class="p">,</span> <span class="n">na_probs</span><span class="p">,</span> <span class="n">qid_to_has_ans</span><span class="p">,</span> <span class="n">OPTS</span><span class="o">.</span><span class="n">out_image_dir</span>
+        <span class="p">)</span>
+        <span class="n">histogram_na_prob</span><span class="p">(</span><span class="n">na_probs</span><span class="p">,</span> <span class="n">has_ans_qids</span><span class="p">,</span> <span class="n">OPTS</span><span class="o">.</span><span class="n">out_image_dir</span><span class="p">,</span> <span class="s2">&quot;hasAns&quot;</span><span class="p">)</span>
+        <span class="n">histogram_na_prob</span><span class="p">(</span><span class="n">na_probs</span><span class="p">,</span> <span class="n">no_ans_qids</span><span class="p">,</span> <span class="n">OPTS</span><span class="o">.</span><span class="n">out_image_dir</span><span class="p">,</span> <span class="s2">&quot;noAns&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">OPTS</span><span class="o">.</span><span class="n">out_file</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">OPTS</span><span class="o">.</span><span class="n">out_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">out_eval</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">out_eval</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">OPTS</span> <span class="o">=</span> <span class="n">parse_args</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">OPTS</span><span class="o">.</span><span class="n">out_image_dir</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">matplotlib</span>
+
+        <span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;Agg&quot;</span><span class="p">)</span>
+        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

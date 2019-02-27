@@ -1,0 +1,29 @@
+rqa.tokens.token\_embedder package
+==================================
+
+Submodules
+----------
+
+.. automodule:: rqa.tokens.token_embedder.base
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.tokens.token_embedder.basic_embedder
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.tokens.token_embedder.reading_comprehension_embedder
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: rqa.tokens.token_embedder
+    :members:
+    :undoc-members:
+    :show-inheritance:
