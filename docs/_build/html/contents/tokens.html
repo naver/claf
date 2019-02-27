@@ -1,0 +1,452 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tokens &mdash; CLaF 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="claf.config package" href="../claf.config.html" />
+    <link rel="prev" title="Pretrained Vector" href="pretrained_vector.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tokens</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tokenizers">Tokenizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#token-maker">Token Maker</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Tokens</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/contents/tokens.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tokens">
+<span id="tokens"></span><h1>Tokens<a class="headerlink" href="#tokens" title="Permalink to this headline">¶</a></h1>
+<p>TokenMakers consists of Tokenizer, Indexer, Vocabulary, and Embedding Modules.<code class="docutils literal notranslate"><span class="pre">TokenMaker</span></code> is responsible for the indexing of text and the generation of the tensors through the embedding module.</p>
+<div class="section" id="tokenizers">
+<span id="tokenizers"></span><h2>Tokenizers<a class="headerlink" href="#tokenizers" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Tokenizer Design</li>
+</ul>
+<p><img alt="images" src="../_images/tokenizers_design.png" /></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SentTokenizer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span> <span class="o">...</span>
+<span class="k">class</span> <span class="nc">WordTokenizer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">sent_tokenizer</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="o">...</span>
+<span class="k">class</span> <span class="nc">SubwordTokenizer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">word_tokenizer</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="o">...</span>
+<span class="k">class</span> <span class="nc">CharTokenizer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">word_tokenizer</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>The Tokenizer has a dependency with the other unit’s tokenizer and the <code class="docutils literal notranslate"><span class="pre">tokenize()</span></code> function takes the input of text units.(* unit: unit of input e.g. ‘text’, ‘sentence’ and ‘word’)</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">tokenizer()</span></code> example</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hello World.This is tokenizer example code.&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>  <span class="c1"># text -&gt; sentences -&gt; words</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;World&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;This&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;tokenizer&#39;</span><span class="p">,</span> <span class="s1">&#39;example&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;sentence&quot;</span><span class="p">)</span>  <span class="c1"># text -&gt; words</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;World.This&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;tokenizer&#39;</span><span class="p">,</span> <span class="s1">&#39;example&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Several tensors in a sub-level text unit can be combined into a single tensor of higher level via a vector operation. For example, subword level tensors can be averaged to represent a word level tensor.</p>
+<p>e.g.) concatenate [word; subword] (subword tokens –average–&gt; word token)</p>
+<ul class="simple">
+<li>The list of pre-defined <code class="docutils literal notranslate"><span class="pre">Tokenizers</span></code>:</li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Text Unit</th>
+<th>Language</th>
+<th>Name</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Char</td>
+<td>All</td>
+<td><strong>character</strong></td>
+<td>Hello World<br/>-&gt; ["Hello", "World"]<br/>-&gt; [["H", "e", "l", "l", "o"], ["W", "o", "r", "l", "d"]]</td>
+</tr>
+<tr>
+<td>Char</td>
+<td>Korean</td>
+<td><a href="https://github.com/rhobot/Hangulpy"><strong>jamo_ko</strong></a></td>
+<td>"안녕 세상"<br/>-&gt; ["안녕", "세상"]<br/>-&gt; [["ㅇ", "ㅏ", "ㄴ", "ㄴ", "ㅕ", "ㅇ"], ["ㅅ", "ㅔ", "ㅅ", "ㅏ", "ㅇ"]]</td>
+</tr>
+<tr>
+<td>Subword</td>
+<td>All (but, need vocab.txt)</td>
+<td><a href="https://github.com/huggingface/pytorch-pretrained-BERT/blob/master/pytorch_pretrained_bert/tokenization.py"><strong>wordpiece</strong></a></td>
+<td>"expectancy of anyone"<br/>-&gt; ["expectancy", "of", "anyone"]<br/>-&gt; ["expect", "##ancy", "of", "anyone"]</td>
+</tr>
+<tr>
+<td>Word</td>
+<td>English</td>
+<td><a href="http://www.nltk.org/api/nltk.tokenize.html"><strong>nltk_en</strong></a></td>
+<td>-</td>
+</tr>
+<tr>
+<td>Word</td>
+<td>English</td>
+<td><a href="https://spacy.io/api/tokenizer"><strong>spacy_en</strong></a></td>
+<td>-</td>
+</tr>
+<tr>
+<td>Word</td>
+<td>Korean</td>
+<td><a href="https://bitbucket.org/eunjeon/mecab-ko"><strong>mecab_ko</strong></a></td>
+<td>-</td>
+</tr>
+<tr>
+<td>Word</td>
+<td>All</td>
+<td><strong>bert_basic</strong></td>
+<td>-</td>
+</tr>
+<tr>
+<td>Word</td>
+<td>All</td>
+<td><strong>space_all</strong></td>
+<td>"Hello World"<br/>-&gt; ["Hello", "World"]</td>
+</tr>
+<tr>
+<td>Sent</td>
+<td>All</td>
+<td><a href="http://www.nltk.org/api/nltk.tokenize.html"><strong>punkt</strong></a></td>
+<td>"Hello World. This is punkt tokenizer."<br/>-&gt; ["Hello World.", "This is punkt tokenizer."]</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="token-maker">
+<span id="token-maker"></span><h2>Token Maker<a class="headerlink" href="#token-maker" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The list of pre-defined <code class="docutils literal notranslate"><span class="pre">Token</span> <span class="pre">Maker</span></code>:</li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Category</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>char</strong></td>
+<td>character -&gt; convolution -&gt; maxpool</td>
+<td><code>CharCNN</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>cove</strong></td>
+<td>Embeddings from Neural Machine Translation</td>
+<td><code>NMT</code></td>
+<td>- From <a href="https://github.com/salesforce/cove">Salesforce</a></td>
+</tr>
+<tr>
+<td><strong>word</strong></td>
+<td>word -&gt; Embedding (+pretrained)</td>
+<td><code>Word2Vec</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>frequent_word</strong></td>
+<td>word token + pre-trained word embeddings fixed and only fine-tune the N most frequent</td>
+<td><code>Word2Vec</code> + <code>Fine-tune</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>exact_match</strong></td>
+<td>Three simple binary features, indicating whether p_i can be exactly matched to one question word in q, either in its original, lowercase or lemma form.</td>
+<td><code>Feature</code></td>
+<td>- Sparse or Embedding<br/> - Only for RC</td>
+</tr>
+<tr>
+<td><strong>elmo</strong></td>
+<td>Embeddings from Language Models</td>
+<td><code>LM</code></td>
+<td>From <a href="https://github.com/allenai/allennlp">Allennlp</a></td>
+</tr>
+<tr>
+<td><strong>linguistic</strong></td>
+<td>Linguistic Features like POS Tagging, NER and Dependency Parser</td>
+<td><code>Feature</code></td>
+<td>- Sparse or Embedding</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li>Example of tokens in <a class="reference external" href="#baseconfig">BaseConfig</a></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="s2">&quot;names&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;char&quot;</span><span class="p">,</span> <span class="s2">&quot;glove&quot;</span><span class="p">],</span>
+   <span class="s2">&quot;types&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;char&quot;</span><span class="p">,</span> <span class="s2">&quot;word&quot;</span><span class="p">],</span>
+   <span class="s2">&quot;tokenizer&quot;</span><span class="p">:</span> <span class="p">{</span>  <span class="c1"># Define the tokenizer in each unit.</span>
+       <span class="s2">&quot;char&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;character&quot;</span>
+       <span class="p">},</span>
+       <span class="s2">&quot;word&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;treebank_en&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;split_with_regex&quot;</span><span class="p">:</span> <span class="n">true</span>
+       <span class="p">}</span>
+   <span class="p">},</span>
+   <span class="s2">&quot;char&quot;</span><span class="p">:</span> <span class="p">{</span>  <span class="c1"># token_name</span>
+       <span class="s2">&quot;vocab&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="s2">&quot;start_token&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;s&gt;&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;end_token&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;/s&gt;&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;max_vocab_size&quot;</span><span class="p">:</span> <span class="mi">260</span>
+       <span class="p">},</span>
+       <span class="s2">&quot;indexer&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="s2">&quot;insert_char_start&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+           <span class="s2">&quot;insert_char_end&quot;</span><span class="p">:</span> <span class="n">true</span>
+       <span class="p">},</span>
+       <span class="s2">&quot;embedding&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="s2">&quot;embed_dim&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+           <span class="s2">&quot;kernel_sizes&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+           <span class="s2">&quot;num_filter&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+           <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="s2">&quot;relu&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;dropout&quot;</span><span class="p">:</span> <span class="mf">0.2</span>
+       <span class="p">}</span>
+   <span class="p">},</span>
+   <span class="s2">&quot;glove&quot;</span><span class="p">:</span> <span class="p">{</span>  <span class="c1"># token_name</span>
+       <span class="s2">&quot;indexer&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="s2">&quot;lowercase&quot;</span><span class="p">:</span> <span class="n">true</span>
+       <span class="p">},</span>
+       <span class="s2">&quot;embedding&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="s2">&quot;embed_dim&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+           <span class="s2">&quot;pretrained_path&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;glove.6B.100d path&gt;,</span>
+           <span class="s2">&quot;trainable&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+           <span class="s2">&quot;dropout&quot;</span><span class="p">:</span> <span class="mf">0.2</span>
+       <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">},</span>
+
+<span class="c1"># Tokens process</span>
+<span class="c1">#   Text -&gt; Indexed Featrues -&gt; Tensor -&gt; TokenEmbedder -&gt; Model</span>
+
+<span class="c1"># Visualization</span>
+<span class="c1"># - Text: Hello World</span>
+<span class="c1"># - Indexed Feature: {&#39;char&#39;: [[2, 3, 4, 4, 5], [6, 7, 8, 4, 9]], &#39;glove&#39;: [2, 3]} </span>
+<span class="c1"># - Tensor: {&#39;char&#39;: tensor, &#39;glove&#39;: tensor} </span>
+<span class="c1"># - TokenEmbedder: [char; glove]  (default: concatenate)</span>
+<span class="c1"># - Model: use embedded_value</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../claf.config.html" class="btn btn-neutral float-right" title="claf.config package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pretrained_vector.html" class="btn btn-neutral" title="Pretrained Vector" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

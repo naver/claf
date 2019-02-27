@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>claf.model.base &mdash; CLaF 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>claf.model.base</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for claf.model.base</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+
+
+<div class="viewcode-block" id="ModelBase"><a class="viewcode-back" href="../../../claf.model.html#claf.model.base.ModelBase">[docs]</a><span class="k">class</span> <span class="nc">ModelBase</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Model Base Class</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        token_embedder: (claf.tokens.token_embedder.base) TokenEmbedder</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ModelBase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ModelBase.forward"><a class="viewcode-back" href="../../../claf.model.html#claf.model.base.ModelBase.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="ModelBase.make_metrics"><a class="viewcode-back" href="../../../claf.model.html#claf.model.base.ModelBase.make_metrics">[docs]</a>    <span class="k">def</span> <span class="nf">make_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
+
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="ModelBase.make_predictions"><a class="viewcode-back" href="../../../claf.model.html#claf.model.base.ModelBase.make_predictions">[docs]</a>    <span class="k">def</span> <span class="nf">make_predictions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        for Metrics</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="ModelBase.predict"><a class="viewcode-back" href="../../../claf.model.html#claf.model.base.ModelBase.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inference</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="ModelBase.print_examples"><a class="viewcode-back" href="../../../claf.model.html#claf.model.base.ModelBase.print_examples">[docs]</a>    <span class="k">def</span> <span class="nf">print_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Print evaluation examples</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="ModelBase.write_predictions"><a class="viewcode-back" href="../../../claf.model.html#claf.model.base.ModelBase.write_predictions">[docs]</a>    <span class="k">def</span> <span class="nf">write_predictions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">data_type</span> <span class="o">=</span> <span class="s2">&quot;train&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span> <span class="k">else</span> <span class="s2">&quot;valid&quot;</span>
+
+        <span class="n">pred_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;predictions&quot;</span>
+        <span class="n">pred_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">file_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">file_path</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;predictions-</span><span class="si">{data_type}</span><span class="s2">-{self._train_counter.get_display()}.json&quot;</span>
+
+        <span class="n">pred_path</span> <span class="o">=</span> <span class="n">pred_dir</span> <span class="o">/</span> <span class="n">file_path</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">pred_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_file</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">is_dict</span><span class="p">:</span>
+                <span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ModelBase.is_ready"><a class="viewcode-back" href="../../../claf.model.html#claf.model.base.ModelBase.is_ready">[docs]</a>    <span class="k">def</span> <span class="nf">is_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">properties</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_log_dir</span><span class="p">,</span>
+            <span class="c1"># self._dataset,  It&#39;s set at _run_epoch()</span>
+            <span class="c1"># self._metrics,  It&#39;s set at save()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_train_counter</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_vocabs</span>
+        <span class="p">]</span>
+
+        <span class="k">return</span> <span class="nb">all</span><span class="p">([</span><span class="n">p</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">])</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span>
+
+    <span class="nd">@config</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="n">config</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">log_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_dir</span>
+
+    <span class="nd">@log_dir</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">log_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_dir</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log_dir</span> <span class="o">=</span> <span class="n">log_dir</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span>
+
+    <span class="nd">@dataset</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span> <span class="o">=</span> <span class="n">dataset</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metrics</span>
+
+    <span class="nd">@metrics</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_metrics</span> <span class="o">=</span> <span class="n">metrics</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">train_counter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_train_counter</span>
+
+    <span class="nd">@train_counter</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">train_counter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">train_counter</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_train_counter</span> <span class="o">=</span> <span class="n">train_counter</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vocabs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vocabs</span>
+
+    <span class="nd">@vocabs</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">vocabs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocabs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_vocabs</span> <span class="o">=</span> <span class="n">vocabs</span></div>
+
+
+<div class="viewcode-block" id="ModelWithTokenEmbedder"><a class="viewcode-back" href="../../../claf.model.html#claf.model.base.ModelWithTokenEmbedder">[docs]</a><span class="k">class</span> <span class="nc">ModelWithTokenEmbedder</span><span class="p">(</span><span class="n">ModelBase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token_embedder</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ModelWithTokenEmbedder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_embedder</span> <span class="o">=</span> <span class="n">token_embedder</span>
+        <span class="k">if</span> <span class="n">token_embedder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_vocabs</span> <span class="o">=</span> <span class="n">token_embedder</span><span class="o">.</span><span class="n">vocabs</span></div>
+
+
+<div class="viewcode-block" id="ModelWithoutTokenEmbedder"><a class="viewcode-back" href="../../../claf.model.html#claf.model.base.ModelWithoutTokenEmbedder">[docs]</a><span class="k">class</span> <span class="nc">ModelWithoutTokenEmbedder</span><span class="p">(</span><span class="n">ModelBase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token_makers</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ModelWithoutTokenEmbedder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_makers</span> <span class="o">=</span> <span class="n">token_makers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_vocabs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">token_name</span><span class="p">:</span> <span class="n">token_maker</span><span class="o">.</span><span class="n">vocab</span> <span class="k">for</span> <span class="n">token_name</span><span class="p">,</span> <span class="n">token_maker</span> <span class="ow">in</span> <span class="n">token_makers</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

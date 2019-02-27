@@ -1,0 +1,40 @@
+# Backends
+numpy
+torch==1.0.0
+
+# Documentation
+Sphinx
+recommonmark
+sphinx_markdown_tables
+git+https://github.com/DongjunLee/sphinx_rtd_theme.git
+
+# Tokenizer
+konlpy
+nltk
+spacy
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.0.0/en_core_web_sm-2.0.0.tar.gz
+
+# BERT
+pytorch-pretrained-bert==0.4.0
+
+# WikiSQL
+babel
+records
+
+# Utils
+h5py
+jsbeautifier
+msgpack
+overrides
+requests
+gensim
+tqdm
+tensorboardX
+
+# Test, CI
+pytest
+pytest-cov
+
+# Classification
+pycm
+seqeval

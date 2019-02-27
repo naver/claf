@@ -1,0 +1,7 @@
+rqa.data.reader.history module
+==============================
+
+.. automodule:: rqa.data.reader.history
+    :members:
+    :undoc-members:
+    :show-inheritance:

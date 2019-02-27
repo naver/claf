@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.modules package &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rqa.modules.attention package" href="rqa.modules.attention.html" />
+    <link rel="prev" title="rqa.model.token_classification package" href="rqa.model.token_classification.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rqa.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.html">model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rqa.modules.attention.html">rqa.modules.attention package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.modules.conv.html">rqa.modules.conv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.modules.encoder.html">rqa.modules.encoder package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.modules.layer.html">rqa.modules.layer package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rqa.modules.activation">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rqa.modules">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>rqa.modules package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.modules.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rqa-modules-package">
+<h1>rqa.modules package<a class="headerlink" href="#rqa-modules-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.attention.html">rqa.modules.attention package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rqa.modules.attention.html#module-rqa.modules.attention.bi_attention">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.modules.attention.html#module-rqa.modules.attention">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.conv.html">rqa.modules.conv package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rqa.modules.conv.html#module-rqa.modules.conv.depthwise_separable_conv">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.modules.conv.html#module-rqa.modules.conv">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.encoder.html">rqa.modules.encoder package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rqa.modules.encoder.html#module-rqa.modules.encoder.lstm_cell_with_projection">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.modules.encoder.html#module-rqa.modules.encoder">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.layer.html">rqa.modules.layer package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rqa.modules.layer.html#module-rqa.modules.layer.highway">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.modules.layer.html#module-rqa.modules.layer">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-rqa.modules.activation">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-rqa.modules.activation" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="rqa.modules.activation.get_activation_fn">
+<code class="descclassname">rqa.modules.activation.</code><code class="descname">get_activation_fn</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/activation.html#get_activation_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.activation.get_activation_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>PyTorch built-in activation functions</p>
+</dd></dl>
+
+<span class="target" id="module-rqa.modules.functional"></span><p>some functional codes from allennlp: <a class="reference external" href="https://github.com/allenai/allennlp">https://github.com/allenai/allennlp</a></p>
+<ul class="simple">
+<li>add_masked_value : replace_masked_values (allennlp)</li>
+<li>get_mask_from_tokens : get_mask_from_tokens (allennlp)</li>
+<li>last_dim_masked_softmax : last_dim_masked_softmax (allennlp)</li>
+<li>masked_softmax : masked_softmax (allennlp)</li>
+<li>weighted_sum : weighted_sum (allennlp)</li>
+</ul>
+<dl class="function">
+<dt id="rqa.modules.functional.add_masked_value">
+<code class="descclassname">rqa.modules.functional.</code><code class="descname">add_masked_value</code><span class="sig-paren">(</span><em>tensor</em>, <em>mask</em>, <em>value=-10000000.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/functional.html#add_masked_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.functional.add_masked_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.modules.functional.forward_rnn_with_pack">
+<code class="descclassname">rqa.modules.functional.</code><code class="descname">forward_rnn_with_pack</code><span class="sig-paren">(</span><em>rnn_module</em>, <em>tensor</em>, <em>seq_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/functional.html#forward_rnn_with_pack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.functional.forward_rnn_with_pack" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.modules.functional.get_mask_from_tokens">
+<code class="descclassname">rqa.modules.functional.</code><code class="descname">get_mask_from_tokens</code><span class="sig-paren">(</span><em>tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/functional.html#get_mask_from_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.functional.get_mask_from_tokens" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.modules.functional.get_sorted_seq_config">
+<code class="descclassname">rqa.modules.functional.</code><code class="descname">get_sorted_seq_config</code><span class="sig-paren">(</span><em>features</em>, <em>pad_index=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/functional.html#get_sorted_seq_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.functional.get_sorted_seq_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.modules.functional.last_dim_masked_softmax">
+<code class="descclassname">rqa.modules.functional.</code><code class="descname">last_dim_masked_softmax</code><span class="sig-paren">(</span><em>x</em>, <em>mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/functional.html#last_dim_masked_softmax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.functional.last_dim_masked_softmax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.modules.functional.masked_log_softmax">
+<code class="descclassname">rqa.modules.functional.</code><code class="descname">masked_log_softmax</code><span class="sig-paren">(</span><em>vector</em>, <em>mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/functional.html#masked_log_softmax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.functional.masked_log_softmax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.modules.functional.masked_softmax">
+<code class="descclassname">rqa.modules.functional.</code><code class="descname">masked_softmax</code><span class="sig-paren">(</span><em>x</em>, <em>mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/functional.html#masked_softmax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.functional.masked_softmax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rqa.modules.functional.masked_zero">
+<code class="descclassname">rqa.modules.functional.</code><code class="descname">masked_zero</code><span class="sig-paren">(</span><em>tensor</em>, <em>mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/functional.html#masked_zero"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.functional.masked_zero" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tensor masking operation</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="rqa.modules.functional.weighted_sum">
+<code class="descclassname">rqa.modules.functional.</code><code class="descname">weighted_sum</code><span class="sig-paren">(</span><em>attention</em>, <em>matrix</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/functional.html#weighted_sum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.functional.weighted_sum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<span class="target" id="module-rqa.modules.initializer"></span><dl class="function">
+<dt id="rqa.modules.initializer.weight">
+<code class="descclassname">rqa.modules.initializer.</code><code class="descname">weight</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/initializer.html#weight"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.initializer.weight" title="Permalink to this definition">¶</a></dt>
+<dd><p>weight initialization (according to module type)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>module: torch.nn.Module</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="module-rqa.modules">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rqa.modules" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rqa.modules.attention.html" class="btn btn-neutral float-right" title="rqa.modules.attention package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rqa.model.token_classification.html" class="btn btn-neutral" title="rqa.model.token_classification package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

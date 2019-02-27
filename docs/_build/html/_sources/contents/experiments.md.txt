@@ -1,0 +1,909 @@
+# Experiment
+
+reasoning-qa는 하나의 Experiment 로서 관리가 됩니다.  
+Command와 Config를 조합해서, 원하는 실험을 돌리는 것 입니다.
+
+
+## Base Config
+
+예시를 보여드리면, 아래는 SQuAD에서 자주 언급되는 **BiDAF** 모델에 대한 experiments 입니다.
+
+config path: base_config/squad/bidaf.json
+
+```json
+{
+     "data_reader": {
+         "dataset": "squad",    <-- 읽고자 하는 데이터셋
+         "train_file_path": "data/squad/train-v1.1.json",
+         "valid_file_path": "data/squad/dev-v1.1.json"
+     },
+     "iterator": {    # Default로 Dynamic Bucket 이터레이터를 사용
+         "batch_size": 32
+     },
+     "token": {    # 여기서 사용하고자하는 Token들을 정의
+         "names": ["char", "glove"],   
+         "types": ["char", "word"],
+         "tokenizer": {   # Tokenizer는 모든 토큰이 공유
+             "lang": "eng",
+             "word": {
+                 "flatten": true,
+                 "split_with_regex": true,
+                 "eng" : {
+                     "package": "nltk"
+                 }
+             }
+         },
+         "char": {   # CharCNN 토큰 정의 (vocab, indexer, embedding)
+             "vocab": {
+                 "start_token": "<s>",
+                 "end_token": "</s>",
+                 "max_vocab_size": 260
+             },
+             "indexer": {
+                 "insert_char_start": true,
+                 "insert_char_end": true
+             },
+             "embedding": {
+                 "embed_dim": 16,
+                 "kernel_sizes": [5],
+                 "num_filter": 100,
+                 "activation": "relu",
+                 "dropout": 0.2
+             }
+         },
+         "glove": {  # WordEmbedding 토큰 정의 (vocab, indexer, embedding)
+             "vocab": {
+                 "pretrained_path": "data/pretrained_vector/glove.6B.vocab.txt"
+             },
+             "indexer": {
+                 "lowercase": true
+             },
+             "embedding": {
+                 "embed_dim": 50,
+                 "pretrained_path": "data/pretrained_vector/glove.6B.50d.txt",
+                 "trainable": false,
+                 "dropout": 0.2
+             }
+         }
+     },
+     "model": {   # 구현한 모델의 hyper-parameter 셋팅
+         "name": "bidaf",
+         "bidaf": {
+             "model_dim": 100,
+             "contextual_rnn_num_layer": 1,
+             "modeling_rnn_num_layer": 2,
+             "predict_rnn_num_layer": 1,
+             "dropout": 0.2
+         }
+     },
+     "trainer": {   # 학습에 대한 설정
+         "num_epochs": 50,
+         "early_stopping_threshold": 10,
+         "metric_key": "f1",
+         "verbose_step_count": 100,
+         "save_epoch_count": 1
+     },
+     "optimizer": {
+         "op_type": "adadelta",
+         "learning_rate": 0.5,
+         "exponential_moving_average": 0.999
+     },
+     "seed_num": 2,
+     "slack": true   # 실험이 끝나고, 슬랙에 정리해서 알려주는 알람기능
+ }
+```
+
+위와 같이 base_config 파일을 만들고, 아래 커맨드와 함께 돌리면 됩니다.  
+(\-\-base_config 는 `base_config` 폴더로 지정이 되어있습니다)
+
+
+## Commands
+
+**Traning**
+
+1. only Arguments
+
+	```
+	python train.py --train_file_path {file_path} --valid_file_path {file_path} --model_name {name} ...
+	```
+
+2. only base_config (you can skip `/base_config` path)
+
+	```
+	python train.py --base_config {base_config}
+	```
+	
+3. base_config + Arguments
+
+	```
+	python train.py --base_config {base_config} --learning_rate 0.002
+	```
+	
+	- Overwrite `learning_rate` to 0.002
+
+
+학습을 진행하는 방식은 위의 3가지 argument 사용법을 이용하시면 됩니다.
+위의 bidaf config를 그대로 학습하고 싶으시다면, 아래와 같이 돌릴 수 있습니다.
+
+```bash
+python train.py --base_config squad/bidaf
+```
+
+config에 사용되는 값들은 `-h` 커맨드를 통해서 확인할 수 있습니다.
+
+```bash
+python train.py -h
+
+usage: train.py [-h] [--seed_num SEED_NUM]
+                [--cuda_devices CUDA_DEVICES [CUDA_DEVICES ...]]
+                [--slack SLACK] [--dataset DATA_READER.DATASET]
+                [--train_file_path DATA_READER.TRAIN_FILE_PATH]
+                [--valid_file_path DATA_READER.VALID_FILE_PATH]
+                [--test_file_path DATA_READER.TEST_FILE_PATH]
+                [--squad.context_max_length DATA_READER.SQUAD.CONTEXT_MAX_LENGTH]
+                [--history.context_max_length DATA_READER.HISTORY.CONTEXT_MAX_LENGTH]
+                [--batch_size ITERATOR.BATCH_SIZE]
+                [--token_names TOKEN.NAMES [TOKEN.NAMES ...]]
+                [--token_types TOKEN.TYPES [TOKEN.TYPES ...]]
+                [--char.pad_token TOKEN.CHAR.VOCAB.PAD_TOKEN]
+                [--char.oov_token TOKEN.CHAR.VOCAB.OOV_TOKEN]
+                [--char.start_token TOKEN.CHAR.VOCAB.START_TOKEN]
+                [--char.end_token TOKEN.CHAR.VOCAB.END_TOKEN]
+                [--char.min_count TOKEN.CHAR.VOCAB.MIN_COUNT]
+                [--char.max_vocab_size TOKEN.CHAR.VOCAB.MAX_VOCAB_SIZE]
+                [--word.pad_token TOKEN.WORD.VOCAB.PAD_TOKEN]
+                [--word.oov_token TOKEN.WORD.VOCAB.OOV_TOKEN]
+                [--word.min_count TOKEN.WORD.VOCAB.MIN_COUNT]
+                [--word.max_vocab_size TOKEN.WORD.VOCAB.MAX_VOCAB_SIZE]
+                [--frequent_word.frequent_count TOKEN.FREQUENT_WORD.VOCAB.FREQUENT_COUNT]
+                [--tokenizer.language TOKEN.TOKENIZER.LANG]
+                [--word.flatten TOKEN.TOKENIZER.WORD.FLATTEN]
+                [--word.split_with_regex TOKEN.TOKENIZER.WORD.SPLIT_WITH_REGEX]
+                [--word.eng.package TOKEN.TOKENIZER.WORD.ENG.PACKAGE]
+                [--word.kor.package TOKEN.TOKENIZER.WORD.KOR.PACKAGE]
+                [--char.insert_char_start TOKEN.CHAR.INDEXER.INSERT_CHAR_START]
+                [--char.insert_char_end TOKEN.CHAR.INDEXER.INSERT_CHAR_END]
+                [--exact_match.lower TOKEN.EXACT_MATCH.INDEXER.LOWER]
+                [--exact_match.lemma TOKEN.EXACT_MATCH.INDEXER.LEMMA]
+                [--linguistic.pos_tag TOKEN.LINGUISTIC.INDEXER.POS_TAG]
+                [--linguistic.ner TOKEN.LINGUISTIC.INDEXER.NER]
+                [--linguistic.dep TOKEN.LINGUISTIC.INDEXER.DEP]
+                [--word.lowercase TOKEN.WORD.INDEXER.LOWERCASE]
+                [--word.insert_start TOKEN.WORD.INDEXER.INSERT_START]
+                [--word.insert_end TOKEN.WORD.INDEXER.INSERT_END]
+                [--char.embed_dim TOKEN.CHAR.EMBEDDING.EMBED_DIM]
+                [--char.kernel_sizes TOKEN.CHAR.EMBEDDING.KERNEL_SIZES [TOKEN.CHAR.EMBEDDING.KERNEL_SIZES ...]]
+                [--char.num_filter TOKEN.CHAR.EMBEDDING.NUM_FILTER]
+                [--char.activation TOKEN.CHAR.EMBEDDING.ACTIVATION]
+                [--char.dropout TOKEN.CHAR.EMBEDDING.DROPOUT]
+                [--cove.trainable TOKEN.COVE.EMBEDDING.TRAINABLE]
+                [--cove.dropout TOKEN.COVE.EMBEDDING.DROPOUT]
+                [--cove.project_dim TOKEN.COVE.EMBEDDING.PROJECT_DIM]
+                [--elmo.options_file TOKEN.ELMO.EMBEDDING.OPTIONS_FILE]
+                [--elmo.weight_file TOKEN.ELMO.EMBEDDING.WEIGHT_FILE]
+                [--elmo.trainable TOKEN.ELMO.EMBEDDING.TRAINABLE]
+                [--elmo.dropout TOKEN.ELMO.EMBEDDING.DROPOUT]
+                [--elmo.project_dim TOKEN.ELMO.EMBEDDING.PROJECT_DIM]
+                [--word_permeability.memory_clip TOKEN.WORD_PERMEABILITY.EMBEDDING.MEMORY_CLIP]
+                [--word_permeability.proj_clip TOKEN.WORD_PERMEABILITY.EMBEDDING.PROJ_CLIP]
+                [--word_permeability.embed_dim TOKEN.WORD_PERMEABILITY.EMBEDDING.EMBED_DIM]
+                [--word_permeability.linear_dim TOKEN.WORD_PERMEABILITY.EMBEDDING.LINEAR_DIM]
+                [--word_permeability.trainable TOKEN.WORD_PERMEABILITY.EMBEDDING.TRAINABLE]
+                [--word_permeability.dropout TOKEN.WORD_PERMEABILITY.EMBEDDING.DROPOUT]
+                [--word_permeability.activation TOKEN.WORD_PERMEABILITY.EMBEDDING.ACTIVATION]
+                [--word_permeability.bidirectional TOKEN.WORD_PERMEABILITY.EMBEDDING.BIDIRECTIONAL]
+                [--frequent_word.embed_dim TOKEN.FREQUENT_WORD.EMBEDDING.EMBED_DIM]
+                [--frequent_word.pretrained_path TOKEN.FREQUENT_WORD.EMBEDDING.PRETRAINED_PATH]
+                [--frequent_word.dropout TOKEN.FREQUENT_WORD.EMBEDDING.DROPOUT]
+                [--word.embed_dim TOKEN.WORD.EMBEDDING.EMBED_DIM]
+                [--word.pretrained_path TOKEN.WORD.EMBEDDING.PRETRAINED_PATH]
+                [--word.trainable TOKEN.WORD.EMBEDDING.TRAINABLE]
+                [--word.dropout TOKEN.WORD.EMBEDDING.DROPOUT]
+                [--model_name MODEL.NAME]
+                [--bidaf.aligned_query_embedding MODEL.BIDAF.ALIGNED_QUERY_EMBEDDING]
+                [--bidaf.answer_maxlen MODEL.BIDAF.ANSWER_MAXLEN]
+                [--bidaf.model_dim MODEL.BIDAF.MODEL_DIM]
+                [--bidaf.contextual_rnn_num_layer MODEL.BIDAF.CONTEXTUAL_RNN_NUM_LAYER]
+                [--bidaf.modeling_rnn_num_layer MODEL.BIDAF.MODELING_RNN_NUM_LAYER]
+                [--bidaf.predict_rnn_num_layer MODEL.BIDAF.PREDICT_RNN_NUM_LAYER]
+                [--bidaf.dropout MODEL.BIDAF.DROPOUT]
+                [--bidaf_no_answer.aligned_query_embedding MODEL.BIDAF_NO_ANSWER.ALIGNED_QUERY_EMBEDDING]
+                [--bidaf_no_answer.answer_maxlen MODEL.BIDAF_NO_ANSWER.ANSWER_MAXLEN]
+                [--bidaf_no_answer.model_dim MODEL.BIDAF_NO_ANSWER.MODEL_DIM]
+                [--bidaf_no_answer.contextual_rnn_num_layer MODEL.BIDAF_NO_ANSWER.CONTEXTUAL_RNN_NUM_LAYER]
+                [--bidaf_no_answer.modeling_rnn_num_layer MODEL.BIDAF_NO_ANSWER.MODELING_RNN_NUM_LAYER]
+                [--bidaf_no_answer.predict_rnn_num_layer MODEL.BIDAF_NO_ANSWER.PREDICT_RNN_NUM_LAYER]
+                [--bidaf_no_answer.dropout MODEL.BIDAF_NO_ANSWER.DROPOUT]
+                [--simple.answer_maxlen MODEL.SIMPLE.ANSWER_MAXLEN]
+                [--simple.model_dim MODEL.SIMPLE.MODEL_DIM]
+                [--simple.dropout MODEL.SIMPLE.DROPOUT]
+                [--qanet.aligned_query_embedding MODEL.QANET.ALIGNED_QUERY_EMBEDDING]
+                [--qanet.answer_maxlen MODEL.QANET.ANSWER_MAXLEN]
+                [--qanet.model_dim MODEL.QANET.MODEL_DIM]
+                [--qanet.kernel_size_in_embedding MODEL.QANET.KERNEL_SIZE_IN_EMBEDDING]
+                [--qanet.num_head_in_embedding MODEL.QANET.NUM_HEAD_IN_EMBEDDING]
+                [--qanet.num_conv_block_in_embedding MODEL.QANET.NUM_CONV_BLOCK_IN_EMBEDDING]
+                [--qanet.num_embedding_encoder_block MODEL.QANET.NUM_EMBEDDING_ENCODER_BLOCK]
+                [--qanet.kernel_size_in_modeling MODEL.QANET.KERNEL_SIZE_IN_MODELING]
+                [--qanet.num_head_in_modeling MODEL.QANET.NUM_HEAD_IN_MODELING]
+                [--qanet.num_conv_block_in_modeling MODEL.QANET.NUM_CONV_BLOCK_IN_MODELING]
+                [--qanet.num_modeling_encoder_block MODEL.QANET.NUM_MODELING_ENCODER_BLOCK]
+                [--qanet.layer_dropout MODEL.QANET.LAYER_DROPOUT]
+                [--qanet.dropout MODEL.QANET.DROPOUT]
+                [--docqa.aligned_query_embedding MODEL.DOCQA.ALIGNED_QUERY_EMBEDDING]
+                [--docqa.answer_maxlen MODEL.DOCQA.ANSWER_MAXLEN]
+                [--docqa.rnn_dim MODEL.DOCQA.RNN_DIM]
+                [--docqa.linear_dim MODEL.DOCQA.LINEAR_DIM]
+                [--docqa.preprocess_rnn_num_layer MODEL.DOCQA.PREPROCESS_RNN_NUM_LAYER]
+                [--docqa.modeling_rnn_num_layer MODEL.DOCQA.MODELING_RNN_NUM_LAYER]
+                [--docqa.predict_rnn_num_layer MODEL.DOCQA.PREDICT_RNN_NUM_LAYER]
+                [--docqa.dropout MODEL.DOCQA.DROPOUT]
+                [--docqa.weight_init MODEL.DOCQA.WEIGHT_INIT]
+                [--docqa_no_answer.aligned_query_embedding MODEL.DOCQA_NO_ANSWER.ALIGNED_QUERY_EMBEDDING]
+                [--docqa_no_answer.answer_maxlen MODEL.DOCQA_NO_ANSWER.ANSWER_MAXLEN]
+                [--docqa_no_answer.rnn_dim MODEL.DOCQA_NO_ANSWER.RNN_DIM]
+                [--docqa_no_answer.linear_dim MODEL.DOCQA_NO_ANSWER.LINEAR_DIM]
+                [--docqa_no_answer.dropout MODEL.DOCQA_NO_ANSWER.DROPOUT]
+                [--docqa_no_answer.weight_init MODEL.DOCQA_NO_ANSWER.WEIGHT_INIT]
+                [--drqa.aligned_query_embedding MODEL.DRQA.ALIGNED_QUERY_EMBEDDING]
+                [--drqa.answer_maxlen MODEL.DRQA.ANSWER_MAXLEN]
+                [--drqa.model_dim MODEL.DRQA.MODEL_DIM]
+                [--drqa.dropout MODEL.DRQA.DROPOUT]
+                [--sqlnet.column_attention MODEL.SQLNET.COLUMN_ATTENTION]
+                [--sqlnet.model_dim MODEL.SQLNET.MODEL_DIM]
+                [--sqlnet.rnn_num_layer MODEL.SQLNET.RNN_NUM_LAYER]
+                [--sqlnet.dropout MODEL.SQLNET.DROPOUT]
+                [--sqlnet.column_maxlen MODEL.SQLNET.COLUMN_MAXLEN]
+                [--sqlnet.token_maxlen MODEL.SQLNET.TOKEN_MAXLEN]
+                [--sqlnet.conds_column_loss_alpha MODEL.SQLNET.CONDS_COLUMN_LOSS_ALPHA]
+                [--pause NSML.PAUSE] [--iteration NSML.ITERATION]
+                [--num_epochs TRAINER.NUM_EPOCHS]
+                [--patience TRAINER.EARLY_STOPPING_THRESHOLD]
+                [--metric_key TRAINER.METRIC_KEY]
+                [--verbose_step_count TRAINER.VERBOSE_STEP_COUNT]
+                [--save_epoch_count TRAINER.SAVE_EPOCH_COUNT]
+                [--log_dir TRAINER.LOG_DIR] [--grad_norm TRAINER.GRAD_NORM]
+                [--grad_clipping TRAINER.GRAD_CLIPPING]
+                [--optimizer_type OPTIMIZER.OP_TYPE]
+                [--learning_rate OPTIMIZER.LEARNING_RATE]
+                [--adadelta.rho OPTIMIZER.ADADELTA.RHO]
+                [--adadelta.eps OPTIMIZER.ADADELTA.EPS]
+                [--adadelta.weight_decay OPTIMIZER.ADADELTA.WEIGHT_DECAY]
+                [--adagrad.lr_decay OPTIMIZER.ADAGRAD.LR_DECAY]
+                [--adagrad.weight_decay OPTIMIZER.ADAGRAD.WEIGHT_DECAY]
+                [--adam.betas OPTIMIZER.ADAM.BETAS [OPTIMIZER.ADAM.BETAS ...]]
+                [--adam.eps OPTIMIZER.ADAM.EPS]
+                [--adam.weight_decay OPTIMIZER.ADAM.WEIGHT_DECAY]
+                [--sparse_adam.betas OPTIMIZER.SPARSE_ADAM.BETAS [OPTIMIZER.SPARSE_ADAM.BETAS ...]]
+                [--sparse_adam.eps OPTIMIZER.SPARSE_ADAM.EPS]
+                [--adamax.betas OPTIMIZER.ADAMAX.BETAS [OPTIMIZER.ADAMAX.BETAS ...]]
+                [--adamax.eps OPTIMIZER.ADAMAX.EPS]
+                [--adamax.weight_decay OPTIMIZER.ADAMAX.WEIGHT_DECAY]
+                [--averaged_sgd.lambd OPTIMIZER.AVERAGED_SGD.LAMBD]
+                [--averaged_sgd.alpha OPTIMIZER.AVERAGED_SGD.ALPHA]
+                [--averaged_sgd.t0 OPTIMIZER.AVERAGED_SGD.T0]
+                [--averaged_sgd.weight_decay OPTIMIZER.AVERAGED_SGD.WEIGHT_DECAY]
+                [--rmsprop.momentum OPTIMIZER.RMSPROP.MOMENTUM]
+                [--rmsprop.alpha OPTIMIZER.RMSPROP.ALPHA]
+                [--rmsprop.eps OPTIMIZER.RMSPROP.EPS]
+                [--rmsprop.centered OPTIMIZER.RMSPROP.CENTERED]
+                [--rmsprop.weight_decay OPTIMIZER.RMSPROP.WEIGHT_DECAY]
+                [--sgd.momentum OPTIMIZER.SGD.MOMENTUM]
+                [--sgd.dampening OPTIMIZER.SGD.DAMPENING]
+                [--sgd.nesterov OPTIMIZER.SGD.NESTEROV]
+                [--sgd.weight_decay OPTIMIZER.SGD.WEIGHT_DECAY]
+                [--lr_scheduler_type OPTIMIZER.LR_SCHEDULER_TYPE]
+                [--step.step_size OPTIMIZER.STEP.STEP_SIZE]
+                [--step.gamma OPTIMIZER.STEP.GAMMA]
+                [--step.last_epoch OPTIMIZER.STEP.LAST_EPOCH]
+                [--multi_step.milestones OPTIMIZER.MULTI_STEP.MILESTONES [OPTIMIZER.MULTI_STEP.MILESTONES ...]]
+                [--multi_step.gamma OPTIMIZER.MULTI_STEP.GAMMA]
+                [--multi_step.last_epoch OPTIMIZER.MULTI_STEP.LAST_EPOCH]
+                [--exponential.gamma OPTIMIZER.EXPONENTIAL.GAMMA]
+                [--exponential.last_epoch OPTIMIZER.EXPONENTIAL.LAST_EPOCH]
+                [--cosine.T_max OPTIMIZER.COSINE.T_MAX]
+                [--cosine.eta_min OPTIMIZER.COSINE.ETA_MIN]
+                [--cosine.last_epoch OPTIMIZER.COSINE.LAST_EPOCH]
+                [--reduce_on_plateau.factor OPTIMIZER.REDUCE_ON_PLATEAU.FACTOR]
+                [--reduce_on_plateau.mode OPTIMIZER.REDUCE_ON_PLATEAU.MODE]
+                [--reduce_on_plateau.patience OPTIMIZER.REDUCE_ON_PLATEAU.PATIENCE]
+                [--reduce_on_plateau.threshold OPTIMIZER.REDUCE_ON_PLATEAU.THRESHOLD]
+                [--reduce_on_plateau.threshold_mode OPTIMIZER.REDUCE_ON_PLATEAU.THRESHOLD_MODE]
+                [--reduce_on_plateau.cooldown OPTIMIZER.REDUCE_ON_PLATEAU.COOLDOWN]
+                [--reduce_on_plateau.min_lr OPTIMIZER.REDUCE_ON_PLATEAU.MIN_LR [OPTIMIZER.REDUCE_ON_PLATEAU.MIN_LR ...]]
+                [--reduce_on_plateau.eps OPTIMIZER.REDUCE_ON_PLATEAU.EPS]
+                [--warmup.final_step OPTIMIZER.WARMUP.FINAL_STEP]
+                [--warmup.last_epoch OPTIMIZER.WARMUP.LAST_EPOCH]
+                [--ema OPTIMIZER.EXPONENTIAL_MOVING_AVERAGE]
+                [--base_config BASE_CONFIG]
+
+optional arguments:
+  -h, --help            show this help message and exit
+
+Genearl:
+  --seed_num SEED_NUM    Manually set seed_num (Python, Numpy, Pytorch) default is 21
+  --cuda_devices CUDA_DEVICES [CUDA_DEVICES ...]
+                         Set cuda_devices ids (use GPU). if you use NSML, use GPU_NUM
+  --slack SLACK          Slack notification (#experiment channel)
+
+Data Reader:
+  --dataset DATA_READER.DATASET
+                         Dataset Name [squad|squad2]
+  --train_file_path DATA_READER.TRAIN_FILE_PATH
+                         train file path.
+  --valid_file_path DATA_READER.VALID_FILE_PATH
+                         validation file path.
+  --test_file_path DATA_READER.TEST_FILE_PATH
+                         test file path.
+
+  # SQuAD DataSet:
+  --squad.context_max_length DATA_READER.SQUAD.CONTEXT_MAX_LENGTH
+                         The number of SQuAD Context maximum length.
+
+  # HistoryQA DataSet:
+  --history.context_max_length DATA_READER.HISTORY.CONTEXT_MAX_LENGTH
+                         The number of HistoryQA Context maximum length.
+
+Iterator:
+  --batch_size ITERATOR.BATCH_SIZE
+                         Maximum batch size for trainer
+
+Token:
+  --token_names TOKEN.NAMES [TOKEN.NAMES ...]
+                         Define tokens name
+  --token_types TOKEN.TYPES [TOKEN.TYPES ...]
+                            Use pre-defined token
+                            (tokenizer -> indexer -> embedder)
+
+                            [char|cove|elmo|exact_match|frequent_word|word]
+
+ # Vocabulary:
+  --char.pad_token TOKEN.CHAR.VOCAB.PAD_TOKEN
+                         Padding Token value
+  --char.oov_token TOKEN.CHAR.VOCAB.OOV_TOKEN
+                         Out-of-Vocabulary Token value
+  --char.start_token TOKEN.CHAR.VOCAB.START_TOKEN
+                         Start Token value
+  --char.end_token TOKEN.CHAR.VOCAB.END_TOKEN
+                         End Token value
+  --char.min_count TOKEN.CHAR.VOCAB.MIN_COUNT
+                         The number of token's min count
+  --char.max_vocab_size TOKEN.CHAR.VOCAB.MAX_VOCAB_SIZE
+                         The number of vocab's max size
+  --word.pad_token TOKEN.WORD.VOCAB.PAD_TOKEN
+                         Padding Token value
+  --word.oov_token TOKEN.WORD.VOCAB.OOV_TOKEN
+                         Out-of-Vocabulary Token value
+  --word.min_count TOKEN.WORD.VOCAB.MIN_COUNT
+                         The number of token's min count
+  --word.max_vocab_size TOKEN.WORD.VOCAB.MAX_VOCAB_SIZE
+                         The number of vocab's max size
+  --frequent_word.frequent_count TOKEN.FREQUENT_WORD.VOCAB.FREQUENT_COUNT
+                            The number of threshold frequent count
+                            (>= threshold -> fine-tune, < threshold -> fixed)
+
+ # Tokenizer:
+  --tokenizer.language TOKEN.TOKENIZER.LANG
+                            WordTokenizer Language [eng|kor]
+                            Default is 'eng'
+  --word.flatten TOKEN.TOKENIZER.WORD.FLATTEN
+                                convert tokens to flatten tokens.
+                                if False, [[token for token in tokens] for sentence in sentences]
+  --word.split_with_regex TOKEN.TOKENIZER.WORD.SPLIT_WITH_REGEX
+                         preprocess for SQuAD Context data (simple regex)
+  --word.eng.package TOKEN.TOKENIZER.WORD.ENG.PACKAGE
+                            English Word Tokenizer Package [nltk|spacy]
+                            Default is 'nltk'
+  --word.kor.package TOKEN.TOKENIZER.WORD.KOR.PACKAGE
+                            Korean Word Tokenizer Package [mecab]
+                            Default is 'mecab'
+
+ # Indexer:
+  --char.insert_char_start TOKEN.CHAR.INDEXER.INSERT_CHAR_START
+                         insert first start_token to tokens
+  --char.insert_char_end TOKEN.CHAR.INDEXER.INSERT_CHAR_END
+                         append end_token to tokens
+  --exact_match.lower TOKEN.EXACT_MATCH.INDEXER.LOWER
+                         add lower case feature
+  --exact_match.lemma TOKEN.EXACT_MATCH.INDEXER.LEMMA
+                         add lemma case feature
+  --linguistic.pos_tag TOKEN.LINGUISTIC.INDEXER.POS_TAG
+                         add POS Tagging feature
+  --linguistic.ner TOKEN.LINGUISTIC.INDEXER.NER
+                         add Named Entity Recognition feature
+  --linguistic.dep TOKEN.LINGUISTIC.INDEXER.DEP
+                         add Dependency Parser feature
+  --word.lowercase TOKEN.WORD.INDEXER.LOWERCASE
+                         Apply word token to lowercase
+  --word.insert_start TOKEN.WORD.INDEXER.INSERT_START
+                         insert first start_token to tokens
+  --word.insert_end TOKEN.WORD.INDEXER.INSERT_END
+                         append end_token to tokens
+
+ # Embedding:
+  --char.embed_dim TOKEN.CHAR.EMBEDDING.EMBED_DIM
+                         The number of Embedding dimension
+  --char.kernel_sizes TOKEN.CHAR.EMBEDDING.KERNEL_SIZES [TOKEN.CHAR.EMBEDDING.KERNEL_SIZES ...]
+                         CharCNN kernel_sizes (n-gram)
+  --char.num_filter TOKEN.CHAR.EMBEDDING.NUM_FILTER
+                         The number of CNN filter
+  --char.activation TOKEN.CHAR.EMBEDDING.ACTIVATION
+                         CharCNN activation Function (default: ReLU)
+  --char.dropout TOKEN.CHAR.EMBEDDING.DROPOUT
+                         Embedding dropout prob (default: 0.2)
+  --cove.trainable TOKEN.COVE.EMBEDDING.TRAINABLE
+                         CoVe Embedding Trainable
+  --cove.dropout TOKEN.COVE.EMBEDDING.DROPOUT
+                         Embedding dropout prob (default: 0.2)
+  --cove.project_dim TOKEN.COVE.EMBEDDING.PROJECT_DIM
+                         The number of projection dimension
+  --elmo.options_file TOKEN.ELMO.EMBEDDING.OPTIONS_FILE
+                         The option file path of ELMo
+  --elmo.weight_file TOKEN.ELMO.EMBEDDING.WEIGHT_FILE
+                         The weight file path of ELMo
+  --elmo.trainable TOKEN.ELMO.EMBEDDING.TRAINABLE
+                         elmo Embedding Trainable
+  --elmo.dropout TOKEN.ELMO.EMBEDDING.DROPOUT
+                         Embedding dropout prob (default: 0.5)
+  --elmo.project_dim TOKEN.ELMO.EMBEDDING.PROJECT_DIM
+                         The number of projection dimension (default is None)
+  --word_permeability.memory_clip TOKEN.WORD_PERMEABILITY.EMBEDDING.MEMORY_CLIP
+                         The number of memory cell clip value
+  --word_permeability.proj_clip TOKEN.WORD_PERMEABILITY.EMBEDDING.PROJ_CLIP
+                         The number of p clip value after projection
+  --word_permeability.embed_dim TOKEN.WORD_PERMEABILITY.EMBEDDING.EMBED_DIM
+                         The number of Embedding dimension
+  --word_permeability.linear_dim TOKEN.WORD_PERMEABILITY.EMBEDDING.LINEAR_DIM
+                         The number of linear projection dimension
+  --word_permeability.trainable TOKEN.WORD_PERMEABILITY.EMBEDDING.TRAINABLE
+                         word_permeability Embedding Trainable
+  --word_permeability.dropout TOKEN.WORD_PERMEABILITY.EMBEDDING.DROPOUT
+                         Embedding dropout prob (default: 0.5)
+  --word_permeability.activation TOKEN.WORD_PERMEABILITY.EMBEDDING.ACTIVATION
+                         Activation Function (default is 'tanh')
+  --word_permeability.bidirectional TOKEN.WORD_PERMEABILITY.EMBEDDING.BIDIRECTIONAL
+                         bidirectional use or not ([forward;backward]) (default is False)
+  --frequent_word.embed_dim TOKEN.FREQUENT_WORD.EMBEDDING.EMBED_DIM
+                         The number of Embedding dimension
+  --frequent_word.pretrained_path TOKEN.FREQUENT_WORD.EMBEDDING.PRETRAINED_PATH
+                         Add pretrained Word vector model's path. (support file format like Glove)
+  --frequent_word.dropout TOKEN.FREQUENT_WORD.EMBEDDING.DROPOUT
+                         Embedding dropout prob (default: 0.2)
+  --word.embed_dim TOKEN.WORD.EMBEDDING.EMBED_DIM
+                         The number of Embedding dimension
+  --word.pretrained_path TOKEN.WORD.EMBEDDING.PRETRAINED_PATH
+                         Add pretrained word vector model's path. (support file format like Glove)
+  --word.trainable TOKEN.WORD.EMBEDDING.TRAINABLE
+                         Word Embedding Trainable
+  --word.dropout TOKEN.WORD.EMBEDDING.DROPOUT
+                         Embedding dropout prob (default: 0.2)
+
+Model:
+  --model_name MODEL.NAME
+
+                            Pre-defined model
+
+                            * Reading Comprehension
+                              [bidaf|bidaf_no_answer|docqa|docqa_no_answer|drqa|qanet|simple]
+
+                            * Semantic Parsing
+                              [sqlnet]
+
+
+ㅁReading Comprehension
+ # BiDAF:
+  --bidaf.aligned_query_embedding MODEL.BIDAF.ALIGNED_QUERY_EMBEDDING
+                         Aligned Question Embedding  (default: False)
+  --bidaf.answer_maxlen MODEL.BIDAF.ANSWER_MAXLEN
+                         The number of maximum answer's length (default: None)
+  --bidaf.model_dim MODEL.BIDAF.MODEL_DIM
+                         The number of BiDAF model dimension
+  --bidaf.contextual_rnn_num_layer MODEL.BIDAF.CONTEXTUAL_RNN_NUM_LAYER
+                         The number of BiDAF model contextual_rnn's recurrent layers
+  --bidaf.modeling_rnn_num_layer MODEL.BIDAF.MODELING_RNN_NUM_LAYER
+                         The number of BiDAF model modeling_rnn's recurrent layers
+  --bidaf.predict_rnn_num_layer MODEL.BIDAF.PREDICT_RNN_NUM_LAYER
+                         The number of BiDAF model predict_rnn's recurrent layers
+  --bidaf.dropout MODEL.BIDAF.DROPOUT
+                         The prob of BiDAF dropout
+
+ # BiDAF + Simple bias:
+  --bidaf_no_answer.aligned_query_embedding MODEL.BIDAF_NO_ANSWER.ALIGNED_QUERY_EMBEDDING
+                         Aligned Question Embedding  (default: False)
+  --bidaf_no_answer.answer_maxlen MODEL.BIDAF_NO_ANSWER.ANSWER_MAXLEN
+                         The number of maximum answer's length (default: None)
+  --bidaf_no_answer.model_dim MODEL.BIDAF_NO_ANSWER.MODEL_DIM
+                         The number of BiDAF model dimension
+  --bidaf_no_answer.contextual_rnn_num_layer MODEL.BIDAF_NO_ANSWER.CONTEXTUAL_RNN_NUM_LAYER
+                         The number of BiDAF model contextual_rnn's recurrent layers
+  --bidaf_no_answer.modeling_rnn_num_layer MODEL.BIDAF_NO_ANSWER.MODELING_RNN_NUM_LAYER
+                         The number of BiDAF model modeling_rnn's recurrent layers
+  --bidaf_no_answer.predict_rnn_num_layer MODEL.BIDAF_NO_ANSWER.PREDICT_RNN_NUM_LAYER
+                         The number of BiDAF model predict_rnn's recurrent layers
+  --bidaf_no_answer.dropout MODEL.BIDAF_NO_ANSWER.DROPOUT
+                         The prob of BiDAF dropout
+
+ # Simple:
+  --simple.answer_maxlen MODEL.SIMPLE.ANSWER_MAXLEN
+                         The number of maximum answer's length (default: None)
+  --simple.model_dim MODEL.SIMPLE.MODEL_DIM
+                         The number of Simple model dimension
+  --simple.dropout MODEL.SIMPLE.DROPOUT
+                         The prob of Simple dropout
+
+ # QANet:
+  --qanet.aligned_query_embedding MODEL.QANET.ALIGNED_QUERY_EMBEDDING
+                         Aligned Question Embedding  (default: False)
+  --qanet.answer_maxlen MODEL.QANET.ANSWER_MAXLEN
+                         The number of maximum answer's length (default: 30)
+  --qanet.model_dim MODEL.QANET.MODEL_DIM
+                         The number of QANet model dimension
+  --qanet.kernel_size_in_embedding MODEL.QANET.KERNEL_SIZE_IN_EMBEDDING
+                         The number of QANet model Embed Encoder kernel_size
+  --qanet.num_head_in_embedding MODEL.QANET.NUM_HEAD_IN_EMBEDDING
+                         The number of QANet model Multi-Head Attention's head in Embedding Block
+  --qanet.num_conv_block_in_embedding MODEL.QANET.NUM_CONV_BLOCK_IN_EMBEDDING
+                         The number of QANet model Conv Blocks in Embedding Block
+  --qanet.num_embedding_encoder_block MODEL.QANET.NUM_EMBEDDING_ENCODER_BLOCK
+                         The number of QANet model Embedding Encoder Blocks
+  --qanet.kernel_size_in_modeling MODEL.QANET.KERNEL_SIZE_IN_MODELING
+                         The number of QANet model Model Encoder kernel_size
+  --qanet.num_head_in_modeling MODEL.QANET.NUM_HEAD_IN_MODELING
+                         The number of QANet model Multi-Head Attention's head in Modeling Block
+  --qanet.num_conv_block_in_modeling MODEL.QANET.NUM_CONV_BLOCK_IN_MODELING
+                         The number of QANet model Conv Blocks in Modeling Block
+  --qanet.num_modeling_encoder_block MODEL.QANET.NUM_MODELING_ENCODER_BLOCK
+                         The number of QANet model Modeling Encoder Blocks
+  --qanet.layer_dropout MODEL.QANET.LAYER_DROPOUT
+                         The prob of QANet model layer dropout
+  --qanet.dropout MODEL.QANET.DROPOUT
+                         The prob of QANet dropout
+
+ # DocQA:
+  --docqa.aligned_query_embedding MODEL.DOCQA.ALIGNED_QUERY_EMBEDDING
+                         Aligned Question Embedding  (default: False)
+  --docqa.answer_maxlen MODEL.DOCQA.ANSWER_MAXLEN
+                         The number of maximum answer's length (default: 17)
+  --docqa.rnn_dim MODEL.DOCQA.RNN_DIM
+                         The number of DocQA model rnn dimension
+  --docqa.linear_dim MODEL.DOCQA.LINEAR_DIM
+                         The number of DocQA model linear dimension
+  --docqa.preprocess_rnn_num_layer MODEL.DOCQA.PREPROCESS_RNN_NUM_LAYER
+                         The number of DocQA model preprocess_rnn's recurrent layers
+  --docqa.modeling_rnn_num_layer MODEL.DOCQA.MODELING_RNN_NUM_LAYER
+                         The number of DocQA model modeling_rnn's recurrent layers
+  --docqa.predict_rnn_num_layer MODEL.DOCQA.PREDICT_RNN_NUM_LAYER
+                         The number of DocQA model predict_rnn's recurrent layers
+  --docqa.dropout MODEL.DOCQA.DROPOUT
+                         The prob of DocQA dropout
+  --docqa.weight_init MODEL.DOCQA.WEIGHT_INIT
+                         Weight Init
+
+ # DocQA + No_Answer Option:
+  --docqa_no_answer.aligned_query_embedding MODEL.DOCQA_NO_ANSWER.ALIGNED_QUERY_EMBEDDING
+                         Aligned Question Embedding  (default: False)
+  --docqa_no_answer.answer_maxlen MODEL.DOCQA_NO_ANSWER.ANSWER_MAXLEN
+                         The number of maximum answer's length (default: None)
+  --docqa_no_answer.rnn_dim MODEL.DOCQA_NO_ANSWER.RNN_DIM
+                         The number of docqa_no_answer model rnn dimension
+  --docqa_no_answer.linear_dim MODEL.DOCQA_NO_ANSWER.LINEAR_DIM
+                         The number of docqa_no_answer model linear dimension
+  --docqa_no_answer.dropout MODEL.DOCQA_NO_ANSWER.DROPOUT
+                         The prob of QANet dropout
+  --docqa_no_answer.weight_init MODEL.DOCQA_NO_ANSWER.WEIGHT_INIT
+                         Weight Init
+
+ # DrQA:
+  --drqa.aligned_query_embedding MODEL.DRQA.ALIGNED_QUERY_EMBEDDING
+                         Aligned Question Embedding  (default: True)
+  --drqa.answer_maxlen MODEL.DRQA.ANSWER_MAXLEN
+                         The number of maximum answer's length (default: None)
+  --drqa.model_dim MODEL.DRQA.MODEL_DIM
+                         The number of document reader model dimension
+  --drqa.dropout MODEL.DRQA.DROPOUT
+                         The number of document reader model dropout
+
+ㅁSemantic Parsing
+ # SQLNet:
+  --sqlnet.column_attention MODEL.SQLNET.COLUMN_ATTENTION
+                         Compute attention map on a question conditioned on the column names (default: True)
+  --sqlnet.model_dim MODEL.SQLNET.MODEL_DIM
+                         The number of document reader model dimension
+  --sqlnet.rnn_num_layer MODEL.SQLNET.RNN_NUM_LAYER
+                         The number of SQLNet model rnn's recurrent layers
+  --sqlnet.dropout MODEL.SQLNET.DROPOUT
+                         The prob of model dropout
+  --sqlnet.column_maxlen MODEL.SQLNET.COLUMN_MAXLEN
+                         The number of maximum column's length (default: 4)
+  --sqlnet.token_maxlen MODEL.SQLNET.TOKEN_MAXLEN
+                         An upper-bound N on the number of decoder tokeni
+  --sqlnet.conds_column_loss_alpha MODEL.SQLNET.CONDS_COLUMN_LOSS_ALPHA
+                         balance the positive data versus negative data
+
+NSML:
+  --pause NSML.PAUSE     NSML default setting
+  --iteration NSML.ITERATION
+                         Start from NSML epoch count
+
+Trainer:
+  --num_epochs TRAINER.NUM_EPOCHS
+                         The number of training epochs
+  --patience TRAINER.EARLY_STOPPING_THRESHOLD
+                         The number of early stopping threshold
+  --metric_key TRAINER.METRIC_KEY
+                         The key of metric for model's score
+  --verbose_step_count TRAINER.VERBOSE_STEP_COUNT
+                         The number of training verbose
+  --save_epoch_count TRAINER.SAVE_EPOCH_COUNT
+                         The number of save epoch count
+  --log_dir TRAINER.LOG_DIR
+                         TensorBoard and Checkpoint log directory
+
+Gradient:
+  --grad_norm TRAINER.GRAD_NORM
+                            If provided, gradient norms will be rescaled to have a maximum of this value.
+                            Default: None (don't use)
+  --grad_clipping TRAINER.GRAD_CLIPPING
+                            If provided, gradients will be clipped `during the backward pass` to have
+                            an (absolute) maximum of this value.
+                            Default: None (don't use)
+
+Optimizer:
+  --optimizer_type OPTIMIZER.OP_TYPE
+                         Optimizer
+                            (https://pytorch.org/docs/stable/optim.html#algorithms)
+
+                            - adadelta: ADADELTA: An Adaptive Learning Rate Method
+                                (https://arxiv.org/abs/1212.5701)
+                            - adagrad: Adaptive Subgradient Methods for Online Learning and Stochastic Optimization
+                                (http://jmlr.org/papers/v12/duchi11a.html)
+                            - adam: Adam: A Method for Stochastic Optimization
+                                (https://arxiv.org/abs/1412.6980)
+                            - sparse_adam: Implements lazy version of Adam algorithm suitable for sparse tensors.
+                                In this variant, only moments that show up in the gradient get updated,
+                                and only those portions of the gradient get applied to the parameters.
+                            - adamax: Implements Adamax algorithm (a variant of Adam based on infinity norm).
+                            - averaged_sgd: Acceleration of stochastic approximation by averaging
+                                (http://dl.acm.org/citation.cfm?id=131098)
+                            - rmsprop: Implements RMSprop algorithm.
+                                (https://arxiv.org/pdf/1308.0850v5.pdf)
+                            - rprop: Implements the resilient backpropagation algorithm.
+                            - sgd: Implements stochastic gradient descent (optionally with momentum).
+                                Nesterov momentum: (http://www.cs.toronto.edu/~hinton/absps/momentum.pdf)
+
+                            [adadelta|adagrad|adam|sparse_adam|adamax|averaged_sgd|rmsprop|rprop|sgd]
+  --learning_rate OPTIMIZER.LEARNING_RATE
+                            Starting learning rate.
+                            Recommended settings: sgd = 1, adagrad = 0.1, adadelta = 1, adam = 0.001
+
+  # Adadelta:
+  --adadelta.rho OPTIMIZER.ADADELTA.RHO
+                            coefficient used for computing a running average of squared gradients
+                            Default: 0.9
+  --adadelta.eps OPTIMIZER.ADADELTA.EPS
+                            term added to the denominator to improve numerical stability
+                            Default: 1e-6
+  --adadelta.weight_decay OPTIMIZER.ADADELTA.WEIGHT_DECAY
+                            weight decay (L2 penalty)
+                            Default: 0
+
+  # Adagrad:
+  --adagrad.lr_decay OPTIMIZER.ADAGRAD.LR_DECAY
+                            learning rate decay
+                            Default: 0
+  --adagrad.weight_decay OPTIMIZER.ADAGRAD.WEIGHT_DECAY
+                            weight decay (L2 penalty)
+                            Default: 0
+
+  # Adam:
+  --adam.betas OPTIMIZER.ADAM.BETAS [OPTIMIZER.ADAM.BETAS ...]
+                            coefficients used for computing running averages of gradient and its square
+                            Default: (0.9, 0.999)
+  --adam.eps OPTIMIZER.ADAM.EPS
+                            term added to the denominator to improve numerical stability
+                            Default: 1e-8
+  --adam.weight_decay OPTIMIZER.ADAM.WEIGHT_DECAY
+                            weight decay (L2 penalty)
+                            Default: 0
+
+  # SparseAdam:
+  --sparse_adam.betas OPTIMIZER.SPARSE_ADAM.BETAS [OPTIMIZER.SPARSE_ADAM.BETAS ...]
+                            coefficients used for computing running averages of gradient and its square
+                            Default: (0.9, 0.999)
+  --sparse_adam.eps OPTIMIZER.SPARSE_ADAM.EPS
+                            term added to the denominator to improve numerical stability
+                            Default: 1e-8
+
+  # Adamax:
+  --adamax.betas OPTIMIZER.ADAMAX.BETAS [OPTIMIZER.ADAMAX.BETAS ...]
+                            coefficients used for computing running averages of gradient and its square.
+                            Default: (0.9, 0.999)
+  --adamax.eps OPTIMIZER.ADAMAX.EPS
+                            term added to the denominator to improve numerical stability.
+                            Default: 1e-8
+  --adamax.weight_decay OPTIMIZER.ADAMAX.WEIGHT_DECAY
+                            weight decay (L2 penalty)
+                            Default: 0
+
+  # ASGD (Averaged Stochastic Gradient Descent):
+  --averaged_sgd.lambd OPTIMIZER.AVERAGED_SGD.LAMBD
+                            decay term
+                            Default: 1e-4
+  --averaged_sgd.alpha OPTIMIZER.AVERAGED_SGD.ALPHA
+                            power for eta update
+                            Default: 0.75
+  --averaged_sgd.t0 OPTIMIZER.AVERAGED_SGD.T0
+                            point at which to start averaging
+                            Default: 1e6
+  --averaged_sgd.weight_decay OPTIMIZER.AVERAGED_SGD.WEIGHT_DECAY
+                            weight decay (L2 penalty)
+                            Default: 0
+
+  # RMSprop:
+  --rmsprop.momentum OPTIMIZER.RMSPROP.MOMENTUM
+                            momentum factor
+                            Default: 0
+  --rmsprop.alpha OPTIMIZER.RMSPROP.ALPHA
+                            smoothing constant
+                            Default: 0.99
+  --rmsprop.eps OPTIMIZER.RMSPROP.EPS
+                            term added to the denominator to improve numerical stability.
+                            Default: 1e-8
+  --rmsprop.centered OPTIMIZER.RMSPROP.CENTERED
+                            if True, compute the centered RMSProp,
+                            the gradient is normalized by an estimation of its variance
+                            Default: False
+  --rmsprop.weight_decay OPTIMIZER.RMSPROP.WEIGHT_DECAY
+                            weight decay (L2 penalty)
+                            Default: 0
+
+  # SGD (Stochastic Gradient Descent):
+  --sgd.momentum OPTIMIZER.SGD.MOMENTUM
+                            momentum factor
+                            Default: 0
+  --sgd.dampening OPTIMIZER.SGD.DAMPENING
+                            dampening for momentum
+                            Default: 0
+  --sgd.nesterov OPTIMIZER.SGD.NESTEROV
+                            enables Nesterov momentum
+                            Default: False
+  --sgd.weight_decay OPTIMIZER.SGD.WEIGHT_DECAY
+                            weight decay (L2 penalty)
+                            Default: 0
+
+Learning Rate Scheduler:
+  --lr_scheduler_type OPTIMIZER.LR_SCHEDULER_TYPE
+                        Learning Rate Schedule
+                            (https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate)
+
+
+                            - lambda: Sets the learning rate of each parameter group to the
+                                initial lr times a given function.
+                            - step: Sets the learning rate of each parameter group to the
+                                initial lr decayed by gamma every step_size epochs.
+                            - multi_step: Set the learning rate of each parameter group to
+                                the initial lr decayed by gamma once the number of epoch
+                                reaches one of the milestones.
+                            - exponential: Set the learning rate of each parameter group to
+                                the initial lr decayed by gamma every epoch.
+                            - cosine: Set the learning rate of each parameter group using
+                                a cosine annealing schedule, where ηmax is set to the initial
+                                lr and Tcur is the number of epochs since the last restart in SGDR:
+                                SGDR: Stochastic Gradient Descent with Warm Restarts
+                                (https://arxiv.org/abs/1608.03983)
+                            When last_epoch=-1, sets initial lr as lr.
+
+                            - reduce_on_plateau: Reduce learning rate when a metric has
+                                stopped improving. Models often benefit from reducing the
+                                learning rate by a factor of 2-10 once learning stagnates.
+                                This scheduler reads a metrics quantity and if no improvement
+                                is seen for a ‘patience’ number of epochs, the learning rate is reduced.
+                            - warmup: a learning rate warm-up scheme with an inverse exponential increase
+                                 from 0.0 to {learning_rate} in the first {final_step}.
+
+                            [step|multi_step|exponential|reduce_on_plateau|cosine|warmup]
+
+
+  # StepLR:
+  --step.step_size OPTIMIZER.STEP.STEP_SIZE
+                            Period of learning rate decay.
+                            Default: 1
+  --step.gamma OPTIMIZER.STEP.GAMMA
+                            Multiplicative factor of learning rate decay.
+                            Default: 0.1.
+  --step.last_epoch OPTIMIZER.STEP.LAST_EPOCH
+                            The index of last epoch.
+                            Default: -1.
+
+  # MultiStepLR:
+  --multi_step.milestones OPTIMIZER.MULTI_STEP.MILESTONES [OPTIMIZER.MULTI_STEP.MILESTONES ...]
+                            List of epoch indices. Must be increasing
+                            list of int
+  --multi_step.gamma OPTIMIZER.MULTI_STEP.GAMMA
+                            Multiplicative factor of learning rate decay.
+                            Default: 0.1.
+  --multi_step.last_epoch OPTIMIZER.MULTI_STEP.LAST_EPOCH
+                            The index of last epoch.
+                            Default: -1.
+
+  # ExponentialLR:
+  --exponential.gamma OPTIMIZER.EXPONENTIAL.GAMMA
+                            Multiplicative factor of learning rate decay.
+                            Default: 0.1.
+  --exponential.last_epoch OPTIMIZER.EXPONENTIAL.LAST_EPOCH
+                            The index of last epoch.
+                            Default: -1.
+
+  # CosineAnnealingLR:
+  --cosine.T_max OPTIMIZER.COSINE.T_MAX
+                            Maximum number of iterations.
+                            Default: 50
+  --cosine.eta_min OPTIMIZER.COSINE.ETA_MIN
+                            Minimum learning rate.
+                            Default: 0.
+  --cosine.last_epoch OPTIMIZER.COSINE.LAST_EPOCH
+                            The index of last epoch.
+                            Default: -1.
+
+  # ReduceLROnPlateau:
+  --reduce_on_plateau.factor OPTIMIZER.REDUCE_ON_PLATEAU.FACTOR
+                         Factor by which the learning rate will be reduced. new_lr = lr * factor. Default: 0.1.
+  --reduce_on_plateau.mode OPTIMIZER.REDUCE_ON_PLATEAU.MODE
+                            One of `min`, `max`. In `min` mode, lr will
+                            be reduced when the quantity monitored has stopped
+                            decreasing; in `max` mode it will be reduced when the
+                            quantity monitored has stopped increasing.
+                            Default: 'min'.
+  --reduce_on_plateau.patience OPTIMIZER.REDUCE_ON_PLATEAU.PATIENCE
+                            Number of epochs with no improvement after which learning rate will be reduced.
+                            Default: 10.
+  --reduce_on_plateau.threshold OPTIMIZER.REDUCE_ON_PLATEAU.THRESHOLD
+                            Threshold for measuring the new optimum, to only focus on significant changes.
+                            Default: 1e-4
+  --reduce_on_plateau.threshold_mode OPTIMIZER.REDUCE_ON_PLATEAU.THRESHOLD_MODE
+                            One of rel, abs. In rel mode, dynamic_threshold = best * ( 1 + threshold ) in ‘max’ mode or
+                            best * ( 1 - threshold ) in min mode. In abs mode, dynamic_threshold = best + threshold
+                            in max mode or best - threshold in min mode.
+                            Default: ‘rel’.
+  --reduce_on_plateau.cooldown OPTIMIZER.REDUCE_ON_PLATEAU.COOLDOWN
+                            Number of epochs to wait before resuming normal operation after lr has been reduced.
+                            Default: 0.
+  --reduce_on_plateau.min_lr OPTIMIZER.REDUCE_ON_PLATEAU.MIN_LR [OPTIMIZER.REDUCE_ON_PLATEAU.MIN_LR ...]
+                            A scalar or a list of scalars. A lower bound on the learning rate of
+                            all param groups or each group respectively.
+                            Default: 0.
+  --reduce_on_plateau.eps OPTIMIZER.REDUCE_ON_PLATEAU.EPS
+                            Minimal decay applied to lr. If the difference between new and
+                            old lr is smaller than eps, the update is ignored.
+                            Default: 1e-8
+
+  # WarmUpLR:
+  --warmup.final_step OPTIMIZER.WARMUP.FINAL_STEP
+                            The number of steps to exponential increase the learning rate.
+                            Default: 1000.
+  --warmup.last_epoch OPTIMIZER.WARMUP.LAST_EPOCH
+                            The index of last epoch.
+                            Default: -1.
+
+Exponential Moving Average:
+  --ema OPTIMIZER.EXPONENTIAL_MOVING_AVERAGE
+                            Exponential Moving Average
+                            Default: None (don't use)
+
+Base Config:
+  --base_config BASE_CONFIG
+                            Use pre-defined base_config:
+                            ['qanet+elmo', 'docqa+cove', 'emmix-docqa', 'embagging-drqa']
+
+                            * SQuAD:
+                            ['squad/bidaf', 'squad/drqa_paper', 'squad/drqa', 'squad/qanet', 'squad/docqa+elmo', 'squad/rqanet', 'squad/bidaf_no_answer', 'squad/docqa_no_answer', 'squad/qanet_paper', 'squad/bidaf+elmo', 'squad/docqa']
+
+                            * History:
+                            ['history/bidaf', 'history/docqa+tapi', 'history/bidaf+tapi', 'history/docqa']
+
+                            * WikiSQL:
+                            ['wikisql/sqlnet']
+
+```
+
+train 외에도 `eval`, `predict`, `qa_machine`, `plot` command 들이 있습니다.

@@ -1,0 +1,528 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.modules.layer package &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rqa.tokens package" href="rqa.tokens.html" />
+    <link rel="prev" title="rqa.modules.encoder package" href="rqa.modules.encoder.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rqa.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.html">model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rqa.modules.html">modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="rqa.modules.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="rqa.modules.attention.html">rqa.modules.attention package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.modules.conv.html">rqa.modules.conv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.modules.encoder.html">rqa.modules.encoder package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">rqa.modules.layer package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-rqa.modules.layer.highway">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-rqa.modules.layer">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.modules.html#module-rqa.modules.activation">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.modules.html#module-rqa.modules">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="rqa.modules.html">rqa.modules package</a> &raquo;</li>
+        
+      <li>rqa.modules.layer package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.modules.layer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rqa-modules-layer-package">
+<h1>rqa.modules.layer package<a class="headerlink" href="#rqa-modules-layer-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-rqa.modules.layer.highway">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-rqa.modules.layer.highway" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.modules.layer.highway.Highway">
+<em class="property">class </em><code class="descclassname">rqa.modules.layer.highway.</code><code class="descname">Highway</code><span class="sig-paren">(</span><em>input_size</em>, <em>num_layers=2</em>, <em>activation='relu'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/highway.html#Highway"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.highway.Highway" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Highway Networks (<a class="reference external" href="https://arxiv.org/abs/1505.00387">https://arxiv.org/abs/1505.00387</a>)
+<a class="reference external" href="https://github.com/allenai/allennlp/blob/master/allennlp/modules/highway.py">https://github.com/allenai/allennlp/blob/master/allennlp/modules/highway.py</a></p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>input_size: The number of expected features in the input <cite>x</cite>
+num_layers: The number of Highway layers.
+activation: Activation Function (ReLU is default)</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.modules.layer.highway.Highway.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/highway.html#Highway.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.highway.Highway.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.modules.layer.normalization"></span><dl class="class">
+<dt id="rqa.modules.layer.normalization.LayerNorm">
+<em class="property">class </em><code class="descclassname">rqa.modules.layer.normalization.</code><code class="descname">LayerNorm</code><span class="sig-paren">(</span><em>normalized_shape</em>, <em>eps=1e-05</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/normalization.html#LayerNorm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.normalization.LayerNorm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Layer Normalization
+(<a class="reference external" href="https://arxiv.org/abs/1607.06450">https://arxiv.org/abs/1607.06450</a>)</p>
+<dl class="method">
+<dt id="rqa.modules.layer.normalization.LayerNorm.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/normalization.html#LayerNorm.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.normalization.LayerNorm.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.modules.layer.positionwise"></span><dl class="class">
+<dt id="rqa.modules.layer.positionwise.PositionwiseFeedForward">
+<em class="property">class </em><code class="descclassname">rqa.modules.layer.positionwise.</code><code class="descname">PositionwiseFeedForward</code><span class="sig-paren">(</span><em>input_size</em>, <em>hidden_size</em>, <em>dropout=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/positionwise.html#PositionwiseFeedForward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.positionwise.PositionwiseFeedForward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Pointwise Feed-Forward Layer</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>input_size: the number of input size
+hidden_size: the number of hidden size</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>dropout: the probability of dropout</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.modules.layer.positionwise.PositionwiseFeedForward.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/positionwise.html#PositionwiseFeedForward.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.positionwise.PositionwiseFeedForward.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.modules.layer.residual"></span><dl class="class">
+<dt id="rqa.modules.layer.residual.ResidualConnection">
+<em class="property">class </em><code class="descclassname">rqa.modules.layer.residual.</code><code class="descname">ResidualConnection</code><span class="sig-paren">(</span><em>dim</em>, <em>layer_dropout=None</em>, <em>layernorm=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/residual.html#ResidualConnection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.residual.ResidualConnection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>in Deep Residual Learning for Image Recognition (<a class="reference external" href="https://arxiv.org/abs/1512.03385">https://arxiv.org/abs/1512.03385</a>)</p>
+<p>=&gt; f(x) + x</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>dim: the number of dimension</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>layer_dropout: layer dropout probability (stochastic depth)
+dropout: dropout probability</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.modules.layer.residual.ResidualConnection.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>sub_layer_fn</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/residual.html#ResidualConnection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.residual.ResidualConnection.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-rqa.modules.layer.scalar_mix"></span><p>This code is from allenai/allennlp
+(<a class="reference external" href="https://github.com/allenai/allennlp/blob/master/allennlp/modules/scalar_mix.py">https://github.com/allenai/allennlp/blob/master/allennlp/modules/scalar_mix.py</a>)</p>
+<dl class="class">
+<dt id="rqa.modules.layer.scalar_mix.ScalarMix">
+<em class="property">class </em><code class="descclassname">rqa.modules.layer.scalar_mix.</code><code class="descname">ScalarMix</code><span class="sig-paren">(</span><em>mixture_size: int</em>, <em>do_layer_norm: bool = False</em>, <em>initial_scalar_parameters: List[float] = None</em>, <em>trainable: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/scalar_mix.html#ScalarMix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.scalar_mix.ScalarMix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Computes a parameterised scalar mixture of N tensors, <code class="docutils literal notranslate"><span class="pre">mixture</span> <span class="pre">=</span> <span class="pre">gamma</span> <span class="pre">*</span> <span class="pre">sum(s_k</span> <span class="pre">*</span> <span class="pre">tensor_k)</span></code>
+where <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">softmax(w)</span></code>, with <code class="docutils literal notranslate"><span class="pre">w</span></code> and <code class="docutils literal notranslate"><span class="pre">gamma</span></code> scalar parameters.
+In addition, if <code class="docutils literal notranslate"><span class="pre">do_layer_norm=True</span></code> then apply layer normalization to each tensor
+before weighting.</p>
+<dl class="method">
+<dt id="rqa.modules.layer.scalar_mix.ScalarMix.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>tensors: List[torch.Tensor], mask: torch.Tensor = None</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="reference internal" href="_modules/rqa/modules/layer/scalar_mix.html#ScalarMix.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.scalar_mix.ScalarMix.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute a weighted average of the <code class="docutils literal notranslate"><span class="pre">tensors</span></code>.  The input tensors an be any shape
+with at least two dimensions, but must all be the same shape.
+When <code class="docutils literal notranslate"><span class="pre">do_layer_norm=True</span></code>, the <code class="docutils literal notranslate"><span class="pre">mask</span></code> is required input.  If the <code class="docutils literal notranslate"><span class="pre">tensors</span></code> are
+dimensioned  <code class="docutils literal notranslate"><span class="pre">(dim_0,</span> <span class="pre">...,</span> <span class="pre">dim_{n-1},</span> <span class="pre">dim_n)</span></code>, then the <code class="docutils literal notranslate"><span class="pre">mask</span></code> is dimensioned
+<code class="docutils literal notranslate"><span class="pre">(dim_0,</span> <span class="pre">...,</span> <span class="pre">dim_{n-1})</span></code>, as in the typical case with <code class="docutils literal notranslate"><span class="pre">tensors</span></code> of shape
+<code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">dim)</span></code> and <code class="docutils literal notranslate"><span class="pre">mask</span></code> of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code>.
+When <code class="docutils literal notranslate"><span class="pre">do_layer_norm=False</span></code> the <code class="docutils literal notranslate"><span class="pre">mask</span></code> is ignored.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-rqa.modules.layer">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rqa.modules.layer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rqa.modules.layer.Highway">
+<em class="property">class </em><code class="descclassname">rqa.modules.layer.</code><code class="descname">Highway</code><span class="sig-paren">(</span><em>input_size</em>, <em>num_layers=2</em>, <em>activation='relu'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/highway.html#Highway"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.Highway" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Highway Networks (<a class="reference external" href="https://arxiv.org/abs/1505.00387">https://arxiv.org/abs/1505.00387</a>)
+<a class="reference external" href="https://github.com/allenai/allennlp/blob/master/allennlp/modules/highway.py">https://github.com/allenai/allennlp/blob/master/allennlp/modules/highway.py</a></p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>input_size: The number of expected features in the input <cite>x</cite>
+num_layers: The number of Highway layers.
+activation: Activation Function (ReLU is default)</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.modules.layer.Highway.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/highway.html#Highway.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.Highway.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.modules.layer.PositionwiseFeedForward">
+<em class="property">class </em><code class="descclassname">rqa.modules.layer.</code><code class="descname">PositionwiseFeedForward</code><span class="sig-paren">(</span><em>input_size</em>, <em>hidden_size</em>, <em>dropout=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/positionwise.html#PositionwiseFeedForward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.PositionwiseFeedForward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Pointwise Feed-Forward Layer</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>input_size: the number of input size
+hidden_size: the number of hidden size</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>dropout: the probability of dropout</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.modules.layer.PositionwiseFeedForward.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/positionwise.html#PositionwiseFeedForward.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.PositionwiseFeedForward.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.modules.layer.ResidualConnection">
+<em class="property">class </em><code class="descclassname">rqa.modules.layer.</code><code class="descname">ResidualConnection</code><span class="sig-paren">(</span><em>dim</em>, <em>layer_dropout=None</em>, <em>layernorm=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/residual.html#ResidualConnection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.ResidualConnection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>in Deep Residual Learning for Image Recognition (<a class="reference external" href="https://arxiv.org/abs/1512.03385">https://arxiv.org/abs/1512.03385</a>)</p>
+<p>=&gt; f(x) + x</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>dim: the number of dimension</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>layer_dropout: layer dropout probability (stochastic depth)
+dropout: dropout probability</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="rqa.modules.layer.ResidualConnection.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>sub_layer_fn</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/residual.html#ResidualConnection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.ResidualConnection.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.modules.layer.ScalarMix">
+<em class="property">class </em><code class="descclassname">rqa.modules.layer.</code><code class="descname">ScalarMix</code><span class="sig-paren">(</span><em>mixture_size: int</em>, <em>do_layer_norm: bool = False</em>, <em>initial_scalar_parameters: List[float] = None</em>, <em>trainable: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/modules/layer/scalar_mix.html#ScalarMix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.ScalarMix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Computes a parameterised scalar mixture of N tensors, <code class="docutils literal notranslate"><span class="pre">mixture</span> <span class="pre">=</span> <span class="pre">gamma</span> <span class="pre">*</span> <span class="pre">sum(s_k</span> <span class="pre">*</span> <span class="pre">tensor_k)</span></code>
+where <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">softmax(w)</span></code>, with <code class="docutils literal notranslate"><span class="pre">w</span></code> and <code class="docutils literal notranslate"><span class="pre">gamma</span></code> scalar parameters.
+In addition, if <code class="docutils literal notranslate"><span class="pre">do_layer_norm=True</span></code> then apply layer normalization to each tensor
+before weighting.</p>
+<dl class="method">
+<dt id="rqa.modules.layer.ScalarMix.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>tensors: List[torch.Tensor], mask: torch.Tensor = None</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="reference internal" href="_modules/rqa/modules/layer/scalar_mix.html#ScalarMix.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.modules.layer.ScalarMix.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute a weighted average of the <code class="docutils literal notranslate"><span class="pre">tensors</span></code>.  The input tensors an be any shape
+with at least two dimensions, but must all be the same shape.
+When <code class="docutils literal notranslate"><span class="pre">do_layer_norm=True</span></code>, the <code class="docutils literal notranslate"><span class="pre">mask</span></code> is required input.  If the <code class="docutils literal notranslate"><span class="pre">tensors</span></code> are
+dimensioned  <code class="docutils literal notranslate"><span class="pre">(dim_0,</span> <span class="pre">...,</span> <span class="pre">dim_{n-1},</span> <span class="pre">dim_n)</span></code>, then the <code class="docutils literal notranslate"><span class="pre">mask</span></code> is dimensioned
+<code class="docutils literal notranslate"><span class="pre">(dim_0,</span> <span class="pre">...,</span> <span class="pre">dim_{n-1})</span></code>, as in the typical case with <code class="docutils literal notranslate"><span class="pre">tensors</span></code> of shape
+<code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">dim)</span></code> and <code class="docutils literal notranslate"><span class="pre">mask</span></code> of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code>.
+When <code class="docutils literal notranslate"><span class="pre">do_layer_norm=False</span></code> the <code class="docutils literal notranslate"><span class="pre">mask</span></code> is ignored.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rqa.tokens.html" class="btn btn-neutral float-right" title="rqa.tokens package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rqa.modules.encoder.html" class="btn btn-neutral" title="rqa.modules.encoder package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+rqa.machine.components package
+==============================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    rqa.machine.components.retrieval
+
+Module contents
+---------------
+
+.. automodule:: rqa.machine.components
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,66 @@
+ {
+     "data_reader": {
+         "dataset": "squad_bert",
+         "train_file_path": "https://korquad.github.io/dataset/KorQuAD_v1.0_train.json",
+         "valid_file_path": "https://korquad.github.io/dataset/KorQuAD_v1.0_dev.json",
+         "squad_bert": {
+             "lang_code": "ko",
+             "max_seq_length": 512,
+             "context_stride": 128,
+             "max_question_length": 64
+         }
+     },
+     "iterator": {
+         "batch_size": 8
+     },
+     "token": {
+         "names": ["feature"],
+         "types": ["feature"],
+         "tokenizer": {
+             "subword": {
+                 "name": "wordpiece",
+                 "wordpiece": {
+                     "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-uncased-vocab.txt"
+                 }
+             },
+             "word": {
+                 "name": "bert_basic",
+                 "bert_basic": {
+                     "do_lower_case": true
+                 }
+             }
+         },
+         "feature": {
+             "vocab": {
+                 "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-uncased-vocab.txt",
+                 "pretrained_token": "all"
+             },
+             "indexer": {
+                 "do_tokenize": false
+             }
+         }
+     },
+     "model": {
+         "name": "bert_for_qa",
+         "bert_for_qa": {
+             "pretrained_model_name": "bert-base-multilingual-uncased",
+             "answer_maxlen": 30
+         }
+     },
+     "trainer": {
+         "log_dir": "logs/squad_bert",
+         "num_epochs": 5,
+         "early_stopping_threshold": 10,
+         "metric_key": "f1",
+         "verbose_step_count": 100,
+         "eval_and_save_step_count": 1000
+     },
+     "optimizer": {
+         "op_type": "bert_adam",
+         "learning_rate": 0.00003,
+         "bert_adam": {
+             "warmup": 0.1
+         }
+     },
+     "seed_num": 42
+ }

@@ -1,0 +1,73 @@
+{
+  "data_reader": {
+    "dataset": "seq_cls",
+    "train_file_path": "logs/test/seq_cls/synthetic_data.json",
+    "valid_file_path": "logs/test/seq_cls/synthetic_data.json",
+    "seq_cls": {
+      "class_key": "label"
+    }
+  },
+  "iterator": {
+    "batch_size": 32
+  },
+  "token": {
+    "names": ["char", "fasttext"],
+    "types": ["char", "word"],
+    "tokenizer": {
+      "char": {
+        "name": "jamo_ko"
+      },
+      "word": {
+        "name": "mecab_ko"
+      }
+    },
+    "char": {
+      "indexer": {
+        "insert_char_start": false,
+        "insert_char_end": false
+      },
+      "embedding": {
+        "embed_dim": 16,
+        "kernel_sizes": [5],
+        "num_filter": 100,
+        "activation": "relu",
+        "dropout": 0.2
+      }
+    },
+    "fasttext": {
+      "embedding": {
+        "embed_dim": 300,
+        "trainable": false,
+        "dropout": 0.2
+      }
+    }
+  },
+  "model": {
+    "name": "structured_self_attention",
+    "structured_self_attention": {
+      "encoding_rnn_hidden_dim": 300,
+      "encoding_rnn_num_layer": 2,
+      "encoding_rnn_dropout": 0,
+      "attention_dim": 350,
+      "num_attention_heads": 30,
+      "sequence_embed_dim": 2000,
+      "dropout": 0.5,
+      "penalization_coefficient": 1
+    }
+  },
+  "trainer": {
+    "log_dir": "logs/test/seq_cls/ssa",
+    "num_epochs": 1,
+    "early_stopping_threshold": 10,
+    "grad_max_norm": 5.0,
+    "metric_key": "accuracy",
+    "verbose_step_count": 100,
+    "eval_and_save_step_count": "epoch"
+  },
+  "optimizer": {
+    "op_type": "adam",
+    "learning_rate": 0.001,
+    "exponential_moving_average": 0.999
+  },
+  "seed_num": 42
+}

@@ -1,0 +1,81 @@
+{
+    "data_reader": {
+        "dataset": "squad",
+        "train_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/train-v2.0.json",
+        "valid_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v2.0.json"
+    },
+    "iterator": {
+        "batch_size": 32
+    },
+    "token": {
+        "names": ["char", "glove"],
+        "types": ["char", "word"],
+        "tokenizer": {
+            "char": {
+                "name": "character"
+            },
+            "word": {
+                "name": "treebank_en",
+                "split_with_regex": true
+            }
+        },
+        "char": {
+            "vocab": {
+                "max_vocab_size": 260,
+                "start_token": "<s>",
+                "end_token": "</s>"
+            },
+            "indexer": {
+                "insert_char_start": true,
+                "insert_char_end": true
+            },
+            "embedding": {
+                "embed_dim": 20,
+                "kernel_sizes": [5],
+                "num_filter": 100,
+                "activation": "relu",
+                "dropout": 0.2
+            }
+        },
+        "glove": {
+            "indexer": {
+                "lowercase": false
+            },
+            "embedding": {
+                "embed_dim": 300,
+                "pretrained_path": "<glove.840B.300d.txt path>",
+                "trainable": false,
+                "dropout": 0.2
+            }
+        }
+    },
+    "model": {
+        "name": "docqa_no_answer",
+        "docqa": {
+          "answer_maxlen": 17,
+          "rnn_dim": 100,
+          "linear_dim": 200,
+          "dropout": 0.2,
+          "weight_init": true
+        }
+    },
+    "trainer": {
+        "log_dir": "logs/squad_docqa_no_answer",
+        "num_epochs": 50,
+        "early_stopping_threshold": 10,
+        "metric_key": "best_f1",
+        "verbose_step_count": 100,
+        "eval_and_save_step_count": "epoch"
+    },
+    "optimizer": {
+        "op_type": "adamax",
+        "learning_rate": 0.001,
+        "lr_scheduler_type": "reduce_on_plateau",
+        "reduce_on_plateau": {
+            "factor": 0.5,
+            "mode": "max",
+            "patience": 2
+        }
+    },
+    "seed_num": 2
+}

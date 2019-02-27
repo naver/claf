@@ -1,0 +1,7 @@
+rqa.utils module
+================
+
+.. automodule:: rqa.utils
+    :members:
+    :undoc-members:
+    :show-inheritance:

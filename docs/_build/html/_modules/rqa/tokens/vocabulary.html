@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.tokens.vocabulary &mdash; reasoning-qa 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../tokens.html">rqa.tokens</a> &raquo;</li>
+        
+      <li>rqa.tokens.vocabulary</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rqa.tokens.vocabulary</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">defaultdict</span>
+
+<span class="kn">from</span> <span class="nn">rqa.data.data_handler</span> <span class="k">import</span> <span class="n">CachePath</span><span class="p">,</span> <span class="n">DataHandler</span>
+
+
+<div class="viewcode-block" id="VocabDict"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.vocabulary.VocabDict">[docs]</a><span class="k">class</span> <span class="nc">VocabDict</span><span class="p">(</span><span class="n">defaultdict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Vocab DefaultDict Class</span>
+
+<span class="sd">    * Kwargs:</span>
+<span class="sd">        oov_value: out-of-vocaburary token value (eg. &lt;unk&gt;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oov_value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">oov_value</span> <span class="o">=</span> <span class="n">oov_value</span>
+
+    <span class="k">def</span> <span class="nf">__missing__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">oov_value</span></div>
+
+
+<div class="viewcode-block" id="Vocab"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.vocabulary.Vocab">[docs]</a><span class="k">class</span> <span class="nc">Vocab</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Vocaburary Class</span>
+
+<span class="sd">    Vocab consists of token_to_index and index_to_token.</span>
+
+<span class="sd">    * Args:</span>
+<span class="sd">        token_name: Token name (Token and Vocab is one-to-one relationship)</span>
+
+<span class="sd">    * Kwargs:</span>
+<span class="sd">        pad_token: padding token value (eg. &lt;pad&gt;)</span>
+<span class="sd">        oov_token: out-of-vocaburary token value (eg. &lt;unk&gt;)</span>
+<span class="sd">        start_token: start token value (eg. &lt;s&gt;, &lt;bos&gt;)</span>
+<span class="sd">        end_token: end token value (eg. &lt;/s&gt;, &lt;eos&gt;)</span>
+<span class="sd">        cls_token: CLS token value for BERT (eg. [CLS])</span>
+<span class="sd">        sep_token: SEP token value for BERT (eg. [SEP])</span>
+<span class="sd">        min_count: token&#39;s minimal frequent count.</span>
+<span class="sd">            when you define min_count, tokens remain that bigger than min_count.</span>
+<span class="sd">        max_vocab_size: vocaburary&#39;s maximun size.</span>
+<span class="sd">            when you define max_vocab_size, tokens are selected according to frequent count.</span>
+<span class="sd">        frequent_count: get frequent_count threshold_index.</span>
+<span class="sd">            (eg. frequent_count = 1000, threshold_index is the tokens that frequent_count is 999 index number.)</span>
+<span class="sd">        pretrained_path: pretrained vocab file path</span>
+<span class="sd">            (format: A\nB\nC\nD\n...)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DEFAULT_PAD_INDEX</span><span class="p">,</span> <span class="n">DEFAULT_PAD_TOKEN</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;[PAD]&quot;</span>
+    <span class="n">DEFAULT_OOV_INDEX</span><span class="p">,</span> <span class="n">DEFAULT_OOV_TOKEN</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;[UNK]&quot;</span>
+
+    <span class="c1"># pretrained_vocab handle methods</span>
+    <span class="n">PRETRAINED_ALL</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span>  <span class="c1"># Case. embedding matrix - predefine_vocab fixed</span>
+    <span class="n">PRETRAINED_INTERSECT</span> <span class="o">=</span> <span class="s2">&quot;intersect&quot;</span>  <span class="c1"># add token that included in predefine_vocab, else UNK_token</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">token_name</span><span class="p">,</span>
+        <span class="n">pad_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">oov_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">start_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">end_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">cls_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">sep_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">min_count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_vocab_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">frequent_count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">pretrained_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">pretrained_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_name</span> <span class="o">=</span> <span class="n">token_name</span>
+
+        <span class="c1"># basic token (pad and oov)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pad_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_PAD_INDEX</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pad_token</span> <span class="o">=</span> <span class="n">pad_token</span>
+        <span class="k">if</span> <span class="n">pad_token</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pad_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_PAD_TOKEN</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">oov_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_OOV_INDEX</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">oov_token</span> <span class="o">=</span> <span class="n">oov_token</span>
+        <span class="k">if</span> <span class="n">oov_token</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">oov_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_OOV_TOKEN</span>
+
+        <span class="c1"># special_tokens</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_token</span> <span class="o">=</span> <span class="n">start_token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_token</span> <span class="o">=</span> <span class="n">end_token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cls_token</span> <span class="o">=</span> <span class="n">cls_token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span> <span class="o">=</span> <span class="n">sep_token</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_count</span> <span class="o">=</span> <span class="n">min_count</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_vocab_size</span> <span class="o">=</span> <span class="n">max_vocab_size</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_counter</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frequent_count</span> <span class="o">=</span> <span class="n">frequent_count</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold_index</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pretrained_path</span> <span class="o">=</span> <span class="n">pretrained_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pretrained_token</span> <span class="o">=</span> <span class="n">pretrained_token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pretrained_token_methods</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">PRETRAINED_ALL</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PRETRAINED_INTERSECT</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Vocab.init"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.vocabulary.Vocab.init">[docs]</a>    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_to_index</span> <span class="o">=</span> <span class="n">VocabDict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">oov_index</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index_to_token</span> <span class="o">=</span> <span class="n">VocabDict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">oov_token</span><span class="p">)</span>
+
+        <span class="c1"># add default token (pad, oov)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pad_token</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">oov_token</span><span class="p">)</span>
+
+        <span class="n">special_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">start_token</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_token</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cls_token</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">special_tokens</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">token</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Vocab.build"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.vocabulary.Vocab.build">[docs]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token_counter</span><span class="p">,</span> <span class="n">predefine_vocab</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        build token with token_counter</span>
+
+<span class="sd">        * Args:</span>
+<span class="sd">            token_counter: (collections.Counter) token&#39;s frequent_count Counter.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">predefine_vocab</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pretrained_token</span> <span class="ow">is</span> <span class="kc">None</span>
+                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">pretrained_token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pretrained_token_methods</span>
+            <span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="n">f</span><span class="s2">&quot;When use &#39;predefine_vocab&#39;, need to set &#39;pretrained_token&#39; </span><span class="si">{self.pretrained_token_methods}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">predefine_vocab</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pretrained_token</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">PRETRAINED_ALL</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">from_texts</span><span class="p">(</span><span class="n">predefine_vocab</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">predefine_vocab</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">predefine_vocab</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_counter</span> <span class="o">=</span> <span class="n">token_counter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+        <span class="n">token_counts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">token_counter</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+        <span class="n">token_counts</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># order: DESC</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_vocab_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">token_counts</span> <span class="o">=</span> <span class="n">token_counts</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_vocab_size</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">token</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">token_counts</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_count</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_count</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">predefine_vocab</span><span class="o">=</span><span class="n">predefine_vocab</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">predefine_vocab</span><span class="o">=</span><span class="n">predefine_vocab</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold_index</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequent_count</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequent_count</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">threshold_index</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">token_to_index</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Vocab.build_with_pretrained_file"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.vocabulary.Vocab.build_with_pretrained_file">[docs]</a>    <span class="k">def</span> <span class="nf">build_with_pretrained_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token_counter</span><span class="p">):</span>
+        <span class="n">data_handler</span> <span class="o">=</span> <span class="n">DataHandler</span><span class="p">(</span><span class="n">CachePath</span><span class="o">.</span><span class="n">VOCAB</span><span class="p">)</span>
+        <span class="n">vocab_texts</span> <span class="o">=</span> <span class="n">data_handler</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pretrained_path</span><span class="p">)</span>
+        <span class="n">predefine_vocab</span> <span class="o">=</span> <span class="n">vocab_texts</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">token_counter</span><span class="p">,</span> <span class="n">predefine_vocab</span><span class="o">=</span><span class="n">predefine_vocab</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">token_to_index</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Vocab.add"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.vocabulary.Vocab.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">predefine_vocab</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_to_index</span><span class="p">:</span>
+            <span class="k">return</span>  <span class="c1"># already added</span>
+        <span class="k">if</span> <span class="n">predefine_vocab</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pretrained_token</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">PRETRAINED_INTERSECT</span> <span class="ow">and</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">predefine_vocab</span><span class="p">:</span>
+                <span class="k">return</span>
+
+        <span class="n">index</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">token_to_index</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_to_index</span><span class="p">[</span><span class="n">token</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index_to_token</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">token</span></div>
+
+<div class="viewcode-block" id="Vocab.get_index"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.vocabulary.Vocab.get_index">[docs]</a>    <span class="k">def</span> <span class="nf">get_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_to_index</span><span class="p">[</span><span class="n">token</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Vocab.get_token"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.vocabulary.Vocab.get_token">[docs]</a>    <span class="k">def</span> <span class="nf">get_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">index_to_token</span><span class="p">[</span><span class="n">index</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Vocab.get_all_tokens"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.vocabulary.Vocab.get_all_tokens">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">token_to_index</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="Vocab.dump"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.vocabulary.Vocab.dump">[docs]</a>    <span class="k">def</span> <span class="nf">dump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_file</span><span class="p">:</span>
+            <span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_text</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="Vocab.load"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.vocabulary.Vocab.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">in_file</span><span class="p">:</span>
+            <span class="n">texts</span> <span class="o">=</span> <span class="n">in_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">from_texts</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Vocab.to_text"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.vocabulary.Vocab.to_text">[docs]</a>    <span class="k">def</span> <span class="nf">to_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_all_tokens</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="Vocab.from_texts"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.vocabulary.Vocab.from_texts">[docs]</a>    <span class="k">def</span> <span class="nf">from_texts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="n">tokens</span> <span class="o">=</span> <span class="n">texts</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">texts</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)]</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">token</span><span class="p">]</span>  <span class="c1"># filtering empty string</span>
+
+        <span class="c1"># basic token (pad and oov)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pad_token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pad_index</span> <span class="o">=</span> <span class="n">tokens</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pad_token</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pad_index</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+            <span class="n">tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pad_token</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">oov_token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">oov_index</span> <span class="o">=</span> <span class="n">tokens</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">oov_token</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">oov_index</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+            <span class="n">tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">oov_token</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_to_index</span> <span class="o">=</span> <span class="n">VocabDict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">oov_index</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index_to_token</span> <span class="o">=</span> <span class="n">VocabDict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">oov_token</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

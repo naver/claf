@@ -1,0 +1,7 @@
+rqa.tokens.token\_embedder.base module
+======================================
+
+.. automodule:: rqa.tokens.token_embedder.base
+    :members:
+    :undoc-members:
+    :show-inheritance:

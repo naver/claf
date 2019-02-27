@@ -1,0 +1,7 @@
+rqa.learn.data\_handler module
+==============================
+
+.. automodule:: rqa.learn.data_handler
+    :members:
+    :undoc-members:
+    :show-inheritance:

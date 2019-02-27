@@ -1,0 +1,7 @@
+rqa.learn.utils module
+======================
+
+.. automodule:: rqa.learn.utils
+    :members:
+    :undoc-members:
+    :show-inheritance:

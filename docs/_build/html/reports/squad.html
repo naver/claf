@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SQuAD &mdash; CLaF 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Summary" href="summary.html" />
+    <link rel="prev" title="KorQuAD" href="korquad.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="korquad.html">KorQuAD</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SQuAD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#results-v1-1">Results (v1.1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#results-v2-0">Results (v2.0)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>SQuAD</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/reports/squad.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="squad">
+<span id="squad"></span><h1>SQuAD<a class="headerlink" href="#squad" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">Span</span> <span class="pre">Detector</span></code>, <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">Answer</span></code></p>
+<ul class="simple">
+<li><a class="reference external" href="https://rajpurkar.github.io/SQuAD-explorer/"><code class="docutils literal notranslate"><span class="pre">SQuAD</span></code></a>: Stanford Question Answering Dataset (SQuAD), a new reading comprehension dataset consisting of 100,000+ questions posed by crowdworkers on a set of Wikipedia articles, where the answer to each question is a segment of text from the corresponding reading passage.<ul>
+<li>v1.1<ul>
+<li>Train: 87599 / Dev: 10570 / Test: 9533</li>
+</ul>
+</li>
+<li>v2.0 + no_answer<ul>
+<li>Train : 130319 / Dev: 11873 / Test: 8862</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<div class="section" id="results-v1-1">
+<span id="results-v1-1"></span><h2>Results (v1.1)<a class="headerlink" href="#results-v1-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Dev Set</li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Model</th>
+<th>EM (paper)</th>
+<th>F1 (paper)</th>
+<th>BaseConfig</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BiDAF</strong></td>
+<td>68.108 (67.7)</td>
+<td>77.780 (77.3)</td>
+<td>squad/bidaf.json</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>BiDAF + ELMo</strong></td>
+<td>74.295</td>
+<td>82.727</td>
+<td>squad/bidaf+elmo.json</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>DrQA</strong></td>
+<td>68.316 (68.8)</td>
+<td>77.493 (78.0)</td>
+<td>squad/drqa.json</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>DocQA</strong></td>
+<td>71.760 (71.513)</td>
+<td>80.635 (80.422)</td>
+<td>squad/docqa.json</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>DocQA + ELMo</strong></td>
+<td>76.244 (77.5)</td>
+<td>84.372 (84.5)</td>
+<td>squad/docqa+elmo.json</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>QANet</strong></td>
+<td>70.918 (73.6)</td>
+<td>79.800 (82.7)</td>
+<td>squad/qanet.json</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>BERT</strong>-Base Uncased</td>
+<td>79.395 (80.8)</td>
+<td>87.130 (88.5)</td>
+<td>squad/bert_base_uncased.json</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>BERT</strong>-Large Uncased</td>
+<td>- (84.1)</td>
+<td>- (90.9)</td>
+<td>squad/bert_large_uncased.json</td>
+<td>-</td>
+</tr>
+</tbody>
+</table></div>
+<hr class="docutils" />
+<div class="section" id="results-v2-0">
+<span id="results-v2-0"></span><h2>Results (v2.0)<a class="headerlink" href="#results-v2-0" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Dev Set</li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Model</th>
+<th>EM (paper)</th>
+<th>F1 (paper)</th>
+<th>BaseConfig</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BiDAF</strong></td>
+<td>62.570</td>
+<td>65.461</td>
+<td>squad/bidaf_no_answer.json</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>DocQA</strong></td>
+<td>61.728</td>
+<td>64.489</td>
+<td>squad/docqa_no_answer.json</td>
+<td>-</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="summary.html" class="btn btn-neutral float-right" title="Summary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="korquad.html" class="btn btn-neutral" title="KorQuAD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

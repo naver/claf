@@ -1,0 +1,7 @@
+rqa.model.reading\_comprehension.bidaf module
+=============================================
+
+.. automodule:: rqa.model.reading_comprehension.bidaf
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,7 @@
+rqa.data.batch module
+=====================
+
+.. automodule:: rqa.data.batch
+    :members:
+    :undoc-members:
+    :show-inheritance:

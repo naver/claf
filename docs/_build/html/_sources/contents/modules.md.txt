@@ -1,0 +1,27 @@
+# Modules
+
+## Activation
+
+
+## Attention
+- [Bi-Attention](https://arxiv.org/abs/1611.01603)
+- [Co-Attention](https://arxiv.org/abs/1606.00061)
+- [Self-Attention](https://arxiv.org/abs/1706.03762)
+
+
+## Convolution
+- [Depthwise Separable Convolution](https://arxiv.org/abs/1610.02357)
+
+
+## Embedding
+- [CharCNN](https://arxiv.org/abs/1509.01626)
+- Word Embedding
+- [ELMo](https://arxiv.org/abs/1802.05365)
+
+
+## Encoder
+- [Potisional Encoding](https://arxiv.org/abs/1706.03762)
+
+
+## Layer
+- [Highway](https://arxiv.org/abs/1505.00387)

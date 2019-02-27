@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.tokens.elmo module &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rqa.tokens.hangul module" href="rqa.tokens.hangul.html" />
+    <link rel="prev" title="rqa.tokens.cove module" href="rqa.tokens.cove.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/experiments.html">Experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rqa.modules.html">modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rqa.tokens.html">tokens</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="rqa.tokens.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="rqa.tokens.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.cove.html">rqa.tokens.cove module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">rqa.tokens.elmo module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.hangul.html">rqa.tokens.hangul module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.linguistic.html">rqa.tokens.linguistic module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.text_handler.html">rqa.tokens.text_handler module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.token_maker.html">rqa.tokens.token_maker module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.utils.html">rqa.tokens.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rqa.tokens.vocabulary.html">rqa.tokens.vocabulary module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rqa.tokens.html#module-rqa.tokens">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="rqa.tokens.html">rqa.tokens package</a> &raquo;</li>
+        
+      <li>rqa.tokens.elmo module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/rqa.tokens.elmo.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-rqa.tokens.elmo">
+<span id="rqa-tokens-elmo-module"></span><h1>rqa.tokens.elmo module<a class="headerlink" href="#module-rqa.tokens.elmo" title="Permalink to this headline">¶</a></h1>
+<p>This code is from allenai/allennlp
+(<a class="reference external" href="https://github.com/allenai/allennlp/blob/master/allennlp/modules/elmo.py">https://github.com/allenai/allennlp/blob/master/allennlp/modules/elmo.py</a>)</p>
+<dl class="class">
+<dt id="rqa.tokens.elmo.Elmo">
+<em class="property">class </em><code class="descclassname">rqa.tokens.elmo.</code><code class="descname">Elmo</code><span class="sig-paren">(</span><em>options_file: str</em>, <em>weight_file: str</em>, <em>num_output_representations: int</em>, <em>requires_grad: bool = False</em>, <em>do_layer_norm: bool = False</em>, <em>dropout: float = 0.5</em>, <em>vocab_to_cache: List[str] = None</em>, <em>module: torch.nn.modules.module.Module = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/elmo.html#Elmo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.elmo.Elmo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Compute ELMo representations using a pre-trained bidirectional language model.
+See “Deep contextualized word representations”, Peters et al. for details.
+This module takes character id input and computes <code class="docutils literal notranslate"><span class="pre">num_output_representations</span></code> different layers
+of ELMo representations.  Typically <code class="docutils literal notranslate"><span class="pre">num_output_representations</span></code> is 1 or 2.  For example, in
+the case of the SRL model in the above paper, <code class="docutils literal notranslate"><span class="pre">num_output_representations=1</span></code> where ELMo was included at
+the input token representation layer.  In the case of the SQuAD model, <code class="docutils literal notranslate"><span class="pre">num_output_representations=2</span></code>
+as ELMo was also included at the GRU output layer.
+In the implementation below, we learn separate scalar weights for each output layer,
+but only run the biLM once on each input sequence for efficiency.
+Parameters
+———-
+options_file : <code class="docutils literal notranslate"><span class="pre">str</span></code>, required.</p>
+<blockquote>
+<div>ELMo JSON options file</div></blockquote>
+<dl class="docutils">
+<dt>weight_file <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">str</span></code>, required.</span></dt>
+<dd>ELMo hdf5 weight file</dd>
+<dt>num_output_representations: <code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</dt>
+<dd>The number of ELMo representation layers to output.</dd>
+<dt>requires_grad: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional</dt>
+<dd>If True, compute gradient of ELMo parameters for fine tuning.</dd>
+<dt>do_layer_norm <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional, (default=False).</span></dt>
+<dd>Should we apply layer normalization (passed to <code class="docutils literal notranslate"><span class="pre">ScalarMix</span></code>)?</dd>
+<dt>dropout <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = 0.5).</span></dt>
+<dd>The dropout to be applied to the ELMo representations.</dd>
+<dt>vocab_to_cache <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">List[str]</span></code>, optional, (default = 0.5).</span></dt>
+<dd>A list of words to pre-compute and cache character convolutions
+for. If you use this option, Elmo expects that you pass word
+indices of shape (batch_size, timesteps) to forward, instead
+of character indices. If you use this option and pass a word which
+wasn’t pre-cached, this will break.</dd>
+<dt>module <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code>, optional, (default = None).</span></dt>
+<dd>If provided, then use this module instead of the pre-trained ELMo biLM.
+If using this option, then pass <code class="docutils literal notranslate"><span class="pre">None</span></code> for both <code class="docutils literal notranslate"><span class="pre">options_file</span></code>
+and <code class="docutils literal notranslate"><span class="pre">weight_file</span></code>.  The module must provide a public attribute
+<code class="docutils literal notranslate"><span class="pre">num_layers</span></code> with the number of internal layers and its <code class="docutils literal notranslate"><span class="pre">forward</span></code>
+method must return a <code class="docutils literal notranslate"><span class="pre">dict</span></code> with <code class="docutils literal notranslate"><span class="pre">activations</span></code> and <code class="docutils literal notranslate"><span class="pre">mask</span></code> keys
+(see <cite>_ElmoBilm`</cite> for an example).  Note that <code class="docutils literal notranslate"><span class="pre">requires_grad</span></code> is also
+ignored with this option.</dd>
+</dl>
+<dl class="method">
+<dt id="rqa.tokens.elmo.Elmo.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs: torch.Tensor</em>, <em>word_inputs: torch.Tensor = None</em><span class="sig-paren">)</span> &#x2192; Dict[str, Union[torch.Tensor, List[torch.Tensor]]]<a class="reference internal" href="_modules/rqa/tokens/elmo.html#Elmo.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.elmo.Elmo.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>inputs: <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>, required.
+Shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">50)</span></code> of character ids representing the current batch.
+word_inputs : <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>, required.</p>
+<blockquote>
+<div>If you passed a cached vocab, you can in addition pass a tensor of shape
+<code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code>, which represent word ids which have been pre-cached.</div></blockquote>
+<p>Dict with keys:
+<code class="docutils literal notranslate"><span class="pre">'elmo_representations'</span></code>: <code class="docutils literal notranslate"><span class="pre">List[torch.Tensor]</span></code></p>
+<blockquote>
+<div>A <code class="docutils literal notranslate"><span class="pre">num_output_representations</span></code> list of ELMo representations for the input sequence.
+Each representation is shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">embedding_dim)</span></code></div></blockquote>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">'mask'</span></code>:  <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></dt>
+<dd>Shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code> long tensor with sequence mask.</dd>
+</dl>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="rqa.tokens.elmo.Elmo.from_params">
+<em class="property">classmethod </em><code class="descname">from_params</code><span class="sig-paren">(</span><em>params</em><span class="sig-paren">)</span> &#x2192; rqa.tokens.elmo.Elmo<a class="reference internal" href="_modules/rqa/tokens/elmo.html#Elmo.from_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.elmo.Elmo.from_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.elmo.Elmo.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/elmo.html#Elmo.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.elmo.Elmo.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rqa.tokens.elmo.ElmoLstm">
+<em class="property">class </em><code class="descclassname">rqa.tokens.elmo.</code><code class="descname">ElmoLstm</code><span class="sig-paren">(</span><em>input_size: int</em>, <em>hidden_size: int</em>, <em>cell_size: int</em>, <em>num_layers: int</em>, <em>requires_grad: bool = False</em>, <em>recurrent_dropout_probability: float = 0.0</em>, <em>memory_cell_clip_value: Optional[float] = None</em>, <em>state_projection_clip_value: Optional[float] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rqa/tokens/elmo.html#ElmoLstm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.elmo.ElmoLstm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rqa.modules.encoder.lstm_cell_with_projection._EncoderBase</span></code></p>
+<p>A stacked, bidirectional LSTM which uses
+<code class="xref py py-class docutils literal notranslate"><span class="pre">LstmCellWithProjection</span></code>’s
+with highway layers between the inputs to layers.
+The inputs to the forward and backward directions are independent - forward and backward
+states are not concatenated between layers.
+Additionally, this LSTM maintains its <cite>own</cite> state, which is updated every time
+<code class="docutils literal notranslate"><span class="pre">forward</span></code> is called. It is dynamically resized for different batch sizes and is
+designed for use with non-continuous inputs (i.e inputs which aren’t formatted as a stream,
+such as text used for a language modelling task, which is how stateful RNNs are typically used).
+This is non-standard, but can be thought of as having an “end of sentence” state, which is
+carried across different sentences.
+Parameters
+———-
+input_size : <code class="docutils literal notranslate"><span class="pre">int</span></code>, required</p>
+<blockquote>
+<div>The dimension of the inputs to the LSTM.</div></blockquote>
+<dl class="docutils">
+<dt>hidden_size <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required</span></dt>
+<dd>The dimension of the outputs of the LSTM.</dd>
+<dt>cell_size <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt>
+<dd>The dimension of the memory cell of the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">LstmCellWithProjection</span></code>.</dd>
+<dt>num_layers <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required</span></dt>
+<dd>The number of bidirectional LSTMs to use.</dd>
+<dt>requires_grad: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional</dt>
+<dd>If True, compute gradient of ELMo parameters for fine tuning.</dd>
+<dt>recurrent_dropout_probability: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional (default = 0.0)</dt>
+<dd>The dropout probability to be used in a dropout scheme as stated in
+<a class="reference external" href="https://arxiv.org/abs/1512.05287">A Theoretically Grounded Application of Dropout in Recurrent Neural Networks</a> .</dd>
+<dt>state_projection_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt>
+<dd>The magnitude with which to clip the hidden_state after projecting it.</dd>
+<dt>memory_cell_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt>
+<dd>The magnitude with which to clip the memory cell.</dd>
+</dl>
+<dl class="method">
+<dt id="rqa.tokens.elmo.ElmoLstm.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs: torch.Tensor</em>, <em>mask: torch.LongTensor</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="reference internal" href="_modules/rqa/tokens/elmo.html#ElmoLstm.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.elmo.ElmoLstm.forward" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>inputs <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>, required.</span></dt>
+<dd>A Tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">hidden_size)</span></code>.</dd>
+<dt>mask <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.LongTensor</span></code>, required.</span></dt>
+<dd>A binary mask of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code> representing the
+non-padded elements in each sequence in the batch.</dd>
+</dl>
+<p>A <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code> of shape (num_layers, batch_size, sequence_length, hidden_size),
+where the num_layers dimension represents the LSTM output from that layer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rqa.tokens.elmo.ElmoLstm.load_weights">
+<code class="descname">load_weights</code><span class="sig-paren">(</span><em>weight_file: str</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/rqa/tokens/elmo.html#ElmoLstm.load_weights"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.elmo.ElmoLstm.load_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the pre-trained weights from the file.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="rqa.tokens.elmo.add_sentence_boundary_token_ids">
+<code class="descclassname">rqa.tokens.elmo.</code><code class="descname">add_sentence_boundary_token_ids</code><span class="sig-paren">(</span><em>tensor: torch.Tensor</em>, <em>mask: torch.Tensor</em>, <em>sentence_begin_token: Any</em>, <em>sentence_end_token: Any</em><span class="sig-paren">)</span> &#x2192; Tuple[torch.Tensor, torch.Tensor]<a class="reference internal" href="_modules/rqa/tokens/elmo.html#add_sentence_boundary_token_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.elmo.add_sentence_boundary_token_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add begin/end of sentence tokens to the batch of sentences.
+Given a batch of sentences with size <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code> or
+<code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">dim)</span></code> this returns a tensor of shape
+<code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps</span> <span class="pre">+</span> <span class="pre">2)</span></code> or <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps</span> <span class="pre">+</span> <span class="pre">2,</span> <span class="pre">dim)</span></code> respectively.
+Returns both the new tensor and updated mask.
+Parameters
+———-
+tensor : <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></p>
+<blockquote>
+<div>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code> or <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">dim)</span></code></div></blockquote>
+<dl class="docutils">
+<dt>mask <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
+<dd>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code></dd>
+<dt>sentence_begin_token: Any (anything that can be broadcast in torch for assignment)</dt>
+<dd>For 2D input, a scalar with the &lt;S&gt; id. For 3D input, a tensor with length dim.</dd>
+<dt>sentence_end_token: Any (anything that can be broadcast in torch for assignment)</dt>
+<dd>For 2D input, a scalar with the &lt;/S&gt; id. For 3D input, a tensor with length dim.</dd>
+</dl>
+<dl class="docutils">
+<dt>tensor_with_boundary_tokens <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
+<dd>The tensor with the appended and prepended boundary tokens. If the input was 2D,
+it has shape (batch_size, timesteps + 2) and if the input was 3D, it has shape
+(batch_size, timesteps + 2, dim).</dd>
+<dt>new_mask <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
+<dd>The new mask for the tensor, taking into account the appended tokens
+marking the beginning and end of the sentence.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="rqa.tokens.elmo.remove_sentence_boundaries">
+<code class="descclassname">rqa.tokens.elmo.</code><code class="descname">remove_sentence_boundaries</code><span class="sig-paren">(</span><em>tensor: torch.Tensor</em>, <em>mask: torch.Tensor</em><span class="sig-paren">)</span> &#x2192; Tuple[torch.Tensor, torch.Tensor]<a class="reference internal" href="_modules/rqa/tokens/elmo.html#remove_sentence_boundaries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rqa.tokens.elmo.remove_sentence_boundaries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove begin/end of sentence embeddings from the batch of sentences.
+Given a batch of sentences with size <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">dim)</span></code>
+this returns a tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps</span> <span class="pre">-</span> <span class="pre">2,</span> <span class="pre">dim)</span></code> after removing
+the beginning and end sentence markers.  The sentences are assumed to be padded on the right,
+with the beginning of each sentence assumed to occur at index 0 (i.e., <code class="docutils literal notranslate"><span class="pre">mask[:,</span> <span class="pre">0]</span></code> is assumed
+to be 1).
+Returns both the new tensor and updated mask.
+This function is the inverse of <code class="docutils literal notranslate"><span class="pre">add_sentence_boundary_token_ids</span></code>.
+Parameters
+———-
+tensor : <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></p>
+<blockquote>
+<div>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">dim)</span></code></div></blockquote>
+<dl class="docutils">
+<dt>mask <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
+<dd>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code></dd>
+</dl>
+<dl class="docutils">
+<dt>tensor_without_boundary_tokens <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
+<dd>The tensor after removing the boundary tokens of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps</span> <span class="pre">-</span> <span class="pre">2,</span> <span class="pre">dim)</span></code></dd>
+<dt>new_mask <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
+<dd>The new mask for the tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps</span> <span class="pre">-</span> <span class="pre">2)</span></code>.</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rqa.tokens.hangul.html" class="btn btn-neutral float-right" title="rqa.tokens.hangul module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rqa.tokens.cove.html" class="btn btn-neutral" title="rqa.tokens.cove module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

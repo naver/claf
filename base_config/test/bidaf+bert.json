@@ -1,0 +1,92 @@
+ {
+     "data_reader": {
+         "dataset": "squad",
+         "train_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json",
+         "valid_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json"
+     },
+     "iterator": {
+         "batch_size": 10
+     },
+     "token": {
+         "names": ["char", "glove", "bert"],
+         "types": ["char", "word", "bert"],
+         "tokenizer": {
+             "char": {
+                 "name": "character"
+             },
+             "subword": {
+                 "name": "wordpiece",
+                 "wordpiece": {
+                     "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
+                 }
+             },
+             "word": {
+                 "name": "treebank_en"
+             }
+         },
+         "char": {
+             "vocab": {
+                 "start_token": "<s>",
+                 "end_token": "</s>",
+                 "max_vocab_size": 260
+             },
+             "indexer": {
+                 "insert_char_start": true,
+                 "insert_char_end": true
+             },
+             "embedding": {
+                 "embed_dim": 16,
+                 "kernel_sizes": [5],
+                 "num_filter": 100,
+                 "activation": "relu",
+                 "dropout": 0.2
+             }
+         },
+         "glove": {
+             "vocab": {},
+             "indexer": {
+                 "lowercase": false
+             },
+             "embedding": {
+                 "embed_dim": 50,
+                 "trainable": false,
+                 "dropout": 0.2
+             }
+         },
+         "bert": {
+             "vocab": {
+                 "pad_token": "[PAD]",
+                 "oov_token": "[UNK]",
+                 "cls_token": "[CLS]",
+                 "sep_token": "[SEP]",
+                 "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-cased-vocab.txt",
+                 "pretrained_token": "all"
+             },
+             "embedding": {
+                 "pretrained_model_name": "bert-base-cased",
+                 "trainable": false
+             }
+          }
+     },
+     "model": {
+         "name": "bidaf",
+         "bidaf": {
+             "model_dim": 50,
+             "dropout": 0.2
+         }
+     },
+     "trainer": {
+         "log_dir": "logs/test/bidaf+bert/",
+         "num_epochs": 1,
+         "early_stopping_threshold": 2,
+         "metric_key": "f1",
+         "verbose_step_count": 1,
+         "eval_and_save_step_count": "epoch"
+     },
+     "optimizer": {
+         "op_type": "adadelta",
+         "learning_rate": 1,
+         "exponential_moving_average": 0.999
+     },
+     "seed_num": 25
+ }

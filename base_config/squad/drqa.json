@@ -1,0 +1,75 @@
+{
+    "data_reader": {
+        "dataset": "squad",
+        "train_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/train-v1.1.json",
+        "valid_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json"
+    },
+    "iterator": {
+        "batch_size": 32
+    },
+    "token": {
+        "names": ["frequent_glove", "exact_match"],
+        "types": ["frequent_word", "exact_match"],
+        "tokenizer": {
+            "word": {
+                "name": "spacy_en",
+                "split_with_regex": true
+            }
+        },
+        "frequent_glove": {
+            "vocab": {
+                "frequent_count": 1000
+            },
+            "indexer": {
+                "lowercase": false
+            },
+            "embedding": {
+                "embed_dim": 300,
+                "pretrained_path": "<glove.840B.300d.txt paht>",
+                "dropout": 0.3
+            }
+        },
+        "exact_match": {
+            "indexer": {
+                "lower": true,
+                "lemma": true
+            },
+            "embedding": {
+                "type": "sparse"
+            }
+        }
+    },
+    "model": {
+        "name": "drqa",
+        "drqa": {
+            "aligned_query_embedding": true,
+            "answer_maxlen": 15,
+            "model_dim": 128,
+            "dropout": 0.3
+        }
+    },
+    "trainer": {
+        "log_dir": "logs/squad_drqa",
+        "num_epochs": 50,
+        "early_stopping_threshold": 10,
+        "metric_key": "f1",
+        "verbose_step_count": 100,
+        "eval_and_save_step_count": "epoch"
+    },
+    "optimizer": {
+        "op_type": "adamax",
+        "learning_rate": 0.002,
+        "adamax": {
+            "betas": [0.9, 0.999],
+            "eps": 1e-08,
+            "weight_decay": 0
+        },
+        "lr_scheduler_type": "reduce_on_plateau",
+        "reduce_on_plateau": {
+            "factor": 0.5,
+            "mode": "max",
+            "patience": 2
+        }
+    },
+    "seed_num": 21
+}

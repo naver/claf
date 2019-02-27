@@ -1,0 +1,250 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>claf.tokens.tokenizer.utils &mdash; CLaF 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../tokens.html">claf.tokens</a> &raquo;</li>
+        
+      <li>claf.tokens.tokenizer.utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for claf.tokens.tokenizer.utils</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">spacy</span>
+
+
+<div class="viewcode-block" id="create_tokenizer_with_regex"><a class="viewcode-back" href="../../../../claf.tokens.tokenizer.html#claf.tokens.tokenizer.utils.create_tokenizer_with_regex">[docs]</a><span class="k">def</span> <span class="nf">create_tokenizer_with_regex</span><span class="p">(</span><span class="n">nlp</span><span class="p">,</span> <span class="n">split_regex</span><span class="p">):</span>
+    <span class="n">prefixes_re</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">compile_prefix_regex</span><span class="p">(</span><span class="n">nlp</span><span class="o">.</span><span class="n">Defaults</span><span class="o">.</span><span class="n">prefixes</span><span class="p">)</span>
+    <span class="n">infix_re</span> <span class="o">=</span> <span class="n">split_regex</span>
+    <span class="n">suffix_re</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">compile_suffix_regex</span><span class="p">(</span><span class="n">nlp</span><span class="o">.</span><span class="n">Defaults</span><span class="o">.</span><span class="n">suffixes</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">spacy</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">Tokenizer</span><span class="p">(</span>
+        <span class="n">nlp</span><span class="o">.</span><span class="n">vocab</span><span class="p">,</span>
+        <span class="n">nlp</span><span class="o">.</span><span class="n">Defaults</span><span class="o">.</span><span class="n">tokenizer_exceptions</span><span class="p">,</span>
+        <span class="n">prefix_search</span><span class="o">=</span><span class="n">prefixes_re</span><span class="o">.</span><span class="n">search</span><span class="p">,</span>
+        <span class="n">infix_finditer</span><span class="o">=</span><span class="n">infix_re</span><span class="o">.</span><span class="n">finditer</span><span class="p">,</span>
+        <span class="n">suffix_search</span><span class="o">=</span><span class="n">suffix_re</span><span class="o">.</span><span class="n">search</span><span class="p">,</span>
+        <span class="n">token_match</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="load_spacy_model_for_tokenizer"><a class="viewcode-back" href="../../../../claf.tokens.tokenizer.html#claf.tokens.tokenizer.utils.load_spacy_model_for_tokenizer">[docs]</a><span class="k">def</span> <span class="nf">load_spacy_model_for_tokenizer</span><span class="p">(</span><span class="n">split_regex</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_sm&quot;</span><span class="p">,</span> <span class="n">disable</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;vectors&quot;</span><span class="p">,</span> <span class="s2">&quot;textcat&quot;</span><span class="p">,</span> <span class="s2">&quot;tagger&quot;</span><span class="p">,</span> <span class="s2">&quot;parser&quot;</span><span class="p">,</span> <span class="s2">&quot;ner&quot;</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">split_regex</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">spacy_tokenizer</span> <span class="o">=</span> <span class="n">create_tokenizer_with_regex</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">split_regex</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">spacy_tokenizer</span>
+    <span class="k">return</span> <span class="n">model</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

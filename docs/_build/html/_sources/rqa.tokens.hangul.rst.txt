@@ -1,0 +1,7 @@
+rqa.tokens.hangul module
+========================
+
+.. automodule:: rqa.tokens.hangul
+    :members:
+    :undoc-members:
+    :show-inheritance:

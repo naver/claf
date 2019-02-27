@@ -1,0 +1,125 @@
+{
+	"config": {
+		"data_reader": {
+			"dataset": "squad_bert",
+			"train_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/train-v1.1.json",
+			"valid_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json",
+			"squad_bert": {
+				"lang_code": "en",
+				"max_seq_length": 384,
+				"context_stride": 128,
+				"max_question_length": 64
+			}
+		},
+		"iterator": {
+			"batch_size": 48
+		},
+		"token": {
+			"names": ["feature"],
+			"types": ["feature"],
+			"tokenizer": {
+				"subword": {
+					"name": "wordpiece",
+					"wordpiece": {
+						"vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
+					}
+				},
+				"word": {
+					"name": "bert_basic",
+					"bert_basic": {
+						"do_lower_case": true
+					}
+				}
+			},
+			"feature": {
+				"vocab": {
+					"pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt",
+					"pretrained_token": "all"
+				},
+				"indexer": {
+					"do_tokenize": false
+				}
+			}
+		},
+		"model": {
+			"name": "bert_for_qa",
+			"bert_for_qa": {
+				"pretrained_model_name": "bert-base-uncased",
+				"answer_maxlen": 30
+			}
+		},
+		"trainer": {
+			"log_dir": "logs/squad_bert",
+			"num_epochs": 5,
+			"early_stopping_threshold": 10,
+			"metric_key": "f1",
+			"verbose_step_count": 100,
+			"eval_and_save_step_count": 1000
+		},
+		"optimizer": {
+			"op_type": "bert_adam",
+			"learning_rate": 5e-05,
+			"bert_adam": {
+				"warmup": 0.1
+			}
+		},
+		"seed_num": 42,
+		"use_gpu": true,
+		"gpu_num": 4
+	},
+	"training_logs": {
+		"early_stopping_count": 6,
+		"elapsed_time": ["02:18:10"],
+		"train_dataset": {
+			"name": "squad_bert",
+			"total_count": 87779,
+			"HasAns_count": 87779,
+			"NoAns_count": 0
+		},
+		"valid_dataset": {
+			"name": "squad_bert",
+			"total_count": 10646,
+			"HasAns_count": 10646,
+			"NoAns_count": 0
+		}
+	},
+	"metrics": {
+		"best_epoch": 2,
+		"best_global_step": 0,
+		"best": {
+			"valid/loss": 0.8889339666914295,
+			"valid/epoch_time": 53.34748435020447,
+			"valid/em": 78.67549668874172,
+			"valid/f1": 86.58346875203304
+		},
+		"best_score": 86.58346875203304,
+		"valid/loss": [0.9415906336124953, 0.9108352352370013, 0.8889339666914295, 1.0355482176617459, 1.0540606967500739, 1.1880523226819597, 1.1383471519828916, 1.351632583114478, 1.3381704858562968],
+		"valid/epoch_time": [56.80781602859497, 53.31908941268921, 53.34748435020447, 56.13729381561279, 53.40209174156189, 56.136420249938965, 53.31478691101074, 56.12194752693176, 53.169355630874634],
+		"valid/em": [76.9914853358562, 78.15515610217597, 78.67549668874172, 77.44560075685904, 77.17123935666982, 76.75496688741723, 76.3197729422895, 77.02932828760643, 76.49952696310312],
+		"valid/f1": [84.95112042771974, 86.23856546381289, 86.58346875203304, 85.55421931957414, 85.89519153631547, 85.44916850325487, 85.25391484030878, 85.72639448425241, 85.4407206832876],
+		"best_step": 3000
+	},
+	"inferency_latency": {
+		"cpu": {
+			"max_token_count_per_time": {
+				"200": 27,
+				"300": 56,
+				"400": 77,
+				"500": 94,
+				"600": 124,
+				"700": 145,
+				"800": 160,
+				"900": 173,
+				"1000": 173,
+				"1100": 173,
+				"1200": 173,
+				"1300": 173,
+				"1400": 173,
+				"1500": 173
+			}
+		},
+		"gpu": {
+
+		}
+	}
+}

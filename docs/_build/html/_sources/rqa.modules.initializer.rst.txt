@@ -1,0 +1,7 @@
+rqa.modules.initializer module
+==============================
+
+.. automodule:: rqa.modules.initializer
+    :members:
+    :undoc-members:
+    :show-inheritance:

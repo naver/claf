@@ -1,0 +1,76 @@
+ {
+     "data_reader": {
+         "dataset": "squad",
+         "train_file_path": "https://korquad.github.io/dataset/KorQuAD_v1.0_train.json",
+         "valid_file_path": "https://korquad.github.io/dataset/KorQuAD_v1.0_dev.json",
+         "squad": {
+             "context_max_length": 1000
+         }
+     },
+     "iterator": {
+         "batch_size": 32
+     },
+     "token": {
+         "names": ["char", "fasttext"],
+         "types": ["char", "word"],
+         "tokenizer": {
+             "char": {
+                 "name": "jamo_ko"
+             },
+             "word": {
+                 "name": "mecab_ko",
+                 "split_with_regex": true
+             }
+         },
+         "char": {
+             "vocab": {
+                 "start_token": "<s>",
+                 "end_token": "</s>",
+                 "max_vocab_size": 70
+             },
+             "indexer": {
+                 "insert_char_start": true,
+                 "insert_char_end": true
+             },
+             "embedding": {
+                 "embed_dim": 16,
+                 "kernel_sizes": [5],
+                 "num_filter": 100,
+                 "activation": "relu",
+                 "dropout": 0.2
+             }
+         },
+         "fasttext": {
+             "embedding": {
+                 "embed_dim": 300,
+                 "pretrained_path": "<fasttext.wiki.ko.300d.txt path>",
+                 "trainable": false,
+                 "dropout": 0.2
+             }
+         }
+     },
+     "model": {
+         "name": "bidaf",
+         "bidaf": {
+             "model_dim": 100,
+             "contextual_rnn_num_layer": 1,
+             "modeling_rnn_num_layer": 2,
+             "predict_rnn_num_layer": 1,
+             "dropout": 0.2
+         }
+     },
+     "trainer": {
+         "log_dir": "logs/korquad_bidaf",
+         "num_epochs": 50,
+         "early_stopping_threshold": 10,
+         "metric_key": "f1",
+         "verbose_step_count": 100,
+         "eval_and_save_step_count": "epoch"
+     },
+     "optimizer": {
+         "op_type": "adadelta",
+         "learning_rate": 0.5,
+         "exponential_moving_average": 0.999
+     },
+     "seed_num": 2
+ }

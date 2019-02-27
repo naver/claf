@@ -1,0 +1,7 @@
+rqa.tokens.embedding.sparse\_feature module
+===========================================
+
+.. automodule:: rqa.tokens.embedding.sparse_feature
+    :members:
+    :undoc-members:
+    :show-inheritance:

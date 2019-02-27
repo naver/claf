@@ -1,0 +1,172 @@
+{
+    "average_raw_to_tensor": 0.08636821400035512,
+    "average_tensor_to_predict": 35.91229337634462,
+    "average_end_to_end": 35.99866159034498,
+    "tensor_to_predicts": [
+        {
+            "elapsed_time": 409.0240001678467,
+            "token_count": 10
+        },
+        {
+            "elapsed_time": 424.2978096008301,
+            "token_count": 11
+        },
+        {
+            "elapsed_time": 453.9320468902588,
+            "token_count": 12
+        },
+        {
+            "elapsed_time": 484.1651916503906,
+            "token_count": 13
+        },
+        {
+            "elapsed_time": 516.8399810791016,
+            "token_count": 14
+        },
+        {
+            "elapsed_time": 553.3709526062012,
+            "token_count": 15
+        },
+        {
+            "elapsed_time": 577.5477886199951,
+            "token_count": 16
+        },
+        {
+            "elapsed_time": 614.0329837799072,
+            "token_count": 17
+        },
+        {
+            "elapsed_time": 651.1709690093994,
+            "token_count": 18
+        },
+        {
+            "elapsed_time": 670.1388359069824,
+            "token_count": 19
+        },
+        {
+            "elapsed_time": 749.9408721923828,
+            "token_count": 20
+        },
+        {
+            "elapsed_time": 765.0890350341797,
+            "token_count": 21
+        },
+        {
+            "elapsed_time": 735.0962162017822,
+            "token_count": 22
+        },
+        {
+            "elapsed_time": 782.1478843688965,
+            "token_count": 23
+        },
+        {
+            "elapsed_time": 796.2613105773926,
+            "token_count": 24
+        },
+        {
+            "elapsed_time": 839.2610549926758,
+            "token_count": 25
+        },
+        {
+            "elapsed_time": 824.5720863342285,
+            "token_count": 26
+        },
+        {
+            "elapsed_time": 854.9871444702148,
+            "token_count": 27
+        },
+        {
+            "elapsed_time": 906.904935836792,
+            "token_count": 28
+        },
+        {
+            "elapsed_time": 916.7580604553223,
+            "token_count": 29
+        },
+        {
+            "elapsed_time": 956.9301605224609,
+            "token_count": 30
+        },
+        {
+            "elapsed_time": 1003.1847953796387,
+            "token_count": 31
+        },
+        {
+            "elapsed_time": 1117.8290843963623,
+            "token_count": 32
+        },
+        {
+            "elapsed_time": 1066.0440921783447,
+            "token_count": 33
+        },
+        {
+            "elapsed_time": 1074.455976486206,
+            "token_count": 34
+        },
+        {
+            "elapsed_time": 1105.8878898620605,
+            "token_count": 35
+        },
+        {
+            "elapsed_time": 1122.76291847229,
+            "token_count": 36
+        },
+        {
+            "elapsed_time": 1168.5528755187988,
+            "token_count": 37
+        },
+        {
+            "elapsed_time": 1191.5271282196045,
+            "token_count": 38
+        },
+        {
+            "elapsed_time": 1234.421968460083,
+            "token_count": 39
+        },
+        {
+            "elapsed_time": 1255.2640438079834,
+            "token_count": 40
+        },
+        {
+            "elapsed_time": 1317.5408840179443,
+            "token_count": 41
+        },
+        {
+            "elapsed_time": 1329.1430473327637,
+            "token_count": 42
+        },
+        {
+            "elapsed_time": 1338.5398387908936,
+            "token_count": 43
+        },
+        {
+            "elapsed_time": 1363.4569644927979,
+            "token_count": 44
+        },
+        {
+            "elapsed_time": 1412.2247695922852,
+            "token_count": 45
+        },
+        {
+            "elapsed_time": 1462.920904159546,
+            "token_count": 46
+        },
+        {
+            "elapsed_time": 1506.943941116333,
+            "token_count": 47
+        }
+    ],
+    "max_token_count_per_time": {
+        "500": 13,
+        "600": 16,
+        "700": 19,
+        "800": 24,
+        "900": 27,
+        "1000": 30,
+        "1100": 34,
+        "1200": 38,
+        "1300": 40,
+        "1400": 44,
+        "1500": 46
+    }
+}

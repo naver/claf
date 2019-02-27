@@ -1,0 +1,670 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>claf.learn.experiment &mdash; CLaF 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>claf.learn.experiment</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for claf.learn.experiment</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="kn">from</span> <span class="nn">claf.config.factory</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">DataReaderFactory</span><span class="p">,</span>
+    <span class="n">DataLoaderFactory</span><span class="p">,</span>
+    <span class="n">TokenMakersFactory</span><span class="p">,</span>
+    <span class="n">ModelFactory</span><span class="p">,</span>
+    <span class="n">OptimizerFactory</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">claf.config.args</span> <span class="k">import</span> <span class="n">NestedNamespace</span>
+<span class="kn">from</span> <span class="nn">claf.config.utils</span> <span class="k">import</span> <span class="n">convert_config2dict</span><span class="p">,</span> <span class="n">pretty_json_dumps</span>
+<span class="kn">from</span> <span class="nn">claf.tokens.text_handler</span> <span class="k">import</span> <span class="n">TextHandler</span>
+<span class="kn">from</span> <span class="nn">claf.learn.mode</span> <span class="k">import</span> <span class="n">Mode</span>
+<span class="kn">from</span> <span class="nn">claf.learn.trainer</span> <span class="k">import</span> <span class="n">Trainer</span>
+<span class="kn">from</span> <span class="nn">claf.learn</span> <span class="k">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">claf</span> <span class="k">import</span> <span class="n">utils</span> <span class="k">as</span> <span class="n">common_utils</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Experiment"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.experiment.Experiment">[docs]</a><span class="k">class</span> <span class="nc">Experiment</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Experiment settings with config.</span>
+
+<span class="sd">    * Args:</span>
+<span class="sd">        mode: Mode (ex. TRAIN, EVAL, INFER_EVAL, PREDICT)</span>
+<span class="sd">        config: (NestedNamespace) Argument config according to mode</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="n">common_utils</span><span class="o">.</span><span class="n">set_logging_config</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">argument</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">config</span>
+        <span class="p">)</span>  <span class="c1"># self.config (experiment overall config) / config (argument according to mode)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">common_setting</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mode</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">Mode</span><span class="o">.</span><span class="n">EVAL</span><span class="p">)</span> <span class="ow">or</span> <span class="n">mode</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">Mode</span><span class="o">.</span><span class="n">PREDICT</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_setting</span><span class="p">()</span>
+
+            <span class="c1"># Set evaluation config</span>
+            <span class="k">if</span> <span class="n">mode</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">Mode</span><span class="o">.</span><span class="n">EVAL</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">data_reader</span><span class="o">.</span><span class="n">train_file_path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">data_reader</span><span class="o">.</span><span class="n">valid_file_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">argument</span><span class="o">.</span><span class="n">data_file_path</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">cuda_devices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">argument</span><span class="o">.</span><span class="n">cuda_devices</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">cuda_devices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">argument</span><span class="o">.</span><span class="n">cuda_devices</span>
+
+                <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">argument</span><span class="p">,</span> <span class="s2">&quot;inference_latency&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_latency</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">argument</span><span class="o">.</span><span class="n">inference_latency</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">predict_settings</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Experiment.common_setting"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.experiment.Experiment.common_setting">[docs]</a>    <span class="k">def</span> <span class="nf">common_setting</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Common Setting - experiment config, use_gpu and cuda_device_ids &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_dict</span> <span class="o">=</span> <span class="n">convert_config2dict</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+        <span class="n">cuda_devices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cuda_devices</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">cuda_devices</span> <span class="o">=</span> <span class="n">cuda_devices</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_cuda_devices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;use_gpu&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_gpu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_gpu</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">cuda_devices</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Experiment.load_setting"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.experiment.Experiment.load_setting">[docs]</a>    <span class="k">def</span> <span class="nf">load_setting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Load Setting - need to load checkpoint case (ex. evaluate and predict) &quot;&quot;&quot;</span>
+        <span class="n">cuda_devices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">argument</span><span class="o">.</span><span class="n">cuda_devices</span>
+        <span class="n">checkpoint_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">argument</span><span class="o">.</span><span class="n">checkpoint_path</span>
+        <span class="n">prev_cuda_device_id</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">argument</span><span class="p">,</span> <span class="s2">&quot;prev_cuda_device_id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_checkpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_checkpoint</span><span class="p">(</span>
+            <span class="n">cuda_devices</span><span class="p">,</span> <span class="n">checkpoint_path</span><span class="p">,</span> <span class="n">prev_cuda_device_id</span><span class="o">=</span><span class="n">prev_cuda_device_id</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_saved_config</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_read_checkpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cuda_devices</span><span class="p">,</span> <span class="n">checkpoint_path</span><span class="p">,</span> <span class="n">prev_cuda_device_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">cuda_devices</span> <span class="o">==</span> <span class="s2">&quot;cpu&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">checkpoint_path</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>  <span class="c1"># use CPU</span>
+
+        <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+            <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+                <span class="n">checkpoint_path</span><span class="p">,</span>
+                <span class="n">map_location</span><span class="o">=</span><span class="p">{</span>
+                    <span class="n">f</span><span class="s2">&quot;cuda:</span><span class="si">{prev_cuda_device_id}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;cuda:</span><span class="si">{cuda_devices[0]}</span><span class="s2">&quot;</span>
+                <span class="p">},</span>  <span class="c1"># different cuda_device id case (save/load)</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">checkpoint_path</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>  <span class="c1"># use CPU</span>
+        <span class="k">return</span> <span class="n">checkpoint</span>
+
+    <span class="k">def</span> <span class="nf">_set_saved_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">saved_config_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_checkpoint</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_dict</span> <span class="o">=</span> <span class="n">saved_config_dict</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Load saved_config ...&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">pretty_json_dumps</span><span class="p">(</span><span class="n">saved_config_dict</span><span class="p">))</span>
+
+        <span class="n">saved_config</span> <span class="o">=</span> <span class="n">NestedNamespace</span><span class="p">()</span>
+        <span class="n">saved_config</span><span class="o">.</span><span class="n">load_from_json</span><span class="p">(</span><span class="n">saved_config_dict</span><span class="p">)</span>
+
+        <span class="n">is_use_gpu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_gpu</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">saved_config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_gpu</span> <span class="o">=</span> <span class="n">is_use_gpu</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Run Trainer &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="n">Mode</span><span class="o">.</span><span class="n">TRAIN</span><span class="p">:</span>
+            <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">optimizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_train_mode</span><span class="p">()</span>
+
+            <span class="k">assert</span> <span class="n">train_loader</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">assert</span> <span class="n">optimizer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+            <span class="k">if</span> <span class="n">valid_loader</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">train_loader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">train_and_evaluate</span><span class="p">(</span><span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_summary_experiments</span><span class="p">()</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EVAL</span><span class="p">:</span>
+            <span class="n">valid_loader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_eval_mode</span><span class="p">()</span>
+
+            <span class="k">assert</span> <span class="n">valid_loader</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">valid_loader</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="n">Mode</span><span class="o">.</span><span class="n">INFER_EVAL</span><span class="p">:</span>
+            <span class="n">raw_examples</span><span class="p">,</span> <span class="n">raw_to_tensor_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_eval_inference_latency_mode</span><span class="p">()</span>
+
+            <span class="k">assert</span> <span class="n">raw_examples</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">assert</span> <span class="n">raw_to_tensor_fn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">evaluate_inference_latency</span><span class="p">(</span><span class="n">raw_examples</span><span class="p">,</span> <span class="n">raw_to_tensor_fn</span><span class="p">,</span> <span class="n">max_latency</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_latency</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">Mode</span><span class="o">.</span><span class="n">PREDICT</span><span class="p">):</span>
+            <span class="n">raw_features</span><span class="p">,</span> <span class="n">raw_to_tensor_fn</span><span class="p">,</span> <span class="n">arguments</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_predict_mode</span><span class="p">()</span>
+
+            <span class="k">assert</span> <span class="n">raw_features</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">assert</span> <span class="n">raw_to_tensor_fn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+                <span class="n">raw_features</span><span class="p">,</span>
+                <span class="n">raw_to_tensor_fn</span><span class="p">,</span>
+                <span class="n">arguments</span><span class="p">,</span>
+                <span class="n">interactive</span><span class="o">=</span><span class="n">arguments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;interactive&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;unknown mode: </span><span class="si">{self.mode}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Experiment.set_train_mode"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.experiment.Experiment.set_train_mode">[docs]</a>    <span class="k">def</span> <span class="nf">set_train_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Training Mode</span>
+
+<span class="sd">        - Pipeline</span>
+<span class="sd">          1. read raw_data (DataReader)</span>
+<span class="sd">          2. build vocabs (DataReader, Token)</span>
+<span class="sd">          3. indexing tokens (DataReader, Token)</span>
+<span class="sd">          4. convert to DataSet (DataReader)</span>
+<span class="sd">          5. create DataLoader (DataLoader)</span>
+<span class="sd">          6. define model and optimizer</span>
+<span class="sd">          7. run!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Config. </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">pretty_json_dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_dict</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">data_reader</span><span class="p">,</span> <span class="n">token_makers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_data_and_token_makers</span><span class="p">()</span>
+        <span class="n">datas</span><span class="p">,</span> <span class="n">helpers</span> <span class="o">=</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+        <span class="c1"># Token &amp; Vocab</span>
+        <span class="n">text_handler</span> <span class="o">=</span> <span class="n">TextHandler</span><span class="p">(</span><span class="n">token_makers</span><span class="p">,</span> <span class="n">lazy_indexing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">texts</span> <span class="o">=</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">filter_texts</span><span class="p">(</span><span class="n">datas</span><span class="p">)</span>
+
+        <span class="n">token_counters</span> <span class="o">=</span> <span class="n">text_handler</span><span class="o">.</span><span class="n">make_token_counters</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+        <span class="n">text_handler</span><span class="o">.</span><span class="n">build_vocabs</span><span class="p">(</span><span class="n">token_counters</span><span class="p">)</span>
+        <span class="n">text_handler</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">datas</span><span class="p">,</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">text_columns</span><span class="p">)</span>
+
+        <span class="c1"># iterator</span>
+        <span class="n">datasets</span> <span class="o">=</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">convert_to_dataset</span><span class="p">(</span><span class="n">datas</span><span class="p">,</span> <span class="n">helpers</span><span class="o">=</span><span class="n">helpers</span><span class="p">)</span>  <span class="c1"># with name</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">cuda_devices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">cuda_devices</span>
+        <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">test_loader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_by_factory</span><span class="p">(</span>
+            <span class="n">DataLoaderFactory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">iterator</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;datasets&quot;</span><span class="p">:</span> <span class="n">datasets</span><span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="n">checkpoint_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">log_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;checkpoint&quot;</span>
+        <span class="n">checkpoints</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">checkpoint_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">checkpoints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_exist_checkpoints</span><span class="p">(</span><span class="n">checkpoint_dir</span><span class="p">)</span>  <span class="c1"># contain model and optimizer</span>
+
+        <span class="k">if</span> <span class="n">checkpoints</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_model</span><span class="p">(</span><span class="n">token_makers</span><span class="p">,</span> <span class="n">helpers</span><span class="o">=</span><span class="n">helpers</span><span class="p">)</span>
+            <span class="n">op_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_by_factory</span><span class="p">(</span>
+                <span class="n">OptimizerFactory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">model</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_model</span><span class="p">(</span><span class="n">token_makers</span><span class="p">,</span> <span class="n">checkpoint</span><span class="o">=</span><span class="n">checkpoints</span><span class="p">)</span>
+            <span class="n">op_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_by_factory</span><span class="p">(</span>
+                <span class="n">OptimizerFactory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">model</span><span class="p">}</span>
+            <span class="p">)</span>
+            <span class="n">utils</span><span class="o">.</span><span class="n">load_optimizer_checkpoint</span><span class="p">(</span><span class="n">op_dict</span><span class="p">[</span><span class="s2">&quot;optimizer&quot;</span><span class="p">],</span> <span class="n">checkpoints</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_trainer</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">op_dict</span><span class="o">=</span><span class="n">op_dict</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">op_dict</span><span class="p">[</span><span class="s2">&quot;optimizer&quot;</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="nf">_create_data_and_token_makers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">token_makers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_by_factory</span><span class="p">(</span><span class="n">TokenMakersFactory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">token</span><span class="p">)</span>
+        <span class="n">tokenizers</span> <span class="o">=</span> <span class="n">token_makers</span><span class="p">[</span><span class="s2">&quot;tokenizers&quot;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">token_makers</span><span class="p">[</span><span class="s2">&quot;tokenizers&quot;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">data_reader</span><span class="o">.</span><span class="n">tokenizers</span> <span class="o">=</span> <span class="n">tokenizers</span>
+        <span class="n">data_reader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_by_factory</span><span class="p">(</span><span class="n">DataReaderFactory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">data_reader</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data_reader</span><span class="p">,</span> <span class="n">token_makers</span>
+
+    <span class="k">def</span> <span class="nf">_create_by_factory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factory</span><span class="p">,</span> <span class="n">item_config</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="k">return</span> <span class="n">factory</span><span class="p">(</span><span class="n">item_config</span><span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">**</span><span class="n">param</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_load_exist_checkpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checkpoint_dir</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+        <span class="n">checkpoints</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">get_sorted_path</span><span class="p">(</span><span class="n">checkpoint_dir</span><span class="p">,</span> <span class="n">both_exist</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">train_counts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">checkpoints</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">train_counts</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">seperator</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{seperator}</span><span class="se">\n</span><span class="s2"> !! Find exist checkpoints </span><span class="si">{train_counts}</span><span class="s2">.</span><span class="se">\n</span><span class="s2"> If you want to recover, input train_count in list.</span><span class="se">\n</span><span class="s2"> If you don&#39;t want to recover, input 0.</span><span class="se">\n</span><span class="si">{seperator}</span><span class="s2">&quot;</span>
+        <span class="n">selected_train_count</span> <span class="o">=</span> <span class="n">common_utils</span><span class="o">.</span><span class="n">get_user_input</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">selected_train_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">model_path</span> <span class="o">=</span> <span class="n">checkpoints</span><span class="p">[</span><span class="n">selected_train_count</span><span class="p">][</span><span class="s2">&quot;model&quot;</span><span class="p">]</span>
+        <span class="n">model_checkpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_checkpoint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">cuda_devices</span><span class="p">,</span> <span class="n">model_path</span><span class="p">)</span>
+
+        <span class="n">optimizer_path</span> <span class="o">=</span> <span class="n">checkpoints</span><span class="p">[</span><span class="n">selected_train_count</span><span class="p">][</span><span class="s2">&quot;optimizer&quot;</span><span class="p">]</span>
+        <span class="n">optimizer_checkpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_checkpoint</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="n">optimizer_path</span><span class="p">)</span>
+
+        <span class="n">checkpoints</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">checkpoints</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">model_checkpoint</span><span class="p">)</span>
+        <span class="n">checkpoints</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">optimizer_checkpoint</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">checkpoints</span>
+
+    <span class="k">def</span> <span class="nf">_create_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token_makers</span><span class="p">,</span> <span class="n">checkpoint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">helpers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">checkpoint</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">helpers</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="n">first_key</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">helpers</span><span class="p">))</span>
+            <span class="n">helper</span> <span class="o">=</span> <span class="n">helpers</span><span class="p">[</span><span class="n">first_key</span><span class="p">]</span>  <span class="c1"># get first helper</span>
+            <span class="n">model_init_params</span> <span class="o">=</span> <span class="n">helper</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">predict_helper</span> <span class="o">=</span> <span class="n">helper</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;predict_helper&quot;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">model_init_params</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;init_params&quot;</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">predict_helper</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;predict_helper&quot;</span><span class="p">,</span> <span class="p">{})</span>
+
+        <span class="n">model_params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;token_makers&quot;</span><span class="p">:</span> <span class="n">token_makers</span><span class="p">}</span>
+        <span class="n">model_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">model_init_params</span><span class="p">)</span>
+
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_by_factory</span><span class="p">(</span>
+            <span class="n">ModelFactory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="n">model_params</span>
+        <span class="p">)</span>
+        <span class="c1"># Save params</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">init_params</span> <span class="o">=</span> <span class="n">model_init_params</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">predict_helper</span> <span class="o">=</span> <span class="n">predict_helper</span>
+
+        <span class="k">if</span> <span class="n">checkpoint</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">load_model_checkpoint</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">checkpoint</span><span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_gpu_env</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">model</span>
+
+    <span class="k">def</span> <span class="nf">_set_gpu_env</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_gpu</span><span class="p">:</span>
+            <span class="n">cuda_devices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cuda_devices</span><span class="p">()</span>
+
+            <span class="n">use_multi_gpu</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cuda_devices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">use_multi_gpu</span><span class="p">:</span>
+                <span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="n">cuda_devices</span><span class="p">)</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">model</span>
+
+<div class="viewcode-block" id="Experiment.set_trainer"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.experiment.Experiment.set_trainer">[docs]</a>    <span class="k">def</span> <span class="nf">set_trainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">op_dict</span><span class="o">=</span><span class="p">{},</span> <span class="n">save_params</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="n">trainer_config</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">trainer</span><span class="p">)</span>
+        <span class="n">trainer_config</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_dict</span>
+        <span class="n">trainer_config</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="n">trainer_config</span><span class="p">[</span><span class="s2">&quot;cuda_devices&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cuda_devices</span><span class="p">()</span>
+        <span class="n">trainer_config</span><span class="p">[</span><span class="s2">&quot;learning_rate_scheduler&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">op_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;learning_rate_scheduler&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">trainer_config</span><span class="p">[</span><span class="s2">&quot;exponential_moving_average&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">op_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s2">&quot;exponential_moving_average&quot;</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span><span class="o">**</span><span class="n">trainer_config</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_summary_experiments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">hr_text</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span>
+        <span class="n">summary_logs</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">Experiment Summary. </span><span class="se">\n</span><span class="si">{hr_text}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">summary_logs</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&quot;Config.</span><span class="se">\n</span><span class="s2">{pretty_json_dumps(self.config_dict)}</span><span class="se">\n</span><span class="si">{hr_text}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">summary_logs</span> <span class="o">+=</span> <span class="p">(</span>
+            <span class="n">f</span><span class="s2">&quot;Training Logs.</span><span class="se">\n</span><span class="s2">{pretty_json_dumps(self.trainer.training_logs)}</span><span class="se">\n</span><span class="si">{hr_text}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="n">summary_logs</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&quot;Metric Logs.</span><span class="se">\n</span><span class="s2">{pretty_json_dumps(self.trainer.metric_logs)}&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">summary_logs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Experiment.set_eval_mode"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.experiment.Experiment.set_eval_mode">[docs]</a>    <span class="k">def</span> <span class="nf">set_eval_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Evaluate Mode</span>
+
+<span class="sd">        - Pipeline</span>
+<span class="sd">          1. read raw_data (DataReader)</span>
+<span class="sd">          2. load vocabs from checkpoint (DataReader, Token)</span>
+<span class="sd">          3. indexing tokens (DataReader, Token)</span>
+<span class="sd">          4. convert to DataSet (DataReader)</span>
+<span class="sd">          5. create DataLoader (DataLoader)</span>
+<span class="sd">          6. define and load model</span>
+<span class="sd">          7. run!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">data_reader</span><span class="p">,</span> <span class="n">token_makers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_data_and_token_makers</span><span class="p">()</span>
+
+        <span class="c1"># DataReader</span>
+        <span class="n">datas</span><span class="p">,</span> <span class="n">helpers</span> <span class="o">=</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+        <span class="c1"># Token &amp; Vocab</span>
+        <span class="n">vocabs</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">load_vocabs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_checkpoint</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">token_name</span><span class="p">,</span> <span class="n">token_maker</span> <span class="ow">in</span> <span class="n">token_makers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">token_maker</span><span class="o">.</span><span class="n">set_vocab</span><span class="p">(</span><span class="n">vocabs</span><span class="p">[</span><span class="n">token_name</span><span class="p">])</span>
+
+        <span class="n">text_handler</span> <span class="o">=</span> <span class="n">TextHandler</span><span class="p">(</span><span class="n">token_makers</span><span class="p">,</span> <span class="n">lazy_indexing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">text_handler</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">datas</span><span class="p">,</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">text_columns</span><span class="p">)</span>
+
+        <span class="c1"># iterator</span>
+        <span class="n">datasets</span> <span class="o">=</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">convert_to_dataset</span><span class="p">(</span><span class="n">datas</span><span class="p">,</span> <span class="n">helpers</span><span class="o">=</span><span class="n">helpers</span><span class="p">)</span>  <span class="c1"># with name</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">cuda_devices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">cuda_devices</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_by_factory</span><span class="p">(</span>
+            <span class="n">DataLoaderFactory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">iterator</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;datasets&quot;</span><span class="p">:</span> <span class="n">datasets</span><span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Model</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_model</span><span class="p">(</span><span class="n">token_makers</span><span class="p">,</span> <span class="n">checkpoint</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model_checkpoint</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_trainer</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">valid_loader</span></div>
+
+<div class="viewcode-block" id="Experiment.set_eval_inference_latency_mode"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.experiment.Experiment.set_eval_inference_latency_mode">[docs]</a>    <span class="k">def</span> <span class="nf">set_eval_inference_latency_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Evaluate Inference Latency Mode</span>
+
+<span class="sd">        - Pipeline</span>
+<span class="sd">          1. read raw_data (DataReader)</span>
+<span class="sd">          2. load vocabs from checkpoint (DataReader, Token)</span>
+<span class="sd">          3. define raw_to_tensor_fn (DataReader, Token)</span>
+<span class="sd">          4. define and load model</span>
+<span class="sd">          5. run!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data_reader</span><span class="p">,</span> <span class="n">token_makers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_data_and_token_makers</span><span class="p">()</span>
+
+        <span class="c1"># Token &amp; Vocab</span>
+        <span class="n">vocabs</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">load_vocabs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_checkpoint</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">token_name</span><span class="p">,</span> <span class="n">token_maker</span> <span class="ow">in</span> <span class="n">token_makers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">token_maker</span><span class="o">.</span><span class="n">set_vocab</span><span class="p">(</span><span class="n">vocabs</span><span class="p">[</span><span class="n">token_name</span><span class="p">])</span>
+
+        <span class="n">text_handler</span> <span class="o">=</span> <span class="n">TextHandler</span><span class="p">(</span><span class="n">token_makers</span><span class="p">,</span> <span class="n">lazy_indexing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">_</span><span class="p">,</span> <span class="n">helpers</span> <span class="o">=</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">raw_examples</span> <span class="o">=</span> <span class="n">helpers</span><span class="p">[</span><span class="s2">&quot;valid&quot;</span><span class="p">][</span><span class="s2">&quot;examples&quot;</span><span class="p">]</span>
+
+        <span class="n">cuda_device</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">cuda_devices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_gpu</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">raw_to_tensor_fn</span> <span class="o">=</span> <span class="n">text_handler</span><span class="o">.</span><span class="n">raw_to_tensor_fn</span><span class="p">(</span><span class="n">data_reader</span><span class="p">,</span> <span class="n">cuda_device</span><span class="o">=</span><span class="n">cuda_device</span><span class="p">)</span>
+
+        <span class="c1"># Model</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_model</span><span class="p">(</span><span class="n">token_makers</span><span class="p">,</span> <span class="n">checkpoint</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model_checkpoint</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_trainer</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">raw_examples</span><span class="p">,</span> <span class="n">raw_to_tensor_fn</span></div>
+
+<div class="viewcode-block" id="Experiment.predict"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.experiment.Experiment.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_features</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_settings</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;To use &#39;predict()&#39;, you must call &#39;set_predict_mode()&#39; first, with preload=True parameter&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">raw_to_tensor_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_settings</span><span class="p">[</span><span class="s2">&quot;raw_to_tensor_fn&quot;</span><span class="p">]</span>
+        <span class="n">arguments</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_settings</span><span class="p">[</span><span class="s2">&quot;arguments&quot;</span><span class="p">]</span>
+        <span class="n">arguments</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">raw_features</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">raw_features</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">assert</span> <span class="n">raw_to_tensor_fn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+            <span class="n">raw_features</span><span class="p">,</span>
+            <span class="n">raw_to_tensor_fn</span><span class="p">,</span>
+            <span class="n">arguments</span><span class="p">,</span>
+            <span class="n">interactive</span><span class="o">=</span><span class="n">arguments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;interactive&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Experiment.set_predict_mode"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.experiment.Experiment.set_predict_mode">[docs]</a>    <span class="k">def</span> <span class="nf">set_predict_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Predict Mode</span>
+
+<span class="sd">        - Pipeline</span>
+<span class="sd">          1. read raw_data (Argument)</span>
+<span class="sd">          2. load vocabs from checkpoint (DataReader, Token)</span>
+<span class="sd">          3. define raw_to_tensor_fn (DataReader, Token)</span>
+<span class="sd">          4. define and load model</span>
+<span class="sd">          5. run!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">data_reader</span><span class="p">,</span> <span class="n">token_makers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_data_and_token_makers</span><span class="p">()</span>
+
+        <span class="c1"># Token &amp; Vocab</span>
+        <span class="n">vocabs</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">load_vocabs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_checkpoint</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">token_name</span><span class="p">,</span> <span class="n">token_maker</span> <span class="ow">in</span> <span class="n">token_makers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">token_maker</span><span class="o">.</span><span class="n">set_vocab</span><span class="p">(</span><span class="n">vocabs</span><span class="p">[</span><span class="n">token_name</span><span class="p">])</span>
+
+        <span class="n">text_handler</span> <span class="o">=</span> <span class="n">TextHandler</span><span class="p">(</span><span class="n">token_makers</span><span class="p">,</span> <span class="n">lazy_indexing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Set predict config</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">argument</span><span class="o">.</span><span class="n">interactive</span><span class="p">:</span>
+            <span class="n">raw_features</span> <span class="o">=</span> <span class="p">{</span><span class="n">feature_name</span><span class="p">:</span> <span class="s2">&quot;&quot;</span> <span class="k">for</span> <span class="n">feature_name</span> <span class="ow">in</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">text_columns</span><span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">raw_features</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">feature_name</span> <span class="ow">in</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">text_columns</span><span class="p">:</span>
+                <span class="n">feature</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">argument</span><span class="p">,</span> <span class="n">feature_name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="c1"># if feature is None:</span>
+                <span class="c1"># raise ValueError(f&quot;--{feature_name} argument is required!&quot;)</span>
+                <span class="n">raw_features</span><span class="p">[</span><span class="n">feature_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">feature</span>
+
+        <span class="n">cuda_device</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">cuda_devices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_gpu</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">raw_to_tensor_fn</span> <span class="o">=</span> <span class="n">text_handler</span><span class="o">.</span><span class="n">raw_to_tensor_fn</span><span class="p">(</span>
+            <span class="n">data_reader</span><span class="p">,</span>
+            <span class="n">cuda_device</span><span class="o">=</span><span class="n">cuda_device</span><span class="p">,</span>
+            <span class="n">helper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model_checkpoint</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;predict_helper&quot;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Model</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_model</span><span class="p">(</span><span class="n">token_makers</span><span class="p">,</span> <span class="n">checkpoint</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model_checkpoint</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_trainer</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+        <span class="n">arguments</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">argument</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">preload</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">predict_settings</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;raw_to_tensor_fn&quot;</span><span class="p">:</span> <span class="n">raw_to_tensor_fn</span><span class="p">,</span> <span class="s2">&quot;arguments&quot;</span><span class="p">:</span> <span class="n">arguments</span><span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">raw_features</span><span class="p">,</span> <span class="n">raw_to_tensor_fn</span><span class="p">,</span> <span class="n">arguments</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+rqa.metric package
+==================
+
+Submodules
+----------
+
+.. automodule:: rqa.metric.classification
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.metric.squad_v1_official
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.metric.squad_v2_official
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.metric.wikisql_official
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: rqa.metric
+    :members:
+    :undoc-members:
+    :show-inheritance:

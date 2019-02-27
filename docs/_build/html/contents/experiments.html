@@ -1,0 +1,1132 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Experiment &mdash; reasoning-qa 0.3.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Pretrained Vector" href="pretrained_vector.html" />
+    <link rel="prev" title="Dataset and Model" href="dataset_and_model.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Experiment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#base-config">Base Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../rqa.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rqa.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rqa.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rqa.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rqa.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rqa.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rqa.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Experiment</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/contents/experiments.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="experiment">
+<span id="experiment"></span><h1>Experiment<a class="headerlink" href="#experiment" title="Permalink to this headline">¶</a></h1>
+<p>reasoning-qa는 하나의 Experiment 로서 관리가 됩니다.Command와 Config를 조합해서, 원하는 실험을 돌리는 것 입니다.</p>
+<div class="section" id="base-config">
+<span id="base-config"></span><h2>Base Config<a class="headerlink" href="#base-config" title="Permalink to this headline">¶</a></h2>
+<p>예시를 보여드리면, 아래는 SQuAD에서 자주 언급되는 <strong>BiDAF</strong> 모델에 대한 experiments 입니다.</p>
+<p>config path: base_config/squad/bidaf.json</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+     &quot;data_reader&quot;: {
+         &quot;dataset&quot;: &quot;squad&quot;,    &lt;-- 읽고자 하는 데이터셋
+         &quot;train_file_path&quot;: &quot;data/squad/train-v1.1.json&quot;,
+         &quot;valid_file_path&quot;: &quot;data/squad/dev-v1.1.json&quot;
+     },
+     &quot;iterator&quot;: {    # Default로 Dynamic Bucket 이터레이터를 사용
+         &quot;batch_size&quot;: 32
+     },
+     &quot;token&quot;: {    # 여기서 사용하고자하는 Token들을 정의
+         &quot;names&quot;: [&quot;char&quot;, &quot;glove&quot;],   
+         &quot;types&quot;: [&quot;char&quot;, &quot;word&quot;],
+         &quot;tokenizer&quot;: {   # Tokenizer는 모든 토큰이 공유
+             &quot;lang&quot;: &quot;eng&quot;,
+             &quot;word&quot;: {
+                 &quot;flatten&quot;: true,
+                 &quot;split_with_regex&quot;: true,
+                 &quot;eng&quot; : {
+                     &quot;package&quot;: &quot;nltk&quot;
+                 }
+             }
+         },
+         &quot;char&quot;: {   # CharCNN 토큰 정의 (vocab, indexer, embedding)
+             &quot;vocab&quot;: {
+                 &quot;start_token&quot;: &quot;&lt;s&gt;&quot;,
+                 &quot;end_token&quot;: &quot;&lt;/s&gt;&quot;,
+                 &quot;max_vocab_size&quot;: 260
+             },
+             &quot;indexer&quot;: {
+                 &quot;insert_char_start&quot;: true,
+                 &quot;insert_char_end&quot;: true
+             },
+             &quot;embedding&quot;: {
+                 &quot;embed_dim&quot;: 16,
+                 &quot;kernel_sizes&quot;: [5],
+                 &quot;num_filter&quot;: 100,
+                 &quot;activation&quot;: &quot;relu&quot;,
+                 &quot;dropout&quot;: 0.2
+             }
+         },
+         &quot;glove&quot;: {  # WordEmbedding 토큰 정의 (vocab, indexer, embedding)
+             &quot;vocab&quot;: {
+                 &quot;pretrained_path&quot;: &quot;data/pretrained_vector/glove.6B.vocab.txt&quot;
+             },
+             &quot;indexer&quot;: {
+                 &quot;lowercase&quot;: true
+             },
+             &quot;embedding&quot;: {
+                 &quot;embed_dim&quot;: 50,
+                 &quot;pretrained_path&quot;: &quot;data/pretrained_vector/glove.6B.50d.txt&quot;,
+                 &quot;trainable&quot;: false,
+                 &quot;dropout&quot;: 0.2
+             }
+         }
+     },
+     &quot;model&quot;: {   # 구현한 모델의 hyper-parameter 셋팅
+         &quot;name&quot;: &quot;bidaf&quot;,
+         &quot;bidaf&quot;: {
+             &quot;model_dim&quot;: 100,
+             &quot;contextual_rnn_num_layer&quot;: 1,
+             &quot;modeling_rnn_num_layer&quot;: 2,
+             &quot;predict_rnn_num_layer&quot;: 1,
+             &quot;dropout&quot;: 0.2
+         }
+     },
+     &quot;trainer&quot;: {   # 학습에 대한 설정
+         &quot;num_epochs&quot;: 50,
+         &quot;early_stopping_threshold&quot;: 10,
+         &quot;metric_key&quot;: &quot;f1&quot;,
+         &quot;verbose_step_count&quot;: 100,
+         &quot;save_epoch_count&quot;: 1
+     },
+     &quot;optimizer&quot;: {
+         &quot;op_type&quot;: &quot;adadelta&quot;,
+         &quot;learning_rate&quot;: 0.5,
+         &quot;exponential_moving_average&quot;: 0.999
+     },
+     &quot;seed_num&quot;: 2,
+     &quot;slack&quot;: true   # 실험이 끝나고, 슬랙에 정리해서 알려주는 알람기능
+ }
+</pre></div>
+</div>
+<p>위와 같이 base_config 파일을 만들고, 아래 커맨드와 함께 돌리면 됩니다.(--base_config 는 <code class="docutils literal notranslate"><span class="pre">base_config</span></code> 폴더로 지정이 되어있습니다)</p>
+</div>
+<div class="section" id="commands">
+<span id="commands"></span><h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
+<p><strong>Traning</strong></p>
+<ol>
+<li><p class="first">only Arguments</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">train</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">train_file_path</span> <span class="p">{</span><span class="n">file_path</span><span class="p">}</span> <span class="o">--</span><span class="n">valid_file_path</span> <span class="p">{</span><span class="n">file_path</span><span class="p">}</span> <span class="o">--</span><span class="n">model_name</span> <span class="p">{</span><span class="n">name</span><span class="p">}</span> <span class="o">...</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">only base_config (you can skip <code class="docutils literal notranslate"><span class="pre">/base_config</span></code> path)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">train</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">base_config</span> <span class="p">{</span><span class="n">base_config</span><span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">base_config + Arguments</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">train</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">base_config</span> <span class="p">{</span><span class="n">base_config</span><span class="p">}</span> <span class="o">--</span><span class="n">learning_rate</span> <span class="mf">0.002</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Overwrite <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code> to 0.002</li>
+</ul>
+</li>
+</ol>
+<p>학습을 진행하는 방식은 위의 3가지 argument 사용법을 이용하시면 됩니다.
+위의 bidaf config를 그대로 학습하고 싶으시다면, 아래와 같이 돌릴 수 있습니다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python train.py --base_config squad/bidaf
+</pre></div>
+</div>
+<p>config에 사용되는 값들은 <code class="docutils literal notranslate"><span class="pre">-h</span></code> 커맨드를 통해서 확인할 수 있습니다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python train.py -h
+
+usage: train.py <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>--seed_num SEED_NUM<span class="o">]</span>
+                <span class="o">[</span>--cuda_devices CUDA_DEVICES <span class="o">[</span>CUDA_DEVICES ...<span class="o">]]</span>
+                <span class="o">[</span>--slack SLACK<span class="o">]</span> <span class="o">[</span>--dataset DATA_READER.DATASET<span class="o">]</span>
+                <span class="o">[</span>--train_file_path DATA_READER.TRAIN_FILE_PATH<span class="o">]</span>
+                <span class="o">[</span>--valid_file_path DATA_READER.VALID_FILE_PATH<span class="o">]</span>
+                <span class="o">[</span>--test_file_path DATA_READER.TEST_FILE_PATH<span class="o">]</span>
+                <span class="o">[</span>--squad.context_max_length DATA_READER.SQUAD.CONTEXT_MAX_LENGTH<span class="o">]</span>
+                <span class="o">[</span>--history.context_max_length DATA_READER.HISTORY.CONTEXT_MAX_LENGTH<span class="o">]</span>
+                <span class="o">[</span>--batch_size ITERATOR.BATCH_SIZE<span class="o">]</span>
+                <span class="o">[</span>--token_names TOKEN.NAMES <span class="o">[</span>TOKEN.NAMES ...<span class="o">]]</span>
+                <span class="o">[</span>--token_types TOKEN.TYPES <span class="o">[</span>TOKEN.TYPES ...<span class="o">]]</span>
+                <span class="o">[</span>--char.pad_token TOKEN.CHAR.VOCAB.PAD_TOKEN<span class="o">]</span>
+                <span class="o">[</span>--char.oov_token TOKEN.CHAR.VOCAB.OOV_TOKEN<span class="o">]</span>
+                <span class="o">[</span>--char.start_token TOKEN.CHAR.VOCAB.START_TOKEN<span class="o">]</span>
+                <span class="o">[</span>--char.end_token TOKEN.CHAR.VOCAB.END_TOKEN<span class="o">]</span>
+                <span class="o">[</span>--char.min_count TOKEN.CHAR.VOCAB.MIN_COUNT<span class="o">]</span>
+                <span class="o">[</span>--char.max_vocab_size TOKEN.CHAR.VOCAB.MAX_VOCAB_SIZE<span class="o">]</span>
+                <span class="o">[</span>--word.pad_token TOKEN.WORD.VOCAB.PAD_TOKEN<span class="o">]</span>
+                <span class="o">[</span>--word.oov_token TOKEN.WORD.VOCAB.OOV_TOKEN<span class="o">]</span>
+                <span class="o">[</span>--word.min_count TOKEN.WORD.VOCAB.MIN_COUNT<span class="o">]</span>
+                <span class="o">[</span>--word.max_vocab_size TOKEN.WORD.VOCAB.MAX_VOCAB_SIZE<span class="o">]</span>
+                <span class="o">[</span>--frequent_word.frequent_count TOKEN.FREQUENT_WORD.VOCAB.FREQUENT_COUNT<span class="o">]</span>
+                <span class="o">[</span>--tokenizer.language TOKEN.TOKENIZER.LANG<span class="o">]</span>
+                <span class="o">[</span>--word.flatten TOKEN.TOKENIZER.WORD.FLATTEN<span class="o">]</span>
+                <span class="o">[</span>--word.split_with_regex TOKEN.TOKENIZER.WORD.SPLIT_WITH_REGEX<span class="o">]</span>
+                <span class="o">[</span>--word.eng.package TOKEN.TOKENIZER.WORD.ENG.PACKAGE<span class="o">]</span>
+                <span class="o">[</span>--word.kor.package TOKEN.TOKENIZER.WORD.KOR.PACKAGE<span class="o">]</span>
+                <span class="o">[</span>--char.insert_char_start TOKEN.CHAR.INDEXER.INSERT_CHAR_START<span class="o">]</span>
+                <span class="o">[</span>--char.insert_char_end TOKEN.CHAR.INDEXER.INSERT_CHAR_END<span class="o">]</span>
+                <span class="o">[</span>--exact_match.lower TOKEN.EXACT_MATCH.INDEXER.LOWER<span class="o">]</span>
+                <span class="o">[</span>--exact_match.lemma TOKEN.EXACT_MATCH.INDEXER.LEMMA<span class="o">]</span>
+                <span class="o">[</span>--linguistic.pos_tag TOKEN.LINGUISTIC.INDEXER.POS_TAG<span class="o">]</span>
+                <span class="o">[</span>--linguistic.ner TOKEN.LINGUISTIC.INDEXER.NER<span class="o">]</span>
+                <span class="o">[</span>--linguistic.dep TOKEN.LINGUISTIC.INDEXER.DEP<span class="o">]</span>
+                <span class="o">[</span>--word.lowercase TOKEN.WORD.INDEXER.LOWERCASE<span class="o">]</span>
+                <span class="o">[</span>--word.insert_start TOKEN.WORD.INDEXER.INSERT_START<span class="o">]</span>
+                <span class="o">[</span>--word.insert_end TOKEN.WORD.INDEXER.INSERT_END<span class="o">]</span>
+                <span class="o">[</span>--char.embed_dim TOKEN.CHAR.EMBEDDING.EMBED_DIM<span class="o">]</span>
+                <span class="o">[</span>--char.kernel_sizes TOKEN.CHAR.EMBEDDING.KERNEL_SIZES <span class="o">[</span>TOKEN.CHAR.EMBEDDING.KERNEL_SIZES ...<span class="o">]]</span>
+                <span class="o">[</span>--char.num_filter TOKEN.CHAR.EMBEDDING.NUM_FILTER<span class="o">]</span>
+                <span class="o">[</span>--char.activation TOKEN.CHAR.EMBEDDING.ACTIVATION<span class="o">]</span>
+                <span class="o">[</span>--char.dropout TOKEN.CHAR.EMBEDDING.DROPOUT<span class="o">]</span>
+                <span class="o">[</span>--cove.trainable TOKEN.COVE.EMBEDDING.TRAINABLE<span class="o">]</span>
+                <span class="o">[</span>--cove.dropout TOKEN.COVE.EMBEDDING.DROPOUT<span class="o">]</span>
+                <span class="o">[</span>--cove.project_dim TOKEN.COVE.EMBEDDING.PROJECT_DIM<span class="o">]</span>
+                <span class="o">[</span>--elmo.options_file TOKEN.ELMO.EMBEDDING.OPTIONS_FILE<span class="o">]</span>
+                <span class="o">[</span>--elmo.weight_file TOKEN.ELMO.EMBEDDING.WEIGHT_FILE<span class="o">]</span>
+                <span class="o">[</span>--elmo.trainable TOKEN.ELMO.EMBEDDING.TRAINABLE<span class="o">]</span>
+                <span class="o">[</span>--elmo.dropout TOKEN.ELMO.EMBEDDING.DROPOUT<span class="o">]</span>
+                <span class="o">[</span>--elmo.project_dim TOKEN.ELMO.EMBEDDING.PROJECT_DIM<span class="o">]</span>
+                <span class="o">[</span>--word_permeability.memory_clip TOKEN.WORD_PERMEABILITY.EMBEDDING.MEMORY_CLIP<span class="o">]</span>
+                <span class="o">[</span>--word_permeability.proj_clip TOKEN.WORD_PERMEABILITY.EMBEDDING.PROJ_CLIP<span class="o">]</span>
+                <span class="o">[</span>--word_permeability.embed_dim TOKEN.WORD_PERMEABILITY.EMBEDDING.EMBED_DIM<span class="o">]</span>
+                <span class="o">[</span>--word_permeability.linear_dim TOKEN.WORD_PERMEABILITY.EMBEDDING.LINEAR_DIM<span class="o">]</span>
+                <span class="o">[</span>--word_permeability.trainable TOKEN.WORD_PERMEABILITY.EMBEDDING.TRAINABLE<span class="o">]</span>
+                <span class="o">[</span>--word_permeability.dropout TOKEN.WORD_PERMEABILITY.EMBEDDING.DROPOUT<span class="o">]</span>
+                <span class="o">[</span>--word_permeability.activation TOKEN.WORD_PERMEABILITY.EMBEDDING.ACTIVATION<span class="o">]</span>
+                <span class="o">[</span>--word_permeability.bidirectional TOKEN.WORD_PERMEABILITY.EMBEDDING.BIDIRECTIONAL<span class="o">]</span>
+                <span class="o">[</span>--frequent_word.embed_dim TOKEN.FREQUENT_WORD.EMBEDDING.EMBED_DIM<span class="o">]</span>
+                <span class="o">[</span>--frequent_word.pretrained_path TOKEN.FREQUENT_WORD.EMBEDDING.PRETRAINED_PATH<span class="o">]</span>
+                <span class="o">[</span>--frequent_word.dropout TOKEN.FREQUENT_WORD.EMBEDDING.DROPOUT<span class="o">]</span>
+                <span class="o">[</span>--word.embed_dim TOKEN.WORD.EMBEDDING.EMBED_DIM<span class="o">]</span>
+                <span class="o">[</span>--word.pretrained_path TOKEN.WORD.EMBEDDING.PRETRAINED_PATH<span class="o">]</span>
+                <span class="o">[</span>--word.trainable TOKEN.WORD.EMBEDDING.TRAINABLE<span class="o">]</span>
+                <span class="o">[</span>--word.dropout TOKEN.WORD.EMBEDDING.DROPOUT<span class="o">]</span>
+                <span class="o">[</span>--model_name MODEL.NAME<span class="o">]</span>
+                <span class="o">[</span>--bidaf.aligned_query_embedding MODEL.BIDAF.ALIGNED_QUERY_EMBEDDING<span class="o">]</span>
+                <span class="o">[</span>--bidaf.answer_maxlen MODEL.BIDAF.ANSWER_MAXLEN<span class="o">]</span>
+                <span class="o">[</span>--bidaf.model_dim MODEL.BIDAF.MODEL_DIM<span class="o">]</span>
+                <span class="o">[</span>--bidaf.contextual_rnn_num_layer MODEL.BIDAF.CONTEXTUAL_RNN_NUM_LAYER<span class="o">]</span>
+                <span class="o">[</span>--bidaf.modeling_rnn_num_layer MODEL.BIDAF.MODELING_RNN_NUM_LAYER<span class="o">]</span>
+                <span class="o">[</span>--bidaf.predict_rnn_num_layer MODEL.BIDAF.PREDICT_RNN_NUM_LAYER<span class="o">]</span>
+                <span class="o">[</span>--bidaf.dropout MODEL.BIDAF.DROPOUT<span class="o">]</span>
+                <span class="o">[</span>--bidaf_no_answer.aligned_query_embedding MODEL.BIDAF_NO_ANSWER.ALIGNED_QUERY_EMBEDDING<span class="o">]</span>
+                <span class="o">[</span>--bidaf_no_answer.answer_maxlen MODEL.BIDAF_NO_ANSWER.ANSWER_MAXLEN<span class="o">]</span>
+                <span class="o">[</span>--bidaf_no_answer.model_dim MODEL.BIDAF_NO_ANSWER.MODEL_DIM<span class="o">]</span>
+                <span class="o">[</span>--bidaf_no_answer.contextual_rnn_num_layer MODEL.BIDAF_NO_ANSWER.CONTEXTUAL_RNN_NUM_LAYER<span class="o">]</span>
+                <span class="o">[</span>--bidaf_no_answer.modeling_rnn_num_layer MODEL.BIDAF_NO_ANSWER.MODELING_RNN_NUM_LAYER<span class="o">]</span>
+                <span class="o">[</span>--bidaf_no_answer.predict_rnn_num_layer MODEL.BIDAF_NO_ANSWER.PREDICT_RNN_NUM_LAYER<span class="o">]</span>
+                <span class="o">[</span>--bidaf_no_answer.dropout MODEL.BIDAF_NO_ANSWER.DROPOUT<span class="o">]</span>
+                <span class="o">[</span>--simple.answer_maxlen MODEL.SIMPLE.ANSWER_MAXLEN<span class="o">]</span>
+                <span class="o">[</span>--simple.model_dim MODEL.SIMPLE.MODEL_DIM<span class="o">]</span>
+                <span class="o">[</span>--simple.dropout MODEL.SIMPLE.DROPOUT<span class="o">]</span>
+                <span class="o">[</span>--qanet.aligned_query_embedding MODEL.QANET.ALIGNED_QUERY_EMBEDDING<span class="o">]</span>
+                <span class="o">[</span>--qanet.answer_maxlen MODEL.QANET.ANSWER_MAXLEN<span class="o">]</span>
+                <span class="o">[</span>--qanet.model_dim MODEL.QANET.MODEL_DIM<span class="o">]</span>
+                <span class="o">[</span>--qanet.kernel_size_in_embedding MODEL.QANET.KERNEL_SIZE_IN_EMBEDDING<span class="o">]</span>
+                <span class="o">[</span>--qanet.num_head_in_embedding MODEL.QANET.NUM_HEAD_IN_EMBEDDING<span class="o">]</span>
+                <span class="o">[</span>--qanet.num_conv_block_in_embedding MODEL.QANET.NUM_CONV_BLOCK_IN_EMBEDDING<span class="o">]</span>
+                <span class="o">[</span>--qanet.num_embedding_encoder_block MODEL.QANET.NUM_EMBEDDING_ENCODER_BLOCK<span class="o">]</span>
+                <span class="o">[</span>--qanet.kernel_size_in_modeling MODEL.QANET.KERNEL_SIZE_IN_MODELING<span class="o">]</span>
+                <span class="o">[</span>--qanet.num_head_in_modeling MODEL.QANET.NUM_HEAD_IN_MODELING<span class="o">]</span>
+                <span class="o">[</span>--qanet.num_conv_block_in_modeling MODEL.QANET.NUM_CONV_BLOCK_IN_MODELING<span class="o">]</span>
+                <span class="o">[</span>--qanet.num_modeling_encoder_block MODEL.QANET.NUM_MODELING_ENCODER_BLOCK<span class="o">]</span>
+                <span class="o">[</span>--qanet.layer_dropout MODEL.QANET.LAYER_DROPOUT<span class="o">]</span>
+                <span class="o">[</span>--qanet.dropout MODEL.QANET.DROPOUT<span class="o">]</span>
+                <span class="o">[</span>--docqa.aligned_query_embedding MODEL.DOCQA.ALIGNED_QUERY_EMBEDDING<span class="o">]</span>
+                <span class="o">[</span>--docqa.answer_maxlen MODEL.DOCQA.ANSWER_MAXLEN<span class="o">]</span>
+                <span class="o">[</span>--docqa.rnn_dim MODEL.DOCQA.RNN_DIM<span class="o">]</span>
+                <span class="o">[</span>--docqa.linear_dim MODEL.DOCQA.LINEAR_DIM<span class="o">]</span>
+                <span class="o">[</span>--docqa.preprocess_rnn_num_layer MODEL.DOCQA.PREPROCESS_RNN_NUM_LAYER<span class="o">]</span>
+                <span class="o">[</span>--docqa.modeling_rnn_num_layer MODEL.DOCQA.MODELING_RNN_NUM_LAYER<span class="o">]</span>
+                <span class="o">[</span>--docqa.predict_rnn_num_layer MODEL.DOCQA.PREDICT_RNN_NUM_LAYER<span class="o">]</span>
+                <span class="o">[</span>--docqa.dropout MODEL.DOCQA.DROPOUT<span class="o">]</span>
+                <span class="o">[</span>--docqa.weight_init MODEL.DOCQA.WEIGHT_INIT<span class="o">]</span>
+                <span class="o">[</span>--docqa_no_answer.aligned_query_embedding MODEL.DOCQA_NO_ANSWER.ALIGNED_QUERY_EMBEDDING<span class="o">]</span>
+                <span class="o">[</span>--docqa_no_answer.answer_maxlen MODEL.DOCQA_NO_ANSWER.ANSWER_MAXLEN<span class="o">]</span>
+                <span class="o">[</span>--docqa_no_answer.rnn_dim MODEL.DOCQA_NO_ANSWER.RNN_DIM<span class="o">]</span>
+                <span class="o">[</span>--docqa_no_answer.linear_dim MODEL.DOCQA_NO_ANSWER.LINEAR_DIM<span class="o">]</span>
+                <span class="o">[</span>--docqa_no_answer.dropout MODEL.DOCQA_NO_ANSWER.DROPOUT<span class="o">]</span>
+                <span class="o">[</span>--docqa_no_answer.weight_init MODEL.DOCQA_NO_ANSWER.WEIGHT_INIT<span class="o">]</span>
+                <span class="o">[</span>--drqa.aligned_query_embedding MODEL.DRQA.ALIGNED_QUERY_EMBEDDING<span class="o">]</span>
+                <span class="o">[</span>--drqa.answer_maxlen MODEL.DRQA.ANSWER_MAXLEN<span class="o">]</span>
+                <span class="o">[</span>--drqa.model_dim MODEL.DRQA.MODEL_DIM<span class="o">]</span>
+                <span class="o">[</span>--drqa.dropout MODEL.DRQA.DROPOUT<span class="o">]</span>
+                <span class="o">[</span>--sqlnet.column_attention MODEL.SQLNET.COLUMN_ATTENTION<span class="o">]</span>
+                <span class="o">[</span>--sqlnet.model_dim MODEL.SQLNET.MODEL_DIM<span class="o">]</span>
+                <span class="o">[</span>--sqlnet.rnn_num_layer MODEL.SQLNET.RNN_NUM_LAYER<span class="o">]</span>
+                <span class="o">[</span>--sqlnet.dropout MODEL.SQLNET.DROPOUT<span class="o">]</span>
+                <span class="o">[</span>--sqlnet.column_maxlen MODEL.SQLNET.COLUMN_MAXLEN<span class="o">]</span>
+                <span class="o">[</span>--sqlnet.token_maxlen MODEL.SQLNET.TOKEN_MAXLEN<span class="o">]</span>
+                <span class="o">[</span>--sqlnet.conds_column_loss_alpha MODEL.SQLNET.CONDS_COLUMN_LOSS_ALPHA<span class="o">]</span>
+                <span class="o">[</span>--pause NSML.PAUSE<span class="o">]</span> <span class="o">[</span>--iteration NSML.ITERATION<span class="o">]</span>
+                <span class="o">[</span>--num_epochs TRAINER.NUM_EPOCHS<span class="o">]</span>
+                <span class="o">[</span>--patience TRAINER.EARLY_STOPPING_THRESHOLD<span class="o">]</span>
+                <span class="o">[</span>--metric_key TRAINER.METRIC_KEY<span class="o">]</span>
+                <span class="o">[</span>--verbose_step_count TRAINER.VERBOSE_STEP_COUNT<span class="o">]</span>
+                <span class="o">[</span>--save_epoch_count TRAINER.SAVE_EPOCH_COUNT<span class="o">]</span>
+                <span class="o">[</span>--log_dir TRAINER.LOG_DIR<span class="o">]</span> <span class="o">[</span>--grad_norm TRAINER.GRAD_NORM<span class="o">]</span>
+                <span class="o">[</span>--grad_clipping TRAINER.GRAD_CLIPPING<span class="o">]</span>
+                <span class="o">[</span>--optimizer_type OPTIMIZER.OP_TYPE<span class="o">]</span>
+                <span class="o">[</span>--learning_rate OPTIMIZER.LEARNING_RATE<span class="o">]</span>
+                <span class="o">[</span>--adadelta.rho OPTIMIZER.ADADELTA.RHO<span class="o">]</span>
+                <span class="o">[</span>--adadelta.eps OPTIMIZER.ADADELTA.EPS<span class="o">]</span>
+                <span class="o">[</span>--adadelta.weight_decay OPTIMIZER.ADADELTA.WEIGHT_DECAY<span class="o">]</span>
+                <span class="o">[</span>--adagrad.lr_decay OPTIMIZER.ADAGRAD.LR_DECAY<span class="o">]</span>
+                <span class="o">[</span>--adagrad.weight_decay OPTIMIZER.ADAGRAD.WEIGHT_DECAY<span class="o">]</span>
+                <span class="o">[</span>--adam.betas OPTIMIZER.ADAM.BETAS <span class="o">[</span>OPTIMIZER.ADAM.BETAS ...<span class="o">]]</span>
+                <span class="o">[</span>--adam.eps OPTIMIZER.ADAM.EPS<span class="o">]</span>
+                <span class="o">[</span>--adam.weight_decay OPTIMIZER.ADAM.WEIGHT_DECAY<span class="o">]</span>
+                <span class="o">[</span>--sparse_adam.betas OPTIMIZER.SPARSE_ADAM.BETAS <span class="o">[</span>OPTIMIZER.SPARSE_ADAM.BETAS ...<span class="o">]]</span>
+                <span class="o">[</span>--sparse_adam.eps OPTIMIZER.SPARSE_ADAM.EPS<span class="o">]</span>
+                <span class="o">[</span>--adamax.betas OPTIMIZER.ADAMAX.BETAS <span class="o">[</span>OPTIMIZER.ADAMAX.BETAS ...<span class="o">]]</span>
+                <span class="o">[</span>--adamax.eps OPTIMIZER.ADAMAX.EPS<span class="o">]</span>
+                <span class="o">[</span>--adamax.weight_decay OPTIMIZER.ADAMAX.WEIGHT_DECAY<span class="o">]</span>
+                <span class="o">[</span>--averaged_sgd.lambd OPTIMIZER.AVERAGED_SGD.LAMBD<span class="o">]</span>
+                <span class="o">[</span>--averaged_sgd.alpha OPTIMIZER.AVERAGED_SGD.ALPHA<span class="o">]</span>
+                <span class="o">[</span>--averaged_sgd.t0 OPTIMIZER.AVERAGED_SGD.T0<span class="o">]</span>
+                <span class="o">[</span>--averaged_sgd.weight_decay OPTIMIZER.AVERAGED_SGD.WEIGHT_DECAY<span class="o">]</span>
+                <span class="o">[</span>--rmsprop.momentum OPTIMIZER.RMSPROP.MOMENTUM<span class="o">]</span>
+                <span class="o">[</span>--rmsprop.alpha OPTIMIZER.RMSPROP.ALPHA<span class="o">]</span>
+                <span class="o">[</span>--rmsprop.eps OPTIMIZER.RMSPROP.EPS<span class="o">]</span>
+                <span class="o">[</span>--rmsprop.centered OPTIMIZER.RMSPROP.CENTERED<span class="o">]</span>
+                <span class="o">[</span>--rmsprop.weight_decay OPTIMIZER.RMSPROP.WEIGHT_DECAY<span class="o">]</span>
+                <span class="o">[</span>--sgd.momentum OPTIMIZER.SGD.MOMENTUM<span class="o">]</span>
+                <span class="o">[</span>--sgd.dampening OPTIMIZER.SGD.DAMPENING<span class="o">]</span>
+                <span class="o">[</span>--sgd.nesterov OPTIMIZER.SGD.NESTEROV<span class="o">]</span>
+                <span class="o">[</span>--sgd.weight_decay OPTIMIZER.SGD.WEIGHT_DECAY<span class="o">]</span>
+                <span class="o">[</span>--lr_scheduler_type OPTIMIZER.LR_SCHEDULER_TYPE<span class="o">]</span>
+                <span class="o">[</span>--step.step_size OPTIMIZER.STEP.STEP_SIZE<span class="o">]</span>
+                <span class="o">[</span>--step.gamma OPTIMIZER.STEP.GAMMA<span class="o">]</span>
+                <span class="o">[</span>--step.last_epoch OPTIMIZER.STEP.LAST_EPOCH<span class="o">]</span>
+                <span class="o">[</span>--multi_step.milestones OPTIMIZER.MULTI_STEP.MILESTONES <span class="o">[</span>OPTIMIZER.MULTI_STEP.MILESTONES ...<span class="o">]]</span>
+                <span class="o">[</span>--multi_step.gamma OPTIMIZER.MULTI_STEP.GAMMA<span class="o">]</span>
+                <span class="o">[</span>--multi_step.last_epoch OPTIMIZER.MULTI_STEP.LAST_EPOCH<span class="o">]</span>
+                <span class="o">[</span>--exponential.gamma OPTIMIZER.EXPONENTIAL.GAMMA<span class="o">]</span>
+                <span class="o">[</span>--exponential.last_epoch OPTIMIZER.EXPONENTIAL.LAST_EPOCH<span class="o">]</span>
+                <span class="o">[</span>--cosine.T_max OPTIMIZER.COSINE.T_MAX<span class="o">]</span>
+                <span class="o">[</span>--cosine.eta_min OPTIMIZER.COSINE.ETA_MIN<span class="o">]</span>
+                <span class="o">[</span>--cosine.last_epoch OPTIMIZER.COSINE.LAST_EPOCH<span class="o">]</span>
+                <span class="o">[</span>--reduce_on_plateau.factor OPTIMIZER.REDUCE_ON_PLATEAU.FACTOR<span class="o">]</span>
+                <span class="o">[</span>--reduce_on_plateau.mode OPTIMIZER.REDUCE_ON_PLATEAU.MODE<span class="o">]</span>
+                <span class="o">[</span>--reduce_on_plateau.patience OPTIMIZER.REDUCE_ON_PLATEAU.PATIENCE<span class="o">]</span>
+                <span class="o">[</span>--reduce_on_plateau.threshold OPTIMIZER.REDUCE_ON_PLATEAU.THRESHOLD<span class="o">]</span>
+                <span class="o">[</span>--reduce_on_plateau.threshold_mode OPTIMIZER.REDUCE_ON_PLATEAU.THRESHOLD_MODE<span class="o">]</span>
+                <span class="o">[</span>--reduce_on_plateau.cooldown OPTIMIZER.REDUCE_ON_PLATEAU.COOLDOWN<span class="o">]</span>
+                <span class="o">[</span>--reduce_on_plateau.min_lr OPTIMIZER.REDUCE_ON_PLATEAU.MIN_LR <span class="o">[</span>OPTIMIZER.REDUCE_ON_PLATEAU.MIN_LR ...<span class="o">]]</span>
+                <span class="o">[</span>--reduce_on_plateau.eps OPTIMIZER.REDUCE_ON_PLATEAU.EPS<span class="o">]</span>
+                <span class="o">[</span>--warmup.final_step OPTIMIZER.WARMUP.FINAL_STEP<span class="o">]</span>
+                <span class="o">[</span>--warmup.last_epoch OPTIMIZER.WARMUP.LAST_EPOCH<span class="o">]</span>
+                <span class="o">[</span>--ema OPTIMIZER.EXPONENTIAL_MOVING_AVERAGE<span class="o">]</span>
+                <span class="o">[</span>--base_config BASE_CONFIG<span class="o">]</span>
+
+optional arguments:
+  -h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
+
+Genearl:
+  --seed_num SEED_NUM    Manually <span class="nb">set</span> seed_num <span class="o">(</span>Python, Numpy, Pytorch<span class="o">)</span> default is <span class="m">21</span>
+  --cuda_devices CUDA_DEVICES <span class="o">[</span>CUDA_DEVICES ...<span class="o">]</span>
+                         Set cuda_devices ids <span class="o">(</span>use GPU<span class="o">)</span>. <span class="k">if</span> you use NSML, use GPU_NUM
+  --slack SLACK          Slack notification <span class="o">(</span><span class="c1">#experiment channel)</span>
+
+Data Reader:
+  --dataset DATA_READER.DATASET
+                         Dataset Name <span class="o">[</span>squad<span class="p">|</span>squad2<span class="o">]</span>
+  --train_file_path DATA_READER.TRAIN_FILE_PATH
+                         train file path.
+  --valid_file_path DATA_READER.VALID_FILE_PATH
+                         validation file path.
+  --test_file_path DATA_READER.TEST_FILE_PATH
+                         <span class="nb">test</span> file path.
+
+  <span class="c1"># SQuAD DataSet:</span>
+  --squad.context_max_length DATA_READER.SQUAD.CONTEXT_MAX_LENGTH
+                         The number of SQuAD Context maximum length.
+
+  <span class="c1"># HistoryQA DataSet:</span>
+  --history.context_max_length DATA_READER.HISTORY.CONTEXT_MAX_LENGTH
+                         The number of HistoryQA Context maximum length.
+
+Iterator:
+  --batch_size ITERATOR.BATCH_SIZE
+                         Maximum batch size <span class="k">for</span> trainer
+
+Token:
+  --token_names TOKEN.NAMES <span class="o">[</span>TOKEN.NAMES ...<span class="o">]</span>
+                         Define tokens name
+  --token_types TOKEN.TYPES <span class="o">[</span>TOKEN.TYPES ...<span class="o">]</span>
+                            Use pre-defined token
+                            <span class="o">(</span>tokenizer -&gt; indexer -&gt; embedder<span class="o">)</span>
+
+                            <span class="o">[</span>char<span class="p">|</span>cove<span class="p">|</span>elmo<span class="p">|</span>exact_match<span class="p">|</span>frequent_word<span class="p">|</span>word<span class="o">]</span>
+
+ <span class="c1"># Vocabulary:</span>
+  --char.pad_token TOKEN.CHAR.VOCAB.PAD_TOKEN
+                         Padding Token value
+  --char.oov_token TOKEN.CHAR.VOCAB.OOV_TOKEN
+                         Out-of-Vocabulary Token value
+  --char.start_token TOKEN.CHAR.VOCAB.START_TOKEN
+                         Start Token value
+  --char.end_token TOKEN.CHAR.VOCAB.END_TOKEN
+                         End Token value
+  --char.min_count TOKEN.CHAR.VOCAB.MIN_COUNT
+                         The number of token<span class="s1">&#39;s min count</span>
+<span class="s1">  --char.max_vocab_size TOKEN.CHAR.VOCAB.MAX_VOCAB_SIZE</span>
+<span class="s1">                         The number of vocab&#39;</span>s max size
+  --word.pad_token TOKEN.WORD.VOCAB.PAD_TOKEN
+                         Padding Token value
+  --word.oov_token TOKEN.WORD.VOCAB.OOV_TOKEN
+                         Out-of-Vocabulary Token value
+  --word.min_count TOKEN.WORD.VOCAB.MIN_COUNT
+                         The number of token<span class="s1">&#39;s min count</span>
+<span class="s1">  --word.max_vocab_size TOKEN.WORD.VOCAB.MAX_VOCAB_SIZE</span>
+<span class="s1">                         The number of vocab&#39;</span>s max size
+  --frequent_word.frequent_count TOKEN.FREQUENT_WORD.VOCAB.FREQUENT_COUNT
+                            The number of threshold frequent count
+                            <span class="o">(</span>&gt;<span class="o">=</span> threshold -&gt; fine-tune, &lt; threshold -&gt; fixed<span class="o">)</span>
+
+ <span class="c1"># Tokenizer:</span>
+  --tokenizer.language TOKEN.TOKENIZER.LANG
+                            WordTokenizer Language <span class="o">[</span>eng<span class="p">|</span>kor<span class="o">]</span>
+                            Default is <span class="s1">&#39;eng&#39;</span>
+  --word.flatten TOKEN.TOKENIZER.WORD.FLATTEN
+                                convert tokens to flatten tokens.
+                                <span class="k">if</span> False, <span class="o">[[</span>token <span class="k">for</span> token in tokens<span class="o">]</span> <span class="k">for</span> sentence in sentences<span class="o">]</span>
+  --word.split_with_regex TOKEN.TOKENIZER.WORD.SPLIT_WITH_REGEX
+                         preprocess <span class="k">for</span> SQuAD Context data <span class="o">(</span>simple regex<span class="o">)</span>
+  --word.eng.package TOKEN.TOKENIZER.WORD.ENG.PACKAGE
+                            English Word Tokenizer Package <span class="o">[</span>nltk<span class="p">|</span>spacy<span class="o">]</span>
+                            Default is <span class="s1">&#39;nltk&#39;</span>
+  --word.kor.package TOKEN.TOKENIZER.WORD.KOR.PACKAGE
+                            Korean Word Tokenizer Package <span class="o">[</span>mecab<span class="o">]</span>
+                            Default is <span class="s1">&#39;mecab&#39;</span>
+
+ <span class="c1"># Indexer:</span>
+  --char.insert_char_start TOKEN.CHAR.INDEXER.INSERT_CHAR_START
+                         insert first start_token to tokens
+  --char.insert_char_end TOKEN.CHAR.INDEXER.INSERT_CHAR_END
+                         append end_token to tokens
+  --exact_match.lower TOKEN.EXACT_MATCH.INDEXER.LOWER
+                         add lower <span class="k">case</span> feature
+  --exact_match.lemma TOKEN.EXACT_MATCH.INDEXER.LEMMA
+                         add lemma <span class="k">case</span> feature
+  --linguistic.pos_tag TOKEN.LINGUISTIC.INDEXER.POS_TAG
+                         add POS Tagging feature
+  --linguistic.ner TOKEN.LINGUISTIC.INDEXER.NER
+                         add Named Entity Recognition feature
+  --linguistic.dep TOKEN.LINGUISTIC.INDEXER.DEP
+                         add Dependency Parser feature
+  --word.lowercase TOKEN.WORD.INDEXER.LOWERCASE
+                         Apply word token to lowercase
+  --word.insert_start TOKEN.WORD.INDEXER.INSERT_START
+                         insert first start_token to tokens
+  --word.insert_end TOKEN.WORD.INDEXER.INSERT_END
+                         append end_token to tokens
+
+ <span class="c1"># Embedding:</span>
+  --char.embed_dim TOKEN.CHAR.EMBEDDING.EMBED_DIM
+                         The number of Embedding dimension
+  --char.kernel_sizes TOKEN.CHAR.EMBEDDING.KERNEL_SIZES <span class="o">[</span>TOKEN.CHAR.EMBEDDING.KERNEL_SIZES ...<span class="o">]</span>
+                         CharCNN kernel_sizes <span class="o">(</span>n-gram<span class="o">)</span>
+  --char.num_filter TOKEN.CHAR.EMBEDDING.NUM_FILTER
+                         The number of CNN filter
+  --char.activation TOKEN.CHAR.EMBEDDING.ACTIVATION
+                         CharCNN activation Function <span class="o">(</span>default: ReLU<span class="o">)</span>
+  --char.dropout TOKEN.CHAR.EMBEDDING.DROPOUT
+                         Embedding dropout prob <span class="o">(</span>default: <span class="m">0</span>.2<span class="o">)</span>
+  --cove.trainable TOKEN.COVE.EMBEDDING.TRAINABLE
+                         CoVe Embedding Trainable
+  --cove.dropout TOKEN.COVE.EMBEDDING.DROPOUT
+                         Embedding dropout prob <span class="o">(</span>default: <span class="m">0</span>.2<span class="o">)</span>
+  --cove.project_dim TOKEN.COVE.EMBEDDING.PROJECT_DIM
+                         The number of projection dimension
+  --elmo.options_file TOKEN.ELMO.EMBEDDING.OPTIONS_FILE
+                         The option file path of ELMo
+  --elmo.weight_file TOKEN.ELMO.EMBEDDING.WEIGHT_FILE
+                         The weight file path of ELMo
+  --elmo.trainable TOKEN.ELMO.EMBEDDING.TRAINABLE
+                         elmo Embedding Trainable
+  --elmo.dropout TOKEN.ELMO.EMBEDDING.DROPOUT
+                         Embedding dropout prob <span class="o">(</span>default: <span class="m">0</span>.5<span class="o">)</span>
+  --elmo.project_dim TOKEN.ELMO.EMBEDDING.PROJECT_DIM
+                         The number of projection dimension <span class="o">(</span>default is None<span class="o">)</span>
+  --word_permeability.memory_clip TOKEN.WORD_PERMEABILITY.EMBEDDING.MEMORY_CLIP
+                         The number of memory cell clip value
+  --word_permeability.proj_clip TOKEN.WORD_PERMEABILITY.EMBEDDING.PROJ_CLIP
+                         The number of p clip value after projection
+  --word_permeability.embed_dim TOKEN.WORD_PERMEABILITY.EMBEDDING.EMBED_DIM
+                         The number of Embedding dimension
+  --word_permeability.linear_dim TOKEN.WORD_PERMEABILITY.EMBEDDING.LINEAR_DIM
+                         The number of linear projection dimension
+  --word_permeability.trainable TOKEN.WORD_PERMEABILITY.EMBEDDING.TRAINABLE
+                         word_permeability Embedding Trainable
+  --word_permeability.dropout TOKEN.WORD_PERMEABILITY.EMBEDDING.DROPOUT
+                         Embedding dropout prob <span class="o">(</span>default: <span class="m">0</span>.5<span class="o">)</span>
+  --word_permeability.activation TOKEN.WORD_PERMEABILITY.EMBEDDING.ACTIVATION
+                         Activation Function <span class="o">(</span>default is <span class="s1">&#39;tanh&#39;</span><span class="o">)</span>
+  --word_permeability.bidirectional TOKEN.WORD_PERMEABILITY.EMBEDDING.BIDIRECTIONAL
+                         bidirectional use or not <span class="o">([</span>forward<span class="p">;</span>backward<span class="o">])</span> <span class="o">(</span>default is False<span class="o">)</span>
+  --frequent_word.embed_dim TOKEN.FREQUENT_WORD.EMBEDDING.EMBED_DIM
+                         The number of Embedding dimension
+  --frequent_word.pretrained_path TOKEN.FREQUENT_WORD.EMBEDDING.PRETRAINED_PATH
+                         Add pretrained Word vector model<span class="s1">&#39;s path. (support file format like Glove)</span>
+<span class="s1">  --frequent_word.dropout TOKEN.FREQUENT_WORD.EMBEDDING.DROPOUT</span>
+<span class="s1">                         Embedding dropout prob (default: 0.2)</span>
+<span class="s1">  --word.embed_dim TOKEN.WORD.EMBEDDING.EMBED_DIM</span>
+<span class="s1">                         The number of Embedding dimension</span>
+<span class="s1">  --word.pretrained_path TOKEN.WORD.EMBEDDING.PRETRAINED_PATH</span>
+<span class="s1">                         Add pretrained word vector model&#39;</span>s path. <span class="o">(</span>support file format like Glove<span class="o">)</span>
+  --word.trainable TOKEN.WORD.EMBEDDING.TRAINABLE
+                         Word Embedding Trainable
+  --word.dropout TOKEN.WORD.EMBEDDING.DROPOUT
+                         Embedding dropout prob <span class="o">(</span>default: <span class="m">0</span>.2<span class="o">)</span>
+
+Model:
+  --model_name MODEL.NAME
+
+                            Pre-defined model
+
+                            * Reading Comprehension
+                              <span class="o">[</span>bidaf<span class="p">|</span>bidaf_no_answer<span class="p">|</span>docqa<span class="p">|</span>docqa_no_answer<span class="p">|</span>drqa<span class="p">|</span>qanet<span class="p">|</span>simple<span class="o">]</span>
+
+                            * Semantic Parsing
+                              <span class="o">[</span>sqlnet<span class="o">]</span>
+
+ㅁReading Comprehension
+ <span class="c1"># BiDAF:</span>
+  --bidaf.aligned_query_embedding MODEL.BIDAF.ALIGNED_QUERY_EMBEDDING
+                         Aligned Question Embedding  <span class="o">(</span>default: False<span class="o">)</span>
+  --bidaf.answer_maxlen MODEL.BIDAF.ANSWER_MAXLEN
+                         The number of maximum answer<span class="s1">&#39;s length (default: None)</span>
+<span class="s1">  --bidaf.model_dim MODEL.BIDAF.MODEL_DIM</span>
+<span class="s1">                         The number of BiDAF model dimension</span>
+<span class="s1">  --bidaf.contextual_rnn_num_layer MODEL.BIDAF.CONTEXTUAL_RNN_NUM_LAYER</span>
+<span class="s1">                         The number of BiDAF model contextual_rnn&#39;</span>s recurrent layers
+  --bidaf.modeling_rnn_num_layer MODEL.BIDAF.MODELING_RNN_NUM_LAYER
+                         The number of BiDAF model modeling_rnn<span class="s1">&#39;s recurrent layers</span>
+<span class="s1">  --bidaf.predict_rnn_num_layer MODEL.BIDAF.PREDICT_RNN_NUM_LAYER</span>
+<span class="s1">                         The number of BiDAF model predict_rnn&#39;</span>s recurrent layers
+  --bidaf.dropout MODEL.BIDAF.DROPOUT
+                         The prob of BiDAF dropout
+
+ <span class="c1"># BiDAF + Simple bias:</span>
+  --bidaf_no_answer.aligned_query_embedding MODEL.BIDAF_NO_ANSWER.ALIGNED_QUERY_EMBEDDING
+                         Aligned Question Embedding  <span class="o">(</span>default: False<span class="o">)</span>
+  --bidaf_no_answer.answer_maxlen MODEL.BIDAF_NO_ANSWER.ANSWER_MAXLEN
+                         The number of maximum answer<span class="s1">&#39;s length (default: None)</span>
+<span class="s1">  --bidaf_no_answer.model_dim MODEL.BIDAF_NO_ANSWER.MODEL_DIM</span>
+<span class="s1">                         The number of BiDAF model dimension</span>
+<span class="s1">  --bidaf_no_answer.contextual_rnn_num_layer MODEL.BIDAF_NO_ANSWER.CONTEXTUAL_RNN_NUM_LAYER</span>
+<span class="s1">                         The number of BiDAF model contextual_rnn&#39;</span>s recurrent layers
+  --bidaf_no_answer.modeling_rnn_num_layer MODEL.BIDAF_NO_ANSWER.MODELING_RNN_NUM_LAYER
+                         The number of BiDAF model modeling_rnn<span class="s1">&#39;s recurrent layers</span>
+<span class="s1">  --bidaf_no_answer.predict_rnn_num_layer MODEL.BIDAF_NO_ANSWER.PREDICT_RNN_NUM_LAYER</span>
+<span class="s1">                         The number of BiDAF model predict_rnn&#39;</span>s recurrent layers
+  --bidaf_no_answer.dropout MODEL.BIDAF_NO_ANSWER.DROPOUT
+                         The prob of BiDAF dropout
+
+ <span class="c1"># Simple:</span>
+  --simple.answer_maxlen MODEL.SIMPLE.ANSWER_MAXLEN
+                         The number of maximum answer<span class="s1">&#39;s length (default: None)</span>
+<span class="s1">  --simple.model_dim MODEL.SIMPLE.MODEL_DIM</span>
+<span class="s1">                         The number of Simple model dimension</span>
+<span class="s1">  --simple.dropout MODEL.SIMPLE.DROPOUT</span>
+<span class="s1">                         The prob of Simple dropout</span>
+
+<span class="s1"> # QANet:</span>
+<span class="s1">  --qanet.aligned_query_embedding MODEL.QANET.ALIGNED_QUERY_EMBEDDING</span>
+<span class="s1">                         Aligned Question Embedding  (default: False)</span>
+<span class="s1">  --qanet.answer_maxlen MODEL.QANET.ANSWER_MAXLEN</span>
+<span class="s1">                         The number of maximum answer&#39;</span>s length <span class="o">(</span>default: <span class="m">30</span><span class="o">)</span>
+  --qanet.model_dim MODEL.QANET.MODEL_DIM
+                         The number of QANet model dimension
+  --qanet.kernel_size_in_embedding MODEL.QANET.KERNEL_SIZE_IN_EMBEDDING
+                         The number of QANet model Embed Encoder kernel_size
+  --qanet.num_head_in_embedding MODEL.QANET.NUM_HEAD_IN_EMBEDDING
+                         The number of QANet model Multi-Head Attention<span class="s1">&#39;s head in Embedding Block</span>
+<span class="s1">  --qanet.num_conv_block_in_embedding MODEL.QANET.NUM_CONV_BLOCK_IN_EMBEDDING</span>
+<span class="s1">                         The number of QANet model Conv Blocks in Embedding Block</span>
+<span class="s1">  --qanet.num_embedding_encoder_block MODEL.QANET.NUM_EMBEDDING_ENCODER_BLOCK</span>
+<span class="s1">                         The number of QANet model Embedding Encoder Blocks</span>
+<span class="s1">  --qanet.kernel_size_in_modeling MODEL.QANET.KERNEL_SIZE_IN_MODELING</span>
+<span class="s1">                         The number of QANet model Model Encoder kernel_size</span>
+<span class="s1">  --qanet.num_head_in_modeling MODEL.QANET.NUM_HEAD_IN_MODELING</span>
+<span class="s1">                         The number of QANet model Multi-Head Attention&#39;</span>s head in Modeling Block
+  --qanet.num_conv_block_in_modeling MODEL.QANET.NUM_CONV_BLOCK_IN_MODELING
+                         The number of QANet model Conv Blocks in Modeling Block
+  --qanet.num_modeling_encoder_block MODEL.QANET.NUM_MODELING_ENCODER_BLOCK
+                         The number of QANet model Modeling Encoder Blocks
+  --qanet.layer_dropout MODEL.QANET.LAYER_DROPOUT
+                         The prob of QANet model layer dropout
+  --qanet.dropout MODEL.QANET.DROPOUT
+                         The prob of QANet dropout
+
+ <span class="c1"># DocQA:</span>
+  --docqa.aligned_query_embedding MODEL.DOCQA.ALIGNED_QUERY_EMBEDDING
+                         Aligned Question Embedding  <span class="o">(</span>default: False<span class="o">)</span>
+  --docqa.answer_maxlen MODEL.DOCQA.ANSWER_MAXLEN
+                         The number of maximum answer<span class="s1">&#39;s length (default: 17)</span>
+<span class="s1">  --docqa.rnn_dim MODEL.DOCQA.RNN_DIM</span>
+<span class="s1">                         The number of DocQA model rnn dimension</span>
+<span class="s1">  --docqa.linear_dim MODEL.DOCQA.LINEAR_DIM</span>
+<span class="s1">                         The number of DocQA model linear dimension</span>
+<span class="s1">  --docqa.preprocess_rnn_num_layer MODEL.DOCQA.PREPROCESS_RNN_NUM_LAYER</span>
+<span class="s1">                         The number of DocQA model preprocess_rnn&#39;</span>s recurrent layers
+  --docqa.modeling_rnn_num_layer MODEL.DOCQA.MODELING_RNN_NUM_LAYER
+                         The number of DocQA model modeling_rnn<span class="s1">&#39;s recurrent layers</span>
+<span class="s1">  --docqa.predict_rnn_num_layer MODEL.DOCQA.PREDICT_RNN_NUM_LAYER</span>
+<span class="s1">                         The number of DocQA model predict_rnn&#39;</span>s recurrent layers
+  --docqa.dropout MODEL.DOCQA.DROPOUT
+                         The prob of DocQA dropout
+  --docqa.weight_init MODEL.DOCQA.WEIGHT_INIT
+                         Weight Init
+
+ <span class="c1"># DocQA + No_Answer Option:</span>
+  --docqa_no_answer.aligned_query_embedding MODEL.DOCQA_NO_ANSWER.ALIGNED_QUERY_EMBEDDING
+                         Aligned Question Embedding  <span class="o">(</span>default: False<span class="o">)</span>
+  --docqa_no_answer.answer_maxlen MODEL.DOCQA_NO_ANSWER.ANSWER_MAXLEN
+                         The number of maximum answer<span class="s1">&#39;s length (default: None)</span>
+<span class="s1">  --docqa_no_answer.rnn_dim MODEL.DOCQA_NO_ANSWER.RNN_DIM</span>
+<span class="s1">                         The number of docqa_no_answer model rnn dimension</span>
+<span class="s1">  --docqa_no_answer.linear_dim MODEL.DOCQA_NO_ANSWER.LINEAR_DIM</span>
+<span class="s1">                         The number of docqa_no_answer model linear dimension</span>
+<span class="s1">  --docqa_no_answer.dropout MODEL.DOCQA_NO_ANSWER.DROPOUT</span>
+<span class="s1">                         The prob of QANet dropout</span>
+<span class="s1">  --docqa_no_answer.weight_init MODEL.DOCQA_NO_ANSWER.WEIGHT_INIT</span>
+<span class="s1">                         Weight Init</span>
+
+<span class="s1"> # DrQA:</span>
+<span class="s1">  --drqa.aligned_query_embedding MODEL.DRQA.ALIGNED_QUERY_EMBEDDING</span>
+<span class="s1">                         Aligned Question Embedding  (default: True)</span>
+<span class="s1">  --drqa.answer_maxlen MODEL.DRQA.ANSWER_MAXLEN</span>
+<span class="s1">                         The number of maximum answer&#39;</span>s length <span class="o">(</span>default: None<span class="o">)</span>
+  --drqa.model_dim MODEL.DRQA.MODEL_DIM
+                         The number of document reader model dimension
+  --drqa.dropout MODEL.DRQA.DROPOUT
+                         The number of document reader model dropout
+
+ㅁSemantic Parsing
+ <span class="c1"># SQLNet:</span>
+  --sqlnet.column_attention MODEL.SQLNET.COLUMN_ATTENTION
+                         Compute attention map on a question conditioned on the column names <span class="o">(</span>default: True<span class="o">)</span>
+  --sqlnet.model_dim MODEL.SQLNET.MODEL_DIM
+                         The number of document reader model dimension
+  --sqlnet.rnn_num_layer MODEL.SQLNET.RNN_NUM_LAYER
+                         The number of SQLNet model rnn<span class="s1">&#39;s recurrent layers</span>
+<span class="s1">  --sqlnet.dropout MODEL.SQLNET.DROPOUT</span>
+<span class="s1">                         The prob of model dropout</span>
+<span class="s1">  --sqlnet.column_maxlen MODEL.SQLNET.COLUMN_MAXLEN</span>
+<span class="s1">                         The number of maximum column&#39;</span>s length <span class="o">(</span>default: <span class="m">4</span><span class="o">)</span>
+  --sqlnet.token_maxlen MODEL.SQLNET.TOKEN_MAXLEN
+                         An upper-bound N on the number of decoder tokeni
+  --sqlnet.conds_column_loss_alpha MODEL.SQLNET.CONDS_COLUMN_LOSS_ALPHA
+                         balance the positive data versus negative data
+
+NSML:
+  --pause NSML.PAUSE     NSML default setting
+  --iteration NSML.ITERATION
+                         Start from NSML epoch count
+
+Trainer:
+  --num_epochs TRAINER.NUM_EPOCHS
+                         The number of training epochs
+  --patience TRAINER.EARLY_STOPPING_THRESHOLD
+                         The number of early stopping threshold
+  --metric_key TRAINER.METRIC_KEY
+                         The key of metric <span class="k">for</span> model<span class="s1">&#39;s score</span>
+<span class="s1">  --verbose_step_count TRAINER.VERBOSE_STEP_COUNT</span>
+<span class="s1">                         The number of training verbose</span>
+<span class="s1">  --save_epoch_count TRAINER.SAVE_EPOCH_COUNT</span>
+<span class="s1">                         The number of save epoch count</span>
+<span class="s1">  --log_dir TRAINER.LOG_DIR</span>
+<span class="s1">                         TensorBoard and Checkpoint log directory</span>
+
+<span class="s1">Gradient:</span>
+<span class="s1">  --grad_norm TRAINER.GRAD_NORM</span>
+<span class="s1">                            If provided, gradient norms will be rescaled to have a maximum of this value.</span>
+<span class="s1">                            Default: None (don&#39;</span>t use<span class="o">)</span>
+  --grad_clipping TRAINER.GRAD_CLIPPING
+                            If provided, gradients will be clipped <span class="sb">`</span>during the backward pass<span class="sb">`</span> to have
+                            an <span class="o">(</span>absolute<span class="o">)</span> maximum of this value.
+                            Default: None <span class="o">(</span>don<span class="s1">&#39;t use)</span>
+
+<span class="s1">Optimizer:</span>
+<span class="s1">  --optimizer_type OPTIMIZER.OP_TYPE</span>
+<span class="s1">                         Optimizer</span>
+<span class="s1">                            (https://pytorch.org/docs/stable/optim.html#algorithms)</span>
+
+<span class="s1">                            - adadelta: ADADELTA: An Adaptive Learning Rate Method</span>
+<span class="s1">                                (https://arxiv.org/abs/1212.5701)</span>
+<span class="s1">                            - adagrad: Adaptive Subgradient Methods for Online Learning and Stochastic Optimization</span>
+<span class="s1">                                (http://jmlr.org/papers/v12/duchi11a.html)</span>
+<span class="s1">                            - adam: Adam: A Method for Stochastic Optimization</span>
+<span class="s1">                                (https://arxiv.org/abs/1412.6980)</span>
+<span class="s1">                            - sparse_adam: Implements lazy version of Adam algorithm suitable for sparse tensors.</span>
+<span class="s1">                                In this variant, only moments that show up in the gradient get updated,</span>
+<span class="s1">                                and only those portions of the gradient get applied to the parameters.</span>
+<span class="s1">                            - adamax: Implements Adamax algorithm (a variant of Adam based on infinity norm).</span>
+<span class="s1">                            - averaged_sgd: Acceleration of stochastic approximation by averaging</span>
+<span class="s1">                                (http://dl.acm.org/citation.cfm?id=131098)</span>
+<span class="s1">                            - rmsprop: Implements RMSprop algorithm.</span>
+<span class="s1">                                (https://arxiv.org/pdf/1308.0850v5.pdf)</span>
+<span class="s1">                            - rprop: Implements the resilient backpropagation algorithm.</span>
+<span class="s1">                            - sgd: Implements stochastic gradient descent (optionally with momentum).</span>
+<span class="s1">                                Nesterov momentum: (http://www.cs.toronto.edu/~hinton/absps/momentum.pdf)</span>
+
+<span class="s1">                            [adadelta|adagrad|adam|sparse_adam|adamax|averaged_sgd|rmsprop|rprop|sgd]</span>
+<span class="s1">  --learning_rate OPTIMIZER.LEARNING_RATE</span>
+<span class="s1">                            Starting learning rate.</span>
+<span class="s1">                            Recommended settings: sgd = 1, adagrad = 0.1, adadelta = 1, adam = 0.001</span>
+
+<span class="s1">  # Adadelta:</span>
+<span class="s1">  --adadelta.rho OPTIMIZER.ADADELTA.RHO</span>
+<span class="s1">                            coefficient used for computing a running average of squared gradients</span>
+<span class="s1">                            Default: 0.9</span>
+<span class="s1">  --adadelta.eps OPTIMIZER.ADADELTA.EPS</span>
+<span class="s1">                            term added to the denominator to improve numerical stability</span>
+<span class="s1">                            Default: 1e-6</span>
+<span class="s1">  --adadelta.weight_decay OPTIMIZER.ADADELTA.WEIGHT_DECAY</span>
+<span class="s1">                            weight decay (L2 penalty)</span>
+<span class="s1">                            Default: 0</span>
+
+<span class="s1">  # Adagrad:</span>
+<span class="s1">  --adagrad.lr_decay OPTIMIZER.ADAGRAD.LR_DECAY</span>
+<span class="s1">                            learning rate decay</span>
+<span class="s1">                            Default: 0</span>
+<span class="s1">  --adagrad.weight_decay OPTIMIZER.ADAGRAD.WEIGHT_DECAY</span>
+<span class="s1">                            weight decay (L2 penalty)</span>
+<span class="s1">                            Default: 0</span>
+
+<span class="s1">  # Adam:</span>
+<span class="s1">  --adam.betas OPTIMIZER.ADAM.BETAS [OPTIMIZER.ADAM.BETAS ...]</span>
+<span class="s1">                            coefficients used for computing running averages of gradient and its square</span>
+<span class="s1">                            Default: (0.9, 0.999)</span>
+<span class="s1">  --adam.eps OPTIMIZER.ADAM.EPS</span>
+<span class="s1">                            term added to the denominator to improve numerical stability</span>
+<span class="s1">                            Default: 1e-8</span>
+<span class="s1">  --adam.weight_decay OPTIMIZER.ADAM.WEIGHT_DECAY</span>
+<span class="s1">                            weight decay (L2 penalty)</span>
+<span class="s1">                            Default: 0</span>
+
+<span class="s1">  # SparseAdam:</span>
+<span class="s1">  --sparse_adam.betas OPTIMIZER.SPARSE_ADAM.BETAS [OPTIMIZER.SPARSE_ADAM.BETAS ...]</span>
+<span class="s1">                            coefficients used for computing running averages of gradient and its square</span>
+<span class="s1">                            Default: (0.9, 0.999)</span>
+<span class="s1">  --sparse_adam.eps OPTIMIZER.SPARSE_ADAM.EPS</span>
+<span class="s1">                            term added to the denominator to improve numerical stability</span>
+<span class="s1">                            Default: 1e-8</span>
+
+<span class="s1">  # Adamax:</span>
+<span class="s1">  --adamax.betas OPTIMIZER.ADAMAX.BETAS [OPTIMIZER.ADAMAX.BETAS ...]</span>
+<span class="s1">                            coefficients used for computing running averages of gradient and its square.</span>
+<span class="s1">                            Default: (0.9, 0.999)</span>
+<span class="s1">  --adamax.eps OPTIMIZER.ADAMAX.EPS</span>
+<span class="s1">                            term added to the denominator to improve numerical stability.</span>
+<span class="s1">                            Default: 1e-8</span>
+<span class="s1">  --adamax.weight_decay OPTIMIZER.ADAMAX.WEIGHT_DECAY</span>
+<span class="s1">                            weight decay (L2 penalty)</span>
+<span class="s1">                            Default: 0</span>
+
+<span class="s1">  # ASGD (Averaged Stochastic Gradient Descent):</span>
+<span class="s1">  --averaged_sgd.lambd OPTIMIZER.AVERAGED_SGD.LAMBD</span>
+<span class="s1">                            decay term</span>
+<span class="s1">                            Default: 1e-4</span>
+<span class="s1">  --averaged_sgd.alpha OPTIMIZER.AVERAGED_SGD.ALPHA</span>
+<span class="s1">                            power for eta update</span>
+<span class="s1">                            Default: 0.75</span>
+<span class="s1">  --averaged_sgd.t0 OPTIMIZER.AVERAGED_SGD.T0</span>
+<span class="s1">                            point at which to start averaging</span>
+<span class="s1">                            Default: 1e6</span>
+<span class="s1">  --averaged_sgd.weight_decay OPTIMIZER.AVERAGED_SGD.WEIGHT_DECAY</span>
+<span class="s1">                            weight decay (L2 penalty)</span>
+<span class="s1">                            Default: 0</span>
+
+<span class="s1">  # RMSprop:</span>
+<span class="s1">  --rmsprop.momentum OPTIMIZER.RMSPROP.MOMENTUM</span>
+<span class="s1">                            momentum factor</span>
+<span class="s1">                            Default: 0</span>
+<span class="s1">  --rmsprop.alpha OPTIMIZER.RMSPROP.ALPHA</span>
+<span class="s1">                            smoothing constant</span>
+<span class="s1">                            Default: 0.99</span>
+<span class="s1">  --rmsprop.eps OPTIMIZER.RMSPROP.EPS</span>
+<span class="s1">                            term added to the denominator to improve numerical stability.</span>
+<span class="s1">                            Default: 1e-8</span>
+<span class="s1">  --rmsprop.centered OPTIMIZER.RMSPROP.CENTERED</span>
+<span class="s1">                            if True, compute the centered RMSProp,</span>
+<span class="s1">                            the gradient is normalized by an estimation of its variance</span>
+<span class="s1">                            Default: False</span>
+<span class="s1">  --rmsprop.weight_decay OPTIMIZER.RMSPROP.WEIGHT_DECAY</span>
+<span class="s1">                            weight decay (L2 penalty)</span>
+<span class="s1">                            Default: 0</span>
+
+<span class="s1">  # SGD (Stochastic Gradient Descent):</span>
+<span class="s1">  --sgd.momentum OPTIMIZER.SGD.MOMENTUM</span>
+<span class="s1">                            momentum factor</span>
+<span class="s1">                            Default: 0</span>
+<span class="s1">  --sgd.dampening OPTIMIZER.SGD.DAMPENING</span>
+<span class="s1">                            dampening for momentum</span>
+<span class="s1">                            Default: 0</span>
+<span class="s1">  --sgd.nesterov OPTIMIZER.SGD.NESTEROV</span>
+<span class="s1">                            enables Nesterov momentum</span>
+<span class="s1">                            Default: False</span>
+<span class="s1">  --sgd.weight_decay OPTIMIZER.SGD.WEIGHT_DECAY</span>
+<span class="s1">                            weight decay (L2 penalty)</span>
+<span class="s1">                            Default: 0</span>
+
+<span class="s1">Learning Rate Scheduler:</span>
+<span class="s1">  --lr_scheduler_type OPTIMIZER.LR_SCHEDULER_TYPE</span>
+<span class="s1">                        Learning Rate Schedule</span>
+<span class="s1">                            (https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate)</span>
+
+<span class="s1">                            - lambda: Sets the learning rate of each parameter group to the</span>
+<span class="s1">                                initial lr times a given function.</span>
+<span class="s1">                            - step: Sets the learning rate of each parameter group to the</span>
+<span class="s1">                                initial lr decayed by gamma every step_size epochs.</span>
+<span class="s1">                            - multi_step: Set the learning rate of each parameter group to</span>
+<span class="s1">                                the initial lr decayed by gamma once the number of epoch</span>
+<span class="s1">                                reaches one of the milestones.</span>
+<span class="s1">                            - exponential: Set the learning rate of each parameter group to</span>
+<span class="s1">                                the initial lr decayed by gamma every epoch.</span>
+<span class="s1">                            - cosine: Set the learning rate of each parameter group using</span>
+<span class="s1">                                a cosine annealing schedule, where ηmax is set to the initial</span>
+<span class="s1">                                lr and Tcur is the number of epochs since the last restart in SGDR:</span>
+<span class="s1">                                SGDR: Stochastic Gradient Descent with Warm Restarts</span>
+<span class="s1">                                (https://arxiv.org/abs/1608.03983)</span>
+<span class="s1">                            When last_epoch=-1, sets initial lr as lr.</span>
+
+<span class="s1">                            - reduce_on_plateau: Reduce learning rate when a metric has</span>
+<span class="s1">                                stopped improving. Models often benefit from reducing the</span>
+<span class="s1">                                learning rate by a factor of 2-10 once learning stagnates.</span>
+<span class="s1">                                This scheduler reads a metrics quantity and if no improvement</span>
+<span class="s1">                                is seen for a ‘patience’ number of epochs, the learning rate is reduced.</span>
+<span class="s1">                            - warmup: a learning rate warm-up scheme with an inverse exponential increase</span>
+<span class="s1">                                 from 0.0 to {learning_rate} in the first {final_step}.</span>
+
+<span class="s1">                            [step|multi_step|exponential|reduce_on_plateau|cosine|warmup]</span>
+
+<span class="s1">  # StepLR:</span>
+<span class="s1">  --step.step_size OPTIMIZER.STEP.STEP_SIZE</span>
+<span class="s1">                            Period of learning rate decay.</span>
+<span class="s1">                            Default: 1</span>
+<span class="s1">  --step.gamma OPTIMIZER.STEP.GAMMA</span>
+<span class="s1">                            Multiplicative factor of learning rate decay.</span>
+<span class="s1">                            Default: 0.1.</span>
+<span class="s1">  --step.last_epoch OPTIMIZER.STEP.LAST_EPOCH</span>
+<span class="s1">                            The index of last epoch.</span>
+<span class="s1">                            Default: -1.</span>
+
+<span class="s1">  # MultiStepLR:</span>
+<span class="s1">  --multi_step.milestones OPTIMIZER.MULTI_STEP.MILESTONES [OPTIMIZER.MULTI_STEP.MILESTONES ...]</span>
+<span class="s1">                            List of epoch indices. Must be increasing</span>
+<span class="s1">                            list of int</span>
+<span class="s1">  --multi_step.gamma OPTIMIZER.MULTI_STEP.GAMMA</span>
+<span class="s1">                            Multiplicative factor of learning rate decay.</span>
+<span class="s1">                            Default: 0.1.</span>
+<span class="s1">  --multi_step.last_epoch OPTIMIZER.MULTI_STEP.LAST_EPOCH</span>
+<span class="s1">                            The index of last epoch.</span>
+<span class="s1">                            Default: -1.</span>
+
+<span class="s1">  # ExponentialLR:</span>
+<span class="s1">  --exponential.gamma OPTIMIZER.EXPONENTIAL.GAMMA</span>
+<span class="s1">                            Multiplicative factor of learning rate decay.</span>
+<span class="s1">                            Default: 0.1.</span>
+<span class="s1">  --exponential.last_epoch OPTIMIZER.EXPONENTIAL.LAST_EPOCH</span>
+<span class="s1">                            The index of last epoch.</span>
+<span class="s1">                            Default: -1.</span>
+
+<span class="s1">  # CosineAnnealingLR:</span>
+<span class="s1">  --cosine.T_max OPTIMIZER.COSINE.T_MAX</span>
+<span class="s1">                            Maximum number of iterations.</span>
+<span class="s1">                            Default: 50</span>
+<span class="s1">  --cosine.eta_min OPTIMIZER.COSINE.ETA_MIN</span>
+<span class="s1">                            Minimum learning rate.</span>
+<span class="s1">                            Default: 0.</span>
+<span class="s1">  --cosine.last_epoch OPTIMIZER.COSINE.LAST_EPOCH</span>
+<span class="s1">                            The index of last epoch.</span>
+<span class="s1">                            Default: -1.</span>
+
+<span class="s1">  # ReduceLROnPlateau:</span>
+<span class="s1">  --reduce_on_plateau.factor OPTIMIZER.REDUCE_ON_PLATEAU.FACTOR</span>
+<span class="s1">                         Factor by which the learning rate will be reduced. new_lr = lr * factor. Default: 0.1.</span>
+<span class="s1">  --reduce_on_plateau.mode OPTIMIZER.REDUCE_ON_PLATEAU.MODE</span>
+<span class="s1">                            One of `min`, `max`. In `min` mode, lr will</span>
+<span class="s1">                            be reduced when the quantity monitored has stopped</span>
+<span class="s1">                            decreasing; in `max` mode it will be reduced when the</span>
+<span class="s1">                            quantity monitored has stopped increasing.</span>
+<span class="s1">                            Default: &#39;</span>min<span class="s1">&#39;.</span>
+<span class="s1">  --reduce_on_plateau.patience OPTIMIZER.REDUCE_ON_PLATEAU.PATIENCE</span>
+<span class="s1">                            Number of epochs with no improvement after which learning rate will be reduced.</span>
+<span class="s1">                            Default: 10.</span>
+<span class="s1">  --reduce_on_plateau.threshold OPTIMIZER.REDUCE_ON_PLATEAU.THRESHOLD</span>
+<span class="s1">                            Threshold for measuring the new optimum, to only focus on significant changes.</span>
+<span class="s1">                            Default: 1e-4</span>
+<span class="s1">  --reduce_on_plateau.threshold_mode OPTIMIZER.REDUCE_ON_PLATEAU.THRESHOLD_MODE</span>
+<span class="s1">                            One of rel, abs. In rel mode, dynamic_threshold = best * ( 1 + threshold ) in ‘max’ mode or</span>
+<span class="s1">                            best * ( 1 - threshold ) in min mode. In abs mode, dynamic_threshold = best + threshold</span>
+<span class="s1">                            in max mode or best - threshold in min mode.</span>
+<span class="s1">                            Default: ‘rel’.</span>
+<span class="s1">  --reduce_on_plateau.cooldown OPTIMIZER.REDUCE_ON_PLATEAU.COOLDOWN</span>
+<span class="s1">                            Number of epochs to wait before resuming normal operation after lr has been reduced.</span>
+<span class="s1">                            Default: 0.</span>
+<span class="s1">  --reduce_on_plateau.min_lr OPTIMIZER.REDUCE_ON_PLATEAU.MIN_LR [OPTIMIZER.REDUCE_ON_PLATEAU.MIN_LR ...]</span>
+<span class="s1">                            A scalar or a list of scalars. A lower bound on the learning rate of</span>
+<span class="s1">                            all param groups or each group respectively.</span>
+<span class="s1">                            Default: 0.</span>
+<span class="s1">  --reduce_on_plateau.eps OPTIMIZER.REDUCE_ON_PLATEAU.EPS</span>
+<span class="s1">                            Minimal decay applied to lr. If the difference between new and</span>
+<span class="s1">                            old lr is smaller than eps, the update is ignored.</span>
+<span class="s1">                            Default: 1e-8</span>
+
+<span class="s1">  # WarmUpLR:</span>
+<span class="s1">  --warmup.final_step OPTIMIZER.WARMUP.FINAL_STEP</span>
+<span class="s1">                            The number of steps to exponential increase the learning rate.</span>
+<span class="s1">                            Default: 1000.</span>
+<span class="s1">  --warmup.last_epoch OPTIMIZER.WARMUP.LAST_EPOCH</span>
+<span class="s1">                            The index of last epoch.</span>
+<span class="s1">                            Default: -1.</span>
+
+<span class="s1">Exponential Moving Average:</span>
+<span class="s1">  --ema OPTIMIZER.EXPONENTIAL_MOVING_AVERAGE</span>
+<span class="s1">                            Exponential Moving Average</span>
+<span class="s1">                            Default: None (don&#39;</span>t use<span class="o">)</span>
+
+Base Config:
+  --base_config BASE_CONFIG
+                            Use pre-defined base_config:
+                            <span class="o">[</span><span class="s1">&#39;qanet+elmo&#39;</span>, <span class="s1">&#39;docqa+cove&#39;</span>, <span class="s1">&#39;emmix-docqa&#39;</span>, <span class="s1">&#39;embagging-drqa&#39;</span><span class="o">]</span>
+
+                            * SQuAD:
+                            <span class="o">[</span><span class="s1">&#39;squad/bidaf&#39;</span>, <span class="s1">&#39;squad/drqa_paper&#39;</span>, <span class="s1">&#39;squad/drqa&#39;</span>, <span class="s1">&#39;squad/qanet&#39;</span>, <span class="s1">&#39;squad/docqa+elmo&#39;</span>, <span class="s1">&#39;squad/rqanet&#39;</span>, <span class="s1">&#39;squad/bidaf_no_answer&#39;</span>, <span class="s1">&#39;squad/docqa_no_answer&#39;</span>, <span class="s1">&#39;squad/qanet_paper&#39;</span>, <span class="s1">&#39;squad/bidaf+elmo&#39;</span>, <span class="s1">&#39;squad/docqa&#39;</span><span class="o">]</span>
+
+                            * History:
+                            <span class="o">[</span><span class="s1">&#39;history/bidaf&#39;</span>, <span class="s1">&#39;history/docqa+tapi&#39;</span>, <span class="s1">&#39;history/bidaf+tapi&#39;</span>, <span class="s1">&#39;history/docqa&#39;</span><span class="o">]</span>
+
+                            * WikiSQL:
+                            <span class="o">[</span><span class="s1">&#39;wikisql/sqlnet&#39;</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>train 외에도 <code class="docutils literal notranslate"><span class="pre">eval</span></code>, <code class="docutils literal notranslate"><span class="pre">predict</span></code>, <code class="docutils literal notranslate"><span class="pre">qa_machine</span></code>, <code class="docutils literal notranslate"><span class="pre">plot</span></code> command 들이 있습니다.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pretrained_vector.html" class="btn btn-neutral float-right" title="Pretrained Vector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dataset_and_model.html" class="btn btn-neutral" title="Dataset and Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

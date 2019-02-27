@@ -1,0 +1,59 @@
+ {
+     "data_reader": {
+         "dataset": "wikisql",
+         "train_file_path": "wikisql/train.jsonl",
+         "valid_file_path": "wikisql/dev.jsonl"
+     },
+     "iterator": {
+         "batch_size": 64
+     },
+     "token": {
+         "names": ["glove"],
+         "types": ["word"],
+         "tokenizer": {
+             "word": {
+                 "name": "treebank_en",
+                 "split_with_regex": true
+             }
+         },
+         "glove": {
+             "vocab": {
+                 "start_token": "<s>",
+                 "end_token": "</s>"
+             },
+             "indexer": {
+                 "lowercase": false
+             },
+             "embedding": {
+                 "embed_dim": 300,
+                 "pretrained_path": "<glove.840B.300d.txt path>",
+                 "trainable": false
+             }
+         }
+     },
+     "model": {
+         "name": "sqlnet",
+         "sqlnet": {
+             "column_attention": true,
+             "model_dim": 100,
+             "rnn_num_layer": 2,
+             "dropout": 0.3,
+             "column_maxlen": 4,
+             "token_maxlen": 200,
+             "conds_column_loss_alpha": 3
+         }
+     },
+     "trainer": {
+         "log_dir": "logs/experiment/sqlnet/",
+         "num_epochs": 500,
+         "early_stopping_threshold": 50,
+         "metric_key": "ex_accuracy",
+         "verbose_step_count": 100,
+         "eval_and_save_step_count": "epoch"
+     },
+     "optimizer": {
+         "op_type": "adam",
+         "learning_rate": 0.001
+     },
+     "seed_num": 25
+ }

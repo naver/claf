@@ -1,0 +1,30 @@
+ {
+  "name": "open_qa",
+  "open_qa": {
+      "tokenizers": {
+          "sent": {
+              "name": "punkt"
+          },
+          "word": {
+              "name": "space_all",
+              "split_with_regex": true
+          }
+      },
+      "knowledge_base": {
+          "wiki": "<WikiExtractor output_path with --json>"
+      },
+      "reasoning": {
+          "document_retrieval": {
+              "type": "component",
+              "name": "tfidf",
+              "tfidf": {
+                  "k": 3
+              }
+          },
+          "reading_comprehension": {
+              "type": "experiment",
+              "checkpoint_path": "<model_checkpoint_path>"
+          }
+      }
+    }
+ }

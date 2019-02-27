@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.data.reader.tok_cls_bert &mdash; reasoning-qa 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>rqa.data.reader.tok_cls_bert</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rqa.data.reader.tok_cls_bert</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+
+<span class="kn">from</span> <span class="nn">overrides</span> <span class="k">import</span> <span class="n">overrides</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">rqa.data.dataset</span> <span class="k">import</span> <span class="n">TokClsBertDataset</span>
+<span class="kn">from</span> <span class="nn">rqa.data.batch</span> <span class="k">import</span> <span class="n">make_batch</span>
+<span class="kn">from</span> <span class="nn">rqa.data.reader.base</span> <span class="k">import</span> <span class="n">DataReader</span>
+<span class="kn">from</span> <span class="nn">rqa.decorator</span> <span class="k">import</span> <span class="n">register</span>
+<span class="kn">from</span> <span class="nn">rqa.tokens.tokenizer</span> <span class="k">import</span> <span class="n">SentTokenizer</span><span class="p">,</span> <span class="n">WordTokenizer</span>
+<span class="kn">import</span> <span class="nn">rqa.data.utils</span> <span class="k">as</span> <span class="nn">utils</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="TokClsBertReader"><a class="viewcode-back" href="../../../../rqa.data.reader.html#rqa.data.reader.tok_cls_bert.TokClsBertReader">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="s2">&quot;reader:tok_cls_bert&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">TokClsBertReader</span><span class="p">(</span><span class="n">DataReader</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    DataReader for Token Classification using BERT</span>
+
+<span class="sd">    * Args:</span>
+<span class="sd">        file_paths: .json file paths (train and dev)</span>
+<span class="sd">        tokenizers: define tokenizers config (subword)</span>
+
+<span class="sd">    * Kwargs:</span>
+<span class="sd">        lang_code: language code: set as &#39;ko&#39; if using BERT model trained with mecab-tokenized data</span>
+<span class="sd">        tag_key: name of the label in .json file to use for classification</span>
+<span class="sd">        ignore_tag_idx: prediction results that have this number as ground-truth idx are ignored</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CLS_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;[CLS]&quot;</span>
+    <span class="n">SEP_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;[SEP]&quot;</span>
+    <span class="n">UNK_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;[UNK]&quot;</span>
+    <span class="n">CONTINUE_SYMBOL</span> <span class="o">=</span> <span class="s2">&quot;##&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">file_paths</span><span class="p">,</span>
+            <span class="n">tokenizers</span><span class="p">,</span>
+            <span class="n">lang_code</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">sequence_max_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">tag_key</span><span class="o">=</span><span class="s2">&quot;tags&quot;</span><span class="p">,</span>
+            <span class="n">ignore_tag_idx</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">TokClsBertReader</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">file_paths</span><span class="p">,</span> <span class="n">TokClsBertDataset</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span> <span class="o">=</span> <span class="n">sequence_max_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bert_input&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="s2">&quot;subword&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tokenizers</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;WordTokenizer and SubwordTokenizer is required.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span> <span class="o">=</span> <span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;subword&quot;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sent_tokenizer</span> <span class="o">=</span> <span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;sent&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">word_tokenizer</span> <span class="o">=</span> <span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;word&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">lang_code</span> <span class="o">==</span> <span class="s2">&quot;ko&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mecab_tokenizer</span> <span class="o">=</span> <span class="n">WordTokenizer</span><span class="p">(</span><span class="s2">&quot;mecab_ko&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sent_tokenizer</span><span class="p">,</span> <span class="n">split_with_regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">lang_code</span> <span class="o">=</span> <span class="n">lang_code</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tag_key</span> <span class="o">=</span> <span class="n">tag_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ignore_tag_idx</span> <span class="o">=</span> <span class="n">ignore_tag_idx</span>
+
+    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        .json file structure should be something like this:</span>
+
+<span class="sd">        {</span>
+<span class="sd">            &quot;data&quot;: [</span>
+<span class="sd">                {</span>
+<span class="sd">                    &quot;sequence&quot;: &quot;i&#39;m looking for a flight from New York to London.&quot;,</span>
+<span class="sd">                    &quot;slots&quot;: [&quot;O&quot;, &quot;O&quot;, &quot;O&quot;, &quot;O&quot;, &quot;O&quot;, &quot;O&quot;, &quot;B-city.dept&quot;, &quot;I-city.dept&quot; &quot;O&quot;, &quot;B-city.dest&quot;]</span>
+<span class="sd">                    // the number of tokens in sequence.split() and tags must match</span>
+<span class="sd">                },</span>
+<span class="sd">                ...</span>
+<span class="sd">            ],</span>
+<span class="sd">            &quot;slots&quot;: [  // tag_key</span>
+<span class="sd">                &quot;O&quot;,    // tags should be in IOB format</span>
+<span class="sd">                &quot;B-city.dept&quot;,</span>
+<span class="sd">                &quot;I-city.dept&quot;,</span>
+<span class="sd">                &quot;B-city.dest&quot;,</span>
+<span class="sd">                &quot;I-city.dest&quot;,</span>
+<span class="sd">                ...</span>
+<span class="sd">            ]</span>
+<span class="sd">        }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="n">tok_cls_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="n">raw_dataset</span> <span class="o">=</span> <span class="n">tok_cls_data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+        <span class="n">tag_idx2text</span> <span class="o">=</span> <span class="p">{</span><span class="n">tag_idx</span><span class="p">:</span> <span class="n">tag_text</span> <span class="k">for</span> <span class="n">tag_idx</span><span class="p">,</span> <span class="n">tag_text</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tok_cls_data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_key</span><span class="p">])}</span>
+        <span class="n">tag_text2idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">tag_text</span><span class="p">:</span> <span class="n">tag_idx</span> <span class="k">for</span> <span class="n">tag_idx</span><span class="p">,</span> <span class="n">tag_text</span> <span class="ow">in</span> <span class="n">tag_idx2text</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+        <span class="n">helper</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;file_path&quot;</span><span class="p">:</span> <span class="n">file_path</span><span class="p">,</span>
+            <span class="s2">&quot;examples&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;raw_dataset&quot;</span><span class="p">:</span> <span class="n">raw_dataset</span><span class="p">,</span>
+            <span class="s2">&quot;tag_idx2text&quot;</span><span class="p">:</span> <span class="n">tag_idx2text</span><span class="p">,</span>
+            <span class="s2">&quot;ignore_tag_idx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_tag_idx</span><span class="p">,</span>
+            <span class="s2">&quot;cls_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">CLS_TOKEN</span><span class="p">,</span>
+            <span class="s2">&quot;sep_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">SEP_TOKEN</span><span class="p">,</span>
+            <span class="s2">&quot;unk_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">UNK_TOKEN</span><span class="p">,</span>
+            <span class="s2">&quot;continue_symbol&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTINUE_SYMBOL</span><span class="p">,</span>
+
+            <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;num_tags&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">tag_idx2text</span><span class="p">),</span>
+                <span class="s2">&quot;ignore_tag_idx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_tag_idx</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;predict_helper&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;tag_idx2text&quot;</span><span class="p">:</span> <span class="n">tag_idx2text</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">features</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">raw_dataset</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="n">data_type</span><span class="p">):</span>
+            <span class="n">sequence_text</span> <span class="o">=</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;sequence&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+            <span class="n">sequence_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">sequence_text</span><span class="p">)</span>
+
+            <span class="n">sequence_sub_tokens</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">sequence_tokens</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">sub_token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;word&quot;</span><span class="p">):</span>
+                    <span class="n">sequence_sub_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_token</span><span class="p">)</span>
+
+            <span class="n">bert_input</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">CLS_TOKEN</span><span class="p">]</span> <span class="o">+</span> <span class="n">sequence_sub_tokens</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SEP_TOKEN</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                    <span class="ow">and</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s2">&quot;train&quot;</span>
+                    <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">bert_input</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span>
+            <span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="s2">&quot;uid&quot;</span> <span class="ow">in</span> <span class="n">example</span><span class="p">:</span>
+                <span class="n">data_uid</span> <span class="o">=</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;uid&quot;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">data_uid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid1</span><span class="p">())</span>
+
+            <span class="n">naive_tokens</span> <span class="o">=</span> <span class="n">sequence_text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">word_tokens</span> <span class="o">=</span> <span class="n">sequence_tokens</span>
+            <span class="n">tag_texts</span> <span class="o">=</span> <span class="n">example</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_key</span><span class="p">]</span>
+            <span class="n">tag_idxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">tag_text2idx</span><span class="p">[</span><span class="n">tag_text</span><span class="p">]</span> <span class="k">for</span> <span class="n">tag_text</span> <span class="ow">in</span> <span class="n">tag_texts</span><span class="p">]</span>
+
+            <span class="n">utils</span><span class="o">.</span><span class="n">sanity_check_iob</span><span class="p">(</span><span class="n">naive_tokens</span><span class="p">,</span> <span class="n">tag_texts</span><span class="p">)</span>
+            <span class="n">tagged_sub_token_idxs</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">get_tagged_subword_idxs</span><span class="p">(</span>
+                <span class="n">naive_tokens</span><span class="p">,</span>
+                <span class="n">word_tokens</span><span class="p">,</span>
+                <span class="n">bert_input</span><span class="p">,</span>
+                <span class="n">cls_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">CLS_TOKEN</span><span class="p">,</span>
+                <span class="n">unk_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">UNK_TOKEN</span><span class="p">,</span>
+                <span class="n">continue_symbol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">CONTINUE_SYMBOL</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="n">feature_row</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">data_uid</span><span class="p">,</span>
+                <span class="s2">&quot;bert_input&quot;</span><span class="p">:</span> <span class="n">bert_input</span><span class="p">,</span>
+                <span class="s2">&quot;tagged_sub_token_idxs&quot;</span><span class="p">:</span> <span class="n">tagged_sub_token_idxs</span><span class="p">,</span>
+                <span class="s2">&quot;num_tokens&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">naive_tokens</span><span class="p">),</span>
+            <span class="p">}</span>
+            <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature_row</span><span class="p">)</span>
+
+            <span class="n">label_row</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">data_uid</span><span class="p">,</span>
+                <span class="s2">&quot;tag_idxs&quot;</span><span class="p">:</span> <span class="n">tag_idxs</span><span class="p">,</span>
+                <span class="s2">&quot;tag_texts&quot;</span><span class="p">:</span> <span class="n">tag_texts</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_row</span><span class="p">)</span>
+
+            <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;examples&quot;</span><span class="p">][</span><span class="n">data_uid</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;sequence&quot;</span><span class="p">:</span> <span class="n">sequence_text</span><span class="p">,</span>
+                <span class="s2">&quot;sequence_sub_tokens&quot;</span><span class="p">:</span> <span class="n">sequence_sub_tokens</span><span class="p">,</span>
+                <span class="s2">&quot;tag_idxs&quot;</span><span class="p">:</span> <span class="n">tag_idxs</span><span class="p">,</span>
+                <span class="s2">&quot;tag_texts&quot;</span><span class="p">:</span> <span class="n">tag_texts</span><span class="p">,</span>
+            <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">helper</span>
+
+<div class="viewcode-block" id="TokClsBertReader.read_one_example"><a class="viewcode-back" href="../../../../rqa.data.reader.html#rqa.data.reader.tok_cls_bert.TokClsBertReader.read_one_example">[docs]</a>    <span class="k">def</span> <span class="nf">read_one_example</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; inputs keys: sequence &quot;&quot;&quot;</span>
+        <span class="n">sequence_text</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;sequence&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">sequence_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">sequence_text</span><span class="p">)</span>
+
+        <span class="n">sequence_sub_tokens</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">sequence_tokens</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">sub_token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">token</span><span class="p">):</span>
+                <span class="n">sequence_sub_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_token</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence_sub_tokens</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span><span class="p">:</span>
+            <span class="n">sequence_sub_tokens</span> <span class="o">=</span> <span class="n">sequence_sub_tokens</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span><span class="p">]</span>
+
+        <span class="n">naive_tokens</span> <span class="o">=</span> <span class="n">sequence_text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+        <span class="n">bert_input</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">CLS_TOKEN</span><span class="p">]</span> <span class="o">+</span> <span class="n">sequence_sub_tokens</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SEP_TOKEN</span><span class="p">]</span>
+        <span class="n">token_type</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_bert_token_type</span><span class="p">(</span><span class="n">bert_input</span><span class="p">,</span> <span class="n">SEP_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">SEP_TOKEN</span><span class="p">)</span>
+        <span class="n">tagged_sub_token_idxs</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">get_tagged_subword_idxs</span><span class="p">(</span>
+            <span class="n">naive_tokens</span><span class="p">,</span>
+            <span class="n">sequence_tokens</span><span class="p">,</span>
+            <span class="n">bert_input</span><span class="p">,</span>
+            <span class="n">cls_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">CLS_TOKEN</span><span class="p">,</span>
+            <span class="n">unk_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">UNK_TOKEN</span><span class="p">,</span>
+            <span class="n">continue_symbol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">CONTINUE_SYMBOL</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">features</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;bert_input&quot;</span><span class="p">:</span> <span class="n">bert_input</span><span class="p">,</span>
+            <span class="s2">&quot;token_type&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;feature&quot;</span><span class="p">:</span> <span class="n">token_type</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">},</span>  <span class="c1"># TODO: fix hard-code</span>
+            <span class="s2">&quot;tagged_sub_token_idxs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;feature&quot;</span><span class="p">:</span> <span class="n">tagged_sub_token_idxs</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">},</span>  <span class="c1"># TODO: fix hard-code</span>
+            <span class="s2">&quot;num_tokens&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;feature&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">naive_tokens</span><span class="p">),</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">},</span>  <span class="c1"># TODO: fix hard-code</span>
+        <span class="p">})</span>
+
+        <span class="k">return</span> <span class="n">features</span><span class="p">,</span> <span class="p">{}</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

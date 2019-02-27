@@ -1,0 +1,7 @@
+rqa.data.data\_handler module
+=============================
+
+.. automodule:: rqa.data.data_handler
+    :members:
+    :undoc-members:
+    :show-inheritance:

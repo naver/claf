@@ -1,0 +1,44 @@
+rqa.config.factory package
+==========================
+
+Submodules
+----------
+
+.. automodule:: rqa.config.factory.base
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.config.factory.data_loader
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.config.factory.data_reader
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.config.factory.model
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.config.factory.optimizer
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.config.factory.tokens
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: rqa.config.factory
+    :members:
+    :undoc-members:
+    :show-inheritance:

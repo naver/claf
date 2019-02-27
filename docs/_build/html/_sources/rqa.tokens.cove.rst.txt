@@ -1,0 +1,7 @@
+rqa.tokens.cove module
+======================
+
+.. automodule:: rqa.tokens.cove
+    :members:
+    :undoc-members:
+    :show-inheritance:

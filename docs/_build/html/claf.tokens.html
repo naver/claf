@@ -1,0 +1,1158 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>claf.tokens package &mdash; CLaF 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="claf.tokens.embedding package" href="claf.tokens.embedding.html" />
+    <link rel="prev" title="claf.modules.layer package" href="claf.modules.layer.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="claf.modules.html">modules</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">tokens</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="claf.tokens.embedding.html">claf.tokens.embedding package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="claf.tokens.indexer.html">claf.tokens.indexer package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="claf.tokens.token_embedder.html">claf.tokens.token_embedder package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="claf.tokens.tokenizer.html">claf.tokens.tokenizer package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-claf.tokens.cove">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-claf.tokens">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>claf.tokens package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/claf.tokens.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="claf-tokens-package">
+<h1>claf.tokens package<a class="headerlink" href="#claf-tokens-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="claf.tokens.embedding.html">claf.tokens.embedding package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="claf.tokens.embedding.html#module-claf.tokens.embedding.base">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.tokens.embedding.html#module-claf.tokens.embedding">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.tokens.indexer.html">claf.tokens.indexer package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="claf.tokens.indexer.html#module-claf.tokens.indexer.base">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.tokens.indexer.html#module-claf.tokens.indexer">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.tokens.token_embedder.html">claf.tokens.token_embedder package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="claf.tokens.token_embedder.html#module-claf.tokens.token_embedder.base">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.tokens.token_embedder.html#module-claf.tokens.token_embedder">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="claf.tokens.tokenizer.html">claf.tokens.tokenizer package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="claf.tokens.tokenizer.html#module-claf.tokens.tokenizer.base">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="claf.tokens.tokenizer.html#module-claf.tokens.tokenizer">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-claf.tokens.cove">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.tokens.cove" title="Permalink to this headline">¶</a></h2>
+<p>This code is from salesforce/cove
+(<a class="reference external" href="https://github.com/salesforce/cove/blob/master/cove/encoder.py">https://github.com/salesforce/cove/blob/master/cove/encoder.py</a>)</p>
+<dl class="class">
+<dt id="claf.tokens.cove.MTLSTM">
+<em class="property">class </em><code class="descclassname">claf.tokens.cove.</code><code class="descname">MTLSTM</code><span class="sig-paren">(</span><em>word_embedding</em>, <em>pretrained_path=None</em>, <em>requires_grad=False</em>, <em>residual_embeddings=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/cove.html#MTLSTM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.cove.MTLSTM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="method">
+<dt id="claf.tokens.cove.MTLSTM.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/cove.html#MTLSTM.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.cove.MTLSTM.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>A pretrained MT-LSTM (McCann et. al. 2017).
+This LSTM was trained with 300d 840B GloVe on the WMT 2017 machine translation dataset.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><dl class="first docutils">
+<dt>inputs (Tensor): If MTLSTM handles embedding, a Long Tensor of size (batch_size, timesteps).</dt>
+<dd>Otherwise, a Float Tensor of size (batch_size, timesteps, features).</dd>
+</dl>
+<p class="last">lengths (Long Tensor): (batch_size, lengths) lenghts of each sequence for handling padding
+hidden (Float Tensor): initial hidden state of the LSTM</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-claf.tokens.elmo"></span><p>This code is from allenai/allennlp
+(<a class="reference external" href="https://github.com/allenai/allennlp/blob/master/allennlp/modules/elmo.py">https://github.com/allenai/allennlp/blob/master/allennlp/modules/elmo.py</a>)</p>
+<dl class="class">
+<dt id="claf.tokens.elmo.Elmo">
+<em class="property">class </em><code class="descclassname">claf.tokens.elmo.</code><code class="descname">Elmo</code><span class="sig-paren">(</span><em>options_file: str</em>, <em>weight_file: str</em>, <em>num_output_representations: int</em>, <em>requires_grad: bool = False</em>, <em>do_layer_norm: bool = False</em>, <em>dropout: float = 0.5</em>, <em>vocab_to_cache: List[str] = None</em>, <em>module: torch.nn.modules.module.Module = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/elmo.html#Elmo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.elmo.Elmo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Compute ELMo representations using a pre-trained bidirectional language model.
+See “Deep contextualized word representations”, Peters et al. for details.
+This module takes character id input and computes <code class="docutils literal notranslate"><span class="pre">num_output_representations</span></code> different layers
+of ELMo representations.  Typically <code class="docutils literal notranslate"><span class="pre">num_output_representations</span></code> is 1 or 2.  For example, in
+the case of the SRL model in the above paper, <code class="docutils literal notranslate"><span class="pre">num_output_representations=1</span></code> where ELMo was included at
+the input token representation layer.  In the case of the SQuAD model, <code class="docutils literal notranslate"><span class="pre">num_output_representations=2</span></code>
+as ELMo was also included at the GRU output layer.
+In the implementation below, we learn separate scalar weights for each output layer,
+but only run the biLM once on each input sequence for efficiency.
+Parameters
+———-
+options_file : <code class="docutils literal notranslate"><span class="pre">str</span></code>, required.</p>
+<blockquote>
+<div>ELMo JSON options file</div></blockquote>
+<dl class="docutils">
+<dt>weight_file <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">str</span></code>, required.</span></dt>
+<dd>ELMo hdf5 weight file</dd>
+<dt>num_output_representations: <code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</dt>
+<dd>The number of ELMo representation layers to output.</dd>
+<dt>requires_grad: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional</dt>
+<dd>If True, compute gradient of ELMo parameters for fine tuning.</dd>
+<dt>do_layer_norm <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional, (default=False).</span></dt>
+<dd>Should we apply layer normalization (passed to <code class="docutils literal notranslate"><span class="pre">ScalarMix</span></code>)?</dd>
+<dt>dropout <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = 0.5).</span></dt>
+<dd>The dropout to be applied to the ELMo representations.</dd>
+<dt>vocab_to_cache <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">List[str]</span></code>, optional, (default = 0.5).</span></dt>
+<dd>A list of words to pre-compute and cache character convolutions
+for. If you use this option, Elmo expects that you pass word
+indices of shape (batch_size, timesteps) to forward, instead
+of character indices. If you use this option and pass a word which
+wasn’t pre-cached, this will break.</dd>
+<dt>module <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code>, optional, (default = None).</span></dt>
+<dd>If provided, then use this module instead of the pre-trained ELMo biLM.
+If using this option, then pass <code class="docutils literal notranslate"><span class="pre">None</span></code> for both <code class="docutils literal notranslate"><span class="pre">options_file</span></code>
+and <code class="docutils literal notranslate"><span class="pre">weight_file</span></code>.  The module must provide a public attribute
+<code class="docutils literal notranslate"><span class="pre">num_layers</span></code> with the number of internal layers and its <code class="docutils literal notranslate"><span class="pre">forward</span></code>
+method must return a <code class="docutils literal notranslate"><span class="pre">dict</span></code> with <code class="docutils literal notranslate"><span class="pre">activations</span></code> and <code class="docutils literal notranslate"><span class="pre">mask</span></code> keys
+(see <cite>_ElmoBilm`</cite> for an example).  Note that <code class="docutils literal notranslate"><span class="pre">requires_grad</span></code> is also
+ignored with this option.</dd>
+</dl>
+<dl class="method">
+<dt id="claf.tokens.elmo.Elmo.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs: torch.Tensor</em>, <em>word_inputs: torch.Tensor = None</em><span class="sig-paren">)</span> &#x2192; Dict[str, Union[torch.Tensor, List[torch.Tensor]]]<a class="reference internal" href="_modules/claf/tokens/elmo.html#Elmo.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.elmo.Elmo.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>inputs: <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>, required.
+Shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">50)</span></code> of character ids representing the current batch.
+word_inputs : <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>, required.</p>
+<blockquote>
+<div>If you passed a cached vocab, you can in addition pass a tensor of shape
+<code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code>, which represent word ids which have been pre-cached.</div></blockquote>
+<p>Dict with keys:
+<code class="docutils literal notranslate"><span class="pre">'elmo_representations'</span></code>: <code class="docutils literal notranslate"><span class="pre">List[torch.Tensor]</span></code></p>
+<blockquote>
+<div>A <code class="docutils literal notranslate"><span class="pre">num_output_representations</span></code> list of ELMo representations for the input sequence.
+Each representation is shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">embedding_dim)</span></code></div></blockquote>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">'mask'</span></code>:  <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></dt>
+<dd>Shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code> long tensor with sequence mask.</dd>
+</dl>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="claf.tokens.elmo.Elmo.from_params">
+<em class="property">classmethod </em><code class="descname">from_params</code><span class="sig-paren">(</span><em>params</em><span class="sig-paren">)</span> &#x2192; claf.tokens.elmo.Elmo<a class="reference internal" href="_modules/claf/tokens/elmo.html#Elmo.from_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.elmo.Elmo.from_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.elmo.Elmo.get_output_dim">
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/elmo.html#Elmo.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.elmo.Elmo.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.tokens.elmo.ElmoLstm">
+<em class="property">class </em><code class="descclassname">claf.tokens.elmo.</code><code class="descname">ElmoLstm</code><span class="sig-paren">(</span><em>input_size: int</em>, <em>hidden_size: int</em>, <em>cell_size: int</em>, <em>num_layers: int</em>, <em>requires_grad: bool = False</em>, <em>recurrent_dropout_probability: float = 0.0</em>, <em>memory_cell_clip_value: Optional[float] = None</em>, <em>state_projection_clip_value: Optional[float] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/elmo.html#ElmoLstm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.elmo.ElmoLstm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">claf.modules.encoder.lstm_cell_with_projection._EncoderBase</span></code></p>
+<p>A stacked, bidirectional LSTM which uses
+<code class="xref py py-class docutils literal notranslate"><span class="pre">LstmCellWithProjection</span></code>’s
+with highway layers between the inputs to layers.
+The inputs to the forward and backward directions are independent - forward and backward
+states are not concatenated between layers.
+Additionally, this LSTM maintains its <cite>own</cite> state, which is updated every time
+<code class="docutils literal notranslate"><span class="pre">forward</span></code> is called. It is dynamically resized for different batch sizes and is
+designed for use with non-continuous inputs (i.e inputs which aren’t formatted as a stream,
+such as text used for a language modelling task, which is how stateful RNNs are typically used).
+This is non-standard, but can be thought of as having an “end of sentence” state, which is
+carried across different sentences.
+Parameters
+———-
+input_size : <code class="docutils literal notranslate"><span class="pre">int</span></code>, required</p>
+<blockquote>
+<div>The dimension of the inputs to the LSTM.</div></blockquote>
+<dl class="docutils">
+<dt>hidden_size <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required</span></dt>
+<dd>The dimension of the outputs of the LSTM.</dd>
+<dt>cell_size <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt>
+<dd>The dimension of the memory cell of the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">LstmCellWithProjection</span></code>.</dd>
+<dt>num_layers <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required</span></dt>
+<dd>The number of bidirectional LSTMs to use.</dd>
+<dt>requires_grad: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional</dt>
+<dd>If True, compute gradient of ELMo parameters for fine tuning.</dd>
+<dt>recurrent_dropout_probability: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional (default = 0.0)</dt>
+<dd>The dropout probability to be used in a dropout scheme as stated in
+<a class="reference external" href="https://arxiv.org/abs/1512.05287">A Theoretically Grounded Application of Dropout in Recurrent Neural Networks</a> .</dd>
+<dt>state_projection_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt>
+<dd>The magnitude with which to clip the hidden_state after projecting it.</dd>
+<dt>memory_cell_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt>
+<dd>The magnitude with which to clip the memory cell.</dd>
+</dl>
+<dl class="method">
+<dt id="claf.tokens.elmo.ElmoLstm.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs: torch.Tensor</em>, <em>mask: torch.LongTensor</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="reference internal" href="_modules/claf/tokens/elmo.html#ElmoLstm.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.elmo.ElmoLstm.forward" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>inputs <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>, required.</span></dt>
+<dd>A Tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">hidden_size)</span></code>.</dd>
+<dt>mask <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.LongTensor</span></code>, required.</span></dt>
+<dd>A binary mask of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code> representing the
+non-padded elements in each sequence in the batch.</dd>
+</dl>
+<p>A <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code> of shape (num_layers, batch_size, sequence_length, hidden_size),
+where the num_layers dimension represents the LSTM output from that layer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.elmo.ElmoLstm.load_weights">
+<code class="descname">load_weights</code><span class="sig-paren">(</span><em>weight_file: str</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/claf/tokens/elmo.html#ElmoLstm.load_weights"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.elmo.ElmoLstm.load_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the pre-trained weights from the file.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.elmo.add_sentence_boundary_token_ids">
+<code class="descclassname">claf.tokens.elmo.</code><code class="descname">add_sentence_boundary_token_ids</code><span class="sig-paren">(</span><em>tensor: torch.Tensor</em>, <em>mask: torch.Tensor</em>, <em>sentence_begin_token: Any</em>, <em>sentence_end_token: Any</em><span class="sig-paren">)</span> &#x2192; Tuple[torch.Tensor, torch.Tensor]<a class="reference internal" href="_modules/claf/tokens/elmo.html#add_sentence_boundary_token_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.elmo.add_sentence_boundary_token_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add begin/end of sentence tokens to the batch of sentences.
+Given a batch of sentences with size <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code> or
+<code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">dim)</span></code> this returns a tensor of shape
+<code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps</span> <span class="pre">+</span> <span class="pre">2)</span></code> or <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps</span> <span class="pre">+</span> <span class="pre">2,</span> <span class="pre">dim)</span></code> respectively.
+Returns both the new tensor and updated mask.
+Parameters
+———-
+tensor : <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></p>
+<blockquote>
+<div>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code> or <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">dim)</span></code></div></blockquote>
+<dl class="docutils">
+<dt>mask <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
+<dd>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code></dd>
+<dt>sentence_begin_token: Any (anything that can be broadcast in torch for assignment)</dt>
+<dd>For 2D input, a scalar with the &lt;S&gt; id. For 3D input, a tensor with length dim.</dd>
+<dt>sentence_end_token: Any (anything that can be broadcast in torch for assignment)</dt>
+<dd>For 2D input, a scalar with the &lt;/S&gt; id. For 3D input, a tensor with length dim.</dd>
+</dl>
+<dl class="docutils">
+<dt>tensor_with_boundary_tokens <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
+<dd>The tensor with the appended and prepended boundary tokens. If the input was 2D,
+it has shape (batch_size, timesteps + 2) and if the input was 3D, it has shape
+(batch_size, timesteps + 2, dim).</dd>
+<dt>new_mask <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
+<dd>The new mask for the tensor, taking into account the appended tokens
+marking the beginning and end of the sentence.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.elmo.remove_sentence_boundaries">
+<code class="descclassname">claf.tokens.elmo.</code><code class="descname">remove_sentence_boundaries</code><span class="sig-paren">(</span><em>tensor: torch.Tensor</em>, <em>mask: torch.Tensor</em><span class="sig-paren">)</span> &#x2192; Tuple[torch.Tensor, torch.Tensor]<a class="reference internal" href="_modules/claf/tokens/elmo.html#remove_sentence_boundaries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.elmo.remove_sentence_boundaries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove begin/end of sentence embeddings from the batch of sentences.
+Given a batch of sentences with size <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">dim)</span></code>
+this returns a tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps</span> <span class="pre">-</span> <span class="pre">2,</span> <span class="pre">dim)</span></code> after removing
+the beginning and end sentence markers.  The sentences are assumed to be padded on the right,
+with the beginning of each sentence assumed to occur at index 0 (i.e., <code class="docutils literal notranslate"><span class="pre">mask[:,</span> <span class="pre">0]</span></code> is assumed
+to be 1).
+Returns both the new tensor and updated mask.
+This function is the inverse of <code class="docutils literal notranslate"><span class="pre">add_sentence_boundary_token_ids</span></code>.
+Parameters
+———-
+tensor : <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></p>
+<blockquote>
+<div>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">dim)</span></code></div></blockquote>
+<dl class="docutils">
+<dt>mask <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
+<dd>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code></dd>
+</dl>
+<dl class="docutils">
+<dt>tensor_without_boundary_tokens <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
+<dd>The tensor after removing the boundary tokens of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps</span> <span class="pre">-</span> <span class="pre">2,</span> <span class="pre">dim)</span></code></dd>
+<dt>new_mask <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
+<dd>The new mask for the tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps</span> <span class="pre">-</span> <span class="pre">2)</span></code>.</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-claf.tokens.hangul"></span><p>Hangulpy.py
+Copyright (C) 2012 Ryan Rho, Hyunwoo Cho
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the “Software”), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+<dl class="exception">
+<dt id="claf.tokens.hangul.NotHangulException">
+<em class="property">exception </em><code class="descclassname">claf.tokens.hangul.</code><code class="descname">NotHangulException</code><a class="reference internal" href="_modules/claf/tokens/hangul.html#NotHangulException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.NotHangulException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="claf.tokens.hangul.NotLetterException">
+<em class="property">exception </em><code class="descclassname">claf.tokens.hangul.</code><code class="descname">NotLetterException</code><a class="reference internal" href="_modules/claf/tokens/hangul.html#NotLetterException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.NotLetterException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="claf.tokens.hangul.NotWordException">
+<em class="property">exception </em><code class="descclassname">claf.tokens.hangul.</code><code class="descname">NotWordException</code><a class="reference internal" href="_modules/claf/tokens/hangul.html#NotWordException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.NotWordException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.hangul.add_ryul">
+<code class="descclassname">claf.tokens.hangul.</code><code class="descname">add_ryul</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/hangul.html#add_ryul"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.add_ryul" title="Permalink to this definition">¶</a></dt>
+<dd><p>add suffix either ‘률’ or ‘율’ at the end of this word</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.hangul.compose">
+<code class="descclassname">claf.tokens.hangul.</code><code class="descname">compose</code><span class="sig-paren">(</span><em>chosung</em>, <em>joongsung</em>, <em>jongsung=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/hangul.html#compose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.compose" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns a Hangul letter by composing the specified chosung, joongsung, and jongsung.
+&#64;param chosung
+&#64;param joongsung
+&#64;param jongsung the terminal Hangul letter. This is optional if you do not need a jongsung.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.hangul.decompose">
+<code class="descclassname">claf.tokens.hangul.</code><code class="descname">decompose</code><span class="sig-paren">(</span><em>hangul_letter</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/hangul.html#decompose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.decompose" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns letters by decomposing the specified Hangul letter.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.hangul.has_approximant">
+<code class="descclassname">claf.tokens.hangul.</code><code class="descname">has_approximant</code><span class="sig-paren">(</span><em>letter</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/hangul.html#has_approximant"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.has_approximant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Approximant makes complex vowels, such as ones starting with y or w.
+In Korean there is a unique approximant euㅡ making uiㅢ, but ㅢ does not make many irregularities.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.hangul.has_batchim">
+<code class="descclassname">claf.tokens.hangul.</code><code class="descname">has_batchim</code><span class="sig-paren">(</span><em>letter</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/hangul.html#has_batchim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.has_batchim" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is the same as has_jongsung()</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.hangul.has_jongsung">
+<code class="descclassname">claf.tokens.hangul.</code><code class="descname">has_jongsung</code><span class="sig-paren">(</span><em>letter</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/hangul.html#has_jongsung"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.has_jongsung" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether this letter contains Jongsung</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.hangul.ili">
+<code class="descclassname">claf.tokens.hangul.</code><code class="descname">ili</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/hangul.html#ili"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.ili" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert {가} or {이} to their correct respective particles automagically.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.hangul.is_all_hangul">
+<code class="descclassname">claf.tokens.hangul.</code><code class="descname">is_all_hangul</code><span class="sig-paren">(</span><em>phrase</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/hangul.html#is_all_hangul"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.is_all_hangul" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the phrase contains all Hangul letters
+&#64;param phrase a target string
+&#64;return True if the phrase only consists of Hangul. False otherwise.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.hangul.is_hangul">
+<code class="descclassname">claf.tokens.hangul.</code><code class="descname">is_hangul</code><span class="sig-paren">(</span><em>phrase</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/hangul.html#is_hangul"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.is_hangul" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the phrase is Hangul.
+This method ignores white spaces, punctuations, and numbers.
+&#64;param phrase a target string
+&#64;return True if the phrase is Hangul. False otherwise.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.hangul.josa_eg">
+<code class="descclassname">claf.tokens.hangul.</code><code class="descname">josa_eg</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/hangul.html#josa_eg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.josa_eg" title="Permalink to this definition">¶</a></dt>
+<dd><p>add josa either ‘이’ or ‘가’ at the end of this word</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.hangul.josa_el">
+<code class="descclassname">claf.tokens.hangul.</code><code class="descname">josa_el</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/hangul.html#josa_el"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.josa_el" title="Permalink to this definition">¶</a></dt>
+<dd><p>add josa either ‘을’ or ‘를’ at the end of this word</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.hangul.josa_en">
+<code class="descclassname">claf.tokens.hangul.</code><code class="descname">josa_en</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/hangul.html#josa_en"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.josa_en" title="Permalink to this definition">¶</a></dt>
+<dd><p>add josa either ‘은’ or ‘는’ at the end of this word</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.hangul.josa_gwa">
+<code class="descclassname">claf.tokens.hangul.</code><code class="descname">josa_gwa</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/hangul.html#josa_gwa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.josa_gwa" title="Permalink to this definition">¶</a></dt>
+<dd><p>add josa either ‘과’ or ‘와’ at the end of this word</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.hangul.josa_ida">
+<code class="descclassname">claf.tokens.hangul.</code><code class="descname">josa_ida</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/hangul.html#josa_ida"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.josa_ida" title="Permalink to this definition">¶</a></dt>
+<dd><p>add josa either ‘이다’ or ‘다’ at the end of this word</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.hangul.josa_ro">
+<code class="descclassname">claf.tokens.hangul.</code><code class="descname">josa_ro</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/hangul.html#josa_ro"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.hangul.josa_ro" title="Permalink to this definition">¶</a></dt>
+<dd><p>add josa either ‘으로’ or ‘로’ at the end of this word</p>
+</dd></dl>
+
+<span class="target" id="module-claf.tokens.linguistic"></span><dl class="class">
+<dt id="claf.tokens.linguistic.NER">
+<em class="property">class </em><code class="descclassname">claf.tokens.linguistic.</code><code class="descname">NER</code><a class="reference internal" href="_modules/claf/tokens/linguistic.html#NER"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.linguistic.NER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Named Entity Recognition</p>
+<p>Models trained on the OntoNotes 5 corpus support
+the following entity types:
+(<a class="reference external" href="https://spacy.io/api/annotation#section-dependency-parsing">https://spacy.io/api/annotation#section-dependency-parsing</a>)</p>
+<dl class="attribute">
+<dt id="claf.tokens.linguistic.NER.classes">
+<code class="descname">classes</code><em class="property"> = ['NONE', 'PERSON', 'NORP', 'FAC', 'ORG', 'GPE', 'LOC', 'PRODUCT', 'EVENT', 'WORK_OF_ART', 'LAW', 'LANGUAGE', 'DATE', 'TIME', 'PERCENT', 'MONEY', 'QUANTITY', 'ORDINAL', 'CARDINAL']</em><a class="headerlink" href="#claf.tokens.linguistic.NER.classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.tokens.linguistic.POSTag">
+<em class="property">class </em><code class="descclassname">claf.tokens.linguistic.</code><code class="descname">POSTag</code><a class="reference internal" href="_modules/claf/tokens/linguistic.html#POSTag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.linguistic.POSTag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Universal POS tags expends by spacy
+(<a class="reference external" href="https://spacy.io/api/annotation#section-pos-tagging">https://spacy.io/api/annotation#section-pos-tagging</a>)</p>
+<dl class="attribute">
+<dt id="claf.tokens.linguistic.POSTag.classes">
+<code class="descname">classes</code><em class="property"> = ['ADJ', 'ADP', 'ADV', 'AUX', 'CONJ', 'CCONJ', 'DET', 'INTJ', 'NOUN', 'NUM', 'PART', 'PRON', 'PROPN', 'PUNCT', 'SCONJ', 'SYM', 'VERB', 'X', 'SPACE']</em><a class="headerlink" href="#claf.tokens.linguistic.POSTag.classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-claf.tokens.text_handler"></span><dl class="class">
+<dt id="claf.tokens.text_handler.TextHandler">
+<em class="property">class </em><code class="descclassname">claf.tokens.text_handler.</code><code class="descname">TextHandler</code><span class="sig-paren">(</span><em>token_makers</em>, <em>lazy_indexing=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/text_handler.html#TextHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.text_handler.TextHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Text Handler</p>
+<ul class="simple">
+<li>voacb and token_counter</li>
+<li>raw_features -&gt; indexed_features</li>
+<li>raw_features -&gt; tensor</li>
+</ul>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>token_makers: Dictionary consisting of</dt>
+<dd><ul class="first last">
+<li>key: token_name</li>
+<li>value: TokenMaker (claf.tokens.token_maker)</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>lazy_indexing: Apply <cite>Lazy Evaluation</cite> to text indexing</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.tokens.text_handler.TextHandler.build_vocabs">
+<code class="descname">build_vocabs</code><span class="sig-paren">(</span><em>token_counters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/text_handler.html#TextHandler.build_vocabs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.text_handler.TextHandler.build_vocabs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.text_handler.TextHandler.index">
+<code class="descname">index</code><span class="sig-paren">(</span><em>datas</em>, <em>text_columns</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/text_handler.html#TextHandler.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.text_handler.TextHandler.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.text_handler.TextHandler.make_token_counters">
+<code class="descname">make_token_counters</code><span class="sig-paren">(</span><em>texts</em>, <em>config=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/text_handler.html#TextHandler.make_token_counters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.text_handler.TextHandler.make_token_counters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.text_handler.TextHandler.raw_to_tensor_fn">
+<code class="descname">raw_to_tensor_fn</code><span class="sig-paren">(</span><em>data_reader</em>, <em>cuda_device=None</em>, <em>helper={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/text_handler.html#TextHandler.raw_to_tensor_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.text_handler.TextHandler.raw_to_tensor_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-claf.tokens.token_maker"></span><dl class="class">
+<dt id="claf.tokens.token_maker.TokenMaker">
+<em class="property">class </em><code class="descclassname">claf.tokens.token_maker.</code><code class="descname">TokenMaker</code><span class="sig-paren">(</span><em>token_type</em>, <em>tokenizer=None</em>, <em>indexer=None</em>, <em>embedding_fn=None</em>, <em>vocab_config=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/token_maker.html#TokenMaker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Token Maker (Data Transfer Object)</p>
+<p>Token Maker consists of Tokenizer, Indexer, Embedding and Vocab</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>tokenizer: Tokenizer (claf.tokens.tokenizer.base)
+indexer: TokenIndexer (claf.tokens.indexer.base)
+embedding_fn: wrapper function of TokenEmbedding (claf.tokens.embedding.base)
+vocab_config: config dict of Vocab (claf.tokens.vocaburary)</dd>
+</dl>
+</li>
+</ul>
+<dl class="attribute">
+<dt id="claf.tokens.token_maker.TokenMaker.BERT_TYPE">
+<code class="descname">BERT_TYPE</code><em class="property"> = 'bert'</em><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker.BERT_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.token_maker.TokenMaker.CHAR_TYPE">
+<code class="descname">CHAR_TYPE</code><em class="property"> = 'char'</em><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker.CHAR_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.token_maker.TokenMaker.COVE_TYPE">
+<code class="descname">COVE_TYPE</code><em class="property"> = 'cove'</em><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker.COVE_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.token_maker.TokenMaker.ELMO_TYPE">
+<code class="descname">ELMO_TYPE</code><em class="property"> = 'elmo'</em><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker.ELMO_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.token_maker.TokenMaker.EXACT_MATCH_TYPE">
+<code class="descname">EXACT_MATCH_TYPE</code><em class="property"> = 'exact_match'</em><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker.EXACT_MATCH_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.token_maker.TokenMaker.FEATURE_TYPE">
+<code class="descname">FEATURE_TYPE</code><em class="property"> = 'feature'</em><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker.FEATURE_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.token_maker.TokenMaker.FREQUENT_WORD_TYPE">
+<code class="descname">FREQUENT_WORD_TYPE</code><em class="property"> = 'frequent_word'</em><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker.FREQUENT_WORD_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.token_maker.TokenMaker.LINGUISTIC_TYPE">
+<code class="descname">LINGUISTIC_TYPE</code><em class="property"> = 'linguistic'</em><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker.LINGUISTIC_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.token_maker.TokenMaker.WORD_TYPE">
+<code class="descname">WORD_TYPE</code><em class="property"> = 'word'</em><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker.WORD_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.token_maker.TokenMaker.embedding_fn">
+<code class="descname">embedding_fn</code><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker.embedding_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.token_maker.TokenMaker.indexer">
+<code class="descname">indexer</code><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker.indexer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.token_maker.TokenMaker.set_vocab">
+<code class="descname">set_vocab</code><span class="sig-paren">(</span><em>vocab</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/token_maker.html#TokenMaker.set_vocab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker.set_vocab" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.token_maker.TokenMaker.tokenizer">
+<code class="descname">tokenizer</code><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker.tokenizer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.token_maker.TokenMaker.vocab">
+<code class="descname">vocab</code><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker.vocab" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.token_maker.TokenMaker.vocab_config">
+<code class="descname">vocab_config</code><a class="headerlink" href="#claf.tokens.token_maker.TokenMaker.vocab_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-claf.tokens.vocabulary"></span><dl class="class">
+<dt id="claf.tokens.vocabulary.Vocab">
+<em class="property">class </em><code class="descclassname">claf.tokens.vocabulary.</code><code class="descname">Vocab</code><span class="sig-paren">(</span><em>token_name</em>, <em>pad_token=None</em>, <em>oov_token=None</em>, <em>start_token=None</em>, <em>end_token=None</em>, <em>cls_token=None</em>, <em>sep_token=None</em>, <em>min_count=None</em>, <em>max_vocab_size=None</em>, <em>frequent_count=None</em>, <em>pretrained_path=None</em>, <em>pretrained_token=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/vocabulary.html#Vocab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.vocabulary.Vocab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<blockquote>
+<div><p>Vocaburary Class</p>
+<p>Vocab consists of token_to_index and index_to_token.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd><p class="first last">token_name: Token name (Token and Vocab is one-to-one relationship)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd><p class="first">pad_token: padding token value (eg. &lt;pad&gt;)
+oov_token: out-of-vocaburary token value (eg. &lt;unk&gt;)
+start_token: start token value (eg. &lt;s&gt;, &lt;bos&gt;)
+end_token: end token value (eg. &lt;/s&gt;, &lt;eos&gt;)
+cls_token: CLS token value for BERT (eg. [CLS])
+sep_token: SEP token value for BERT (eg. [SEP])
+min_count: token’s minimal frequent count.</p>
+<blockquote>
+<div><p>when you define min_count, tokens remain that bigger than min_count.</p>
+</div></blockquote>
+<dl class="last docutils">
+<dt>max_vocab_size: vocaburary’s maximun size.</dt>
+<dd><p class="first last">when you define max_vocab_size, tokens are selected according to frequent count.</p>
+</dd>
+<dt>frequent_count: get frequent_count threshold_index.</dt>
+<dd><p class="first last">(eg. frequent_count = 1000, threshold_index is the tokens that frequent_count is 999 index number.)</p>
+</dd>
+<dt>pretrained_path: pretrained vocab file path</dt>
+<dd><p class="first last">(format: A</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>B
+C
+D
+…)</p>
+<dl class="attribute">
+<dt id="claf.tokens.vocabulary.Vocab.DEFAULT_OOV_INDEX">
+<code class="descname">DEFAULT_OOV_INDEX</code><em class="property"> = 1</em><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.DEFAULT_OOV_INDEX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.vocabulary.Vocab.DEFAULT_OOV_TOKEN">
+<code class="descname">DEFAULT_OOV_TOKEN</code><em class="property"> = '[UNK]'</em><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.DEFAULT_OOV_TOKEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.vocabulary.Vocab.DEFAULT_PAD_INDEX">
+<code class="descname">DEFAULT_PAD_INDEX</code><em class="property"> = 0</em><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.DEFAULT_PAD_INDEX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.vocabulary.Vocab.DEFAULT_PAD_TOKEN">
+<code class="descname">DEFAULT_PAD_TOKEN</code><em class="property"> = '[PAD]'</em><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.DEFAULT_PAD_TOKEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.vocabulary.Vocab.PRETRAINED_ALL">
+<code class="descname">PRETRAINED_ALL</code><em class="property"> = 'all'</em><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.PRETRAINED_ALL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.tokens.vocabulary.Vocab.PRETRAINED_INTERSECT">
+<code class="descname">PRETRAINED_INTERSECT</code><em class="property"> = 'intersect'</em><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.PRETRAINED_INTERSECT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.vocabulary.Vocab.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>token</em>, <em>predefine_vocab=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/vocabulary.html#Vocab.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.vocabulary.Vocab.build">
+<code class="descname">build</code><span class="sig-paren">(</span><em>token_counter</em>, <em>predefine_vocab=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/vocabulary.html#Vocab.build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>build token with token_counter</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Args:</dt>
+<dd>token_counter: (collections.Counter) token’s frequent_count Counter.</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.vocabulary.Vocab.build_with_pretrained_file">
+<code class="descname">build_with_pretrained_file</code><span class="sig-paren">(</span><em>token_counter</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/vocabulary.html#Vocab.build_with_pretrained_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.build_with_pretrained_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.vocabulary.Vocab.dump">
+<code class="descname">dump</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/vocabulary.html#Vocab.dump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.dump" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.vocabulary.Vocab.from_texts">
+<code class="descname">from_texts</code><span class="sig-paren">(</span><em>texts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/vocabulary.html#Vocab.from_texts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.from_texts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.vocabulary.Vocab.get_all_tokens">
+<code class="descname">get_all_tokens</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/vocabulary.html#Vocab.get_all_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.get_all_tokens" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.vocabulary.Vocab.get_index">
+<code class="descname">get_index</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/vocabulary.html#Vocab.get_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.get_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.vocabulary.Vocab.get_token">
+<code class="descname">get_token</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/vocabulary.html#Vocab.get_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.get_token" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.vocabulary.Vocab.init">
+<code class="descname">init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/vocabulary.html#Vocab.init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.vocabulary.Vocab.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/vocabulary.html#Vocab.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.load" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.tokens.vocabulary.Vocab.to_text">
+<code class="descname">to_text</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/vocabulary.html#Vocab.to_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.to_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.tokens.vocabulary.VocabDict">
+<em class="property">class </em><code class="descclassname">claf.tokens.vocabulary.</code><code class="descname">VocabDict</code><span class="sig-paren">(</span><em>oov_value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/vocabulary.html#VocabDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.vocabulary.VocabDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.defaultdict" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.defaultdict</span></code></a></p>
+<p>Vocab DefaultDict Class</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Kwargs:</dt>
+<dd>oov_value: out-of-vocaburary token value (eg. &lt;unk&gt;)</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="module-claf.tokens">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.tokens" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="claf.tokens.BertTokenMaker">
+<em class="property">class </em><code class="descclassname">claf.tokens.</code><code class="descname">BertTokenMaker</code><span class="sig-paren">(</span><em>tokenizers</em>, <em>indexer_config</em>, <em>embedding_config</em>, <em>vocab_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens.html#BertTokenMaker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.BertTokenMaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.tokens.token_maker.TokenMaker" title="claf.tokens.token_maker.TokenMaker"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.token_maker.TokenMaker</span></code></a></p>
+<p>BERT Token
+Pre-training of Deep Bidirectional Transformers for Language Understanding</p>
+<dl class="docutils">
+<dt>example.</dt>
+<dd>hello -&gt; [‘[CLS]’, ‘he’, ‘##llo’, [SEP]] -&gt; [1, 4, 7, 2] -&gt; BERT -&gt; tensor</dd>
+<dt>consisting of</dt>
+<dd><ul class="first last simple">
+<li>tokenizer: WordTokenizer</li>
+<li>indexer: WordIndexer</li>
+<li>embedding: ELMoEmbedding (Language Modeling BiLSTM)</li>
+<li>vocab: Vocab</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.tokens.CharTokenMaker">
+<em class="property">class </em><code class="descclassname">claf.tokens.</code><code class="descname">CharTokenMaker</code><span class="sig-paren">(</span><em>tokenizers</em>, <em>indexer_config</em>, <em>embedding_config</em>, <em>vocab_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens.html#CharTokenMaker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.CharTokenMaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.tokens.token_maker.TokenMaker" title="claf.tokens.token_maker.TokenMaker"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.token_maker.TokenMaker</span></code></a></p>
+<p>Character Token</p>
+<p>Character-level Convolutional Networks for Text Classification
+(<a class="reference external" href="https://arxiv.org/abs/1509.01626">https://arxiv.org/abs/1509.01626</a>)</p>
+<dl class="docutils">
+<dt>example.</dt>
+<dd>hello -&gt; [‘h’, ‘e’, ‘l’, ‘l’, ‘o’] -&gt; [2, 3, 4, 4, 5] -&gt; CharCNN -&gt; tensor</dd>
+<dt>consisting of</dt>
+<dd><ul class="first last simple">
+<li>tokenizer: CharTokenizer</li>
+<li>indexer: CharIndexer</li>
+<li>embedding: CharEmbedding (CharCNN)</li>
+<li>vocab: Vocab</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.tokens.CoveTokenMaker">
+<em class="property">class </em><code class="descclassname">claf.tokens.</code><code class="descname">CoveTokenMaker</code><span class="sig-paren">(</span><em>tokenizers</em>, <em>indexer_config</em>, <em>embedding_config</em>, <em>vocab_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens.html#CoveTokenMaker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.CoveTokenMaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.tokens.token_maker.TokenMaker" title="claf.tokens.token_maker.TokenMaker"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.token_maker.TokenMaker</span></code></a></p>
+<p>CoVe Token</p>
+<p>Learned in Translation: Contextualized Word Vectors (McCann et. al. 2017)
+(<a class="reference external" href="https://github.com/salesforce/cove">https://github.com/salesforce/cove</a>)</p>
+<dl class="docutils">
+<dt>example.</dt>
+<dd>hello -&gt; [‘hello’] -&gt; [2] -&gt; CoVe -&gt; tensor</dd>
+<dt>consisting of</dt>
+<dd><ul class="first last simple">
+<li>tokenizer: WordTokenizer</li>
+<li>indexer: WordIndexer</li>
+<li>embedding: CoveEmbedding (Machine Translation LSTM)</li>
+<li>vocab: Vocab</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.tokens.ElmoTokenMaker">
+<em class="property">class </em><code class="descclassname">claf.tokens.</code><code class="descname">ElmoTokenMaker</code><span class="sig-paren">(</span><em>tokenizers</em>, <em>indexer_config</em>, <em>embedding_config</em>, <em>vocab_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens.html#ElmoTokenMaker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.ElmoTokenMaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.tokens.token_maker.TokenMaker" title="claf.tokens.token_maker.TokenMaker"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.token_maker.TokenMaker</span></code></a></p>
+<p>ELMo Token
+Embedding from Language Modeling</p>
+<p>Deep contextualized word representations
+(<a class="reference external" href="https://github.com/allenai/allennlp/blob/master/allennlp/modules/elmo.py">https://github.com/allenai/allennlp/blob/master/allennlp/modules/elmo.py</a>)</p>
+<dl class="docutils">
+<dt>example.</dt>
+<dd>hello -&gt; [‘h’, ‘e’, ‘l’, ‘l’, ‘o’] -&gt; [2, 3, 4, 4, 5] -&gt; ELMo -&gt; tensor</dd>
+<dt>consisting of</dt>
+<dd><ul class="first last simple">
+<li>tokenizer: WordTokenizer</li>
+<li>indexer: WordIndexer</li>
+<li>embedding: ELMoEmbedding (Language Modeling BiLSTM)</li>
+<li>vocab: Vocab</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.tokens.ExactMatchTokenMaker">
+<em class="property">class </em><code class="descclassname">claf.tokens.</code><code class="descname">ExactMatchTokenMaker</code><span class="sig-paren">(</span><em>tokenizers</em>, <em>indexer_config</em>, <em>embedding_config</em>, <em>vocab_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens.html#ExactMatchTokenMaker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.ExactMatchTokenMaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.tokens.token_maker.TokenMaker" title="claf.tokens.token_maker.TokenMaker"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.token_maker.TokenMaker</span></code></a></p>
+<p>Exact Match Token (Sparse Feature)</p>
+<p>Three simple binary features, indicating whether p_i can be exactly matched
+to one question word in q, either in its original, lowercase or lemma form.</p>
+<dl class="docutils">
+<dt>example.</dt>
+<dd>c: i do, q: i -&gt; [‘i’, ‘do’] -&gt; [1, 0] -&gt; tensor</dd>
+<dt>consisting of</dt>
+<dd><ul class="first last simple">
+<li>tokenizer: WordTokenizer</li>
+<li>indexer: WordIndexer</li>
+<li>embedding: SparseFeature</li>
+<li>vocab: Vocab</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.tokens.FeatureTokenMaker">
+<em class="property">class </em><code class="descclassname">claf.tokens.</code><code class="descname">FeatureTokenMaker</code><span class="sig-paren">(</span><em>tokenizers</em>, <em>indexer_config</em>, <em>embedding_config</em>, <em>vocab_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens.html#FeatureTokenMaker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.FeatureTokenMaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.tokens.token_maker.TokenMaker" title="claf.tokens.token_maker.TokenMaker"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.token_maker.TokenMaker</span></code></a></p>
+<p>Feature Token</p>
+<p>Do not use Embedding function.
+Just pass indexed_feature</p>
+<dl class="docutils">
+<dt>example.</dt>
+<dd>hello -&gt; [‘hello’, ‘world’] -&gt; [3, 5] -&gt; tensor</dd>
+<dt>consisting of</dt>
+<dd><ul class="first last simple">
+<li>tokenizer: Tokenizer (need to define unit)</li>
+<li>indexer: WordIndexer</li>
+<li>embedding: None</li>
+<li>vocab: Vocab</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.tokens.FrequentWordTokenMaker">
+<em class="property">class </em><code class="descclassname">claf.tokens.</code><code class="descname">FrequentWordTokenMaker</code><span class="sig-paren">(</span><em>tokenizers</em>, <em>indexer_config</em>, <em>embedding_config</em>, <em>vocab_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens.html#FrequentWordTokenMaker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.FrequentWordTokenMaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.tokens.token_maker.TokenMaker" title="claf.tokens.token_maker.TokenMaker"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.token_maker.TokenMaker</span></code></a></p>
+<p>Frequent-Tuning Word Token</p>
+<p>word token + pre-trained word embeddings fixed and only fine-tune the N most frequent</p>
+<dl class="docutils">
+<dt>example.</dt>
+<dd>i do -&gt; [‘i’, ‘do’] -&gt; [1, 2] -&gt; Embedding Matrix -&gt; tensor
+finetuning only ‘do’</dd>
+<dt>consisting of</dt>
+<dd><ul class="first last simple">
+<li>tokenizer: WordTokenizer</li>
+<li>indexer: WordIndexer</li>
+<li>embedding: FrequentTuningWordEmbedding</li>
+<li>vocab: Vocab</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.tokens.LinguisticTokenMaker">
+<em class="property">class </em><code class="descclassname">claf.tokens.</code><code class="descname">LinguisticTokenMaker</code><span class="sig-paren">(</span><em>tokenizers</em>, <em>indexer_config</em>, <em>embedding_config</em>, <em>vocab_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens.html#LinguisticTokenMaker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.LinguisticTokenMaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.tokens.token_maker.TokenMaker" title="claf.tokens.token_maker.TokenMaker"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.token_maker.TokenMaker</span></code></a></p>
+<p>Exact Match Token (Sparse Feature)</p>
+<p>Three simple binary features, indicating whether p_i can be exactly matched
+to one question word in q, either in its original, lowercase or lemma form.</p>
+<dl class="docutils">
+<dt>example.</dt>
+<dd>c: i do, q: i -&gt; [‘i’, ‘do’] -&gt; [1, 0] -&gt; tensor</dd>
+<dt>consisting of</dt>
+<dd><ul class="first last simple">
+<li>tokenizer: WordTokenizer</li>
+<li>indexer: WordIndexer</li>
+<li>embedding: SparseFeature</li>
+<li>vocab: Vocab</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.tokens.WordTokenMaker">
+<em class="property">class </em><code class="descclassname">claf.tokens.</code><code class="descname">WordTokenMaker</code><span class="sig-paren">(</span><em>tokenizers</em>, <em>indexer_config</em>, <em>embedding_config</em>, <em>vocab_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens.html#WordTokenMaker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.WordTokenMaker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.tokens.token_maker.TokenMaker" title="claf.tokens.token_maker.TokenMaker"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.token_maker.TokenMaker</span></code></a></p>
+<p>Word Token (default)</p>
+<blockquote>
+<div>i do -&gt; [‘i’, ‘do’] -&gt; [1, 2] -&gt; Embedding Matrix -&gt; tensor</div></blockquote>
+<dl class="docutils">
+<dt>consisting of</dt>
+<dd><ul class="first last simple">
+<li>tokenizer: WordTokenizer</li>
+<li>indexer: WordIndexer</li>
+<li>embedding: WordEmbedding</li>
+<li>vocab: Vocab</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="claf.tokens.basic_embedding_fn">
+<code class="descclassname">claf.tokens.</code><code class="descname">basic_embedding_fn</code><span class="sig-paren">(</span><em>embedding_config</em>, <em>module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens.html#basic_embedding_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.basic_embedding_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="claf.tokens.embedding.html" class="btn btn-neutral float-right" title="claf.tokens.embedding package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="claf.modules.layer.html" class="btn btn-neutral" title="claf.modules.layer package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

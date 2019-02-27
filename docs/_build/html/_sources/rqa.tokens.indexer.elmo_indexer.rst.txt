@@ -1,0 +1,7 @@
+rqa.tokens.indexer.elmo\_indexer module
+=======================================
+
+.. automodule:: rqa.tokens.indexer.elmo_indexer
+    :members:
+    :undoc-members:
+    :show-inheritance:

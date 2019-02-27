@@ -1,0 +1,7 @@
+rqa.modules.conv.pointwise\_conv module
+=======================================
+
+.. automodule:: rqa.modules.conv.pointwise_conv
+    :members:
+    :undoc-members:
+    :show-inheritance:

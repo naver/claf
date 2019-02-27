@@ -1,0 +1,29 @@
+rqa.model.sequence\_classification package
+==========================================
+
+Submodules
+----------
+
+.. automodule:: rqa.model.sequence_classification.bert_for_seq_cls
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.model.sequence_classification.mixin
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: rqa.model.sequence_classification.structured_self_attention
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: rqa.model.sequence_classification
+    :members:
+    :undoc-members:
+    :show-inheritance:

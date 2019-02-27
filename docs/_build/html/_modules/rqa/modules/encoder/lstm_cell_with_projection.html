@@ -1,0 +1,857 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.modules.encoder.lstm_cell_with_projection &mdash; reasoning-qa 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>rqa.modules.encoder.lstm_cell_with_projection</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rqa.modules.encoder.lstm_cell_with_projection</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This code is from allenai/allennlp</span>
+<span class="sd">(https://github.com/allenai/allennlp/blob/master/allennlp/modules/lstm_cell_with_projection.py)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch.nn.utils.rnn</span> <span class="k">import</span> <span class="n">pack_padded_sequence</span><span class="p">,</span> <span class="n">PackedSequence</span>
+
+
+<div class="viewcode-block" id="LstmCellWithProjection"><a class="viewcode-back" href="../../../../rqa.modules.encoder.html#rqa.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection">[docs]</a><span class="k">class</span> <span class="nc">LstmCellWithProjection</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An LSTM with Recurrent Dropout and a projected and clipped hidden state and</span>
+<span class="sd">    memory. Note: this implementation is slower than the native Pytorch LSTM because</span>
+<span class="sd">    it cannot make use of CUDNN optimizations for stacked RNNs due to and</span>
+<span class="sd">    variational dropout and the custom nature of the cell state.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    input_size : ``int``, required.</span>
+<span class="sd">        The dimension of the inputs to the LSTM.</span>
+<span class="sd">    hidden_size : ``int``, required.</span>
+<span class="sd">        The dimension of the outputs of the LSTM.</span>
+<span class="sd">    cell_size : ``int``, required.</span>
+<span class="sd">        The dimension of the memory cell used for the LSTM.</span>
+<span class="sd">    go_forward: ``bool``, optional (default = True)</span>
+<span class="sd">        The direction in which the LSTM is applied to the sequence.</span>
+<span class="sd">        Forwards by default, or backwards if False.</span>
+<span class="sd">    recurrent_dropout_probability: ``float``, optional (default = 0.0)</span>
+<span class="sd">        The dropout probability to be used in a dropout scheme as stated in</span>
+<span class="sd">        `A Theoretically Grounded Application of Dropout in Recurrent Neural Networks</span>
+<span class="sd">        &lt;https://arxiv.org/abs/1512.05287&gt;`_ . Implementation wise, this simply</span>
+<span class="sd">        applies a fixed dropout mask per sequence to the recurrent connection of the</span>
+<span class="sd">        LSTM.</span>
+<span class="sd">    state_projection_clip_value: ``float``, optional, (default = None)</span>
+<span class="sd">        The magnitude with which to clip the hidden_state after projecting it.</span>
+<span class="sd">    memory_cell_clip_value: ``float``, optional, (default = None)</span>
+<span class="sd">        The magnitude with which to clip the memory cell.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    output_accumulator : ``torch.FloatTensor``</span>
+<span class="sd">        The outputs of the LSTM for each timestep. A tensor of shape</span>
+<span class="sd">        (batch_size, max_timesteps, hidden_size) where for a given batch</span>
+<span class="sd">        element, all outputs past the sequence length for that batch are</span>
+<span class="sd">        zero tensors.</span>
+<span class="sd">    final_state: ``Tuple[torch.FloatTensor, torch.FloatTensor]``</span>
+<span class="sd">        The final (state, memory) states of the LSTM, with shape</span>
+<span class="sd">        (1, batch_size, hidden_size) and  (1, batch_size, cell_size)</span>
+<span class="sd">        respectively. The first dimension is 1 in order to match the Pytorch</span>
+<span class="sd">        API for returning stacked LSTM states.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">input_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">hidden_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">cell_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">go_forward</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">recurrent_dropout_probability</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">memory_cell_clip_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">state_projection_clip_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">LstmCellWithProjection</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># Required to be wrapped with a :class:`PytorchSeq2SeqWrapper`.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_size</span> <span class="o">=</span> <span class="n">input_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">hidden_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span> <span class="o">=</span> <span class="n">cell_size</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">go_forward</span> <span class="o">=</span> <span class="n">go_forward</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_projection_clip_value</span> <span class="o">=</span> <span class="n">state_projection_clip_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">memory_cell_clip_value</span> <span class="o">=</span> <span class="n">memory_cell_clip_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_dropout_probability</span> <span class="o">=</span> <span class="n">recurrent_dropout_probability</span>
+
+        <span class="c1"># We do the projections for all the gates all at once.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_linearity</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_linearity</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">cell_size</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Additional projection matrix for making the hidden state smaller.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_projection</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">cell_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_parameters</span><span class="p">()</span>
+
+<div class="viewcode-block" id="LstmCellWithProjection.reset_parameters"><a class="viewcode-back" href="../../../../rqa.modules.encoder.html#rqa.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection.reset_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">reset_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Use sensible default initializations for parameters.</span>
+        <span class="n">block_orthogonal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_linearity</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_size</span><span class="p">])</span>
+        <span class="n">block_orthogonal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state_linearity</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_linearity</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">fill_</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="c1"># Initialize forget gate biases to 1.0 as per An Empirical</span>
+        <span class="c1"># Exploration of Recurrent Network Architectures, (Jozefowicz, 2015).</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_linearity</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span> <span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">]</span><span class="o">.</span><span class="n">fill_</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LstmCellWithProjection.forward"><a class="viewcode-back" href="../../../../rqa.modules.encoder.html#rqa.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>  <span class="c1"># pylint: disable=arguments-differ</span>
+        <span class="n">inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">,</span>
+        <span class="n">batch_lengths</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+        <span class="n">initial_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inputs : ``torch.FloatTensor``, required.</span>
+<span class="sd">            A tensor of shape (batch_size, num_timesteps, input_size)</span>
+<span class="sd">            to apply the LSTM over.</span>
+<span class="sd">        batch_lengths : ``List[int]``, required.</span>
+<span class="sd">            A list of length batch_size containing the lengths of the sequences in batch.</span>
+<span class="sd">        initial_state : ``Tuple[torch.Tensor, torch.Tensor]``, optional, (default = None)</span>
+<span class="sd">            A tuple (state, memory) representing the initial hidden state and memory</span>
+<span class="sd">            of the LSTM. The ``state`` has shape (1, batch_size, hidden_size) and the</span>
+<span class="sd">            ``memory`` has shape (1, batch_size, cell_size).</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        output_accumulator : ``torch.FloatTensor``</span>
+<span class="sd">            The outputs of the LSTM for each timestep. A tensor of shape</span>
+<span class="sd">            (batch_size, max_timesteps, hidden_size) where for a given batch</span>
+<span class="sd">            element, all outputs past the sequence length for that batch are</span>
+<span class="sd">            zero tensors.</span>
+<span class="sd">        final_state : ``Tuple[``torch.FloatTensor, torch.FloatTensor]``</span>
+<span class="sd">            A tuple (state, memory) representing the initial hidden state and memory</span>
+<span class="sd">            of the LSTM. The ``state`` has shape (1, batch_size, hidden_size) and the</span>
+<span class="sd">            ``memory`` has shape (1, batch_size, cell_size).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">total_timesteps</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">output_accumulator</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">total_timesteps</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">initial_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">full_batch_previous_memory</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)</span>
+            <span class="n">full_batch_previous_state</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">full_batch_previous_state</span> <span class="o">=</span> <span class="n">initial_state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">full_batch_previous_memory</span> <span class="o">=</span> <span class="n">initial_state</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">current_length_index</span> <span class="o">=</span> <span class="n">batch_size</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">go_forward</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_dropout_probability</span> <span class="o">&gt;</span> <span class="mf">0.0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">:</span>
+            <span class="n">dropout_mask</span> <span class="o">=</span> <span class="n">get_dropout_mask</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_dropout_probability</span><span class="p">,</span> <span class="n">full_batch_previous_state</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dropout_mask</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">for</span> <span class="n">timestep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_timesteps</span><span class="p">):</span>
+            <span class="c1"># The index depends on which end we start.</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">timestep</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">go_forward</span> <span class="k">else</span> <span class="n">total_timesteps</span> <span class="o">-</span> <span class="n">timestep</span> <span class="o">-</span> <span class="mi">1</span>
+
+            <span class="c1"># What we are doing here is finding the index into the batch dimension</span>
+            <span class="c1"># which we need to use for this timestep, because the sequences have</span>
+            <span class="c1"># variable length, so once the index is greater than the length of this</span>
+            <span class="c1"># particular batch sequence, we no longer need to do the computation for</span>
+            <span class="c1"># this sequence. The key thing to recognise here is that the batch inputs</span>
+            <span class="c1"># must be _ordered_ by length from longest (first in batch) to shortest</span>
+            <span class="c1"># (last) so initially, we are going forwards with every sequence and as we</span>
+            <span class="c1"># pass the index at which the shortest elements of the batch finish,</span>
+            <span class="c1"># we stop picking them up for the computation.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">go_forward</span><span class="p">:</span>
+                <span class="k">while</span> <span class="n">batch_lengths</span><span class="p">[</span><span class="n">current_length_index</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">index</span><span class="p">:</span>
+                    <span class="n">current_length_index</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="c1"># If we&#39;re going backwards, we are _picking up_ more indices.</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># First conditional: Are we already at the maximum number of elements in the batch?</span>
+                <span class="c1"># Second conditional: Does the next shortest sequence beyond the current batch</span>
+                <span class="c1"># index require computation use this timestep?</span>
+                <span class="k">while</span> <span class="p">(</span>
+                    <span class="n">current_length_index</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">batch_lengths</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="n">batch_lengths</span><span class="p">[</span><span class="n">current_length_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">index</span>
+                <span class="p">):</span>
+                    <span class="n">current_length_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="c1"># Actually get the slices of the batch which we</span>
+            <span class="c1"># need for the computation at this timestep.</span>
+            <span class="c1"># shape (batch_size, cell_size)</span>
+            <span class="n">previous_memory</span> <span class="o">=</span> <span class="n">full_batch_previous_memory</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">current_length_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+            <span class="c1"># Shape (batch_size, hidden_size)</span>
+            <span class="n">previous_state</span> <span class="o">=</span> <span class="n">full_batch_previous_state</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">current_length_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+            <span class="c1"># Shape (batch_size, input_size)</span>
+            <span class="n">timestep_input</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">current_length_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="p">]</span>
+
+            <span class="c1"># Do the projections for all the gates all at once.</span>
+            <span class="c1"># Both have shape (batch_size, 4 * cell_size)</span>
+            <span class="n">projected_input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_linearity</span><span class="p">(</span><span class="n">timestep_input</span><span class="p">)</span>
+            <span class="n">projected_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_linearity</span><span class="p">(</span><span class="n">previous_state</span><span class="p">)</span>
+
+            <span class="c1"># Main LSTM equations using relevant chunks of the big linear</span>
+            <span class="c1"># projections of the hidden state and inputs.</span>
+            <span class="n">input_gate</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span>
+                <span class="n">projected_input</span><span class="p">[:,</span> <span class="p">(</span><span class="mi">0</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)]</span>
+                <span class="o">+</span> <span class="n">projected_state</span><span class="p">[:,</span> <span class="p">(</span><span class="mi">0</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)]</span>
+            <span class="p">)</span>
+            <span class="n">forget_gate</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span>
+                <span class="n">projected_input</span><span class="p">[:,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)]</span>
+                <span class="o">+</span> <span class="n">projected_state</span><span class="p">[:,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)]</span>
+            <span class="p">)</span>
+            <span class="n">memory_init</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span>
+                <span class="n">projected_input</span><span class="p">[:,</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)]</span>
+                <span class="o">+</span> <span class="n">projected_state</span><span class="p">[:,</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)]</span>
+            <span class="p">)</span>
+            <span class="n">output_gate</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span>
+                <span class="n">projected_input</span><span class="p">[:,</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)]</span>
+                <span class="o">+</span> <span class="n">projected_state</span><span class="p">[:,</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_size</span><span class="p">)]</span>
+            <span class="p">)</span>
+            <span class="n">memory</span> <span class="o">=</span> <span class="n">input_gate</span> <span class="o">*</span> <span class="n">memory_init</span> <span class="o">+</span> <span class="n">forget_gate</span> <span class="o">*</span> <span class="n">previous_memory</span>
+
+            <span class="c1"># Here is the non-standard part of this LSTM cell; first, we clip the</span>
+            <span class="c1"># memory cell, then we project the output of the timestep to a smaller size</span>
+            <span class="c1"># and again clip it.</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">memory_cell_clip_value</span><span class="p">:</span>
+                <span class="c1"># pylint: disable=invalid-unary-operand-type</span>
+                <span class="n">memory</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span>
+                    <span class="n">memory</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">memory_cell_clip_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">memory_cell_clip_value</span>
+                <span class="p">)</span>
+
+            <span class="c1"># shape (current_length_index, cell_size)</span>
+            <span class="n">pre_projection_timestep_output</span> <span class="o">=</span> <span class="n">output_gate</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">memory</span><span class="p">)</span>
+
+            <span class="c1"># shape (current_length_index, hidden_size)</span>
+            <span class="n">timestep_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_projection</span><span class="p">(</span><span class="n">pre_projection_timestep_output</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_projection_clip_value</span><span class="p">:</span>
+                <span class="c1"># pylint: disable=invalid-unary-operand-type</span>
+                <span class="n">timestep_output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span>
+                    <span class="n">timestep_output</span><span class="p">,</span>
+                    <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">state_projection_clip_value</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">state_projection_clip_value</span><span class="p">,</span>
+                <span class="p">)</span>
+
+            <span class="c1"># Only do dropout if the dropout prob is &gt; 0.0 and we are in training mode.</span>
+            <span class="k">if</span> <span class="n">dropout_mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">timestep_output</span> <span class="o">=</span> <span class="n">timestep_output</span> <span class="o">*</span> <span class="n">dropout_mask</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">current_length_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+            <span class="c1"># We&#39;ve been doing computation with less than the full batch, so here we create a new</span>
+            <span class="c1"># variable for the the whole batch at this timestep and insert the result for the</span>
+            <span class="c1"># relevant elements of the batch into it.</span>
+            <span class="n">full_batch_previous_memory</span> <span class="o">=</span> <span class="n">full_batch_previous_memory</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+            <span class="n">full_batch_previous_state</span> <span class="o">=</span> <span class="n">full_batch_previous_state</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+            <span class="n">full_batch_previous_memory</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">current_length_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">memory</span>
+            <span class="n">full_batch_previous_state</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">current_length_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">timestep_output</span>
+            <span class="n">output_accumulator</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">current_length_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">timestep_output</span>
+
+        <span class="c1"># Mimic the pytorch API by returning state in the following shape:</span>
+        <span class="c1"># (num_layers * num_directions, batch_size, ...). As this</span>
+        <span class="c1"># LSTM cell cannot be stacked, the first dimension here is just 1.</span>
+        <span class="n">final_state</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">full_batch_previous_state</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">full_batch_previous_memory</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">output_accumulator</span><span class="p">,</span> <span class="n">final_state</span></div></div>
+
+
+<div class="viewcode-block" id="get_dropout_mask"><a class="viewcode-back" href="../../../../rqa.modules.encoder.html#rqa.modules.encoder.lstm_cell_with_projection.get_dropout_mask">[docs]</a><span class="k">def</span> <span class="nf">get_dropout_mask</span><span class="p">(</span><span class="n">dropout_probability</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">tensor_for_masking</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes and returns an element-wise dropout mask for a given tensor, where</span>
+<span class="sd">    each element in the mask is dropped out with probability dropout_probability.</span>
+<span class="sd">    Note that the mask is NOT applied to the tensor - the tensor is passed to retain</span>
+<span class="sd">    the correct CUDA tensor type for the mask.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dropout_probability : float, required.</span>
+<span class="sd">        Probability of dropping a dimension of the input.</span>
+<span class="sd">    tensor_for_masking : torch.Tensor, required.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    A torch.FloatTensor consisting of the binary mask scaled by 1/ (1 - dropout_probability).</span>
+<span class="sd">    This scaling ensures expected values and variances of the output of applying this mask</span>
+<span class="sd">     and the original tensor are the same.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">binary_mask</span> <span class="o">=</span> <span class="n">tensor_for_masking</span><span class="o">.</span><span class="n">new_tensor</span><span class="p">(</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">tensor_for_masking</span><span class="o">.</span><span class="n">size</span><span class="p">())</span> <span class="o">&gt;</span> <span class="n">dropout_probability</span>
+    <span class="p">)</span>
+    <span class="c1"># Scale mask by 1/keep_prob to preserve output statistics.</span>
+    <span class="n">dropout_mask</span> <span class="o">=</span> <span class="n">binary_mask</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">dropout_probability</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dropout_mask</span></div>
+
+
+<div class="viewcode-block" id="block_orthogonal"><a class="viewcode-back" href="../../../../rqa.modules.encoder.html#rqa.modules.encoder.lstm_cell_with_projection.block_orthogonal">[docs]</a><span class="k">def</span> <span class="nf">block_orthogonal</span><span class="p">(</span><span class="n">tensor</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">split_sizes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">gain</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An initializer which allows initializing model parameters in &quot;blocks&quot;. This is helpful</span>
+<span class="sd">    in the case of recurrent models which use multiple gates applied to linear projections,</span>
+<span class="sd">    which can be computed efficiently if they are concatenated together. However, they are</span>
+<span class="sd">    separate parameters which should be initialized independently.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tensor : ``torch.Tensor``, required.</span>
+<span class="sd">        A tensor to initialize.</span>
+<span class="sd">    split_sizes : List[int], required.</span>
+<span class="sd">        A list of length ``tensor.ndim()`` specifying the size of the</span>
+<span class="sd">        blocks along that particular dimension. E.g. ``[10, 20]`` would</span>
+<span class="sd">        result in the tensor being split into chunks of size 10 along the</span>
+<span class="sd">        first dimension and 20 along the second.</span>
+<span class="sd">    gain : float, optional (default = 1.0)</span>
+<span class="sd">        The gain (scaling) applied to the orthogonal initialization.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">sizes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">a</span> <span class="o">%</span> <span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span> <span class="n">split_sizes</span><span class="p">)]):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;tensor dimensions must be divisible by their respective &quot;</span>
+            <span class="s2">&quot;split_sizes. Found size: </span><span class="si">{}</span><span class="s2"> and split_sizes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span> <span class="n">split_sizes</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="n">indexes</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_size</span><span class="p">,</span> <span class="n">split</span><span class="p">))</span> <span class="k">for</span> <span class="n">max_size</span><span class="p">,</span> <span class="n">split</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span> <span class="n">split_sizes</span><span class="p">)]</span>
+    <span class="c1"># Iterate over all possible blocks within the tensor.</span>
+    <span class="k">for</span> <span class="n">block_start_indices</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">indexes</span><span class="p">):</span>
+        <span class="c1"># A list of tuples containing the index to start at for this block</span>
+        <span class="c1"># and the appropriate step size (i.e split_size[i] for dimension i).</span>
+        <span class="n">index_and_step_tuples</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">block_start_indices</span><span class="p">,</span> <span class="n">split_sizes</span><span class="p">)</span>
+        <span class="c1"># This is a tuple of slices corresponding to:</span>
+        <span class="c1"># tensor[index: index + step_size, ...]. This is</span>
+        <span class="c1"># required because we could have an arbitrary number</span>
+        <span class="c1"># of dimensions. The actual slices we need are the</span>
+        <span class="c1"># start_index: start_index + step for each dimension in the tensor.</span>
+        <span class="n">block_slice</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span>
+            <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="n">start_index</span> <span class="o">+</span> <span class="n">step</span><span class="p">)</span> <span class="k">for</span> <span class="n">start_index</span><span class="p">,</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">index_and_step_tuples</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">block_slice</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">orthogonal_</span><span class="p">(</span><span class="n">tensor</span><span class="p">[</span><span class="n">block_slice</span><span class="p">]</span><span class="o">.</span><span class="n">contiguous</span><span class="p">(),</span> <span class="n">gain</span><span class="o">=</span><span class="n">gain</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="sort_batch_by_length"><a class="viewcode-back" href="../../../../rqa.modules.encoder.html#rqa.modules.encoder.lstm_cell_with_projection.sort_batch_by_length">[docs]</a><span class="k">def</span> <span class="nf">sort_batch_by_length</span><span class="p">(</span><span class="n">tensor</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">sequence_lengths</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sort a batch first tensor by some specified lengths.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tensor : torch.FloatTensor, required.</span>
+<span class="sd">        A batch first Pytorch tensor.</span>
+<span class="sd">    sequence_lengths : torch.LongTensor, required.</span>
+<span class="sd">        A tensor representing the lengths of some dimension of the tensor which</span>
+<span class="sd">        we want to sort by.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    sorted_tensor : torch.FloatTensor</span>
+<span class="sd">        The original tensor sorted along the batch dimension with respect to sequence_lengths.</span>
+<span class="sd">    sorted_sequence_lengths : torch.LongTensor</span>
+<span class="sd">        The original sequence_lengths sorted by decreasing size.</span>
+<span class="sd">    restoration_indices : torch.LongTensor</span>
+<span class="sd">        Indices into the sorted_tensor such that</span>
+<span class="sd">        ``sorted_tensor.index_select(0, restoration_indices) == original_tensor``</span>
+<span class="sd">    permuation_index : torch.LongTensor</span>
+<span class="sd">        The indices used to sort the tensor. This is useful if you want to sort many</span>
+<span class="sd">        tensors using the same ordering.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sequence_lengths</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Both the tensor and sequence lengths must be torch.Tensors.&quot;</span><span class="p">)</span>
+
+    <span class="n">sorted_sequence_lengths</span><span class="p">,</span> <span class="n">permutation_index</span> <span class="o">=</span> <span class="n">sequence_lengths</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sorted_tensor</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">permutation_index</span><span class="p">)</span>
+
+    <span class="n">index_range</span> <span class="o">=</span> <span class="n">sequence_lengths</span><span class="o">.</span><span class="n">new_tensor</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence_lengths</span><span class="p">)))</span>
+    <span class="c1"># This is the equivalent of zipping with index, sorting by the original</span>
+    <span class="c1"># sequence lengths and returning the now sorted indices.</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">reverse_mapping</span> <span class="o">=</span> <span class="n">permutation_index</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">restoration_indices</span> <span class="o">=</span> <span class="n">index_range</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">reverse_mapping</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sorted_tensor</span><span class="p">,</span> <span class="n">sorted_sequence_lengths</span><span class="p">,</span> <span class="n">restoration_indices</span><span class="p">,</span> <span class="n">permutation_index</span></div>
+
+
+<span class="c1"># We have two types here for the state, because storing the state in something</span>
+<span class="c1"># which is Iterable (like a tuple, below), is helpful for internal manipulation</span>
+<span class="c1"># - however, the states are consumed as either Tensors or a Tuple of Tensors, so</span>
+<span class="c1"># returning them in this format is unhelpful.</span>
+<span class="n">RnnState</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]]</span>  <span class="c1"># pylint: disable=invalid-name</span>
+<span class="n">RnnStateStorage</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>  <span class="c1"># pylint: disable=invalid-name</span>
+
+
+<span class="k">class</span> <span class="nc">_EncoderBase</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="c1"># pylint: disable=abstract-method</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This abstract class serves as a base for the 3 ``Encoder`` abstractions in AllenNLP.</span>
+<span class="sd">    - :class:`~allennlp.modules.seq2seq_encoders.Seq2SeqEncoders`</span>
+<span class="sd">    - :class:`~allennlp.modules.seq2vec_encoders.Seq2VecEncoders`</span>
+<span class="sd">    Additionally, this class provides functionality for sorting sequences by length</span>
+<span class="sd">    so they can be consumed by Pytorch RNN classes, which require their inputs to be</span>
+<span class="sd">    sorted by length. Finally, it also provides optional statefulness to all of it&#39;s</span>
+<span class="sd">    subclasses by allowing the caching and retrieving of the hidden states of RNNs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stateful</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">_EncoderBase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stateful</span> <span class="o">=</span> <span class="n">stateful</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RnnStateStorage</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">sort_and_run_forward</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">module</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span>
+            <span class="p">[</span><span class="n">PackedSequence</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RnnState</span><span class="p">]],</span>
+            <span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">PackedSequence</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span> <span class="n">RnnState</span><span class="p">],</span>
+        <span class="p">],</span>
+        <span class="n">inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">mask</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">hidden_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RnnState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function exists because Pytorch RNNs require that their inputs be sorted</span>
+<span class="sd">        before being passed as input. As all of our Seq2xxxEncoders use this functionality,</span>
+<span class="sd">        it is provided in a base class. This method can be called on any module which</span>
+<span class="sd">        takes as input a ``PackedSequence`` and some ``hidden_state``, which can either be a</span>
+<span class="sd">        tuple of tensors or a tensor.</span>
+<span class="sd">        As all of our Seq2xxxEncoders have different return types, we return `sorted`</span>
+<span class="sd">        outputs from the module, which is called directly. Additionally, we return the</span>
+<span class="sd">        indices into the batch dimension required to restore the tensor to it&#39;s correct,</span>
+<span class="sd">        unsorted order and the number of valid batch elements (i.e the number of elements</span>
+<span class="sd">        in the batch which are not completely masked). This un-sorting and re-padding</span>
+<span class="sd">        of the module outputs is left to the subclasses because their outputs have different</span>
+<span class="sd">        types and handling them smoothly here is difficult.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        module : ``Callable[[PackedSequence, Optional[RnnState]],</span>
+<span class="sd">                            Tuple[Union[PackedSequence, torch.Tensor], RnnState]]``, required.</span>
+<span class="sd">            A function to run on the inputs. In most cases, this is a ``torch.nn.Module``.</span>
+<span class="sd">        inputs : ``torch.Tensor``, required.</span>
+<span class="sd">            A tensor of shape ``(batch_size, sequence_length, embedding_size)`` representing</span>
+<span class="sd">            the inputs to the Encoder.</span>
+<span class="sd">        mask : ``torch.Tensor``, required.</span>
+<span class="sd">            A tensor of shape ``(batch_size, sequence_length)``, representing masked and</span>
+<span class="sd">            non-masked elements of the sequence for each element in the batch.</span>
+<span class="sd">        hidden_state : ``Optional[RnnState]``, (default = None).</span>
+<span class="sd">            A single tensor of shape (num_layers, batch_size, hidden_size) representing the</span>
+<span class="sd">            state of an RNN with or a tuple of</span>
+<span class="sd">            tensors of shapes (num_layers, batch_size, hidden_size) and</span>
+<span class="sd">            (num_layers, batch_size, memory_size), representing the hidden state and memory</span>
+<span class="sd">            state of an LSTM-like RNN.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        module_output : ``Union[torch.Tensor, PackedSequence]``.</span>
+<span class="sd">            A Tensor or PackedSequence representing the output of the Pytorch Module.</span>
+<span class="sd">            The batch size dimension will be equal to ``num_valid``, as sequences of zero</span>
+<span class="sd">            length are clipped off before the module is called, as Pytorch cannot handle</span>
+<span class="sd">            zero length sequences.</span>
+<span class="sd">        final_states : ``Optional[RnnState]``</span>
+<span class="sd">            A Tensor representing the hidden state of the Pytorch Module. This can either</span>
+<span class="sd">            be a single tensor of shape (num_layers, num_valid, hidden_size), for instance in</span>
+<span class="sd">            the case of a GRU, or a tuple of tensors, such as those required for an LSTM.</span>
+<span class="sd">        restoration_indices : ``torch.LongTensor``</span>
+<span class="sd">            A tensor of shape ``(batch_size,)``, describing the re-indexing required to transform</span>
+<span class="sd">            the outputs back to their original batch order.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># In some circumstances you may have sequences of zero length. ``pack_padded_sequence``</span>
+        <span class="c1"># requires all sequence lengths to be &gt; 0, so remove sequences of zero length before</span>
+        <span class="c1"># calling self._module, then fill with zeros.</span>
+
+        <span class="c1"># First count how many sequences are empty.</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">num_valid</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mask</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">int</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+        <span class="n">sequence_lengths</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">long</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">sorted_inputs</span><span class="p">,</span> <span class="n">sorted_sequence_lengths</span><span class="p">,</span> <span class="n">restoration_indices</span><span class="p">,</span> <span class="n">sorting_indices</span> <span class="o">=</span> <span class="n">sort_batch_by_length</span><span class="p">(</span>
+            <span class="n">inputs</span><span class="p">,</span> <span class="n">sequence_lengths</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Now create a PackedSequence with only the non-empty, sorted sequences.</span>
+        <span class="n">packed_sequence_input</span> <span class="o">=</span> <span class="n">pack_padded_sequence</span><span class="p">(</span>
+            <span class="n">sorted_inputs</span><span class="p">[:</span><span class="n">num_valid</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span>
+            <span class="n">sorted_sequence_lengths</span><span class="p">[:</span><span class="n">num_valid</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># Prepare the initial states.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">stateful</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">hidden_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">initial_states</span> <span class="o">=</span> <span class="n">hidden_state</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hidden_state</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                <span class="n">initial_states</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">state</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sorting_indices</span><span class="p">)[:,</span> <span class="p">:</span><span class="n">num_valid</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span>
+                    <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">hidden_state</span>
+                <span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">initial_states</span> <span class="o">=</span> <span class="n">hidden_state</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sorting_indices</span><span class="p">)[</span>
+                    <span class="p">:,</span> <span class="p">:</span><span class="n">num_valid</span><span class="p">,</span> <span class="p">:</span>
+                <span class="p">]</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">initial_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_initial_states</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">num_valid</span><span class="p">,</span> <span class="n">sorting_indices</span><span class="p">)</span>
+
+        <span class="c1"># Actually call the module on the sorted PackedSequence.</span>
+        <span class="n">module_output</span><span class="p">,</span> <span class="n">final_states</span> <span class="o">=</span> <span class="n">module</span><span class="p">(</span><span class="n">packed_sequence_input</span><span class="p">,</span> <span class="n">initial_states</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">module_output</span><span class="p">,</span> <span class="n">final_states</span><span class="p">,</span> <span class="n">restoration_indices</span>
+
+    <span class="k">def</span> <span class="nf">_get_initial_states</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">num_valid</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">sorting_indices</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RnnState</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns an initial state for use in an RNN. Additionally, this method handles</span>
+<span class="sd">        the batch size changing across calls by mutating the state to append initial states</span>
+<span class="sd">        for new elements in the batch. Finally, it also handles sorting the states</span>
+<span class="sd">        with respect to the sequence lengths of elements in the batch and removing rows</span>
+<span class="sd">        which are completely padded. Importantly, this `mutates` the state if the</span>
+<span class="sd">        current batch size is larger than when it was previously called.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        batch_size : ``int``, required.</span>
+<span class="sd">            The batch size can change size across calls to stateful RNNs, so we need</span>
+<span class="sd">            to know if we need to expand or shrink the states before returning them.</span>
+<span class="sd">            Expanded states will be set to zero.</span>
+<span class="sd">        num_valid : ``int``, required.</span>
+<span class="sd">            The batch may contain completely padded sequences which get removed before</span>
+<span class="sd">            the sequence is passed through the encoder. We also need to clip these off</span>
+<span class="sd">            of the state too.</span>
+<span class="sd">        sorting_indices ``torch.LongTensor``, required.</span>
+<span class="sd">            Pytorch RNNs take sequences sorted by length. When we return the states to be</span>
+<span class="sd">            used for a given call to ``module.forward``, we need the states to match up to</span>
+<span class="sd">            the sorted sequences, so before returning them, we sort the states using the</span>
+<span class="sd">            same indices used to sort the sequences.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        This method has a complex return type because it has to deal with the first time it</span>
+<span class="sd">        is called, when it has no state, and the fact that types of RNN have heterogeneous</span>
+<span class="sd">        states.</span>
+<span class="sd">        If it is the first time the module has been called, it returns ``None``, regardless</span>
+<span class="sd">        of the type of the ``Module``.</span>
+<span class="sd">        Otherwise, for LSTMs, it returns a tuple of ``torch.Tensors`` with shape</span>
+<span class="sd">        ``(num_layers, num_valid, state_size)`` and ``(num_layers, num_valid, memory_size)``</span>
+<span class="sd">        respectively, or for GRUs, it returns a single ``torch.Tensor`` of shape</span>
+<span class="sd">        ``(num_layers, num_valid, state_size)``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># We don&#39;t know the state sizes the first time calling forward,</span>
+        <span class="c1"># so we let the module define what it&#39;s initial hidden state looks like.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="c1"># Otherwise, we have some previous states.</span>
+        <span class="k">if</span> <span class="n">batch_size</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># This batch is larger than the all previous states.</span>
+            <span class="c1"># If so, resize the states.</span>
+            <span class="n">num_states_to_concat</span> <span class="o">=</span> <span class="n">batch_size</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">resized_states</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="c1"># state has shape (num_layers, batch_size, hidden_size)</span>
+            <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">:</span>
+                <span class="c1"># This _must_ be inside the loop because some</span>
+                <span class="c1"># RNNs have states with different last dimension sizes.</span>
+                <span class="n">zeros</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">num_states_to_concat</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+                <span class="n">resized_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">state</span><span class="p">,</span> <span class="n">zeros</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_states</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">resized_states</span><span class="p">)</span>
+            <span class="n">correctly_shaped_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span>
+
+        <span class="k">elif</span> <span class="n">batch_size</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># This batch is smaller than the previous one.</span>
+            <span class="n">correctly_shaped_states</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">state</span><span class="p">[:,</span> <span class="p">:</span><span class="n">batch_size</span><span class="p">,</span> <span class="p">:]</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">correctly_shaped_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span>
+
+        <span class="c1"># At this point, our states are of shape (num_layers, batch_size, hidden_size).</span>
+        <span class="c1"># However, the encoder uses sorted sequences and additionally removes elements</span>
+        <span class="c1"># of the batch which are fully padded. We need the states to match up to these</span>
+        <span class="c1"># sorted and filtered sequences, so we do that in the next two blocks before</span>
+        <span class="c1"># returning the state/s.</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># GRUs only have a single state. This `unpacks` it from the</span>
+            <span class="c1"># tuple and returns the tensor directly.</span>
+            <span class="n">correctly_shaped_state</span> <span class="o">=</span> <span class="n">correctly_shaped_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">sorted_state</span> <span class="o">=</span> <span class="n">correctly_shaped_state</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sorting_indices</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">sorted_state</span><span class="p">[:,</span> <span class="p">:</span><span class="n">num_valid</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># LSTMs have a state tuple of (state, memory).</span>
+            <span class="n">sorted_states</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">state</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sorting_indices</span><span class="p">)</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">correctly_shaped_states</span>
+            <span class="p">]</span>
+            <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">state</span><span class="p">[:,</span> <span class="p">:</span><span class="n">num_valid</span><span class="p">,</span> <span class="p">:]</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">sorted_states</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_update_states</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">final_states</span><span class="p">:</span> <span class="n">RnnStateStorage</span><span class="p">,</span> <span class="n">restoration_indices</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        After the RNN has run forward, the states need to be updated.</span>
+<span class="sd">        This method just sets the state to the updated new state, performing</span>
+<span class="sd">        several pieces of book-keeping along the way - namely, unsorting the</span>
+<span class="sd">        states and ensuring that the states of completely padded sequences are</span>
+<span class="sd">        not updated. Finally, it also detaches the state variable from the</span>
+<span class="sd">        computational graph, such that the graph can be garbage collected after</span>
+<span class="sd">        each batch iteration.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        final_states : ``RnnStateStorage``, required.</span>
+<span class="sd">            The hidden states returned as output from the RNN.</span>
+<span class="sd">        restoration_indices : ``torch.LongTensor``, required.</span>
+<span class="sd">            The indices that invert the sorting used in ``sort_and_run_forward``</span>
+<span class="sd">            to order the states with respect to the lengths of the sequences in</span>
+<span class="sd">            the batch.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO(Mark): seems weird to sort here, but append zeros in the subclasses.</span>
+        <span class="c1"># which way around is best?</span>
+        <span class="n">new_unsorted_states</span> <span class="o">=</span> <span class="p">[</span><span class="n">state</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">restoration_indices</span><span class="p">)</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">final_states</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># We don&#39;t already have states, so just set the</span>
+            <span class="c1"># ones we receive to be the current state.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_states</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">data</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">new_unsorted_states</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Now we&#39;ve sorted the states back so that they correspond to the original</span>
+            <span class="c1"># indices, we need to figure out what states we need to update, because if we</span>
+            <span class="c1"># didn&#39;t use a state for a particular row, we want to preserve its state.</span>
+            <span class="c1"># Thankfully, the rows which are all zero in the state correspond exactly</span>
+            <span class="c1"># to those which aren&#39;t used, so we create masks of shape (new_batch_size,),</span>
+            <span class="c1"># denoting which states were used in the RNN computation.</span>
+            <span class="n">current_state_batch_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">new_state_batch_size</span> <span class="o">=</span> <span class="n">final_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="c1"># Masks for the unused states of shape (1, new_batch_size, 1)</span>
+            <span class="n">used_new_rows_mask</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">new_state_batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">new_unsorted_states</span>
+            <span class="p">]</span>
+            <span class="n">new_states</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="n">current_state_batch_size</span> <span class="o">&gt;</span> <span class="n">new_state_batch_size</span><span class="p">:</span>
+                <span class="c1"># The new state is smaller than the old one,</span>
+                <span class="c1"># so just update the indices which we used.</span>
+                <span class="k">for</span> <span class="n">old_state</span><span class="p">,</span> <span class="n">new_state</span><span class="p">,</span> <span class="n">used_mask</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">,</span> <span class="n">new_unsorted_states</span><span class="p">,</span> <span class="n">used_new_rows_mask</span>
+                <span class="p">):</span>
+                    <span class="c1"># zero out all rows in the previous state</span>
+                    <span class="c1"># which _were_ used in the current state.</span>
+                    <span class="n">masked_old_state</span> <span class="o">=</span> <span class="n">old_state</span><span class="p">[:,</span> <span class="p">:</span><span class="n">new_state_batch_size</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">used_mask</span><span class="p">)</span>
+                    <span class="c1"># The old state is larger, so update the relevant parts of it.</span>
+                    <span class="n">old_state</span><span class="p">[:,</span> <span class="p">:</span><span class="n">new_state_batch_size</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">new_state</span> <span class="o">+</span> <span class="n">masked_old_state</span>
+                    <span class="n">new_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">old_state</span><span class="o">.</span><span class="n">detach</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># The states are the same size, so we just have to</span>
+                <span class="c1"># deal with the possibility that some rows weren&#39;t used.</span>
+                <span class="n">new_states</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">old_state</span><span class="p">,</span> <span class="n">new_state</span><span class="p">,</span> <span class="n">used_mask</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">,</span> <span class="n">new_unsorted_states</span><span class="p">,</span> <span class="n">used_new_rows_mask</span>
+                <span class="p">):</span>
+                    <span class="c1"># zero out all rows which _were_ used in the current state.</span>
+                    <span class="n">masked_old_state</span> <span class="o">=</span> <span class="n">old_state</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">used_mask</span><span class="p">)</span>
+                    <span class="c1"># The old state is larger, so update the relevant parts of it.</span>
+                    <span class="n">new_state</span> <span class="o">+=</span> <span class="n">masked_old_state</span>
+                    <span class="n">new_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_state</span><span class="o">.</span><span class="n">detach</span><span class="p">())</span>
+
+            <span class="c1"># It looks like there should be another case handled here - when</span>
+            <span class="c1"># the current_state_batch_size &lt; new_state_batch_size. However,</span>
+            <span class="c1"># this never happens, because the states themeselves are mutated</span>
+            <span class="c1"># by appending zeros when calling _get_inital_states, meaning that</span>
+            <span class="c1"># the new states are either of equal size, or smaller, in the case</span>
+            <span class="c1"># that there are some unused elements (zero-length) for the RNN computation.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_states</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">new_states</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">reset_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_states</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+rqa.metric.wikisql\_official module
+===================================
+
+.. automodule:: rqa.metric.wikisql_official
+    :members:
+    :undoc-members:
+    :show-inheritance:

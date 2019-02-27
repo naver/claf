@@ -1,0 +1,7 @@
+rqa.data.dataset.base module
+============================
+
+.. automodule:: rqa.data.dataset.base
+    :members:
+    :undoc-members:
+    :show-inheritance:

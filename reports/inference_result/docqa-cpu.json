@@ -1,0 +1,3984 @@
+{
+    "average_raw_to_tensor": 18.26483384527341,
+    "average_tensor_to_predict": 513.9520310392284,
+    "average_end_to_end": 532.2168648845018,
+    "tensor_to_predicts": [
+        {
+            "elapsed_time": 22.011995315551758,
+            "token_count": 10
+        },
+        {
+            "elapsed_time": 15.34271240234375,
+            "token_count": 11
+        },
+        {
+            "elapsed_time": 14.614105224609375,
+            "token_count": 12
+        },
+        {
+            "elapsed_time": 15.957117080688477,
+            "token_count": 13
+        },
+        {
+            "elapsed_time": 18.05901527404785,
+            "token_count": 14
+        },
+        {
+            "elapsed_time": 18.22209358215332,
+            "token_count": 15
+        },
+        {
+            "elapsed_time": 19.58298683166504,
+            "token_count": 16
+        },
+        {
+            "elapsed_time": 20.28179168701172,
+            "token_count": 17
+        },
+        {
+            "elapsed_time": 20.82514762878418,
+            "token_count": 18
+        },
+        {
+            "elapsed_time": 21.533966064453125,
+            "token_count": 19
+        },
+        {
+            "elapsed_time": 23.40412139892578,
+            "token_count": 20
+        },
+        {
+            "elapsed_time": 24.00684356689453,
+            "token_count": 21
+        },
+        {
+            "elapsed_time": 23.82373809814453,
+            "token_count": 22
+        },
+        {
+            "elapsed_time": 25.18606185913086,
+            "token_count": 23
+        },
+        {
+            "elapsed_time": 26.07893943786621,
+            "token_count": 24
+        },
+        {
+            "elapsed_time": 26.406049728393555,
+            "token_count": 25
+        },
+        {
+            "elapsed_time": 27.061939239501953,
+            "token_count": 26
+        },
+        {
+            "elapsed_time": 28.91087532043457,
+            "token_count": 27
+        },
+        {
+            "elapsed_time": 30.031919479370117,
+            "token_count": 28
+        },
+        {
+            "elapsed_time": 30.4567813873291,
+            "token_count": 29
+        },
+        {
+            "elapsed_time": 30.633926391601562,
+            "token_count": 30
+        },
+        {
+            "elapsed_time": 31.593799591064453,
+            "token_count": 31
+        },
+        {
+            "elapsed_time": 32.19199180603027,
+            "token_count": 32
+        },
+        {
+            "elapsed_time": 33.66994857788086,
+            "token_count": 33
+        },
+        {
+            "elapsed_time": 35.0039005279541,
+            "token_count": 34
+        },
+        {
+            "elapsed_time": 36.3619327545166,
+            "token_count": 35
+        },
+        {
+            "elapsed_time": 37.146806716918945,
+            "token_count": 36
+        },
+        {
+            "elapsed_time": 38.95378112792969,
+            "token_count": 37
+        },
+        {
+            "elapsed_time": 38.66982460021973,
+            "token_count": 38
+        },
+        {
+            "elapsed_time": 39.273977279663086,
+            "token_count": 39
+        },
+        {
+            "elapsed_time": 40.8329963684082,
+            "token_count": 40
+        },
+        {
+            "elapsed_time": 41.92209243774414,
+            "token_count": 41
+        },
+        {
+            "elapsed_time": 43.81895065307617,
+            "token_count": 42
+        },
+        {
+            "elapsed_time": 44.09003257751465,
+            "token_count": 43
+        },
+        {
+            "elapsed_time": 44.90208625793457,
+            "token_count": 44
+        },
+        {
+            "elapsed_time": 45.2120304107666,
+            "token_count": 45
+        },
+        {
+            "elapsed_time": 46.88310623168945,
+            "token_count": 46
+        },
+        {
+            "elapsed_time": 47.926902770996094,
+            "token_count": 47
+        },
+        {
+            "elapsed_time": 48.39491844177246,
+            "token_count": 48
+        },
+        {
+            "elapsed_time": 49.23868179321289,
+            "token_count": 49
+        },
+        {
+            "elapsed_time": 51.863670349121094,
+            "token_count": 50
+        },
+        {
+            "elapsed_time": 51.2080192565918,
+            "token_count": 51
+        },
+        {
+            "elapsed_time": 51.53608322143555,
+            "token_count": 52
+        },
+        {
+            "elapsed_time": 53.71212959289551,
+            "token_count": 53
+        },
+        {
+            "elapsed_time": 53.76410484313965,
+            "token_count": 54
+        },
+        {
+            "elapsed_time": 55.06777763366699,
+            "token_count": 55
+        },
+        {
+            "elapsed_time": 56.52594566345215,
+            "token_count": 56
+        },
+        {
+            "elapsed_time": 57.60693550109863,
+            "token_count": 57
+        },
+        {
+            "elapsed_time": 58.896780014038086,
+            "token_count": 58
+        },
+        {
+            "elapsed_time": 58.7918758392334,
+            "token_count": 59
+        },
+        {
+            "elapsed_time": 59.01002883911133,
+            "token_count": 60
+        },
+        {
+            "elapsed_time": 67.39282608032227,
+            "token_count": 61
+        },
+        {
+            "elapsed_time": 61.95783615112305,
+            "token_count": 62
+        },
+        {
+            "elapsed_time": 63.0640983581543,
+            "token_count": 63
+        },
+        {
+            "elapsed_time": 63.09008598327637,
+            "token_count": 64
+        },
+        {
+            "elapsed_time": 63.7509822845459,
+            "token_count": 65
+        },
+        {
+            "elapsed_time": 65.15789031982422,
+            "token_count": 66
+        },
+        {
+            "elapsed_time": 66.28894805908203,
+            "token_count": 67
+        },
+        {
+            "elapsed_time": 67.36111640930176,
+            "token_count": 68
+        },
+        {
+            "elapsed_time": 70.6949234008789,
+            "token_count": 69
+        },
+        {
+            "elapsed_time": 70.15132904052734,
+            "token_count": 70
+        },
+        {
+            "elapsed_time": 69.6871280670166,
+            "token_count": 71
+        },
+        {
+            "elapsed_time": 71.19488716125488,
+            "token_count": 72
+        },
+        {
+            "elapsed_time": 71.08712196350098,
+            "token_count": 73
+        },
+        {
+            "elapsed_time": 71.746826171875,
+            "token_count": 74
+        },
+        {
+            "elapsed_time": 73.26412200927734,
+            "token_count": 75
+        },
+        {
+            "elapsed_time": 73.58002662658691,
+            "token_count": 76
+        },
+        {
+            "elapsed_time": 75.87504386901855,
+            "token_count": 77
+        },
+        {
+            "elapsed_time": 75.714111328125,
+            "token_count": 78
+        },
+        {
+            "elapsed_time": 77.69608497619629,
+            "token_count": 79
+        },
+        {
+            "elapsed_time": 78.66907119750977,
+            "token_count": 80
+        },
+        {
+            "elapsed_time": 79.22911643981934,
+            "token_count": 81
+        },
+        {
+            "elapsed_time": 79.54883575439453,
+            "token_count": 82
+        },
+        {
+            "elapsed_time": 84.93208885192871,
+            "token_count": 83
+        },
+        {
+            "elapsed_time": 85.33787727355957,
+            "token_count": 84
+        },
+        {
+            "elapsed_time": 82.7798843383789,
+            "token_count": 85
+        },
+        {
+            "elapsed_time": 83.96220207214355,
+            "token_count": 86
+        },
+        {
+            "elapsed_time": 84.62190628051758,
+            "token_count": 87
+        },
+        {
+            "elapsed_time": 85.68811416625977,
+            "token_count": 88
+        },
+        {
+            "elapsed_time": 89.02716636657715,
+            "token_count": 89
+        },
+        {
+            "elapsed_time": 87.21113204956055,
+            "token_count": 90
+        },
+        {
+            "elapsed_time": 88.7598991394043,
+            "token_count": 91
+        },
+        {
+            "elapsed_time": 91.01486206054688,
+            "token_count": 92
+        },
+        {
+            "elapsed_time": 93.02711486816406,
+            "token_count": 93
+        },
+        {
+            "elapsed_time": 94.0561294555664,
+            "token_count": 94
+        },
+        {
+            "elapsed_time": 95.55602073669434,
+            "token_count": 95
+        },
+        {
+            "elapsed_time": 97.86295890808105,
+            "token_count": 96
+        },
+        {
+            "elapsed_time": 94.36583518981934,
+            "token_count": 97
+        },
+        {
+            "elapsed_time": 97.54300117492676,
+            "token_count": 98
+        },
+        {
+            "elapsed_time": 94.78235244750977,
+            "token_count": 99
+        },
+        {
+            "elapsed_time": 99.12705421447754,
+            "token_count": 100
+        },
+        {
+            "elapsed_time": 100.07214546203613,
+            "token_count": 101
+        },
+        {
+            "elapsed_time": 101.99403762817383,
+            "token_count": 102
+        },
+        {
+            "elapsed_time": 106.48012161254883,
+            "token_count": 103
+        },
+        {
+            "elapsed_time": 124.58515167236328,
+            "token_count": 104
+        },
+        {
+            "elapsed_time": 109.36999320983887,
+            "token_count": 105
+        },
+        {
+            "elapsed_time": 105.76009750366211,
+            "token_count": 106
+        },
+        {
+            "elapsed_time": 103.45792770385742,
+            "token_count": 107
+        },
+        {
+            "elapsed_time": 105.90291023254395,
+            "token_count": 108
+        },
+        {
+            "elapsed_time": 106.58884048461914,
+            "token_count": 109
+        },
+        {
+            "elapsed_time": 106.76193237304688,
+            "token_count": 110
+        },
+        {
+            "elapsed_time": 106.87065124511719,
+            "token_count": 111
+        },
+        {
+            "elapsed_time": 108.45398902893066,
+            "token_count": 112
+        },
+        {
+            "elapsed_time": 109.87401008605957,
+            "token_count": 113
+        },
+        {
+            "elapsed_time": 110.44788360595703,
+            "token_count": 114
+        },
+        {
+            "elapsed_time": 112.53595352172852,
+            "token_count": 115
+        },
+        {
+            "elapsed_time": 110.50796508789062,
+            "token_count": 116
+        },
+        {
+            "elapsed_time": 113.97099494934082,
+            "token_count": 117
+        },
+        {
+            "elapsed_time": 113.83390426635742,
+            "token_count": 118
+        },
+        {
+            "elapsed_time": 115.86475372314453,
+            "token_count": 119
+        },
+        {
+            "elapsed_time": 116.42813682556152,
+            "token_count": 120
+        },
+        {
+            "elapsed_time": 117.83814430236816,
+            "token_count": 121
+        },
+        {
+            "elapsed_time": 120.54610252380371,
+            "token_count": 122
+        },
+        {
+            "elapsed_time": 125.65398216247559,
+            "token_count": 123
+        },
+        {
+            "elapsed_time": 120.2549934387207,
+            "token_count": 124
+        },
+        {
+            "elapsed_time": 121.26612663269043,
+            "token_count": 125
+        },
+        {
+            "elapsed_time": 121.81591987609863,
+            "token_count": 126
+        },
+        {
+            "elapsed_time": 122.53618240356445,
+            "token_count": 127
+        },
+        {
+            "elapsed_time": 124.64213371276855,
+            "token_count": 128
+        },
+        {
+            "elapsed_time": 126.0077953338623,
+            "token_count": 129
+        },
+        {
+            "elapsed_time": 127.73990631103516,
+            "token_count": 130
+        },
+        {
+            "elapsed_time": 128.8909912109375,
+            "token_count": 131
+        },
+        {
+            "elapsed_time": 129.9278736114502,
+            "token_count": 132
+        },
+        {
+            "elapsed_time": 129.02402877807617,
+            "token_count": 133
+        },
+        {
+            "elapsed_time": 137.800931930542,
+            "token_count": 134
+        },
+        {
+            "elapsed_time": 130.20682334899902,
+            "token_count": 135
+        },
+        {
+            "elapsed_time": 132.05504417419434,
+            "token_count": 136
+        },
+        {
+            "elapsed_time": 133.74996185302734,
+            "token_count": 137
+        },
+        {
+            "elapsed_time": 137.07804679870605,
+            "token_count": 138
+        },
+        {
+            "elapsed_time": 141.59417152404785,
+            "token_count": 139
+        },
+        {
+            "elapsed_time": 135.6191635131836,
+            "token_count": 140
+        },
+        {
+            "elapsed_time": 136.65318489074707,
+            "token_count": 141
+        },
+        {
+            "elapsed_time": 139.1921043395996,
+            "token_count": 142
+        },
+        {
+            "elapsed_time": 140.13981819152832,
+            "token_count": 143
+        },
+        {
+            "elapsed_time": 147.78804779052734,
+            "token_count": 144
+        },
+        {
+            "elapsed_time": 139.05811309814453,
+            "token_count": 145
+        },
+        {
+            "elapsed_time": 142.84396171569824,
+            "token_count": 146
+        },
+        {
+            "elapsed_time": 142.8511142730713,
+            "token_count": 147
+        },
+        {
+            "elapsed_time": 143.6331272125244,
+            "token_count": 148
+        },
+        {
+            "elapsed_time": 143.76306533813477,
+            "token_count": 149
+        },
+        {
+            "elapsed_time": 146.1501121520996,
+            "token_count": 150
+        },
+        {
+            "elapsed_time": 146.4681625366211,
+            "token_count": 151
+        },
+        {
+            "elapsed_time": 147.2008228302002,
+            "token_count": 152
+        },
+        {
+            "elapsed_time": 149.45411682128906,
+            "token_count": 153
+        },
+        {
+            "elapsed_time": 149.65486526489258,
+            "token_count": 154
+        },
+        {
+            "elapsed_time": 149.91497993469238,
+            "token_count": 155
+        },
+        {
+            "elapsed_time": 152.17995643615723,
+            "token_count": 156
+        },
+        {
+            "elapsed_time": 152.4820327758789,
+            "token_count": 157
+        },
+        {
+            "elapsed_time": 153.93686294555664,
+            "token_count": 158
+        },
+        {
+            "elapsed_time": 152.94909477233887,
+            "token_count": 159
+        },
+        {
+            "elapsed_time": 155.75075149536133,
+            "token_count": 160
+        },
+        {
+            "elapsed_time": 155.472993850708,
+            "token_count": 161
+        },
+        {
+            "elapsed_time": 157.5329303741455,
+            "token_count": 162
+        },
+        {
+            "elapsed_time": 159.93118286132812,
+            "token_count": 163
+        },
+        {
+            "elapsed_time": 160.44068336486816,
+            "token_count": 164
+        },
+        {
+            "elapsed_time": 161.9699001312256,
+            "token_count": 165
+        },
+        {
+            "elapsed_time": 162.0180606842041,
+            "token_count": 166
+        },
+        {
+            "elapsed_time": 169.98004913330078,
+            "token_count": 167
+        },
+        {
+            "elapsed_time": 169.62718963623047,
+            "token_count": 168
+        },
+        {
+            "elapsed_time": 172.4081039428711,
+            "token_count": 169
+        },
+        {
+            "elapsed_time": 167.62924194335938,
+            "token_count": 170
+        },
+        {
+            "elapsed_time": 165.4222011566162,
+            "token_count": 171
+        },
+        {
+            "elapsed_time": 169.46816444396973,
+            "token_count": 172
+        },
+        {
+            "elapsed_time": 171.33402824401855,
+            "token_count": 173
+        },
+        {
+            "elapsed_time": 174.0267276763916,
+            "token_count": 174
+        },
+        {
+            "elapsed_time": 180.15813827514648,
+            "token_count": 175
+        },
+        {
+            "elapsed_time": 189.7289752960205,
+            "token_count": 176
+        },
+        {
+            "elapsed_time": 173.56109619140625,
+            "token_count": 177
+        },
+        {
+            "elapsed_time": 180.6657314300537,
+            "token_count": 178
+        },
+        {
+            "elapsed_time": 176.8949031829834,
+            "token_count": 179
+        },
+        {
+            "elapsed_time": 181.01811408996582,
+            "token_count": 180
+        },
+        {
+            "elapsed_time": 183.05277824401855,
+            "token_count": 181
+        },
+        {
+            "elapsed_time": 178.84278297424316,
+            "token_count": 182
+        },
+        {
+            "elapsed_time": 180.0861358642578,
+            "token_count": 183
+        },
+        {
+            "elapsed_time": 181.08391761779785,
+            "token_count": 184
+        },
+        {
+            "elapsed_time": 181.99491500854492,
+            "token_count": 185
+        },
+        {
+            "elapsed_time": 184.15284156799316,
+            "token_count": 186
+        },
+        {
+            "elapsed_time": 181.884765625,
+            "token_count": 187
+        },
+        {
+            "elapsed_time": 185.75572967529297,
+            "token_count": 188
+        },
+        {
+            "elapsed_time": 188.20905685424805,
+            "token_count": 189
+        },
+        {
+            "elapsed_time": 191.9088363647461,
+            "token_count": 190
+        },
+        {
+            "elapsed_time": 187.09182739257812,
+            "token_count": 191
+        },
+        {
+            "elapsed_time": 190.31500816345215,
+            "token_count": 192
+        },
+        {
+            "elapsed_time": 192.9159164428711,
+            "token_count": 193
+        },
+        {
+            "elapsed_time": 192.80099868774414,
+            "token_count": 194
+        },
+        {
+            "elapsed_time": 191.5581226348877,
+            "token_count": 195
+        },
+        {
+            "elapsed_time": 195.5549716949463,
+            "token_count": 196
+        },
+        {
+            "elapsed_time": 193.76707077026367,
+            "token_count": 197
+        },
+        {
+            "elapsed_time": 200.6840705871582,
+            "token_count": 198
+        },
+        {
+            "elapsed_time": 199.9228000640869,
+            "token_count": 199
+        },
+        {
+            "elapsed_time": 209.4428539276123,
+            "token_count": 200
+        },
+        {
+            "elapsed_time": 201.25389099121094,
+            "token_count": 201
+        },
+        {
+            "elapsed_time": 200.6399631500244,
+            "token_count": 202
+        },
+        {
+            "elapsed_time": 203.0961513519287,
+            "token_count": 203
+        },
+        {
+            "elapsed_time": 202.65698432922363,
+            "token_count": 204
+        },
+        {
+            "elapsed_time": 206.27999305725098,
+            "token_count": 205
+        },
+        {
+            "elapsed_time": 206.88104629516602,
+            "token_count": 206
+        },
+        {
+            "elapsed_time": 206.74610137939453,
+            "token_count": 207
+        },
+        {
+            "elapsed_time": 211.15708351135254,
+            "token_count": 208
+        },
+        {
+            "elapsed_time": 210.56890487670898,
+            "token_count": 209
+        },
+        {
+            "elapsed_time": 212.08500862121582,
+            "token_count": 210
+        },
+        {
+            "elapsed_time": 211.35282516479492,
+            "token_count": 211
+        },
+        {
+            "elapsed_time": 211.63296699523926,
+            "token_count": 212
+        },
+        {
+            "elapsed_time": 213.029146194458,
+            "token_count": 213
+        },
+        {
+            "elapsed_time": 216.0940170288086,
+            "token_count": 214
+        },
+        {
+            "elapsed_time": 217.95082092285156,
+            "token_count": 215
+        },
+        {
+            "elapsed_time": 218.28603744506836,
+            "token_count": 216
+        },
+        {
+            "elapsed_time": 214.7970199584961,
+            "token_count": 217
+        },
+        {
+            "elapsed_time": 217.0848846435547,
+            "token_count": 218
+        },
+        {
+            "elapsed_time": 217.3750400543213,
+            "token_count": 219
+        },
+        {
+            "elapsed_time": 217.29612350463867,
+            "token_count": 220
+        },
+        {
+            "elapsed_time": 219.35296058654785,
+            "token_count": 221
+        },
+        {
+            "elapsed_time": 223.18291664123535,
+            "token_count": 222
+        },
+        {
+            "elapsed_time": 223.61207008361816,
+            "token_count": 223
+        },
+        {
+            "elapsed_time": 226.52292251586914,
+            "token_count": 224
+        },
+        {
+            "elapsed_time": 251.3289451599121,
+            "token_count": 225
+        },
+        {
+            "elapsed_time": 237.1211051940918,
+            "token_count": 226
+        },
+        {
+            "elapsed_time": 226.90272331237793,
+            "token_count": 227
+        },
+        {
+            "elapsed_time": 228.54876518249512,
+            "token_count": 228
+        },
+        {
+            "elapsed_time": 229.6581268310547,
+            "token_count": 229
+        },
+        {
+            "elapsed_time": 230.0422191619873,
+            "token_count": 230
+        },
+        {
+            "elapsed_time": 232.0230007171631,
+            "token_count": 231
+        },
+        {
+            "elapsed_time": 232.41662979125977,
+            "token_count": 232
+        },
+        {
+            "elapsed_time": 232.2678565979004,
+            "token_count": 233
+        },
+        {
+            "elapsed_time": 237.60628700256348,
+            "token_count": 234
+        },
+        {
+            "elapsed_time": 236.23085021972656,
+            "token_count": 235
+        },
+        {
+            "elapsed_time": 234.2069149017334,
+            "token_count": 236
+        },
+        {
+            "elapsed_time": 235.7008457183838,
+            "token_count": 237
+        },
+        {
+            "elapsed_time": 239.45307731628418,
+            "token_count": 238
+        },
+        {
+            "elapsed_time": 242.93971061706543,
+            "token_count": 239
+        },
+        {
+            "elapsed_time": 244.95601654052734,
+            "token_count": 240
+        },
+        {
+            "elapsed_time": 241.8079376220703,
+            "token_count": 241
+        },
+        {
+            "elapsed_time": 240.94080924987793,
+            "token_count": 242
+        },
+        {
+            "elapsed_time": 244.82202529907227,
+            "token_count": 243
+        },
+        {
+            "elapsed_time": 245.06211280822754,
+            "token_count": 244
+        },
+        {
+            "elapsed_time": 244.06790733337402,
+            "token_count": 245
+        },
+        {
+            "elapsed_time": 245.23377418518066,
+            "token_count": 246
+        },
+        {
+            "elapsed_time": 256.270170211792,
+            "token_count": 247
+        },
+        {
+            "elapsed_time": 246.08302116394043,
+            "token_count": 248
+        },
+        {
+            "elapsed_time": 248.3201026916504,
+            "token_count": 249
+        },
+        {
+            "elapsed_time": 249.11212921142578,
+            "token_count": 250
+        },
+        {
+            "elapsed_time": 252.63500213623047,
+            "token_count": 251
+        },
+        {
+            "elapsed_time": 249.87483024597168,
+            "token_count": 252
+        },
+        {
+            "elapsed_time": 255.54418563842773,
+            "token_count": 253
+        },
+        {
+            "elapsed_time": 255.4757595062256,
+            "token_count": 254
+        },
+        {
+            "elapsed_time": 260.9391212463379,
+            "token_count": 255
+        },
+        {
+            "elapsed_time": 255.35821914672852,
+            "token_count": 256
+        },
+        {
+            "elapsed_time": 256.80017471313477,
+            "token_count": 257
+        },
+        {
+            "elapsed_time": 259.36388969421387,
+            "token_count": 258
+        },
+        {
+            "elapsed_time": 259.14669036865234,
+            "token_count": 259
+        },
+        {
+            "elapsed_time": 261.04092597961426,
+            "token_count": 260
+        },
+        {
+            "elapsed_time": 259.45401191711426,
+            "token_count": 261
+        },
+        {
+            "elapsed_time": 263.9880180358887,
+            "token_count": 262
+        },
+        {
+            "elapsed_time": 266.3249969482422,
+            "token_count": 263
+        },
+        {
+            "elapsed_time": 261.3518238067627,
+            "token_count": 264
+        },
+        {
+            "elapsed_time": 285.16578674316406,
+            "token_count": 265
+        },
+        {
+            "elapsed_time": 275.4840850830078,
+            "token_count": 266
+        },
+        {
+            "elapsed_time": 269.2747116088867,
+            "token_count": 267
+        },
+        {
+            "elapsed_time": 270.69687843322754,
+            "token_count": 268
+        },
+        {
+            "elapsed_time": 268.9981460571289,
+            "token_count": 269
+        },
+        {
+            "elapsed_time": 270.0989246368408,
+            "token_count": 270
+        },
+        {
+            "elapsed_time": 269.75274085998535,
+            "token_count": 271
+        },
+        {
+            "elapsed_time": 272.9229927062988,
+            "token_count": 272
+        },
+        {
+            "elapsed_time": 274.64795112609863,
+            "token_count": 273
+        },
+        {
+            "elapsed_time": 273.0908393859863,
+            "token_count": 274
+        },
+        {
+            "elapsed_time": 273.9260196685791,
+            "token_count": 275
+        },
+        {
+            "elapsed_time": 276.1831283569336,
+            "token_count": 276
+        },
+        {
+            "elapsed_time": 275.8491039276123,
+            "token_count": 277
+        },
+        {
+            "elapsed_time": 281.0189723968506,
+            "token_count": 278
+        },
+        {
+            "elapsed_time": 277.0402431488037,
+            "token_count": 279
+        },
+        {
+            "elapsed_time": 282.0549011230469,
+            "token_count": 280
+        },
+        {
+            "elapsed_time": 282.088041305542,
+            "token_count": 281
+        },
+        {
+            "elapsed_time": 283.22625160217285,
+            "token_count": 282
+        },
+        {
+            "elapsed_time": 282.2577953338623,
+            "token_count": 283
+        },
+        {
+            "elapsed_time": 286.6480350494385,
+            "token_count": 284
+        },
+        {
+            "elapsed_time": 283.0181121826172,
+            "token_count": 285
+        },
+        {
+            "elapsed_time": 285.9029769897461,
+            "token_count": 286
+        },
+        {
+            "elapsed_time": 286.91601753234863,
+            "token_count": 287
+        },
+        {
+            "elapsed_time": 292.94419288635254,
+            "token_count": 288
+        },
+        {
+            "elapsed_time": 290.74621200561523,
+            "token_count": 289
+        },
+        {
+            "elapsed_time": 293.95198822021484,
+            "token_count": 290
+        },
+        {
+            "elapsed_time": 296.2679862976074,
+            "token_count": 291
+        },
+        {
+            "elapsed_time": 295.318603515625,
+            "token_count": 292
+        },
+        {
+            "elapsed_time": 304.0449619293213,
+            "token_count": 293
+        },
+        {
+            "elapsed_time": 292.1290397644043,
+            "token_count": 294
+        },
+        {
+            "elapsed_time": 295.4821586608887,
+            "token_count": 295
+        },
+        {
+            "elapsed_time": 295.5801486968994,
+            "token_count": 296
+        },
+        {
+            "elapsed_time": 300.42386054992676,
+            "token_count": 297
+        },
+        {
+            "elapsed_time": 297.5497245788574,
+            "token_count": 298
+        },
+        {
+            "elapsed_time": 299.1049289703369,
+            "token_count": 299
+        },
+        {
+            "elapsed_time": 336.3640308380127,
+            "token_count": 300
+        },
+        {
+            "elapsed_time": 301.8522262573242,
+            "token_count": 301
+        },
+        {
+            "elapsed_time": 305.1719665527344,
+            "token_count": 302
+        },
+        {
+            "elapsed_time": 302.45208740234375,
+            "token_count": 303
+        },
+        {
+            "elapsed_time": 301.4500141143799,
+            "token_count": 304
+        },
+        {
+            "elapsed_time": 306.7131042480469,
+            "token_count": 305
+        },
+        {
+            "elapsed_time": 306.4439296722412,
+            "token_count": 306
+        },
+        {
+            "elapsed_time": 310.29391288757324,
+            "token_count": 307
+        },
+        {
+            "elapsed_time": 311.42568588256836,
+            "token_count": 308
+        },
+        {
+            "elapsed_time": 308.07995796203613,
+            "token_count": 309
+        },
+        {
+            "elapsed_time": 307.58094787597656,
+            "token_count": 310
+        },
+        {
+            "elapsed_time": 336.6107940673828,
+            "token_count": 311
+        },
+        {
+            "elapsed_time": 317.2111511230469,
+            "token_count": 312
+        },
+        {
+            "elapsed_time": 313.53282928466797,
+            "token_count": 313
+        },
+        {
+            "elapsed_time": 315.57297706604004,
+            "token_count": 314
+        },
+        {
+            "elapsed_time": 312.15786933898926,
+            "token_count": 315
+        },
+        {
+            "elapsed_time": 313.7197494506836,
+            "token_count": 316
+        },
+        {
+            "elapsed_time": 320.8651542663574,
+            "token_count": 317
+        },
+        {
+            "elapsed_time": 318.77899169921875,
+            "token_count": 318
+        },
+        {
+            "elapsed_time": 317.7759647369385,
+            "token_count": 319
+        },
+        {
+            "elapsed_time": 326.6417980194092,
+            "token_count": 320
+        },
+        {
+            "elapsed_time": 318.8762664794922,
+            "token_count": 321
+        },
+        {
+            "elapsed_time": 318.10998916625977,
+            "token_count": 322
+        },
+        {
+            "elapsed_time": 319.2269802093506,
+            "token_count": 323
+        },
+        {
+            "elapsed_time": 321.7320442199707,
+            "token_count": 324
+        },
+        {
+            "elapsed_time": 324.4171142578125,
+            "token_count": 325
+        },
+        {
+            "elapsed_time": 332.5479030609131,
+            "token_count": 326
+        },
+        {
+            "elapsed_time": 333.04882049560547,
+            "token_count": 327
+        },
+        {
+            "elapsed_time": 329.4830322265625,
+            "token_count": 328
+        },
+        {
+            "elapsed_time": 328.9341926574707,
+            "token_count": 329
+        },
+        {
+            "elapsed_time": 329.0398120880127,
+            "token_count": 330
+        },
+        {
+            "elapsed_time": 354.0470600128174,
+            "token_count": 331
+        },
+        {
+            "elapsed_time": 332.73983001708984,
+            "token_count": 332
+        },
+        {
+            "elapsed_time": 331.91895484924316,
+            "token_count": 333
+        },
+        {
+            "elapsed_time": 334.2170715332031,
+            "token_count": 334
+        },
+        {
+            "elapsed_time": 337.3422622680664,
+            "token_count": 335
+        },
+        {
+            "elapsed_time": 334.5921039581299,
+            "token_count": 336
+        },
+        {
+            "elapsed_time": 335.7560634613037,
+            "token_count": 337
+        },
+        {
+            "elapsed_time": 341.005802154541,
+            "token_count": 338
+        },
+        {
+            "elapsed_time": 334.8731994628906,
+            "token_count": 339
+        },
+        {
+            "elapsed_time": 341.9320583343506,
+            "token_count": 340
+        },
+        {
+            "elapsed_time": 344.0670967102051,
+            "token_count": 341
+        },
+        {
+            "elapsed_time": 343.70899200439453,
+            "token_count": 342
+        },
+        {
+            "elapsed_time": 341.3829803466797,
+            "token_count": 343
+        },
+        {
+            "elapsed_time": 348.93107414245605,
+            "token_count": 344
+        },
+        {
+            "elapsed_time": 344.174861907959,
+            "token_count": 345
+        },
+        {
+            "elapsed_time": 345.81995010375977,
+            "token_count": 346
+        },
+        {
+            "elapsed_time": 348.7520217895508,
+            "token_count": 347
+        },
+        {
+            "elapsed_time": 348.3738899230957,
+            "token_count": 348
+        },
+        {
+            "elapsed_time": 345.8671569824219,
+            "token_count": 349
+        },
+        {
+            "elapsed_time": 350.0561714172363,
+            "token_count": 350
+        },
+        {
+            "elapsed_time": 347.4860191345215,
+            "token_count": 351
+        },
+        {
+            "elapsed_time": 352.05078125,
+            "token_count": 352
+        },
+        {
+            "elapsed_time": 350.1091003417969,
+            "token_count": 353
+        },
+        {
+            "elapsed_time": 355.0229072570801,
+            "token_count": 354
+        },
+        {
+            "elapsed_time": 357.105016708374,
+            "token_count": 355
+        },
+        {
+            "elapsed_time": 359.464168548584,
+            "token_count": 356
+        },
+        {
+            "elapsed_time": 358.7932586669922,
+            "token_count": 357
+        },
+        {
+            "elapsed_time": 363.2500171661377,
+            "token_count": 358
+        },
+        {
+            "elapsed_time": 369.2049980163574,
+            "token_count": 359
+        },
+        {
+            "elapsed_time": 384.37819480895996,
+            "token_count": 360
+        },
+        {
+            "elapsed_time": 365.94080924987793,
+            "token_count": 361
+        },
+        {
+            "elapsed_time": 363.8288974761963,
+            "token_count": 362
+        },
+        {
+            "elapsed_time": 365.9951686859131,
+            "token_count": 363
+        },
+        {
+            "elapsed_time": 365.1881217956543,
+            "token_count": 364
+        },
+        {
+            "elapsed_time": 370.5451488494873,
+            "token_count": 365
+        },
+        {
+            "elapsed_time": 367.04421043395996,
+            "token_count": 366
+        },
+        {
+            "elapsed_time": 366.15896224975586,
+            "token_count": 367
+        },
+        {
+            "elapsed_time": 370.7408905029297,
+            "token_count": 368
+        },
+        {
+            "elapsed_time": 374.71723556518555,
+            "token_count": 369
+        },
+        {
+            "elapsed_time": 370.95093727111816,
+            "token_count": 370
+        },
+        {
+            "elapsed_time": 368.5319423675537,
+            "token_count": 371
+        },
+        {
+            "elapsed_time": 371.4439868927002,
+            "token_count": 372
+        },
+        {
+            "elapsed_time": 372.1799850463867,
+            "token_count": 373
+        },
+        {
+            "elapsed_time": 376.2097358703613,
+            "token_count": 374
+        },
+        {
+            "elapsed_time": 375.87904930114746,
+            "token_count": 375
+        },
+        {
+            "elapsed_time": 378.0653476715088,
+            "token_count": 376
+        },
+        {
+            "elapsed_time": 377.11501121520996,
+            "token_count": 377
+        },
+        {
+            "elapsed_time": 384.5939636230469,
+            "token_count": 378
+        },
+        {
+            "elapsed_time": 385.43009757995605,
+            "token_count": 379
+        },
+        {
+            "elapsed_time": 378.277063369751,
+            "token_count": 380
+        },
+        {
+            "elapsed_time": 383.90398025512695,
+            "token_count": 381
+        },
+        {
+            "elapsed_time": 383.8071823120117,
+            "token_count": 382
+        },
+        {
+            "elapsed_time": 384.5667839050293,
+            "token_count": 383
+        },
+        {
+            "elapsed_time": 387.7251148223877,
+            "token_count": 384
+        },
+        {
+            "elapsed_time": 409.31105613708496,
+            "token_count": 385
+        },
+        {
+            "elapsed_time": 417.7131652832031,
+            "token_count": 386
+        },
+        {
+            "elapsed_time": 400.2389907836914,
+            "token_count": 387
+        },
+        {
+            "elapsed_time": 408.91075134277344,
+            "token_count": 388
+        },
+        {
+            "elapsed_time": 416.3250923156738,
+            "token_count": 389
+        },
+        {
+            "elapsed_time": 426.1159896850586,
+            "token_count": 390
+        },
+        {
+            "elapsed_time": 408.397912979126,
+            "token_count": 391
+        },
+        {
+            "elapsed_time": 388.1049156188965,
+            "token_count": 392
+        },
+        {
+            "elapsed_time": 383.00490379333496,
+            "token_count": 393
+        },
+        {
+            "elapsed_time": 424.3659973144531,
+            "token_count": 394
+        },
+        {
+            "elapsed_time": 398.3330726623535,
+            "token_count": 395
+        },
+        {
+            "elapsed_time": 392.54307746887207,
+            "token_count": 396
+        },
+        {
+            "elapsed_time": 477.85496711730957,
+            "token_count": 397
+        },
+        {
+            "elapsed_time": 440.6557083129883,
+            "token_count": 398
+        },
+        {
+            "elapsed_time": 441.8160915374756,
+            "token_count": 399
+        },
+        {
+            "elapsed_time": 456.50315284729004,
+            "token_count": 400
+        },
+        {
+            "elapsed_time": 411.6809368133545,
+            "token_count": 401
+        },
+        {
+            "elapsed_time": 417.77896881103516,
+            "token_count": 402
+        },
+        {
+            "elapsed_time": 407.74011611938477,
+            "token_count": 403
+        },
+        {
+            "elapsed_time": 406.7211151123047,
+            "token_count": 404
+        },
+        {
+            "elapsed_time": 407.82904624938965,
+            "token_count": 405
+        },
+        {
+            "elapsed_time": 424.335241317749,
+            "token_count": 406
+        },
+        {
+            "elapsed_time": 445.2629089355469,
+            "token_count": 407
+        },
+        {
+            "elapsed_time": 428.9829730987549,
+            "token_count": 408
+        },
+        {
+            "elapsed_time": 467.9739475250244,
+            "token_count": 409
+        },
+        {
+            "elapsed_time": 427.49881744384766,
+            "token_count": 410
+        },
+        {
+            "elapsed_time": 447.6337432861328,
+            "token_count": 411
+        },
+        {
+            "elapsed_time": 417.7069664001465,
+            "token_count": 412
+        },
+        {
+            "elapsed_time": 426.30887031555176,
+            "token_count": 413
+        },
+        {
+            "elapsed_time": 434.2389106750488,
+            "token_count": 414
+        },
+        {
+            "elapsed_time": 428.8160800933838,
+            "token_count": 415
+        },
+        {
+            "elapsed_time": 506.3459873199463,
+            "token_count": 416
+        },
+        {
+            "elapsed_time": 438.31396102905273,
+            "token_count": 417
+        },
+        {
+            "elapsed_time": 428.0991554260254,
+            "token_count": 418
+        },
+        {
+            "elapsed_time": 424.893856048584,
+            "token_count": 419
+        },
+        {
+            "elapsed_time": 433.1321716308594,
+            "token_count": 420
+        },
+        {
+            "elapsed_time": 430.67121505737305,
+            "token_count": 421
+        },
+        {
+            "elapsed_time": 438.9798641204834,
+            "token_count": 422
+        },
+        {
+            "elapsed_time": 421.0679531097412,
+            "token_count": 423
+        },
+        {
+            "elapsed_time": 426.4037609100342,
+            "token_count": 424
+        },
+        {
+            "elapsed_time": 416.1832332611084,
+            "token_count": 425
+        },
+        {
+            "elapsed_time": 409.7311496734619,
+            "token_count": 426
+        },
+        {
+            "elapsed_time": 417.1748161315918,
+            "token_count": 427
+        },
+        {
+            "elapsed_time": 448.0559825897217,
+            "token_count": 428
+        },
+        {
+            "elapsed_time": 437.2999668121338,
+            "token_count": 429
+        },
+        {
+            "elapsed_time": 421.44274711608887,
+            "token_count": 430
+        },
+        {
+            "elapsed_time": 425.0040054321289,
+            "token_count": 431
+        },
+        {
+            "elapsed_time": 441.12682342529297,
+            "token_count": 432
+        },
+        {
+            "elapsed_time": 435.57095527648926,
+            "token_count": 433
+        },
+        {
+            "elapsed_time": 416.2321090698242,
+            "token_count": 434
+        },
+        {
+            "elapsed_time": 419.2769527435303,
+            "token_count": 435
+        },
+        {
+            "elapsed_time": 429.2941093444824,
+            "token_count": 436
+        },
+        {
+            "elapsed_time": 461.21907234191895,
+            "token_count": 437
+        },
+        {
+            "elapsed_time": 466.1281108856201,
+            "token_count": 438
+        },
+        {
+            "elapsed_time": 465.40212631225586,
+            "token_count": 439
+        },
+        {
+            "elapsed_time": 488.9678955078125,
+            "token_count": 440
+        },
+        {
+            "elapsed_time": 464.59197998046875,
+            "token_count": 441
+        },
+        {
+            "elapsed_time": 460.94799041748047,
+            "token_count": 442
+        },
+        {
+            "elapsed_time": 445.404052734375,
+            "token_count": 443
+        },
+        {
+            "elapsed_time": 453.6876678466797,
+            "token_count": 444
+        },
+        {
+            "elapsed_time": 445.02782821655273,
+            "token_count": 445
+        },
+        {
+            "elapsed_time": 490.4487133026123,
+            "token_count": 446
+        },
+        {
+            "elapsed_time": 436.722993850708,
+            "token_count": 447
+        },
+        {
+            "elapsed_time": 434.948205947876,
+            "token_count": 448
+        },
+        {
+            "elapsed_time": 437.9758834838867,
+            "token_count": 449
+        },
+        {
+            "elapsed_time": 434.99112129211426,
+            "token_count": 450
+        },
+        {
+            "elapsed_time": 444.4091320037842,
+            "token_count": 451
+        },
+        {
+            "elapsed_time": 436.3710880279541,
+            "token_count": 452
+        },
+        {
+            "elapsed_time": 437.76512145996094,
+            "token_count": 453
+        },
+        {
+            "elapsed_time": 469.7380065917969,
+            "token_count": 454
+        },
+        {
+            "elapsed_time": 450.8390426635742,
+            "token_count": 455
+        },
+        {
+            "elapsed_time": 445.85394859313965,
+            "token_count": 456
+        },
+        {
+            "elapsed_time": 444.27490234375,
+            "token_count": 457
+        },
+        {
+            "elapsed_time": 453.5098075866699,
+            "token_count": 458
+        },
+        {
+            "elapsed_time": 449.1729736328125,
+            "token_count": 459
+        },
+        {
+            "elapsed_time": 499.47404861450195,
+            "token_count": 460
+        },
+        {
+            "elapsed_time": 570.4200267791748,
+            "token_count": 461
+        },
+        {
+            "elapsed_time": 493.44801902770996,
+            "token_count": 462
+        },
+        {
+            "elapsed_time": 496.5167045593262,
+            "token_count": 463
+        },
+        {
+            "elapsed_time": 461.5209102630615,
+            "token_count": 464
+        },
+        {
+            "elapsed_time": 459.2139720916748,
+            "token_count": 465
+        },
+        {
+            "elapsed_time": 453.20606231689453,
+            "token_count": 466
+        },
+        {
+            "elapsed_time": 462.4667167663574,
+            "token_count": 467
+        },
+        {
+            "elapsed_time": 461.4448547363281,
+            "token_count": 468
+        },
+        {
+            "elapsed_time": 456.1190605163574,
+            "token_count": 469
+        },
+        {
+            "elapsed_time": 458.65917205810547,
+            "token_count": 470
+        },
+        {
+            "elapsed_time": 470.3030586242676,
+            "token_count": 471
+        },
+        {
+            "elapsed_time": 461.6281986236572,
+            "token_count": 472
+        },
+        {
+            "elapsed_time": 461.8861675262451,
+            "token_count": 473
+        },
+        {
+            "elapsed_time": 456.89916610717773,
+            "token_count": 474
+        },
+        {
+            "elapsed_time": 494.52710151672363,
+            "token_count": 475
+        },
+        {
+            "elapsed_time": 465.670108795166,
+            "token_count": 476
+        },
+        {
+            "elapsed_time": 473.36769104003906,
+            "token_count": 477
+        },
+        {
+            "elapsed_time": 460.8421325683594,
+            "token_count": 478
+        },
+        {
+            "elapsed_time": 462.3439311981201,
+            "token_count": 479
+        },
+        {
+            "elapsed_time": 485.84604263305664,
+            "token_count": 480
+        },
+        {
+            "elapsed_time": 493.72410774230957,
+            "token_count": 481
+        },
+        {
+            "elapsed_time": 507.74502754211426,
+            "token_count": 482
+        },
+        {
+            "elapsed_time": 484.48801040649414,
+            "token_count": 483
+        },
+        {
+            "elapsed_time": 474.3969440460205,
+            "token_count": 484
+        },
+        {
+            "elapsed_time": 472.7020263671875,
+            "token_count": 485
+        },
+        {
+            "elapsed_time": 472.1040725708008,
+            "token_count": 486
+        },
+        {
+            "elapsed_time": 475.95906257629395,
+            "token_count": 487
+        },
+        {
+            "elapsed_time": 477.8859615325928,
+            "token_count": 488
+        },
+        {
+            "elapsed_time": 477.327823638916,
+            "token_count": 489
+        },
+        {
+            "elapsed_time": 477.26988792419434,
+            "token_count": 490
+        },
+        {
+            "elapsed_time": 478.53803634643555,
+            "token_count": 491
+        },
+        {
+            "elapsed_time": 496.6771602630615,
+            "token_count": 492
+        },
+        {
+            "elapsed_time": 556.1008453369141,
+            "token_count": 493
+        },
+        {
+            "elapsed_time": 490.1928901672363,
+            "token_count": 494
+        },
+        {
+            "elapsed_time": 500.03623962402344,
+            "token_count": 495
+        },
+        {
+            "elapsed_time": 486.71889305114746,
+            "token_count": 496
+        },
+        {
+            "elapsed_time": 480.3178310394287,
+            "token_count": 497
+        },
+        {
+            "elapsed_time": 484.6360683441162,
+            "token_count": 498
+        },
+        {
+            "elapsed_time": 482.41186141967773,
+            "token_count": 499
+        },
+        {
+            "elapsed_time": 521.5590000152588,
+            "token_count": 500
+        },
+        {
+            "elapsed_time": 519.4799900054932,
+            "token_count": 501
+        },
+        {
+            "elapsed_time": 512.2461318969727,
+            "token_count": 502
+        },
+        {
+            "elapsed_time": 497.71976470947266,
+            "token_count": 503
+        },
+        {
+            "elapsed_time": 490.63587188720703,
+            "token_count": 504
+        },
+        {
+            "elapsed_time": 495.24617195129395,
+            "token_count": 505
+        },
+        {
+            "elapsed_time": 491.3179874420166,
+            "token_count": 506
+        },
+        {
+            "elapsed_time": 510.59579849243164,
+            "token_count": 507
+        },
+        {
+            "elapsed_time": 495.6858158111572,
+            "token_count": 508
+        },
+        {
+            "elapsed_time": 502.8700828552246,
+            "token_count": 509
+        },
+        {
+            "elapsed_time": 514.8937702178955,
+            "token_count": 510
+        },
+        {
+            "elapsed_time": 496.0649013519287,
+            "token_count": 511
+        },
+        {
+            "elapsed_time": 497.32112884521484,
+            "token_count": 512
+        },
+        {
+            "elapsed_time": 501.6951560974121,
+            "token_count": 513
+        },
+        {
+            "elapsed_time": 499.5579719543457,
+            "token_count": 514
+        },
+        {
+            "elapsed_time": 525.2909660339355,
+            "token_count": 515
+        },
+        {
+            "elapsed_time": 508.52203369140625,
+            "token_count": 516
+        },
+        {
+            "elapsed_time": 500.12803077697754,
+            "token_count": 517
+        },
+        {
+            "elapsed_time": 503.83782386779785,
+            "token_count": 518
+        },
+        {
+            "elapsed_time": 533.4410667419434,
+            "token_count": 519
+        },
+        {
+            "elapsed_time": 559.0431690216064,
+            "token_count": 520
+        },
+        {
+            "elapsed_time": 559.8242282867432,
+            "token_count": 521
+        },
+        {
+            "elapsed_time": 521.9700336456299,
+            "token_count": 522
+        },
+        {
+            "elapsed_time": 526.6900062561035,
+            "token_count": 523
+        },
+        {
+            "elapsed_time": 511.0049247741699,
+            "token_count": 524
+        },
+        {
+            "elapsed_time": 514.5778656005859,
+            "token_count": 525
+        },
+        {
+            "elapsed_time": 514.1708850860596,
+            "token_count": 526
+        },
+        {
+            "elapsed_time": 516.7269706726074,
+            "token_count": 527
+        },
+        {
+            "elapsed_time": 525.9373188018799,
+            "token_count": 528
+        },
+        {
+            "elapsed_time": 525.1889228820801,
+            "token_count": 529
+        },
+        {
+            "elapsed_time": 518.6707973480225,
+            "token_count": 530
+        },
+        {
+            "elapsed_time": 528.0117988586426,
+            "token_count": 531
+        },
+        {
+            "elapsed_time": 519.6027755737305,
+            "token_count": 532
+        },
+        {
+            "elapsed_time": 525.0160694122314,
+            "token_count": 533
+        },
+        {
+            "elapsed_time": 550.6200790405273,
+            "token_count": 534
+        },
+        {
+            "elapsed_time": 522.7260589599609,
+            "token_count": 535
+        },
+        {
+            "elapsed_time": 517.3521041870117,
+            "token_count": 536
+        },
+        {
+            "elapsed_time": 535.7329845428467,
+            "token_count": 537
+        },
+        {
+            "elapsed_time": 549.4029521942139,
+            "token_count": 538
+        },
+        {
+            "elapsed_time": 568.2649612426758,
+            "token_count": 539
+        },
+        {
+            "elapsed_time": 539.3872261047363,
+            "token_count": 540
+        },
+        {
+            "elapsed_time": 535.4480743408203,
+            "token_count": 541
+        },
+        {
+            "elapsed_time": 527.4639129638672,
+            "token_count": 542
+        },
+        {
+            "elapsed_time": 528.648853302002,
+            "token_count": 543
+        },
+        {
+            "elapsed_time": 523.05006980896,
+            "token_count": 544
+        },
+        {
+            "elapsed_time": 540.1520729064941,
+            "token_count": 545
+        },
+        {
+            "elapsed_time": 539.6311283111572,
+            "token_count": 546
+        },
+        {
+            "elapsed_time": 548.1328964233398,
+            "token_count": 547
+        },
+        {
+            "elapsed_time": 561.5191459655762,
+            "token_count": 548
+        },
+        {
+            "elapsed_time": 534.7428321838379,
+            "token_count": 549
+        },
+        {
+            "elapsed_time": 539.0269756317139,
+            "token_count": 550
+        },
+        {
+            "elapsed_time": 537.045955657959,
+            "token_count": 551
+        },
+        {
+            "elapsed_time": 563.9400482177734,
+            "token_count": 552
+        },
+        {
+            "elapsed_time": 539.4518375396729,
+            "token_count": 553
+        },
+        {
+            "elapsed_time": 540.3928756713867,
+            "token_count": 554
+        },
+        {
+            "elapsed_time": 565.2949810028076,
+            "token_count": 555
+        },
+        {
+            "elapsed_time": 559.8609447479248,
+            "token_count": 556
+        },
+        {
+            "elapsed_time": 564.2290115356445,
+            "token_count": 557
+        },
+        {
+            "elapsed_time": 554.7668933868408,
+            "token_count": 558
+        },
+        {
+            "elapsed_time": 543.7991619110107,
+            "token_count": 559
+        },
+        {
+            "elapsed_time": 548.3779907226562,
+            "token_count": 560
+        },
+        {
+            "elapsed_time": 554.896354675293,
+            "token_count": 561
+        },
+        {
+            "elapsed_time": 549.4740009307861,
+            "token_count": 562
+        },
+        {
+            "elapsed_time": 548.583984375,
+            "token_count": 563
+        },
+        {
+            "elapsed_time": 548.9439964294434,
+            "token_count": 564
+        },
+        {
+            "elapsed_time": 561.2199306488037,
+            "token_count": 565
+        },
+        {
+            "elapsed_time": 550.1072406768799,
+            "token_count": 566
+        },
+        {
+            "elapsed_time": 550.8038997650146,
+            "token_count": 567
+        },
+        {
+            "elapsed_time": 554.7902584075928,
+            "token_count": 568
+        },
+        {
+            "elapsed_time": 559.8747730255127,
+            "token_count": 569
+        },
+        {
+            "elapsed_time": 578.2039165496826,
+            "token_count": 570
+        },
+        {
+            "elapsed_time": 560.9710216522217,
+            "token_count": 571
+        },
+        {
+            "elapsed_time": 561.2380504608154,
+            "token_count": 572
+        },
+        {
+            "elapsed_time": 586.9040489196777,
+            "token_count": 573
+        },
+        {
+            "elapsed_time": 605.8380603790283,
+            "token_count": 574
+        },
+        {
+            "elapsed_time": 583.1217765808105,
+            "token_count": 575
+        },
+        {
+            "elapsed_time": 564.8770332336426,
+            "token_count": 576
+        },
+        {
+            "elapsed_time": 564.9909973144531,
+            "token_count": 577
+        },
+        {
+            "elapsed_time": 562.7660751342773,
+            "token_count": 578
+        },
+        {
+            "elapsed_time": 567.4760341644287,
+            "token_count": 579
+        },
+        {
+            "elapsed_time": 570.4531669616699,
+            "token_count": 580
+        },
+        {
+            "elapsed_time": 570.8537101745605,
+            "token_count": 581
+        },
+        {
+            "elapsed_time": 570.5368518829346,
+            "token_count": 582
+        },
+        {
+            "elapsed_time": 569.8349475860596,
+            "token_count": 583
+        },
+        {
+            "elapsed_time": 571.5010166168213,
+            "token_count": 584
+        },
+        {
+            "elapsed_time": 579.1959762573242,
+            "token_count": 585
+        },
+        {
+            "elapsed_time": 572.4055767059326,
+            "token_count": 586
+        },
+        {
+            "elapsed_time": 592.7660465240479,
+            "token_count": 587
+        },
+        {
+            "elapsed_time": 582.8151702880859,
+            "token_count": 588
+        },
+        {
+            "elapsed_time": 581.9079875946045,
+            "token_count": 589
+        },
+        {
+            "elapsed_time": 597.4950790405273,
+            "token_count": 590
+        },
+        {
+            "elapsed_time": 612.7002239227295,
+            "token_count": 591
+        },
+        {
+            "elapsed_time": 590.4951095581055,
+            "token_count": 592
+        },
+        {
+            "elapsed_time": 580.7859897613525,
+            "token_count": 593
+        },
+        {
+            "elapsed_time": 597.8291034698486,
+            "token_count": 594
+        },
+        {
+            "elapsed_time": 605.043888092041,
+            "token_count": 595
+        },
+        {
+            "elapsed_time": 619.1518306732178,
+            "token_count": 596
+        },
+        {
+            "elapsed_time": 583.9929580688477,
+            "token_count": 597
+        },
+        {
+            "elapsed_time": 591.2821292877197,
+            "token_count": 598
+        },
+        {
+            "elapsed_time": 613.26003074646,
+            "token_count": 599
+        },
+        {
+            "elapsed_time": 592.9069519042969,
+            "token_count": 600
+        },
+        {
+            "elapsed_time": 596.6241359710693,
+            "token_count": 601
+        },
+        {
+            "elapsed_time": 599.308967590332,
+            "token_count": 602
+        },
+        {
+            "elapsed_time": 601.0639667510986,
+            "token_count": 603
+        },
+        {
+            "elapsed_time": 623.3329772949219,
+            "token_count": 604
+        },
+        {
+            "elapsed_time": 598.0930328369141,
+            "token_count": 605
+        },
+        {
+            "elapsed_time": 632.274866104126,
+            "token_count": 606
+        },
+        {
+            "elapsed_time": 645.4660892486572,
+            "token_count": 607
+        },
+        {
+            "elapsed_time": 609.9510192871094,
+            "token_count": 608
+        },
+        {
+            "elapsed_time": 597.5987911224365,
+            "token_count": 609
+        },
+        {
+            "elapsed_time": 600.2588272094727,
+            "token_count": 610
+        },
+        {
+            "elapsed_time": 610.1539134979248,
+            "token_count": 611
+        },
+        {
+            "elapsed_time": 604.8843860626221,
+            "token_count": 612
+        },
+        {
+            "elapsed_time": 594.1450595855713,
+            "token_count": 613
+        },
+        {
+            "elapsed_time": 600.4259586334229,
+            "token_count": 614
+        },
+        {
+            "elapsed_time": 611.975908279419,
+            "token_count": 615
+        },
+        {
+            "elapsed_time": 611.6209030151367,
+            "token_count": 616
+        },
+        {
+            "elapsed_time": 640.1662826538086,
+            "token_count": 617
+        },
+        {
+            "elapsed_time": 618.4589862823486,
+            "token_count": 618
+        },
+        {
+            "elapsed_time": 620.1009750366211,
+            "token_count": 619
+        },
+        {
+            "elapsed_time": 646.6770172119141,
+            "token_count": 620
+        },
+        {
+            "elapsed_time": 621.64306640625,
+            "token_count": 621
+        },
+        {
+            "elapsed_time": 726.8228530883789,
+            "token_count": 622
+        },
+        {
+            "elapsed_time": 710.4299068450928,
+            "token_count": 623
+        },
+        {
+            "elapsed_time": 628.183126449585,
+            "token_count": 624
+        },
+        {
+            "elapsed_time": 619.276762008667,
+            "token_count": 625
+        },
+        {
+            "elapsed_time": 613.8589382171631,
+            "token_count": 626
+        },
+        {
+            "elapsed_time": 620.3219890594482,
+            "token_count": 627
+        },
+        {
+            "elapsed_time": 649.1000652313232,
+            "token_count": 628
+        },
+        {
+            "elapsed_time": 617.3152923583984,
+            "token_count": 629
+        },
+        {
+            "elapsed_time": 643.151044845581,
+            "token_count": 630
+        },
+        {
+            "elapsed_time": 643.4428691864014,
+            "token_count": 631
+        },
+        {
+            "elapsed_time": 641.9332027435303,
+            "token_count": 632
+        },
+        {
+            "elapsed_time": 644.2077159881592,
+            "token_count": 633
+        },
+        {
+            "elapsed_time": 648.3910083770752,
+            "token_count": 634
+        },
+        {
+            "elapsed_time": 681.6592216491699,
+            "token_count": 635
+        },
+        {
+            "elapsed_time": 651.1030197143555,
+            "token_count": 636
+        },
+        {
+            "elapsed_time": 661.7991924285889,
+            "token_count": 637
+        },
+        {
+            "elapsed_time": 667.7999496459961,
+            "token_count": 638
+        },
+        {
+            "elapsed_time": 684.6127510070801,
+            "token_count": 639
+        },
+        {
+            "elapsed_time": 660.477876663208,
+            "token_count": 640
+        },
+        {
+            "elapsed_time": 649.94215965271,
+            "token_count": 641
+        },
+        {
+            "elapsed_time": 655.6398868560791,
+            "token_count": 642
+        },
+        {
+            "elapsed_time": 654.2057991027832,
+            "token_count": 643
+        },
+        {
+            "elapsed_time": 651.4029502868652,
+            "token_count": 644
+        },
+        {
+            "elapsed_time": 654.1929244995117,
+            "token_count": 645
+        },
+        {
+            "elapsed_time": 656.9077968597412,
+            "token_count": 646
+        },
+        {
+            "elapsed_time": 658.581018447876,
+            "token_count": 647
+        },
+        {
+            "elapsed_time": 661.2038612365723,
+            "token_count": 648
+        },
+        {
+            "elapsed_time": 667.8159236907959,
+            "token_count": 649
+        },
+        {
+            "elapsed_time": 708.7538242340088,
+            "token_count": 650
+        },
+        {
+            "elapsed_time": 712.4860286712646,
+            "token_count": 651
+        },
+        {
+            "elapsed_time": 684.7560405731201,
+            "token_count": 652
+        },
+        {
+            "elapsed_time": 685.575008392334,
+            "token_count": 653
+        },
+        {
+            "elapsed_time": 679.354190826416,
+            "token_count": 654
+        },
+        {
+            "elapsed_time": 665.9941673278809,
+            "token_count": 655
+        },
+        {
+            "elapsed_time": 671.2608337402344,
+            "token_count": 656
+        },
+        {
+            "elapsed_time": 665.4930114746094,
+            "token_count": 657
+        },
+        {
+            "elapsed_time": 665.9131050109863,
+            "token_count": 658
+        },
+        {
+            "elapsed_time": 669.295072555542,
+            "token_count": 659
+        },
+        {
+            "elapsed_time": 662.956953048706,
+            "token_count": 660
+        },
+        {
+            "elapsed_time": 670.1853275299072,
+            "token_count": 661
+        },
+        {
+            "elapsed_time": 668.8430309295654,
+            "token_count": 662
+        },
+        {
+            "elapsed_time": 668.4768199920654,
+            "token_count": 663
+        },
+        {
+            "elapsed_time": 674.0128993988037,
+            "token_count": 664
+        },
+        {
+            "elapsed_time": 720.0701236724854,
+            "token_count": 665
+        },
+        {
+            "elapsed_time": 681.542158126831,
+            "token_count": 666
+        },
+        {
+            "elapsed_time": 677.8302192687988,
+            "token_count": 667
+        },
+        {
+            "elapsed_time": 673.5413074493408,
+            "token_count": 668
+        },
+        {
+            "elapsed_time": 673.1760501861572,
+            "token_count": 669
+        },
+        {
+            "elapsed_time": 677.3147583007812,
+            "token_count": 670
+        },
+        {
+            "elapsed_time": 680.4599761962891,
+            "token_count": 671
+        },
+        {
+            "elapsed_time": 685.36376953125,
+            "token_count": 672
+        },
+        {
+            "elapsed_time": 684.7589015960693,
+            "token_count": 673
+        },
+        {
+            "elapsed_time": 685.128927230835,
+            "token_count": 674
+        },
+        {
+            "elapsed_time": 685.4660511016846,
+            "token_count": 675
+        },
+        {
+            "elapsed_time": 687.8349781036377,
+            "token_count": 676
+        },
+        {
+            "elapsed_time": 692.0487880706787,
+            "token_count": 677
+        },
+        {
+            "elapsed_time": 688.1997585296631,
+            "token_count": 678
+        },
+        {
+            "elapsed_time": 712.3813629150391,
+            "token_count": 679
+        },
+        {
+            "elapsed_time": 696.4809894561768,
+            "token_count": 680
+        },
+        {
+            "elapsed_time": 693.6180591583252,
+            "token_count": 681
+        },
+        {
+            "elapsed_time": 693.9289569854736,
+            "token_count": 682
+        },
+        {
+            "elapsed_time": 695.7530975341797,
+            "token_count": 683
+        },
+        {
+            "elapsed_time": 692.4891471862793,
+            "token_count": 684
+        },
+        {
+            "elapsed_time": 691.3399696350098,
+            "token_count": 685
+        },
+        {
+            "elapsed_time": 697.0570087432861,
+            "token_count": 686
+        },
+        {
+            "elapsed_time": 700.7420063018799,
+            "token_count": 687
+        },
+        {
+            "elapsed_time": 698.5862255096436,
+            "token_count": 688
+        },
+        {
+            "elapsed_time": 703.6690711975098,
+            "token_count": 689
+        },
+        {
+            "elapsed_time": 697.3750591278076,
+            "token_count": 690
+        },
+        {
+            "elapsed_time": 698.9147663116455,
+            "token_count": 691
+        },
+        {
+            "elapsed_time": 707.2639465332031,
+            "token_count": 692
+        },
+        {
+            "elapsed_time": 725.6231307983398,
+            "token_count": 693
+        },
+        {
+            "elapsed_time": 719.4039821624756,
+            "token_count": 694
+        },
+        {
+            "elapsed_time": 704.409122467041,
+            "token_count": 695
+        },
+        {
+            "elapsed_time": 721.0156917572021,
+            "token_count": 696
+        },
+        {
+            "elapsed_time": 711.9140625,
+            "token_count": 697
+        },
+        {
+            "elapsed_time": 712.2728824615479,
+            "token_count": 698
+        },
+        {
+            "elapsed_time": 711.4911079406738,
+            "token_count": 699
+        },
+        {
+            "elapsed_time": 715.2609825134277,
+            "token_count": 700
+        },
+        {
+            "elapsed_time": 720.6470966339111,
+            "token_count": 701
+        },
+        {
+            "elapsed_time": 713.7801647186279,
+            "token_count": 702
+        },
+        {
+            "elapsed_time": 715.9850597381592,
+            "token_count": 703
+        },
+        {
+            "elapsed_time": 714.390754699707,
+            "token_count": 704
+        },
+        {
+            "elapsed_time": 713.7837409973145,
+            "token_count": 705
+        },
+        {
+            "elapsed_time": 717.2880172729492,
+            "token_count": 706
+        },
+        {
+            "elapsed_time": 737.3449802398682,
+            "token_count": 707
+        },
+        {
+            "elapsed_time": 730.7889461517334,
+            "token_count": 708
+        },
+        {
+            "elapsed_time": 719.6478843688965,
+            "token_count": 709
+        },
+        {
+            "elapsed_time": 724.1098880767822,
+            "token_count": 710
+        },
+        {
+            "elapsed_time": 725.2438068389893,
+            "token_count": 711
+        },
+        {
+            "elapsed_time": 730.7620048522949,
+            "token_count": 712
+        },
+        {
+            "elapsed_time": 728.5861968994141,
+            "token_count": 713
+        },
+        {
+            "elapsed_time": 742.5169944763184,
+            "token_count": 714
+        },
+        {
+            "elapsed_time": 736.163854598999,
+            "token_count": 715
+        },
+        {
+            "elapsed_time": 734.220027923584,
+            "token_count": 716
+        },
+        {
+            "elapsed_time": 733.9432239532471,
+            "token_count": 717
+        },
+        {
+            "elapsed_time": 735.5148792266846,
+            "token_count": 718
+        },
+        {
+            "elapsed_time": 733.6602210998535,
+            "token_count": 719
+        },
+        {
+            "elapsed_time": 734.2422008514404,
+            "token_count": 720
+        },
+        {
+            "elapsed_time": 767.967939376831,
+            "token_count": 721
+        },
+        {
+            "elapsed_time": 735.7251644134521,
+            "token_count": 722
+        },
+        {
+            "elapsed_time": 738.9769554138184,
+            "token_count": 723
+        },
+        {
+            "elapsed_time": 739.2199039459229,
+            "token_count": 724
+        },
+        {
+            "elapsed_time": 741.0118579864502,
+            "token_count": 725
+        },
+        {
+            "elapsed_time": 740.6919002532959,
+            "token_count": 726
+        },
+        {
+            "elapsed_time": 745.7780838012695,
+            "token_count": 727
+        },
+        {
+            "elapsed_time": 747.3618984222412,
+            "token_count": 728
+        },
+        {
+            "elapsed_time": 746.2027072906494,
+            "token_count": 729
+        },
+        {
+            "elapsed_time": 742.2547340393066,
+            "token_count": 730
+        },
+        {
+            "elapsed_time": 745.9189891815186,
+            "token_count": 731
+        },
+        {
+            "elapsed_time": 747.0359802246094,
+            "token_count": 732
+        },
+        {
+            "elapsed_time": 754.8000812530518,
+            "token_count": 733
+        },
+        {
+            "elapsed_time": 775.6679058074951,
+            "token_count": 734
+        },
+        {
+            "elapsed_time": 749.5479583740234,
+            "token_count": 735
+        },
+        {
+            "elapsed_time": 751.3370513916016,
+            "token_count": 736
+        },
+        {
+            "elapsed_time": 753.5991668701172,
+            "token_count": 737
+        },
+        {
+            "elapsed_time": 754.227876663208,
+            "token_count": 738
+        },
+        {
+            "elapsed_time": 757.7621936798096,
+            "token_count": 739
+        },
+        {
+            "elapsed_time": 753.3740997314453,
+            "token_count": 740
+        },
+        {
+            "elapsed_time": 752.4957656860352,
+            "token_count": 741
+        },
+        {
+            "elapsed_time": 757.5850486755371,
+            "token_count": 742
+        },
+        {
+            "elapsed_time": 760.0550651550293,
+            "token_count": 743
+        },
+        {
+            "elapsed_time": 753.9660930633545,
+            "token_count": 744
+        },
+        {
+            "elapsed_time": 760.3912353515625,
+            "token_count": 745
+        },
+        {
+            "elapsed_time": 774.3439674377441,
+            "token_count": 746
+        },
+        {
+            "elapsed_time": 787.5418663024902,
+            "token_count": 747
+        },
+        {
+            "elapsed_time": 763.9012336730957,
+            "token_count": 748
+        },
+        {
+            "elapsed_time": 770.7409858703613,
+            "token_count": 749
+        },
+        {
+            "elapsed_time": 765.8088207244873,
+            "token_count": 750
+        },
+        {
+            "elapsed_time": 767.3029899597168,
+            "token_count": 751
+        },
+        {
+            "elapsed_time": 764.509916305542,
+            "token_count": 752
+        },
+        {
+            "elapsed_time": 770.989179611206,
+            "token_count": 753
+        },
+        {
+            "elapsed_time": 774.7378349304199,
+            "token_count": 754
+        },
+        {
+            "elapsed_time": 767.3690319061279,
+            "token_count": 755
+        },
+        {
+            "elapsed_time": 769.9542045593262,
+            "token_count": 756
+        },
+        {
+            "elapsed_time": 771.7411518096924,
+            "token_count": 757
+        },
+        {
+            "elapsed_time": 779.0279388427734,
+            "token_count": 758
+        },
+        {
+            "elapsed_time": 775.0191688537598,
+            "token_count": 759
+        },
+        {
+            "elapsed_time": 812.2591972351074,
+            "token_count": 760
+        },
+        {
+            "elapsed_time": 785.9430313110352,
+            "token_count": 761
+        },
+        {
+            "elapsed_time": 780.771017074585,
+            "token_count": 762
+        },
+        {
+            "elapsed_time": 787.1949672698975,
+            "token_count": 763
+        },
+        {
+            "elapsed_time": 786.5152359008789,
+            "token_count": 764
+        },
+        {
+            "elapsed_time": 786.3969802856445,
+            "token_count": 765
+        },
+        {
+            "elapsed_time": 781.8841934204102,
+            "token_count": 766
+        },
+        {
+            "elapsed_time": 789.1049385070801,
+            "token_count": 767
+        },
+        {
+            "elapsed_time": 785.1972579956055,
+            "token_count": 768
+        },
+        {
+            "elapsed_time": 784.1329574584961,
+            "token_count": 769
+        },
+        {
+            "elapsed_time": 805.1390647888184,
+            "token_count": 770
+        },
+        {
+            "elapsed_time": 789.8290157318115,
+            "token_count": 771
+        },
+        {
+            "elapsed_time": 787.5981330871582,
+            "token_count": 772
+        },
+        {
+            "elapsed_time": 811.0649585723877,
+            "token_count": 773
+        },
+        {
+            "elapsed_time": 789.9961471557617,
+            "token_count": 774
+        },
+        {
+            "elapsed_time": 793.0312156677246,
+            "token_count": 775
+        },
+        {
+            "elapsed_time": 793.9772605895996,
+            "token_count": 776
+        },
+        {
+            "elapsed_time": 791.9681072235107,
+            "token_count": 777
+        },
+        {
+            "elapsed_time": 795.7291603088379,
+            "token_count": 778
+        },
+        {
+            "elapsed_time": 797.3158359527588,
+            "token_count": 779
+        },
+        {
+            "elapsed_time": 801.2428283691406,
+            "token_count": 780
+        },
+        {
+            "elapsed_time": 794.370174407959,
+            "token_count": 781
+        },
+        {
+            "elapsed_time": 799.8051643371582,
+            "token_count": 782
+        },
+        {
+            "elapsed_time": 799.5131015777588,
+            "token_count": 783
+        },
+        {
+            "elapsed_time": 805.4378032684326,
+            "token_count": 784
+        },
+        {
+            "elapsed_time": 856.1458587646484,
+            "token_count": 785
+        },
+        {
+            "elapsed_time": 808.8986873626709,
+            "token_count": 786
+        },
+        {
+            "elapsed_time": 803.6859035491943,
+            "token_count": 787
+        },
+        {
+            "elapsed_time": 808.4800243377686,
+            "token_count": 788
+        },
+        {
+            "elapsed_time": 803.056001663208,
+            "token_count": 789
+        },
+        {
+            "elapsed_time": 821.5560913085938,
+            "token_count": 790
+        },
+        {
+            "elapsed_time": 813.9939308166504,
+            "token_count": 791
+        },
+        {
+            "elapsed_time": 813.8620853424072,
+            "token_count": 792
+        },
+        {
+            "elapsed_time": 815.8199787139893,
+            "token_count": 793
+        },
+        {
+            "elapsed_time": 816.1683082580566,
+            "token_count": 794
+        },
+        {
+            "elapsed_time": 813.5509490966797,
+            "token_count": 795
+        },
+        {
+            "elapsed_time": 819.0748691558838,
+            "token_count": 796
+        },
+        {
+            "elapsed_time": 856.4291000366211,
+            "token_count": 797
+        },
+        {
+            "elapsed_time": 845.2358245849609,
+            "token_count": 798
+        },
+        {
+            "elapsed_time": 820.0631141662598,
+            "token_count": 799
+        },
+        {
+            "elapsed_time": 819.8158740997314,
+            "token_count": 800
+        },
+        {
+            "elapsed_time": 817.5492286682129,
+            "token_count": 801
+        },
+        {
+            "elapsed_time": 818.6848163604736,
+            "token_count": 802
+        },
+        {
+            "elapsed_time": 824.7551918029785,
+            "token_count": 803
+        },
+        {
+            "elapsed_time": 823.0190277099609,
+            "token_count": 804
+        },
+        {
+            "elapsed_time": 832.5469493865967,
+            "token_count": 805
+        },
+        {
+            "elapsed_time": 826.9658088684082,
+            "token_count": 806
+        },
+        {
+            "elapsed_time": 832.2749137878418,
+            "token_count": 807
+        },
+        {
+            "elapsed_time": 828.4199237823486,
+            "token_count": 808
+        },
+        {
+            "elapsed_time": 913.9750003814697,
+            "token_count": 809
+        },
+        {
+            "elapsed_time": 895.2701091766357,
+            "token_count": 810
+        },
+        {
+            "elapsed_time": 881.6509246826172,
+            "token_count": 811
+        },
+        {
+            "elapsed_time": 842.1778678894043,
+            "token_count": 812
+        },
+        {
+            "elapsed_time": 833.503246307373,
+            "token_count": 813
+        },
+        {
+            "elapsed_time": 834.2037200927734,
+            "token_count": 814
+        },
+        {
+            "elapsed_time": 839.7300243377686,
+            "token_count": 815
+        },
+        {
+            "elapsed_time": 849.506139755249,
+            "token_count": 816
+        },
+        {
+            "elapsed_time": 826.6851902008057,
+            "token_count": 817
+        },
+        {
+            "elapsed_time": 830.7459354400635,
+            "token_count": 818
+        },
+        {
+            "elapsed_time": 849.5919704437256,
+            "token_count": 819
+        },
+        {
+            "elapsed_time": 849.2252826690674,
+            "token_count": 820
+        },
+        {
+            "elapsed_time": 860.3720664978027,
+            "token_count": 821
+        },
+        {
+            "elapsed_time": 851.8869876861572,
+            "token_count": 822
+        },
+        {
+            "elapsed_time": 844.3551063537598,
+            "token_count": 823
+        },
+        {
+            "elapsed_time": 925.57692527771,
+            "token_count": 824
+        },
+        {
+            "elapsed_time": 926.642894744873,
+            "token_count": 825
+        },
+        {
+            "elapsed_time": 907.4020385742188,
+            "token_count": 826
+        },
+        {
+            "elapsed_time": 886.6698741912842,
+            "token_count": 827
+        },
+        {
+            "elapsed_time": 857.795238494873,
+            "token_count": 828
+        },
+        {
+            "elapsed_time": 833.5812091827393,
+            "token_count": 829
+        },
+        {
+            "elapsed_time": 842.2620296478271,
+            "token_count": 830
+        },
+        {
+            "elapsed_time": 912.5587940216064,
+            "token_count": 831
+        },
+        {
+            "elapsed_time": 863.8632297515869,
+            "token_count": 832
+        },
+        {
+            "elapsed_time": 822.3171234130859,
+            "token_count": 833
+        },
+        {
+            "elapsed_time": 829.0932178497314,
+            "token_count": 834
+        },
+        {
+            "elapsed_time": 833.9681625366211,
+            "token_count": 835
+        },
+        {
+            "elapsed_time": 825.6399631500244,
+            "token_count": 836
+        },
+        {
+            "elapsed_time": 827.8646469116211,
+            "token_count": 837
+        },
+        {
+            "elapsed_time": 835.8430862426758,
+            "token_count": 838
+        },
+        {
+            "elapsed_time": 834.8791599273682,
+            "token_count": 839
+        },
+        {
+            "elapsed_time": 858.1340312957764,
+            "token_count": 840
+        },
+        {
+            "elapsed_time": 837.9640579223633,
+            "token_count": 841
+        },
+        {
+            "elapsed_time": 860.4061603546143,
+            "token_count": 842
+        },
+        {
+            "elapsed_time": 866.912841796875,
+            "token_count": 843
+        },
+        {
+            "elapsed_time": 875.4920959472656,
+            "token_count": 844
+        },
+        {
+            "elapsed_time": 843.4748649597168,
+            "token_count": 845
+        },
+        {
+            "elapsed_time": 853.7468910217285,
+            "token_count": 846
+        },
+        {
+            "elapsed_time": 847.9480743408203,
+            "token_count": 847
+        },
+        {
+            "elapsed_time": 859.097957611084,
+            "token_count": 848
+        },
+        {
+            "elapsed_time": 841.4080142974854,
+            "token_count": 849
+        },
+        {
+            "elapsed_time": 857.2111129760742,
+            "token_count": 850
+        },
+        {
+            "elapsed_time": 848.5860824584961,
+            "token_count": 851
+        },
+        {
+            "elapsed_time": 862.8449440002441,
+            "token_count": 852
+        },
+        {
+            "elapsed_time": 878.9939880371094,
+            "token_count": 853
+        },
+        {
+            "elapsed_time": 949.5830535888672,
+            "token_count": 854
+        },
+        {
+            "elapsed_time": 895.77317237854,
+            "token_count": 855
+        },
+        {
+            "elapsed_time": 855.1888465881348,
+            "token_count": 856
+        },
+        {
+            "elapsed_time": 858.1619262695312,
+            "token_count": 857
+        },
+        {
+            "elapsed_time": 860.8441352844238,
+            "token_count": 858
+        },
+        {
+            "elapsed_time": 859.2650890350342,
+            "token_count": 859
+        },
+        {
+            "elapsed_time": 857.6781749725342,
+            "token_count": 860
+        },
+        {
+            "elapsed_time": 875.4050731658936,
+            "token_count": 861
+        },
+        {
+            "elapsed_time": 859.2300415039062,
+            "token_count": 862
+        },
+        {
+            "elapsed_time": 853.8417816162109,
+            "token_count": 863
+        },
+        {
+            "elapsed_time": 911.3221168518066,
+            "token_count": 864
+        },
+        {
+            "elapsed_time": 894.9120044708252,
+            "token_count": 865
+        },
+        {
+            "elapsed_time": 892.2209739685059,
+            "token_count": 866
+        },
+        {
+            "elapsed_time": 897.29905128479,
+            "token_count": 867
+        },
+        {
+            "elapsed_time": 867.1579360961914,
+            "token_count": 868
+        },
+        {
+            "elapsed_time": 975.5196571350098,
+            "token_count": 869
+        },
+        {
+            "elapsed_time": 891.6261196136475,
+            "token_count": 870
+        },
+        {
+            "elapsed_time": 889.4851207733154,
+            "token_count": 871
+        },
+        {
+            "elapsed_time": 869.3656921386719,
+            "token_count": 872
+        },
+        {
+            "elapsed_time": 865.4229640960693,
+            "token_count": 873
+        },
+        {
+            "elapsed_time": 871.258020401001,
+            "token_count": 874
+        },
+        {
+            "elapsed_time": 894.4530487060547,
+            "token_count": 875
+        },
+        {
+            "elapsed_time": 920.490026473999,
+            "token_count": 876
+        },
+        {
+            "elapsed_time": 894.4039344787598,
+            "token_count": 877
+        },
+        {
+            "elapsed_time": 884.7861289978027,
+            "token_count": 878
+        },
+        {
+            "elapsed_time": 868.5309886932373,
+            "token_count": 879
+        },
+        {
+            "elapsed_time": 870.2540397644043,
+            "token_count": 880
+        },
+        {
+            "elapsed_time": 882.0631504058838,
+            "token_count": 881
+        },
+        {
+            "elapsed_time": 885.4029178619385,
+            "token_count": 882
+        },
+        {
+            "elapsed_time": 890.2831077575684,
+            "token_count": 883
+        },
+        {
+            "elapsed_time": 917.949914932251,
+            "token_count": 884
+        },
+        {
+            "elapsed_time": 904.9878120422363,
+            "token_count": 885
+        },
+        {
+            "elapsed_time": 932.6300621032715,
+            "token_count": 886
+        },
+        {
+            "elapsed_time": 949.6340751647949,
+            "token_count": 887
+        },
+        {
+            "elapsed_time": 978.4488677978516,
+            "token_count": 888
+        },
+        {
+            "elapsed_time": 913.9950275421143,
+            "token_count": 889
+        },
+        {
+            "elapsed_time": 892.6239013671875,
+            "token_count": 890
+        },
+        {
+            "elapsed_time": 894.8051929473877,
+            "token_count": 891
+        },
+        {
+            "elapsed_time": 890.2859687805176,
+            "token_count": 892
+        },
+        {
+            "elapsed_time": 884.2830657958984,
+            "token_count": 893
+        },
+        {
+            "elapsed_time": 892.6887512207031,
+            "token_count": 894
+        },
+        {
+            "elapsed_time": 884.1209411621094,
+            "token_count": 895
+        },
+        {
+            "elapsed_time": 899.036169052124,
+            "token_count": 896
+        },
+        {
+            "elapsed_time": 927.5510311126709,
+            "token_count": 897
+        },
+        {
+            "elapsed_time": 917.4659252166748,
+            "token_count": 898
+        },
+        {
+            "elapsed_time": 935.1351261138916,
+            "token_count": 899
+        },
+        {
+            "elapsed_time": 903.4619331359863,
+            "token_count": 900
+        },
+        {
+            "elapsed_time": 900.1138210296631,
+            "token_count": 901
+        },
+        {
+            "elapsed_time": 933.4406852722168,
+            "token_count": 902
+        },
+        {
+            "elapsed_time": 940.9232139587402,
+            "token_count": 903
+        },
+        {
+            "elapsed_time": 914.560079574585,
+            "token_count": 904
+        },
+        {
+            "elapsed_time": 920.4709529876709,
+            "token_count": 905
+        },
+        {
+            "elapsed_time": 914.2270088195801,
+            "token_count": 906
+        },
+        {
+            "elapsed_time": 942.2147274017334,
+            "token_count": 907
+        },
+        {
+            "elapsed_time": 950.7451057434082,
+            "token_count": 908
+        },
+        {
+            "elapsed_time": 906.6321849822998,
+            "token_count": 909
+        },
+        {
+            "elapsed_time": 937.2189044952393,
+            "token_count": 910
+        },
+        {
+            "elapsed_time": 916.1841869354248,
+            "token_count": 911
+        },
+        {
+            "elapsed_time": 914.405107498169,
+            "token_count": 912
+        },
+        {
+            "elapsed_time": 923.6910343170166,
+            "token_count": 913
+        },
+        {
+            "elapsed_time": 903.8498401641846,
+            "token_count": 914
+        },
+        {
+            "elapsed_time": 907.7188968658447,
+            "token_count": 915
+        },
+        {
+            "elapsed_time": 921.4489459991455,
+            "token_count": 916
+        },
+        {
+            "elapsed_time": 951.4951705932617,
+            "token_count": 917
+        },
+        {
+            "elapsed_time": 1097.7373123168945,
+            "token_count": 918
+        },
+        {
+            "elapsed_time": 979.5041084289551,
+            "token_count": 919
+        },
+        {
+            "elapsed_time": 934.563159942627,
+            "token_count": 920
+        },
+        {
+            "elapsed_time": 942.4681663513184,
+            "token_count": 921
+        },
+        {
+            "elapsed_time": 937.0431900024414,
+            "token_count": 922
+        },
+        {
+            "elapsed_time": 940.4652118682861,
+            "token_count": 923
+        },
+        {
+            "elapsed_time": 927.6463985443115,
+            "token_count": 924
+        },
+        {
+            "elapsed_time": 917.3150062561035,
+            "token_count": 925
+        },
+        {
+            "elapsed_time": 921.212911605835,
+            "token_count": 926
+        },
+        {
+            "elapsed_time": 926.3668060302734,
+            "token_count": 927
+        },
+        {
+            "elapsed_time": 985.6488704681396,
+            "token_count": 928
+        },
+        {
+            "elapsed_time": 953.5841941833496,
+            "token_count": 929
+        },
+        {
+            "elapsed_time": 959.791898727417,
+            "token_count": 930
+        },
+        {
+            "elapsed_time": 967.120885848999,
+            "token_count": 931
+        },
+        {
+            "elapsed_time": 940.6309127807617,
+            "token_count": 932
+        },
+        {
+            "elapsed_time": 978.1241416931152,
+            "token_count": 933
+        },
+        {
+            "elapsed_time": 965.5249118804932,
+            "token_count": 934
+        },
+        {
+            "elapsed_time": 955.1191329956055,
+            "token_count": 935
+        },
+        {
+            "elapsed_time": 1009.2718601226807,
+            "token_count": 936
+        },
+        {
+            "elapsed_time": 949.9356746673584,
+            "token_count": 937
+        },
+        {
+            "elapsed_time": 979.8638820648193,
+            "token_count": 938
+        },
+        {
+            "elapsed_time": 984.0288162231445,
+            "token_count": 939
+        },
+        {
+            "elapsed_time": 966.0861492156982,
+            "token_count": 940
+        },
+        {
+            "elapsed_time": 974.7872352600098,
+            "token_count": 941
+        },
+        {
+            "elapsed_time": 936.2180233001709,
+            "token_count": 942
+        },
+        {
+            "elapsed_time": 963.4943008422852,
+            "token_count": 943
+        },
+        {
+            "elapsed_time": 959.0239524841309,
+            "token_count": 944
+        },
+        {
+            "elapsed_time": 954.8361301422119,
+            "token_count": 945
+        },
+        {
+            "elapsed_time": 949.6219158172607,
+            "token_count": 946
+        },
+        {
+            "elapsed_time": 948.7991333007812,
+            "token_count": 947
+        },
+        {
+            "elapsed_time": 989.1409873962402,
+            "token_count": 948
+        },
+        {
+            "elapsed_time": 1001.5542507171631,
+            "token_count": 949
+        },
+        {
+            "elapsed_time": 947.2270011901855,
+            "token_count": 950
+        },
+        {
+            "elapsed_time": 981.112003326416,
+            "token_count": 951
+        },
+        {
+            "elapsed_time": 952.0020484924316,
+            "token_count": 952
+        },
+        {
+            "elapsed_time": 972.4569320678711,
+            "token_count": 953
+        },
+        {
+            "elapsed_time": 960.968017578125,
+            "token_count": 954
+        },
+        {
+            "elapsed_time": 958.507776260376,
+            "token_count": 955
+        },
+        {
+            "elapsed_time": 948.6229419708252,
+            "token_count": 956
+        },
+        {
+            "elapsed_time": 956.0608863830566,
+            "token_count": 957
+        },
+        {
+            "elapsed_time": 1043.2829856872559,
+            "token_count": 958
+        },
+        {
+            "elapsed_time": 1078.1879425048828,
+            "token_count": 959
+        },
+        {
+            "elapsed_time": 999.6969699859619,
+            "token_count": 960
+        },
+        {
+            "elapsed_time": 979.5680046081543,
+            "token_count": 961
+        },
+        {
+            "elapsed_time": 972.0108509063721,
+            "token_count": 962
+        },
+        {
+            "elapsed_time": 993.9279556274414,
+            "token_count": 963
+        },
+        {
+            "elapsed_time": 1017.1148777008057,
+            "token_count": 964
+        },
+        {
+            "elapsed_time": 958.6939811706543,
+            "token_count": 965
+        },
+        {
+            "elapsed_time": 973.0429649353027,
+            "token_count": 966
+        },
+        {
+            "elapsed_time": 968.5530662536621,
+            "token_count": 967
+        },
+        {
+            "elapsed_time": 1016.1139965057373,
+            "token_count": 968
+        },
+        {
+            "elapsed_time": 1020.1249122619629,
+            "token_count": 969
+        },
+        {
+            "elapsed_time": 972.2130298614502,
+            "token_count": 970
+        },
+        {
+            "elapsed_time": 1019.0231800079346,
+            "token_count": 971
+        },
+        {
+            "elapsed_time": 983.159065246582,
+            "token_count": 972
+        },
+        {
+            "elapsed_time": 988.9998435974121,
+            "token_count": 973
+        },
+        {
+            "elapsed_time": 973.0901718139648,
+            "token_count": 974
+        },
+        {
+            "elapsed_time": 971.3859558105469,
+            "token_count": 975
+        },
+        {
+            "elapsed_time": 982.0280075073242,
+            "token_count": 976
+        },
+        {
+            "elapsed_time": 985.7861995697021,
+            "token_count": 977
+        },
+        {
+            "elapsed_time": 1031.9018363952637,
+            "token_count": 978
+        },
+        {
+            "elapsed_time": 1067.1050548553467,
+            "token_count": 979
+        },
+        {
+            "elapsed_time": 982.450008392334,
+            "token_count": 980
+        },
+        {
+            "elapsed_time": 1042.5522327423096,
+            "token_count": 981
+        },
+        {
+            "elapsed_time": 1031.4853191375732,
+            "token_count": 982
+        },
+        {
+            "elapsed_time": 1033.1158638000488,
+            "token_count": 983
+        },
+        {
+            "elapsed_time": 1033.4279537200928,
+            "token_count": 984
+        },
+        {
+            "elapsed_time": 1029.088020324707,
+            "token_count": 985
+        },
+        {
+            "elapsed_time": 1016.071081161499,
+            "token_count": 986
+        },
+        {
+            "elapsed_time": 1032.0429801940918,
+            "token_count": 987
+        },
+        {
+            "elapsed_time": 1027.3950099945068,
+            "token_count": 988
+        },
+        {
+            "elapsed_time": 1072.1111297607422,
+            "token_count": 989
+        },
+        {
+            "elapsed_time": 1084.6278667449951,
+            "token_count": 990
+        },
+        {
+            "elapsed_time": 1051.6648292541504,
+            "token_count": 991
+        },
+        {
+            "elapsed_time": 1033.2810878753662,
+            "token_count": 992
+        },
+        {
+            "elapsed_time": 1027.7941226959229,
+            "token_count": 993
+        },
+        {
+            "elapsed_time": 1037.5773906707764,
+            "token_count": 994
+        },
+        {
+            "elapsed_time": 1037.9290580749512,
+            "token_count": 995
+        },
+        {
+            "elapsed_time": 1037.017822265625,
+            "token_count": 996
+        },
+        {
+            "elapsed_time": 1052.016019821167,
+            "token_count": 997
+        },
+        {
+            "elapsed_time": 1032.4182510375977,
+            "token_count": 998
+        },
+        {
+            "elapsed_time": 1047.070026397705,
+            "token_count": 999
+        }
+    ],
+    "max_token_count_per_time": {
+        "100": 100,
+        "200": 199,
+        "300": 299,
+        "400": 396,
+        "500": 514,
+        "600": 613,
+        "700": 691,
+        "800": 783,
+        "900": 896,
+        "1000": 980,
+        "1100": 999,
+        "1200": 999,
+        "1300": 999,
+        "1400": 999,
+        "1500": 999
+    }
+}

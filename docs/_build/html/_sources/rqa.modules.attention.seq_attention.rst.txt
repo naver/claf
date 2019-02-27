@@ -1,0 +1,7 @@
+rqa.modules.attention.seq\_attention module
+===========================================
+
+.. automodule:: rqa.modules.attention.seq_attention
+    :members:
+    :undoc-members:
+    :show-inheritance:

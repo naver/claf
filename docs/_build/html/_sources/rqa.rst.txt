@@ -1,0 +1,34 @@
+rqa package
+===========
+
+Subpackages
+-----------
+
+.. toctree::
+
+    rqa.config
+    rqa.data
+    rqa.decorator
+    rqa.learn
+    rqa.machine
+    rqa.metric
+    rqa.model
+    rqa.modules
+    rqa.tokens
+
+Submodules
+----------
+
+.. automodule:: rqa.utils
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: rqa
+    :members:
+    :undoc-members:
+    :show-inheritance:

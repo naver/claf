@@ -1,0 +1,283 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>rqa.tokens.linguistic &mdash; reasoning-qa 0.1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/summary.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">reasoning-qa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../tokens.html">rqa.tokens</a> &raquo;</li>
+        
+      <li>rqa.tokens.linguistic</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for rqa.tokens.linguistic</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="POSTag"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.linguistic.POSTag">[docs]</a><span></span><span class="k">class</span> <span class="nc">POSTag</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Universal POS tags expends by spacy</span>
+<span class="sd">        (https://spacy.io/api/annotation#section-pos-tagging)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;ADJ&quot;</span><span class="p">,</span>  <span class="c1"># adjectives</span>
+        <span class="s2">&quot;ADP&quot;</span><span class="p">,</span>  <span class="c1"># adpositions (prepositions and postpositions)</span>
+        <span class="s2">&quot;ADV&quot;</span><span class="p">,</span>  <span class="c1"># adverbs</span>
+        <span class="s2">&quot;AUX&quot;</span><span class="p">,</span>  <span class="c1"># auxiliary (spacy)</span>
+        <span class="s2">&quot;CONJ&quot;</span><span class="p">,</span>  <span class="c1"># conjunctions</span>
+        <span class="s2">&quot;CCONJ&quot;</span><span class="p">,</span>  <span class="c1"># coordinating conjunction (spacy)</span>
+        <span class="s2">&quot;DET&quot;</span><span class="p">,</span>  <span class="c1"># determiners</span>
+        <span class="s2">&quot;INTJ&quot;</span><span class="p">,</span>  <span class="c1"># interjection (spacy)</span>
+        <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># nouns (common and proper)</span>
+        <span class="s2">&quot;NUM&quot;</span><span class="p">,</span>  <span class="c1"># cardinal numbers</span>
+        <span class="s2">&quot;PART&quot;</span><span class="p">,</span>  <span class="c1"># particles or other function words  (spacy)</span>
+        <span class="s2">&quot;PRON&quot;</span><span class="p">,</span>  <span class="c1"># pronouns</span>
+        <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># proper noun</span>
+        <span class="s2">&quot;PUNCT&quot;</span><span class="p">,</span>  <span class="c1"># punctuation</span>
+        <span class="s2">&quot;SCONJ&quot;</span><span class="p">,</span>  <span class="c1"># subordinating conjunction</span>
+        <span class="s2">&quot;SYM&quot;</span><span class="p">,</span>  <span class="c1"># symbol</span>
+        <span class="s2">&quot;VERB&quot;</span><span class="p">,</span>  <span class="c1"># verbs (all tenses and modes)</span>
+        <span class="s2">&quot;X&quot;</span><span class="p">,</span>  <span class="c1"># other: foreign words, typos, abbreviations</span>
+        <span class="s2">&quot;SPACE&quot;</span><span class="p">,</span>  <span class="c1"># space</span>
+    <span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="NER"><a class="viewcode-back" href="../../../rqa.tokens.html#rqa.tokens.linguistic.NER">[docs]</a><span class="k">class</span> <span class="nc">NER</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Named Entity Recognition</span>
+
+<span class="sd">        Models trained on the OntoNotes 5 corpus support</span>
+<span class="sd">        the following entity types:</span>
+<span class="sd">        (https://spacy.io/api/annotation#section-dependency-parsing)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;NONE&quot;</span><span class="p">,</span>  <span class="c1"># None</span>
+        <span class="s2">&quot;PERSON&quot;</span><span class="p">,</span>  <span class="c1"># People, including fictional.</span>
+        <span class="s2">&quot;NORP&quot;</span><span class="p">,</span>  <span class="c1"># Nationalities or religious or political groups.</span>
+        <span class="s2">&quot;FAC&quot;</span><span class="p">,</span>  <span class="c1"># Buildings, airports, highways, bridges, etc.</span>
+        <span class="s2">&quot;ORG&quot;</span><span class="p">,</span>  <span class="c1"># Companies, agencies, institutions, etc.</span>
+        <span class="s2">&quot;GPE&quot;</span><span class="p">,</span>  <span class="c1"># Countries, cities, states.</span>
+        <span class="s2">&quot;LOC&quot;</span><span class="p">,</span>  <span class="c1"># Non-GPE locations, mountain ranges, bodies of water.</span>
+        <span class="s2">&quot;PRODUCT&quot;</span><span class="p">,</span>  <span class="c1"># Objects, vehicles, foods, etc. (Not services.)</span>
+        <span class="s2">&quot;EVENT&quot;</span><span class="p">,</span>  <span class="c1"># Named hurricanes, battles, wars, sports events, etc.</span>
+        <span class="s2">&quot;WORK_OF_ART&quot;</span><span class="p">,</span>  <span class="c1"># Titles of books, songs, etc.</span>
+        <span class="s2">&quot;LAW&quot;</span><span class="p">,</span>  <span class="c1"># Named documents made into laws.</span>
+        <span class="s2">&quot;LANGUAGE&quot;</span><span class="p">,</span>  <span class="c1"># Any named language.</span>
+        <span class="s2">&quot;DATE&quot;</span><span class="p">,</span>  <span class="c1"># Absolute or relative dates or periods.</span>
+        <span class="s2">&quot;TIME&quot;</span><span class="p">,</span>  <span class="c1"># Times smaller than a day.</span>
+        <span class="s2">&quot;PERCENT&quot;</span><span class="p">,</span>  <span class="c1"># Percentage, including &quot;%&quot;.</span>
+        <span class="s2">&quot;MONEY&quot;</span><span class="p">,</span>  <span class="c1"># Monetary values, including unit.</span>
+        <span class="s2">&quot;QUANTITY&quot;</span><span class="p">,</span>  <span class="c1"># Measurements, as of weight or distance.</span>
+        <span class="s2">&quot;ORDINAL&quot;</span><span class="p">,</span>  <span class="c1"># &quot;first&quot;, &quot;second&quot;, etc.</span>
+        <span class="s2">&quot;CARDINAL&quot;</span><span class="p">,</span>  <span class="c1"># Numerals that do not fall under another type.</span>
+    <span class="p">]</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

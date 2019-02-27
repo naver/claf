@@ -1,0 +1,32 @@
+{
+  "name": "nlu",
+  "user_input": "Utterance",
+  "system_response": "NLU Result",
+  "nlu": {
+    "tokenizers": {
+      "sent": {
+        "name": "punkt"
+      },
+      "subword": {
+        "name": "wordpiece",
+        "wordpiece": {
+          "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-vocab.txt"
+        }
+      }
+    },
+    "nlu": {
+      "intent": {
+        "name": "intent",
+        "type": "experiment",
+        "checkpoint_path": "<model_checkpoint_path>",
+        "cuda_devices": [0]
+      },
+      "slots": {
+        "name": "slots",
+        "type": "experiment",
+        "checkpoint_path": "<model_checkpoint_path>",
+        "cuda_devices": [1]
+      }
+    }
+  }
+}

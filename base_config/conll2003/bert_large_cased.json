@@ -1,0 +1,63 @@
+ {
+     "data_reader": {
+         "dataset": "conll2003_bert",
+         "train_file_path": "https://raw.githubusercontent.com/Franck-Dernoncourt/NeuroNER/master/data/conll2003/en/train.txt",
+         "valid_file_path": "https://raw.githubusercontent.com/Franck-Dernoncourt/NeuroNER/master/data/conll2003/en/valid.txt",
+         "conll2003_bert": {
+             "sequence_max_length": 512,
+             "ignore_tag_idx": -1
+         }
+     },
+     "iterator": {
+         "batch_size": 32
+     },
+     "token": {
+         "names": ["feature"],
+         "types": ["feature"],
+         "tokenizer": {
+             "subword": {
+                 "name": "wordpiece",
+                 "wordpiece": {
+                     "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-cased-vocab.txt"
+                 }
+             },
+             "word": {
+                 "name": "bert_basic",
+                 "bert_basic": {
+                     "do_lower_case": false
+                 }
+             }
+         },
+         "feature": {
+             "vocab": {
+                 "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-cased-vocab.txt",
+                 "pretrained_token": "all"
+             },
+             "indexer": {
+                 "do_tokenize": false
+             }
+         }
+     },
+     "model": {
+         "name": "bert_for_tok_cls",
+         "bert_for_tok_cls": {
+             "pretrained_model_name": "bert-large-cased",
+             "dropout": 0.0
+         }
+     },
+     "trainer": {
+         "log_dir": "logs/conll2003_bert",
+         "num_epochs": 3,
+         "early_stopping_threshold": 10,
+         "metric_key": "conlleval_f1",
+         "eval_and_save_step_count": "epoch"
+     },
+     "optimizer": {
+         "op_type": "bert_adam",
+         "learning_rate": 2e-5,
+         "bert_adam": {
+             "warmup": 0.1
+         }
+     },
+     "seed_num": 42
+ }
