@@ -6,17 +6,17 @@ from pathlib import Path, PosixPath
 import shutil
 import tempfile
 
-from nsml import IS_ON_NSML, DATASET_PATH
-
 import msgpack
 import requests
 from tqdm import tqdm
+
+from claf import nsml
 
 logger = logging.getLogger(__name__)
 
 
 class CachePath:
-    if IS_ON_NSML:
+    if nsml.IS_ON_NSML:
         ROOT = Path("./claf_cache")
     else:
         ROOT = Path.home() / ".claf_cache"
@@ -60,8 +60,8 @@ class DataHandler:
                 return path
             return path.read_bytes().decode(encoding)
 
-        if IS_ON_NSML:
-            path = DATASET_PATH / path
+        if nsml.IS_ON_NSML:
+            path = nsml.DATASET_PATH / path
 
         if path.exists():
             if return_path:
