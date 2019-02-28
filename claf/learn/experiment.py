@@ -1,4 +1,5 @@
 
+import atexit
 import logging
 from pathlib import Path
 
@@ -123,6 +124,10 @@ class Experiment:
         """ Run Trainer """
 
         if self.mode == Mode.TRAIN:
+            # exit trigger slack notification
+            if self.config.slack_url:
+                atexit.register(utils.send_message_to_slack)
+
             train_loader, valid_loader, optimizer = self.set_train_mode()
 
             assert train_loader is not None
