@@ -1,12 +1,16 @@
 
 from collections import OrderedDict
+import json
 import logging
 from pathlib import Path
 import os
 import re
 
 import torch
+from torch.nn import DataParallel
+import requests
 
+from claf import nsml
 from claf.tokens.vocabulary import Vocab
 
 
@@ -147,3 +151,77 @@ def get_sorted_path(checkpoint_dir, both_exist=False):
             del path_with_train_count[key]
 
     return OrderedDict(sorted(path_with_train_count.items()))
+
+
+""" NSML """
+
+
+def bind_nsml(model, **kwargs):  # pragma: no cover
+    if type(model) == DataParallel:
+        model = model.module
+
+    def infer(raw_data, **kwargs):
+        pass
+
+    def load(path, *args):
+        checkpoint = torch.load(path)
+
+        model.load_state_dict(checkpoint["weights"])
+        model.config = checkpoint["config"]
+        model.metrics = checkpoint["metrics"]
+        model.init_params = checkpoint["init_params"],
+        model.predict_helper = checkpoint["predict_helper"],
+        model.train_counter = checkpoint["train_counter"]
+        model.vocabs = load_vocabs(checkpoint)
+
+        if "optimizer" in kwargs:
+            kwargs["optimizer"].load_state_dict(checkpoint["optimizer"])
+        logger.info(f"Load checkpoints...! {path}")
+
+    def save(path, *args):
+        # save the model with 'checkpoint' dictionary.
+        checkpoint = {
+            "config": model.config,
+            "init_params": model.init_params,
+            "predict_helper": model.predict_helper,
+            "metrics": model.metrics,
+            "train_counter": model.train_counter,
+            "vocab_texts": {k: v.to_text() for k, v in model.vocabs.items()},
+            "weights": model.state_dict(),
+        }
+
+        if "optimizer" in kwargs:
+            checkpoint["optimizer"] = (kwargs["optimizer"].state_dict(),)
+
+        torch.save(checkpoint, path)
+
+        train_counter = model.train_counter
+        logger.info(f"Save {train_counter.global_step} global_step checkpoints...! {path}")
+
+    # function in function is just used to divide the namespace.
+    nsml.bind(save, load, infer)
+
+
+""" Notification """
+
+
+def get_session_name():
+    session_name = "local"
+    if nsml.IS_ON_NSML:
+        session_name = nsml.SESSION_NAME
+    return session_name
+
+
+def send_message_to_slack(webhook_url, title=None, message=None):  # pragma: no cover
+    if message is None:
+        data = {"text": f"{get_session_name()} session is exited."}
+    else:
+        data = {"attachments": [{"title": title, "text": message, "color": "#438C56"}]}
+
+    try:
+        if webhook_url == "":
+            print(data["text"])
+        else:
+            requests.post(webhook_url, data=json.dumps(data))
+    except Exception as e:
+        print(str(e))

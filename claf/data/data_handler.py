@@ -1,9 +1,12 @@
+
 import logging
 import pickle
 import os
 from pathlib import Path, PosixPath
 import shutil
 import tempfile
+
+from nsml import IS_ON_NSML, DATASET_PATH
 
 import msgpack
 import requests
@@ -13,7 +16,10 @@ logger = logging.getLogger(__name__)
 
 
 class CachePath:
-    ROOT = Path.home() / ".claf_cache"
+    if IS_ON_NSML:
+        ROOT = Path("./claf_cache")
+    else:
+        ROOT = Path.home() / ".claf_cache"
     DATASET = ROOT / "dataset"
     MACHINE = ROOT / "machine"
     PRETRAINED_VECTOR = ROOT / "pretrained_vector"
@@ -53,6 +59,9 @@ class DataHandler:
             if return_path:
                 return path
             return path.read_bytes().decode(encoding)
+
+        if IS_ON_NSML:
+            path = DATASET_PATH / path
 
         if path.exists():
             if return_path:
