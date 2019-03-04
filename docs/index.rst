@@ -3,11 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-<<<<<<< HEAD
 :github_url: https://github.com/naver/claf
-=======
-:github_url: https://oss.navercorp.com/ClovaAI-PJT/reasoning-qa
->>>>>>> cb1bb35b9c98f3c13e8710155404ae75ee433c53
 
 CLaF documentation
 ===================================

@@ -1,6 +1,6 @@
 # Created by https://www.gitignore.io/api/macos,python,jupyternotebook
 
-### reasoning-qa ###
+### CLaF: Clova Language Framework ###
 
 /data/
 logs/
