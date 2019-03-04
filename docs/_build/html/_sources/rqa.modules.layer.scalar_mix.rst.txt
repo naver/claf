@@ -1,7 +1,0 @@
-rqa.modules.layer.scalar\_mix module
-====================================
-
-.. automodule:: rqa.modules.layer.scalar_mix
-    :members:
-    :undoc-members:
-    :show-inheritance:

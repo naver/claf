@@ -1,7 +1,0 @@
-rqa.tokens.text\_handler module
-===============================
-
-.. automodule:: rqa.tokens.text_handler
-    :members:
-    :undoc-members:
-    :show-inheritance:

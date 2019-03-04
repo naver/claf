@@ -1,7 +1,0 @@
-rqa.tokens.indexer.char\_indexer module
-=======================================
-
-.. automodule:: rqa.tokens.indexer.char_indexer
-    :members:
-    :undoc-members:
-    :show-inheritance:

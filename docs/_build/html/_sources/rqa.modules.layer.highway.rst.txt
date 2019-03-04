@@ -1,7 +1,0 @@
-rqa.modules.layer.highway module
-================================
-
-.. automodule:: rqa.modules.layer.highway
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -1,7 +1,0 @@
-rqa.tokens.vocabulary module
-============================
-
-.. automodule:: rqa.tokens.vocabulary
-    :members:
-    :undoc-members:
-    :show-inheritance:

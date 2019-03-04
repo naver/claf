@@ -1,7 +1,0 @@
-rqa.metric.squad\_v2\_official module
-=====================================
-
-.. automodule:: rqa.metric.squad_v2_official
-    :members:
-    :undoc-members:
-    :show-inheritance:

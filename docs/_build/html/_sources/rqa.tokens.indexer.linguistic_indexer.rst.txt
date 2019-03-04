@@ -1,7 +1,0 @@
-rqa.tokens.indexer.linguistic\_indexer module
-=============================================
-
-.. automodule:: rqa.tokens.indexer.linguistic_indexer
-    :members:
-    :undoc-members:
-    :show-inheritance:

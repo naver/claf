@@ -1,7 +1,0 @@
-rqa.model.semantic\_parsing.utils module
-========================================
-
-.. automodule:: rqa.model.semantic_parsing.utils
-    :members:
-    :undoc-members:
-    :show-inheritance:

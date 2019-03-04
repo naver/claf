@@ -1,7 +1,0 @@
-rqa.modules.attention.multi\_head\_attention module
-===================================================
-
-.. automodule:: rqa.modules.attention.multi_head_attention
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -1,7 +1,0 @@
-rqa.modules.activation module
-=============================
-
-.. automodule:: rqa.modules.activation
-    :members:
-    :undoc-members:
-    :show-inheritance:

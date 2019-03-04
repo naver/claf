@@ -1,7 +1,0 @@
-rqa.modules.functional module
-=============================
-
-.. automodule:: rqa.modules.functional
-    :members:
-    :undoc-members:
-    :show-inheritance:

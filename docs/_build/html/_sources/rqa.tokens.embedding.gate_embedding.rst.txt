@@ -1,7 +1,0 @@
-rqa.tokens.embedding.gate\_embedding module
-===========================================
-
-.. automodule:: rqa.tokens.embedding.gate_embedding
-    :members:
-    :undoc-members:
-    :show-inheritance:

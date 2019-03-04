@@ -1,7 +1,0 @@
-rqa.decorator.arguments module
-==============================
-
-.. automodule:: rqa.decorator.arguments
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -1,7 +1,0 @@
-rqa.data.dataset.wikisql module
-===============================
-
-.. automodule:: rqa.data.dataset.wikisql
-    :members:
-    :undoc-members:
-    :show-inheritance:

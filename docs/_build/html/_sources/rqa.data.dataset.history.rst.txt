@@ -1,7 +1,0 @@
-rqa.data.dataset.history module
-===============================
-
-.. automodule:: rqa.data.dataset.history
-    :members:
-    :undoc-members:
-    :show-inheritance:

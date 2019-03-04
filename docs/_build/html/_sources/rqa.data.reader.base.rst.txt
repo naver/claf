@@ -1,7 +1,0 @@
-rqa.data.reader.base module
-===========================
-
-.. automodule:: rqa.data.reader.base
-    :members:
-    :undoc-members:
-    :show-inheritance:

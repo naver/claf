@@ -1,7 +1,0 @@
-rqa.modules.layer.residual module
-=================================
-
-.. automodule:: rqa.modules.layer.residual
-    :members:
-    :undoc-members:
-    :show-inheritance:
