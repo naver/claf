@@ -4,7 +4,7 @@
          "train_file_path": "<CoLA train.tsv path>",
          "valid_file_path": "<CoLA dev.tsv path>",
          "cola_bert": {
-             "sequence_max_length": 512
+             "sequence_max_length": 128
          }
      },
      "iterator": {

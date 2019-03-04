@@ -4,7 +4,7 @@
          "train_file_path": "https://raw.githubusercontent.com/Franck-Dernoncourt/NeuroNER/master/data/conll2003/en/train.txt",
          "valid_file_path": "https://raw.githubusercontent.com/Franck-Dernoncourt/NeuroNER/master/data/conll2003/en/valid.txt",
          "conll2003_bert": {
-             "sequence_max_length": 512,
+             "sequence_max_length": 128,
              "ignore_tag_idx": -1
          }
      },
