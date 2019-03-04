@@ -321,7 +321,7 @@ class Experiment:
 
         logger.info(summary_logs)
 
-        if self.config.slack_url is not None:  # pragma: no cover
+        if self.config.slack_url:  # pragma: no cover
             simple_summary_title = f"Session Name: {nsml.SESSION_NAME} "
             if getattr(self.config, "base_config", None):
                 simple_summary_title += f"({self.config.base_config})"
