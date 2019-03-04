@@ -7,6 +7,7 @@ import sys
 
 import torch
 
+from claf import nsml
 from claf.config import utils
 from claf.config.namespace import NestedNamespace
 from claf.learn.mode import Mode
@@ -47,6 +48,8 @@ def train_config(parser, input_argv=None):
     data(parser)
     token(parser)
     model(parser)
+    if nsml.IS_ON_NSML:
+        nsml_for_internal(parser)
     trainer(parser)
 
     # Use from config file
@@ -118,9 +121,16 @@ def optimize_config(config, is_test=False):
 
 
 def set_gpu_env(config):
-    # GPU
-    config.use_gpu = torch.cuda.is_available()
-    config.gpu_num = len(getattr(config, "cuda_devices", []))
+    # GPU & NSML
+    config.use_gpu = torch.cuda.is_available() or nsml.IS_ON_NSML
+
+    if nsml.IS_ON_NSML:
+        if getattr(config, "nsml", None) is None:
+            config.nsml = NestedNamespace()
+        config.nsml.dataset_path = nsml.DATASET_PATH
+        config.gpu_num = int(nsml.GPU_NUM)
+    else:
+        config.gpu_num = len(getattr(config, "cuda_devices", []))
 
     if not config.use_gpu:
         config.gpu_num = 0
@@ -158,7 +168,12 @@ def general(parser):
     group.add_argument(
         "--cuda_devices", nargs="+",
         type=int, default=[], dest="cuda_devices",
-        help=""" Set cuda_devices ids (use GPU).""",
+        help=""" Set cuda_devices ids (use GPU). if you use NSML, use GPU_NUM""",
+    )
+    group.add_argument(
+        "--slack_url",
+        type=str, default=None, dest="slack_url",
+        help=""" Slack notification (Incoming Webhook) """,
     )
 
 
@@ -1007,6 +1022,21 @@ def model(parser):
     )
 
 
+def nsml_for_internal(parser):
+
+    group = parser.add_argument_group("NSML")
+    group.add_argument(
+        "--pause",
+        type=int, default=0, dest="nsml.pause",
+        help=""" NSML default setting"""
+    )
+    group.add_argument(
+        "--iteration",
+        type=int, default=0, dest="nsml.iteration",
+        help=""" Start from NSML epoch count""",
+    )
+
+
 def trainer(parser):
 
     group = parser.add_argument_group("Trainer")
@@ -1550,7 +1580,7 @@ def evaluate(parser):
     group.add_argument("checkpoint_path", type=str, help="Path to an checkpoint trained model")
     group.add_argument(
         "--infer",
-        default=1000, dest="inference_latency", type=int,
+        default=None, dest="inference_latency", type=int,
         help=""" Evaluate with inference-latency with maximum value (ms)""",
     )
     group.add_argument(

@@ -1,9 +1,11 @@
 
+import atexit
 import logging
 from pathlib import Path
 
 import torch
 
+from claf import nsml
 from claf.config.factory import (
     DataReaderFactory,
     DataLoaderFactory,
@@ -11,14 +13,14 @@ from claf.config.factory import (
     ModelFactory,
     OptimizerFactory,
 )
-
+from claf import utils as common_utils
 from claf.config.args import NestedNamespace
 from claf.config.utils import convert_config2dict, pretty_json_dumps
 from claf.tokens.text_handler import TextHandler
 from claf.learn.mode import Mode
 from claf.learn.trainer import Trainer
 from claf.learn import utils
-from claf import utils as common_utils
+
 
 logger = logging.getLogger(__name__)
 
@@ -63,13 +65,17 @@ class Experiment:
 
         cuda_devices = self._get_cuda_devices()
         self.config.cuda_devices = cuda_devices
+        self.config.slack_url = getattr(self.config, "slack_url", False)
 
     def _get_cuda_devices(self):
         if getattr(self.config, "use_gpu", None) is None:
-            self.config.use_gpu = torch.cuda.is_available()
+            self.config.use_gpu = torch.cuda.is_available() or nsml.IS_ON_NSML
 
         if self.config.use_gpu:
-            return self.config.cuda_devices
+            if nsml.IS_ON_NSML:
+                return list(range(self.config.gpu_num))
+            else:
+                return self.config.cuda_devices
         else:
             return None
 
@@ -118,6 +124,10 @@ class Experiment:
         """ Run Trainer """
 
         if self.mode == Mode.TRAIN:
+            # exit trigger slack notification
+            if self.config.slack_url:
+                atexit.register(utils.send_message_to_slack)
+
             train_loader, valid_loader, optimizer = self.set_train_mode()
 
             assert train_loader is not None
@@ -294,9 +304,15 @@ class Experiment:
         )
         self.trainer = Trainer(**trainer_config)
 
+        # Set NSML
+        if nsml.IS_ON_NSML:
+            utils.bind_nsml(model, optimizer=op_dict.get("optimizer", None))
+            if getattr(self.config.nsml, "pause", None):
+                nsml.paused(scope=locals())
+
     def _summary_experiments(self):
         hr_text = "-" * 50
-        summary_logs = f"\n\n\nExperiment Summary. \n{hr_text}\n"
+        summary_logs = f"\n\n\nExperiment Summary. {nsml.SESSION_NAME}\n{hr_text}\n"
         summary_logs += f"Config.\n{pretty_json_dumps(self.config_dict)}\n{hr_text}\n"
         summary_logs += (
             f"Training Logs.\n{pretty_json_dumps(self.trainer.training_logs)}\n{hr_text}\n"
@@ -304,6 +320,21 @@ class Experiment:
         summary_logs += f"Metric Logs.\n{pretty_json_dumps(self.trainer.metric_logs)}"
 
         logger.info(summary_logs)
+
+        if self.config.slack_url:  # pragma: no cover
+            simple_summary_title = f"Session Name: {nsml.SESSION_NAME} "
+            if getattr(self.config, "base_config", None):
+                simple_summary_title += f"({self.config.base_config})"
+
+            simple_summary_logs = f" - Dataset: {self.config.data_reader.dataset} \n"
+            simple_summary_logs += f" - Model: {self.config.model.name}"
+
+            best_metrics = {"epoch": self.trainer.metric_logs["best_epoch"]}
+            best_metrics.update(self.trainer.metric_logs["best"])
+
+            simple_summary_logs += f" - Best metrics.\n {pretty_json_dumps(best_metrics)} "
+
+            utils.send_message_to_slack(self.config.slack_url, title=simple_summary_title, message=simple_summary_logs)
 
     def set_eval_mode(self):
         """

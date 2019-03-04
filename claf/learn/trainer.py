@@ -9,6 +9,7 @@ import random
 from torch.nn.utils import clip_grad_norm_
 from tqdm import tqdm
 
+from claf import nsml
 from claf.config.utils import pretty_json_dumps
 from claf.learn.optimization.exponential_moving_avarage import EMA
 from claf.learn.tensorboard import TensorBoard
@@ -545,4 +546,7 @@ class Trainer:
         model.train_counter = self.train_counter
         model.metrics = self.metric_logs
 
-        utils.save_checkpoint(self.log_dir, model, optimizer)
+        if nsml.IS_ON_NSML:
+            nsml.save(self.train_counter.get_display())
+        else:
+            utils.save_checkpoint(self.log_dir, model, optimizer)

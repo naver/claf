@@ -1,3 +1,4 @@
+
 import logging
 import pickle
 import os
@@ -9,11 +10,16 @@ import msgpack
 import requests
 from tqdm import tqdm
 
+from claf import nsml
+
 logger = logging.getLogger(__name__)
 
 
 class CachePath:
-    ROOT = Path.home() / ".claf_cache"
+    if nsml.IS_ON_NSML:
+        ROOT = Path("./claf_cache")
+    else:
+        ROOT = Path.home() / ".claf_cache"
     DATASET = ROOT / "dataset"
     MACHINE = ROOT / "machine"
     PRETRAINED_VECTOR = ROOT / "pretrained_vector"
@@ -53,6 +59,9 @@ class DataHandler:
             if return_path:
                 return path
             return path.read_bytes().decode(encoding)
+
+        if nsml.IS_ON_NSML:
+            path = nsml.DATASET_PATH / path
 
         if path.exists():
             if return_path:

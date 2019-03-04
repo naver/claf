@@ -76,6 +76,5 @@
          "learning_rate": 0.5,
          "exponential_moving_average": 0.999
      },
-     "seed_num": 2,
-     "slack": false
+     "seed_num": 2
  }
