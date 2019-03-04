@@ -8,9 +8,9 @@ from setuptools import find_packages, setup, Command
 
 
 # Package meta-data.
-NAME = 'CLaF'
-DESCRIPTION = 'Clova Language Framework'
-URL = '..'
+NAME = 'claf'
+DESCRIPTION = 'CLaF: Clova Language Framework'
+URL = 'https://github.com/naver/claf'
 EMAIL = 'humanbrain.djlee@gmail.com'
 AUTHOR = 'Dongjun Lee'
 REQUIRES_PYTHON = '>=3.6.0'

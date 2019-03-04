@@ -5,7 +5,7 @@
 <h4 align="center">Clova Language Framework</h4>
 
 <p align="center">
-    <a href="https://pages.oss.navercorp.com/ClovaAI-PJT/reasoning-qa/">
+    <a href="https://naver.github.io/claf/">
         <img src="https://readthedocs.org/projects/pip/badge/?version=latest" alt="Documentation">
     </a>
     <a href="https://github.com/ambv/black">
@@ -91,10 +91,10 @@ pip install claf
 
 ### Features
 
-- [Full Documentation](https://pages.oss.navercorp.com/ClovaAI-PJT/reasoning-qa/)
-- [Dataset And Model](https://pages.oss.navercorp.com/ClovaAI-PJT/reasoning-qa/docs/_build/html/contents/dataset_and_model.html)
-- [Pretrained Vector](https://pages.oss.navercorp.com/ClovaAI-PJT/reasoning-qa/docs/_build/html/contents/pretrained_vector.html)
-- [Tokens](https://pages.oss.navercorp.com/ClovaAI-PJT/reasoning-qa/docs/_build/html/contents/tokens.html)
+- [Full Documentation](https://naver.github.io/claf/)
+- [Dataset And Model](https://naver.github.io/claf/docs/_build/html/contents/dataset_and_model.html)
+- [Pretrained Vector](https://naver.github.io/claf/docs/_build/html/contents/pretrained_vector.html)
+- [Tokens](https://naver.github.io/claf/docs/_build/html/contents/tokens.html)
 
 ---
 

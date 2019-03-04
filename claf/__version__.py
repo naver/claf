@@ -1,4 +1,4 @@
-# reasoning-qa
+# CLaF: Clova Language Framework
 
 VERSION = (0, 1, 0)
 

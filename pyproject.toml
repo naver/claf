@@ -20,7 +20,7 @@ exclude = '''
   | buck-out
   | build
   | dist
-  # specific to reasoning-qa
+  # specific to claf
   | setup.py
   | __pycache__
   | data
