@@ -1,7 +1,0 @@
-rqa.learn.experiment module
-===========================
-
-.. automodule:: rqa.learn.experiment
-    :members:
-    :undoc-members:
-    :show-inheritance:

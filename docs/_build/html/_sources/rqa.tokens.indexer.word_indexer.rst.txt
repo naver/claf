@@ -1,7 +1,0 @@
-rqa.tokens.indexer.word\_indexer module
-=======================================
-
-.. automodule:: rqa.tokens.indexer.word_indexer
-    :members:
-    :undoc-members:
-    :show-inheritance:

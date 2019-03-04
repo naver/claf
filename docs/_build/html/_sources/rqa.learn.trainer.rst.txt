@@ -1,7 +1,0 @@
-rqa.learn.trainer module
-========================
-
-.. automodule:: rqa.learn.trainer
-    :members:
-    :undoc-members:
-    :show-inheritance:

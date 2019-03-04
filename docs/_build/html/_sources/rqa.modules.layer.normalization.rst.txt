@@ -1,7 +1,0 @@
-rqa.modules.layer.normalization module
-======================================
-
-.. automodule:: rqa.modules.layer.normalization
-    :members:
-    :undoc-members:
-    :show-inheritance:

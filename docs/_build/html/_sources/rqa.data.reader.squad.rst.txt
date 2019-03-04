@@ -1,7 +1,0 @@
-rqa.data.reader.squad module
-============================
-
-.. automodule:: rqa.data.reader.squad
-    :members:
-    :undoc-members:
-    :show-inheritance:

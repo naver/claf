@@ -1,7 +1,0 @@
-rqa.modules.layer.positionwise module
-=====================================
-
-.. automodule:: rqa.modules.layer.positionwise
-    :members:
-    :undoc-members:
-    :show-inheritance:

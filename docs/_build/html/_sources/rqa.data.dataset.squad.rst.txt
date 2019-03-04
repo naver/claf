@@ -1,7 +1,0 @@
-rqa.data.dataset.squad module
-=============================
-
-.. automodule:: rqa.data.dataset.squad
-    :members:
-    :undoc-members:
-    :show-inheritance:

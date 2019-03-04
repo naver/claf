@@ -1,7 +1,0 @@
-rqa.tokens.linguistic module
-============================
-
-.. automodule:: rqa.tokens.linguistic
-    :members:
-    :undoc-members:
-    :show-inheritance:

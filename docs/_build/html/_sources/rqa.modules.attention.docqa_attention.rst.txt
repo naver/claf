@@ -1,7 +1,0 @@
-rqa.modules.attention.docqa\_attention module
-=============================================
-
-.. automodule:: rqa.modules.attention.docqa_attention
-    :members:
-    :undoc-members:
-    :show-inheritance:

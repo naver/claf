@@ -1,7 +1,0 @@
-rqa.tokens.token\_embedder.basic\_embedder module
-=================================================
-
-.. automodule:: rqa.tokens.token_embedder.basic_embedder
-    :members:
-    :undoc-members:
-    :show-inheritance:

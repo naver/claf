@@ -1,7 +1,0 @@
-rqa.modules.encoder.positional module
-=====================================
-
-.. automodule:: rqa.modules.encoder.positional
-    :members:
-    :undoc-members:
-    :show-inheritance:

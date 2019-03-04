@@ -1,7 +1,0 @@
-rqa.tokens.embedding.elmo\_embedding module
-===========================================
-
-.. automodule:: rqa.tokens.embedding.elmo_embedding
-    :members:
-    :undoc-members:
-    :show-inheritance:

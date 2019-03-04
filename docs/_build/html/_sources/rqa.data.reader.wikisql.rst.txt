@@ -1,7 +1,0 @@
-rqa.data.reader.wikisql module
-==============================
-
-.. automodule:: rqa.data.reader.wikisql
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -1,7 +1,0 @@
-rqa.model.reading\_comprehension.base module
-============================================
-
-.. automodule:: rqa.model.reading_comprehension.base
-    :members:
-    :undoc-members:
-    :show-inheritance:
