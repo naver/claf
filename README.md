@@ -204,6 +204,16 @@ python predict.py <model_checkpoint_path> --<arguments>
 >>> Predict: {'text': '2003', 'score': 4.1640071868896484}
 ```
 
+#### Docker Images
+
+- [Docker Hub](https://hub.docker.com/u/claf)
+- Run with Docker Image
+    - Pull docker image
+        ```✗ docker pull claf/claf:latest```
+    - Run 
+        ``` docker run --rm -i -t claf/claf:latest /bin/bash ```
+
+
 ---
 
 
