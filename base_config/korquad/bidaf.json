@@ -4,6 +4,7 @@
          "train_file_path": "https://korquad.github.io/dataset/KorQuAD_v1.0_train.json",
          "valid_file_path": "https://korquad.github.io/dataset/KorQuAD_v1.0_dev.json",
          "squad": {
+             "lang_code": "ko",
              "context_max_length": 1000
          }
      },

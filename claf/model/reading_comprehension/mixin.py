@@ -6,7 +6,7 @@ import torch
 import torch.nn.functional as F
 
 from claf.decorator import arguments_required
-from claf.metric import squad_v1_official, squad_v2_official
+from claf.metric import korquad_v1_official, squad_v1_official, squad_v2_official
 
 
 class ReadingComprehension:
@@ -239,8 +239,11 @@ class SQuADv1(ReadingComprehension):
         """ SQuAD v1.1 official evaluation """
         dataset = self._dataset.raw_dataset
 
-        squad_scores = squad_v1_official.evaluate(dataset, preds)
-        return squad_scores
+        if self.lang_code.startswith("ko"):
+            scores = korquad_v1_official.evaluate(dataset, preds)
+        else:
+            scores = squad_v1_official.evaluate(dataset, preds)
+        return scores
 
 
 class SQuADv2(ReadingComprehension):

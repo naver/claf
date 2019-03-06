@@ -23,13 +23,15 @@ class BertForQA(SQuADv1, ModelWithoutTokenEmbedder):
         token_embedder: 'QATokenEmbedder', Used to embed the 'context' and 'question'.
 
     * Kwargs:
+        lang_code: Dataset language code [en|ko]
         pretrained_model_name: the name of a pre-trained model
         answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
     """
 
-    def __init__(self, token_makers, pretrained_model_name=None, answer_maxlen=30):
+    def __init__(self, token_makers, lang_code="en", pretrained_model_name=None, answer_maxlen=30):
         super(BertForQA, self).__init__(token_makers)
 
+        self.lang_code = lang_code
         self.bert = True  # for optimizer's model parameters
         self.answer_maxlen = answer_maxlen
 

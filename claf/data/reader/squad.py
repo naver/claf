@@ -26,10 +26,11 @@ class SQuADReader(DataReader):
         tokenizers: defined tokenizers config (char/word)
     """
 
-    def __init__(self, file_paths, tokenizers, context_max_length=None):
+    def __init__(self, file_paths, lang_code, tokenizers, context_max_length=None):
         super(SQuADReader, self).__init__(file_paths, SQuADDataset)
-
+        self.lang_code = lang_code
         self.context_max_length = context_max_length
+
         self.text_columns = ["context", "question"]
 
         if "word" not in tokenizers:
@@ -49,6 +50,10 @@ class SQuADReader(DataReader):
             "file_path": file_path,
             "examples": {},  # qid: {context: ..., text_span: ..., question: ..., answer_texts}
             "raw_dataset": squad,
+
+            "model": {
+                "lang_code": self.lang_code,
+            },
         }
 
         features, labels = [], []

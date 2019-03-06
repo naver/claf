@@ -32,6 +32,7 @@ class QANet(SQuADv1, ModelWithTokenEmbedder):
             token_embedder: 'QATokenEmbedder', Used to embed the 'context' and 'question'.
 
         * Kwargs:
+            lang_code: Dataset language code [en|ko]
             aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij
                 captures the similarity between pi and each question words q_j.
                 these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
@@ -56,6 +57,7 @@ class QANet(SQuADv1, ModelWithTokenEmbedder):
     def __init__(
         self,
         token_embedder,
+        lang_code="en",
         aligned_query_embedding=False,
         answer_maxlen=None,
         model_dim=128,
@@ -72,6 +74,7 @@ class QANet(SQuADv1, ModelWithTokenEmbedder):
     ):
         super(QANet, self).__init__(token_embedder)
 
+        self.lang_code = lang_code
         self.aligned_query_embedding = aligned_query_embedding
         self.answer_maxlen = answer_maxlen
         self.token_embedder = token_embedder

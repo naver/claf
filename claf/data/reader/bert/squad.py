@@ -48,6 +48,7 @@ class SQuADBertReader(DataReader):
     ):
 
         super(SQuADBertReader, self).__init__(file_paths, SQuADBertDataset)
+        self.lang_code = lang_code
         self.max_seq_length = max_seq_length
         self.context_stride = context_stride
         self.max_question_length = max_question_length
@@ -84,6 +85,10 @@ class SQuADBertReader(DataReader):
             "raw_dataset": squad,
             "cls_token": self.CLS_TOKEN,
             "sep_token": self.SEP_TOKEN,
+
+            "model": {
+                "lang_code": self.lang_code,
+            },
         }
         features, labels = [], []
 
