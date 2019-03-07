@@ -101,7 +101,7 @@ pip install claf
   - [SQuAD](https://naver.github.io/claf/docs/_build/html/reports/squad.html)
   - [WikiSQL](https://naver.github.io/claf/docs/_build/html/reports/wikisql.html)
 - Summary (1-example Inference Latency)
-  - [Reading Comprehension](file:///Users/Dongjun/Projects/claf/docs/_build/html/summary/reading_comprehension.html)
+  - [Reading Comprehension](https://naver.github.io/claf/docs/_build/html/summary/reading_comprehension.html)
 
 
 ---
