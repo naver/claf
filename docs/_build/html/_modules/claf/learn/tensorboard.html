@@ -26,6 +26,7 @@
         <script type="text/javascript" src="../../../_static/jquery.js"></script>
         <script type="text/javascript" src="../../../_static/underscore.js"></script>
         <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -109,8 +110,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../reports/summary.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Summary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../summary/reading_comprehension.html">Reading Comprehension</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendix</span></p>
 <ul>
@@ -183,6 +187,8 @@
 
 <span class="kn">from</span> <span class="nn">tensorboardX</span> <span class="k">import</span> <span class="n">SummaryWriter</span>
 
+<span class="kn">from</span> <span class="nn">claf</span> <span class="k">import</span> <span class="n">nsml</span>
+
 
 <div class="viewcode-block" id="TensorBoard"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.tensorboard.TensorBoard">[docs]</a><span class="k">class</span> <span class="nc">TensorBoard</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot; TensorBoard Wrapper for Pytorch &quot;&quot;&quot;</span>
@@ -193,12 +199,23 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="o">=</span> <span class="n">SummaryWriter</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="n">log_dir</span><span class="p">)</span>
 
 <div class="viewcode-block" id="TensorBoard.scalar_summaries"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.tensorboard.TensorBoard.scalar_summaries">[docs]</a>    <span class="k">def</span> <span class="nf">scalar_summaries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">summary</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">tag</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">scalar_summary</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="n">nsml</span><span class="o">.</span><span class="n">IS_ON_NSML</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">dict</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;summary type is dict. not {type(summary)}&quot;</span><span class="p">)</span>
+            <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="nb">locals</span><span class="p">(),</span> <span class="s2">&quot;step&quot;</span><span class="p">:</span> <span class="n">step</span><span class="p">}</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+
+            <span class="n">nsml</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">tag</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scalar_summary</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TensorBoard.scalar_summary"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.tensorboard.TensorBoard.scalar_summary">[docs]</a>    <span class="k">def</span> <span class="nf">scalar_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Log a scalar variable.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="n">nsml</span><span class="o">.</span><span class="n">IS_ON_NSML</span><span class="p">:</span>
+            <span class="n">nsml</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;scope&quot;</span><span class="p">:</span> <span class="nb">locals</span><span class="p">(),</span> <span class="s2">&quot;step&quot;</span><span class="p">:</span> <span class="n">step</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="n">value</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TensorBoard.image_summary"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.tensorboard.TensorBoard.image_summary">[docs]</a>    <span class="k">def</span> <span class="nf">image_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Log a list of images.&quot;&quot;&quot;</span>

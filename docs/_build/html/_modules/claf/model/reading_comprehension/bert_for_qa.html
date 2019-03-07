@@ -26,6 +26,7 @@
         <script type="text/javascript" src="../../../../_static/jquery.js"></script>
         <script type="text/javascript" src="../../../../_static/underscore.js"></script>
         <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -109,8 +110,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../reports/summary.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Summary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../summary/reading_comprehension.html">Reading Comprehension</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendix</span></p>
 <ul>
@@ -203,13 +207,15 @@
 <span class="sd">        token_embedder: &#39;QATokenEmbedder&#39;, Used to embed the &#39;context&#39; and &#39;question&#39;.</span>
 
 <span class="sd">    * Kwargs:</span>
+<span class="sd">        lang_code: Dataset language code [en|ko]</span>
 <span class="sd">        pretrained_model_name: the name of a pre-trained model</span>
 <span class="sd">        answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token_makers</span><span class="p">,</span> <span class="n">pretrained_model_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">answer_maxlen</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token_makers</span><span class="p">,</span> <span class="n">lang_code</span><span class="o">=</span><span class="s2">&quot;en&quot;</span><span class="p">,</span> <span class="n">pretrained_model_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">answer_maxlen</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">BertForQA</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">token_makers</span><span class="p">)</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">lang_code</span> <span class="o">=</span> <span class="n">lang_code</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bert</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># for optimizer&#39;s model parameters</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">answer_maxlen</span> <span class="o">=</span> <span class="n">answer_maxlen</span>
 

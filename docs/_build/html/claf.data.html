@@ -26,6 +26,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -120,8 +121,11 @@
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Summary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="summary/reading_comprehension.html">Reading Comprehension</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendix</span></p>
 <ul>
@@ -308,39 +312,39 @@ Minimizes amount of padding needed while producing mini-batch.</p>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.DATASET">
-<code class="descname">DATASET</code><em class="property"> = PosixPath('/Users/user/.claf_cache/dataset')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.DATASET" title="Permalink to this definition">¶</a></dt>
+<code class="descname">DATASET</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache/dataset')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.DATASET" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.MACHINE">
-<code class="descname">MACHINE</code><em class="property"> = PosixPath('/Users/user/.claf_cache/machine')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.MACHINE" title="Permalink to this definition">¶</a></dt>
+<code class="descname">MACHINE</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache/machine')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.MACHINE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.PRETRAINED_VECTOR">
-<code class="descname">PRETRAINED_VECTOR</code><em class="property"> = PosixPath('/Users/user/.claf_cache/pretrained_vector')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.PRETRAINED_VECTOR" title="Permalink to this definition">¶</a></dt>
+<code class="descname">PRETRAINED_VECTOR</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache/pretrained_vector')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.PRETRAINED_VECTOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.ROOT">
-<code class="descname">ROOT</code><em class="property"> = PosixPath('/Users/user/.claf_cache')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.ROOT" title="Permalink to this definition">¶</a></dt>
+<code class="descname">ROOT</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.ROOT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.TOKEN_COUNTER">
-<code class="descname">TOKEN_COUNTER</code><em class="property"> = PosixPath('/Users/user/.claf_cache/token_counter')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.TOKEN_COUNTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">TOKEN_COUNTER</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache/token_counter')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.TOKEN_COUNTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.VOCAB">
-<code class="descname">VOCAB</code><em class="property"> = PosixPath('/Users/user/.claf_cache/vocab')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.VOCAB" title="Permalink to this definition">¶</a></dt>
+<code class="descname">VOCAB</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache/vocab')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.VOCAB" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="claf.data.data_handler.DataHandler">
-<em class="property">class </em><code class="descclassname">claf.data.data_handler.</code><code class="descname">DataHandler</code><span class="sig-paren">(</span><em>cache_path=PosixPath('/Users/user/.claf_cache')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.data.data_handler.</code><code class="descname">DataHandler</code><span class="sig-paren">(</span><em>cache_path=PosixPath('/Users/Dongjun/.claf_cache')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>DataHandler with CachePath</p>
 <ul class="simple">

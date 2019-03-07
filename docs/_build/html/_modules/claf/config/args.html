@@ -26,6 +26,7 @@
         <script type="text/javascript" src="../../../_static/jquery.js"></script>
         <script type="text/javascript" src="../../../_static/underscore.js"></script>
         <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -109,8 +110,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../reports/summary.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Summary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../summary/reading_comprehension.html">Reading Comprehension</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendix</span></p>
 <ul>
@@ -187,6 +191,7 @@
 
 <span class="kn">import</span> <span class="nn">torch</span>
 
+<span class="kn">from</span> <span class="nn">claf</span> <span class="k">import</span> <span class="n">nsml</span>
 <span class="kn">from</span> <span class="nn">claf.config</span> <span class="k">import</span> <span class="n">utils</span>
 <span class="kn">from</span> <span class="nn">claf.config.namespace</span> <span class="k">import</span> <span class="n">NestedNamespace</span>
 <span class="kn">from</span> <span class="nn">claf.learn.mode</span> <span class="k">import</span> <span class="n">Mode</span>
@@ -227,6 +232,8 @@
     <span class="n">data</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
     <span class="n">token</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
     <span class="n">model</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">nsml</span><span class="o">.</span><span class="n">IS_ON_NSML</span><span class="p">:</span>
+        <span class="n">nsml_for_internal</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
     <span class="n">trainer</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
 
     <span class="c1"># Use from config file</span>
@@ -298,9 +305,16 @@
 
 
 <div class="viewcode-block" id="set_gpu_env"><a class="viewcode-back" href="../../../claf.config.html#claf.config.args.set_gpu_env">[docs]</a><span class="k">def</span> <span class="nf">set_gpu_env</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
-    <span class="c1"># GPU</span>
-    <span class="n">config</span><span class="o">.</span><span class="n">use_gpu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
-    <span class="n">config</span><span class="o">.</span><span class="n">gpu_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;cuda_devices&quot;</span><span class="p">,</span> <span class="p">[]))</span>
+    <span class="c1"># GPU &amp; NSML</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">use_gpu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="ow">or</span> <span class="n">nsml</span><span class="o">.</span><span class="n">IS_ON_NSML</span>
+
+    <span class="k">if</span> <span class="n">nsml</span><span class="o">.</span><span class="n">IS_ON_NSML</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;nsml&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">config</span><span class="o">.</span><span class="n">nsml</span> <span class="o">=</span> <span class="n">NestedNamespace</span><span class="p">()</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">nsml</span><span class="o">.</span><span class="n">dataset_path</span> <span class="o">=</span> <span class="n">nsml</span><span class="o">.</span><span class="n">DATASET_PATH</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">gpu_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">nsml</span><span class="o">.</span><span class="n">GPU_NUM</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">gpu_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;cuda_devices&quot;</span><span class="p">,</span> <span class="p">[]))</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">use_gpu</span><span class="p">:</span>
         <span class="n">config</span><span class="o">.</span><span class="n">gpu_num</span> <span class="o">=</span> <span class="mi">0</span>
@@ -338,7 +352,12 @@
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">&quot;--cuda_devices&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;+&quot;</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[],</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;cuda_devices&quot;</span><span class="p">,</span>
-        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; Set cuda_devices ids (use GPU).&quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; Set cuda_devices ids (use GPU). if you use NSML, use GPU_NUM&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--slack_url&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;slack_url&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; Slack notification (Incoming Webhook) &quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span></div>
 
 
@@ -1187,6 +1206,21 @@
     <span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="nsml_for_internal"><a class="viewcode-back" href="../../../claf.config.html#claf.config.args.nsml_for_internal">[docs]</a><span class="k">def</span> <span class="nf">nsml_for_internal</span><span class="p">(</span><span class="n">parser</span><span class="p">):</span>
+
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;NSML&quot;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--pause&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;nsml.pause&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; NSML default setting&quot;&quot;&quot;</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--iteration&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;nsml.iteration&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; Start from NSML epoch count&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="trainer"><a class="viewcode-back" href="../../../claf.config.html#claf.config.args.trainer">[docs]</a><span class="k">def</span> <span class="nf">trainer</span><span class="p">(</span><span class="n">parser</span><span class="p">):</span>
 
     <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;Trainer&quot;</span><span class="p">)</span>
@@ -1730,7 +1764,7 @@
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;checkpoint_path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path to an checkpoint trained model&quot;</span><span class="p">)</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">&quot;--infer&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;inference_latency&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;inference_latency&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; Evaluate with inference-latency with maximum value (ms)&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>

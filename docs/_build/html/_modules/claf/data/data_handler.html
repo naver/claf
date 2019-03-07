@@ -26,6 +26,7 @@
         <script type="text/javascript" src="../../../_static/jquery.js"></script>
         <script type="text/javascript" src="../../../_static/underscore.js"></script>
         <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -109,8 +110,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../reports/summary.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Summary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../summary/reading_comprehension.html">Reading Comprehension</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendix</span></p>
 <ul>
@@ -178,7 +182,8 @@
            <div itemprop="articleBody">
             
   <h1>Source code for claf.data.data_handler</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span></span>
+<span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span><span class="p">,</span> <span class="n">PosixPath</span>
@@ -189,11 +194,16 @@
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
 
+<span class="kn">from</span> <span class="nn">claf</span> <span class="k">import</span> <span class="n">nsml</span>
+
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="CachePath"><a class="viewcode-back" href="../../../claf.data.html#claf.data.data_handler.CachePath">[docs]</a><span class="k">class</span> <span class="nc">CachePath</span><span class="p">:</span>
-    <span class="n">ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;.claf_cache&quot;</span>
+    <span class="k">if</span> <span class="n">nsml</span><span class="o">.</span><span class="n">IS_ON_NSML</span><span class="p">:</span>
+        <span class="n">ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./claf_cache&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;.claf_cache&quot;</span>
     <span class="n">DATASET</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">&quot;dataset&quot;</span>
     <span class="n">MACHINE</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">&quot;machine&quot;</span>
     <span class="n">PRETRAINED_VECTOR</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">&quot;pretrained_vector&quot;</span>
@@ -233,6 +243,9 @@
             <span class="k">if</span> <span class="n">return_path</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">path</span>
             <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">nsml</span><span class="o">.</span><span class="n">IS_ON_NSML</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">nsml</span><span class="o">.</span><span class="n">DATASET_PATH</span> <span class="o">/</span> <span class="n">path</span>
 
         <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">return_path</span><span class="p">:</span>

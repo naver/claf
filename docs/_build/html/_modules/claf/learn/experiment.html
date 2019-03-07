@@ -26,6 +26,7 @@
         <script type="text/javascript" src="../../../_static/jquery.js"></script>
         <script type="text/javascript" src="../../../_static/underscore.js"></script>
         <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -109,8 +110,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../reports/summary.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Summary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../summary/reading_comprehension.html">Reading Comprehension</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendix</span></p>
 <ul>
@@ -179,11 +183,13 @@
             
   <h1>Source code for claf.learn.experiment</h1><div class="highlight"><pre>
 <span></span>
+<span class="kn">import</span> <span class="nn">atexit</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
 
 <span class="kn">import</span> <span class="nn">torch</span>
 
+<span class="kn">from</span> <span class="nn">claf</span> <span class="k">import</span> <span class="n">nsml</span>
 <span class="kn">from</span> <span class="nn">claf.config.factory</span> <span class="k">import</span> <span class="p">(</span>
     <span class="n">DataReaderFactory</span><span class="p">,</span>
     <span class="n">DataLoaderFactory</span><span class="p">,</span>
@@ -191,14 +197,14 @@
     <span class="n">ModelFactory</span><span class="p">,</span>
     <span class="n">OptimizerFactory</span><span class="p">,</span>
 <span class="p">)</span>
-
+<span class="kn">from</span> <span class="nn">claf</span> <span class="k">import</span> <span class="n">utils</span> <span class="k">as</span> <span class="n">common_utils</span>
 <span class="kn">from</span> <span class="nn">claf.config.args</span> <span class="k">import</span> <span class="n">NestedNamespace</span>
 <span class="kn">from</span> <span class="nn">claf.config.utils</span> <span class="k">import</span> <span class="n">convert_config2dict</span><span class="p">,</span> <span class="n">pretty_json_dumps</span>
 <span class="kn">from</span> <span class="nn">claf.tokens.text_handler</span> <span class="k">import</span> <span class="n">TextHandler</span>
 <span class="kn">from</span> <span class="nn">claf.learn.mode</span> <span class="k">import</span> <span class="n">Mode</span>
 <span class="kn">from</span> <span class="nn">claf.learn.trainer</span> <span class="k">import</span> <span class="n">Trainer</span>
 <span class="kn">from</span> <span class="nn">claf.learn</span> <span class="k">import</span> <span class="n">utils</span>
-<span class="kn">from</span> <span class="nn">claf</span> <span class="k">import</span> <span class="n">utils</span> <span class="k">as</span> <span class="n">common_utils</span>
+
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -242,14 +248,18 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">config_dict</span> <span class="o">=</span> <span class="n">convert_config2dict</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
         <span class="n">cuda_devices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cuda_devices</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">cuda_devices</span> <span class="o">=</span> <span class="n">cuda_devices</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">cuda_devices</span> <span class="o">=</span> <span class="n">cuda_devices</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">slack_url</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;slack_url&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_get_cuda_devices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;use_gpu&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_gpu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_gpu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="ow">or</span> <span class="n">nsml</span><span class="o">.</span><span class="n">IS_ON_NSML</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_gpu</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">cuda_devices</span>
+            <span class="k">if</span> <span class="n">nsml</span><span class="o">.</span><span class="n">IS_ON_NSML</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">gpu_num</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">cuda_devices</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
 
@@ -298,6 +308,10 @@
         <span class="sd">&quot;&quot;&quot; Run Trainer &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="n">Mode</span><span class="o">.</span><span class="n">TRAIN</span><span class="p">:</span>
+            <span class="c1"># exit trigger slack notification</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">slack_url</span><span class="p">:</span>
+                <span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">utils</span><span class="o">.</span><span class="n">send_message_to_slack</span><span class="p">)</span>
+
             <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">optimizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_train_mode</span><span class="p">()</span>
 
             <span class="k">assert</span> <span class="n">train_loader</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
@@ -472,11 +486,17 @@
         <span class="n">trainer_config</span><span class="p">[</span><span class="s2">&quot;exponential_moving_average&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">op_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="s2">&quot;exponential_moving_average&quot;</span><span class="p">,</span> <span class="kc">None</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span><span class="o">**</span><span class="n">trainer_config</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span><span class="o">**</span><span class="n">trainer_config</span><span class="p">)</span>
+
+        <span class="c1"># Set NSML</span>
+        <span class="k">if</span> <span class="n">nsml</span><span class="o">.</span><span class="n">IS_ON_NSML</span><span class="p">:</span>
+            <span class="n">utils</span><span class="o">.</span><span class="n">bind_nsml</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">op_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;optimizer&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">nsml</span><span class="p">,</span> <span class="s2">&quot;pause&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+                <span class="n">nsml</span><span class="o">.</span><span class="n">paused</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="nb">locals</span><span class="p">())</span></div>
 
     <span class="k">def</span> <span class="nf">_summary_experiments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">hr_text</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span>
-        <span class="n">summary_logs</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">Experiment Summary. </span><span class="se">\n</span><span class="si">{hr_text}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">summary_logs</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">Experiment Summary. </span><span class="si">{nsml.SESSION_NAME}</span><span class="se">\n</span><span class="si">{hr_text}</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="n">summary_logs</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&quot;Config.</span><span class="se">\n</span><span class="s2">{pretty_json_dumps(self.config_dict)}</span><span class="se">\n</span><span class="si">{hr_text}</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="n">summary_logs</span> <span class="o">+=</span> <span class="p">(</span>
             <span class="n">f</span><span class="s2">&quot;Training Logs.</span><span class="se">\n</span><span class="s2">{pretty_json_dumps(self.trainer.training_logs)}</span><span class="se">\n</span><span class="si">{hr_text}</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -484,6 +504,21 @@
         <span class="n">summary_logs</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&quot;Metric Logs.</span><span class="se">\n</span><span class="s2">{pretty_json_dumps(self.trainer.metric_logs)}&quot;</span>
 
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">summary_logs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">slack_url</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+            <span class="n">simple_summary_title</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;Session Name: </span><span class="si">{nsml.SESSION_NAME}</span><span class="s2"> &quot;</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;base_config&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+                <span class="n">simple_summary_title</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&quot;(</span><span class="si">{self.config.base_config}</span><span class="s2">)&quot;</span>
+
+            <span class="n">simple_summary_logs</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot; - Dataset: </span><span class="si">{self.config.data_reader.dataset}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">simple_summary_logs</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&quot; - Model: </span><span class="si">{self.config.model.name}</span><span class="s2">&quot;</span>
+
+            <span class="n">best_metrics</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;epoch&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">metric_logs</span><span class="p">[</span><span class="s2">&quot;best_epoch&quot;</span><span class="p">]}</span>
+            <span class="n">best_metrics</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">metric_logs</span><span class="p">[</span><span class="s2">&quot;best&quot;</span><span class="p">])</span>
+
+            <span class="n">simple_summary_logs</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&quot; - Best metrics.</span><span class="se">\n</span><span class="s2"> {pretty_json_dumps(best_metrics)} &quot;</span>
+
+            <span class="n">utils</span><span class="o">.</span><span class="n">send_message_to_slack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">slack_url</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">simple_summary_title</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">simple_summary_logs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Experiment.set_eval_mode"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.experiment.Experiment.set_eval_mode">[docs]</a>    <span class="k">def</span> <span class="nf">set_eval_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
