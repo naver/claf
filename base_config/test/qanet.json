@@ -2,7 +2,10 @@
      "data_reader": {
          "dataset": "squad",
          "train_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json",
-         "valid_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json"
+         "valid_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json",
+         "squad": {
+             "lang_code": "en"
+         }
      },
      "iterator": {
          "batch_size": 10
