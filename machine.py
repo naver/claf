@@ -19,6 +19,6 @@ if __name__ == "__main__":
 
     while True:
         question = common_utils.get_user_input(f"{getattr(machine_config, 'user_input', 'Question')}")
-        answer = claf_machine.get_answer(question)
+        answer = claf_machine(question)
         answer = json.dumps(answer, indent=4, ensure_ascii=False)
         print(f"{getattr(machine_config, 'system_response', 'Answer')}: {answer}")
