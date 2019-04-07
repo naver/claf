@@ -139,9 +139,12 @@ class Trainer:
             if self.eval_and_save_step_count == "epoch":
                 valid_metrics = self._run_epoch(valid_loader, is_training=False)
                 self._check_valid_results(valid_metrics, report=False)
-                self.save(optimizer)
 
             self._report_metrics(train_metrics=train_metrics, valid_metrics=valid_metrics)
+
+            if self.eval_and_save_step_count == "epoch":
+                self.save(optimizer)
+
             self._estimate_remainig_time(start_time)
 
             if self.early_stopping:
