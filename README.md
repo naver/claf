@@ -23,7 +23,7 @@
 **CLaF** is a Language Framework built on PyTorch that provides following two high-level features:
 
 - `Experiment` enables the control of training flow in general NLP by offering various `TokenMaker` methods. 
-    - CLaF is inspired by the designe principle of [AllenNLP](https://github.com/allenai/allennlp) such as the higher level concepts and reusable code, but mostly based on PyTorch’s common module, so that user can easily modify the code on their demands.  
+    - CLaF is inspired by the design principle of [AllenNLP](https://github.com/allenai/allennlp) such as the higher level concepts and reusable code, but mostly based on PyTorch’s common module, so that user can easily modify the code on their demands.  
 - `Machine` helps to combine various modules to build a NLP Machine in one place.
     - There are knowledge-based, components and trained experiments which infer 1-example in modules.
 
