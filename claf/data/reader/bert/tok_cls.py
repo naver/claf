@@ -10,7 +10,6 @@ from claf.data.dataset import TokClsBertDataset
 from claf.data.batch import make_batch
 from claf.data.reader.base import DataReader
 from claf.decorator import register
-from claf.tokens.tokenizer import WordTokenizer
 import claf.data.utils as utils
 
 logger = logging.getLogger(__name__)
@@ -26,7 +25,6 @@ class TokClsBertReader(DataReader):
         tokenizers: define tokenizers config (subword)
 
     * Kwargs:
-        lang_code: language code: set as 'ko' if using BERT model trained with mecab-tokenized data
         tag_key: name of the label in .json file to use for classification
         ignore_tag_idx: prediction results that have this number as ground-truth idx are ignored
     """
@@ -40,7 +38,6 @@ class TokClsBertReader(DataReader):
             self,
             file_paths,
             tokenizers,
-            lang_code=None,
             sequence_max_length=None,
             tag_key="tags",
             ignore_tag_idx=-1,
@@ -58,10 +55,7 @@ class TokClsBertReader(DataReader):
 
         self.sent_tokenizer = tokenizers["sent"]
         self.word_tokenizer = tokenizers["word"]
-        if lang_code == "ko":
-            self.mecab_tokenizer = WordTokenizer("mecab_ko", self.sent_tokenizer, split_with_regex=False)
 
-        self.lang_code = lang_code
         self.tag_key = tag_key
         self.ignore_tag_idx = ignore_tag_idx
 
@@ -72,9 +66,9 @@ class TokClsBertReader(DataReader):
         return tok_cls_data, tok_cls_data["data"]
 
     def _get_tag_dicts(self, **kwargs):
-        data = kwargs["data"]
+        tok_cls_data = kwargs["data"]
 
-        tag_idx2text = {tag_idx: tag_text for tag_idx, tag_text in enumerate(data[self.tag_key])}
+        tag_idx2text = {tag_idx: tag_text for tag_idx, tag_text in enumerate(tok_cls_data[self.tag_key])}
         tag_text2idx = {tag_text: tag_idx for tag_idx, tag_text in tag_idx2text.items()}
 
         return tag_idx2text, tag_text2idx

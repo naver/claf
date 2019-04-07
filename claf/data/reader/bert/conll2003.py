@@ -33,7 +33,6 @@ class CoNLL2003BertReader(TokClsBertReader):
         super(CoNLL2003BertReader, self).__init__(
             file_paths,
             tokenizers,
-            lang_code=None,
             sequence_max_length=sequence_max_length,
             ignore_tag_idx=ignore_tag_idx,
         )
