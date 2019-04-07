@@ -525,7 +525,7 @@ class Trainer:
     def predict(self, raw_feature, raw_to_tensor_fn, arguments, interactive=False):
         """ Inference / Predict """
 
-        if interactive:  # pragma: no cover
+        if interactive:  # pragma: no cover  # TODO: this code is buggy
             while True:
                 for k in raw_feature:
                     raw_feature[k] = utils.get_user_input(k)
@@ -537,10 +537,22 @@ class Trainer:
                 predict = self.model.predict(output_dict, arguments, helper)
                 print(f"Predict: {pretty_json_dumps(predict)} \n")
         else:
-            tensor_feature, helper = raw_to_tensor_fn(raw_feature)
-            output_dict = self.model(tensor_feature)
 
-            return self.model.predict(output_dict, arguments, helper)
+            preprocess_start = timer()
+            tensor_feature, helper = raw_to_tensor_fn(raw_feature)
+            logger.debug(f"---------- preprocess: {timer() - preprocess_start}s ----------")
+
+            model_forward_start = timer()
+            with torch.no_grad():
+                self.model.eval()
+                output_dict = self.model(tensor_feature)
+            logger.debug(f"---------- model forward: {timer() - model_forward_start}s ----------")
+
+            result_start = timer()
+            result_dict = self.model.predict(output_dict, arguments, helper)
+            logger.debug(f"---------- result: {timer() - result_start}s ----------")
+
+            return result_dict
 
     def save(self, optimizer):
         # set all config to model
