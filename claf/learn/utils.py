@@ -5,6 +5,7 @@ import logging
 from pathlib import Path
 import os
 import re
+from timeit import default_timer as timer
 
 import torch
 from torch.nn import DataParallel
@@ -12,6 +13,7 @@ import requests
 
 from claf import nsml
 from claf.tokens.vocabulary import Vocab
+import claf.utils as common_utils
 
 
 logger = logging.getLogger(__name__)
@@ -160,8 +162,52 @@ def bind_nsml(model, **kwargs):  # pragma: no cover
     if type(model) == DataParallel:
         model = model.module
 
+    if "trainer" in kwargs:
+        trainer = kwargs["trainer"]
+
+    if "raw_to_tensor_fn" in kwargs:
+        raw_to_tensor_fn = kwargs["raw_to_tensor_fn"]
+
+    if "arguments" in kwargs:
+        arguments = kwargs["arguments"]
+
     def infer(raw_data, **kwargs):
-        pass
+        # assume that input is json string
+        try:
+            total_start = timer()
+
+            input_dict = json.loads(raw_data[0].decode())
+            logger.info(f"input_dict: {input_dict}")
+
+            if "input" not in input_dict:
+                raise Exception("'input' is not specified")
+
+            if "arguments" not in input_dict:
+                raise Exception("'arguments' is not specified")
+
+            # set inputs
+            raw_feature = input_dict["input"]
+            infer_arguments = input_dict["arguments"]
+
+            arguments.update(raw_feature)
+            arguments.update(infer_arguments)
+
+            result_dict = trainer.predict(raw_feature, raw_to_tensor_fn, arguments)
+
+            serialize_start = timer()
+            serialized_result = json.dumps(common_utils.serializable(result_dict), ensure_ascii=False)
+            logger.info(f"---------- serialize: {timer() - serialize_start}s ----------")
+            logger.info(serialized_result)
+            logger.info(f"========== total: {timer() - total_start}s =========\n")
+
+            return serialized_result
+
+        except Exception as e:
+            logger.warning(e)
+
+            return json.dumps({
+                "error": str(e)
+            })
 
     def load(path, *args):
         checkpoint = torch.load(path)

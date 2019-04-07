@@ -60,7 +60,7 @@ class TokenClassification:
 
         return predictions
 
-    @arguments_required(["sequence"])
+    @arguments_required(["sequence", "return_logits"])
     def predict(self, output_dict, arguments, helper):
         """
         Inference by raw_feature
@@ -82,6 +82,8 @@ class TokenClassification:
         """
 
         sequence = arguments["sequence"]
+        return_logits = arguments["return_logits"]
+
         tag_logits = output_dict["tag_logits"][0]
 
         if "pred_tag_idxs" in output_dict:
@@ -91,12 +93,20 @@ class TokenClassification:
             tag_idxs = [tag_logit.argmax(dim=-1) for tag_logit in tag_logits]
             tag_texts = [helper["tag_idx2text"][tag_idx.item()] for tag_idx in tag_idxs]
 
-        return {
-            "tag_logits": tag_logits,
+        result_dict = {
+            "sequence": sequence,
+
             "tag_idxs": tag_idxs,
             "tag_texts": tag_texts,
-            "tag_dict": cls_utils.get_tag_dict(sequence, tag_texts),
+            "tag_dict": cls_utils.get_tag_entities(sequence, tag_texts),
         }
+
+        if return_logits:
+            result_dict.update({
+                "tag_logits": tag_logits,
+            })
+
+        return result_dict
 
     def make_metrics(self, predictions):
         """
@@ -110,11 +120,13 @@ class TokenClassification:
 
         * Returns:
             metrics: metric dictionary consisting of
-                - 'accuracy': sequence level accuracy
+                - 'tag_sequence_accuracy': sequence level accuracy
                 - 'tag_accuracy': tag level accuracy
-                - 'macro_f1': tag prediction macro(unweighted mean) f1
-                - 'macro_precision': tag prediction macro(unweighted mean) precision
-                - 'macro_recall': tag prediction macro(unweighted mean) recall
+                - 'tag_macro_f1': tag prediction macro(unweighted mean) f1
+                - 'tag_macro_precision': tag prediction macro(unweighted mean) precision
+                - 'tag_macro_recall': tag prediction macro(unweighted mean) recall
+                - 'tag_conlleval_accuracy': tag prediction conlleval accuracy
+                - 'tag_conlleval_f1': tag prediction conlleval f1
         """
 
         pred_tag_idxs_list = []
@@ -149,15 +161,15 @@ class TokenClassification:
             if str(e) == "Number of the classes is lower than 2":
                 logger.warning("Number of tags in the batch is 1. Sanity check is highly recommended.")
                 return {
-                    "accuracy": 1.,
+                    "tag_sequence_accuracy": 1.,
                     "tag_accuracy": 1.,
 
-                    "macro_f1": 1.,
-                    "macro_precision": 1.,
-                    "macro_recall": 1.,
+                    "tag_macro_f1": 1.,
+                    "tag_macro_precision": 1.,
+                    "tag_macro_recall": 1.,
 
-                    "conlleval_accuracy": 1.,
-                    "conlleval_f1": 1.,
+                    "tag_conlleval_accuracy": 1.,
+                    "tag_conlleval_f1": 1.,
                 }
             raise
 
@@ -168,15 +180,15 @@ class TokenClassification:
         sequence_accuracy = sum(accurate_sequence) / len(accurate_sequence)
 
         metrics = {
-            "accuracy": sequence_accuracy,
+            "tag_sequence_accuracy": sequence_accuracy,
             "tag_accuracy": pycm_obj.Overall_ACC,
 
-            "macro_f1": macro_f1(pycm_obj),
-            "macro_precision": macro_precision(pycm_obj),
-            "macro_recall": macro_recall(pycm_obj),
+            "tag_macro_f1": macro_f1(pycm_obj),
+            "tag_macro_precision": macro_precision(pycm_obj),
+            "tag_macro_recall": macro_recall(pycm_obj),
 
-            "conlleval_accuracy": conlleval_accuracy(target_tags, pred_tags),
-            "conlleval_f1": conlleval_f1(target_tags, pred_tags),
+            "tag_conlleval_accuracy": conlleval_accuracy(target_tags, pred_tags),
+            "tag_conlleval_f1": conlleval_f1(target_tags, pred_tags),
         }
 
         return metrics

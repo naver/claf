@@ -41,6 +41,15 @@ def config(argv=None, mode=None):
         config.overwrite(defined_config)
         return config
 
+    if mode == Mode.NSML_INFER:
+        nsml_for_internal(parser)
+        nsml_infer(parser)
+
+        config = parser.parse_args(argv, namespace=NestedNamespace())
+
+        set_gpu_env(config)
+        return config
+
     return train_config(parser, input_argv=argv)
 
 
@@ -1663,6 +1672,25 @@ def evaluate(parser):
         "--prev_cuda_device_id",
         type=int, default=0, dest="prev_cuda_device_id",
         help=""" Previous cuda device id (need to mapping)""",
+    )
+
+
+def nsml_infer(parser):
+
+    group = parser.add_argument_group("Run NSML inference")
+    group.add_argument(
+        "--session",
+        type=str, dest="session",
+        help=""" NSML Session of the trained model """
+    )
+    group.add_argument(
+        "--checkpoint",
+        type=str, dest="checkpoint",
+        help=""" NSML checkpoint name of the trained model """
+    )
+    group.add_argument("--mode",
+        type=str, default="infer", dest="mode",
+        help=""" NSML mode """
     )
 
 

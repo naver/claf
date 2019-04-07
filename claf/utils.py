@@ -3,6 +3,9 @@ import logging
 import os
 import sys
 
+import numpy as np
+import torch
+
 from claf.learn.mode import Mode
 
 
@@ -27,6 +30,21 @@ def flatten(l):
                 yield in_item
         else:
             yield item
+
+
+def serializable(tensor):
+    if isinstance(tensor, (torch.Tensor, torch.autograd.Variable)) and tensor.dim() > 1:
+        return tensor.data.cpu().numpy().tolist(),
+    elif isinstance(tensor, (torch.Tensor, torch.autograd.Variable)):
+        return tensor.item()
+    elif isinstance(tensor, np.ndarray):
+        return tensor.tolist()
+    elif isinstance(tensor, (list, tuple)):
+        return [serializable(item) for item in tensor]
+    elif isinstance(tensor, dict):
+        return {key: serializable(value) for key, value in tensor.items()}
+    else:
+        return tensor
 
 
 """ Logging """

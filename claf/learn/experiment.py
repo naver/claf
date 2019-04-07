@@ -57,7 +57,37 @@ class Experiment:
                 if getattr(self.argument, "inference_latency", None):
                     self.config.max_latency = self.argument.inference_latency
 
+        if mode.endswith(Mode.NSML_INFER):
+            self.load_nsml_infer_setting()
+            self.config.cuda_devices = self.argument.cuda_devices
+            self.config.iterator.cuda_devices = self.argument.cuda_devices
+
         self.predict_settings = None
+
+    def load_nsml_infer_setting(self):
+        """ Load Setting - need to load checkpoint case (ex. evaluate and predict) """
+        cuda_devices = self.argument.cuda_devices
+        prev_cuda_device_id = getattr(self.argument, "prev_cuda_device_id", None)
+
+        self.model_checkpoint = dict()
+
+        checkpoint = self.argument.checkpoint
+        session = self.argument.session
+
+        from claf import nsml
+        assert nsml.IS_ON_NSML
+
+        def load(path, *args, **kwargs):
+            self.model_checkpoint = self._read_checkpoint(
+                cuda_devices,
+                path,
+                prev_cuda_device_id,
+            )
+
+        nsml.bind(load=load)
+        nsml.load(checkpoint=checkpoint, session=session)
+
+        self._set_saved_config()
 
     def common_setting(self, mode, config):
         """ Common Setting - experiment config, use_gpu and cuda_device_ids """
@@ -155,17 +185,35 @@ class Experiment:
             assert raw_to_tensor_fn is not None
             return self.trainer.evaluate_inference_latency(raw_examples, raw_to_tensor_fn, max_latency=self.config.max_latency)
 
-        elif self.mode.endswith(Mode.PREDICT):
+        elif self.mode.endswith(Mode.PREDICT) or self.mode.endswith(Mode.NSML_INFER):
             raw_features, raw_to_tensor_fn, arguments = self.set_predict_mode()
 
             assert raw_features is not None
             assert raw_to_tensor_fn is not None
+
+            if self.mode == Mode.NSML_INFER:
+                model = self.trainer.model
+                utils.bind_nsml(
+                    model,
+                    trainer=self.trainer,
+                    raw_to_tensor_fn=raw_to_tensor_fn,
+                    arguments=arguments)
+
+                from claf import nsml
+                nsml.save("model")
+
+                if self.argument.nsml.pause:
+                    nsml.paused(scope=locals())
+
+                return
+
             return self.trainer.predict(
                 raw_features,
                 raw_to_tensor_fn,
                 arguments,
                 interactive=arguments.get("interactive", False),
             )
+
         else:
             raise ValueError(f"unknown mode: {self.mode}")
 
@@ -220,7 +268,18 @@ class Experiment:
             )
             utils.load_optimizer_checkpoint(op_dict["optimizer"], checkpoints)
 
+        # Set NSML
+        if nsml.IS_ON_NSML:
+            utils.bind_nsml(
+                model,
+                optimizer=op_dict.get("optimizer", None),
+                experiment=self,
+            )
+            if getattr(self.config.nsml, "pause", None):
+                nsml.paused(scope=locals())
+
         self.set_trainer(model, op_dict=op_dict)
+
         return train_loader, valid_loader, op_dict["optimizer"]
 
     def _create_data_and_token_makers(self):
@@ -308,12 +367,6 @@ class Experiment:
             "exponential_moving_average", None
         )
         self.trainer = Trainer(**trainer_config)
-
-        # Set NSML
-        if nsml.IS_ON_NSML:
-            utils.bind_nsml(model, optimizer=op_dict.get("optimizer", None))
-            if getattr(self.config.nsml, "pause", None):
-                nsml.paused(scope=locals())
 
     def _summary_experiments(self):
         hr_text = "-" * 50

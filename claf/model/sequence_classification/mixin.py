@@ -2,10 +2,12 @@
 from pathlib import Path
 import logging
 
+import numpy as np
 import torch
 import pycm
 from pycm.pycm_obj import pycmVectorError
 
+from claf.decorator import arguments_required
 from claf.model import cls_utils
 from claf.metric.classification import macro_f1, macro_precision, macro_recall
 
@@ -46,6 +48,7 @@ class SequenceClassification:
 
         return predictions
 
+    @arguments_required(["sequence", "return_logits"])
     def predict(self, output_dict, arguments, helper):
         """
         Inference by raw_feature
@@ -64,14 +67,25 @@ class SequenceClassification:
             - class_text: predicted class text
         """
 
+        sequence = arguments["sequence"]
+        return_logits = arguments["return_logits"]
+
         class_logits = output_dict["class_logits"]
         class_idx = class_logits.argmax(dim=-1)
 
-        return {
-            "class_logits": class_logits,
+        result_dict = {
+            "sequence": sequence,
+
             "class_idx": class_idx,
             "class_text": helper["class_idx2text"][class_idx.item()],
         }
+
+        if return_logits:
+            result_dict.update({
+                "class_logits": class_logits,
+            })
+
+        return result_dict
 
     def make_metrics(self, predictions):
         """
@@ -85,10 +99,10 @@ class SequenceClassification:
 
         * Returns:
             metrics: metric dictionary consisting of
-                - 'macro_f1': class prediction macro(unweighted mean) f1
-                - 'macro_precision': class prediction macro(unweighted mean) precision
-                - 'macro_recall': class prediction macro(unweighted mean) recall
-                - 'accuracy': class prediction accuracy
+                - 'class_macro_f1': class prediction macro(unweighted mean) f1
+                - 'class_macro_precision': class prediction macro(unweighted mean) precision
+                - 'class_macro_recall': class prediction macro(unweighted mean) recall
+                - 'class_accuracy': class prediction accuracy
         """
 
         pred_classes = []
@@ -109,10 +123,10 @@ class SequenceClassification:
             if str(e) == "Number of the classes is lower than 2":
                 logger.warning("Number of classes in the batch is 1. Sanity check is highly recommended.")
                 return {
-                    "macro_f1": 1.,
-                    "macro_precision": 1.,
-                    "macro_recall": 1.,
-                    "accuracy": 1.,
+                    "class_macro_f1": 1.,
+                    "class_macro_precision": 1.,
+                    "class_macro_recall": 1.,
+                    "class_accuracy": 1.,
                 }
             raise
 
@@ -121,10 +135,10 @@ class SequenceClassification:
         )
 
         metrics = {
-            "macro_f1": macro_f1(pycm_obj),
-            "macro_precision": macro_precision(pycm_obj),
-            "macro_recall": macro_recall(pycm_obj),
-            "accuracy": pycm_obj.Overall_ACC,
+            "class_macro_f1": macro_f1(pycm_obj),
+            "class_macro_precision": macro_precision(pycm_obj),
+            "class_macro_recall": macro_recall(pycm_obj),
+            "class_accuracy": pycm_obj.Overall_ACC,
         }
 
         return metrics
