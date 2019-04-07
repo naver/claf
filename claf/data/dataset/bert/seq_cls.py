@@ -1,18 +1,15 @@
 
 import json
-from collections import defaultdict
 from overrides import overrides
-import torch
-from seqeval.metrics.sequence_labeling import get_entities
 
 from claf.data import utils
-from claf.data.collate import FeatLabelPadCollator
+from claf.data.collate import PadCollator
 from claf.data.dataset.base import DatasetBase
 
 
-class TokClsBertDataset(DatasetBase):
+class SeqClsBertDataset(DatasetBase):
     """
-    Dataset for Token Classification
+    Dataset for Sequence Classification using BERT
 
     * Args:
         batch: Batch DTO (claf.data.batch)
@@ -22,21 +19,18 @@ class TokClsBertDataset(DatasetBase):
     """
 
     def __init__(self, batch, helper=None):
-        super(TokClsBertDataset, self).__init__()
+        super(SeqClsBertDataset, self).__init__()
 
-        self.name = "tok_cls_bert"
+        self.name = "seq_cls_bert"
         self.helper = helper
         self.raw_dataset = helper["raw_dataset"]
 
-        self.tag_idx2text = helper["tag_idx2text"]
+        self.class_idx2text = helper["class_idx2text"]
 
         # Features
         self.bert_input_idx = [feature["bert_input"] for feature in batch.features]
         SEP_token = self.helper.get("sep_token", "[SEP]")
         self.token_type_idx = utils.make_bert_token_types(self.bert_input_idx, SEP_token=SEP_token)
-
-        self.tagged_sub_token_idxs = [{"feature": feature["tagged_sub_token_idxs"]} for feature in batch.features]
-        self.num_tokens = [{"feature": feature["num_tokens"]} for feature in batch.features]
 
         self.features = [self.bert_input_idx, self.token_type_idx]  # for lazy evaluation
 
@@ -44,42 +38,34 @@ class TokClsBertDataset(DatasetBase):
         self.data_ids = {data_index: label["id"] for (data_index, label) in enumerate(batch.labels)}
         self.data_indices = list(self.data_ids.keys())
 
-        self.tags = {
+        self.classes = {
             label["id"]: {
-                "tag_idxs": label["tag_idxs"],
-                "tag_texts": label["tag_texts"],
+                "class_idx": label["class_idx"],
+                "class_text": label["class_text"],
             }
             for label in batch.labels
         }
-        self.tag_texts = [label["tag_texts"] for label in batch.labels]
-        self.tag_idxs = [label["tag_idxs"] for label in batch.labels]
 
-        self.ignore_tag_idx = helper["ignore_tag_idx"]
+        self.class_text = [label["class_text"] for label in batch.labels]
+        self.class_idx = [label["class_idx"] for label in batch.labels]
 
     @overrides
     def collate_fn(self, cuda_device_id=None):
         """ collate: indexed features and labels -> tensor """
-        collator = FeatLabelPadCollator(cuda_device_id=cuda_device_id)
+        collator = PadCollator(cuda_device_id=cuda_device_id)
 
         def make_tensor_fn(data):
-            data_idxs, bert_input_idxs, token_type_idxs, tagged_token_idxs, num_tokens, tag_idxs_list = zip(*data)
+            data_idxs, bert_input_idxs, token_type_idxs, class_idxs = zip(*data)
 
             features = {
                 "bert_input": utils.transpose(bert_input_idxs, skip_keys=["text"]),
                 "token_type": utils.transpose(token_type_idxs, skip_keys=["text"]),
-                "tagged_sub_token_idxs": utils.transpose(tagged_token_idxs, skip_keys=["text"]),
-                "num_tokens": utils.transpose(num_tokens, skip_keys=["text"]),
             }
             labels = {
-                "tag_idxs": tag_idxs_list,
+                "class_idx": class_idxs,
                 "data_idx": data_idxs,
             }
-            return collator(
-                features,
-                labels,
-                apply_pad_labels=["tag_idxs"],
-                apply_pad_values=[self.ignore_tag_idx]
-            )
+            return collator(features, labels)
 
         return make_tensor_fn
 
@@ -91,9 +77,7 @@ class TokClsBertDataset(DatasetBase):
             self.data_indices[index],
             self.bert_input_idx[index],
             self.token_type_idx[index],
-            self.tagged_sub_token_idxs[index],
-            self.num_tokens[index],
-            self.tag_idxs[index],
+            self.class_idx[index],
         )
 
     def __len__(self):
@@ -103,15 +87,15 @@ class TokClsBertDataset(DatasetBase):
         dataset_properties = {
             "name": self.name,
             "total_count": self.__len__(),
-            "num_tags": self.num_tags,
+            "num_classes": self.num_classes,
             "sequence_maxlen": self.sequence_maxlen,
-            "tags": self.tag_idx2text,
+            "classes": self.class_idx2text,
         }
         return json.dumps(dataset_properties, indent=4)
 
     @property
-    def num_tags(self):
-        return len(self.tag_idx2text)
+    def num_classes(self):
+        return len(self.class_idx2text)
 
     @property
     def sequence_maxlen(self):
@@ -122,13 +106,10 @@ class TokClsBertDataset(DatasetBase):
 
     @overrides
     def get_ground_truth(self, data_id):
-        return self.tags[data_id]
+        return self.classes[data_id]
 
-    def get_tag_texts_with_idxs(self, tag_idxs):
-        return [self.get_tag_text_with_idx(tag_idx)for tag_idx in tag_idxs]
+    def get_class_text_with_idx(self, class_index):
+        if class_index is None:
+            raise ValueError("class_index is required.")
 
-    def get_tag_text_with_idx(self, tag_index):
-        if tag_index is None:
-            raise ValueError("tag_index is required.")
-
-        return self.tag_idx2text[tag_index]
+        return self.class_idx2text[class_index]
