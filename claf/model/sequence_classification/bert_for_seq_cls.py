@@ -21,6 +21,7 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
     * Args:
         token_embedder: used to embed the sequence
         num_classes: number of classified classes
+        criterion: criterion function config
 
     * Kwargs:
         pretrained_model_name: the name of a pre-trained model

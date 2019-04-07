@@ -6,7 +6,7 @@ import uuid
 from overrides import overrides
 from tqdm import tqdm
 
-from claf.data.dataset import TokClsBertDataset
+from claf.data.dataset import SeqTokClsBertDataset
 from claf.data.batch import make_batch
 from claf.data.reader.base import DataReader
 from claf.decorator import register
@@ -15,8 +15,8 @@ import claf.data.utils as utils
 logger = logging.getLogger(__name__)
 
 
-@register("reader:tok_cls_bert")
-class TokClsBertReader(DataReader):
+@register("reader:seq_tok_cls_bert")
+class SeqTokClsBertReader(DataReader):
     """
     DataReader for Token Classification using BERT
 
@@ -25,7 +25,8 @@ class TokClsBertReader(DataReader):
         tokenizers: define tokenizers config (subword)
 
     * Kwargs:
-        tag_key: name of the label in .json file to use for classification
+        class_key: name of the class label in .json file to use for classification
+        tag_key: name of the tag label in .json file to use for classification
         ignore_tag_idx: prediction results that have this number as ground-truth idx are ignored
     """
 
@@ -39,11 +40,12 @@ class TokClsBertReader(DataReader):
             file_paths,
             tokenizers,
             sequence_max_length=None,
+            class_key="class",
             tag_key="tags",
             ignore_tag_idx=-1,
     ):
 
-        super(TokClsBertReader, self).__init__(file_paths, TokClsBertDataset)
+        super(SeqTokClsBertReader, self).__init__(file_paths, SeqTokClsBertDataset)
 
         self.sequence_max_length = sequence_max_length
         self.text_columns = ["bert_input", "sequence"]
@@ -56,14 +58,41 @@ class TokClsBertReader(DataReader):
         self.sent_tokenizer = tokenizers["sent"]
         self.word_tokenizer = tokenizers["word"]
 
+        self.class_key = class_key
+
         self.tag_key = tag_key
         self.ignore_tag_idx = ignore_tag_idx
 
     def _get_data(self, file_path):
-        data = self.data_handler.read(file_path)
-        tok_cls_data = json.loads(data)
+        file_paths = [file_path] if not isinstance(file_path, (list, tuple)) else file_path
 
-        return tok_cls_data, tok_cls_data["data"]
+        data = None
+        meta_data = lambda data: dict((k, v) for k, v in data.items() if k != "data")
+
+        for file_path in file_paths:
+            data_str = self.data_handler.read(file_path)
+            file_data = json.loads(data_str)
+
+            if data is None:
+                data = file_data
+            else:
+                assert meta_data(data) == meta_data(file_data), \
+                    f"Meta data of {file_path} is different from that of {file_paths[0]}."
+
+                data["data"].extend(file_data["data"])
+
+        return data, data["data"]
+
+    def _get_class_dicts(self, **kwargs):
+        seq_cls_data = kwargs["data"]
+
+        class_idx2text = {
+            class_idx: str(class_text)
+            for class_idx, class_text in enumerate(seq_cls_data[self.class_key])
+        }
+        class_text2idx = {class_text: class_idx for class_idx, class_text in class_idx2text.items()}
+
+        return class_idx2text, class_text2idx
 
     def _get_tag_dicts(self, **kwargs):
         tok_cls_data = kwargs["data"]
@@ -82,11 +111,16 @@ class TokClsBertReader(DataReader):
             "data": [
                 {
                     "sequence": "i'm looking for a flight from New York to London.",
+                    "intent": "flight",
                     "slots": ["O", "O", "O", "O", "O", "O", "B-city.dept", "I-city.dept" "O", "B-city.dest"]
                     // the number of tokens in sequence.split() and tags must match
                 },
                 ...
             ],
+            "intent": [  // class_key
+                "flight",
+                ...
+            ]
             "slots": [  // tag_key
                 "O",    // tags should be in IOB format
                 "B-city.dept",
@@ -99,12 +133,15 @@ class TokClsBertReader(DataReader):
         """
 
         data, raw_dataset = self._get_data(file_path)
+        class_idx2text, class_text2idx = self._get_class_dicts(data=data)
         tag_idx2text, tag_text2idx = self._get_tag_dicts(data=data)
 
         helper = {
             "file_path": file_path,
             "examples": {},
             "raw_dataset": raw_dataset,
+            "class_idx2text": class_idx2text,
+            "class_text2idx": class_text2idx,
             "tag_idx2text": tag_idx2text,
             "ignore_tag_idx": self.ignore_tag_idx,
             "cls_token": self.CLS_TOKEN,
@@ -113,11 +150,13 @@ class TokClsBertReader(DataReader):
             "continue_symbol": self.CONTINUE_SYMBOL,
 
             "model": {
+                "num_classes": len(class_idx2text),
                 "num_tags": len(tag_idx2text),
                 "ignore_tag_idx": self.ignore_tag_idx,
                 "tag_idx2text": tag_idx2text,
             },
             "predict_helper": {
+                "class_idx2text": class_idx2text,
                 "tag_idx2text": tag_idx2text,
             }
         }
@@ -174,8 +213,11 @@ class TokClsBertReader(DataReader):
             }
             features.append(feature_row)
 
+            class_text = example[self.class_key]
             label_row = {
                 "id": data_uid,
+                "class_idx": class_text2idx[class_text],
+                "class_text": class_text,
                 "tag_idxs": tag_idxs,
                 "tag_texts": tag_texts,
             }
@@ -184,6 +226,8 @@ class TokClsBertReader(DataReader):
             helper["examples"][data_uid] = {
                 "sequence": sequence_text,
                 "sequence_sub_tokens": sequence_sub_tokens,
+                "class_idx": class_text2idx[class_text],
+                "class_text": class_text,
                 "tag_idxs": tag_idxs,
                 "tag_texts": tag_texts,
             }

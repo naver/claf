@@ -620,6 +620,9 @@ def model(parser):
 
     * Token Classification
       [bert_for_tok_cls]
+      
+    * Sequence and Token Classification
+      [bert_for_seq_tok_cls]
     """,
     )
 
@@ -1031,6 +1034,67 @@ def model(parser):
         "--bert_for_tok_cls.dropout",
         type=float, default=0.2, dest="model.bert_for_tok_cls.dropout",
         help=""" The prob of fc layer dropout """
+    )
+    group.add_argument(
+        "--bert_for_tok_cls.criterion.name",
+        type=str, default="cross_entropy", dest="model.bert_for_tok_cls.criterion.name",
+        help=""" Criterion function name (default: cross_entropy):
+                    . `cross_entropy`
+                    . `cross_entropy_with_label_smoothing` 
+                    . `crf_negative_log_likelihood` """
+    )
+    group.add_argument(
+        "--bert_for_tok_cls.criterion.cross_entropy_with_label_smoothing.label_smoothing",
+        type=float, default=0.1, dest="model.bert_for_tok_cls.criterion.cross_entropy_with_label_smoothing.label_smoothing",
+        help=""" Label smoothing value """
+    )
+
+    sequence_token_classification_title = "ㅁSequence & Token Classification"
+    group = parser.add_argument_group(f"{sequence_token_classification_title}\n # BERT for Token Classification")
+    group.add_argument(
+        "--bert_for_seq_tok_cls.pretrained_model_name",
+        type=str, default=None, dest="model.bert_for_seq_tok_cls.pretrained_model_name",
+        help=""" A str with the name of a pre-trained model to load selected in the list of (default: None):
+                    . `bert-base-uncased`
+                    . `bert-large-uncased`
+                    . `bert-base-cased`
+                    . `bert-base-multilingual`
+                    . `bert-base-chinese` """,
+    )
+    group.add_argument(
+        "--bert_for_seq_tok_cls.class_dropout",
+        type=float, default=0.2, dest="model.bert_for_seq_tok_cls.class_dropout",
+        help=""" The prob of class fc layer dropout """
+    )
+    group.add_argument(
+        "--bert_for_seq_tok_cls.tag_dropout",
+        type=float, default=0.2, dest="model.bert_for_seq_tok_cls.tag_dropout",
+        help=""" The prob of tag fc layer dropout """
+    )
+    group.add_argument(
+        "--bert_for_seq_tok_cls.class_criterion.name",
+        type=str, default="cross_entropy", dest="model.bert_for_seq_tok_cls.class_criterion.name",
+        help=""" Criterion function name (default: cross_entropy):
+                    . `cross_entropy`
+                    . `cross_entropy_with_label_smoothing` """
+    )
+    group.add_argument(
+        "--bert_for_seq_tok_cls.class_criterion.cross_entropy_with_label_smoothing.label_smoothing",
+        type=float, default=0.1, dest="model.bert_for_seq_tok_cls.class_criterion.cross_entropy_with_label_smoothing.label_smoothing",
+        help=""" Label smoothing value """
+    )
+    group.add_argument(
+        "--bert_for_seq_tok_cls.tag_criterion.name",
+        type=str, default="cross_entropy", dest="model.bert_for_seq_tok_cls.tag_criterion.name",
+        help=""" Criterion function name (default: cross_entropy):
+                    . `cross_entropy`
+                    . `cross_entropy_with_label_smoothing` 
+                    . `crf_negative_log_likelihood` """
+    )
+    group.add_argument(
+        "--bert_for_seq_tok_cls.tag_criterion.cross_entropy_with_label_smoothing.label_smoothing",
+        type=float, default=0.1, dest="model.bert_for_seq_tok_cls.tag_criterion.cross_entropy_with_label_smoothing.label_smoothing",
+        help=""" Label smoothing value """
     )
 
 

@@ -14,7 +14,10 @@ from claf.data.reader.bert.squad import SQuADBertReader
 from claf.data.reader.bert.tok_cls import TokClsBertReader
 from claf.data.reader.bert.conll2003 import CoNLL2003BertReader
 
+from claf.data.reader.bert.seq_tok_cls import SeqTokClsBertReader
+
 
 __all__ = ["SQuADReader", "SQuADBertReader", "WikiSQLReader",
            "SeqClsReader", "SeqClsBertReader", "TokClsBertReader",
-           "CoLAReader", "CoLABertReader", "CoNLL2003BertReader"]  # for register
+           "CoLAReader", "CoLABertReader", "CoNLL2003BertReader",
+           "SeqTokClsBertReader",]  # for register
