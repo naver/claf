@@ -26,6 +26,7 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
     * Kwargs:
         pretrained_model_name: the name of a pre-trained model
         dropout: classification layer dropout
+        K: K for top K accuracy
     """
 
     def __init__(
@@ -35,6 +36,7 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
             criterion,
             pretrained_model_name=None,
             dropout=0.2,
+            K=2,
     ):
 
         super(BertForSeqCls, self).__init__(token_makers)
@@ -55,6 +57,8 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
             criterion.name,
             **vars(getattr(criterion, criterion.name, NestedNamespace()))
         )
+
+        self.K = K
 
     @overrides
     def forward(self, features, labels=None):

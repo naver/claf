@@ -17,9 +17,6 @@ logger = logging.getLogger(__name__)
 
 class SequenceClassification:
     """ Sequence Classification Mixin Class """
-
-    K = 5  # for topk
-
     def make_predictions(self, output_dict):
         """
         Make predictions with model's output_dict

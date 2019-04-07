@@ -34,6 +34,7 @@ class BertForSeqTokCls(SequenceTokenClassification, ModelWithoutTokenEmbedder):
         pretrained_model_name: the name of a pre-trained model
         class_dropout: sequence classification layer dropout
         tag_dropout: tag classification layer dropout
+        K: K for top K accuracy
     """
 
     def __init__(
@@ -48,6 +49,7 @@ class BertForSeqTokCls(SequenceTokenClassification, ModelWithoutTokenEmbedder):
         pretrained_model_name=None,
         class_dropout=0.2,
         tag_dropout=0.2,
+        K=2,
     ):
 
         super(BertForSeqTokCls, self).__init__(token_makers)
@@ -95,6 +97,8 @@ class BertForSeqTokCls(SequenceTokenClassification, ModelWithoutTokenEmbedder):
         tag_criterion_params = vars(getattr(tag_criterion, tag_criterion.name, NestedNamespace()))
         tag_criterion_params.update({"ignore_index": self.ignore_tag_idx, "crf": self.crf})
         self.tag_criterion = get_criterion_fn(tag_criterion.name, **tag_criterion_params)
+
+        self.K = K
 
     @overrides
     def forward(self, features, labels=None):
