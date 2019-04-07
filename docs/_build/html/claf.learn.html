@@ -26,6 +26,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -115,8 +116,11 @@
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Summary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="summary/reading_comprehension.html">Reading Comprehension</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendix</span></p>
 <ul>
@@ -474,6 +478,16 @@ eval_and_save_step_count: evaluate valid_dataset then save every n step_count (D
 </dd></dl>
 
 <dl class="function">
+<dt id="claf.learn.utils.bind_nsml">
+<code class="descclassname">claf.learn.utils.</code><code class="descname">bind_nsml</code><span class="sig-paren">(</span><em>model</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#bind_nsml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.bind_nsml" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="claf.learn.utils.get_session_name">
+<code class="descclassname">claf.learn.utils.</code><code class="descname">get_session_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#get_session_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.get_session_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
 <dt id="claf.learn.utils.get_sorted_path">
 <code class="descclassname">claf.learn.utils.</code><code class="descname">get_sorted_path</code><span class="sig-paren">(</span><em>checkpoint_dir</em>, <em>both_exist=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#get_sorted_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.get_sorted_path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -502,6 +516,11 @@ eval_and_save_step_count: evaluate valid_dataset then save every n step_count (D
 <dl class="function">
 <dt id="claf.learn.utils.save_checkpoint">
 <code class="descclassname">claf.learn.utils.</code><code class="descname">save_checkpoint</code><span class="sig-paren">(</span><em>path</em>, <em>model</em>, <em>optimizer</em>, <em>max_to_keep=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#save_checkpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.save_checkpoint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="claf.learn.utils.send_message_to_slack">
+<code class="descclassname">claf.learn.utils.</code><code class="descname">send_message_to_slack</code><span class="sig-paren">(</span><em>webhook_url</em>, <em>title=None</em>, <em>message=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#send_message_to_slack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.send_message_to_slack" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>

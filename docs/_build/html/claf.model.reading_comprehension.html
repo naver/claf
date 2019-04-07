@@ -26,6 +26,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -126,8 +127,11 @@
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Summary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="summary/reading_comprehension.html">Reading Comprehension</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendix</span></p>
 <ul>
@@ -204,7 +208,7 @@
 <span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.model.reading_comprehension.bert_for_qa" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.model.reading_comprehension.bert_for_qa.BertForQA">
-<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.bert_for_qa.</code><code class="descname">BertForQA</code><span class="sig-paren">(</span><em>token_makers</em>, <em>pretrained_model_name=None</em>, <em>answer_maxlen=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bert_for_qa.html#BertForQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.bert_for_qa.BertForQA" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.bert_for_qa.</code><code class="descname">BertForQA</code><span class="sig-paren">(</span><em>token_makers</em>, <em>lang_code='en'</em>, <em>pretrained_model_name=None</em>, <em>answer_maxlen=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bert_for_qa.html#BertForQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.bert_for_qa.BertForQA" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithoutTokenEmbedder" title="claf.model.base.ModelWithoutTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithoutTokenEmbedder</span></code></a></p>
 <p>Document Reader Model. <cite>Span Detector</cite></p>
 <p>Implementation of model presented in
@@ -218,7 +222,8 @@ BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 </li>
 <li><dl class="first docutils">
 <dt>Kwargs:</dt>
-<dd>pretrained_model_name: the name of a pre-trained model
+<dd>lang_code: Dataset language code [en|ko]
+pretrained_model_name: the name of a pre-trained model
 answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}</dd>
 </dl>
 </li>
@@ -314,7 +319,7 @@ helper: dictionary for helping get answer</p>
 
 <span class="target" id="module-claf.model.reading_comprehension.bidaf"></span><dl class="class">
 <dt id="claf.model.reading_comprehension.bidaf.BiDAF">
-<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.bidaf.</code><code class="descname">BiDAF</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=100</em>, <em>contextual_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf.html#BiDAF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.bidaf.BiDAF" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.bidaf.</code><code class="descname">BiDAF</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>lang_code='en'</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=100</em>, <em>contextual_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf.html#BiDAF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.bidaf.BiDAF" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
 <p>Document Reader Model. <cite>Span Detector</cite></p>
 <p>Implementation of model presented in
@@ -335,13 +340,13 @@ BiDAF: Bidirectional Attention Flow for Machine Comprehension
 </li>
 <li><dl class="first docutils">
 <dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
-<dd><p class="first last">captures the similarity between pi and each question words q_j.
+<dd><p class="first">lang_code: Dataset language code [en|ko]
+aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</p>
+<blockquote>
+<div><p>captures the similarity between pi and each question words q_j.
 these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
 it only apply to ‘context_embed’.</p>
-</dd>
-</dl>
+</div></blockquote>
 <p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
 model_dim: the number of model dimension
 contextual_rnn_num_layer: the number of recurrent layers (contextual)
@@ -408,7 +413,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 
 <span class="target" id="module-claf.model.reading_comprehension.bidaf_no_answer"></span><dl class="class">
 <dt id="claf.model.reading_comprehension.bidaf_no_answer.BiDAF_No_Answer">
-<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.bidaf_no_answer.</code><code class="descname">BiDAF_No_Answer</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=100</em>, <em>contextual_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf_no_answer.html#BiDAF_No_Answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.bidaf_no_answer.BiDAF_No_Answer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.bidaf_no_answer.</code><code class="descname">BiDAF_No_Answer</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>lang_code='en'</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=100</em>, <em>contextual_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf_no_answer.html#BiDAF_No_Answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.bidaf_no_answer.BiDAF_No_Answer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv2" title="claf.model.reading_comprehension.mixin.SQuADv2"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv2</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
 <p>Question Answering Model. <cite>Span Detector</cite>, <cite>No Answer</cite></p>
 <p>Bidirectional Attention Flow for Machine Comprehension + Bias (No_Answer)</p>
@@ -427,13 +432,13 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 </li>
 <li><dl class="first docutils">
 <dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
-<dd><p class="first last">captures the similarity between pi and each question words q_j.
+<dd><p class="first">lang_code: Dataset language code [en|ko]
+aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</p>
+<blockquote>
+<div><p>captures the similarity between pi and each question words q_j.
 these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
 it only apply to ‘context_embed’.</p>
-</dd>
-</dl>
+</div></blockquote>
 <p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
 model_dim: the number of model dimension
 dropout: the dropout probability</p>
@@ -497,7 +502,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 
 <span class="target" id="module-claf.model.reading_comprehension.docqa"></span><dl class="class">
 <dt id="claf.model.reading_comprehension.docqa.DocQA">
-<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.docqa.</code><code class="descname">DocQA</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=17</em>, <em>rnn_dim=100</em>, <em>linear_dim=200</em>, <em>preprocess_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa.html#DocQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.docqa.DocQA" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.docqa.</code><code class="descname">DocQA</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>lang_code='en'</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=17</em>, <em>rnn_dim=100</em>, <em>linear_dim=200</em>, <em>preprocess_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa.html#DocQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.docqa.DocQA" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
 <p>Document Reader Model. <cite>Span Detector</cite></p>
 <p>Implementation of model presented in
@@ -518,13 +523,13 @@ Simple and Effective Multi-Paragraph Reading Comprehension
 </li>
 <li><dl class="first docutils">
 <dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
-<dd><p class="first last">captures the similarity between pi and each question words q_j.
+<dd><p class="first">lang_code: Dataset language code [en|ko]
+aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</p>
+<blockquote>
+<div><p>captures the similarity between pi and each question words q_j.
 these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
 it only apply to ‘context_embed’.</p>
-</dd>
-</dl>
+</div></blockquote>
 <p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
 rnn_dim: the number of RNN cell dimension
 linear_dim: the number of attention linear dimension
@@ -613,7 +618,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <span class="target" id="module-claf.model.reading_comprehension.docqa_no_answer"></span><dl class="class">
 <dt id="claf.model.reading_comprehension.docqa_no_answer.DocQA_No_Answer">
-<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.docqa_no_answer.</code><code class="descname">DocQA_No_Answer</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=17</em>, <em>rnn_dim=100</em>, <em>linear_dim=200</em>, <em>preprocess_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa_no_answer.html#DocQA_No_Answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.docqa_no_answer.DocQA_No_Answer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.docqa_no_answer.</code><code class="descname">DocQA_No_Answer</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>lang_code='en'</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=17</em>, <em>rnn_dim=100</em>, <em>linear_dim=200</em>, <em>preprocess_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa_no_answer.html#DocQA_No_Answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.docqa_no_answer.DocQA_No_Answer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv2" title="claf.model.reading_comprehension.mixin.SQuADv2"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv2</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
 <p>Question Answering Model. <cite>Span Detector</cite>, <cite>No Answer</cite></p>
 <p>Implementation of model presented in
@@ -634,13 +639,13 @@ Simple and Effective Multi-Paragraph Reading Comprehension + No_Asnwer
 </li>
 <li><dl class="first docutils">
 <dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
-<dd><p class="first last">captures the similarity between pi and each question words q_j.
+<dd><p class="first">lang_code: Dataset language code [en|ko]
+aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</p>
+<blockquote>
+<div><p>captures the similarity between pi and each question words q_j.
 these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
 it only apply to ‘context_embed’.</p>
-</dd>
-</dl>
+</div></blockquote>
 <p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
 rnn_dim: the number of RNN cell dimension
 linear_dim: the number of attention linear dimension
@@ -758,7 +763,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <span class="target" id="module-claf.model.reading_comprehension.drqa"></span><dl class="class">
 <dt id="claf.model.reading_comprehension.drqa.DrQA">
-<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.drqa.</code><code class="descname">DrQA</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=128</em>, <em>dropout=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/drqa.html#DrQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.drqa.DrQA" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.drqa.</code><code class="descname">DrQA</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>lang_code='en'</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=128</em>, <em>dropout=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/drqa.html#DrQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.drqa.DrQA" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
 <p>Document Reader Model. <cite>Span Detector</cite></p>
 <p>Implementation of model presented in
@@ -777,13 +782,13 @@ Reading Wikipedia to Answer Open-Domain Questions
 </li>
 <li><dl class="first docutils">
 <dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
-<dd><p class="first last">captures the similarity between pi and each question words q_j.
+<dd><p class="first">lang_code: Dataset language code [en|ko]
+aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</p>
+<blockquote>
+<div><p>captures the similarity between pi and each question words q_j.
 these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
 it only apply to ‘context_embed’.</p>
-</dd>
-</dl>
+</div></blockquote>
 <p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
 model_dim: the number of model dimension
 dropout: the dropout probability</p>
@@ -1121,7 +1126,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="class">
 <dt id="claf.model.reading_comprehension.qanet.QANet">
-<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.qanet.</code><code class="descname">QANet</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=128</em>, <em>kernel_size_in_embedding=7</em>, <em>num_head_in_embedding=8</em>, <em>num_conv_block_in_embedding=4</em>, <em>num_embedding_encoder_block=1</em>, <em>kernel_size_in_modeling=5</em>, <em>num_head_in_modeling=8</em>, <em>num_conv_block_in_modeling=2</em>, <em>num_modeling_encoder_block=7</em>, <em>dropout=0.1</em>, <em>layer_dropout=0.9</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/qanet.html#QANet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.qanet.QANet" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.qanet.</code><code class="descname">QANet</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>lang_code='en'</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=128</em>, <em>kernel_size_in_embedding=7</em>, <em>num_head_in_embedding=8</em>, <em>num_conv_block_in_embedding=4</em>, <em>num_embedding_encoder_block=1</em>, <em>kernel_size_in_modeling=5</em>, <em>num_head_in_modeling=8</em>, <em>num_conv_block_in_modeling=2</em>, <em>num_modeling_encoder_block=7</em>, <em>dropout=0.1</em>, <em>layer_dropout=0.9</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/qanet.html#QANet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.qanet.QANet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
 <p>Document Reader Model. <cite>Span Detector</cite></p>
 <p>Implementation of model presented in
@@ -1143,13 +1148,13 @@ QANet:Combining Local Convolution with Global Self-Attention for Reading Compreh
 </li>
 <li><dl class="first docutils">
 <dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
-<dd><p class="first last">captures the similarity between pi and each question words q_j.
+<dd><p class="first">lang_code: Dataset language code [en|ko]
+aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</p>
+<blockquote>
+<div><p>captures the similarity between pi and each question words q_j.
 these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
 it only apply to ‘context_embed’.</p>
-</dd>
-</dl>
+</div></blockquote>
 <p>answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
 model_dim: the number of model dimension</p>
 <ul>
@@ -1239,7 +1244,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.model.reading_comprehension" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.model.reading_comprehension.BertForQA">
-<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">BertForQA</code><span class="sig-paren">(</span><em>token_makers</em>, <em>pretrained_model_name=None</em>, <em>answer_maxlen=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bert_for_qa.html#BertForQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BertForQA" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">BertForQA</code><span class="sig-paren">(</span><em>token_makers</em>, <em>lang_code='en'</em>, <em>pretrained_model_name=None</em>, <em>answer_maxlen=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bert_for_qa.html#BertForQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BertForQA" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithoutTokenEmbedder" title="claf.model.base.ModelWithoutTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithoutTokenEmbedder</span></code></a></p>
 <p>Document Reader Model. <cite>Span Detector</cite></p>
 <p>Implementation of model presented in
@@ -1253,7 +1258,8 @@ BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 </li>
 <li><dl class="first docutils">
 <dt>Kwargs:</dt>
-<dd>pretrained_model_name: the name of a pre-trained model
+<dd>lang_code: Dataset language code [en|ko]
+pretrained_model_name: the name of a pre-trained model
 answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}</dd>
 </dl>
 </li>
@@ -1349,7 +1355,7 @@ helper: dictionary for helping get answer</p>
 
 <dl class="class">
 <dt id="claf.model.reading_comprehension.BiDAF">
-<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">BiDAF</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=100</em>, <em>contextual_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf.html#BiDAF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BiDAF" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">BiDAF</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>lang_code='en'</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=100</em>, <em>contextual_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf.html#BiDAF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BiDAF" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
 <p>Document Reader Model. <cite>Span Detector</cite></p>
 <p>Implementation of model presented in
@@ -1370,13 +1376,13 @@ BiDAF: Bidirectional Attention Flow for Machine Comprehension
 </li>
 <li><dl class="first docutils">
 <dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
-<dd><p class="first last">captures the similarity between pi and each question words q_j.
+<dd><p class="first">lang_code: Dataset language code [en|ko]
+aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</p>
+<blockquote>
+<div><p>captures the similarity between pi and each question words q_j.
 these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
 it only apply to ‘context_embed’.</p>
-</dd>
-</dl>
+</div></blockquote>
 <p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
 model_dim: the number of model dimension
 contextual_rnn_num_layer: the number of recurrent layers (contextual)
@@ -1443,7 +1449,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 
 <dl class="class">
 <dt id="claf.model.reading_comprehension.QANet">
-<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">QANet</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=128</em>, <em>kernel_size_in_embedding=7</em>, <em>num_head_in_embedding=8</em>, <em>num_conv_block_in_embedding=4</em>, <em>num_embedding_encoder_block=1</em>, <em>kernel_size_in_modeling=5</em>, <em>num_head_in_modeling=8</em>, <em>num_conv_block_in_modeling=2</em>, <em>num_modeling_encoder_block=7</em>, <em>dropout=0.1</em>, <em>layer_dropout=0.9</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/qanet.html#QANet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.QANet" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">QANet</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>lang_code='en'</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=128</em>, <em>kernel_size_in_embedding=7</em>, <em>num_head_in_embedding=8</em>, <em>num_conv_block_in_embedding=4</em>, <em>num_embedding_encoder_block=1</em>, <em>kernel_size_in_modeling=5</em>, <em>num_head_in_modeling=8</em>, <em>num_conv_block_in_modeling=2</em>, <em>num_modeling_encoder_block=7</em>, <em>dropout=0.1</em>, <em>layer_dropout=0.9</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/qanet.html#QANet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.QANet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
 <p>Document Reader Model. <cite>Span Detector</cite></p>
 <p>Implementation of model presented in
@@ -1465,13 +1471,13 @@ QANet:Combining Local Convolution with Global Self-Attention for Reading Compreh
 </li>
 <li><dl class="first docutils">
 <dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
-<dd><p class="first last">captures the similarity between pi and each question words q_j.
+<dd><p class="first">lang_code: Dataset language code [en|ko]
+aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</p>
+<blockquote>
+<div><p>captures the similarity between pi and each question words q_j.
 these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
 it only apply to ‘context_embed’.</p>
-</dd>
-</dl>
+</div></blockquote>
 <p>answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
 model_dim: the number of model dimension</p>
 <ul>
@@ -1558,7 +1564,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 
 <dl class="class">
 <dt id="claf.model.reading_comprehension.DocQA">
-<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">DocQA</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=17</em>, <em>rnn_dim=100</em>, <em>linear_dim=200</em>, <em>preprocess_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa.html#DocQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.DocQA" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">DocQA</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>lang_code='en'</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=17</em>, <em>rnn_dim=100</em>, <em>linear_dim=200</em>, <em>preprocess_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa.html#DocQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.DocQA" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
 <p>Document Reader Model. <cite>Span Detector</cite></p>
 <p>Implementation of model presented in
@@ -1579,13 +1585,13 @@ Simple and Effective Multi-Paragraph Reading Comprehension
 </li>
 <li><dl class="first docutils">
 <dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
-<dd><p class="first last">captures the similarity between pi and each question words q_j.
+<dd><p class="first">lang_code: Dataset language code [en|ko]
+aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</p>
+<blockquote>
+<div><p>captures the similarity between pi and each question words q_j.
 these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
 it only apply to ‘context_embed’.</p>
-</dd>
-</dl>
+</div></blockquote>
 <p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
 rnn_dim: the number of RNN cell dimension
 linear_dim: the number of attention linear dimension
@@ -1653,7 +1659,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 
 <dl class="class">
 <dt id="claf.model.reading_comprehension.DrQA">
-<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">DrQA</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=128</em>, <em>dropout=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/drqa.html#DrQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.DrQA" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">DrQA</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>lang_code='en'</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=128</em>, <em>dropout=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/drqa.html#DrQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.DrQA" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
 <p>Document Reader Model. <cite>Span Detector</cite></p>
 <p>Implementation of model presented in
@@ -1672,13 +1678,13 @@ Reading Wikipedia to Answer Open-Domain Questions
 </li>
 <li><dl class="first docutils">
 <dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
-<dd><p class="first last">captures the similarity between pi and each question words q_j.
+<dd><p class="first">lang_code: Dataset language code [en|ko]
+aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</p>
+<blockquote>
+<div><p>captures the similarity between pi and each question words q_j.
 these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
 it only apply to ‘context_embed’.</p>
-</dd>
-</dl>
+</div></blockquote>
 <p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
 model_dim: the number of model dimension
 dropout: the dropout probability</p>
@@ -1742,7 +1748,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 
 <dl class="class">
 <dt id="claf.model.reading_comprehension.BiDAF_No_Answer">
-<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">BiDAF_No_Answer</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=100</em>, <em>contextual_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf_no_answer.html#BiDAF_No_Answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BiDAF_No_Answer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">BiDAF_No_Answer</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>lang_code='en'</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=None</em>, <em>model_dim=100</em>, <em>contextual_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bidaf_no_answer.html#BiDAF_No_Answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BiDAF_No_Answer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv2" title="claf.model.reading_comprehension.mixin.SQuADv2"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv2</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
 <p>Question Answering Model. <cite>Span Detector</cite>, <cite>No Answer</cite></p>
 <p>Bidirectional Attention Flow for Machine Comprehension + Bias (No_Answer)</p>
@@ -1761,13 +1767,13 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 </li>
 <li><dl class="first docutils">
 <dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
-<dd><p class="first last">captures the similarity between pi and each question words q_j.
+<dd><p class="first">lang_code: Dataset language code [en|ko]
+aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</p>
+<blockquote>
+<div><p>captures the similarity between pi and each question words q_j.
 these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
 it only apply to ‘context_embed’.</p>
-</dd>
-</dl>
+</div></blockquote>
 <p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
 model_dim: the number of model dimension
 dropout: the dropout probability</p>
@@ -1831,7 +1837,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 
 <dl class="class">
 <dt id="claf.model.reading_comprehension.DocQA_No_Answer">
-<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">DocQA_No_Answer</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=17</em>, <em>rnn_dim=100</em>, <em>linear_dim=200</em>, <em>preprocess_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa_no_answer.html#DocQA_No_Answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.DocQA_No_Answer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.model.reading_comprehension.</code><code class="descname">DocQA_No_Answer</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>lang_code='en'</em>, <em>aligned_query_embedding=False</em>, <em>answer_maxlen=17</em>, <em>rnn_dim=100</em>, <em>linear_dim=200</em>, <em>preprocess_rnn_num_layer=1</em>, <em>modeling_rnn_num_layer=2</em>, <em>predict_rnn_num_layer=1</em>, <em>dropout=0.2</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/docqa_no_answer.html#DocQA_No_Answer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.DocQA_No_Answer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv2" title="claf.model.reading_comprehension.mixin.SQuADv2"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv2</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
 <p>Question Answering Model. <cite>Span Detector</cite>, <cite>No Answer</cite></p>
 <p>Implementation of model presented in
@@ -1852,13 +1858,13 @@ Simple and Effective Multi-Paragraph Reading Comprehension + No_Asnwer
 </li>
 <li><dl class="first docutils">
 <dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</dt>
-<dd><p class="first last">captures the similarity between pi and each question words q_j.
+<dd><p class="first">lang_code: Dataset language code [en|ko]
+aligned_query_embedding: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</p>
+<blockquote>
+<div><p>captures the similarity between pi and each question words q_j.
 these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
 it only apply to ‘context_embed’.</p>
-</dd>
-</dl>
+</div></blockquote>
 <p class="last">answer_maxlen: the most probable answer span of length less than or equal to {answer_maxlen}
 rnn_dim: the number of RNN cell dimension
 linear_dim: the number of attention linear dimension

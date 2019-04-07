@@ -40,6 +40,14 @@ CLaF: Clova Language Framework
 
 
 .. toctree::
+   :glob:
+   :maxdepth: 1
+   :caption: Summary
+
+   summary/*
+
+
+.. toctree::
    :maxdepth: 1
    :caption: Appendix
 

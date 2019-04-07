@@ -26,6 +26,7 @@
         <script type="text/javascript" src="../../../_static/jquery.js"></script>
         <script type="text/javascript" src="../../../_static/underscore.js"></script>
         <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -109,8 +110,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../reports/summary.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Summary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../summary/reading_comprehension.html">Reading Comprehension</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendix</span></p>
 <ul>
@@ -180,13 +184,17 @@
   <h1>Source code for claf.learn.utils</h1><div class="highlight"><pre>
 <span></span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
 <span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="k">import</span> <span class="n">DataParallel</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 
+<span class="kn">from</span> <span class="nn">claf</span> <span class="k">import</span> <span class="n">nsml</span>
 <span class="kn">from</span> <span class="nn">claf.tokens.vocabulary</span> <span class="k">import</span> <span class="n">Vocab</span>
 
 
@@ -327,6 +335,80 @@
             <span class="k">del</span> <span class="n">path_with_train_count</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">path_with_train_count</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span></div>
+
+
+<span class="sd">&quot;&quot;&quot; NSML &quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="bind_nsml"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.utils.bind_nsml">[docs]</a><span class="k">def</span> <span class="nf">bind_nsml</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="o">==</span> <span class="n">DataParallel</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">module</span>
+
+    <span class="k">def</span> <span class="nf">infer</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s2">&quot;weights&quot;</span><span class="p">])</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">metrics</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">[</span><span class="s2">&quot;metrics&quot;</span><span class="p">]</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">init_params</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">[</span><span class="s2">&quot;init_params&quot;</span><span class="p">],</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">predict_helper</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">[</span><span class="s2">&quot;predict_helper&quot;</span><span class="p">],</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">train_counter</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">[</span><span class="s2">&quot;train_counter&quot;</span><span class="p">]</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">vocabs</span> <span class="o">=</span> <span class="n">load_vocabs</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;optimizer&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;optimizer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s2">&quot;optimizer&quot;</span><span class="p">])</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Load checkpoints...! </span><span class="si">{path}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="c1"># save the model with &#39;checkpoint&#39; dictionary.</span>
+        <span class="n">checkpoint</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="p">,</span>
+            <span class="s2">&quot;init_params&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">init_params</span><span class="p">,</span>
+            <span class="s2">&quot;predict_helper&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_helper</span><span class="p">,</span>
+            <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">metrics</span><span class="p">,</span>
+            <span class="s2">&quot;train_counter&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">train_counter</span><span class="p">,</span>
+            <span class="s2">&quot;vocab_texts&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">to_text</span><span class="p">()</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">vocabs</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+            <span class="s2">&quot;weights&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="s2">&quot;optimizer&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">checkpoint</span><span class="p">[</span><span class="s2">&quot;optimizer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;optimizer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),)</span>
+
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+
+        <span class="n">train_counter</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">train_counter</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Save </span><span class="si">{train_counter.global_step}</span><span class="s2"> global_step checkpoints...! </span><span class="si">{path}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># function in function is just used to divide the namespace.</span>
+    <span class="n">nsml</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">save</span><span class="p">,</span> <span class="n">load</span><span class="p">,</span> <span class="n">infer</span><span class="p">)</span></div>
+
+
+<span class="sd">&quot;&quot;&quot; Notification &quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="get_session_name"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.utils.get_session_name">[docs]</a><span class="k">def</span> <span class="nf">get_session_name</span><span class="p">():</span>
+    <span class="n">session_name</span> <span class="o">=</span> <span class="s2">&quot;local&quot;</span>
+    <span class="k">if</span> <span class="n">nsml</span><span class="o">.</span><span class="n">IS_ON_NSML</span><span class="p">:</span>
+        <span class="n">session_name</span> <span class="o">=</span> <span class="n">nsml</span><span class="o">.</span><span class="n">SESSION_NAME</span>
+    <span class="k">return</span> <span class="n">session_name</span></div>
+
+
+<div class="viewcode-block" id="send_message_to_slack"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.utils.send_message_to_slack">[docs]</a><span class="k">def</span> <span class="nf">send_message_to_slack</span><span class="p">(</span><span class="n">webhook_url</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+    <span class="k">if</span> <span class="n">message</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;{get_session_name()} session is exited.&quot;</span><span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;attachments&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">,</span> <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;#438C56&quot;</span><span class="p">}]}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">webhook_url</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">webhook_url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span></div>
 </pre></div>
 
            </div>

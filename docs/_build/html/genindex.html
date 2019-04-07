@@ -27,6 +27,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -110,8 +111,11 @@
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Summary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="summary/reading_comprehension.html">Reading Comprehension</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendix</span></p>
 <ul>
@@ -342,6 +346,8 @@
         <li><a href="claf.modules.attention.html#claf.modules.attention.seq_attention.BilinearSeqAttn">(class in claf.modules.attention.seq_attention)</a>
 </li>
       </ul></li>
+      <li><a href="claf.learn.html#claf.learn.utils.bind_nsml">bind_nsml() (in module claf.learn.utils)</a>
+</li>
       <li><a href="claf.modules.encoder.html#claf.modules.encoder.lstm_cell_with_projection.block_orthogonal">block_orthogonal() (in module claf.modules.encoder.lstm_cell_with_projection)</a>
 </li>
       <li><a href="claf.tokens.indexer.html#claf.tokens.indexer.elmo_indexer.ELMoIndexer.BOS_TOKEN">BOS_TOKEN (claf.tokens.indexer.elmo_indexer.ELMoIndexer attribute)</a>
@@ -1404,8 +1410,6 @@
 </li>
       <li><a href="claf.modules.html#claf.modules.functional.get_mask_from_tokens">get_mask_from_tokens() (in module claf.modules.functional)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="claf.tokens.html#claf.tokens.elmo.Elmo.get_output_dim">get_output_dim() (claf.tokens.elmo.Elmo method)</a>
 
       <ul>
@@ -1444,6 +1448,8 @@
         <li><a href="claf.tokens.embedding.html#claf.tokens.embedding.word_embedding.WordEmbedding.get_output_dim">(claf.tokens.embedding.word_embedding.WordEmbedding method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="claf.data.dataset.html#claf.data.dataset.base.DatasetBase.get_predict">get_predict() (claf.data.dataset.base.DatasetBase method)</a>
 
       <ul>
@@ -1473,6 +1479,8 @@
 </li>
       </ul></li>
       <li><a href="claf.metric.html#claf.metric.squad_v2_official.get_raw_scores">get_raw_scores() (in module claf.metric.squad_v2_official)</a>
+</li>
+      <li><a href="claf.learn.html#claf.learn.utils.get_session_name">get_session_name() (in module claf.learn.utils)</a>
 </li>
       <li><a href="claf.learn.html#claf.learn.utils.get_sorted_path">get_sorted_path() (in module claf.learn.utils)</a>
 </li>
@@ -1944,6 +1952,8 @@
 </li>
       <li><a href="claf.tokens.html#claf.tokens.hangul.NotWordException">NotWordException</a>
 </li>
+      <li><a href="claf.config.html#claf.config.args.nsml_for_internal">nsml_for_internal() (in module claf.config.args)</a>
+</li>
       <li><a href="claf.data.dataset.html#claf.data.dataset.seq_cls.SeqClsDataset.num_classes">num_classes (claf.data.dataset.seq_cls.SeqClsDataset attribute)</a>
 
       <ul>
@@ -2253,6 +2263,8 @@
 </li>
       </ul></li>
       <li><a href="claf.model.semantic_parsing.html#claf.model.semantic_parsing.sqlnet.SelPredictor">SelPredictor (class in claf.model.semantic_parsing.sqlnet)</a>
+</li>
+      <li><a href="claf.learn.html#claf.learn.utils.send_message_to_slack">send_message_to_slack() (in module claf.learn.utils)</a>
 </li>
       <li><a href="claf.tokens.tokenizer.html#claf.tokens.tokenizer.SentTokenizer">SentTokenizer (class in claf.tokens.tokenizer)</a>
 

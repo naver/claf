@@ -95,6 +95,14 @@ pip install claf
 - [Dataset And Model](https://naver.github.io/claf/docs/_build/html/contents/dataset_and_model.html)
 - [Pretrained Vector](https://naver.github.io/claf/docs/_build/html/contents/pretrained_vector.html)
 - [Tokens](https://naver.github.io/claf/docs/_build/html/contents/tokens.html)
+- Reports
+  - [HistoryQA](https://naver.github.io/claf/docs/_build/html/reports/historyqa.html)
+  - [KorQuAD](https://naver.github.io/claf/docs/_build/html/reports/korquad.html)
+  - [SQuAD](https://naver.github.io/claf/docs/_build/html/reports/squad.html)
+  - [WikiSQL](https://naver.github.io/claf/docs/_build/html/reports/wikisql.html)
+- Summary (1-example Inference Latency)
+  - [Reading Comprehension](https://naver.github.io/claf/docs/_build/html/summary/reading_comprehension.html)
+
 
 ---
 

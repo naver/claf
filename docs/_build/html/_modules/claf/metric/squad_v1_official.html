@@ -26,6 +26,7 @@
         <script type="text/javascript" src="../../../_static/jquery.js"></script>
         <script type="text/javascript" src="../../../_static/underscore.js"></script>
         <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -109,8 +110,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../reports/summary.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Summary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../summary/reading_comprehension.html">Reading Comprehension</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendix</span></p>
 <ul>
@@ -239,8 +243,8 @@
             <span class="k">for</span> <span class="n">qa</span> <span class="ow">in</span> <span class="n">paragraph</span><span class="p">[</span><span class="s2">&quot;qas&quot;</span><span class="p">]:</span>
                 <span class="n">total</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">if</span> <span class="n">qa</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">predictions</span><span class="p">:</span>
-                    <span class="c1"># message = &quot;Unanswered question &quot; + qa[&quot;id&quot;] + &quot; will receive score 0.&quot;</span>
-                    <span class="c1"># print(message, file=sys.stderr)</span>
+                    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Unanswered question &quot;</span> <span class="o">+</span> <span class="n">qa</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; will receive score 0.&quot;</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
                     <span class="k">continue</span>
                 <span class="n">ground_truths</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span> <span class="n">qa</span><span class="p">[</span><span class="s2">&quot;answers&quot;</span><span class="p">]))</span>
                 <span class="n">prediction</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="n">qa</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]]</span>

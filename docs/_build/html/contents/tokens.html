@@ -26,6 +26,7 @@
         <script type="text/javascript" src="../_static/jquery.js"></script>
         <script type="text/javascript" src="../_static/underscore.js"></script>
         <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -115,8 +116,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reports/squad.html">SQuAD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../reports/summary.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Summary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../summary/reading_comprehension.html">Reading Comprehension</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendix</span></p>
 <ul>
@@ -186,14 +190,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="tokens">
-<span id="tokens"></span><h1>Tokens<a class="headerlink" href="#tokens" title="Permalink to this headline">¶</a></h1>
+<h1>Tokens<a class="headerlink" href="#tokens" title="Permalink to this headline">¶</a></h1>
 <p>TokenMakers consists of Tokenizer, Indexer, Vocabulary, and Embedding Modules.<code class="docutils literal notranslate"><span class="pre">TokenMaker</span></code> is responsible for the indexing of text and the generation of the tensors through the embedding module.</p>
 <div class="section" id="tokenizers">
-<span id="tokenizers"></span><h2>Tokenizers<a class="headerlink" href="#tokenizers" title="Permalink to this headline">¶</a></h2>
+<h2>Tokenizers<a class="headerlink" href="#tokenizers" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Tokenizer Design</li>
 </ul>
-<p><img alt="images" src="../_images/tokenizers_design.png" /></p>
+<p><img alt="../_images/tokenizers_design.png" src="../_images/tokenizers_design.png" />images</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SentTokenizer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span> <span class="o">...</span>
 <span class="k">class</span> <span class="nc">WordTokenizer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">sent_tokenizer</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="o">...</span>
 <span class="k">class</span> <span class="nc">SubwordTokenizer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">word_tokenizer</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="o">...</span>
@@ -283,7 +287,7 @@
 </tbody>
 </table></div>
 <div class="section" id="token-maker">
-<span id="token-maker"></span><h2>Token Maker<a class="headerlink" href="#token-maker" title="Permalink to this headline">¶</a></h2>
+<h2>Token Maker<a class="headerlink" href="#token-maker" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>The list of pre-defined <code class="docutils literal notranslate"><span class="pre">Token</span> <span class="pre">Maker</span></code>:</li>
 </ul>

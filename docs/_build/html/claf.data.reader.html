@@ -26,6 +26,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -125,8 +126,11 @@
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reports/summary.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Summary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="summary/reading_comprehension.html">Reading Comprehension</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Appendix</span></p>
 <ul>
@@ -293,7 +297,7 @@ tokenizers: define tokenizers config (word)</dd>
 
 <span class="target" id="module-claf.data.reader.squad"></span><dl class="class">
 <dt id="claf.data.reader.squad.SQuADReader">
-<em class="property">class </em><code class="descclassname">claf.data.reader.squad.</code><code class="descname">SQuADReader</code><span class="sig-paren">(</span><em>file_paths</em>, <em>tokenizers</em>, <em>context_max_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/reader/squad.html#SQuADReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.reader.squad.SQuADReader" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.data.reader.squad.</code><code class="descname">SQuADReader</code><span class="sig-paren">(</span><em>file_paths</em>, <em>lang_code</em>, <em>tokenizers</em>, <em>context_max_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/reader/squad.html#SQuADReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.reader.squad.SQuADReader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.data.reader.base.DataReader" title="claf.data.reader.base.DataReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.reader.base.DataReader</span></code></a></p>
 <p>SQuAD DataReader</p>
 <ul class="simple">
@@ -349,7 +353,7 @@ tokenizers: defined tokenizers config (char/word)</dd>
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.data.reader" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.data.reader.SQuADReader">
-<em class="property">class </em><code class="descclassname">claf.data.reader.</code><code class="descname">SQuADReader</code><span class="sig-paren">(</span><em>file_paths</em>, <em>tokenizers</em>, <em>context_max_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/reader/squad.html#SQuADReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.reader.SQuADReader" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.data.reader.</code><code class="descname">SQuADReader</code><span class="sig-paren">(</span><em>file_paths</em>, <em>lang_code</em>, <em>tokenizers</em>, <em>context_max_length=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/reader/squad.html#SQuADReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.reader.SQuADReader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.data.reader.base.DataReader" title="claf.data.reader.base.DataReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.reader.base.DataReader</span></code></a></p>
 <p>SQuAD DataReader</p>
 <ul class="simple">

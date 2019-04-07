@@ -14,8 +14,7 @@
 
 | Model | EM | F1 | BaseConfig | Note |
 | --- | --- | --- | --- | --- |
-| **BiDAF** | 75.494 | 81.969 | korquad/bidaf.json | - |
-| **DocQA** | 77.503 | 83.780 | korquad/docqa.json | - |
-| **BERT**-Base, Multilingual Uncased | 79.234 | 85.587 | korquad/bert_base_multilingual_uncased.json | - |
-| **BERT**-Base, Multilingual Cased | 81.988 | 87.602 | korquad/bert_base_multilingual_cased.json | - |
-
+| **BiDAF** | 75.476 | 85.915 | korquad/bidaf.json | - |
+| **DocQA** | 77.693 | 88.115 | korquad/docqa.json | - |
+| **BERT**-Base, Multilingual Uncased | 77.641 | 87.851 | korquad/bert_base_multilingual_uncased.json | - |
+| **BERT**-Base, Multilingual Cased | 78.957 | 88.686 | korquad/bert_base_multilingual_cased.json | - |

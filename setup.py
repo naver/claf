@@ -17,8 +17,9 @@ REQUIRES_PYTHON = '>=3.6.0'
 VERSION = None
 
 REQUIRED = [
-    "numpy", "torch>=0.4.1",
+    "numpy", "torch>=1.0.1",
     "konlpy", "nltk", "spacy",  # Tokenizer
+    "pytorch-pretrained-bert==0.4.0", # BERT
     "babel", "records",  # WikiSQL
     "h5py", "jsbeautifier", "overrides", "requests", "gensim", "tqdm", "tensorboardX",  # Utils
     "pycm", "seqeval",  # Classification
