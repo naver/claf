@@ -213,12 +213,26 @@ class SequenceTokenClassification:
                 {"target": target_classes, "predict": pred_classes}, pycm_obj=class_pycm_obj, label_type="class"
             )
 
+            # topk
+            for k in range(self.K):
+                self.write_predictions(
+                    {"target": target_classes, "predict": pred_topk[k + 1]}, label_type=f"class_top{k + 1}"
+                )
+
             class_metrics = {
                 "class_macro_f1": macro_f1(class_pycm_obj),
                 "class_macro_precision": macro_precision(class_pycm_obj),
                 "class_macro_recall": macro_recall(class_pycm_obj),
                 "class_accuracy": class_pycm_obj.Overall_ACC,
             }
+
+            # topk
+            num_correct = 0
+            for k in range(self.K):
+                num_correct += sum(np.asarray(target_classes) == np.asarray(pred_topk[k + 1]))
+                class_metrics.update({
+                    f"class_accuracy_top{k + 1}": num_correct / len(target_classes),
+                })
 
         except pycmVectorError as e:
             if str(e) == "Number of the classes is lower than 2":
@@ -229,6 +243,10 @@ class SequenceTokenClassification:
                     "class_macro_recall": 1.,
                     "class_accuracy": 1.,
                 }
+                for k in range(self.K):
+                    class_metrics.update({
+                        f"class_accuracy_top{k + 1}": 1.,
+                    })
             else:
                 raise
 

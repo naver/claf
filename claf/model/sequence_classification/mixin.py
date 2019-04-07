@@ -1,5 +1,6 @@
 
 from pathlib import Path
+from collections import defaultdict
 import logging
 
 import numpy as np
@@ -16,6 +17,8 @@ logger = logging.getLogger(__name__)
 
 class SequenceClassification:
     """ Sequence Classification Mixin Class """
+
+    K = 5  # for topk
 
     def make_predictions(self, output_dict):
         """
@@ -45,6 +48,14 @@ class SequenceClassification:
             self._dataset.get_id(data_idx.item()): {"class_idx": pred_class_idx.item()}
             for data_idx, pred_class_idx in zip(list(data_indices.data), list(pred_class_idxs.data))
         }
+
+        # topk
+        _, topk = torch.topk(pred_class_logits, dim=-1, k=self.K)
+        for k in range(self.K):
+            for data_idx, pred_class_topk in zip(list(data_indices.data), topk[:, k]):
+                predictions[self._dataset.get_id(data_idx.item())].update({
+                    f"top{k + 1}": pred_class_topk.item()
+                })
 
         return predictions
 
@@ -108,11 +119,18 @@ class SequenceClassification:
         pred_classes = []
         target_classes = []
 
+        # topk
+        pred_topk = defaultdict(list)
+
         for data_id, pred in predictions.items():
             target = self._dataset.get_ground_truth(data_id)
 
             pred_classes.append(self._dataset.class_idx2text[pred["class_idx"]])
             target_classes.append(target["class_text"])
+
+            # topk
+            for k in range(self.K):
+                pred_topk[k + 1].append(self._dataset.class_idx2text[pred[f"top{k + 1}"]])
 
         # confusion matrix
         try:
@@ -131,8 +149,14 @@ class SequenceClassification:
             raise
 
         self.write_predictions(
-            {"target": target_classes, "predict": pred_classes}, pycm_obj=pycm_obj
+            {"target": target_classes, "predict": pred_classes}, pycm_obj=pycm_obj, label_type="class"
         )
+
+        # topk
+        for k in range(self.K):
+            self.write_predictions(
+                {"target": target_classes, "predict": pred_topk[k + 1]}, label_type=f"class_top{k + 1}"
+            )
 
         metrics = {
             "class_macro_f1": macro_f1(pycm_obj),
@@ -141,9 +165,17 @@ class SequenceClassification:
             "class_accuracy": pycm_obj.Overall_ACC,
         }
 
+        # topk
+        num_correct = 0
+        for k in range(self.K):
+            num_correct += sum(np.asarray(target_classes) == np.asarray(pred_topk[k + 1]))
+            metrics.update({
+                f"class_accuracy_top{k + 1}": num_correct / len(target_classes),
+            })
+
         return metrics
 
-    def write_predictions(self, predictions, file_path=None, is_dict=True, pycm_obj=None):
+    def write_predictions(self, predictions, file_path=None, is_dict=True, pycm_obj=None, label_type=None):
         """
         Override write_predictions() in ModelBase to log confusion matrix
         """
@@ -152,7 +184,7 @@ class SequenceClassification:
             predictions, file_path=file_path, is_dict=is_dict
         )
 
-        data_type = "train" if self.training else "valid"
+        data_type = f"train-{label_type}" if self.training else f"valid-{label_type}"
 
         if pycm_obj is not None:
             stats_file_path = f"predictions-{data_type}-{self._train_counter.get_display()}-stats"
