@@ -955,6 +955,18 @@ def model(parser):
         type=float, default=0.2, dest="model.bert_for_seq_cls.dropout",
         help=""" The prob of fc layer dropout """
     )
+    group.add_argument(
+        "--bert_for_seq_cls.criterion.name",
+        type=str, default="cross_entropy", dest="model.bert_for_seq_cls.criterion.name",
+        help=""" Criterion function name (default: cross_entropy):
+                    . `cross_entropy`
+                    . `cross_entropy_with_label_smoothing` """
+    )
+    group.add_argument(
+        "--bert_for_seq_cls.criterion.cross_entropy_with_label_smoothing.label_smoothing",
+        type=float, default=0.1, dest="model.bert_for_seq_cls.criterion.cross_entropy_with_label_smoothing.label_smoothing",
+        help=""" Label smoothing value """
+    )
 
     group = parser.add_argument_group(f"{sequence_classification_title}\n # Structured Self Attention")
     group.add_argument(

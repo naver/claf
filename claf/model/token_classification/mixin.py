@@ -29,6 +29,8 @@ class TokenClassification:
                 - sequence_embed: embedding vector of the sequence
                 - tag_logits: representing unnormalized log probabilities of the tag
 
+                - (pred_tag_idxs: tag idxs by CRF)
+
                 - tag_idxs: target tag idxs
                 - data_idx: data idx
                 - loss: a scalar loss to be optimized
@@ -42,9 +44,14 @@ class TokenClassification:
 
         data_indices = output_dict["data_idx"]
         pred_tag_logits = output_dict["tag_logits"]
-        pred_tag_idxs = [
-            torch.argmax(pred_tag_logit, dim=-1).tolist() for pred_tag_logit in pred_tag_logits
-        ]
+
+        if "pred_tag_idxs" in output_dict:  # crf
+            pred_tag_idxs = output_dict["pred_tag_idxs"]
+
+        else:
+            pred_tag_idxs = [
+                torch.argmax(pred_tag_logit, dim=-1).data.cpu().numpy() for pred_tag_logit in pred_tag_logits
+            ]
 
         predictions = {
             self._dataset.get_id(data_idx.item()): {"tag_idxs": pred_tag_idx}
@@ -61,6 +68,7 @@ class TokenClassification:
         * Args:
             output_dict: model's output dictionary consisting of
                 - sequence_embed: embedding vector of the sequence
+                - (pred_tag_idxs: tag idxs by CRF)
                 - tag_logits: representing unnormalized log probabilities of the tags.
             arguments: arguments dictionary consisting of user_input
             helper: dictionary to get the classification result, consisting of
@@ -75,8 +83,13 @@ class TokenClassification:
 
         sequence = arguments["sequence"]
         tag_logits = output_dict["tag_logits"][0]
-        tag_idxs = [tag_logit.argmax(dim=-1) for tag_logit in tag_logits]
-        tag_texts = [helper["tag_idx2text"][tag_idx.item()] for tag_idx in tag_idxs]
+
+        if "pred_tag_idxs" in output_dict:
+            tag_idxs = output_dict["pred_tag_idxs"][0]
+            tag_texts = [helper["tag_idx2text"][tag_idx] for tag_idx in tag_idxs]
+        else:
+            tag_idxs = [tag_logit.argmax(dim=-1) for tag_logit in tag_logits]
+            tag_texts = [helper["tag_idx2text"][tag_idx.item()] for tag_idx in tag_idxs]
 
         return {
             "tag_logits": tag_logits,

@@ -7,6 +7,8 @@ from claf.data.data_handler import CachePath
 from claf.decorator import register
 from claf.model.base import ModelWithoutTokenEmbedder
 from claf.model.sequence_classification.mixin import SequenceClassification
+from claf.modules.criterion import get_criterion_fn
+from claf.config.namespace import NestedNamespace
 
 
 @register("model:bert_for_seq_cls")
@@ -25,7 +27,14 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
         dropout: classification layer dropout
     """
 
-    def __init__(self, token_makers, num_classes, pretrained_model_name=None, dropout=0.2):
+    def __init__(
+            self,
+            token_makers,
+            num_classes,
+            criterion,
+            pretrained_model_name=None,
+            dropout=0.2,
+    ):
 
         super(BertForSeqCls, self).__init__(token_makers)
 
@@ -41,7 +50,10 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
         )
         self.classifier.apply(self._model.init_bert_weights)
 
-        self.criterion = nn.CrossEntropyLoss()
+        self.criterion = get_criterion_fn(
+            criterion.name,
+            **vars(getattr(criterion, criterion.name, NestedNamespace()))
+        )
 
     @overrides
     def forward(self, features, labels=None):
@@ -66,7 +78,7 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
         * Kwargs:
             label: label dictionary like below.
             {
-                "class_idx": [2, 1, 0, 4, 5, ...]
+                "class_idx": [2, 1, 0, 4, 5, ...],
                 "data_idx": [2, 4, 5, 7, 2, 1, ...]
             }
             Do not calculate loss when there is no label. (inference/predict mode)

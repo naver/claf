@@ -9,6 +9,9 @@ from claf.model.base import ModelWithoutTokenEmbedder
 from claf.model.token_classification.mixin import TokenClassification
 
 from claf.model import cls_utils
+from claf.model.token_classification.crf import ConditionalRandomField, allowed_transitions
+from claf.modules.criterion import get_criterion_fn
+from claf.config.namespace import NestedNamespace
 
 
 @register("model:bert_for_tok_cls")
@@ -21,7 +24,9 @@ class BertForTokCls(TokenClassification, ModelWithoutTokenEmbedder):
     * Args:
         token_embedder: used to embed the sequence
         num_tags: number of classified tags
+        tag_idx2text: dictionary mapping from tag index to text
         ignore_tag_idx: index of the tag to ignore when calculating loss (tag pad value)
+        criterion: criterion function config
 
     * Kwargs:
         pretrained_model_name: the name of a pre-trained model
@@ -29,7 +34,14 @@ class BertForTokCls(TokenClassification, ModelWithoutTokenEmbedder):
     """
 
     def __init__(
-        self, token_makers, num_tags, ignore_tag_idx, pretrained_model_name=None, dropout=0.2
+        self,
+        token_makers,
+        num_tags,
+        tag_idx2text,
+        ignore_tag_idx,
+        criterion,
+        pretrained_model_name=None,
+        dropout=0.2,
     ):
 
         super(BertForTokCls, self).__init__(token_makers)
@@ -47,7 +59,20 @@ class BertForTokCls(TokenClassification, ModelWithoutTokenEmbedder):
         )
         self.classifier.apply(self._model.init_bert_weights)
 
-        self.criterion = nn.CrossEntropyLoss(ignore_index=ignore_tag_idx)
+        self.use_crf = "crf" in criterion.name
+        if self.use_crf:
+            self.crf = ConditionalRandomField(
+                num_tags,
+                allowed_transitions("BIO", tag_idx2text),
+                include_start_end_transitions=False,
+            )
+            assert criterion.name == "crf_negative_log_likelihood"
+        else:
+            self.crf = None
+
+        criterion_params = vars(getattr(criterion, criterion.name, NestedNamespace()))
+        criterion_params.update({"ignore_index": self.ignore_tag_idx, "crf": self.crf})
+        self.criterion = get_criterion_fn(criterion.name, **criterion_params)
 
     @overrides
     def forward(self, features, labels=None):
@@ -78,7 +103,7 @@ class BertForTokCls(TokenClassification, ModelWithoutTokenEmbedder):
         * Kwargs:
             label: label dictionary like below.
             {
-                "class_idx": [2, 1, 0, 4, 5, ...]
+                "tag_idxs": [2, 1, 0, 4, 5, ...],
                 "data_idx": [2, 4, 5, 7, 2, 1, ...]
             }
             Do not calculate loss when there is no label. (inference/predict mode)
@@ -112,6 +137,12 @@ class BertForTokCls(TokenClassification, ModelWithoutTokenEmbedder):
 
         output_dict = {"sequence_embed": sequence_embed, "tag_logits": sliced_token_tag_logits}
 
+        if self.use_crf:
+            mask = (tagged_sub_token_idxs > 0).long()  # 0 is reserved for CLS
+            best_paths = self.crf.viterbi_tags(token_tag_logits, mask)
+            predicted_tags = [x for x, y in best_paths]
+            output_dict["pred_tag_idxs"] = predicted_tags
+
         if labels:
             tag_idxs = labels["tag_idxs"]
             data_idx = labels["data_idx"]
@@ -120,7 +151,7 @@ class BertForTokCls(TokenClassification, ModelWithoutTokenEmbedder):
             output_dict["data_idx"] = data_idx
 
             # Loss
-            loss = self.criterion(token_tag_logits.view(-1, self.num_tags), tag_idxs.view(-1))
+            loss = self.criterion(token_tag_logits, tag_idxs)
             output_dict["loss"] = loss.unsqueeze(0)  # NOTE: DataParallel concat Error
 
         return output_dict
@@ -136,7 +167,7 @@ class BertForTokCls(TokenClassification, ModelWithoutTokenEmbedder):
             predictions: prediction dictionary consisting of
                 - key: 'id' (sequence id)
                 - value: dictionary consisting of
-                    - class_idx
+                    - tag_idxs
 
         * Returns:
             print(Sequence, Sequence Tokens, Target Tags, Target Slots, Predicted Tags, Predicted Slots)
