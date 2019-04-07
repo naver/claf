@@ -170,7 +170,7 @@ class BertForTokCls(TokenClassification, ModelWithoutTokenEmbedder):
                     - tag_idxs
 
         * Returns:
-            print(Sequence, Sequence Tokens, Target Tags, Target Slots, Predicted Tags, Predicted Slots)
+            print(Sequence, Sequence Tokens, Target Tags, Target Entities, Predicted Tags, Predicted Entities)
         """
 
         data_idx = inputs["labels"]["data_idx"][index].item()
@@ -190,8 +190,8 @@ class BertForTokCls(TokenClassification, ModelWithoutTokenEmbedder):
         print("- Sequence Tokens:", sequence_tokens)
         print("- Target:")
         print("    Tags:", target_tag_texts)
-        print("    (Slots)", cls_utils.get_tag_dict(sequence, target_tag_texts))
+        print("    (Entities)", cls_utils.get_tag_entities(sequence, target_tag_texts))
         print("- Predict:")
         print("    Tags:", pred_tag_texts)
-        print("    (Slots)", cls_utils.get_tag_dict(sequence, pred_tag_texts))
+        print("    (Entities)", cls_utils.get_tag_entities(sequence, pred_tag_texts))
         print()

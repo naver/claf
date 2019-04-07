@@ -33,12 +33,36 @@ def write_confusion_matrix_to_csv(file_path, pycm_obj):
         writer.writerow(row)
 
 
-# seqeval
-def get_tag_dict(sequence, tag_texts):
+def get_tag_entities(sequence, tag_texts):
+    """
+    Make an IOB tag list into an entity dictionary
+
+    ex) sequence: "looking for a moderate priced viet nam or thai restaurant"
+        tag_texts: ["O", "O", "O", "B-price", "O", "B-food", "I-food", "O", "B-food", "O"]
+
+        => {
+            "price": ["moderate"],
+            "restaurant_type": ["viet nam", "thai"]
+        }
+
+    * Args:
+        sequence: a sequence, with the number of its tokens
+            obtained from splitting by whitespace is the same with the number of elements in tag_texts
+        tag_texts: a list of tags in their text form
+
+    * Returns:
+        tag_entities: dictionary consisting of
+            - $tag_name: list of entities
+    """
+
     words = sequence.split()
-    entities = get_entities(tag_texts)
+    entities = get_entities(tag_texts)  # seqeval
 
     slots = defaultdict(list)
     for slot, start_idx, end_idx in entities:
-        slots[slot].append(" ".join(words[start_idx : end_idx + 1]))
+        value = " ".join(words[start_idx : end_idx + 1])
+
+        if value:
+            slots[slot].append(value)
+
     return dict(slots)

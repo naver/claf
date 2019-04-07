@@ -213,10 +213,10 @@ class TokenClassification:
             predictions: prediction dictionary consisting of
                 - key: 'id' (sequence id)
                 - value: dictionary consisting of
-                    - class_idx
+                    - tag_idxs
 
         * Returns:
-            print(Sequence, Target Tags, Target Slots, Predicted Tags, Predicted Slots)
+            print(Sequence, Target Tags, Target Entities, Predicted Tags, Predicted Entities)
         """
 
         data_idx = inputs["labels"]["data_idx"][index].item()
@@ -233,8 +233,8 @@ class TokenClassification:
         print("- Sequence:", sequence)
         print("- Target:")
         print("    Tags:", target_tag_texts)
-        print("    (Slots)", cls_utils.get_tag_dict(sequence, target_tag_texts))
+        print("    (Entities)", cls_utils.get_tag_entities(sequence, target_tag_texts))
         print("- Predict:")
         print("    Tags:", pred_tag_texts)
-        print("    (Slots)", cls_utils.get_tag_dict(sequence, pred_tag_texts))
+        print("    (Entities)", cls_utils.get_tag_entities(sequence, pred_tag_texts))
         print()
