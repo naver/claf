@@ -101,19 +101,19 @@ def padding_tokens(tokens, max_len=None, token_name=None, pad_value=0):
 
 
 def get_token_dim(tokens, dim=0):
-    if type(tokens) == torch.Tensor:
+    if isinstance(tokens, torch.Tensor):
         dim = tokens.dim()
         if tokens.size(-1) > 1:
             dim += 1
         return dim
 
-    if type(tokens) == np.ndarray:
+    if isinstance(tokens, np.ndarray):
         dim = tokens.ndim
         if tokens.shape[-1] > 1:
             dim += 1
         return dim
 
-    if type(tokens) == list or type(tokens) == tuple:
+    if isinstance(tokens, (list, tuple)):
         dim = get_token_dim(tokens[0], dim + 1)
     return dim
 
