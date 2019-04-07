@@ -70,11 +70,11 @@
     }
   },
   "trainer": {
-    "log_dir": "logs/cola",
+    "log_dir": "logs/cola_ssa",
     "num_epochs": 50,
     "early_stopping_threshold": 10,
     "grad_max_norm": 5.0,
-    "metric_key": "accuracy",
+    "metric_key": "class_accuracy",
     "verbose_step_count": 100,
     "eval_and_save_step_count": "epoch"
   },

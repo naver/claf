@@ -1,15 +1,15 @@
  {
      "data_reader": {
          "dataset": "conll2003_bert",
-         "train_file_path": "https://raw.githubusercontent.com/Franck-Dernoncourt/NeuroNER/master/data/conll2003/en/train.txt",
-         "valid_file_path": "https://raw.githubusercontent.com/Franck-Dernoncourt/NeuroNER/master/data/conll2003/en/valid.txt",
+         "train_file_path": "https://github.com/Franck-Dernoncourt/NeuroNER/blob/master/neuroner/data/conll2003/en/train.txt?raw=true",
+         "valid_file_path": "https://github.com/Franck-Dernoncourt/NeuroNER/blob/master/neuroner/data/conll2003/en/valid.txt?raw=true",
          "conll2003_bert": {
              "sequence_max_length": 128,
              "ignore_tag_idx": -1
          }
      },
      "iterator": {
-         "batch_size": 32
+         "batch_size": 64
      },
      "token": {
          "names": ["feature"],
@@ -18,7 +18,7 @@
              "subword": {
                  "name": "wordpiece",
                  "wordpiece": {
-                     "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-cased-vocab.txt"
+                     "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-cased-vocab.txt"
                  }
              },
              "word": {
@@ -30,7 +30,7 @@
          },
          "feature": {
              "vocab": {
-                 "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-cased-vocab.txt",
+                 "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-cased-vocab.txt",
                  "pretrained_token": "all"
              },
              "indexer": {
@@ -41,26 +41,22 @@
      "model": {
          "name": "bert_for_tok_cls",
          "bert_for_tok_cls": {
-             "pretrained_model_name": "bert-large-cased",
-             "dropout": 0.1,
+             "pretrained_model_name": "bert-base-uncased",
              "criterion": {
-               "name": "cross_entropy"
+                  "name": "cross_entropy"
              }
          }
      },
      "trainer": {
-         "log_dir": "logs/conll2003_bert_large",
-         "num_epochs": 3,
+         "log_dir": "logs/cola_bert_base",
+         "num_epochs": 10,
          "early_stopping_threshold": 10,
-         "metric_key": "tag_conlleval_f1",
+         "metric_key": "class_accuracy",
          "eval_and_save_step_count": "epoch"
      },
      "optimizer": {
          "op_type": "bert_adam",
-         "learning_rate": 1e-5,
-         "bert_adam": {
-             "warmup": 0.1
-         }
+         "learning_rate": 1e-5
      },
      "seed_num": 42
  }

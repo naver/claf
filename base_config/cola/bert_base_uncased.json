@@ -41,14 +41,17 @@
          "name": "bert_for_seq_cls",
          "bert_for_seq_cls": {
              "pretrained_model_name": "bert-large-uncased",
-             "dropout": 0.0
+             "dropout": 0.1,
+             "criterion": {
+               "name": "cross_entropy"
+             }
          }
      },
      "trainer": {
-         "log_dir": "logs/cola_bert",
+         "log_dir": "logs/cola_bert_base",
          "num_epochs": 3,
          "early_stopping_threshold": 10,
-         "metric_key": "accuracy",
+         "metric_key": "class_accuracy",
          "eval_and_save_step_count": "epoch"
      },
      "optimizer": {
