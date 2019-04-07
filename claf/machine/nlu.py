@@ -53,9 +53,15 @@ class NLU(Machine):
         return nlu_result
 
     def intent_classification(self, utterance):
-        raw_feature = {"sequence": utterance}
+        raw_feature = {
+            "sequence": utterance,
+            "return_logits": False,
+        }
         return self.ic_experiment.predict(raw_feature)
 
     def slot_filling(self, utterance):
-        raw_feature = {"sequence": utterance}
+        raw_feature = {
+            "sequence": utterance,
+            "return_logits": False,
+        }
         return self.sf_experiment.predict(raw_feature)
