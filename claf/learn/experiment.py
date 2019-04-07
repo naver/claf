@@ -83,7 +83,7 @@ class Experiment:
         """ Load Setting - need to load checkpoint case (ex. evaluate and predict) """
         cuda_devices = self.argument.cuda_devices
         checkpoint_path = self.argument.checkpoint_path
-        prev_cuda_device_id = getattr(self.argument, "prev_cuda_device_id", None)
+        prev_cuda_device_id = getattr(self.argument, "prev_cuda_device_id", 0)
 
         self.model_checkpoint = self._read_checkpoint(
             cuda_devices, checkpoint_path, prev_cuda_device_id=prev_cuda_device_id
@@ -116,9 +116,12 @@ class Experiment:
         saved_config.load_from_json(saved_config_dict)
 
         is_use_gpu = self.config.use_gpu
+        cuda_devices = self.config.cuda_devices
 
         self.config = saved_config
         self.config.use_gpu = is_use_gpu
+        self.config.cuda_devices = cuda_devices
+        self.config.iterator.cuda_devices = cuda_devices
 
     def __call__(self):
         """ Run Trainer """
@@ -290,7 +293,9 @@ class Experiment:
             use_multi_gpu = len(cuda_devices) > 1
             if use_multi_gpu:
                 model = torch.nn.DataParallel(model, device_ids=cuda_devices)
-            model.cuda()
+                model.cuda()
+            else:
+                model.to(f"cuda:{cuda_devices[0]}")
         return model
 
     def set_trainer(self, model, op_dict={}, save_params={}):
@@ -450,7 +455,7 @@ class Experiment:
         text_handler = TextHandler(token_makers, lazy_indexing=False)
 
         # Set predict config
-        if self.argument.interactive:
+        if getattr(self.argument, "interactive", False):
             raw_features = {feature_name: "" for feature_name in data_reader.text_columns}
         else:
             raw_features = {}
