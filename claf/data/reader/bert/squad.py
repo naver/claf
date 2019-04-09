@@ -148,6 +148,7 @@ class SQuADBertReader(DataReader):
                         ]
 
                         if not self._is_rebuild(char_answer_text, word_answer_text):
+                            logger.warning(f"word_tokenized_error: {char_answer_text}  ###  {word_answer_text}")
                             word_tokenized_error_count += 1
                     else:
                         # Unanswerable
@@ -180,6 +181,7 @@ class SQuADBertReader(DataReader):
                         bert_answer = context_text[char_start:char_end]
 
                         if char_answer_text != bert_answer:
+                            logger.warning("subword_tokenized_error:", char_answer_text, " ### ", word_answer_text)
                             subword_tokenized_error_count += 1
 
                         feature_row = {
