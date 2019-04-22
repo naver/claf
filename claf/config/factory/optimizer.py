@@ -34,6 +34,9 @@ class OptimizerFactory(Factory):
             op_config = vars(op_config)
             self.optimizer_params.update(op_config)
 
+        if self.op_type == "bert_adam":
+            self.optimizer_params["t_total"] = config.num_train_steps
+
         # LearningRate Scheduler
         self.lr_schedulers = get_lr_schedulers()
         self.lr_scheduler_type = getattr(config, "lr_scheduler_type", None)

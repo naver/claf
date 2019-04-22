@@ -6,12 +6,12 @@
          "squad_bert": {
              "lang_code": "ko",
              "max_seq_length": 512,
-             "context_stride": 128,
+             "context_stride": 64,
              "max_question_length": 64
          }
      },
      "iterator": {
-         "batch_size": 16
+         "batch_size": 12
      },
      "token": {
          "names": ["feature"],

@@ -15,7 +15,7 @@ spacy
 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.0.0/en_core_web_sm-2.0.0.tar.gz
 
 # BERT
-pytorch-pretrained-bert==0.4.0
+pytorch-pretrained-bert>=0.6.1
 
 # WikiSQL
 babel
