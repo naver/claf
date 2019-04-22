@@ -332,6 +332,7 @@
                         <span class="p">]</span>
 
                         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_rebuild</span><span class="p">(</span><span class="n">char_answer_text</span><span class="p">,</span> <span class="n">word_answer_text</span><span class="p">):</span>
+                            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;word_tokenized_error: </span><span class="si">{char_answer_text}</span><span class="s2">  ###  </span><span class="si">{word_answer_text}</span><span class="s2">&quot;</span><span class="p">)</span>
                             <span class="n">word_tokenized_error_count</span> <span class="o">+=</span> <span class="mi">1</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="c1"># Unanswerable</span>
@@ -364,6 +365,7 @@
                         <span class="n">bert_answer</span> <span class="o">=</span> <span class="n">context_text</span><span class="p">[</span><span class="n">char_start</span><span class="p">:</span><span class="n">char_end</span><span class="p">]</span>
 
                         <span class="k">if</span> <span class="n">char_answer_text</span> <span class="o">!=</span> <span class="n">bert_answer</span><span class="p">:</span>
+                            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;subword_tokenized_error: </span><span class="si">{char_answer_text}</span><span class="s2"> ### </span><span class="si">{word_answer_text}</span><span class="s2">)&quot;</span><span class="p">)</span>
                             <span class="n">subword_tokenized_error_count</span> <span class="o">+=</span> <span class="mi">1</span>
 
                         <span class="n">feature_row</span> <span class="o">=</span> <span class="p">{</span>
@@ -554,6 +556,12 @@
 
         <span class="k">if</span> <span class="n">min_end_distance</span> <span class="o">&lt;</span> <span class="n">DISTANCE_THRESHOLD</span><span class="p">:</span>
             <span class="n">answer_end</span> <span class="o">=</span> <span class="n">end_distances</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">min_end_distance</span><span class="p">)</span>
+            <span class="n">start_from</span> <span class="o">=</span> <span class="n">answer_end</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># e.g.) end_distances: [3, 1, 1, 4], min_end_distance = 1 =&gt; use 2 index instead of 1</span>
+                <span class="n">answer_end</span> <span class="o">=</span> <span class="n">end_distances</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">min_end_distance</span><span class="p">,</span> <span class="n">start_from</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">pass</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">answer_end</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">return</span> <span class="n">answer_start</span><span class="p">,</span> <span class="n">answer_end</span></div>
