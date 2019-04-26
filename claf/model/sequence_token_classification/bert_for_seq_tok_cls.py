@@ -9,7 +9,7 @@ from claf.model.base import ModelWithoutTokenEmbedder
 from claf.model.sequence_token_classification.mixin import SequenceTokenClassification
 
 from claf.model import cls_utils
-from claf.model.token_classification.crf import ConditionalRandomField, allowed_transitions
+from claf.modules.layer import ConditionalRandomField, crf_allowed_transitions
 from claf.modules.criterion import get_criterion_fn
 from claf.config.namespace import NestedNamespace
 
@@ -87,7 +87,7 @@ class BertForSeqTokCls(SequenceTokenClassification, ModelWithoutTokenEmbedder):
         if self.use_crf:
             self.crf = ConditionalRandomField(
                 num_tags,
-                allowed_transitions("BIO", tag_idx2text),
+                crf_allowed_transitions("BIO", tag_idx2text),
                 include_start_end_transitions=False,
             )
             assert tag_criterion.name == "crf_negative_log_likelihood"
