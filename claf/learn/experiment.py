@@ -251,6 +251,10 @@ class Experiment:
             DataLoaderFactory, self.config.iterator, param={"datasets": datasets}
         )
 
+        # calculate 'num_train_steps'
+        num_train_steps = self._get_num_train_steps(train_loader)
+        self.config.optimizer.num_train_steps = num_train_steps
+
         checkpoint_dir = Path(self.config.trainer.log_dir) / "checkpoint"
         checkpoints = None
         if checkpoint_dir.exists():
@@ -293,6 +297,15 @@ class Experiment:
 
     def _create_by_factory(self, factory, item_config, param={}):
         return factory(item_config).create(**param)
+
+    def _get_num_train_steps(self, train_loader):
+        train_set_size = len(train_loader.dataset)
+        batch_size = self.config.iterator.batch_size
+        gradient_accumulation_steps = getattr(self.config.optimizer, "gradient_accumulation_steps", 1)
+        num_epochs = self.config.trainer.num_epochs
+
+        num_train_steps = int(train_set_size / batch_size / gradient_accumulation_steps) * num_epochs
+        return num_train_steps
 
     def _load_exist_checkpoints(self, checkpoint_dir):  # pragma: no cover
         checkpoints = utils.get_sorted_path(checkpoint_dir, both_exist=True)

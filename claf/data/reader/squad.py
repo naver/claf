@@ -111,6 +111,7 @@ class SQuADReader(DataReader):
                         ]
 
                         if not self._is_rebuild(char_answer_text, word_answer_text):
+                            logger.warning(f"word_tokenized_error: {char_answer_text}  ###  {word_answer_text}")
                             tokenized_error_count += 1
 
                     else:

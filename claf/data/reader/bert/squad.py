@@ -148,6 +148,7 @@ class SQuADBertReader(DataReader):
                         ]
 
                         if not self._is_rebuild(char_answer_text, word_answer_text):
+                            logger.warning(f"word_tokenized_error: {char_answer_text}  ###  {word_answer_text}")
                             word_tokenized_error_count += 1
                     else:
                         # Unanswerable
@@ -180,6 +181,7 @@ class SQuADBertReader(DataReader):
                         bert_answer = context_text[char_start:char_end]
 
                         if char_answer_text != bert_answer:
+                            logger.warning(f"subword_tokenized_error: {char_answer_text} ### {word_answer_text})")
                             subword_tokenized_error_count += 1
 
                         feature_row = {
@@ -370,6 +372,12 @@ class SQuADBertReader(DataReader):
 
         if min_end_distance < DISTANCE_THRESHOLD:
             answer_end = end_distances.index(min_end_distance)
+            start_from = answer_end + 1
+            try:
+                # e.g.) end_distances: [3, 1, 1, 4], min_end_distance = 1 => use 2 index instead of 1
+                answer_end = end_distances.index(min_end_distance, start_from)
+            except ValueError:
+                pass
         else:
             answer_end = 0
         return answer_start, answer_end

@@ -18,8 +18,8 @@ VERSION = None
 
 REQUIRED = [
     "numpy", "torch>=1.0.1",
+    "pytorch-pretrained-bert>=0.6.1",  # BERT
     "konlpy", "nltk", "spacy",  # Tokenizer
-    "pytorch-pretrained-bert==0.4.0", # BERT
     "babel", "records",  # WikiSQL
     "h5py", "jsbeautifier", "overrides", "requests", "gensim", "tqdm", "tensorboardX",  # Utils
     "pycm", "seqeval",  # Classification

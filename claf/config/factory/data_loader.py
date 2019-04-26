@@ -40,7 +40,7 @@ class DataLoaderFactory(Factory):
         if "valid" in datasets:
             valid_loader = self.make_data_loader(
                 datasets["valid"],
-                batch_size=self.batch_size,
+                batch_size=self.batch_size // 2,
                 shuffle=False,
                 cuda_device_id=self.cuda_device_id,
             )
