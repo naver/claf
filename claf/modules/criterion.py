@@ -21,7 +21,7 @@ def get_criterion_fn(name, **kwargs):
     def crf_negative_log_likelihood(logits, targets):
         assert crf is not None
 
-        return crf_negative_log_likelihood(
+        return _crf_negative_log_likelihood(
             logits, targets, ignore_index, crf
         )
 
@@ -39,7 +39,7 @@ def get_criterion_fn(name, **kwargs):
     return criterion_functions[name]
 
 
-def crf_negative_log_likelihood(logits, targets, ignore_index, crf):
+def _crf_negative_log_likelihood(logits, targets, ignore_index, crf):
     mask = (targets != ignore_index).long()
     targets[targets == ignore_index] = 0
     log_likelihood = crf(logits, targets, mask)
