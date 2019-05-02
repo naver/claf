@@ -2,6 +2,7 @@
 import json
 import logging
 import uuid
+import ast
 
 from overrides import overrides
 from tqdm import tqdm
@@ -196,6 +197,8 @@ class SeqTokClsBertReader(DataReader):
                 data_uid = str(uuid.uuid1())
 
             tag_texts = example[self.tag_key]
+            if isinstance(tag_texts, str):
+                tag_texts = ast.literal_eval(tag_texts)
             tag_idxs = [tag_text2idx[tag_text] for tag_text in tag_texts]
 
             utils.sanity_check_iob(naive_tokens, tag_texts)
