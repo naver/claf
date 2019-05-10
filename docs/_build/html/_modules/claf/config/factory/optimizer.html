@@ -218,6 +218,9 @@
             <span class="n">op_config</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">op_config</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">optimizer_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">op_config</span><span class="p">)</span>
 
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">&quot;bert_adam&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer_params</span><span class="p">[</span><span class="s2">&quot;t_total&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">num_train_steps</span>
+
         <span class="c1"># LearningRate Scheduler</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lr_schedulers</span> <span class="o">=</span> <span class="n">get_lr_schedulers</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_type</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;lr_scheduler_type&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>

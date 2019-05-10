@@ -224,7 +224,7 @@
         <span class="k">if</span> <span class="s2">&quot;valid&quot;</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
             <span class="n">valid_loader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_data_loader</span><span class="p">(</span>
                 <span class="n">datasets</span><span class="p">[</span><span class="s2">&quot;valid&quot;</span><span class="p">],</span>
-                <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+                <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span>
                 <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                 <span class="n">cuda_device_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cuda_device_id</span><span class="p">,</span>
             <span class="p">)</span>

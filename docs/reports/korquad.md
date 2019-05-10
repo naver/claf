@@ -16,5 +16,5 @@
 | --- | --- | --- | --- | --- |
 | **BiDAF** | 75.476 | 85.915 | korquad/bidaf.json | - |
 | **DocQA** | 77.693 | 88.115 | korquad/docqa.json | - |
-| **BERT**-Base, Multilingual Uncased | 77.641 | 87.851 | korquad/bert_base_multilingual_uncased.json | - |
-| **BERT**-Base, Multilingual Cased | 78.957 | 88.686 | korquad/bert_base_multilingual_cased.json | - |
+| **BERT**-Base, Multilingual Uncased | 81.573 | 90.679 | korquad/bert_base_multilingual_uncased.json | - |
+| **BERT**-Base, Multilingual Cased | 82.542 | 91.692 | korquad/bert_base_multilingual_cased.json | - |

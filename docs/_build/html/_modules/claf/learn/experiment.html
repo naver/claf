@@ -384,6 +384,10 @@
             <span class="n">DataLoaderFactory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">iterator</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;datasets&quot;</span><span class="p">:</span> <span class="n">datasets</span><span class="p">}</span>
         <span class="p">)</span>
 
+        <span class="c1"># calculate &#39;num_train_steps&#39;</span>
+        <span class="n">num_train_steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_num_train_steps</span><span class="p">(</span><span class="n">train_loader</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">num_train_steps</span> <span class="o">=</span> <span class="n">num_train_steps</span>
+
         <span class="n">checkpoint_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">log_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;checkpoint&quot;</span>
         <span class="n">checkpoints</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">checkpoint_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
@@ -415,6 +419,15 @@
 
     <span class="k">def</span> <span class="nf">_create_by_factory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factory</span><span class="p">,</span> <span class="n">item_config</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="p">{}):</span>
         <span class="k">return</span> <span class="n">factory</span><span class="p">(</span><span class="n">item_config</span><span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">**</span><span class="n">param</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_num_train_steps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">):</span>
+        <span class="n">train_set_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">iterator</span><span class="o">.</span><span class="n">batch_size</span>
+        <span class="n">gradient_accumulation_steps</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">optimizer</span><span class="p">,</span> <span class="s2">&quot;gradient_accumulation_steps&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">num_epochs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">num_epochs</span>
+
+        <span class="n">num_train_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">train_set_size</span> <span class="o">/</span> <span class="n">batch_size</span> <span class="o">/</span> <span class="n">gradient_accumulation_steps</span><span class="p">)</span> <span class="o">*</span> <span class="n">num_epochs</span>
+        <span class="k">return</span> <span class="n">num_train_steps</span>
 
     <span class="k">def</span> <span class="nf">_load_exist_checkpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checkpoint_dir</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
         <span class="n">checkpoints</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">get_sorted_path</span><span class="p">(</span><span class="n">checkpoint_dir</span><span class="p">,</span> <span class="n">both_exist</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

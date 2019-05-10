@@ -295,6 +295,7 @@
                         <span class="p">]</span>
 
                         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_rebuild</span><span class="p">(</span><span class="n">char_answer_text</span><span class="p">,</span> <span class="n">word_answer_text</span><span class="p">):</span>
+                            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;word_tokenized_error: </span><span class="si">{char_answer_text}</span><span class="s2">  ###  </span><span class="si">{word_answer_text}</span><span class="s2">&quot;</span><span class="p">)</span>
                             <span class="n">tokenized_error_count</span> <span class="o">+=</span> <span class="mi">1</span>
 
                     <span class="k">else</span><span class="p">:</span>
