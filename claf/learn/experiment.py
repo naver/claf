@@ -15,7 +15,7 @@ from claf.config.factory import (
 )
 from claf import utils as common_utils
 from claf.config.args import NestedNamespace
-from claf.config.utils import convert_config2dict, pretty_json_dumps
+from claf.config.utils import convert_config2dict, pretty_json_dumps, set_global_seed
 from claf.tokens.text_handler import TextHandler
 from claf.learn.mode import Mode
 from claf.learn.trainer import Trainer
@@ -44,7 +44,7 @@ class Experiment:
         self.mode = mode
 
         self.common_setting(mode, config)
-        if mode.endswith(Mode.EVAL) or mode.endswith(Mode.PREDICT):
+        if mode != Mode.TRAIN:  # evaluate and predict
             self.load_setting()
 
             # Set evaluation config
@@ -88,7 +88,7 @@ class Experiment:
         self.model_checkpoint = self._read_checkpoint(
             cuda_devices, checkpoint_path, prev_cuda_device_id=prev_cuda_device_id
         )
-        self._set_saved_config()
+        self._set_saved_config(cuda_devices)
 
     def _read_checkpoint(self, cuda_devices, checkpoint_path, prev_cuda_device_id=None):
         if cuda_devices == "cpu":
@@ -105,7 +105,7 @@ class Experiment:
             checkpoint = torch.load(checkpoint_path, map_location="cpu")  # use CPU
         return checkpoint
 
-    def _set_saved_config(self):
+    def _set_saved_config(self, cuda_devices):
         saved_config_dict = self.model_checkpoint["config"]
         self.config_dict = saved_config_dict
 
@@ -119,9 +119,12 @@ class Experiment:
 
         self.config = saved_config
         self.config.use_gpu = is_use_gpu
+        self.config.cuda_devices = cuda_devices
 
     def __call__(self):
         """ Run Trainer """
+
+        set_global_seed(self.config.seed_num)  # For Reproducible
 
         if self.mode == Mode.TRAIN:
             # exit trigger slack notification
@@ -286,11 +289,19 @@ class Experiment:
     def _set_gpu_env(self, model):
         if self.config.use_gpu:
             cuda_devices = self._get_cuda_devices()
+            num_gpu = len(cuda_devices)
 
-            use_multi_gpu = len(cuda_devices) > 1
+            use_multi_gpu = num_gpu > 1
             if use_multi_gpu:
                 model = torch.nn.DataParallel(model, device_ids=cuda_devices)
             model.cuda()
+        else:
+            num_gpu = 0
+
+        num_gpu_state = num_gpu
+        if num_gpu > 1:
+            num_gpu_state += " (Multi-GPU)"
+        logger.info(f"use_gpu: {self.config.use_gpu} num_gpu: {num_gpu_state}, distributed training: False, 16-bits trainiing: False")
         return model
 
     def set_trainer(self, model, op_dict={}, save_params={}):

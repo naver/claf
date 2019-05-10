@@ -77,7 +77,6 @@ def train_config(parser, input_argv=None):
     if not use_base_config:
         config = optimize_config(config)
 
-    utils.set_global_seed(config.seed_num)  # For Reproducible
     set_gpu_env(config)
     set_batch_size(config)
     return config
