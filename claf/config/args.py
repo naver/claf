@@ -142,7 +142,7 @@ def set_batch_size(config):
     if config.gpu_num > 1:
         batch_size *= config.gpu_num
     if getattr(config.optimizer, "gradient_accumulation_steps", None):
-        batch_size /= config.optimizer.gradient_accumulation_steps
+        batch_size = batch_size // config.optimizer.gradient_accumulation_steps
     config.iterator.batch_size = int(batch_size)
 
 
