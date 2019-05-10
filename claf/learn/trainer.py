@@ -6,6 +6,7 @@ import os
 import time
 import random
 
+import torch
 from torch.nn.utils import clip_grad_norm_
 from tqdm import tqdm
 
@@ -433,8 +434,8 @@ class Trainer:
                         and type(eval_and_save_step_count) == int
                         and self.train_counter.global_step % eval_and_save_step_count == 0
                     ):
-
-                        valid_metrics = self._run_epoch(valid_loader, is_training=False)
+                        with torch.no_grad():
+                            valid_metrics = self._run_epoch(valid_loader, is_training=False)
                         self._check_valid_results(valid_metrics, report=True)
                         self.save(optimizer)
 
@@ -520,22 +521,24 @@ class Trainer:
     def predict(self, raw_feature, raw_to_tensor_fn, arguments, interactive=False):
         """ Inference / Predict """
 
-        if interactive:  # pragma: no cover
-            while True:
-                for k in raw_feature:
-                    raw_feature[k] = utils.get_user_input(k)
+        self.model.eval()
+        with torch.no_grad():
+            if interactive:  # pragma: no cover
+                while True:
+                    for k in raw_feature:
+                        raw_feature[k] = utils.get_user_input(k)
 
+                    tensor_feature, helper = raw_to_tensor_fn(raw_feature)
+                    output_dict = self.model(tensor_feature)
+
+                    arguments.update(raw_feature)
+                    predict = self.model.predict(output_dict, arguments, helper)
+                    print(f"Predict: {pretty_json_dumps(predict)} \n")
+            else:
                 tensor_feature, helper = raw_to_tensor_fn(raw_feature)
                 output_dict = self.model(tensor_feature)
 
-                arguments.update(raw_feature)
-                predict = self.model.predict(output_dict, arguments, helper)
-                print(f"Predict: {pretty_json_dumps(predict)} \n")
-        else:
-            tensor_feature, helper = raw_to_tensor_fn(raw_feature)
-            output_dict = self.model(tensor_feature)
-
-            return self.model.predict(output_dict, arguments, helper)
+                return self.model.predict(output_dict, arguments, helper)
 
     def save(self, optimizer):
         # set all config to model
