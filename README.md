@@ -43,6 +43,7 @@
 - [Machine](#machine)
 - [Contributing](#contributing)
 - [Maintainers](#maintainers)
+- [Citing](#citing)
 - [License](#license)
 
 
@@ -330,7 +331,7 @@ CLaF is currently maintained by
 
 ## Citing
 
-If you use CLaF, please cite:
+If you use CLaF for your work, please cite:
 
 ```bibtex
 @misc{CL,
