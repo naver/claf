@@ -328,6 +328,24 @@ CLaF is currently maintained by
 - [Sohee Yang](https://github.com/soheeyang)
 - [Minjeong Kim](https://github.com/Mjkim88)
 
+## Citing
+
+If you use CLaF, please cite:
+
+```bibtex
+@misc{CL,
+  author = {Lee, Dongjun and Yang, Sohee and Kim, Minjeong},
+  title = {CLaF: Open-Source Clova Language Framework},
+  year = {2019},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/naver/claf}}
+}
+```
+
+We will update this bibtex with our paper.
+
+
 ## Acknowledgements
 
 `docs/` directory which includes documentation created by [Sphinx](http://www.sphinx-doc.org/).
