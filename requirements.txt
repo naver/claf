@@ -11,8 +11,8 @@ git+https://github.com/DongjunLee/sphinx_rtd_theme.git
 # Tokenizer
 konlpy
 nltk
-spacy
-https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.0.0/en_core_web_sm-2.0.0.tar.gz
+spacy>=2.1.4
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.1.0/en_core_web_sm-2.1.0.tar.gz
 
 # BERT
 pytorch-pretrained-bert>=0.6.1
