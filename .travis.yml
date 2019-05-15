@@ -3,8 +3,8 @@ python:
   - "3.6"
 # command to install dependencies
 install: 
-  - "pip install -r requirements.txt"
-  - pip install codecov
+  - "pip install --progress-bar off -r requirements.txt"
+  - "pip install --progress-bar off codecov"
 # command to run tests
 script: 
     python -m pytest tests --cov-report term --cov claf
