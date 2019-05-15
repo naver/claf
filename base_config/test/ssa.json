@@ -15,10 +15,11 @@
     "types": ["char", "word"],
     "tokenizer": {
       "char": {
-        "name": "jamo_ko"
+          "name": "character"
       },
       "word": {
-        "name": "mecab_ko"
+          "name": "treebank_en",
+          "split_with_regex": true
       }
     },
     "char": {

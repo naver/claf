@@ -18,7 +18,7 @@
              "subword": {
                  "name": "wordpiece",
                  "wordpiece": {
-                     "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-vocab.txt"
+                     "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
                  }
              },
              "word": {
@@ -30,7 +30,7 @@
          },
          "feature": {
              "vocab": {
-                 "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-vocab.txt",
+                 "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt",
                  "pretrained_token": "all"
              },
              "indexer": {
@@ -41,7 +41,7 @@
      "model": {
          "name": "bert_for_seq_cls",
          "bert_for_seq_cls": {
-             "pretrained_model_name": "bert-base-multilingual-cased",
+             "pretrained_model_name": "bert-base-uncased",
              "dropout": 0.0
          }
      },

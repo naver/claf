@@ -4,6 +4,11 @@ import os
 import random
 import shutil
 
+import numpy as np
+
+
+RANDOM_TOKENS = ['kox', 'pev', 'hi', 'shemini', 'outvote', "foo", "bar", "baz", "qux"]
+
 
 def make_squad_synthetic_data(output_path):
     ANSWER_TOKEN = "ANSWER"
@@ -75,7 +80,7 @@ def make_wiki_article_synthetic_data(output_dir):
 
 
 def make_random_tokens(length, answer_token=""):
-    tokens = ['kox', 'pev', 'hi', 'shemini', 'outvote']
+    tokens = RANDOM_TOKENS
 
     if answer_token:
         output = [answer_token]
@@ -114,7 +119,7 @@ def make_seq_cls_synthetic_data(output_path):
 
 def make_tok_cls_synthetic_data(output_path):
     tag_key = "label"
-    tags = ["O", "foo", "bar", "baz", "qux"]
+    tags = ["O"] + RANDOM_TOKENS
     data_size = 10
 
     out_tok_cls = {
@@ -159,3 +164,11 @@ def make_dummy_tags(sequence, dummy_tag_cands):
             prev_tag = tag
 
     return tags
+
+
+def write_embedding_txt(output_path, dim):
+    random_nums = np.random.rand(len(RANDOM_TOKENS), 300)
+
+    with open(output_path, "w") as out_file:
+        for token, num in zip(RANDOM_TOKENS, random_nums):
+            out_file.write(f"{token} {num}\n")
