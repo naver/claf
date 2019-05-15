@@ -1,5 +1,5 @@
 # Backends
-numpy
+numpy>=1.15.0
 torch>=1.0.1
 
 # Documentation
@@ -32,7 +32,7 @@ tqdm
 tensorboardX
 
 # Test, CI
-pytest
+pytest>=3.6
 pytest-cov
 
 # Classification

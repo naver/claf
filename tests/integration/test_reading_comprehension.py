@@ -13,6 +13,7 @@ import utils
 
 
 SYNTHETIC_DATA_PATH = os.path.join("logs", "test", "squad_synthetic_data.json")
+DUMMY_EMBEDDING_300D_PATH = os.path.join("logs", "test", "dummy_300d.txt")
 
 
 @pytest.fixture
@@ -36,6 +37,7 @@ def load_and_setting(config_path):
 @pytest.mark.order1
 def test_make_synthetic_data():
     utils.make_squad_synthetic_data(SYNTHETIC_DATA_PATH)
+    utils.write_embedding_txt(DUMMY_EMBEDDING_300D_PATH, 300)
 
 
 @pytest.mark.order2
@@ -52,11 +54,12 @@ def test_train_squad_bidaf_no_answer_model(test_config):
     experiment()
 
 
-@pytest.mark.order2
-@pytest.mark.parametrize("test_config", ["./base_config/test/bidaf+cove.json"], indirect=True)
-def test_train_squad_bidaf_cove_model(test_config):
-    experiment = Experiment(Mode.TRAIN, test_config)
-    experiment()
+# need glove.840B.300d.txt (5.65 GB)
+# @pytest.mark.order2
+# @pytest.mark.parametrize("test_config", ["./base_config/test/bidaf+cove.json"], indirect=True)
+# def test_train_squad_bidaf_cove_model(test_config):
+    # experiment = Experiment(Mode.TRAIN, test_config)
+    # experiment()
 
 
 @pytest.mark.order2

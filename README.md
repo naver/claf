@@ -10,10 +10,9 @@
     </a>
     <a href="https://github.com/ambv/black">
         <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code style: black">
-    </a>
-        <a href="https://github.com/pytest-dev/pytest-cov">
-        <img src="./images/coverage_badge.svg" alt="Test Coverage">
-    </a>
+  <a href="https://codecov.io/gh/naver/claf">
+    <img src="https://codecov.io/gh/naver/claf/branch/master/graph/badge.svg" />
+  </a>
 </p>
 
 ---

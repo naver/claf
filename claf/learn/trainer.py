@@ -368,15 +368,6 @@ class Trainer:
 
         eval_example_count = 0
 
-        num_train_steps = int(
-            len(data_loader)
-            / data_loader.batch_size
-            / self.gradient_accumulation_steps
-            * self.num_epochs
-        )
-        if num_train_steps == 0:
-            num_train_steps = 1
-
         for step, batch in enumerate(tqdm(data_loader, disable=disable_prograss_bar)):
             inputs = batch.to_dict()  # for DataParallel
             output_dict = self.model(**inputs)
