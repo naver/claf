@@ -245,7 +245,10 @@ class Experiment:
         gradient_accumulation_steps = getattr(self.config.optimizer, "gradient_accumulation_steps", 1)
         num_epochs = self.config.trainer.num_epochs
 
-        num_train_steps = int(train_set_size / batch_size / gradient_accumulation_steps) * num_epochs
+        one_epoch_steps = int(train_set_size / batch_size / gradient_accumulation_steps)
+        if one_epoch_steps == 0:
+            one_epoch_steps = 1
+        num_train_steps = one_epoch_steps * num_epochs
         return num_train_steps
 
     def _load_exist_checkpoints(self, checkpoint_dir):  # pragma: no cover
