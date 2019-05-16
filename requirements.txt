@@ -2,12 +2,6 @@
 numpy>=1.15.0
 torch>=1.0.1
 
-# Documentation
-Sphinx
-recommonmark
-sphinx_markdown_tables
-git+https://github.com/DongjunLee/sphinx_rtd_theme.git
-
 # Tokenizer
 konlpy
 nltk
