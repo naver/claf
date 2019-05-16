@@ -5,9 +5,10 @@
 <h4 align="center">Clova Language Framework</h4>
 
 <p align="center">
-    <a href="https://naver.github.io/claf/">
-        <img src="https://readthedocs.org/projects/pip/badge/?version=latest" alt="Documentation">
+    <a href='https://naver.github.io/claf'>
+        <img src='https://readthedocs.org/projects/claf/badge/?version=latest' alt='Documentation Status' />
     </a>
+    <img src='https://travis-ci.org/naver/claf.svg?branch=master'/>
     <a href="https://github.com/ambv/black">
         <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code style: black">
   <a href="https://codecov.io/gh/naver/claf">
