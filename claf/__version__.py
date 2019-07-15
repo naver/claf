@@ -1,5 +1,5 @@
 # CLaF: Clova Language Framework
 
-VERSION = (0, 1, 1)
+VERSION = (0, 1, 3)
 
 __version__ = ".".join(map(str, VERSION))
