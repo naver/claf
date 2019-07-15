@@ -9,5 +9,4 @@ SESSION_NAME = ""
 try:
     from nsml import *
 except ImportError:
-    print("local")
     pass

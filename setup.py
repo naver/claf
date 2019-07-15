@@ -21,7 +21,7 @@ REQUIRED = [
     "pytorch-pretrained-bert>=0.6.1",  # BERT
     "konlpy", "nltk", "spacy",  # Tokenizer
     "babel", "records",  # WikiSQL
-    "h5py", "jsbeautifier", "overrides", "requests", "gensim", "tqdm", "tensorboardX",  # Utils
+    "h5py", "jsbeautifier", "msgpack", "overrides", "requests", "gensim", "tqdm", "tensorboardX",  # Utils
     "pycm", "seqeval",  # Classification
 ]
 

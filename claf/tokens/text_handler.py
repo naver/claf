@@ -111,9 +111,10 @@ class TextHandler:
             flatten_list = list(common_utils.flatten(tokens))
             token_counter = Counter(flatten_list)
 
-            self.data_handler.cache_token_counter(
-                data_reader_config, tokenizer_name, obj=token_counter
-            )
+            if config is not None:  # Cache TokenCounter
+                self.data_handler.cache_token_counter(
+                    data_reader_config, tokenizer_name, obj=token_counter
+                )
             return token_counter
 
     def index(self, datas, text_columns):
