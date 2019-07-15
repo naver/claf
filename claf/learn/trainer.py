@@ -67,6 +67,7 @@ class Trainer:
         verbose_step_count=100,
         eval_and_save_step_count="epoch",
     ):
+        assert metric_key is not None
 
         # CUDA
         self.cuda_devices = cuda_devices
@@ -78,7 +79,8 @@ class Trainer:
             self.train_counter = utils.TrainCounter(display_unit=eval_and_save_step_count)
 
         self.model = model
-        self.model_name = config["model"]["name"]
+        model_config = config.get("model", {})
+        self.model_name = model_config.get("name", "model")
         self.set_model_base_properties(config, log_dir)
 
         # Logs
