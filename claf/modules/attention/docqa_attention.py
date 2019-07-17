@@ -32,7 +32,7 @@ class DocQAAttention(nn.Module):
         torch.nn.init.xavier_uniform_(self.dot_w)
 
         self.bias = nn.Parameter(torch.FloatTensor([[1]]))
-        self.diag_mask = nn.Parameter(torch.eye(2000))  # NOTE: (hard-code) max_sequence_length
+        self.diag_mask = nn.Parameter(torch.eye(5000))  # NOTE: (hard-code) max_sequence_length
 
         if weight_init:
             initializer.weight(self.input_w)

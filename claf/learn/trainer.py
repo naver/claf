@@ -32,7 +32,6 @@ class Trainer:
 
     * Args:
         config: experiment overall config
-        cuda_devices: cuda device ids (None is CPU, len(cuda_devices) > 1, Multi-GPU)
         model: Model based on torch.nn.Module
 
     * Kwargs:
@@ -52,9 +51,8 @@ class Trainer:
 
     def __init__(
         self,
-        config,
-        cuda_devices,
         model,
+        config={},
         log_dir="logs/experiment",
         grad_max_norm=None,
         gradient_accumulation_steps=1,
@@ -70,8 +68,7 @@ class Trainer:
         assert metric_key is not None
 
         # CUDA
-        self.cuda_devices = cuda_devices
-        self.use_multi_gpu = cuda_devices is not None and len(cuda_devices) > 1
+        self.use_multi_gpu = type(model) == torch.nn.DataParallel
 
         if getattr(model, "train_counter", None):
             self.train_counter = model.train_counter
@@ -247,7 +244,7 @@ class Trainer:
             "max_token_count_per_time": max_token_count_per_times
         }
 
-        env = "gpu" if self.cuda_devices else "cpu"
+        env = "gpu" if torch.cuda.is_available() else "cpu"
         file_name = f"{self.model_name}-{env}.json"
         with open(file_name, "w") as f:
             json.dump(result, f, indent=4)

@@ -161,7 +161,7 @@ def bind_nsml(model, **kwargs):  # pragma: no cover
         model = model.module
 
     def infer(raw_data, **kwargs):
-        pass
+        print("raw_data:", raw_data)
 
     def load(path, *args):
         checkpoint = torch.load(path)
