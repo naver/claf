@@ -324,7 +324,6 @@ class Experiment:
         trainer_config = vars(self.config.trainer)
         trainer_config["config"] = self.config_dict
         trainer_config["model"] = model
-        trainer_config["cuda_devices"] = self._get_cuda_devices()
         trainer_config["learning_rate_scheduler"] = op_dict.get("learning_rate_scheduler", None)
         trainer_config["exponential_moving_average"] = op_dict.get(
             "exponential_moving_average", None
