@@ -160,11 +160,14 @@ def bind_nsml(model, **kwargs):  # pragma: no cover
     if type(model) == DataParallel:
         model = model.module
 
+    CHECKPOINT_FNAME = "checkpoint.bin"
+
     def infer(raw_data, **kwargs):
         print("raw_data:", raw_data)
 
-    def load(path, *args):
-        checkpoint = torch.load(path)
+    def load(dir_path, *args):
+        checkpoint_path = os.path.join(dir_path, CHECKPOINT_FNAME)
+        checkpoint = torch.load(checkpoint_path)
 
         model.load_state_dict(checkpoint["weights"])
         model.config = checkpoint["config"]
@@ -176,10 +179,11 @@ def bind_nsml(model, **kwargs):  # pragma: no cover
 
         if "optimizer" in kwargs:
             kwargs["optimizer"].load_state_dict(checkpoint["optimizer"])
-        logger.info(f"Load checkpoints...! {path}")
+        logger.info(f"Load checkpoints...! {checkpoint_path}")
 
-    def save(path, *args):
+    def save(dir_path, *args):
         # save the model with 'checkpoint' dictionary.
+        checkpoint_path = os.path.join(dir_path, CHECKPOINT_FNAME)
         checkpoint = {
             "config": model.config,
             "init_params": model.init_params,
@@ -193,10 +197,10 @@ def bind_nsml(model, **kwargs):  # pragma: no cover
         if "optimizer" in kwargs:
             checkpoint["optimizer"] = (kwargs["optimizer"].state_dict(),)
 
-        torch.save(checkpoint, path)
+        torch.save(checkpoint, checkpoint_path)
 
         train_counter = model.train_counter
-        logger.info(f"Save {train_counter.global_step} global_step checkpoints...! {path}")
+        logger.info(f"Save {train_counter.global_step} global_step checkpoints...! {checkpoint_path}")
 
     # function in function is just used to divide the namespace.
     nsml.bind(save, load, infer)

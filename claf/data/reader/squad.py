@@ -144,10 +144,11 @@ class SQuADReader(DataReader):
         """ inputs keys: question, context """
         context_text = inputs["context"]
         tokenized_context = self.word_tokenizer.tokenize(context_text)
+        question_text = inputs["question"].strip().replace("\n", "")
 
         features = {}
         features["context"] = self._clean_text(context_text)
-        features["question"] = self._clean_text(context_text)
+        features["question"] = self._clean_text(question_text)
 
         helper = {
             "text_span": self._convert_to_spans(context_text, tokenized_context),
