@@ -1,5 +1,7 @@
 
-from pytorch_pretrained_bert.tokenization import WordpieceTokenizer, load_vocab
+from pytorch_transformers import WordpieceTokenizer
+from pytorch_transformers.tokenization_bert import load_vocab
+
 
 from claf.data.data_handler import CachePath, DataHandler
 
@@ -32,7 +34,8 @@ class SubwordTokenizer(Tokenizer):
         if self.subword_tokenizer is None:
             vocab_path = self.data_handler.read(self.config["vocab_path"], return_path=True)
             vocab = load_vocab(vocab_path)
-            self.subword_tokenizer = WordpieceTokenizer(vocab)
+            self.subword_tokenizer = WordpieceTokenizer(
+                vocab, unk_token=self.config.get("unk_token", "[UNK]"))
 
         tokens = []
 

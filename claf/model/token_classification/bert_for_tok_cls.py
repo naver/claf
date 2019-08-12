@@ -1,6 +1,6 @@
 
 from overrides import overrides
-from pytorch_pretrained_bert.modeling import BertModel
+from pytorch_transformers import BertModel
 import torch.nn as nn
 
 from claf.data.data_handler import CachePath
@@ -45,7 +45,7 @@ class BertForTokCls(TokenClassification, ModelWithoutTokenEmbedder):
         self.classifier = nn.Sequential(
             nn.Dropout(dropout), nn.Linear(self._model.config.hidden_size, num_tags)
         )
-        self.classifier.apply(self._model.init_bert_weights)
+        self.classifier.apply(self._model.init_weights)
 
         self.criterion = nn.CrossEntropyLoss(ignore_index=ignore_tag_idx)
 
@@ -99,9 +99,12 @@ class BertForTokCls(TokenClassification, ModelWithoutTokenEmbedder):
 
         attention_mask = (bert_inputs > 0).long()
 
-        token_encodings, sequence_embed = self._model(
-            bert_inputs, token_type_ids, attention_mask, output_all_encoded_layers=False
+        outputs = self._model(
+            bert_inputs, token_type_ids=token_type_ids, attention_mask=attention_mask
         )
+        token_encodings = outputs[0]
+        pooled_output = outputs[1]
+
         tag_logits = self.classifier(token_encodings)  # [B, L, num_tags]
 
         # gather the logits of the tagged token positions.
@@ -110,7 +113,7 @@ class BertForTokCls(TokenClassification, ModelWithoutTokenEmbedder):
 
         sliced_token_tag_logits = [token_tag_logits[idx, :n, :] for idx, n in enumerate(num_tokens)]
 
-        output_dict = {"sequence_embed": sequence_embed, "tag_logits": sliced_token_tag_logits}
+        output_dict = {"sequence_embed": pooled_output, "tag_logits": sliced_token_tag_logits}
 
         if labels:
             tag_idxs = labels["tag_idxs"]
