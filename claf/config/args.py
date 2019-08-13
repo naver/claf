@@ -158,7 +158,7 @@ def arg_str2bool(v):
 # fmt: off
 def general(parser):
 
-    group = parser.add_argument_group("Genearl")
+    group = parser.add_argument_group("General")
     group.add_argument(
         "--seed_num",
         type=int, default=21, dest="seed_num",
