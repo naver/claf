@@ -6,7 +6,7 @@ import torch
 def get_optimizer_by_name(name):
     optimizers = {
         "adam": torch.optim.Adam,
-        "bert_adam": AdamW,
+        "adamw": AdamW,
         "sparse_adam": torch.optim.SparseAdam,
         "adagrad": torch.optim.Adagrad,
         "adadelta": torch.optim.Adadelta,

@@ -1,15 +1,14 @@
  {
      "data_reader": {
-         "dataset": "seq_cls_bert",
-         "train_file_path": "logs/test/seq_cls/synthetic_data.json",
-         "valid_file_path": "logs/test/seq_cls/synthetic_data.json",
-         "seq_cls_bert": {
-             "sequence_max_length": 128,
-             "class_key": "label"
+         "dataset": "cola_bert",
+         "train_file_path": "<CoLA train.tsv path>",
+         "valid_file_path": "<CoLA dev.tsv path>",
+         "cola_bert": {
+             "sequence_max_length": 128
          }
      },
      "iterator": {
-         "batch_size": 64
+         "batch_size": 32
      },
      "token": {
          "names": ["feature"],
@@ -24,7 +23,7 @@
              "word": {
                  "name": "bert_basic",
                  "bert_basic": {
-                     "do_lower_case": false
+                     "do_lower_case": true
                  }
              }
          },
@@ -46,14 +45,14 @@
          }
      },
      "trainer": {
-         "log_dir": "logs/test/seq_cls/bert",
-         "num_epochs": 2,
+         "log_dir": "logs/cola_bert",
+         "num_epochs": 3,
          "early_stopping_threshold": 10,
          "metric_key": "accuracy",
          "eval_and_save_step_count": "epoch"
      },
      "optimizer": {
-         "learning_rate": 0.00001,
+         "learning_rate": 2e-5,
          "op_type": "adamw",
          "adamw": {
              "weight_decay": 0.01
