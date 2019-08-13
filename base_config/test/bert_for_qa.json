@@ -55,10 +55,14 @@
          "eval_and_save_step_count": 1
      },
      "optimizer": {
-         "op_type": "bert_adam",
          "learning_rate": 0.00005,
-         "bert_adam": {
-             "warmup": 0.1
+         "op_type": "adamw",
+         "adamw": {
+             "weight_decay": 0.01
+         },
+         "lr_scheduler_type": "warmup_linear",
+         "warmup_linear": {
+             "warmup_steps": 10000
          },
          "gradient_accumulation_steps": 2
      },

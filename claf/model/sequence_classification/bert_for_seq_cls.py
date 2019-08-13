@@ -1,6 +1,6 @@
 
 from overrides import overrides
-from pytorch_pretrained_bert.modeling import BertModel
+from pytorch_transformers import BertModel
 import torch.nn as nn
 
 from claf.data.data_handler import CachePath
@@ -39,7 +39,7 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
         self.classifier = nn.Sequential(
             nn.Dropout(dropout), nn.Linear(self._model.config.hidden_size, num_classes)
         )
-        self.classifier.apply(self._model.init_bert_weights)
+        self.classifier.apply(self._model.init_weights)
 
         self.criterion = nn.CrossEntropyLoss()
 
@@ -84,12 +84,13 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
         token_type_ids = features["token_type"]["feature"]
         attention_mask = (bert_inputs > 0).long()
 
-        _, sequence_embed = self._model(
-            bert_inputs, token_type_ids, attention_mask, output_all_encoded_layers=False
+        outputs = self._model(
+            bert_inputs, token_type_ids=token_type_ids, attention_mask=attention_mask
         )
-        class_logits = self.classifier(sequence_embed)
+        pooled_output = outputs[1]
+        class_logits = self.classifier(pooled_output)
 
-        output_dict = {"sequence_embed": sequence_embed, "class_logits": class_logits}
+        output_dict = {"sequence_embed": pooled_output, "class_logits": class_logits}
 
         if labels:
             class_idx = labels["class_idx"]

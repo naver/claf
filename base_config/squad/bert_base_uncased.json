@@ -56,10 +56,14 @@
          "eval_and_save_step_count": 1000
      },
      "optimizer": {
-         "op_type": "bert_adam",
-         "learning_rate": 0.00005,
-         "bert_adam": {
-             "warmup": 0.1
+         "learning_rate": 5e-5,
+         "op_type": "adamw",
+         "adamw": {
+             "weight_decay": 0.01
+         },
+         "lr_scheduler_type": "warmup_linear",
+         "warmup_linear": {
+             "warmup_steps": 10000
          }
      },
      "seed_num": 42

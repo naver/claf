@@ -3,8 +3,16 @@
 """
 
 import math
+
 from overrides import overrides
+from pytorch_transformers import (
+    WarmupConstantSchedule,
+    WarmupLinearSchedule,
+    WarmupCosineSchedule,
+    WarmupCosineWithHardRestartsSchedule,
+)
 import torch
+
 
 
 def get_lr_schedulers():
@@ -14,8 +22,12 @@ def get_lr_schedulers():
         "exponential": torch.optim.lr_scheduler.ExponentialLR,
         "reduce_on_plateau": torch.optim.lr_scheduler.ReduceLROnPlateau,
         "cosine": torch.optim.lr_scheduler.CosineAnnealingLR,
-        "warmup": WarmUpLR,
         "noam": NoamLR,
+        "warmup": WarmUpLR,
+        "warmup_constant": WarmupConstantSchedule,
+        "warmup_linear": WarmupLinearSchedule,
+        "warmup_consine": WarmupCosineSchedule,
+        "warmup_consine_with_hard_restart": WarmupCosineWithHardRestartsSchedule,
     }
 
 
@@ -82,7 +94,7 @@ class WarmUpLR(torch.optim.lr_scheduler._LRScheduler):
             final_step: The number of steps to exponential increase the learning rate.
     """
 
-    def __init__(self, optimizer, final_step=1000, last_epoch=-1):
+    def __init__(self, optimizer, final_step=1000, t_total=None, last_epoch=-1):
         super().__init__(optimizer, last_epoch=last_epoch)
         self.final_step = final_step
 

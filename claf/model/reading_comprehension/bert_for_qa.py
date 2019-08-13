@@ -1,7 +1,7 @@
 
 
 from overrides import overrides
-from pytorch_pretrained_bert.modeling import BertForQuestionAnswering
+from pytorch_transformers import BertForQuestionAnswering
 import torch.nn as nn
 
 from claf.data.data_handler import CachePath

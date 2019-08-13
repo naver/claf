@@ -195,7 +195,7 @@ def bind_nsml(model, **kwargs):  # pragma: no cover
         }
 
         if "optimizer" in kwargs:
-            checkpoint["optimizer"] = (kwargs["optimizer"].state_dict(),)
+            checkpoint["optimizer"] = kwargs["optimizer"].state_dict()
 
         torch.save(checkpoint, checkpoint_path)
 

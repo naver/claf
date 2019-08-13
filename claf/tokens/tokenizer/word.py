@@ -138,7 +138,7 @@ class WordTokenizer(Tokenizer):
 
     def _bert_basic(self, text):
         if self.word_tokenizer is None:
-            from pytorch_pretrained_bert.tokenization import BasicTokenizer
+            from pytorch_transformers import BasicTokenizer
 
             self.word_tokenizer = BasicTokenizer(**self.config)
 

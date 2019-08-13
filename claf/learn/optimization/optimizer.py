@@ -1,12 +1,12 @@
 
-from pytorch_pretrained_bert.optimization import BertAdam
+from pytorch_transformers import AdamW
 import torch
 
 
 def get_optimizer_by_name(name):
     optimizers = {
         "adam": torch.optim.Adam,
-        "bert_adam": BertAdam,
+        "adamw": AdamW,
         "sparse_adam": torch.optim.SparseAdam,
         "adagrad": torch.optim.Adagrad,
         "adadelta": torch.optim.Adadelta,

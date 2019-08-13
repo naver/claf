@@ -34,16 +34,15 @@ class OptimizerFactory(Factory):
             op_config = vars(op_config)
             self.optimizer_params.update(op_config)
 
-        if self.op_type == "bert_adam":
-            self.optimizer_params["t_total"] = config.num_train_steps
-
         # LearningRate Scheduler
-        self.lr_schedulers = get_lr_schedulers()
         self.lr_scheduler_type = getattr(config, "lr_scheduler_type", None)
         if self.lr_scheduler_type is not None:
             self.lr_scheduler_config = getattr(config, self.lr_scheduler_type, {})
             if type(self.lr_scheduler_config) == NestedNamespace:
                 self.lr_scheduler_config = vars(self.lr_scheduler_config)
+
+            if "warmup" in self.lr_scheduler_type:
+                self.lr_scheduler_config["t_total"] = config.num_train_steps
 
         # EMA
         self.ema = getattr(config, "exponential_moving_average", 0)
@@ -64,7 +63,7 @@ class OptimizerFactory(Factory):
         # learning_rate_scheduler
         if self.lr_scheduler_type:
             self.lr_scheduler_config["optimizer"] = op_dict["optimizer"]
-            lr_scheduler = self.lr_schedulers[self.lr_scheduler_type](**self.lr_scheduler_config)
+            lr_scheduler = get_lr_schedulers()[self.lr_scheduler_type](**self.lr_scheduler_config)
 
             if self.lr_scheduler_type == "reduce_on_plateau":
                 lr_scheduler = LearningRateWithMetricsWrapper(lr_scheduler)
