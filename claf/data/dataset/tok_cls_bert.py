@@ -1,9 +1,6 @@
 
 import json
-from collections import defaultdict
 from overrides import overrides
-import torch
-from seqeval.metrics.sequence_labeling import get_entities
 
 from claf.data import utils
 from claf.data.collate import FeatLabelPadCollator
@@ -26,7 +23,6 @@ class TokClsBertDataset(DatasetBase):
 
         self.name = "tok_cls_bert"
         self.helper = helper
-        self.raw_dataset = helper["raw_dataset"]
 
         self.tag_idx2text = helper["tag_idx2text"]
 

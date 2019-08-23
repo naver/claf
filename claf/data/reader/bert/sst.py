@@ -9,10 +9,10 @@ from claf.decorator import register
 logger = logging.getLogger(__name__)
 
 
-@register("reader:cola_bert")
-class CoLABertReader(SeqClsBertReader):
+@register("reader:sst_bert")
+class SSTBertReader(SeqClsBertReader):
     """
-    CoLA DataReader for BERT
+    SST DataReader for BERT
 
     * Args:
         file_paths: .tsv file paths (train and dev)
@@ -33,7 +33,7 @@ class CoLABertReader(SeqClsBertReader):
         is_test=False,
     ):
 
-        super(CoLABertReader, self).__init__(
+        super(SSTBertReader, self).__init__(
             file_paths,
             tokenizers,
             sequence_max_length,
@@ -48,15 +48,20 @@ class CoLABertReader(SeqClsBertReader):
         _file = self.data_handler.read(file_path)
         lines = _file.split("\n")
 
+        if data_type == "train":
+            lines.pop(0)
+
         data = []
         for i, line in enumerate(lines):
+            if i == 0:
+                continue
             line_tokens = line.split("\t")
-            if len(line_tokens) <= 3:
+            if len(line_tokens) <= 1:
                 continue
             data.append({
                 "uid": f"{data_type}-{i}",
-                "sequence_a": line_tokens[3],
-                self.class_key: str(line_tokens[1])
+                "sequence_a": line_tokens[0],
+                self.class_key: str(line_tokens[1]),
             })
 
         return data

@@ -1,0 +1,66 @@
+{
+    "data_reader": {
+        "dataset": "mnli_bert",
+        "train_file_path": "MNLI/train.tsv",
+        "valid_file_path": "MNLI/dev_mismatched.tsv",
+        "mnli_bert": {
+            "sequence_max_length": 128
+        }
+    },
+    "iterator": {
+        "batch_size": 32
+    },
+    "token": {
+        "names": ["feature"],
+        "types": ["feature"],
+        "tokenizer": {
+            "subword": {
+                "name": "wordpiece",
+                "wordpiece": {
+                    "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
+                }
+            },
+            "word": {
+                "name": "bert_basic",
+                "bert_basic": {
+                    "do_lower_case": true
+                }
+            }
+        },
+        "feature": {
+            "vocab": {
+                "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt",
+                "pretrained_token": "all"
+            },
+            "indexer": {
+                "do_tokenize": false
+            }
+        }
+    },
+    "model": {
+        "name": "bert_for_seq_cls",
+        "bert_for_seq_cls": {
+            "pretrained_model_name": "bert-base-uncased",
+            "dropout": 0.0
+        }
+    },
+    "trainer": {
+        "log_dir": "logs/glue/mnlim_bert_base",
+        "num_epochs": 5,
+        "early_stopping_threshold": 10,
+        "metric_key": "accuracy",
+        "eval_and_save_step_count": 1000
+    },
+    "optimizer": {
+        "learning_rate": 2e-5,
+        "op_type": "adamw",
+        "adamw": {
+            "weight_decay": 0
+        },
+        "lr_scheduler_type": "warmup_linear",
+        "warmup_linear": {
+            "warmup_steps": 100
+        }
+    },
+    "seed_num": 42
+}

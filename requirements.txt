@@ -29,6 +29,7 @@ tensorboardX
 pytest>=3.6
 pytest-cov
 
-# Classification
+# Metrics
 pycm
 seqeval
+Scikit-learn

@@ -9,10 +9,10 @@ from claf.decorator import register
 logger = logging.getLogger(__name__)
 
 
-@register("reader:cola_bert")
-class CoLABertReader(SeqClsBertReader):
+@register("reader:rte_bert")
+class RTEBertReader(SeqClsBertReader):
     """
-    CoLA DataReader for BERT
+    RTE (Recognizing Textual Entailment) DataReader for BERT
 
     * Args:
         file_paths: .tsv file paths (train and dev)
@@ -23,7 +23,7 @@ class CoLABertReader(SeqClsBertReader):
     SEP_TOKEN = "[SEP]"
     UNK_TOKEN = "[UNK]"
 
-    CLASS_DATA = [0, 1]
+    CLASS_DATA = ["entailment", "not_entailment"]
 
     def __init__(
         self,
@@ -33,7 +33,7 @@ class CoLABertReader(SeqClsBertReader):
         is_test=False,
     ):
 
-        super(CoLABertReader, self).__init__(
+        super(RTEBertReader, self).__init__(
             file_paths,
             tokenizers,
             sequence_max_length,
@@ -50,13 +50,16 @@ class CoLABertReader(SeqClsBertReader):
 
         data = []
         for i, line in enumerate(lines):
+            if i == 0:
+                continue
             line_tokens = line.split("\t")
-            if len(line_tokens) <= 3:
+            if len(line_tokens) <= 1:
                 continue
             data.append({
                 "uid": f"{data_type}-{i}",
-                "sequence_a": line_tokens[3],
-                self.class_key: str(line_tokens[1])
+                "sequence_a": line_tokens[1],
+                "sequence_b": line_tokens[2],
+                self.class_key: str(line_tokens[-1]),
             })
 
         return data

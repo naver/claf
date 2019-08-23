@@ -9,10 +9,10 @@ from claf.decorator import register
 logger = logging.getLogger(__name__)
 
 
-@register("reader:cola_bert")
-class CoLABertReader(SeqClsBertReader):
+@register("reader:mrpc_bert")
+class MRPCBertReader(SeqClsBertReader):
     """
-    CoLA DataReader for BERT
+    MRPC DataReader for BERT
 
     * Args:
         file_paths: .tsv file paths (train and dev)
@@ -33,7 +33,7 @@ class CoLABertReader(SeqClsBertReader):
         is_test=False,
     ):
 
-        super(CoLABertReader, self).__init__(
+        super(MRPCBertReader, self).__init__(
             file_paths,
             tokenizers,
             sequence_max_length,
@@ -50,13 +50,26 @@ class CoLABertReader(SeqClsBertReader):
 
         data = []
         for i, line in enumerate(lines):
+            if i == 0:
+                continue
             line_tokens = line.split("\t")
-            if len(line_tokens) <= 3:
+            if len(line_tokens) != 5:
                 continue
             data.append({
                 "uid": f"{data_type}-{i}",
                 "sequence_a": line_tokens[3],
-                self.class_key: str(line_tokens[1])
+                "sequence_b": line_tokens[4],
+                self.class_key: str(line_tokens[0]),
             })
 
         return data
+
+    @overrides
+    def _get_class_dicts(self, **kwargs):
+        class_idx2text = {
+            class_idx: str(class_idx)
+            for class_idx in self.CLASS_DATA
+        }
+        class_text2idx = {class_text: class_idx for class_idx, class_text in class_idx2text.items()}
+
+        return class_idx2text, class_text2idx

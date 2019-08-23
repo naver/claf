@@ -9,10 +9,10 @@ from claf.decorator import register
 logger = logging.getLogger(__name__)
 
 
-@register("reader:cola_bert")
-class CoLABertReader(SeqClsBertReader):
+@register("reader:qqp_bert")
+class QQPBertReader(SeqClsBertReader):
     """
-    CoLA DataReader for BERT
+    Quora Question Pairs DataReader for BERT
 
     * Args:
         file_paths: .tsv file paths (train and dev)
@@ -33,7 +33,7 @@ class CoLABertReader(SeqClsBertReader):
         is_test=False,
     ):
 
-        super(CoLABertReader, self).__init__(
+        super(QQPBertReader, self).__init__(
             file_paths,
             tokenizers,
             sequence_max_length,
@@ -50,13 +50,17 @@ class CoLABertReader(SeqClsBertReader):
 
         data = []
         for i, line in enumerate(lines):
-            line_tokens = line.split("\t")
-            if len(line_tokens) <= 3:
+            if i == 0:
                 continue
-            data.append({
-                "uid": f"{data_type}-{i}",
-                "sequence_a": line_tokens[3],
-                self.class_key: str(line_tokens[1])
-            })
+            line_tokens = line.split("\t")
+            try:
+                data.append({
+                    "uid": f"{data_type}-{i}",
+                    "sequence_a": line_tokens[3],
+                    "sequence_b": line_tokens[4],
+                    self.class_key: str(line_tokens[5])
+                })
+            except IndexError:
+                continue
 
         return data

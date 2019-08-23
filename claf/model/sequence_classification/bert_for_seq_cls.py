@@ -126,17 +126,22 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
         data_id = self._dataset.get_id(data_idx)
 
         helper = self._dataset.helper
-        sequence = helper["examples"][data_id]["sequence"]
+
+        sequence_a = helper["examples"][data_id]["sequence_a"]
+        sequence_a_tokens = helper["examples"][data_id]["sequence_a_sub_tokens"]
+        sequence_b = helper["examples"][data_id]["sequence_b"]
+        sequence_b_tokens = helper["examples"][data_id]["sequence_b_sub_tokens"]
         target_class_text = helper["examples"][data_id]["class_text"]
 
         pred_class_idx = predictions[data_id]["class_idx"]
         pred_class_text = self._dataset.get_class_text_with_idx(pred_class_idx)
 
-        sequence_tokens = helper["examples"][data_id]["sequence_sub_tokens"]
-
         print()
-        print("- Sequence:", sequence)
-        print("- Sequence Tokens:", sequence_tokens)
+        print("- Sequence a:", sequence_a)
+        print("- Sequence a Tokens:", sequence_a_tokens)
+        if sequence_b:
+            print("- Sequence b:", sequence_b)
+            print("- Sequence b Tokens:", sequence_b_tokens)
         print("- Target:")
         print("    Class:", target_class_text)
         print("- Predict:")

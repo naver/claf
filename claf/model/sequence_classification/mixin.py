@@ -8,6 +8,7 @@ from pycm.pycm_obj import pycmVectorError
 
 from claf.model import cls_utils
 from claf.metric.classification import macro_f1, macro_precision, macro_recall
+from claf.metric.glue import f1, matthews_corr
 
 logger = logging.getLogger(__name__)
 
@@ -91,13 +92,20 @@ class SequenceClassification:
                 - 'accuracy': class prediction accuracy
         """
 
+        pred_idx = []
         pred_classes = []
+
+        target_idx = []
         target_classes = []
+        target_count = len(self._dataset.class_idx2text)
 
         for data_id, pred in predictions.items():
             target = self._dataset.get_ground_truth(data_id)
 
+            pred_idx.append(pred["class_idx"])
             pred_classes.append(self._dataset.class_idx2text[pred["class_idx"]])
+
+            target_idx.append(target["class_idx"])
             target_classes.append(target["class_text"])
 
         # confusion matrix
@@ -127,6 +135,13 @@ class SequenceClassification:
             "accuracy": pycm_obj.Overall_ACC,
         }
 
+        if target_count == 2:
+            # binary class
+            f1_metric = f1(pred_idx, target_idx)
+            metrics.update(f1_metric)
+
+        matthews_corr_metric = matthews_corr(pred_idx, target_idx)
+        metrics.update(matthews_corr_metric)
         return metrics
 
     def write_predictions(self, predictions, file_path=None, is_dict=True, pycm_obj=None):

@@ -1,7 +1,6 @@
 
 import json
 from overrides import overrides
-import torch
 
 from claf.data import utils
 from claf.data.collate import PadCollator
@@ -24,7 +23,6 @@ class SeqClsBertDataset(DatasetBase):
 
         self.name = "seq_cls_bert"
         self.helper = helper
-        self.raw_dataset = helper["raw_dataset"]
 
         self.class_idx2text = helper["class_idx2text"]
 
