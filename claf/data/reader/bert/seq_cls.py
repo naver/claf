@@ -10,10 +10,12 @@ from claf.data.dataset import SeqClsBertDataset
 from claf.data.batch import make_batch
 from claf.data.reader.base import DataReader
 from claf.data import utils
+from claf.decorator import register
 
 logger = logging.getLogger(__name__)
 
 
+@register("reader:seq_cls_bert")
 class SeqClsBertReader(DataReader):
     """
     DataReader for Sequence (Single and Pair) Classification using BERT
@@ -64,7 +66,8 @@ class SeqClsBertReader(DataReader):
         if self.class_key is None:
             class_data = self.CLASS_DATA
         else:
-            class_data = seq_cls_data[self.class_key]
+            class_data = [item[self.class_key] for item in seq_cls_data]
+            class_data = list(set(class_data))  # remove duplicate
 
         class_idx2text = {
             class_idx: str(class_text)
@@ -117,7 +120,7 @@ class SeqClsBertReader(DataReader):
         features, labels = [], []
 
         for example in tqdm(data, desc=data_type):
-            sequence_a = example["sequence_a"]
+            sequence_a = self._get_sequence_a(example)
             sequence_b = example.get("sequence_b", None)
 
             sequence_a_sub_tokens = self.subword_tokenizer.tokenize(sequence_a)
@@ -171,7 +174,7 @@ class SeqClsBertReader(DataReader):
 
     def read_one_example(self, inputs):
         """ inputs keys: sequence_a and sequence_b """
-        sequence_a = inputs["sequence_a"]
+        sequence_a = self._get_sequence_a(inputs)
         sequence_b = inputs.get("sequence_b", None)
 
         sequence_a_sub_tokens = self.subword_tokenizer.tokenize(sequence_a)
@@ -193,3 +196,11 @@ class SeqClsBertReader(DataReader):
         })
 
         return features, {}
+
+    def _get_sequence_a(self, example):
+        if "sequence" in example:
+            return example["sequence"]
+        elif "sequence_a" in example:
+            return example["sequence_a"]
+        else:
+            raise ValueError("'sequence' or 'sequence_a' key is required.")
