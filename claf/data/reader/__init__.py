@@ -16,15 +16,31 @@ from claf.data.reader.bert.sst import SSTBertReader
 from claf.data.reader.bert.rte import RTEBertReader
 from claf.data.reader.bert.wnli import WNLIBertReader
 
+from claf.data.reader.bert.regression import RegressionBertReader
+from claf.data.reader.bert.stsb import STSBBertReader
+
 from claf.data.reader.bert.squad import SQuADBertReader
 
 from claf.data.reader.bert.tok_cls import TokClsBertReader
 from claf.data.reader.bert.conll2003 import CoNLL2003BertReader
 
 
-__all__ = ["SQuADReader", "SQuADBertReader", "WikiSQLReader",
-           "SeqClsReader", "SeqClsBertReader", "TokClsBertReader",
-           "CoLAReader", "CoLABertReader", "CoNLL2003BertReader",
-           "MRPCBertReader", "MNLIBertReader", "SSTBertReader",
-           "QNLIBertReader", "QQPBertReader", "RTEBertReader",
-           "WNLIBertReader"]  # for register
+# fmt: off
+
+__all__ = [
+    "RegressionBertReader", "STSBBertReader",
+
+    "SeqClsReader", "CoLAReader",
+
+    "SeqClsBertReader", "CoLABertReader", "MRPCBertReader", "MNLIBertReader", "QNLIBertReader",
+    "QQPBertReader", "RTEBertReader", "SSTBertReader", "STSBBertReader", "WNLIBertReader",
+
+    "SQuADReader",
+    "SQuADBertReader",
+
+    "TokClsBertReader", "CoNLL2003BertReader",
+
+    "WikiSQLReader",
+]
+
+# fmt: on

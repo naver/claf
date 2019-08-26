@@ -63,13 +63,3 @@ class MRPCBertReader(SeqClsBertReader):
             })
 
         return data
-
-    @overrides
-    def _get_class_dicts(self, **kwargs):
-        class_idx2text = {
-            class_idx: str(class_idx)
-            for class_idx in self.CLASS_DATA
-        }
-        class_text2idx = {class_text: class_idx for class_idx, class_text in class_idx2text.items()}
-
-        return class_idx2text, class_text2idx

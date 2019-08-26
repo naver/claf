@@ -1,5 +1,4 @@
 
-import json
 import logging
 import uuid
 
@@ -7,7 +6,7 @@ from overrides import overrides
 from tqdm import tqdm
 
 from claf.data.batch import make_batch
-from claf.data.dataset import SeqClsBertDataset
+from claf.data.dataset import RegressionBertDataset
 from claf.data.reader.base import DataReader
 from claf.data import utils
 from claf.decorator import register
@@ -15,35 +14,30 @@ from claf.decorator import register
 logger = logging.getLogger(__name__)
 
 
-@register("reader:seq_cls_bert")
-class SeqClsBertReader(DataReader):
+@register("reader:regression_bert")
+class RegressionBertReader(DataReader):
     """
-    DataReader for Sequence (Single and Pair) Classification using BERT
+    Regression DataReader for BERT
 
     * Args:
-        file_paths: .json file paths (train and dev)
-        tokenizers: define tokenizers config (subword)
-
-    * Kwargs:
-        class_key: name of the label in .json file to use for classification
+        file_paths: .tsv file paths (train and dev)
+        tokenizers: defined tokenizers config
     """
 
     CLS_TOKEN = "[CLS]"
     SEP_TOKEN = "[SEP]"
     UNK_TOKEN = "[UNK]"
 
-    CLASS_DATA = []
-
     def __init__(
         self,
         file_paths,
         tokenizers,
         sequence_max_length=None,
-        class_key="class",
+        label_key="score",
         is_test=False,
     ):
 
-        super(SeqClsBertReader, self).__init__(file_paths, SeqClsBertDataset)
+        super(RegressionBertReader, self).__init__(file_paths, RegressionBertDataset)
 
         self.sequence_max_length = sequence_max_length
         self.text_columns = ["bert_input", "sequence"]
@@ -52,7 +46,7 @@ class SeqClsBertReader(DataReader):
             raise ValueError("WordTokenizer and SubwordTokenizer is required.")
 
         self.subword_tokenizer = tokenizers["subword"]
-        self.class_key = class_key
+        self.label_key = label_key
         self.is_test = is_test
 
     def _get_data(self, file_path, **kwargs):
@@ -60,22 +54,6 @@ class SeqClsBertReader(DataReader):
         seq_cls_data = json.loads(data)
 
         return seq_cls_data["data"]
-
-    def _get_class_dicts(self, **kwargs):
-        seq_cls_data = kwargs["data"]
-        if self.class_key is None:
-            class_data = self.CLASS_DATA
-        else:
-            class_data = [item[self.class_key] for item in seq_cls_data]
-            class_data = list(set(class_data))  # remove duplicate
-
-        class_idx2text = {
-            class_idx: str(class_text)
-            for class_idx, class_text in enumerate(class_data)
-        }
-        class_text2idx = {class_text: class_idx for class_idx, class_text in class_idx2text.items()}
-
-        return class_idx2text, class_text2idx
 
     @overrides
     def _read(self, file_path, data_type=None):
@@ -85,36 +63,27 @@ class SeqClsBertReader(DataReader):
         {
             "data": [
                 {
-                    "sequence": "what a wonderful day!",
-                    "emotion": "happy"
+                    "sequence_a": "what a wonderful day!",
+                    "sequence_b": "what a great day!",
+                    "score": 0.9
                 },
-                ...
-            ],
-            "emotion": [  // class_key
-                "angry",
-                "happy",
-                "sad",
                 ...
             ]
         }
         """
 
         data = self._get_data(file_path, data_type=data_type)
-        class_idx2text, class_text2idx = self._get_class_dicts(data=data)
 
         helper = {
             "file_path": file_path,
             "examples": {},
-            "class_idx2text": class_idx2text,
-            "class_text2idx": class_text2idx,
             "cls_token": self.CLS_TOKEN,
             "sep_token": self.SEP_TOKEN,
             "unk_token": self.UNK_TOKEN,
             "model": {
-                "num_classes": len(class_idx2text),
+
             },
             "predict_helper": {
-                "class_idx2text": class_idx2text,
             }
         }
         features, labels = [], []
@@ -149,11 +118,10 @@ class SeqClsBertReader(DataReader):
             }
             features.append(feature_row)
 
-            class_text = example[self.class_key]
+            score = example[self.label_key]
             label_row = {
                 "id": data_uid,
-                "class_idx": class_text2idx[class_text],
-                "class_text": class_text,
+                "score": score,
             }
             labels.append(label_row)
 
@@ -162,8 +130,7 @@ class SeqClsBertReader(DataReader):
                 "sequence_a_sub_tokens": sequence_a_sub_tokens,
                 "sequence_b": sequence_b,
                 "sequence_b_sub_tokens": sequence_b_sub_tokens,
-                "class_idx": class_text2idx[class_text],
-                "class_text": class_text,
+                "score": score,
             }
 
             if self.is_test and len(features) >= 10:

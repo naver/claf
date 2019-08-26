@@ -3,14 +3,14 @@ import logging
 
 from overrides import overrides
 
-from claf.data.reader import SeqClsBertReader
+from claf.data.reader import RegressionBertReader
 from claf.decorator import register
 
 logger = logging.getLogger(__name__)
 
 
 @register("reader:stsb_bert")
-class STSBBertReader(SeqClsBertReader):
+class STSBBertReader(RegressionBertReader):
     """
     STS-B (Semantic Textual Similarity Benchmark) DataReader for BERT
 
@@ -23,8 +23,6 @@ class STSBBertReader(SeqClsBertReader):
     SEP_TOKEN = "[SEP]"
     UNK_TOKEN = "[UNK]"
 
-    CLASS_DATA = [0, 1]
-
     def __init__(
         self,
         file_paths,
@@ -33,11 +31,11 @@ class STSBBertReader(SeqClsBertReader):
         is_test=False,
     ):
 
-        super(MRPCBertReader, self).__init__(
+        super(STSBBertReader, self).__init__(
             file_paths,
             tokenizers,
             sequence_max_length,
-            class_key="class",
+            label_key="score",
             is_test=is_test,
         )
 
@@ -59,17 +57,7 @@ class STSBBertReader(SeqClsBertReader):
                 "uid": f"{data_type}-{i}",
                 "sequence_a": line_tokens[7],
                 "sequence_b": line_tokens[8],
-                self.class_key: str(line_tokens[-1]),
+                "score": float(line_tokens[-1]),
             })
 
         return data
-
-    @overrides
-    def _get_class_dicts(self, **kwargs):
-        class_idx2text = {
-            class_idx: str(class_idx)
-            for class_idx in self.CLASS_DATA
-        }
-        class_text2idx = {class_text: class_idx for class_idx, class_text in class_idx2text.items()}
-
-        return class_idx2text, class_text2idx
