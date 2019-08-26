@@ -1,14 +1,15 @@
  {
      "data_reader": {
-         "dataset": "wnli_bert",
-         "train_file_path": "WNLI/train.tsv",
-         "valid_file_path": "WNLI/dev.tsv",
-         "wnli_bert": {
-             "sequence_max_length": 128
+         "dataset": "rte_bert",
+         "train_file_path": "data/glue/RTE/train.tsv",
+         "valid_file_path": "data/glue/RTE/dev.tsv",
+         "rte_bert": {
+             "sequence_max_length": 128,
+             "is_test": true
          }
      },
      "iterator": {
-         "batch_size": 16
+         "batch_size": 2
      },
      "token": {
          "names": ["feature"],
@@ -45,11 +46,11 @@
          }
      },
      "trainer": {
-         "log_dir": "logs/glue/wnli_bert",
-         "num_epochs": 5,
+         "log_dir": "logs/test/rte_bert",
+         "num_epochs": 1,
          "early_stopping_threshold": 10,
          "metric_key": "accuracy",
-         "eval_and_save_step_count": 10
+         "eval_and_save_step_count": "epoch"
      },
      "optimizer": {
          "learning_rate": 2e-5,
@@ -59,7 +60,7 @@
          },
          "lr_scheduler_type": "warmup_linear",
          "warmup_linear": {
-             "warmup_steps": 10
+             "warmup_steps": 5
          }
      },
      "seed_num": 42

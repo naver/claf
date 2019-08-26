@@ -1,14 +1,14 @@
  {
      "data_reader": {
-         "dataset": "wnli_bert",
-         "train_file_path": "WNLI/train.tsv",
-         "valid_file_path": "WNLI/dev.tsv",
-         "wnli_bert": {
+         "dataset": "stsb_bert",
+         "train_file_path": "STS-B/train.tsv",
+         "valid_file_path": "STS-B/dev.tsv",
+         "stsb_bert": {
              "sequence_max_length": 128
          }
      },
      "iterator": {
-         "batch_size": 16
+         "batch_size": 32
      },
      "token": {
          "names": ["feature"],
@@ -38,18 +38,18 @@
          }
      },
      "model": {
-         "name": "bert_for_seq_cls",
-         "bert_for_seq_cls": {
+         "name": "bert_for_reg",
+         "bert_for_reg": {
              "pretrained_model_name": "bert-base-uncased",
              "dropout": 0.0
          }
      },
      "trainer": {
-         "log_dir": "logs/glue/wnli_bert",
+         "log_dir": "logs/glue/stsb_bert_base",
          "num_epochs": 5,
          "early_stopping_threshold": 10,
-         "metric_key": "accuracy",
-         "eval_and_save_step_count": 10
+         "metric_key": "pearson_spearman_corr",
+         "eval_and_save_step_count": 100
      },
      "optimizer": {
          "learning_rate": 2e-5,
@@ -59,7 +59,7 @@
          },
          "lr_scheduler_type": "warmup_linear",
          "warmup_linear": {
-             "warmup_steps": 10
+             "warmup_steps": 100
          }
      },
      "seed_num": 42
