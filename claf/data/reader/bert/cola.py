@@ -22,19 +22,23 @@ class CoLABertReader(SeqClsBertReader):
     CLS_TOKEN = "[CLS]"
     SEP_TOKEN = "[SEP]"
     UNK_TOKEN = "[UNK]"
-    CONTINUE_SYMBOL = "##"
+
+    CLASS_DATA = [0, 1]
 
     def __init__(
         self,
         file_paths,
         tokenizers,
         sequence_max_length=None,
+        is_test=False,
     ):
 
         super(CoLABertReader, self).__init__(
             file_paths,
             tokenizers,
             sequence_max_length,
+            class_key=None,
+            is_test=is_test,
         )
 
     @overrides
@@ -44,27 +48,15 @@ class CoLABertReader(SeqClsBertReader):
         _file = self.data_handler.read(file_path)
         lines = _file.split("\n")
 
-        if data_type == "train":
-            lines.pop(0)
-
         data = []
         for i, line in enumerate(lines):
             line_tokens = line.split("\t")
-            if len(line_tokens) > 1:
-                data.append({
-                    "uid": f"{data_type}-{i}",
-                    "sequence": line_tokens[1] if data_type == "test" else line_tokens[3],
-                    self.class_key: str(0) if data_type == "test" else str(line_tokens[1])
-                })
+            if len(line_tokens) <= 3:
+                continue
+            data.append({
+                "uid": f"{data_type}-{i}",
+                "sequence_a": line_tokens[3],
+                self.class_key: str(line_tokens[1])
+            })
 
-        return data, data
-
-    @overrides
-    def _get_class_dicts(self, **kwargs):
-        class_idx2text = {
-            class_idx: str(class_idx)
-            for class_idx in [0, 1]
-        }
-        class_text2idx = {class_text: class_idx for class_idx, class_text in class_idx2text.items()}
-
-        return class_idx2text, class_text2idx
+        return data

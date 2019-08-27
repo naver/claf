@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.config.args &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.config.args &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
@@ -261,7 +262,6 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">use_base_config</span><span class="p">:</span>
         <span class="n">config</span> <span class="o">=</span> <span class="n">optimize_config</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
-    <span class="n">utils</span><span class="o">.</span><span class="n">set_global_seed</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">seed_num</span><span class="p">)</span>  <span class="c1"># For Reproducible</span>
     <span class="n">set_gpu_env</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
     <span class="n">set_batch_size</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">config</span></div>
@@ -343,7 +343,7 @@
 <span class="c1"># fmt: off</span>
 <div class="viewcode-block" id="general"><a class="viewcode-back" href="../../../claf.config.html#claf.config.args.general">[docs]</a><span class="k">def</span> <span class="nf">general</span><span class="p">(</span><span class="n">parser</span><span class="p">):</span>
 
-    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;Genearl&quot;</span><span class="p">)</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;General&quot;</span><span class="p">)</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">&quot;--seed_num&quot;</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;seed_num&quot;</span><span class="p">,</span>

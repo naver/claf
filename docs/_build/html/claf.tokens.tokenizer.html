@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.tokens.tokenizer package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.tokens.tokenizer package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="HistoryQA" href="reports/historyqa.html" />
+    <link rel="next" title="GLUE" href="reports/glue.html" />
     <link rel="prev" title="claf.tokens.token_embedder package" href="claf.tokens.token_embedder.html" /> 
 </head>
 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -124,6 +124,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -230,10 +231,10 @@
 <p>Character Tokenizer</p>
 <p>text -&gt; word tokens -&gt; [char tokens]</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>name: tokenizer name [character|decompose_ko]
-word_tokenizer: word tokenizer object</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>name: tokenizer name [character|decompose_ko]
+word_tokenizer: word tokenizer object</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -258,9 +259,9 @@ word_tokenizer: word tokenizer object</dd>
 <p>Sentence Tokenizer</p>
 <p>text -&gt; [sent tokens]</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>name: tokenizer name [punkt]</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>name: tokenizer name [punkt]</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -273,9 +274,9 @@ word_tokenizer: word tokenizer object</dd>
 <p>Subword Tokenizer</p>
 <p>text -&gt; [word tokens] -&gt; [[sub word tokens], …]</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>name: tokenizer name [wordpiece]</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>name: tokenizer name [wordpiece]</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -297,15 +298,15 @@ word_tokenizer: word tokenizer object</dd>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.tokenizer.base.Tokenizer" title="claf.tokens.tokenizer.base.Tokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.tokenizer.base.Tokenizer</span></code></a></p>
 <p>Word Tokenizer</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>name: tokenizer name [treebank_en|spacy_en|mecab_ko|bert_basic]</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>name: tokenizer name [treebank_en|spacy_en|mecab_ko|bert_basic]</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>flatten: return type as flatten list
-split_with_regex: post split action. Split tokens that the tokenizer cannot split.</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>flatten: return type as flatten list
+split_with_regex: post split action. Split tokens that the tokenizer cannot split.</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -341,10 +342,10 @@ if/how much difference this makes, but it does avoid some common UNKs I noticed 
 <p>Character Tokenizer</p>
 <p>text -&gt; word tokens -&gt; [char tokens]</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>name: tokenizer name [character|decompose_ko]
-word_tokenizer: word tokenizer object</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>name: tokenizer name [character|decompose_ko]
+word_tokenizer: word tokenizer object</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -357,9 +358,9 @@ word_tokenizer: word tokenizer object</dd>
 <p>Subword Tokenizer</p>
 <p>text -&gt; [word tokens] -&gt; [[sub word tokens], …]</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>name: tokenizer name [wordpiece]</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>name: tokenizer name [wordpiece]</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -371,15 +372,15 @@ word_tokenizer: word tokenizer object</dd>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.tokenizer.base.Tokenizer" title="claf.tokens.tokenizer.base.Tokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.tokenizer.base.Tokenizer</span></code></a></p>
 <p>Word Tokenizer</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>name: tokenizer name [treebank_en|spacy_en|mecab_ko|bert_basic]</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>name: tokenizer name [treebank_en|spacy_en|mecab_ko|bert_basic]</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>flatten: return type as flatten list
-split_with_regex: post split action. Split tokens that the tokenizer cannot split.</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>flatten: return type as flatten list
+split_with_regex: post split action. Split tokens that the tokenizer cannot split.</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -400,9 +401,9 @@ if/how much difference this makes, but it does avoid some common UNKs I noticed 
 <p>Sentence Tokenizer</p>
 <p>text -&gt; [sent tokens]</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>name: tokenizer name [punkt]</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>name: tokenizer name [punkt]</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -419,7 +420,7 @@ if/how much difference this makes, but it does avoid some common UNKs I noticed 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="reports/historyqa.html" class="btn btn-neutral float-right" title="HistoryQA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="reports/glue.html" class="btn btn-neutral float-right" title="GLUE" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="claf.tokens.token_embedder.html" class="btn btn-neutral" title="claf.tokens.token_embedder package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

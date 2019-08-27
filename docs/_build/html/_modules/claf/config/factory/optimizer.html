@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.config.factory.optimizer &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.config.factory.optimizer &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
@@ -218,16 +219,15 @@
             <span class="n">op_config</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">op_config</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">optimizer_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">op_config</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">&quot;bert_adam&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer_params</span><span class="p">[</span><span class="s2">&quot;t_total&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">num_train_steps</span>
-
         <span class="c1"># LearningRate Scheduler</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lr_schedulers</span> <span class="o">=</span> <span class="n">get_lr_schedulers</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_type</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;lr_scheduler_type&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_config</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_type</span><span class="p">,</span> <span class="p">{})</span>
             <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_config</span><span class="p">)</span> <span class="o">==</span> <span class="n">NestedNamespace</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_config</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_config</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="s2">&quot;warmup&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_type</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_config</span><span class="p">[</span><span class="s2">&quot;t_total&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">num_train_steps</span>
 
         <span class="c1"># EMA</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ema</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;exponential_moving_average&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -248,7 +248,7 @@
         <span class="c1"># learning_rate_scheduler</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_type</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_config</span><span class="p">[</span><span class="s2">&quot;optimizer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">op_dict</span><span class="p">[</span><span class="s2">&quot;optimizer&quot;</span><span class="p">]</span>
-            <span class="n">lr_scheduler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr_schedulers</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_type</span><span class="p">](</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_config</span><span class="p">)</span>
+            <span class="n">lr_scheduler</span> <span class="o">=</span> <span class="n">get_lr_schedulers</span><span class="p">()[</span><span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_type</span><span class="p">](</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_config</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_type</span> <span class="o">==</span> <span class="s2">&quot;reduce_on_plateau&quot;</span><span class="p">:</span>
                 <span class="n">lr_scheduler</span> <span class="o">=</span> <span class="n">LearningRateWithMetricsWrapper</span><span class="p">(</span><span class="n">lr_scheduler</span><span class="p">)</span>

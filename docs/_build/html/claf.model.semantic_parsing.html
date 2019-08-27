@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.model.semantic_parsing package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.model.semantic_parsing package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -124,6 +124,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -210,14 +211,14 @@
 <dt id="claf.model.semantic_parsing.mixin.WikiSQL">
 <em class="property">class </em><code class="descclassname">claf.model.semantic_parsing.mixin.</code><code class="descname">WikiSQL</code><a class="reference internal" href="_modules/claf/model/semantic_parsing/mixin.html#WikiSQL"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.semantic_parsing.mixin.WikiSQL" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="docutils">
-<dt>WikiSQL Mixin Class</dt>
-<dd>with official evaluation</dd>
+<dl class="simple">
+<dt>WikiSQL Mixin Class</dt><dd><p>with official evaluation</p>
+</dd>
 </dl>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>token_embedder: ‘TokenEmbedder’</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_embedder: ‘TokenEmbedder’</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -267,17 +268,16 @@
 <code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/semantic_parsing/mixin.html#WikiSQL.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.semantic_parsing.mixin.WikiSQL.print_examples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print evaluation examples</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first">index: data index
+<li><dl>
+<dt>Args:</dt><dd><p>index: data index
 inputs: mini-batch inputs
 predictions: prediction dictionary consisting of</p>
-<blockquote class="last">
+<blockquote>
 <div><ul class="simple">
-<li>key: ‘id’ (question id)</li>
-<li><dl class="first docutils">
-<dt>value: consisting of dictionary</dt>
-<dd>table_id, query (agg, sel, conds)</dd>
+<li><p>key: ‘id’ (question id)</p></li>
+<li><dl class="simple">
+<dt>value: consisting of dictionary</dt><dd><p>table_id, query (agg, sel, conds)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -285,9 +285,8 @@ predictions: prediction dictionary consisting of</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><p class="first last">print(Context, Question, Answers and Predict)</p>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><p>print(Context, Question, Answers and Predict)</p>
 </dd>
 </dl>
 </li>
@@ -306,8 +305,8 @@ predictions: prediction dictionary consisting of</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -326,8 +325,8 @@ registered hooks while the latter silently ignores them.</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -346,8 +345,8 @@ registered hooks while the latter silently ignores them.</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -366,8 +365,8 @@ registered hooks while the latter silently ignores them.</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -386,8 +385,8 @@ registered hooks while the latter silently ignores them.</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -416,8 +415,8 @@ registered hooks while the latter silently ignores them.</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -434,24 +433,22 @@ registered hooks while the latter silently ignores them.</p>
 <p>Implementation of model presented in
 SQLNet: Generating Structured Queries From Natural Language</p>
 <blockquote>
-<div>Without Reinforcement Learning</div></blockquote>
+<div><p>Without Reinforcement Learning</p>
+</div></blockquote>
 <p>(<a class="reference external" href="https://arxiv.org/abs/1711.04436">https://arxiv.org/abs/1711.04436</a>)</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first last">token_embedder: ‘WikiSQLTokenEmbedder’, Used to embed the ‘column’ and ‘question’.</p>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_embedder: ‘WikiSQLTokenEmbedder’, Used to embed the ‘column’ and ‘question’.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>column_attention: highlight that column attention is a special instance of</dt>
-<dd><p class="first last">the generic attention mechanism to compute the attention map on a question
+<li><dl>
+<dt>Kwargs:</dt><dd><dl class="simple">
+<dt>column_attention: highlight that column attention is a special instance of</dt><dd><p>the generic attention mechanism to compute the attention map on a question
 conditioned on the column names.</p>
 </dd>
 </dl>
-<p class="last">model_dim: the number of model dimension
+<p>model_dim: the number of model dimension
 rnn_num_layer: the number of recurrent layers (all of rnn)
 column_maxlen: an upper-bound N on the number of columns to choose
 token_maxlen: conds value slot - pointer network an upper-bound N on the number of token
@@ -466,8 +463,8 @@ conds_column_loss_alpha: balance the positive data versus negative data</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -486,8 +483,8 @@ registered hooks while the latter silently ignores them.</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -527,24 +524,22 @@ registered hooks while the latter silently ignores them.</p>
 <p>Implementation of model presented in
 SQLNet: Generating Structured Queries From Natural Language</p>
 <blockquote>
-<div>Without Reinforcement Learning</div></blockquote>
+<div><p>Without Reinforcement Learning</p>
+</div></blockquote>
 <p>(<a class="reference external" href="https://arxiv.org/abs/1711.04436">https://arxiv.org/abs/1711.04436</a>)</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first last">token_embedder: ‘WikiSQLTokenEmbedder’, Used to embed the ‘column’ and ‘question’.</p>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_embedder: ‘WikiSQLTokenEmbedder’, Used to embed the ‘column’ and ‘question’.</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>column_attention: highlight that column attention is a special instance of</dt>
-<dd><p class="first last">the generic attention mechanism to compute the attention map on a question
+<li><dl>
+<dt>Kwargs:</dt><dd><dl class="simple">
+<dt>column_attention: highlight that column attention is a special instance of</dt><dd><p>the generic attention mechanism to compute the attention map on a question
 conditioned on the column names.</p>
 </dd>
 </dl>
-<p class="last">model_dim: the number of model dimension
+<p>model_dim: the number of model dimension
 rnn_num_layer: the number of recurrent layers (all of rnn)
 column_maxlen: an upper-bound N on the number of columns to choose
 token_maxlen: conds value slot - pointer network an upper-bound N on the number of token
@@ -559,8 +554,8 @@ conds_column_loss_alpha: balance the positive data versus negative data</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>logging &mdash; CLaF 0.1.0 documentation</title>
+  <title>logging &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reports/squad.html">SQuAD</a></li>
@@ -615,7 +616,8 @@
 <span class="sd">    responsible for converting a LogRecord to (usually) a string which can</span>
 <span class="sd">    be interpreted by either a human or an external system. The base Formatter</span>
 <span class="sd">    allows a formatting string to be specified. If none is supplied, the</span>
-<span class="sd">    default value of &quot;%s(message)&quot; is used.</span>
+<span class="sd">    the style-dependent default value, &quot;%(message)s&quot;, &quot;{message}&quot;, or</span>
+<span class="sd">    &quot;${message}&quot;, is used.</span>
 
 <span class="sd">    The Formatter can be initialized with a format string which makes use of</span>
 <span class="sd">    knowledge of the LogRecord attributes - e.g. the default value mentioned</span>
@@ -657,7 +659,8 @@
 
 <span class="sd">        Initialize the formatter either with the specified format string, or a</span>
 <span class="sd">        default as described above. Allow for specialized date formatting with</span>
-<span class="sd">        the optional datefmt argument (if omitted, you get the ISO8601 format).</span>
+<span class="sd">        the optional datefmt argument. If datefmt is omitted, you get an</span>
+<span class="sd">        ISO8601-like (or RFC 3339-like) format.</span>
 
 <span class="sd">        Use a style parameter of &#39;%&#39;, &#39;{&#39; or &#39;$&#39; to specify that you want to</span>
 <span class="sd">        use one of %-formatting, :meth:`str.format` (``{}``) formatting or</span>
@@ -685,13 +688,13 @@
 <span class="sd">        in formatters to provide for any specific requirement, but the</span>
 <span class="sd">        basic behaviour is as follows: if datefmt (a string) is specified,</span>
 <span class="sd">        it is used with time.strftime() to format the creation time of the</span>
-<span class="sd">        record. Otherwise, the ISO8601 format is used. The resulting</span>
-<span class="sd">        string is returned. This function uses a user-configurable function</span>
-<span class="sd">        to convert the creation time to a tuple. By default, time.localtime()</span>
-<span class="sd">        is used; to change this for a particular formatter instance, set the</span>
-<span class="sd">        &#39;converter&#39; attribute to a function with the same signature as</span>
-<span class="sd">        time.localtime() or time.gmtime(). To change it for all formatters,</span>
-<span class="sd">        for example if you want all logging times to be shown in GMT,</span>
+<span class="sd">        record. Otherwise, an ISO8601-like (or RFC 3339-like) format is used.</span>
+<span class="sd">        The resulting string is returned. This function uses a user-configurable</span>
+<span class="sd">        function to convert the creation time to a tuple. By default,</span>
+<span class="sd">        time.localtime() is used; to change this for a particular formatter</span>
+<span class="sd">        instance, set the &#39;converter&#39; attribute to a function with the same</span>
+<span class="sd">        signature as time.localtime() or time.gmtime(). To change it for all</span>
+<span class="sd">        formatters, for example if you want all logging times to be shown in GMT,</span>
 <span class="sd">        set the &#39;converter&#39; attribute in the Formatter class.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ct</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">converter</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">created</span><span class="p">)</span>
@@ -1853,7 +1856,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isEnabledFor</span><span class="p">(</span><span class="n">level</span><span class="p">):</span>
             <span class="n">msg</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">isEnabledFor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1880,6 +1883,31 @@
 <span class="sd">        See if the underlying logger has any handlers.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">hasHandlers</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stack_info</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Low-level log implementation, proxied to allow nested logger adapters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span>
+            <span class="n">level</span><span class="p">,</span>
+            <span class="n">msg</span><span class="p">,</span>
+            <span class="n">args</span><span class="p">,</span>
+            <span class="n">exc_info</span><span class="o">=</span><span class="n">exc_info</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">,</span>
+            <span class="n">stack_info</span><span class="o">=</span><span class="n">stack_info</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">manager</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">manager</span>
+
+    <span class="nd">@manager</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">manager</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">manager</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">name</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">logger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.config.factory package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.config.factory package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -121,6 +121,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -229,9 +230,9 @@ classes—rather than by calling a constructor.</p>
 <dd><p>Bases: <a class="reference internal" href="#claf.config.factory.base.Factory" title="claf.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.config.factory.base.Factory</span></code></a></p>
 <p>DataLoader Factory Class</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>config: data_loader config from argument (config.data_loader)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>config: data_loader config from argument (config.data_loader)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -256,9 +257,9 @@ classes—rather than by calling a constructor.</p>
 <p>Create Concrete reader according to config.dataset
 Get reader from reader registries (eg. &#64;register(“reader:{reader_name}”))</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>config: data_reader config from argument (config.data_reader)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>config: data_reader config from argument (config.data_reader)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -278,9 +279,9 @@ Get reader from reader registries (eg. &#64;register(“reader:{reader_name}”)
 <p>Create Concrete model according to config.model_name
 Get model from model registries (eg. &#64;register(“model:{model_name}”))</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>config: model config from argument (config.model)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>config: model config from argument (config.model)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -304,9 +305,9 @@ Get model from model registries (eg. &#64;register(“model:{model_name}”))</p
 <p>Optimizer Factory Class</p>
 <p>include optimizer, learning_rate_scheduler and exponential_moving_average</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>config: optimizer config from argument (config.optimizer)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>config: optimizer config from argument (config.optimizer)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -324,9 +325,9 @@ Get model from model registries (eg. &#64;register(“model:{model_name}”))</p
 <dd><p>Bases: <a class="reference internal" href="#claf.config.factory.base.Factory" title="claf.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.config.factory.base.Factory</span></code></a></p>
 <p>TokenMakers Factory Class</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>config: token config from argument (config.token)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>config: token config from argument (config.token)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -365,9 +366,9 @@ Get model from model registries (eg. &#64;register(“model:{model_name}”))</p
 <p>Create Concrete reader according to config.dataset
 Get reader from reader registries (eg. &#64;register(“reader:{reader_name}”))</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>config: data_reader config from argument (config.data_reader)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>config: data_reader config from argument (config.data_reader)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -385,9 +386,9 @@ Get reader from reader registries (eg. &#64;register(“reader:{reader_name}”)
 <dd><p>Bases: <a class="reference internal" href="#claf.config.factory.base.Factory" title="claf.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.config.factory.base.Factory</span></code></a></p>
 <p>DataLoader Factory Class</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>config: data_loader config from argument (config.data_loader)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>config: data_loader config from argument (config.data_loader)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -412,9 +413,9 @@ Get reader from reader registries (eg. &#64;register(“reader:{reader_name}”)
 <p>Create Concrete model according to config.model_name
 Get model from model registries (eg. &#64;register(“model:{model_name}”))</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>config: model config from argument (config.model)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>config: model config from argument (config.model)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -438,9 +439,9 @@ Get model from model registries (eg. &#64;register(“model:{model_name}”))</p
 <p>Optimizer Factory Class</p>
 <p>include optimizer, learning_rate_scheduler and exponential_moving_average</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>config: optimizer config from argument (config.optimizer)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>config: optimizer config from argument (config.optimizer)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -458,9 +459,9 @@ Get model from model registries (eg. &#64;register(“model:{model_name}”))</p
 <dd><p>Bases: <a class="reference internal" href="#claf.config.factory.base.Factory" title="claf.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.config.factory.base.Factory</span></code></a></p>
 <p>TokenMakers Factory Class</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>config: token config from argument (config.token)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>config: token config from argument (config.token)</p>
+</dd>
 </dl>
 </li>
 </ul>

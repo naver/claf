@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Dataset and Model &mdash; CLaF 0.1.0 documentation</title>
+  <title>Dataset and Model &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -131,6 +131,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reports/squad.html">SQuAD</a></li>
@@ -214,19 +215,19 @@
 <div class="section" id="dataset">
 <h3>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference external" href="https://oss.navercorp.com/ClovaAI-PJT/HistoryQA">HistoryQA</a>: Joseon History Question Answering Dataset (SQuAD Style)</li>
-<li><a class="reference external" href="https://korquad.github.io/">KorQuAD</a>: KorQuAD는 한국어 Machine Reading Comprehension을 위해 만든 데이터셋입니다. 모든 질의에 대한 답변은 해당 Wikipedia 아티클 문단의 일부 하위 영역으로 이루어집니다. Stanford Question Answering Dataset(SQuAD) v1.0과 동일한 방식으로 구성되었습니다.</li>
-<li><a class="reference external" href="https://rajpurkar.github.io/SQuAD-explorer/">SQuAD</a>: <strong>S</strong>tanford <strong>Qu</strong>estion <strong>A</strong>nswering <strong>D</strong>ataset is a reading comprehension dataset, consisting of questions posed by crowdworkers on a set of Wikipedia articles, where the answer to every question is a segment of text, or span, from the corresponding reading passage, or the question might be unanswerable.</li>
+<li><p><a class="reference external" href="https://oss.navercorp.com/ClovaAI-PJT/HistoryQA">HistoryQA</a>: Joseon History Question Answering Dataset (SQuAD Style)</p></li>
+<li><p><a class="reference external" href="https://korquad.github.io/">KorQuAD</a>: KorQuAD는 한국어 Machine Reading Comprehension을 위해 만든 데이터셋입니다. 모든 질의에 대한 답변은 해당 Wikipedia 아티클 문단의 일부 하위 영역으로 이루어집니다. Stanford Question Answering Dataset(SQuAD) v1.0과 동일한 방식으로 구성되었습니다.</p></li>
+<li><p><a class="reference external" href="https://rajpurkar.github.io/SQuAD-explorer/">SQuAD</a>: <strong>S</strong>tanford <strong>Qu</strong>estion <strong>A</strong>nswering <strong>D</strong>ataset is a reading comprehension dataset, consisting of questions posed by crowdworkers on a set of Wikipedia articles, where the answer to every question is a segment of text, or span, from the corresponding reading passage, or the question might be unanswerable.</p></li>
 </ul>
 </div>
 <div class="section" id="model">
 <h3>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>BiDAF: <a class="reference external" href="https://arxiv.org/abs/1611.01603">Birectional Attention Flow for Machine Comprehension</a> + <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">Answer</span></code></li>
-<li>DrQA: <a class="reference external" href="https://arxiv.org/abs/1704.00051">Reading Wikipedia to Answer Open-Domain Questions</a></li>
-<li>DocQA: <a class="reference external" href="https://arxiv.org/abs/1710.10723">Simple and Effective Multi-Paragraph Reading Comprehension</a> + <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">Answer</span></code></li>
-<li><a class="reference external" href="https://arxiv.org/abs/1804.09541">QANet: Combining Local Convolution with Global Self-Attention for Reading Comprehension </a></li>
-<li><a class="reference external" href="https://arxiv.org/abs/1810.04805">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></li>
+<li><p>BiDAF: <a class="reference external" href="https://arxiv.org/abs/1611.01603">Birectional Attention Flow for Machine Comprehension</a> + <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">Answer</span></code></p></li>
+<li><p>DrQA: <a class="reference external" href="https://arxiv.org/abs/1704.00051">Reading Wikipedia to Answer Open-Domain Questions</a></p></li>
+<li><p>DocQA: <a class="reference external" href="https://arxiv.org/abs/1710.10723">Simple and Effective Multi-Paragraph Reading Comprehension</a> + <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">Answer</span></code></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/1804.09541">QANet: Combining Local Convolution with Global Self-Attention for Reading Comprehension </a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/1810.04805">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></p></li>
 </ul>
 </div>
 </div>
@@ -235,13 +236,13 @@
 <div class="section" id="id1">
 <h3>Dataset<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/salesforce/WikiSQL">WikiSQL</a>: A large crowd-sourced dataset for developing natural language interfaces for relational databases. WikiSQL is the dataset released along with our work <a class="reference external" href="http://arxiv.org/abs/1709.00103">Seq2SQL: Generating Structured Queries from Natural Language using Reinforcement Learning</a>.</li>
+<li><p><a class="reference external" href="https://github.com/salesforce/WikiSQL">WikiSQL</a>: A large crowd-sourced dataset for developing natural language interfaces for relational databases. WikiSQL is the dataset released along with our work <a class="reference external" href="http://arxiv.org/abs/1709.00103">Seq2SQL: Generating Structured Queries from Natural Language using Reinforcement Learning</a>.</p></li>
 </ul>
 </div>
 <div class="section" id="id2">
 <h3>Model<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>SQLNet: <a class="reference external" href="https://arxiv.org/abs/1711.04436">SQLNet: Generating Structured Queries From Natural Language Without Reinforcement Learning</a></li>
+<li><p>SQLNet: <a class="reference external" href="https://arxiv.org/abs/1711.04436">SQLNet: Generating Structured Queries From Natural Language Without Reinforcement Learning</a></p></li>
 </ul>
 </div>
 </div>
@@ -253,8 +254,8 @@
 <div class="section" id="id4">
 <h3>Model<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference external" href="https://arxiv.org/abs/1703.03130">A Structured Self-attentive Sentence Embedding</a></li>
-<li><a class="reference external" href="https://arxiv.org/abs/1810.04805">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/1703.03130">A Structured Self-attentive Sentence Embedding</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/1810.04805">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></p></li>
 </ul>
 </div>
 </div>
@@ -266,7 +267,7 @@
 <div class="section" id="id6">
 <h3>Model<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference external" href="https://arxiv.org/abs/1810.04805">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/1810.04805">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></p></li>
 </ul>
 </div>
 </div>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.model.token_classification.bert_for_tok_cls &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.model.token_classification.bert_for_tok_cls &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
@@ -184,7 +185,7 @@
   <h1>Source code for claf.model.token_classification.bert_for_tok_cls</h1><div class="highlight"><pre>
 <span></span>
 <span class="kn">from</span> <span class="nn">overrides</span> <span class="k">import</span> <span class="n">overrides</span>
-<span class="kn">from</span> <span class="nn">pytorch_pretrained_bert.modeling</span> <span class="k">import</span> <span class="n">BertModel</span>
+<span class="kn">from</span> <span class="nn">pytorch_transformers</span> <span class="k">import</span> <span class="n">BertModel</span>
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 
 <span class="kn">from</span> <span class="nn">claf.data.data_handler</span> <span class="k">import</span> <span class="n">CachePath</span>
@@ -229,7 +230,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
             <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">num_tags</span><span class="p">)</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">init_bert_weights</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">init_weights</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">(</span><span class="n">ignore_index</span><span class="o">=</span><span class="n">ignore_tag_idx</span><span class="p">)</span>
 
@@ -283,9 +284,12 @@
 
         <span class="n">attention_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">bert_inputs</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
 
-        <span class="n">token_encodings</span><span class="p">,</span> <span class="n">sequence_embed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">(</span>
-            <span class="n">bert_inputs</span><span class="p">,</span> <span class="n">token_type_ids</span><span class="p">,</span> <span class="n">attention_mask</span><span class="p">,</span> <span class="n">output_all_encoded_layers</span><span class="o">=</span><span class="kc">False</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">(</span>
+            <span class="n">bert_inputs</span><span class="p">,</span> <span class="n">token_type_ids</span><span class="o">=</span><span class="n">token_type_ids</span><span class="p">,</span> <span class="n">attention_mask</span><span class="o">=</span><span class="n">attention_mask</span>
         <span class="p">)</span>
+        <span class="n">token_encodings</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">pooled_output</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
         <span class="n">tag_logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span><span class="p">(</span><span class="n">token_encodings</span><span class="p">)</span>  <span class="c1"># [B, L, num_tags]</span>
 
         <span class="c1"># gather the logits of the tagged token positions.</span>
@@ -294,7 +298,7 @@
 
         <span class="n">sliced_token_tag_logits</span> <span class="o">=</span> <span class="p">[</span><span class="n">token_tag_logits</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="p">:</span><span class="n">n</span><span class="p">,</span> <span class="p">:]</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">num_tokens</span><span class="p">)]</span>
 
-        <span class="n">output_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;sequence_embed&quot;</span><span class="p">:</span> <span class="n">sequence_embed</span><span class="p">,</span> <span class="s2">&quot;tag_logits&quot;</span><span class="p">:</span> <span class="n">sliced_token_tag_logits</span><span class="p">}</span>
+        <span class="n">output_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;sequence_embed&quot;</span><span class="p">:</span> <span class="n">pooled_output</span><span class="p">,</span> <span class="s2">&quot;tag_logits&quot;</span><span class="p">:</span> <span class="n">sliced_token_tag_logits</span><span class="p">}</span>
 
         <span class="k">if</span> <span class="n">labels</span><span class="p">:</span>
             <span class="n">tag_idxs</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="s2">&quot;tag_idxs&quot;</span><span class="p">]</span>

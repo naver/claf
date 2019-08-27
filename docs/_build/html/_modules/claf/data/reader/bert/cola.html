@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.data.reader.bert.cola &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.data.reader.bert.cola &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../reports/squad.html">SQuAD</a></li>
@@ -206,19 +207,23 @@
     <span class="n">CLS_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;[CLS]&quot;</span>
     <span class="n">SEP_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;[SEP]&quot;</span>
     <span class="n">UNK_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;[UNK]&quot;</span>
-    <span class="n">CONTINUE_SYMBOL</span> <span class="o">=</span> <span class="s2">&quot;##&quot;</span>
+
+    <span class="n">CLASS_DATA</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">file_paths</span><span class="p">,</span>
         <span class="n">tokenizers</span><span class="p">,</span>
         <span class="n">sequence_max_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">is_test</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="nb">super</span><span class="p">(</span><span class="n">CoLABertReader</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">file_paths</span><span class="p">,</span>
             <span class="n">tokenizers</span><span class="p">,</span>
             <span class="n">sequence_max_length</span><span class="p">,</span>
+            <span class="n">class_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">is_test</span><span class="o">=</span><span class="n">is_test</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="nd">@overrides</span>
@@ -228,30 +233,18 @@
         <span class="n">_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
         <span class="n">lines</span> <span class="o">=</span> <span class="n">_file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s2">&quot;train&quot;</span><span class="p">:</span>
-            <span class="n">lines</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
         <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
             <span class="n">line_tokens</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line_tokens</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-                    <span class="s2">&quot;uid&quot;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{data_type}</span><span class="s2">-</span><span class="si">{i}</span><span class="s2">&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;sequence&quot;</span><span class="p">:</span> <span class="n">line_tokens</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s2">&quot;test&quot;</span> <span class="k">else</span> <span class="n">line_tokens</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">class_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s2">&quot;test&quot;</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">line_tokens</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-                <span class="p">})</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line_tokens</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;uid&quot;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{data_type}</span><span class="s2">-</span><span class="si">{i}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;sequence_a&quot;</span><span class="p">:</span> <span class="n">line_tokens</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">class_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">line_tokens</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="p">})</span>
 
-        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">data</span>
-
-    <span class="nd">@overrides</span>
-    <span class="k">def</span> <span class="nf">_get_class_dicts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">class_idx2text</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">class_idx</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">class_idx</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">class_idx</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-        <span class="p">}</span>
-        <span class="n">class_text2idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">class_text</span><span class="p">:</span> <span class="n">class_idx</span> <span class="k">for</span> <span class="n">class_idx</span><span class="p">,</span> <span class="n">class_text</span> <span class="ow">in</span> <span class="n">class_idx2text</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-
-        <span class="k">return</span> <span class="n">class_idx2text</span><span class="p">,</span> <span class="n">class_text2idx</span></div>
+        <span class="k">return</span> <span class="n">data</span></div>
 </pre></div>
 
            </div>

@@ -34,7 +34,6 @@ class TokClsBertReader(DataReader):
     CLS_TOKEN = "[CLS]"
     SEP_TOKEN = "[SEP]"
     UNK_TOKEN = "[UNK]"
-    CONTINUE_SYMBOL = "##"
 
     def __init__(
             self,
@@ -116,8 +115,6 @@ class TokClsBertReader(DataReader):
             "cls_token": self.CLS_TOKEN,
             "sep_token": self.SEP_TOKEN,
             "unk_token": self.UNK_TOKEN,
-            "continue_symbol": self.CONTINUE_SYMBOL,
-
             "model": {
                 "num_tags": len(tag_idx2text),
                 "ignore_tag_idx": self.ignore_tag_idx,

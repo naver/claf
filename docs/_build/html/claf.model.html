@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.model package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.model package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -120,6 +120,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -232,9 +233,9 @@
 <em class="property">class </em><code class="descclassname">claf.model.base.</code><code class="descname">ModelBase</code><a class="reference internal" href="_modules/claf/model/base.html#ModelBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.base.ModelBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Model Base Class</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>token_embedder: (claf.tokens.token_embedder.base) TokenEmbedder</dd>
+<dl class="simple">
+<dt>Args:</dt><dd><p>token_embedder: (claf.tokens.token_embedder.base) TokenEmbedder</p>
+</dd>
 </dl>
 <dl class="attribute">
 <dt id="claf.model.base.ModelBase.config">
@@ -252,8 +253,8 @@
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>

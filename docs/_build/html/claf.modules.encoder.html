@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.modules.encoder package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.modules.encoder package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -124,6 +124,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -220,61 +221,62 @@ Parameters
 ———-
 input_size : <code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</p>
 <blockquote>
-<div>The dimension of the inputs to the LSTM.</div></blockquote>
-<dl class="docutils">
-<dt>hidden_size <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt>
-<dd>The dimension of the outputs of the LSTM.</dd>
-<dt>cell_size <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt>
-<dd>The dimension of the memory cell used for the LSTM.</dd>
-<dt>go_forward: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional (default = True)</dt>
-<dd>The direction in which the LSTM is applied to the sequence.
-Forwards by default, or backwards if False.</dd>
-<dt>recurrent_dropout_probability: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional (default = 0.0)</dt>
-<dd>The dropout probability to be used in a dropout scheme as stated in
+<div><p>The dimension of the inputs to the LSTM.</p>
+</div></blockquote>
+<dl>
+<dt>hidden_size<span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt><dd><p>The dimension of the outputs of the LSTM.</p>
+</dd>
+<dt>cell_size<span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt><dd><p>The dimension of the memory cell used for the LSTM.</p>
+</dd>
+<dt>go_forward: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional (default = True)</dt><dd><p>The direction in which the LSTM is applied to the sequence.
+Forwards by default, or backwards if False.</p>
+</dd>
+<dt>recurrent_dropout_probability: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional (default = 0.0)</dt><dd><p>The dropout probability to be used in a dropout scheme as stated in
 <a class="reference external" href="https://arxiv.org/abs/1512.05287">A Theoretically Grounded Application of Dropout in Recurrent Neural Networks</a> . Implementation wise, this simply
 applies a fixed dropout mask per sequence to the recurrent connection of the
-LSTM.</dd>
-<dt>state_projection_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt>
-<dd>The magnitude with which to clip the hidden_state after projecting it.</dd>
-<dt>memory_cell_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt>
-<dd>The magnitude with which to clip the memory cell.</dd>
+LSTM.</p>
+</dd>
+<dt>state_projection_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt><dd><p>The magnitude with which to clip the hidden_state after projecting it.</p>
+</dd>
+<dt>memory_cell_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt><dd><p>The magnitude with which to clip the memory cell.</p>
+</dd>
 </dl>
-<dl class="docutils">
-<dt>output_accumulator <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code></span></dt>
-<dd>The outputs of the LSTM for each timestep. A tensor of shape
+<dl>
+<dt>output_accumulator<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code></span></dt><dd><p>The outputs of the LSTM for each timestep. A tensor of shape
 (batch_size, max_timesteps, hidden_size) where for a given batch
 element, all outputs past the sequence length for that batch are
-zero tensors.</dd>
-<dt>final_state: <code class="docutils literal notranslate"><span class="pre">Tuple[torch.FloatTensor,</span> <span class="pre">torch.FloatTensor]</span></code></dt>
-<dd>The final (state, memory) states of the LSTM, with shape
+zero tensors.</p>
+</dd>
+<dt>final_state: <code class="docutils literal notranslate"><span class="pre">Tuple[torch.FloatTensor,</span> <span class="pre">torch.FloatTensor]</span></code></dt><dd><p>The final (state, memory) states of the LSTM, with shape
 (1, batch_size, hidden_size) and  (1, batch_size, cell_size)
 respectively. The first dimension is 1 in order to match the Pytorch
-API for returning stacked LSTM states.</dd>
+API for returning stacked LSTM states.</p>
+</dd>
 </dl>
 <dl class="method">
 <dt id="claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection.forward">
 <code class="descname">forward</code><span class="sig-paren">(</span><em>inputs: torch.FloatTensor, batch_lengths: List[int], initial_state: Optional[Tuple[torch.Tensor, torch.Tensor]] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection.forward" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>inputs <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code>, required.</span></dt>
-<dd>A tensor of shape (batch_size, num_timesteps, input_size)
-to apply the LSTM over.</dd>
-<dt>batch_lengths <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">List[int]</span></code>, required.</span></dt>
-<dd>A list of length batch_size containing the lengths of the sequences in batch.</dd>
-<dt>initial_state <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">Tuple[torch.Tensor,</span> <span class="pre">torch.Tensor]</span></code>, optional, (default = None)</span></dt>
-<dd>A tuple (state, memory) representing the initial hidden state and memory
+<dd><dl>
+<dt>inputs<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code>, required.</span></dt><dd><p>A tensor of shape (batch_size, num_timesteps, input_size)
+to apply the LSTM over.</p>
+</dd>
+<dt>batch_lengths<span class="classifier"><code class="docutils literal notranslate"><span class="pre">List[int]</span></code>, required.</span></dt><dd><p>A list of length batch_size containing the lengths of the sequences in batch.</p>
+</dd>
+<dt>initial_state<span class="classifier"><code class="docutils literal notranslate"><span class="pre">Tuple[torch.Tensor,</span> <span class="pre">torch.Tensor]</span></code>, optional, (default = None)</span></dt><dd><p>A tuple (state, memory) representing the initial hidden state and memory
 of the LSTM. The <code class="docutils literal notranslate"><span class="pre">state</span></code> has shape (1, batch_size, hidden_size) and the
-<code class="docutils literal notranslate"><span class="pre">memory</span></code> has shape (1, batch_size, cell_size).</dd>
+<code class="docutils literal notranslate"><span class="pre">memory</span></code> has shape (1, batch_size, cell_size).</p>
+</dd>
 </dl>
-<dl class="docutils">
-<dt>output_accumulator <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code></span></dt>
-<dd>The outputs of the LSTM for each timestep. A tensor of shape
+<dl>
+<dt>output_accumulator<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code></span></dt><dd><p>The outputs of the LSTM for each timestep. A tensor of shape
 (batch_size, max_timesteps, hidden_size) where for a given batch
 element, all outputs past the sequence length for that batch are
-zero tensors.</dd>
-<dt>final_state <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">Tuple[``torch.FloatTensor,</span> <span class="pre">torch.FloatTensor]</span></code></span></dt>
-<dd>A tuple (state, memory) representing the initial hidden state and memory
+zero tensors.</p>
+</dd>
+<dt>final_state<span class="classifier"><code class="docutils literal notranslate"><span class="pre">Tuple[``torch.FloatTensor,</span> <span class="pre">torch.FloatTensor]</span></code></span></dt><dd><p>A tuple (state, memory) representing the initial hidden state and memory
 of the LSTM. The <code class="docutils literal notranslate"><span class="pre">state</span></code> has shape (1, batch_size, hidden_size) and the
-<code class="docutils literal notranslate"><span class="pre">memory</span></code> has shape (1, batch_size, cell_size).</dd>
+<code class="docutils literal notranslate"><span class="pre">memory</span></code> has shape (1, batch_size, cell_size).</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -296,15 +298,16 @@ Parameters
 ———-
 tensor : <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>, required.</p>
 <blockquote>
-<div>A tensor to initialize.</div></blockquote>
-<dl class="docutils">
-<dt>split_sizes <span class="classifier-delimiter">:</span> <span class="classifier">List[int], required.</span></dt>
-<dd>A list of length <code class="docutils literal notranslate"><span class="pre">tensor.ndim()</span></code> specifying the size of the
+<div><p>A tensor to initialize.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>split_sizes<span class="classifier">List[int], required.</span></dt><dd><p>A list of length <code class="docutils literal notranslate"><span class="pre">tensor.ndim()</span></code> specifying the size of the
 blocks along that particular dimension. E.g. <code class="docutils literal notranslate"><span class="pre">[10,</span> <span class="pre">20]</span></code> would
 result in the tensor being split into chunks of size 10 along the
-first dimension and 20 along the second.</dd>
-<dt>gain <span class="classifier-delimiter">:</span> <span class="classifier">float, optional (default = 1.0)</span></dt>
-<dd>The gain (scaling) applied to the orthogonal initialization.</dd>
+first dimension and 20 along the second.</p>
+</dd>
+<dt>gain<span class="classifier">float, optional (default = 1.0)</span></dt><dd><p>The gain (scaling) applied to the orthogonal initialization.</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -319,14 +322,16 @@ Parameters
 ———-
 dropout_probability : float, required.</p>
 <blockquote>
-<div>Probability of dropping a dimension of the input.</div></blockquote>
+<div><p>Probability of dropping a dimension of the input.</p>
+</div></blockquote>
 <p>tensor_for_masking : torch.Tensor, required.
 Returns
 ——-
 A torch.FloatTensor consisting of the binary mask scaled by 1/ (1 - dropout_probability).
 This scaling ensures expected values and variances of the output of applying this mask</p>
 <blockquote>
-<div>and the original tensor are the same.</div></blockquote>
+<div><p>and the original tensor are the same.</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="function">
@@ -337,23 +342,24 @@ Parameters
 ———-
 tensor : torch.FloatTensor, required.</p>
 <blockquote>
-<div>A batch first Pytorch tensor.</div></blockquote>
-<dl class="docutils">
-<dt>sequence_lengths <span class="classifier-delimiter">:</span> <span class="classifier">torch.LongTensor, required.</span></dt>
-<dd>A tensor representing the lengths of some dimension of the tensor which
-we want to sort by.</dd>
+<div><p>A batch first Pytorch tensor.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>sequence_lengths<span class="classifier">torch.LongTensor, required.</span></dt><dd><p>A tensor representing the lengths of some dimension of the tensor which
+we want to sort by.</p>
+</dd>
 </dl>
-<dl class="docutils">
-<dt>sorted_tensor <span class="classifier-delimiter">:</span> <span class="classifier">torch.FloatTensor</span></dt>
-<dd>The original tensor sorted along the batch dimension with respect to sequence_lengths.</dd>
-<dt>sorted_sequence_lengths <span class="classifier-delimiter">:</span> <span class="classifier">torch.LongTensor</span></dt>
-<dd>The original sequence_lengths sorted by decreasing size.</dd>
-<dt>restoration_indices <span class="classifier-delimiter">:</span> <span class="classifier">torch.LongTensor</span></dt>
-<dd>Indices into the sorted_tensor such that
-<code class="docutils literal notranslate"><span class="pre">sorted_tensor.index_select(0,</span> <span class="pre">restoration_indices)</span> <span class="pre">==</span> <span class="pre">original_tensor</span></code></dd>
-<dt>permuation_index <span class="classifier-delimiter">:</span> <span class="classifier">torch.LongTensor</span></dt>
-<dd>The indices used to sort the tensor. This is useful if you want to sort many
-tensors using the same ordering.</dd>
+<dl class="simple">
+<dt>sorted_tensor<span class="classifier">torch.FloatTensor</span></dt><dd><p>The original tensor sorted along the batch dimension with respect to sequence_lengths.</p>
+</dd>
+<dt>sorted_sequence_lengths<span class="classifier">torch.LongTensor</span></dt><dd><p>The original sequence_lengths sorted by decreasing size.</p>
+</dd>
+<dt>restoration_indices<span class="classifier">torch.LongTensor</span></dt><dd><p>Indices into the sorted_tensor such that
+<code class="docutils literal notranslate"><span class="pre">sorted_tensor.index_select(0,</span> <span class="pre">restoration_indices)</span> <span class="pre">==</span> <span class="pre">original_tensor</span></code></p>
+</dd>
+<dt>permuation_index<span class="classifier">torch.LongTensor</span></dt><dd><p>The indices used to sort the tensor. This is useful if you want to sort many
+tensors using the same ordering.</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -361,22 +367,22 @@ tensors using the same ordering.</dd>
 <dt id="claf.modules.encoder.positional.PositionalEncoding">
 <em class="property">class </em><code class="descclassname">claf.modules.encoder.positional.</code><code class="descname">PositionalEncoding</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>max_length=2000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/positional.html#PositionalEncoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.positional.PositionalEncoding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="docutils">
-<dt>Positional Encoding</dt>
-<dd>in “Attention is All You Need” (<a class="reference external" href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>)</dd>
+<dl class="simple">
+<dt>Positional Encoding</dt><dd><p>in “Attention is All You Need” (<a class="reference external" href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>)</p>
+</dd>
 </dl>
 <p>The use of relative position is possible because sin(x+y) and cos(x+y) can be
 expressed in terms of y, sin(x) and cos(x).</p>
 <p>(cf. <a class="reference external" href="https://github.com/tensorflow/tensor2tensor/blob/42c3f377f441e5a0f431127d63e71414ead291c4/">https://github.com/tensorflow/tensor2tensor/blob/42c3f377f441e5a0f431127d63e71414ead291c4/</a>        tensor2tensor/layers/common_attention.py#L388)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>embed_dim: the number of embedding dimension</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>embed_dim: the number of embedding dimension</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>max_len: the number of maximum sequence length</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>max_len: the number of maximum sequence length</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -386,8 +392,8 @@ expressed in terms of y, sin(x) and cos(x).</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -403,22 +409,22 @@ registered hooks while the latter silently ignores them.</p>
 <dt id="claf.modules.encoder.PositionalEncoding">
 <em class="property">class </em><code class="descclassname">claf.modules.encoder.</code><code class="descname">PositionalEncoding</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>max_length=2000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/positional.html#PositionalEncoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.PositionalEncoding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="docutils">
-<dt>Positional Encoding</dt>
-<dd>in “Attention is All You Need” (<a class="reference external" href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>)</dd>
+<dl class="simple">
+<dt>Positional Encoding</dt><dd><p>in “Attention is All You Need” (<a class="reference external" href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>)</p>
+</dd>
 </dl>
 <p>The use of relative position is possible because sin(x+y) and cos(x+y) can be
 expressed in terms of y, sin(x) and cos(x).</p>
 <p>(cf. <a class="reference external" href="https://github.com/tensorflow/tensor2tensor/blob/42c3f377f441e5a0f431127d63e71414ead291c4/">https://github.com/tensorflow/tensor2tensor/blob/42c3f377f441e5a0f431127d63e71414ead291c4/</a>        tensor2tensor/layers/common_attention.py#L388)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>embed_dim: the number of embedding dimension</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>embed_dim: the number of embedding dimension</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>max_len: the number of maximum sequence length</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>max_len: the number of maximum sequence length</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -428,8 +434,8 @@ expressed in terms of y, sin(x) and cos(x).</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -450,61 +456,62 @@ Parameters
 ———-
 input_size : <code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</p>
 <blockquote>
-<div>The dimension of the inputs to the LSTM.</div></blockquote>
-<dl class="docutils">
-<dt>hidden_size <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt>
-<dd>The dimension of the outputs of the LSTM.</dd>
-<dt>cell_size <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt>
-<dd>The dimension of the memory cell used for the LSTM.</dd>
-<dt>go_forward: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional (default = True)</dt>
-<dd>The direction in which the LSTM is applied to the sequence.
-Forwards by default, or backwards if False.</dd>
-<dt>recurrent_dropout_probability: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional (default = 0.0)</dt>
-<dd>The dropout probability to be used in a dropout scheme as stated in
+<div><p>The dimension of the inputs to the LSTM.</p>
+</div></blockquote>
+<dl>
+<dt>hidden_size<span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt><dd><p>The dimension of the outputs of the LSTM.</p>
+</dd>
+<dt>cell_size<span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt><dd><p>The dimension of the memory cell used for the LSTM.</p>
+</dd>
+<dt>go_forward: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional (default = True)</dt><dd><p>The direction in which the LSTM is applied to the sequence.
+Forwards by default, or backwards if False.</p>
+</dd>
+<dt>recurrent_dropout_probability: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional (default = 0.0)</dt><dd><p>The dropout probability to be used in a dropout scheme as stated in
 <a class="reference external" href="https://arxiv.org/abs/1512.05287">A Theoretically Grounded Application of Dropout in Recurrent Neural Networks</a> . Implementation wise, this simply
 applies a fixed dropout mask per sequence to the recurrent connection of the
-LSTM.</dd>
-<dt>state_projection_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt>
-<dd>The magnitude with which to clip the hidden_state after projecting it.</dd>
-<dt>memory_cell_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt>
-<dd>The magnitude with which to clip the memory cell.</dd>
+LSTM.</p>
+</dd>
+<dt>state_projection_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt><dd><p>The magnitude with which to clip the hidden_state after projecting it.</p>
+</dd>
+<dt>memory_cell_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt><dd><p>The magnitude with which to clip the memory cell.</p>
+</dd>
 </dl>
-<dl class="docutils">
-<dt>output_accumulator <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code></span></dt>
-<dd>The outputs of the LSTM for each timestep. A tensor of shape
+<dl>
+<dt>output_accumulator<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code></span></dt><dd><p>The outputs of the LSTM for each timestep. A tensor of shape
 (batch_size, max_timesteps, hidden_size) where for a given batch
 element, all outputs past the sequence length for that batch are
-zero tensors.</dd>
-<dt>final_state: <code class="docutils literal notranslate"><span class="pre">Tuple[torch.FloatTensor,</span> <span class="pre">torch.FloatTensor]</span></code></dt>
-<dd>The final (state, memory) states of the LSTM, with shape
+zero tensors.</p>
+</dd>
+<dt>final_state: <code class="docutils literal notranslate"><span class="pre">Tuple[torch.FloatTensor,</span> <span class="pre">torch.FloatTensor]</span></code></dt><dd><p>The final (state, memory) states of the LSTM, with shape
 (1, batch_size, hidden_size) and  (1, batch_size, cell_size)
 respectively. The first dimension is 1 in order to match the Pytorch
-API for returning stacked LSTM states.</dd>
+API for returning stacked LSTM states.</p>
+</dd>
 </dl>
 <dl class="method">
 <dt id="claf.modules.encoder.LstmCellWithProjection.forward">
 <code class="descname">forward</code><span class="sig-paren">(</span><em>inputs: torch.FloatTensor, batch_lengths: List[int], initial_state: Optional[Tuple[torch.Tensor, torch.Tensor]] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.LstmCellWithProjection.forward" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>inputs <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code>, required.</span></dt>
-<dd>A tensor of shape (batch_size, num_timesteps, input_size)
-to apply the LSTM over.</dd>
-<dt>batch_lengths <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">List[int]</span></code>, required.</span></dt>
-<dd>A list of length batch_size containing the lengths of the sequences in batch.</dd>
-<dt>initial_state <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">Tuple[torch.Tensor,</span> <span class="pre">torch.Tensor]</span></code>, optional, (default = None)</span></dt>
-<dd>A tuple (state, memory) representing the initial hidden state and memory
+<dd><dl>
+<dt>inputs<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code>, required.</span></dt><dd><p>A tensor of shape (batch_size, num_timesteps, input_size)
+to apply the LSTM over.</p>
+</dd>
+<dt>batch_lengths<span class="classifier"><code class="docutils literal notranslate"><span class="pre">List[int]</span></code>, required.</span></dt><dd><p>A list of length batch_size containing the lengths of the sequences in batch.</p>
+</dd>
+<dt>initial_state<span class="classifier"><code class="docutils literal notranslate"><span class="pre">Tuple[torch.Tensor,</span> <span class="pre">torch.Tensor]</span></code>, optional, (default = None)</span></dt><dd><p>A tuple (state, memory) representing the initial hidden state and memory
 of the LSTM. The <code class="docutils literal notranslate"><span class="pre">state</span></code> has shape (1, batch_size, hidden_size) and the
-<code class="docutils literal notranslate"><span class="pre">memory</span></code> has shape (1, batch_size, cell_size).</dd>
+<code class="docutils literal notranslate"><span class="pre">memory</span></code> has shape (1, batch_size, cell_size).</p>
+</dd>
 </dl>
-<dl class="docutils">
-<dt>output_accumulator <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code></span></dt>
-<dd>The outputs of the LSTM for each timestep. A tensor of shape
+<dl>
+<dt>output_accumulator<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code></span></dt><dd><p>The outputs of the LSTM for each timestep. A tensor of shape
 (batch_size, max_timesteps, hidden_size) where for a given batch
 element, all outputs past the sequence length for that batch are
-zero tensors.</dd>
-<dt>final_state <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">Tuple[``torch.FloatTensor,</span> <span class="pre">torch.FloatTensor]</span></code></span></dt>
-<dd>A tuple (state, memory) representing the initial hidden state and memory
+zero tensors.</p>
+</dd>
+<dt>final_state<span class="classifier"><code class="docutils literal notranslate"><span class="pre">Tuple[``torch.FloatTensor,</span> <span class="pre">torch.FloatTensor]</span></code></span></dt><dd><p>A tuple (state, memory) representing the initial hidden state and memory
 of the LSTM. The <code class="docutils literal notranslate"><span class="pre">state</span></code> has shape (1, batch_size, hidden_size) and the
-<code class="docutils literal notranslate"><span class="pre">memory</span></code> has shape (1, batch_size, cell_size).</dd>
+<code class="docutils literal notranslate"><span class="pre">memory</span></code> has shape (1, batch_size, cell_size).</p>
+</dd>
 </dl>
 </dd></dl>
 

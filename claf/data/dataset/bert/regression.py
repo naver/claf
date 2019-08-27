@@ -1,16 +1,15 @@
 
 import json
 from overrides import overrides
-import torch
 
 from claf.data import utils
 from claf.data.collate import PadCollator
 from claf.data.dataset.base import DatasetBase
 
 
-class SeqClsBertDataset(DatasetBase):
+class RegressionBertDataset(DatasetBase):
     """
-    Dataset for Sequence Classification using BERT
+    Dataset for Regression using BERT
 
     * Args:
         batch: Batch DTO (claf.data.batch)
@@ -20,13 +19,10 @@ class SeqClsBertDataset(DatasetBase):
     """
 
     def __init__(self, batch, helper=None):
-        super(SeqClsBertDataset, self).__init__()
+        super(RegressionBertDataset, self).__init__()
 
-        self.name = "seq_cls_bert"
+        self.name = "reg_bert"
         self.helper = helper
-        self.raw_dataset = helper["raw_dataset"]
-
-        self.class_idx2text = helper["class_idx2text"]
 
         # Features
         self.bert_input_idx = [feature["bert_input"] for feature in batch.features]
@@ -39,16 +35,14 @@ class SeqClsBertDataset(DatasetBase):
         self.data_ids = {data_index: label["id"] for (data_index, label) in enumerate(batch.labels)}
         self.data_indices = list(self.data_ids.keys())
 
-        self.classes = {
+        self.labels = {
             label["id"]: {
-                "class_idx": label["class_idx"],
-                "class_text": label["class_text"],
+                "score": label["score"],
             }
             for label in batch.labels
         }
 
-        self.class_text = [label["class_text"] for label in batch.labels]
-        self.class_idx = [label["class_idx"] for label in batch.labels]
+        self.label_scores = [label["score"] for label in batch.labels]
 
     @overrides
     def collate_fn(self, cuda_device_id=None):
@@ -56,15 +50,15 @@ class SeqClsBertDataset(DatasetBase):
         collator = PadCollator(cuda_device_id=cuda_device_id)
 
         def make_tensor_fn(data):
-            data_idxs, bert_input_idxs, token_type_idxs, class_idxs = zip(*data)
+            data_idxs, bert_input_idxs, token_type_idxs, label_scores = zip(*data)
 
             features = {
                 "bert_input": utils.transpose(bert_input_idxs, skip_keys=["text"]),
                 "token_type": utils.transpose(token_type_idxs, skip_keys=["text"]),
             }
             labels = {
-                "class_idx": class_idxs,
                 "data_idx": data_idxs,
+                "score": label_scores,
             }
             return collator(features, labels)
 
@@ -78,7 +72,7 @@ class SeqClsBertDataset(DatasetBase):
             self.data_indices[index],
             self.bert_input_idx[index],
             self.token_type_idx[index],
-            self.class_idx[index],
+            self.label_scores[index],
         )
 
     def __len__(self):
@@ -88,15 +82,9 @@ class SeqClsBertDataset(DatasetBase):
         dataset_properties = {
             "name": self.name,
             "total_count": self.__len__(),
-            "num_classes": self.num_classes,
             "sequence_maxlen": self.sequence_maxlen,
-            "classes": self.class_idx2text,
         }
         return json.dumps(dataset_properties, indent=4)
-
-    @property
-    def num_classes(self):
-        return len(self.class_idx2text)
 
     @property
     def sequence_maxlen(self):
@@ -107,10 +95,4 @@ class SeqClsBertDataset(DatasetBase):
 
     @overrides
     def get_ground_truth(self, data_id):
-        return self.classes[data_id]
-
-    def get_class_text_with_idx(self, class_index):
-        if class_index is None:
-            raise ValueError("class_index is required.")
-
-        return self.class_idx2text[class_index]
+        return self.labels[data_id]

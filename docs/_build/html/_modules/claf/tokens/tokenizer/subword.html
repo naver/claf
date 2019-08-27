@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.tokens.tokenizer.subword &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.tokens.tokenizer.subword &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
@@ -185,7 +186,9 @@
             
   <h1>Source code for claf.tokens.tokenizer.subword</h1><div class="highlight"><pre>
 <span></span>
-<span class="kn">from</span> <span class="nn">pytorch_pretrained_bert.tokenization</span> <span class="k">import</span> <span class="n">WordpieceTokenizer</span><span class="p">,</span> <span class="n">load_vocab</span>
+<span class="kn">from</span> <span class="nn">pytorch_transformers</span> <span class="k">import</span> <span class="n">WordpieceTokenizer</span>
+<span class="kn">from</span> <span class="nn">pytorch_transformers.tokenization_bert</span> <span class="k">import</span> <span class="n">load_vocab</span>
+
 
 <span class="kn">from</span> <span class="nn">claf.data.data_handler</span> <span class="k">import</span> <span class="n">CachePath</span><span class="p">,</span> <span class="n">DataHandler</span>
 
@@ -218,7 +221,8 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">vocab_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;vocab_path&quot;</span><span class="p">],</span> <span class="n">return_path</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">vocab</span> <span class="o">=</span> <span class="n">load_vocab</span><span class="p">(</span><span class="n">vocab_path</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span> <span class="o">=</span> <span class="n">WordpieceTokenizer</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span> <span class="o">=</span> <span class="n">WordpieceTokenizer</span><span class="p">(</span>
+                <span class="n">vocab</span><span class="p">,</span> <span class="n">unk_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;unk_token&quot;</span><span class="p">,</span> <span class="s2">&quot;[UNK]&quot;</span><span class="p">))</span>
 
         <span class="n">tokens</span> <span class="o">=</span> <span class="p">[]</span>
 
