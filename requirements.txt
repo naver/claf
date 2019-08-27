@@ -32,4 +32,4 @@ pytest-cov
 # Metrics
 pycm
 seqeval
-Scikit-learn
+scikit-learn
