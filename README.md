@@ -97,6 +97,7 @@ pip install claf
 - [Pretrained Vector](https://naver.github.io/claf/docs/_build/html/contents/pretrained_vector.html)
 - [Tokens](https://naver.github.io/claf/docs/_build/html/contents/tokens.html)
 - Reports
+  - [GLUE](https://naver.github.io/claf/docs/_build/html/reports/glue.html)
   - [HistoryQA](https://naver.github.io/claf/docs/_build/html/reports/historyqa.html)
   - [KorQuAD](https://naver.github.io/claf/docs/_build/html/reports/korquad.html)
   - [SQuAD](https://naver.github.io/claf/docs/_build/html/reports/squad.html)
