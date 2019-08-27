@@ -41,7 +41,7 @@
          "name": "bert_for_reg",
          "bert_for_reg": {
              "pretrained_model_name": "bert-base-uncased",
-             "dropout": 0.0
+             "dropout": 0.1
          }
      },
      "trainer": {
@@ -56,11 +56,7 @@
          "op_type": "adamw",
          "adamw": {
              "weight_decay": 0
-         },
-         "lr_scheduler_type": "warmup_linear",
-         "warmup_linear": {
-             "warmup_steps": 100
          }
      },
-     "seed_num": 42
+     "seed_num": 22
  }

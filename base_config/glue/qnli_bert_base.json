@@ -41,7 +41,7 @@
          "name": "bert_for_seq_cls",
          "bert_for_seq_cls": {
              "pretrained_model_name": "bert-base-uncased",
-             "dropout": 0.0
+             "dropout": 0.1
          }
      },
      "trainer": {
@@ -56,10 +56,6 @@
          "op_type": "adamw",
          "adamw": {
              "weight_decay": 0
-         },
-         "lr_scheduler_type": "warmup_linear",
-         "warmup_linear": {
-             "warmup_steps": 100
          }
      },
      "seed_num": 42
