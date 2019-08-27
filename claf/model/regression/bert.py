@@ -99,7 +99,7 @@ class BertForRegression(Regression, ModelWithoutTokenEmbedder):
             output_dict["score"] = score
 
             # Loss
-            loss = self.criterion(logits, score)
+            loss = self.criterion(logits.view(-1, 1), score.view(-1, 1).float())
             output_dict["loss"] = loss.unsqueeze(0)  # NOTE: DataParallel concat Error
 
         return output_dict

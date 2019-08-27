@@ -94,7 +94,7 @@ class Regression:
 
         self.write_predictions(preds)
 
-        metrics = {"mse": mse(pred_scores, target_scores)}
+        metrics = {"mse": mse(pred_scores, target_scores) / len(target_scores)}
 
         pearson_spearman_metrics = pearson_and_spearman(pred_scores, target_scores)
         metrics.update(pearson_spearman_metrics)
