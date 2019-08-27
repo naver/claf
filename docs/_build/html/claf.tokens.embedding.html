@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.tokens.embedding package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.tokens.embedding package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -124,6 +124,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -213,9 +214,9 @@
 <p>Token Embedding</p>
 <p>It can be embedding matrix, language model (ELMo), neural machine translation model (CoVe) and features.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>vocab: Vocab (rqa.tokens.vocab)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (rqa.tokens.vocab)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -246,16 +247,16 @@
 <p>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 (<a class="reference external" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>vocab: Vocab (claf.tokens.vocab)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (claf.tokens.vocab)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>pretrained_model_name: …
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>pretrained_model_name: …
 use_as_embedding: …
-trainable: Finetune or fixed</dd>
+trainable: Finetune or fixed</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -285,18 +286,18 @@ trainable: Finetune or fixed</dd>
 <p>Character Embedding (CharCNN)
 (<a class="reference external" href="https://arxiv.org/abs/1509.01626">https://arxiv.org/abs/1509.01626</a>)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>vocab: Vocab (claf.tokens.vocab)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (claf.tokens.vocab)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>dropout: The number of dropout probability
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>dropout: The number of dropout probability
 embed_dim: The number of embedding dimension
 kernel_sizes: The list of kernel size (n-gram)
 num_filter: The number of cnn filter
-activation: Activation Function (eg. ReLU)</dd>
+activation: Activation Function (eg. ReLU)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -322,17 +323,17 @@ activation: Activation Function (eg. ReLU)</dd>
 <p>Learned in Translation: Contextualized Word Vectors
 (<a class="reference external" href="http://papers.nips.cc/paper/7209-learned-in-translation-contextualized-word-vectors.pdf">http://papers.nips.cc/paper/7209-learned-in-translation-contextualized-word-vectors.pdf</a>)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>vocab: Vocab (claf.tokens.vocab)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (claf.tokens.vocab)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>dropout: The number of dropout probability
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>dropout: The number of dropout probability
 pretrained_path: pretrained vector path (eg. GloVe)
 trainable: finetune or fixed
-project_dim: The number of project (linear) dimension</dd>
+project_dim: The number of project (linear) dimension</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -359,21 +360,19 @@ Embedding From Language Model</p>
 <p>Deep contextualized word representations
 (<a class="reference external" href="https://arxiv.org/abs/1802.0536">https://arxiv.org/abs/1802.0536</a>)</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first last">vocab: Vocab (claf.tokens.vocab)</p>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (claf.tokens.vocab)</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">options_file: ELMo model config file path
+<li><dl>
+<dt>Kwargs:</dt><dd><p>options_file: ELMo model config file path
 weight_file: ELMo model weight file path
 do_layer_norm: Should we apply layer normalization (passed to <code class="docutils literal notranslate"><span class="pre">ScalarMix</span></code>)?</p>
 <blockquote>
 <div><p>default is False</p>
 </div></blockquote>
-<p class="last">dropout: The number of dropout probability
+<p>dropout: The number of dropout probability
 trainable: Finetune or fixed
 project_dim: The number of project (linear) dimension</p>
 </dd>
@@ -401,23 +400,20 @@ project_dim: The number of project (linear) dimension</p>
 <p>Frequent Word Finetuning Embedding
 Finetuning embedding matrix, according to ‘threshold_index’</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first last">vocab: Vocab (claf.tokens.vocab)</p>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (claf.tokens.vocab)</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">dropout: The number of dropout probability
+<li><dl>
+<dt>Kwargs:</dt><dd><p>dropout: The number of dropout probability
 embed_dim: The number of embedding dimension
 padding_idx: If given, pads the output with the embedding vector at padding_idx</p>
 <blockquote>
 <div><p>(initialized to zeros) whenever it encounters the index.</p>
 </div></blockquote>
-<dl class="docutils">
-<dt>max_norm: If given, will renormalize the embedding vectors to have a norm lesser</dt>
-<dd><p class="first last">than this before extracting. Note: this will modify weight in-place.</p>
+<dl class="simple">
+<dt>max_norm: If given, will renormalize the embedding vectors to have a norm lesser</dt><dd><p>than this before extracting. Note: this will modify weight in-place.</p>
 </dd>
 </dl>
 <p>norm_type: The p of the p-norm to compute for the max_norm option. Default 2.
@@ -425,12 +421,11 @@ scale_grad_by_freq: if given, this will scale gradients by the inverse of</p>
 <blockquote>
 <div><p>frequency of the words in the mini-batch. Default False.</p>
 </div></blockquote>
-<dl class="docutils">
-<dt>sparse: if True, gradient w.r.t. weight will be a sparse tensor.</dt>
-<dd><p class="first last">See Notes under torch.nn.Embedding for more details regarding sparse gradients.</p>
+<dl class="simple">
+<dt>sparse: if True, gradient w.r.t. weight will be a sparse tensor.</dt><dd><p>See Notes under torch.nn.Embedding for more details regarding sparse gradients.</p>
 </dd>
 </dl>
-<p class="last">pretrained_path: pretrained vector path (eg. GloVe)
+<p>pretrained_path: pretrained vector path (eg. GloVe)
 trainable: finetune or fixed</p>
 </dd>
 </dl>
@@ -456,9 +451,9 @@ trainable: finetune or fixed</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Sparse to one-hot encoding</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>vocab: Vocab (claf.tokens.vocab)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (claf.tokens.vocab)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -468,8 +463,8 @@ trainable: finetune or fixed</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -489,20 +484,20 @@ registered hooks while the latter silently ignores them.</p>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>Sparse Feature</p>
 <ol class="arabic simple">
-<li>Sparse to Embedding</li>
-<li>One Hot Encoding</li>
+<li><p>Sparse to Embedding</p></li>
+<li><p>One Hot Encoding</p></li>
 </ol>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>vocab: Vocab (claf.tokens.vocab)
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (claf.tokens.vocab)
 embed_type: The type of embedding [one_hot|embedding]
-feature_count: The number of feature count</dd>
+feature_count: The number of feature count</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>params: additional parameters for embedding module</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>params: additional parameters for embedding module</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -526,23 +521,20 @@ feature_count: The number of feature count</dd>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Sparse to Embedding</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first last">token_name: token_name</p>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_name: token_name</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">dropout: The number of dropout probability
+<li><dl>
+<dt>Kwargs:</dt><dd><p>dropout: The number of dropout probability
 embed_dim: The number of embedding dimension
 padding_idx: If given, pads the output with the embedding vector at padding_idx</p>
 <blockquote>
 <div><p>(initialized to zeros) whenever it encounters the index.</p>
 </div></blockquote>
-<dl class="docutils">
-<dt>max_norm: If given, will renormalize the embedding vectors to have a norm lesser</dt>
-<dd><p class="first last">than this before extracting. Note: this will modify weight in-place.</p>
+<dl class="simple">
+<dt>max_norm: If given, will renormalize the embedding vectors to have a norm lesser</dt><dd><p>than this before extracting. Note: this will modify weight in-place.</p>
 </dd>
 </dl>
 <p>norm_type: The p of the p-norm to compute for the max_norm option. Default 2.
@@ -550,12 +542,11 @@ scale_grad_by_freq: if given, this will scale gradients by the inverse of</p>
 <blockquote>
 <div><p>frequency of the words in the mini-batch. Default False.</p>
 </div></blockquote>
-<dl class="docutils">
-<dt>sparse: if True, gradient w.r.t. weight will be a sparse tensor.</dt>
-<dd><p class="first last">See Notes under torch.nn.Embedding for more details regarding sparse gradients.</p>
+<dl class="simple">
+<dt>sparse: if True, gradient w.r.t. weight will be a sparse tensor.</dt><dd><p>See Notes under torch.nn.Embedding for more details regarding sparse gradients.</p>
 </dd>
 </dl>
-<p class="last">pretrained_path: pretrained vector path (eg. GloVe)
+<p>pretrained_path: pretrained vector path (eg. GloVe)
 trainable: finetune or fixed</p>
 </dd>
 </dl>
@@ -567,8 +558,8 @@ trainable: finetune or fixed</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -589,23 +580,20 @@ registered hooks while the latter silently ignores them.</p>
 <p>Word Embedding
 Default Token Embedding</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first last">vocab: Vocab (claf.tokens.vocab)</p>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (claf.tokens.vocab)</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">dropout: The number of dropout probability
+<li><dl>
+<dt>Kwargs:</dt><dd><p>dropout: The number of dropout probability
 embed_dim: The number of embedding dimension
 padding_idx: If given, pads the output with the embedding vector at padding_idx</p>
 <blockquote>
 <div><p>(initialized to zeros) whenever it encounters the index.</p>
 </div></blockquote>
-<dl class="docutils">
-<dt>max_norm: If given, will renormalize the embedding vectors to have a norm lesser</dt>
-<dd><p class="first last">than this before extracting. Note: this will modify weight in-place.</p>
+<dl class="simple">
+<dt>max_norm: If given, will renormalize the embedding vectors to have a norm lesser</dt><dd><p>than this before extracting. Note: this will modify weight in-place.</p>
 </dd>
 </dl>
 <p>norm_type: The p of the p-norm to compute for the max_norm option. Default 2.
@@ -613,12 +601,11 @@ scale_grad_by_freq: if given, this will scale gradients by the inverse of</p>
 <blockquote>
 <div><p>frequency of the words in the mini-batch. Default False.</p>
 </div></blockquote>
-<dl class="docutils">
-<dt>sparse: if True, gradient w.r.t. weight will be a sparse tensor.</dt>
-<dd><p class="first last">See Notes under torch.nn.Embedding for more details regarding sparse gradients.</p>
+<dl class="simple">
+<dt>sparse: if True, gradient w.r.t. weight will be a sparse tensor.</dt><dd><p>See Notes under torch.nn.Embedding for more details regarding sparse gradients.</p>
 </dd>
 </dl>
-<p class="last">pretrained_path: pretrained vector path (eg. GloVe)
+<p>pretrained_path: pretrained vector path (eg. GloVe)
 trainable: finetune or fixed</p>
 </dd>
 </dl>
@@ -649,16 +636,16 @@ trainable: finetune or fixed</p>
 <p>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 (<a class="reference external" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>vocab: Vocab (claf.tokens.vocab)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (claf.tokens.vocab)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>pretrained_model_name: …
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>pretrained_model_name: …
 use_as_embedding: …
-trainable: Finetune or fixed</dd>
+trainable: Finetune or fixed</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -688,18 +675,18 @@ trainable: Finetune or fixed</dd>
 <p>Character Embedding (CharCNN)
 (<a class="reference external" href="https://arxiv.org/abs/1509.01626">https://arxiv.org/abs/1509.01626</a>)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>vocab: Vocab (claf.tokens.vocab)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (claf.tokens.vocab)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>dropout: The number of dropout probability
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>dropout: The number of dropout probability
 embed_dim: The number of embedding dimension
 kernel_sizes: The list of kernel size (n-gram)
 num_filter: The number of cnn filter
-activation: Activation Function (eg. ReLU)</dd>
+activation: Activation Function (eg. ReLU)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -725,17 +712,17 @@ activation: Activation Function (eg. ReLU)</dd>
 <p>Learned in Translation: Contextualized Word Vectors
 (<a class="reference external" href="http://papers.nips.cc/paper/7209-learned-in-translation-contextualized-word-vectors.pdf">http://papers.nips.cc/paper/7209-learned-in-translation-contextualized-word-vectors.pdf</a>)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>vocab: Vocab (claf.tokens.vocab)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (claf.tokens.vocab)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>dropout: The number of dropout probability
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>dropout: The number of dropout probability
 pretrained_path: pretrained vector path (eg. GloVe)
 trainable: finetune or fixed
-project_dim: The number of project (linear) dimension</dd>
+project_dim: The number of project (linear) dimension</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -762,21 +749,19 @@ Embedding From Language Model</p>
 <p>Deep contextualized word representations
 (<a class="reference external" href="https://arxiv.org/abs/1802.0536">https://arxiv.org/abs/1802.0536</a>)</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first last">vocab: Vocab (claf.tokens.vocab)</p>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (claf.tokens.vocab)</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">options_file: ELMo model config file path
+<li><dl>
+<dt>Kwargs:</dt><dd><p>options_file: ELMo model config file path
 weight_file: ELMo model weight file path
 do_layer_norm: Should we apply layer normalization (passed to <code class="docutils literal notranslate"><span class="pre">ScalarMix</span></code>)?</p>
 <blockquote>
 <div><p>default is False</p>
 </div></blockquote>
-<p class="last">dropout: The number of dropout probability
+<p>dropout: The number of dropout probability
 trainable: Finetune or fixed
 project_dim: The number of project (linear) dimension</p>
 </dd>
@@ -804,23 +789,20 @@ project_dim: The number of project (linear) dimension</p>
 <p>Frequent Word Finetuning Embedding
 Finetuning embedding matrix, according to ‘threshold_index’</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first last">vocab: Vocab (claf.tokens.vocab)</p>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (claf.tokens.vocab)</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">dropout: The number of dropout probability
+<li><dl>
+<dt>Kwargs:</dt><dd><p>dropout: The number of dropout probability
 embed_dim: The number of embedding dimension
 padding_idx: If given, pads the output with the embedding vector at padding_idx</p>
 <blockquote>
 <div><p>(initialized to zeros) whenever it encounters the index.</p>
 </div></blockquote>
-<dl class="docutils">
-<dt>max_norm: If given, will renormalize the embedding vectors to have a norm lesser</dt>
-<dd><p class="first last">than this before extracting. Note: this will modify weight in-place.</p>
+<dl class="simple">
+<dt>max_norm: If given, will renormalize the embedding vectors to have a norm lesser</dt><dd><p>than this before extracting. Note: this will modify weight in-place.</p>
 </dd>
 </dl>
 <p>norm_type: The p of the p-norm to compute for the max_norm option. Default 2.
@@ -828,12 +810,11 @@ scale_grad_by_freq: if given, this will scale gradients by the inverse of</p>
 <blockquote>
 <div><p>frequency of the words in the mini-batch. Default False.</p>
 </div></blockquote>
-<dl class="docutils">
-<dt>sparse: if True, gradient w.r.t. weight will be a sparse tensor.</dt>
-<dd><p class="first last">See Notes under torch.nn.Embedding for more details regarding sparse gradients.</p>
+<dl class="simple">
+<dt>sparse: if True, gradient w.r.t. weight will be a sparse tensor.</dt><dd><p>See Notes under torch.nn.Embedding for more details regarding sparse gradients.</p>
 </dd>
 </dl>
-<p class="last">pretrained_path: pretrained vector path (eg. GloVe)
+<p>pretrained_path: pretrained vector path (eg. GloVe)
 trainable: finetune or fixed</p>
 </dd>
 </dl>
@@ -859,20 +840,20 @@ trainable: finetune or fixed</p>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>Sparse Feature</p>
 <ol class="arabic simple">
-<li>Sparse to Embedding</li>
-<li>One Hot Encoding</li>
+<li><p>Sparse to Embedding</p></li>
+<li><p>One Hot Encoding</p></li>
 </ol>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>vocab: Vocab (claf.tokens.vocab)
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (claf.tokens.vocab)
 embed_type: The type of embedding [one_hot|embedding]
-feature_count: The number of feature count</dd>
+feature_count: The number of feature count</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>params: additional parameters for embedding module</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>params: additional parameters for embedding module</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -897,23 +878,20 @@ feature_count: The number of feature count</dd>
 <p>Word Embedding
 Default Token Embedding</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first last">vocab: Vocab (claf.tokens.vocab)</p>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>vocab: Vocab (claf.tokens.vocab)</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">dropout: The number of dropout probability
+<li><dl>
+<dt>Kwargs:</dt><dd><p>dropout: The number of dropout probability
 embed_dim: The number of embedding dimension
 padding_idx: If given, pads the output with the embedding vector at padding_idx</p>
 <blockquote>
 <div><p>(initialized to zeros) whenever it encounters the index.</p>
 </div></blockquote>
-<dl class="docutils">
-<dt>max_norm: If given, will renormalize the embedding vectors to have a norm lesser</dt>
-<dd><p class="first last">than this before extracting. Note: this will modify weight in-place.</p>
+<dl class="simple">
+<dt>max_norm: If given, will renormalize the embedding vectors to have a norm lesser</dt><dd><p>than this before extracting. Note: this will modify weight in-place.</p>
 </dd>
 </dl>
 <p>norm_type: The p of the p-norm to compute for the max_norm option. Default 2.
@@ -921,12 +899,11 @@ scale_grad_by_freq: if given, this will scale gradients by the inverse of</p>
 <blockquote>
 <div><p>frequency of the words in the mini-batch. Default False.</p>
 </div></blockquote>
-<dl class="docutils">
-<dt>sparse: if True, gradient w.r.t. weight will be a sparse tensor.</dt>
-<dd><p class="first last">See Notes under torch.nn.Embedding for more details regarding sparse gradients.</p>
+<dl class="simple">
+<dt>sparse: if True, gradient w.r.t. weight will be a sparse tensor.</dt><dd><p>See Notes under torch.nn.Embedding for more details regarding sparse gradients.</p>
 </dd>
 </dl>
-<p class="last">pretrained_path: pretrained vector path (eg. GloVe)
+<p>pretrained_path: pretrained vector path (eg. GloVe)
 trainable: finetune or fixed</p>
 </dd>
 </dl>

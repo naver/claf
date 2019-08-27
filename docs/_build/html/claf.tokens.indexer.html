@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.tokens.indexer package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.tokens.indexer package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -124,6 +124,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -231,21 +232,21 @@
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Bert Token Indexer</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Property</dt>
-<dd>vocab: Vocab (claf.tokens.vocabulary)</dd>
+<li><dl class="simple">
+<dt>Property</dt><dd><p>vocab: Vocab (claf.tokens.vocabulary)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>tokenizer: SubwordTokenizer</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>tokenizer: SubwordTokenizer</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>lowercase: word token to lowercase
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>lowercase: word token to lowercase
 insert_start: insert start_token to first
-insert_end: append end_token</dd>
+insert_end: append end_token</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -263,23 +264,22 @@ insert_end: append end_token</dd>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Character Token Indexer</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Property</dt>
-<dd>vocab: Vocab (claf.tokens.vocabulary)</dd>
+<li><dl class="simple">
+<dt>Property</dt><dd><p>vocab: Vocab (claf.tokens.vocabulary)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>tokenizer: CharTokenizer</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>tokenizer: CharTokenizer</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><dl class="first last docutils">
-<dt>insert_char_start: insert start index (eg. [‘h’, ‘i’] -&gt; [‘&lt;s&gt;’, ‘h’, ‘i’] )</dt>
-<dd>default is None</dd>
-<dt>insert_char_end: insert end index (eg. [‘h’, ‘i’] -&gt; [‘h’, ‘i’, ‘&lt;/s&gt;’] )</dt>
-<dd>default is None</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><dl class="simple">
+<dt>insert_char_start: insert start index (eg. [‘h’, ‘i’] -&gt; [‘&lt;s&gt;’, ‘h’, ‘i’] )</dt><dd><p>default is None</p>
+</dd>
+<dt>insert_char_end: insert end index (eg. [‘h’, ‘i’] -&gt; [‘h’, ‘i’, ‘&lt;/s&gt;’] )</dt><dd><p>default is None</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -376,20 +376,20 @@ character indexers.</p>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Exact Match Token Indexer</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Property</dt>
-<dd>vocab: Vocab (claf.tokens.vocabulary)</dd>
+<li><dl class="simple">
+<dt>Property</dt><dd><p>vocab: Vocab (claf.tokens.vocabulary)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>tokenizer: WordTokenizer</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>tokenizer: WordTokenizer</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>lower: add lower feature. default is True (0 or 1)
-lemma: add lemma case feature. feature is True (0 or 1)</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>lower: add lower feature. default is True (0 or 1)
+lemma: add lemma case feature. feature is True (0 or 1)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -412,21 +412,21 @@ lemma: add lemma case feature. feature is True (0 or 1)</dd>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Linguistic Token Indexer</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Property</dt>
-<dd>vocab: Vocab (claf.tokens.vocabulary)</dd>
+<li><dl class="simple">
+<dt>Property</dt><dd><p>vocab: Vocab (claf.tokens.vocabulary)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>tokenizer: WordTokenizer</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>tokenizer: WordTokenizer</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>pos_tag: POS Tagging
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>pos_tag: POS Tagging
 ner: Named Entity Recognition
-dep: Dependency Parser</dd>
+dep: Dependency Parser</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -444,21 +444,21 @@ dep: Dependency Parser</dd>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Word Token Indexer</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Property</dt>
-<dd>vocab: Vocab (claf.tokens.vocabulary)</dd>
+<li><dl class="simple">
+<dt>Property</dt><dd><p>vocab: Vocab (claf.tokens.vocabulary)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>tokenizer: WordTokenizer</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>tokenizer: WordTokenizer</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>lowercase: word token to lowercase
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>lowercase: word token to lowercase
 insert_start: insert start_token to first
-insert_end: append end_token</dd>
+insert_end: append end_token</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -479,21 +479,21 @@ insert_end: append end_token</dd>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Bert Token Indexer</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Property</dt>
-<dd>vocab: Vocab (claf.tokens.vocabulary)</dd>
+<li><dl class="simple">
+<dt>Property</dt><dd><p>vocab: Vocab (claf.tokens.vocabulary)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>tokenizer: SubwordTokenizer</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>tokenizer: SubwordTokenizer</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>lowercase: word token to lowercase
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>lowercase: word token to lowercase
 insert_start: insert start_token to first
-insert_end: append end_token</dd>
+insert_end: append end_token</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -511,23 +511,22 @@ insert_end: append end_token</dd>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Character Token Indexer</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Property</dt>
-<dd>vocab: Vocab (claf.tokens.vocabulary)</dd>
+<li><dl class="simple">
+<dt>Property</dt><dd><p>vocab: Vocab (claf.tokens.vocabulary)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>tokenizer: CharTokenizer</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>tokenizer: CharTokenizer</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><dl class="first last docutils">
-<dt>insert_char_start: insert start index (eg. [‘h’, ‘i’] -&gt; [‘&lt;s&gt;’, ‘h’, ‘i’] )</dt>
-<dd>default is None</dd>
-<dt>insert_char_end: insert end index (eg. [‘h’, ‘i’] -&gt; [‘h’, ‘i’, ‘&lt;/s&gt;’] )</dt>
-<dd>default is None</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><dl class="simple">
+<dt>insert_char_start: insert start index (eg. [‘h’, ‘i’] -&gt; [‘&lt;s&gt;’, ‘h’, ‘i’] )</dt><dd><p>default is None</p>
+</dd>
+<dt>insert_char_end: insert end index (eg. [‘h’, ‘i’] -&gt; [‘h’, ‘i’, ‘&lt;/s&gt;’] )</dt><dd><p>default is None</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -622,20 +621,20 @@ character indexers.</p>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Exact Match Token Indexer</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Property</dt>
-<dd>vocab: Vocab (claf.tokens.vocabulary)</dd>
+<li><dl class="simple">
+<dt>Property</dt><dd><p>vocab: Vocab (claf.tokens.vocabulary)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>tokenizer: WordTokenizer</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>tokenizer: WordTokenizer</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>lower: add lower feature. default is True (0 or 1)
-lemma: add lemma case feature. feature is True (0 or 1)</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>lower: add lower feature. default is True (0 or 1)
+lemma: add lemma case feature. feature is True (0 or 1)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -658,21 +657,21 @@ lemma: add lemma case feature. feature is True (0 or 1)</dd>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Linguistic Token Indexer</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Property</dt>
-<dd>vocab: Vocab (claf.tokens.vocabulary)</dd>
+<li><dl class="simple">
+<dt>Property</dt><dd><p>vocab: Vocab (claf.tokens.vocabulary)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>tokenizer: WordTokenizer</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>tokenizer: WordTokenizer</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>pos_tag: POS Tagging
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>pos_tag: POS Tagging
 ner: Named Entity Recognition
-dep: Dependency Parser</dd>
+dep: Dependency Parser</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -690,21 +689,21 @@ dep: Dependency Parser</dd>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Word Token Indexer</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Property</dt>
-<dd>vocab: Vocab (claf.tokens.vocabulary)</dd>
+<li><dl class="simple">
+<dt>Property</dt><dd><p>vocab: Vocab (claf.tokens.vocabulary)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>tokenizer: WordTokenizer</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>tokenizer: WordTokenizer</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>lowercase: word token to lowercase
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>lowercase: word token to lowercase
 insert_start: insert start_token to first
-insert_end: append end_token</dd>
+insert_end: append end_token</p>
+</dd>
 </dl>
 </li>
 </ul>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.data.dataset package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.data.dataset package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -122,6 +122,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -243,14 +244,14 @@ An abstract class representing a Dataset.</p>
 <dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
 <p>Dataset for Sequence Classification</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>batch: Batch DTO (claf.data.batch)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>batch: Batch DTO (claf.data.batch)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>helper: helper from data_reader</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>helper: helper from data_reader</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -287,73 +288,23 @@ An abstract class representing a Dataset.</p>
 
 </dd></dl>
 
-<span class="target" id="module-claf.data.dataset.seq_cls_bert"></span><dl class="class">
-<dt id="claf.data.dataset.seq_cls_bert.SeqClsBertDataset">
-<em class="property">class </em><code class="descclassname">claf.data.dataset.seq_cls_bert.</code><code class="descname">SeqClsBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls_bert.html#SeqClsBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.seq_cls_bert.SeqClsBertDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
-<p>Dataset for Sequence Classification using BERT</p>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>batch: Batch DTO (claf.data.batch)</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>helper: helper from data_reader</dd>
-</dl>
-</li>
-</ul>
-<dl class="method">
-<dt id="claf.data.dataset.seq_cls_bert.SeqClsBertDataset.collate_fn">
-<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls_bert.html#SeqClsBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.seq_cls_bert.SeqClsBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
-<dd><p>collate: indexed features and labels -&gt; tensor</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.seq_cls_bert.SeqClsBertDataset.get_class_text_with_idx">
-<code class="descname">get_class_text_with_idx</code><span class="sig-paren">(</span><em>class_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls_bert.html#SeqClsBertDataset.get_class_text_with_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.seq_cls_bert.SeqClsBertDataset.get_class_text_with_idx" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.seq_cls_bert.SeqClsBertDataset.get_ground_truth">
-<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls_bert.html#SeqClsBertDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.seq_cls_bert.SeqClsBertDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.seq_cls_bert.SeqClsBertDataset.get_id">
-<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls_bert.html#SeqClsBertDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.seq_cls_bert.SeqClsBertDataset.get_id" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="claf.data.dataset.seq_cls_bert.SeqClsBertDataset.num_classes">
-<code class="descname">num_classes</code><a class="headerlink" href="#claf.data.dataset.seq_cls_bert.SeqClsBertDataset.num_classes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="claf.data.dataset.seq_cls_bert.SeqClsBertDataset.sequence_maxlen">
-<code class="descname">sequence_maxlen</code><a class="headerlink" href="#claf.data.dataset.seq_cls_bert.SeqClsBertDataset.sequence_maxlen" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 <span class="target" id="module-claf.data.dataset.squad"></span><dl class="class">
 <dt id="claf.data.dataset.squad.SQuADDataset">
 <em class="property">class </em><code class="descclassname">claf.data.dataset.squad.</code><code class="descname">SQuADDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad.html#SQuADDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.squad.SQuADDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
-<dl class="docutils">
-<dt>SQuAD Dataset</dt>
-<dd>compatible with v1.1 and v2.0</dd>
+<dl class="simple">
+<dt>SQuAD Dataset</dt><dd><p>compatible with v1.1 and v2.0</p>
+</dd>
 </dl>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>batch: Batch DTO (claf.data.batch)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>batch: Batch DTO (claf.data.batch)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>helper: helper from data_reader</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>helper: helper from data_reader</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -405,143 +356,20 @@ An abstract class representing a Dataset.</p>
 
 </dd></dl>
 
-<span class="target" id="module-claf.data.dataset.squad_bert"></span><dl class="class">
-<dt id="claf.data.dataset.squad_bert.SQuADBertDataset">
-<em class="property">class </em><code class="descclassname">claf.data.dataset.squad_bert.</code><code class="descname">SQuADBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.squad_bert.SQuADBertDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
-<dl class="docutils">
-<dt>SQuAD Dataset for BERT</dt>
-<dd>compatible with v1.1 and v2.0</dd>
-</dl>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>batch: Batch DTO (claf.data.batch)</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>helper: helper from data_reader</dd>
-</dl>
-</li>
-</ul>
-<dl class="attribute">
-<dt id="claf.data.dataset.squad_bert.SQuADBertDataset.bert_input_maxlen">
-<code class="descname">bert_input_maxlen</code><a class="headerlink" href="#claf.data.dataset.squad_bert.SQuADBertDataset.bert_input_maxlen" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.squad_bert.SQuADBertDataset.collate_fn">
-<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.squad_bert.SQuADBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
-<dd><p>collate: indexed features and labels -&gt; tensor</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.squad_bert.SQuADBertDataset.get_bert_tokens">
-<code class="descname">get_bert_tokens</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.get_bert_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.squad_bert.SQuADBertDataset.get_bert_tokens" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.squad_bert.SQuADBertDataset.get_context">
-<code class="descname">get_context</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.get_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.squad_bert.SQuADBertDataset.get_context" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.squad_bert.SQuADBertDataset.get_ground_truths">
-<code class="descname">get_ground_truths</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.get_ground_truths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.squad_bert.SQuADBertDataset.get_ground_truths" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.squad_bert.SQuADBertDataset.get_predict">
-<code class="descname">get_predict</code><span class="sig-paren">(</span><em>data_index</em>, <em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.get_predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.squad_bert.SQuADBertDataset.get_predict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.squad_bert.SQuADBertDataset.get_qid">
-<code class="descname">get_qid</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.get_qid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.squad_bert.SQuADBertDataset.get_qid" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.squad_bert.SQuADBertDataset.get_qid_index">
-<code class="descname">get_qid_index</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.get_qid_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.squad_bert.SQuADBertDataset.get_qid_index" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.squad_bert.SQuADBertDataset.get_text_with_index">
-<code class="descname">get_text_with_index</code><span class="sig-paren">(</span><em>data_index</em>, <em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.get_text_with_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.squad_bert.SQuADBertDataset.get_text_with_index" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-claf.data.dataset.tok_cls_bert"></span><dl class="class">
-<dt id="claf.data.dataset.tok_cls_bert.TokClsBertDataset">
-<em class="property">class </em><code class="descclassname">claf.data.dataset.tok_cls_bert.</code><code class="descname">TokClsBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/tok_cls_bert.html#TokClsBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.tok_cls_bert.TokClsBertDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
-<p>Dataset for Token Classification</p>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>batch: Batch DTO (claf.data.batch)</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>helper: helper from data_reader</dd>
-</dl>
-</li>
-</ul>
-<dl class="method">
-<dt id="claf.data.dataset.tok_cls_bert.TokClsBertDataset.collate_fn">
-<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/tok_cls_bert.html#TokClsBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.tok_cls_bert.TokClsBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
-<dd><p>collate: indexed features and labels -&gt; tensor</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.tok_cls_bert.TokClsBertDataset.get_ground_truth">
-<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.tok_cls_bert.TokClsBertDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.tok_cls_bert.TokClsBertDataset.get_id">
-<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.tok_cls_bert.TokClsBertDataset.get_id" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.tok_cls_bert.TokClsBertDataset.get_tag_text_with_idx">
-<code class="descname">get_tag_text_with_idx</code><span class="sig-paren">(</span><em>tag_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_tag_text_with_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.tok_cls_bert.TokClsBertDataset.get_tag_text_with_idx" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.tok_cls_bert.TokClsBertDataset.get_tag_texts_with_idxs">
-<code class="descname">get_tag_texts_with_idxs</code><span class="sig-paren">(</span><em>tag_idxs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_tag_texts_with_idxs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.tok_cls_bert.TokClsBertDataset.get_tag_texts_with_idxs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="claf.data.dataset.tok_cls_bert.TokClsBertDataset.num_tags">
-<code class="descname">num_tags</code><a class="headerlink" href="#claf.data.dataset.tok_cls_bert.TokClsBertDataset.num_tags" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="claf.data.dataset.tok_cls_bert.TokClsBertDataset.sequence_maxlen">
-<code class="descname">sequence_maxlen</code><a class="headerlink" href="#claf.data.dataset.tok_cls_bert.TokClsBertDataset.sequence_maxlen" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 <span class="target" id="module-claf.data.dataset.wikisql"></span><dl class="class">
 <dt id="claf.data.dataset.wikisql.WikiSQLDataset">
 <em class="property">class </em><code class="descclassname">claf.data.dataset.wikisql.</code><code class="descname">WikiSQLDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/wikisql.html#WikiSQLDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.wikisql.WikiSQLDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
 <p>WikiSQL Dataset</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>batch: Batch DTO (claf.data.batch)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>batch: Batch DTO (claf.data.batch)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>helper: helper from data_reader</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>helper: helper from data_reader</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -582,22 +410,162 @@ An abstract class representing a Dataset.</p>
 <div class="section" id="module-claf.data.dataset">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.data.dataset" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
+<dt id="claf.data.dataset.RegressionBertDataset">
+<em class="property">class </em><code class="descclassname">claf.data.dataset.</code><code class="descname">RegressionBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/regression.html#RegressionBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.RegressionBertDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
+<p>Dataset for Regression using BERT</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>batch: Batch DTO (claf.data.batch)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>helper: helper from data_reader</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.data.dataset.RegressionBertDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/regression.html#RegressionBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.RegressionBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.data.dataset.RegressionBertDataset.get_ground_truth">
+<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/regression.html#RegressionBertDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.RegressionBertDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.dataset.RegressionBertDataset.get_id">
+<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/regression.html#RegressionBertDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.RegressionBertDataset.get_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.dataset.RegressionBertDataset.sequence_maxlen">
+<code class="descname">sequence_maxlen</code><a class="headerlink" href="#claf.data.dataset.RegressionBertDataset.sequence_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.data.dataset.SeqClsDataset">
+<em class="property">class </em><code class="descclassname">claf.data.dataset.</code><code class="descname">SeqClsDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls.html#SeqClsDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
+<p>Dataset for Sequence Classification</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>batch: Batch DTO (claf.data.batch)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>helper: helper from data_reader</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.data.dataset.SeqClsDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls.html#SeqClsDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.data.dataset.SeqClsDataset.get_class_text_with_idx">
+<code class="descname">get_class_text_with_idx</code><span class="sig-paren">(</span><em>class_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls.html#SeqClsDataset.get_class_text_with_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsDataset.get_class_text_with_idx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.dataset.SeqClsDataset.get_ground_truth">
+<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls.html#SeqClsDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.dataset.SeqClsDataset.get_id">
+<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls.html#SeqClsDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsDataset.get_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.dataset.SeqClsDataset.num_classes">
+<code class="descname">num_classes</code><a class="headerlink" href="#claf.data.dataset.SeqClsDataset.num_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.dataset.SeqClsDataset.sequence_maxlen">
+<code class="descname">sequence_maxlen</code><a class="headerlink" href="#claf.data.dataset.SeqClsDataset.sequence_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.data.dataset.SeqClsBertDataset">
+<em class="property">class </em><code class="descclassname">claf.data.dataset.</code><code class="descname">SeqClsBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/seq_cls.html#SeqClsBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsBertDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
+<p>Dataset for Sequence Classification using BERT</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>batch: Batch DTO (claf.data.batch)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>helper: helper from data_reader</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.data.dataset.SeqClsBertDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/seq_cls.html#SeqClsBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.data.dataset.SeqClsBertDataset.get_class_text_with_idx">
+<code class="descname">get_class_text_with_idx</code><span class="sig-paren">(</span><em>class_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/seq_cls.html#SeqClsBertDataset.get_class_text_with_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsBertDataset.get_class_text_with_idx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.dataset.SeqClsBertDataset.get_ground_truth">
+<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/seq_cls.html#SeqClsBertDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsBertDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.dataset.SeqClsBertDataset.get_id">
+<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/seq_cls.html#SeqClsBertDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsBertDataset.get_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.dataset.SeqClsBertDataset.num_classes">
+<code class="descname">num_classes</code><a class="headerlink" href="#claf.data.dataset.SeqClsBertDataset.num_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.dataset.SeqClsBertDataset.sequence_maxlen">
+<code class="descname">sequence_maxlen</code><a class="headerlink" href="#claf.data.dataset.SeqClsBertDataset.sequence_maxlen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="claf.data.dataset.SQuADDataset">
 <em class="property">class </em><code class="descclassname">claf.data.dataset.</code><code class="descname">SQuADDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad.html#SQuADDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
-<dl class="docutils">
-<dt>SQuAD Dataset</dt>
-<dd>compatible with v1.1 and v2.0</dd>
+<dl class="simple">
+<dt>SQuAD Dataset</dt><dd><p>compatible with v1.1 and v2.0</p>
+</dd>
 </dl>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>batch: Batch DTO (claf.data.batch)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>batch: Batch DTO (claf.data.batch)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>helper: helper from data_reader</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>helper: helper from data_reader</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -651,21 +619,21 @@ An abstract class representing a Dataset.</p>
 
 <dl class="class">
 <dt id="claf.data.dataset.SQuADBertDataset">
-<em class="property">class </em><code class="descclassname">claf.data.dataset.</code><code class="descname">SQuADBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.data.dataset.</code><code class="descname">SQuADBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/squad.html#SQuADBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
-<dl class="docutils">
-<dt>SQuAD Dataset for BERT</dt>
-<dd>compatible with v1.1 and v2.0</dd>
+<dl class="simple">
+<dt>SQuAD Dataset for BERT</dt><dd><p>compatible with v1.1 and v2.0</p>
+</dd>
 </dl>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>batch: Batch DTO (claf.data.batch)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>batch: Batch DTO (claf.data.batch)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>helper: helper from data_reader</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>helper: helper from data_reader</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -676,43 +644,98 @@ An abstract class representing a Dataset.</p>
 
 <dl class="method">
 <dt id="claf.data.dataset.SQuADBertDataset.collate_fn">
-<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/squad.html#SQuADBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
 <dd><p>collate: indexed features and labels -&gt; tensor</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.data.dataset.SQuADBertDataset.get_bert_tokens">
-<code class="descname">get_bert_tokens</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.get_bert_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.get_bert_tokens" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_bert_tokens</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/squad.html#SQuADBertDataset.get_bert_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.get_bert_tokens" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.data.dataset.SQuADBertDataset.get_context">
-<code class="descname">get_context</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.get_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.get_context" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_context</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/squad.html#SQuADBertDataset.get_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.get_context" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.data.dataset.SQuADBertDataset.get_ground_truths">
-<code class="descname">get_ground_truths</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.get_ground_truths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.get_ground_truths" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_ground_truths</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/squad.html#SQuADBertDataset.get_ground_truths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.get_ground_truths" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.data.dataset.SQuADBertDataset.get_predict">
-<code class="descname">get_predict</code><span class="sig-paren">(</span><em>data_index</em>, <em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.get_predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.get_predict" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_predict</code><span class="sig-paren">(</span><em>data_index</em>, <em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/squad.html#SQuADBertDataset.get_predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.get_predict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.data.dataset.SQuADBertDataset.get_qid">
-<code class="descname">get_qid</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.get_qid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.get_qid" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_qid</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/squad.html#SQuADBertDataset.get_qid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.get_qid" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.data.dataset.SQuADBertDataset.get_qid_index">
-<code class="descname">get_qid_index</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.get_qid_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.get_qid_index" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_qid_index</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/squad.html#SQuADBertDataset.get_qid_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.get_qid_index" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.data.dataset.SQuADBertDataset.get_text_with_index">
-<code class="descname">get_text_with_index</code><span class="sig-paren">(</span><em>data_index</em>, <em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/squad_bert.html#SQuADBertDataset.get_text_with_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.get_text_with_index" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_text_with_index</code><span class="sig-paren">(</span><em>data_index</em>, <em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/squad.html#SQuADBertDataset.get_text_with_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SQuADBertDataset.get_text_with_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.data.dataset.TokClsBertDataset">
+<em class="property">class </em><code class="descclassname">claf.data.dataset.</code><code class="descname">TokClsBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/tok_cls.html#TokClsBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
+<p>Dataset for Token Classification</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>batch: Batch DTO (claf.data.batch)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>helper: helper from data_reader</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.data.dataset.TokClsBertDataset.collate_fn">
+<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/tok_cls.html#TokClsBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>collate: indexed features and labels -&gt; tensor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.data.dataset.TokClsBertDataset.get_ground_truth">
+<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/tok_cls.html#TokClsBertDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.dataset.TokClsBertDataset.get_id">
+<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/tok_cls.html#TokClsBertDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset.get_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.dataset.TokClsBertDataset.get_tag_text_with_idx">
+<code class="descname">get_tag_text_with_idx</code><span class="sig-paren">(</span><em>tag_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/tok_cls.html#TokClsBertDataset.get_tag_text_with_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset.get_tag_text_with_idx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="claf.data.dataset.TokClsBertDataset.get_tag_texts_with_idxs">
+<code class="descname">get_tag_texts_with_idxs</code><span class="sig-paren">(</span><em>tag_idxs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/bert/tok_cls.html#TokClsBertDataset.get_tag_texts_with_idxs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset.get_tag_texts_with_idxs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.dataset.TokClsBertDataset.num_tags">
+<code class="descname">num_tags</code><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset.num_tags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="claf.data.dataset.TokClsBertDataset.sequence_maxlen">
+<code class="descname">sequence_maxlen</code><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset.sequence_maxlen" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -723,14 +746,14 @@ An abstract class representing a Dataset.</p>
 <dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
 <p>WikiSQL Dataset</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>batch: Batch DTO (claf.data.batch)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>batch: Batch DTO (claf.data.batch)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>helper: helper from data_reader</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>helper: helper from data_reader</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -763,161 +786,6 @@ An abstract class representing a Dataset.</p>
 <dl class="attribute">
 <dt id="claf.data.dataset.WikiSQLDataset.question_maxlen">
 <code class="descname">question_maxlen</code><a class="headerlink" href="#claf.data.dataset.WikiSQLDataset.question_maxlen" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="claf.data.dataset.SeqClsDataset">
-<em class="property">class </em><code class="descclassname">claf.data.dataset.</code><code class="descname">SeqClsDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls.html#SeqClsDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
-<p>Dataset for Sequence Classification</p>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>batch: Batch DTO (claf.data.batch)</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>helper: helper from data_reader</dd>
-</dl>
-</li>
-</ul>
-<dl class="method">
-<dt id="claf.data.dataset.SeqClsDataset.collate_fn">
-<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls.html#SeqClsDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
-<dd><p>collate: indexed features and labels -&gt; tensor</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.SeqClsDataset.get_class_text_with_idx">
-<code class="descname">get_class_text_with_idx</code><span class="sig-paren">(</span><em>class_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls.html#SeqClsDataset.get_class_text_with_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsDataset.get_class_text_with_idx" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.SeqClsDataset.get_ground_truth">
-<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls.html#SeqClsDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.SeqClsDataset.get_id">
-<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls.html#SeqClsDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsDataset.get_id" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="claf.data.dataset.SeqClsDataset.num_classes">
-<code class="descname">num_classes</code><a class="headerlink" href="#claf.data.dataset.SeqClsDataset.num_classes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="claf.data.dataset.SeqClsDataset.sequence_maxlen">
-<code class="descname">sequence_maxlen</code><a class="headerlink" href="#claf.data.dataset.SeqClsDataset.sequence_maxlen" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="claf.data.dataset.SeqClsBertDataset">
-<em class="property">class </em><code class="descclassname">claf.data.dataset.</code><code class="descname">SeqClsBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls_bert.html#SeqClsBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsBertDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
-<p>Dataset for Sequence Classification using BERT</p>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>batch: Batch DTO (claf.data.batch)</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>helper: helper from data_reader</dd>
-</dl>
-</li>
-</ul>
-<dl class="method">
-<dt id="claf.data.dataset.SeqClsBertDataset.collate_fn">
-<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls_bert.html#SeqClsBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
-<dd><p>collate: indexed features and labels -&gt; tensor</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.SeqClsBertDataset.get_class_text_with_idx">
-<code class="descname">get_class_text_with_idx</code><span class="sig-paren">(</span><em>class_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls_bert.html#SeqClsBertDataset.get_class_text_with_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsBertDataset.get_class_text_with_idx" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.SeqClsBertDataset.get_ground_truth">
-<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls_bert.html#SeqClsBertDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsBertDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.SeqClsBertDataset.get_id">
-<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/seq_cls_bert.html#SeqClsBertDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.SeqClsBertDataset.get_id" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="claf.data.dataset.SeqClsBertDataset.num_classes">
-<code class="descname">num_classes</code><a class="headerlink" href="#claf.data.dataset.SeqClsBertDataset.num_classes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="claf.data.dataset.SeqClsBertDataset.sequence_maxlen">
-<code class="descname">sequence_maxlen</code><a class="headerlink" href="#claf.data.dataset.SeqClsBertDataset.sequence_maxlen" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="claf.data.dataset.TokClsBertDataset">
-<em class="property">class </em><code class="descclassname">claf.data.dataset.</code><code class="descname">TokClsBertDataset</code><span class="sig-paren">(</span><em>batch</em>, <em>helper=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/tok_cls_bert.html#TokClsBertDataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#claf.data.dataset.base.DatasetBase" title="claf.data.dataset.base.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.dataset.base.DatasetBase</span></code></a></p>
-<p>Dataset for Token Classification</p>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>batch: Batch DTO (claf.data.batch)</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>helper: helper from data_reader</dd>
-</dl>
-</li>
-</ul>
-<dl class="method">
-<dt id="claf.data.dataset.TokClsBertDataset.collate_fn">
-<code class="descname">collate_fn</code><span class="sig-paren">(</span><em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/tok_cls_bert.html#TokClsBertDataset.collate_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset.collate_fn" title="Permalink to this definition">¶</a></dt>
-<dd><p>collate: indexed features and labels -&gt; tensor</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.TokClsBertDataset.get_ground_truth">
-<code class="descname">get_ground_truth</code><span class="sig-paren">(</span><em>data_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_ground_truth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset.get_ground_truth" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.TokClsBertDataset.get_id">
-<code class="descname">get_id</code><span class="sig-paren">(</span><em>data_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset.get_id" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.TokClsBertDataset.get_tag_text_with_idx">
-<code class="descname">get_tag_text_with_idx</code><span class="sig-paren">(</span><em>tag_index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_tag_text_with_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset.get_tag_text_with_idx" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.dataset.TokClsBertDataset.get_tag_texts_with_idxs">
-<code class="descname">get_tag_texts_with_idxs</code><span class="sig-paren">(</span><em>tag_idxs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/dataset/tok_cls_bert.html#TokClsBertDataset.get_tag_texts_with_idxs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset.get_tag_texts_with_idxs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="claf.data.dataset.TokClsBertDataset.num_tags">
-<code class="descname">num_tags</code><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset.num_tags" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="claf.data.dataset.TokClsBertDataset.sequence_maxlen">
-<code class="descname">sequence_maxlen</code><a class="headerlink" href="#claf.data.dataset.TokClsBertDataset.sequence_maxlen" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

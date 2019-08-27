@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pathlib &mdash; CLaF 0.1.0 documentation</title>
+  <title>pathlib &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reports/squad.html">SQuAD</a></li>
@@ -784,7 +785,9 @@
 
 
 <span class="k">class</span> <span class="nc">PurePath</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;PurePath represents a filesystem path and offers operations which</span>
+    <span class="sd">&quot;&quot;&quot;Base class for manipulating paths without I/O.</span>
+
+<span class="sd">    PurePath represents a filesystem path and offers operations which</span>
 <span class="sd">    don&#39;t imply any actual filesystem I/O.  Depending on your system,</span>
 <span class="sd">    instantiating a PurePath will return either a PurePosixPath or a</span>
 <span class="sd">    PureWindowsPath object.  You can also instantiate either of these classes</span>
@@ -1005,8 +1008,10 @@
                                        <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">name</span><span class="p">])</span>
 
     <span class="k">def</span> <span class="nf">with_suffix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">suffix</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return a new path with the file suffix changed (or added, if none).&quot;&quot;&quot;</span>
-        <span class="c1"># XXX if suffix is None, should the current suffix be removed?</span>
+        <span class="sd">&quot;&quot;&quot;Return a new path with the file suffix changed.  If the path</span>
+<span class="sd">        has no suffix, add given suffix.  If the given suffix is an empty</span>
+<span class="sd">        string, remove the suffix from the path.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_flavour</span>
         <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">sep</span> <span class="ow">in</span> <span class="n">suffix</span> <span class="ow">or</span> <span class="n">f</span><span class="o">.</span><span class="n">altsep</span> <span class="ow">and</span> <span class="n">f</span><span class="o">.</span><span class="n">altsep</span> <span class="ow">in</span> <span class="n">suffix</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid suffix </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">suffix</span><span class="p">))</span>
@@ -1139,11 +1144,21 @@
 
 
 <span class="k">class</span> <span class="nc">PurePosixPath</span><span class="p">(</span><span class="n">PurePath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;PurePath subclass for non-Windows systems.</span>
+
+<span class="sd">    On a POSIX system, instantiating a PurePath should return this object.</span>
+<span class="sd">    However, you can also instantiate it directly on any system.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_flavour</span> <span class="o">=</span> <span class="n">_posix_flavour</span>
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
 
 
 <span class="k">class</span> <span class="nc">PureWindowsPath</span><span class="p">(</span><span class="n">PurePath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;PurePath subclass for Windows systems.</span>
+
+<span class="sd">    On a Windows system, instantiating a PurePath should return this object.</span>
+<span class="sd">    However, you can also instantiate it directly on any system.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_flavour</span> <span class="o">=</span> <span class="n">_windows_flavour</span>
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
 
@@ -1152,6 +1167,14 @@
 
 
 <span class="k">class</span> <span class="nc">Path</span><span class="p">(</span><span class="n">PurePath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;PurePath subclass that can make system calls.</span>
+
+<span class="sd">    Path represents a filesystem path but unlike PurePath, also offers</span>
+<span class="sd">    methods to do system calls on path objects. Depending on your system,</span>
+<span class="sd">    instantiating a Path will return either a PosixPath or a WindowsPath</span>
+<span class="sd">    object. You can also instantiate a PosixPath or WindowsPath directly,</span>
+<span class="sd">    but cannot instantiate a WindowsPath on a POSIX system or vice versa.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span>
         <span class="s1">&#39;_accessor&#39;</span><span class="p">,</span>
         <span class="s1">&#39;_closed&#39;</span><span class="p">,</span>
@@ -1606,9 +1629,17 @@
 
 
 <span class="k">class</span> <span class="nc">PosixPath</span><span class="p">(</span><span class="n">Path</span><span class="p">,</span> <span class="n">PurePosixPath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Path subclass for non-Windows systems.</span>
+
+<span class="sd">    On a POSIX system, instantiating a Path should return this object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
 
 <span class="k">class</span> <span class="nc">WindowsPath</span><span class="p">(</span><span class="n">Path</span><span class="p">,</span> <span class="n">PureWindowsPath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Path subclass for Windows systems.</span>
+
+<span class="sd">    On a Windows system, instantiating a Path should return this object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">owner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
