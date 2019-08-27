@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.modules.layer package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.modules.layer package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -124,6 +124,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -213,11 +214,11 @@
 <p>Highway Networks (<a class="reference external" href="https://arxiv.org/abs/1505.00387">https://arxiv.org/abs/1505.00387</a>)
 <a class="reference external" href="https://github.com/allenai/allennlp/blob/master/allennlp/modules/highway.py">https://github.com/allenai/allennlp/blob/master/allennlp/modules/highway.py</a></p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>input_size: The number of expected features in the input <cite>x</cite>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>input_size: The number of expected features in the input <cite>x</cite>
 num_layers: The number of Highway layers.
-activation: Activation Function (ReLU is default)</dd>
+activation: Activation Function (ReLU is default)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -227,8 +228,8 @@ activation: Activation Function (ReLU is default)</dd>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -249,8 +250,8 @@ registered hooks while the latter silently ignores them.</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -265,15 +266,15 @@ registered hooks while the latter silently ignores them.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Pointwise Feed-Forward Layer</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>input_size: the number of input size
-hidden_size: the number of hidden size</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>input_size: the number of input size
+hidden_size: the number of hidden size</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>dropout: the probability of dropout</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>dropout: the probability of dropout</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -283,8 +284,8 @@ hidden_size: the number of hidden size</dd>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -300,15 +301,15 @@ registered hooks while the latter silently ignores them.</p>
 <p>in Deep Residual Learning for Image Recognition (<a class="reference external" href="https://arxiv.org/abs/1512.03385">https://arxiv.org/abs/1512.03385</a>)</p>
 <p>=&gt; f(x) + x</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>dim: the number of dimension</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>dim: the number of dimension</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>layer_dropout: layer dropout probability (stochastic depth)
-dropout: dropout probability</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>layer_dropout: layer dropout probability (stochastic depth)
+dropout: dropout probability</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -318,8 +319,8 @@ dropout: dropout probability</dd>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -362,11 +363,11 @@ When <code class="docutils literal notranslate"><span class="pre">do_layer_norm=
 <p>Highway Networks (<a class="reference external" href="https://arxiv.org/abs/1505.00387">https://arxiv.org/abs/1505.00387</a>)
 <a class="reference external" href="https://github.com/allenai/allennlp/blob/master/allennlp/modules/highway.py">https://github.com/allenai/allennlp/blob/master/allennlp/modules/highway.py</a></p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>input_size: The number of expected features in the input <cite>x</cite>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>input_size: The number of expected features in the input <cite>x</cite>
 num_layers: The number of Highway layers.
-activation: Activation Function (ReLU is default)</dd>
+activation: Activation Function (ReLU is default)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -376,8 +377,8 @@ activation: Activation Function (ReLU is default)</dd>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -392,15 +393,15 @@ registered hooks while the latter silently ignores them.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Pointwise Feed-Forward Layer</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>input_size: the number of input size
-hidden_size: the number of hidden size</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>input_size: the number of input size
+hidden_size: the number of hidden size</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>dropout: the probability of dropout</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>dropout: the probability of dropout</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -410,8 +411,8 @@ hidden_size: the number of hidden size</dd>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -427,15 +428,15 @@ registered hooks while the latter silently ignores them.</p>
 <p>in Deep Residual Learning for Image Recognition (<a class="reference external" href="https://arxiv.org/abs/1512.03385">https://arxiv.org/abs/1512.03385</a>)</p>
 <p>=&gt; f(x) + x</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>dim: the number of dimension</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>dim: the number of dimension</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>layer_dropout: layer dropout probability (stochastic depth)
-dropout: dropout probability</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>layer_dropout: layer dropout probability (stochastic depth)
+dropout: dropout probability</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -445,8 +446,8 @@ dropout: dropout probability</dd>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>

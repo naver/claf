@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.learn.experiment &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.learn.experiment &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
@@ -199,7 +200,7 @@
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">claf</span> <span class="k">import</span> <span class="n">utils</span> <span class="k">as</span> <span class="n">common_utils</span>
 <span class="kn">from</span> <span class="nn">claf.config.args</span> <span class="k">import</span> <span class="n">NestedNamespace</span>
-<span class="kn">from</span> <span class="nn">claf.config.utils</span> <span class="k">import</span> <span class="n">convert_config2dict</span><span class="p">,</span> <span class="n">pretty_json_dumps</span>
+<span class="kn">from</span> <span class="nn">claf.config.utils</span> <span class="k">import</span> <span class="n">convert_config2dict</span><span class="p">,</span> <span class="n">pretty_json_dumps</span><span class="p">,</span> <span class="n">set_global_seed</span>
 <span class="kn">from</span> <span class="nn">claf.tokens.text_handler</span> <span class="k">import</span> <span class="n">TextHandler</span>
 <span class="kn">from</span> <span class="nn">claf.learn.mode</span> <span class="k">import</span> <span class="n">Mode</span>
 <span class="kn">from</span> <span class="nn">claf.learn.trainer</span> <span class="k">import</span> <span class="n">Trainer</span>
@@ -228,7 +229,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">common_setting</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">mode</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">Mode</span><span class="o">.</span><span class="n">EVAL</span><span class="p">)</span> <span class="ow">or</span> <span class="n">mode</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">Mode</span><span class="o">.</span><span class="n">PREDICT</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">!=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">TRAIN</span><span class="p">:</span>  <span class="c1"># evaluate and predict</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">load_setting</span><span class="p">()</span>
 
             <span class="c1"># Set evaluation config</span>
@@ -272,7 +273,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">model_checkpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_checkpoint</span><span class="p">(</span>
             <span class="n">cuda_devices</span><span class="p">,</span> <span class="n">checkpoint_path</span><span class="p">,</span> <span class="n">prev_cuda_device_id</span><span class="o">=</span><span class="n">prev_cuda_device_id</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_saved_config</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_saved_config</span><span class="p">(</span><span class="n">cuda_devices</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_read_checkpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cuda_devices</span><span class="p">,</span> <span class="n">checkpoint_path</span><span class="p">,</span> <span class="n">prev_cuda_device_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">cuda_devices</span> <span class="o">==</span> <span class="s2">&quot;cpu&quot;</span><span class="p">:</span>
@@ -289,7 +290,7 @@
             <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">checkpoint_path</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>  <span class="c1"># use CPU</span>
         <span class="k">return</span> <span class="n">checkpoint</span>
 
-    <span class="k">def</span> <span class="nf">_set_saved_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_saved_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cuda_devices</span><span class="p">):</span>
         <span class="n">saved_config_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_checkpoint</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config_dict</span> <span class="o">=</span> <span class="n">saved_config_dict</span>
 
@@ -303,9 +304,12 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">saved_config</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_gpu</span> <span class="o">=</span> <span class="n">is_use_gpu</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">cuda_devices</span> <span class="o">=</span> <span class="n">cuda_devices</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Run Trainer &quot;&quot;&quot;</span>
+
+        <span class="n">set_global_seed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">seed_num</span><span class="p">)</span>  <span class="c1"># For Reproducible</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="n">Mode</span><span class="o">.</span><span class="n">TRAIN</span><span class="p">:</span>
             <span class="c1"># exit trigger slack notification</span>
@@ -426,7 +430,10 @@
         <span class="n">gradient_accumulation_steps</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">optimizer</span><span class="p">,</span> <span class="s2">&quot;gradient_accumulation_steps&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">num_epochs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">num_epochs</span>
 
-        <span class="n">num_train_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">train_set_size</span> <span class="o">/</span> <span class="n">batch_size</span> <span class="o">/</span> <span class="n">gradient_accumulation_steps</span><span class="p">)</span> <span class="o">*</span> <span class="n">num_epochs</span>
+        <span class="n">one_epoch_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">train_set_size</span> <span class="o">/</span> <span class="n">batch_size</span> <span class="o">/</span> <span class="n">gradient_accumulation_steps</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">one_epoch_steps</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">one_epoch_steps</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">num_train_steps</span> <span class="o">=</span> <span class="n">one_epoch_steps</span> <span class="o">*</span> <span class="n">num_epochs</span>
         <span class="k">return</span> <span class="n">num_train_steps</span>
 
     <span class="k">def</span> <span class="nf">_load_exist_checkpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checkpoint_dir</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
@@ -483,18 +490,25 @@
     <span class="k">def</span> <span class="nf">_set_gpu_env</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">use_gpu</span><span class="p">:</span>
             <span class="n">cuda_devices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cuda_devices</span><span class="p">()</span>
+            <span class="n">num_gpu</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cuda_devices</span><span class="p">)</span>
 
-            <span class="n">use_multi_gpu</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cuda_devices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+            <span class="n">use_multi_gpu</span> <span class="o">=</span> <span class="n">num_gpu</span> <span class="o">&gt;</span> <span class="mi">1</span>
             <span class="k">if</span> <span class="n">use_multi_gpu</span><span class="p">:</span>
                 <span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="n">cuda_devices</span><span class="p">)</span>
             <span class="n">model</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">num_gpu</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">num_gpu_state</span> <span class="o">=</span> <span class="n">num_gpu</span>
+        <span class="k">if</span> <span class="n">num_gpu</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">num_gpu_state</span> <span class="o">+=</span> <span class="s2">&quot; (Multi-GPU)&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;use_gpu: </span><span class="si">{self.config.use_gpu}</span><span class="s2"> num_gpu: </span><span class="si">{num_gpu_state}</span><span class="s2">, distributed training: False, 16-bits trainiing: False&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">model</span>
 
 <div class="viewcode-block" id="Experiment.set_trainer"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.experiment.Experiment.set_trainer">[docs]</a>    <span class="k">def</span> <span class="nf">set_trainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">op_dict</span><span class="o">=</span><span class="p">{},</span> <span class="n">save_params</span><span class="o">=</span><span class="p">{}):</span>
         <span class="n">trainer_config</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">trainer</span><span class="p">)</span>
         <span class="n">trainer_config</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_dict</span>
         <span class="n">trainer_config</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span>
-        <span class="n">trainer_config</span><span class="p">[</span><span class="s2">&quot;cuda_devices&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cuda_devices</span><span class="p">()</span>
         <span class="n">trainer_config</span><span class="p">[</span><span class="s2">&quot;learning_rate_scheduler&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">op_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;learning_rate_scheduler&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">trainer_config</span><span class="p">[</span><span class="s2">&quot;exponential_moving_average&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">op_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="s2">&quot;exponential_moving_average&quot;</span><span class="p">,</span> <span class="kc">None</span>

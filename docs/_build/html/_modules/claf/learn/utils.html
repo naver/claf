@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.learn.utils &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.learn.utils &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
@@ -344,11 +345,14 @@
     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="o">==</span> <span class="n">DataParallel</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">module</span>
 
-    <span class="k">def</span> <span class="nf">infer</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">pass</span>
+    <span class="n">CHECKPOINT_FNAME</span> <span class="o">=</span> <span class="s2">&quot;checkpoint.bin&quot;</span>
 
-    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
-        <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">infer</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;raw_data:&quot;</span><span class="p">,</span> <span class="n">raw_data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">dir_path</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="n">checkpoint_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_path</span><span class="p">,</span> <span class="n">CHECKPOINT_FNAME</span><span class="p">)</span>
+        <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">checkpoint_path</span><span class="p">)</span>
 
         <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s2">&quot;weights&quot;</span><span class="p">])</span>
         <span class="n">model</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span>
@@ -360,10 +364,11 @@
 
         <span class="k">if</span> <span class="s2">&quot;optimizer&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
             <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;optimizer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s2">&quot;optimizer&quot;</span><span class="p">])</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Load checkpoints...! </span><span class="si">{path}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Load checkpoints...! </span><span class="si">{checkpoint_path}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="n">dir_path</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="c1"># save the model with &#39;checkpoint&#39; dictionary.</span>
+        <span class="n">checkpoint_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_path</span><span class="p">,</span> <span class="n">CHECKPOINT_FNAME</span><span class="p">)</span>
         <span class="n">checkpoint</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="p">,</span>
             <span class="s2">&quot;init_params&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">init_params</span><span class="p">,</span>
@@ -375,12 +380,12 @@
         <span class="p">}</span>
 
         <span class="k">if</span> <span class="s2">&quot;optimizer&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-            <span class="n">checkpoint</span><span class="p">[</span><span class="s2">&quot;optimizer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;optimizer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),)</span>
+            <span class="n">checkpoint</span><span class="p">[</span><span class="s2">&quot;optimizer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;optimizer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
 
-        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">,</span> <span class="n">checkpoint_path</span><span class="p">)</span>
 
         <span class="n">train_counter</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">train_counter</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Save </span><span class="si">{train_counter.global_step}</span><span class="s2"> global_step checkpoints...! </span><span class="si">{path}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Save </span><span class="si">{train_counter.global_step}</span><span class="s2"> global_step checkpoints...! </span><span class="si">{checkpoint_path}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="c1"># function in function is just used to divide the namespace.</span>
     <span class="n">nsml</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">save</span><span class="p">,</span> <span class="n">load</span><span class="p">,</span> <span class="n">infer</span><span class="p">)</span></div>

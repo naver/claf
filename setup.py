@@ -17,12 +17,12 @@ REQUIRES_PYTHON = '>=3.6.0'
 VERSION = None
 
 REQUIRED = [
-    "numpy", "torch>=1.0.1",
+    "numpy>=1.15.0", "torch>=1.0.1", # Backends
     "pytorch-transformers>=1.0.0",  # BERT
     "konlpy", "nltk", "spacy",  # Tokenizer
     "babel", "records",  # WikiSQL
     "h5py", "jsbeautifier", "msgpack", "overrides", "requests", "gensim", "tqdm", "tensorboardX",  # Utils
-    "pycm", "seqeval",  # Classification
+    "pycm", "seqeval", "scikit-learn",  # Metrics
 ]
 
 EXTRAS = {}

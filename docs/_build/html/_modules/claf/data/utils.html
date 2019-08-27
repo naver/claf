@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.data.utils &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.data.utils &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
@@ -284,6 +285,15 @@
         <span class="k">return</span> <span class="n">tokens</span></div>
 
 
+<div class="viewcode-block" id="get_sequence_a"><a class="viewcode-back" href="../../../claf.data.html#claf.data.utils.get_sequence_a">[docs]</a><span class="k">def</span> <span class="nf">get_sequence_a</span><span class="p">(</span><span class="n">example</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s2">&quot;sequence&quot;</span> <span class="ow">in</span> <span class="n">example</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;sequence&quot;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="s2">&quot;sequence_a&quot;</span> <span class="ow">in</span> <span class="n">example</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;sequence_a&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;sequence&#39; or &#39;sequence_a&#39; key is required.&quot;</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="get_token_dim"><a class="viewcode-back" href="../../../claf.data.html#claf.data.utils.get_token_dim">[docs]</a><span class="k">def</span> <span class="nf">get_token_dim</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span> <span class="o">==</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
         <span class="n">dim</span> <span class="o">=</span> <span class="n">tokens</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span>
@@ -389,10 +399,10 @@
 <div class="viewcode-block" id="get_is_head_of_word"><a class="viewcode-back" href="../../../claf.data.html#claf.data.utils.get_is_head_of_word">[docs]</a><span class="k">def</span> <span class="nf">get_is_head_of_word</span><span class="p">(</span><span class="n">naive_tokens</span><span class="p">,</span> <span class="n">sequence_tokens</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return a list of flags whether the token is head(prefix) of naively split tokens</span>
-<span class="sd">    </span>
+
 <span class="sd">    ex) naive_tokens: [&quot;hello.&quot;, &quot;how&quot;, &quot;are&quot;, &quot;you?&quot;]</span>
 <span class="sd">        sequence_tokens: [&quot;hello&quot;, &quot;.&quot;, &quot;how&quot;, &quot;are&quot;, &quot;you&quot;, &quot;?&quot;]</span>
-<span class="sd">        </span>
+
 <span class="sd">        =&gt; [1, 0, 1, 1, 1, 0]</span>
 
 <span class="sd">    * Args:</span>
@@ -404,7 +414,7 @@
 <span class="sd">            has 1 if the tokenized word at the position is head(prefix) of a `naive_token`</span>
 <span class="sd">            and 0 if otherwise.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    
+
     <span class="n">is_head_of_word</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">naive_token</span> <span class="ow">in</span> <span class="n">naive_tokens</span><span class="p">:</span>
         <span class="n">consumed_chars</span> <span class="o">=</span> <span class="mi">0</span>

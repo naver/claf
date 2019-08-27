@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.model.token_classification package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.model.token_classification package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -124,6 +124,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -214,17 +215,17 @@
 BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 (<a class="reference external" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>token_embedder: used to embed the sequence
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_embedder: used to embed the sequence
 num_tags: number of classified tags
-ignore_tag_idx: index of the tag to ignore when calculating loss (tag pad value)</dd>
+ignore_tag_idx: index of the tag to ignore when calculating loss (tag pad value)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>pretrained_model_name: the name of a pre-trained model
-dropout: classification layer dropout</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>pretrained_model_name: the name of a pre-trained model
+dropout: classification layer dropout</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -232,28 +233,24 @@ dropout: classification layer dropout</dd>
 <dt id="claf.model.token_classification.bert_for_tok_cls.BertForTokCls.forward">
 <code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/token_classification/bert_for_tok_cls.html#BertForTokCls.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.token_classification.bert_for_tok_cls.BertForTokCls.forward" title="Permalink to this definition">¶</a></dt>
 <dd><ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first">features: feature dictionary like below.
+<li><dl>
+<dt>Args:</dt><dd><p>features: feature dictionary like below.
 {</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>“bert_input”: {</dt>
-<dd><dl class="first docutils">
-<dt>“feature”: [</dt>
-<dd><p class="first last">[100, 576, 21, 45, 7, 91, 101, 0, 0, …],
+<div><dl>
+<dt>“bert_input”: {</dt><dd><dl class="simple">
+<dt>“feature”: [</dt><dd><p>[100, 576, 21, 45, 7, 91, 101, 0, 0, …],
 …,</p>
 </dd>
 </dl>
-<p class="last">]</p>
+<p>]</p>
 </dd>
 </dl>
 <p>}
 “token_type”: {</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>“feature”: [</dt>
-<dd><p class="first last">[0, 0, 0, 0, 0, 0, 0, 0, 0, …],
+<div><dl class="simple">
+<dt>“feature”: [</dt><dd><p>[0, 0, 0, 0, 0, 0, 0, 0, 0, …],
 …,</p>
 </dd>
 </dl>
@@ -262,9 +259,8 @@ dropout: classification layer dropout</dd>
 <p>},
 “tagged_sub_token_idxs”: {</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>[</dt>
-<dd><p class="first last">[1, 3, 4, 0, 0, 0, 0, 0, 0, …],
+<div><dl class="simple">
+<dt>[</dt><dd><p>[1, 3, 4, 0, 0, 0, 0, 0, 0, …],
 …,</p>
 </dd>
 </dl>
@@ -272,31 +268,29 @@ dropout: classification layer dropout</dd>
 </div></blockquote>
 <p>}</p>
 </div></blockquote>
-<p class="last">}</p>
+<p>}</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">label: label dictionary like below.
+<li><dl>
+<dt>Kwargs:</dt><dd><p>label: label dictionary like below.
 {</p>
 <blockquote>
 <div><p>“class_idx”: [2, 1, 0, 4, 5, …]
 “data_idx”: [2, 4, 5, 7, 2, 1, …]</p>
 </div></blockquote>
-<p class="last">}
+<p>}
 Do not calculate loss when there is no label. (inference/predict mode)</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns: output_dict (dict) consisting of</dt>
-<dd><ul class="first last simple">
-<li>sequence_embed: embedding vector of the sequence</li>
-<li>tag_logits: representing unnormalized log probabilities of the tags.</li>
-<li>tag_idxs: target class idx</li>
-<li>data_idx: data idx</li>
-<li>loss: a scalar loss to be optimized</li>
+<li><dl class="simple">
+<dt>Returns: output_dict (dict) consisting of</dt><dd><ul class="simple">
+<li><p>sequence_embed: embedding vector of the sequence</p></li>
+<li><p>tag_logits: representing unnormalized log probabilities of the tags.</p></li>
+<li><p>tag_idxs: target class idx</p></li>
+<li><p>data_idx: data idx</p></li>
+<li><p>loss: a scalar loss to be optimized</p></li>
 </ul>
 </dd>
 </dl>
@@ -309,18 +303,16 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/token_classification/bert_for_tok_cls.html#BertForTokCls.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.token_classification.bert_for_tok_cls.BertForTokCls.print_examples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print evaluation examples</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first">index: data index
+<li><dl>
+<dt>Args:</dt><dd><p>index: data index
 inputs: mini-batch inputs
 predictions: prediction dictionary consisting of</p>
-<blockquote class="last">
+<blockquote>
 <div><ul class="simple">
-<li>key: ‘id’ (sequence id)</li>
-<li><dl class="first docutils">
-<dt>value: dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>class_idx</li>
+<li><p>key: ‘id’ (sequence id)</p></li>
+<li><dl class="simple">
+<dt>value: dictionary consisting of</dt><dd><ul>
+<li><p>class_idx</p></li>
 </ul>
 </dd>
 </dl>
@@ -330,9 +322,8 @@ predictions: prediction dictionary consisting of</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><p class="first last">print(Sequence, Sequence Tokens, Target Tags, Target Slots, Predicted Tags, Predicted Slots)</p>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><p>print(Sequence, Sequence Tokens, Target Tags, Target Slots, Predicted Tags, Predicted Slots)</p>
 </dd>
 </dl>
 </li>
@@ -351,16 +342,13 @@ predictions: prediction dictionary consisting of</p>
 <code class="descname">make_metrics</code><span class="sig-paren">(</span><em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/token_classification/mixin.html#TokenClassification.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.token_classification.mixin.TokenClassification.make_metrics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make metrics with prediction dictionary</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><dl class="first last docutils">
-<dt>predictions: prediction dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>key: ‘id’ (sequence id)</li>
-<li><dl class="first docutils">
-<dt>value: dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>tag_idxs</li>
+<li><dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>predictions: prediction dictionary consisting of</dt><dd><ul>
+<li><p>key: ‘id’ (sequence id)</p></li>
+<li><dl class="simple">
+<dt>value: dictionary consisting of</dt><dd><ul>
+<li><p>tag_idxs</p></li>
 </ul>
 </dd>
 </dl>
@@ -371,16 +359,14 @@ predictions: prediction dictionary consisting of</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><dl class="first last docutils">
-<dt>metrics: metric dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>‘accuracy’: sequence level accuracy</li>
-<li>‘tag_accuracy’: tag level accuracy</li>
-<li>‘macro_f1’: tag prediction macro(unweighted mean) f1</li>
-<li>‘macro_precision’: tag prediction macro(unweighted mean) precision</li>
-<li>‘macro_recall’: tag prediction macro(unweighted mean) recall</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>metrics: metric dictionary consisting of</dt><dd><ul>
+<li><p>‘accuracy’: sequence level accuracy</p></li>
+<li><p>‘tag_accuracy’: tag level accuracy</p></li>
+<li><p>‘macro_f1’: tag prediction macro(unweighted mean) f1</p></li>
+<li><p>‘macro_precision’: tag prediction macro(unweighted mean) precision</p></li>
+<li><p>‘macro_recall’: tag prediction macro(unweighted mean) recall</p></li>
 </ul>
 </dd>
 </dl>
@@ -395,32 +381,27 @@ predictions: prediction dictionary consisting of</p>
 <code class="descname">make_predictions</code><span class="sig-paren">(</span><em>output_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/token_classification/mixin.html#TokenClassification.make_predictions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.token_classification.mixin.TokenClassification.make_predictions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make predictions with model’s output_dict</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><dl class="first last docutils">
-<dt>output_dict: model’s output dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>sequence_embed: embedding vector of the sequence</li>
-<li>tag_logits: representing unnormalized log probabilities of the tag</li>
-<li>tag_idxs: target tag idxs</li>
-<li>data_idx: data idx</li>
-<li>loss: a scalar loss to be optimized</li>
+<li><dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>output_dict: model’s output dictionary consisting of</dt><dd><ul>
+<li><p>sequence_embed: embedding vector of the sequence</p></li>
+<li><p>tag_logits: representing unnormalized log probabilities of the tag</p></li>
+<li><p>tag_idxs: target tag idxs</p></li>
+<li><p>data_idx: data idx</p></li>
+<li><p>loss: a scalar loss to be optimized</p></li>
 </ul>
 </dd>
 </dl>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><dl class="first last docutils">
-<dt>predictions: prediction dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>key: ‘id’ (sequence id)</li>
-<li><dl class="first docutils">
-<dt>value: dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>tag_idxs</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>predictions: prediction dictionary consisting of</dt><dd><ul>
+<li><p>key: ‘id’ (sequence id)</p></li>
+<li><dl class="simple">
+<dt>value: dictionary consisting of</dt><dd><ul>
+<li><p>tag_idxs</p></li>
 </ul>
 </dd>
 </dl>
@@ -444,18 +425,16 @@ predictions: prediction dictionary consisting of</p>
 <code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/token_classification/mixin.html#TokenClassification.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.token_classification.mixin.TokenClassification.print_examples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print evaluation examples</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first">index: data index
+<li><dl>
+<dt>Args:</dt><dd><p>index: data index
 inputs: mini-batch inputs
 predictions: prediction dictionary consisting of</p>
-<blockquote class="last">
+<blockquote>
 <div><ul class="simple">
-<li>key: ‘id’ (sequence id)</li>
-<li><dl class="first docutils">
-<dt>value: dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>class_idx</li>
+<li><p>key: ‘id’ (sequence id)</p></li>
+<li><dl class="simple">
+<dt>value: dictionary consisting of</dt><dd><ul>
+<li><p>class_idx</p></li>
 </ul>
 </dd>
 </dl>
@@ -465,9 +444,8 @@ predictions: prediction dictionary consisting of</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><p class="first last">print(Sequence, Target Tags, Target Slots, Predicted Tags, Predicted Slots)</p>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><p>print(Sequence, Target Tags, Target Slots, Predicted Tags, Predicted Slots)</p>
 </dd>
 </dl>
 </li>
@@ -493,17 +471,17 @@ predictions: prediction dictionary consisting of</p>
 BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 (<a class="reference external" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>token_embedder: used to embed the sequence
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_embedder: used to embed the sequence
 num_tags: number of classified tags
-ignore_tag_idx: index of the tag to ignore when calculating loss (tag pad value)</dd>
+ignore_tag_idx: index of the tag to ignore when calculating loss (tag pad value)</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>pretrained_model_name: the name of a pre-trained model
-dropout: classification layer dropout</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>pretrained_model_name: the name of a pre-trained model
+dropout: classification layer dropout</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -511,28 +489,24 @@ dropout: classification layer dropout</dd>
 <dt id="claf.model.token_classification.BertForTokCls.forward">
 <code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/token_classification/bert_for_tok_cls.html#BertForTokCls.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.token_classification.BertForTokCls.forward" title="Permalink to this definition">¶</a></dt>
 <dd><ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first">features: feature dictionary like below.
+<li><dl>
+<dt>Args:</dt><dd><p>features: feature dictionary like below.
 {</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>“bert_input”: {</dt>
-<dd><dl class="first docutils">
-<dt>“feature”: [</dt>
-<dd><p class="first last">[100, 576, 21, 45, 7, 91, 101, 0, 0, …],
+<div><dl>
+<dt>“bert_input”: {</dt><dd><dl class="simple">
+<dt>“feature”: [</dt><dd><p>[100, 576, 21, 45, 7, 91, 101, 0, 0, …],
 …,</p>
 </dd>
 </dl>
-<p class="last">]</p>
+<p>]</p>
 </dd>
 </dl>
 <p>}
 “token_type”: {</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>“feature”: [</dt>
-<dd><p class="first last">[0, 0, 0, 0, 0, 0, 0, 0, 0, …],
+<div><dl class="simple">
+<dt>“feature”: [</dt><dd><p>[0, 0, 0, 0, 0, 0, 0, 0, 0, …],
 …,</p>
 </dd>
 </dl>
@@ -541,9 +515,8 @@ dropout: classification layer dropout</dd>
 <p>},
 “tagged_sub_token_idxs”: {</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>[</dt>
-<dd><p class="first last">[1, 3, 4, 0, 0, 0, 0, 0, 0, …],
+<div><dl class="simple">
+<dt>[</dt><dd><p>[1, 3, 4, 0, 0, 0, 0, 0, 0, …],
 …,</p>
 </dd>
 </dl>
@@ -551,31 +524,29 @@ dropout: classification layer dropout</dd>
 </div></blockquote>
 <p>}</p>
 </div></blockquote>
-<p class="last">}</p>
+<p>}</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">label: label dictionary like below.
+<li><dl>
+<dt>Kwargs:</dt><dd><p>label: label dictionary like below.
 {</p>
 <blockquote>
 <div><p>“class_idx”: [2, 1, 0, 4, 5, …]
 “data_idx”: [2, 4, 5, 7, 2, 1, …]</p>
 </div></blockquote>
-<p class="last">}
+<p>}
 Do not calculate loss when there is no label. (inference/predict mode)</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns: output_dict (dict) consisting of</dt>
-<dd><ul class="first last simple">
-<li>sequence_embed: embedding vector of the sequence</li>
-<li>tag_logits: representing unnormalized log probabilities of the tags.</li>
-<li>tag_idxs: target class idx</li>
-<li>data_idx: data idx</li>
-<li>loss: a scalar loss to be optimized</li>
+<li><dl class="simple">
+<dt>Returns: output_dict (dict) consisting of</dt><dd><ul class="simple">
+<li><p>sequence_embed: embedding vector of the sequence</p></li>
+<li><p>tag_logits: representing unnormalized log probabilities of the tags.</p></li>
+<li><p>tag_idxs: target class idx</p></li>
+<li><p>data_idx: data idx</p></li>
+<li><p>loss: a scalar loss to be optimized</p></li>
 </ul>
 </dd>
 </dl>
@@ -588,18 +559,16 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/token_classification/bert_for_tok_cls.html#BertForTokCls.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.token_classification.BertForTokCls.print_examples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print evaluation examples</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first">index: data index
+<li><dl>
+<dt>Args:</dt><dd><p>index: data index
 inputs: mini-batch inputs
 predictions: prediction dictionary consisting of</p>
-<blockquote class="last">
+<blockquote>
 <div><ul class="simple">
-<li>key: ‘id’ (sequence id)</li>
-<li><dl class="first docutils">
-<dt>value: dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>class_idx</li>
+<li><p>key: ‘id’ (sequence id)</p></li>
+<li><dl class="simple">
+<dt>value: dictionary consisting of</dt><dd><ul>
+<li><p>class_idx</p></li>
 </ul>
 </dd>
 </dl>
@@ -609,9 +578,8 @@ predictions: prediction dictionary consisting of</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><p class="first last">print(Sequence, Sequence Tokens, Target Tags, Target Slots, Predicted Tags, Predicted Slots)</p>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><p>print(Sequence, Sequence Tokens, Target Tags, Target Slots, Predicted Tags, Predicted Slots)</p>
 </dd>
 </dl>
 </li>

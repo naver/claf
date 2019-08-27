@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; CLaF 0.1.0 documentation</title>
+  <title>Index &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -108,6 +108,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -280,12 +281,8 @@
         <li><a href="claf.tokens.indexer.html#claf.tokens.indexer.ELMoIndexer.beginning_of_word_character">(claf.tokens.indexer.ELMoIndexer attribute)</a>
 </li>
       </ul></li>
-      <li><a href="claf.data.dataset.html#claf.data.dataset.squad_bert.SQuADBertDataset.bert_input_maxlen">bert_input_maxlen (claf.data.dataset.squad_bert.SQuADBertDataset attribute)</a>
-
-      <ul>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.SQuADBertDataset.bert_input_maxlen">(claf.data.dataset.SQuADBertDataset attribute)</a>
+      <li><a href="claf.data.dataset.html#claf.data.dataset.SQuADBertDataset.bert_input_maxlen">bert_input_maxlen (claf.data.dataset.SQuADBertDataset attribute)</a>
 </li>
-      </ul></li>
       <li><a href="claf.tokens.html#claf.tokens.token_maker.TokenMaker.BERT_TYPE">BERT_TYPE (claf.tokens.token_maker.TokenMaker attribute)</a>
 </li>
       <li><a href="claf.tokens.embedding.html#claf.tokens.embedding.BertEmbedding">BertEmbedding (class in claf.tokens.embedding)</a>
@@ -436,13 +433,7 @@
 </li>
       <li><a href="claf.data.dataset.html#module-claf.data.dataset.seq_cls">claf.data.dataset.seq_cls (module)</a>
 </li>
-      <li><a href="claf.data.dataset.html#module-claf.data.dataset.seq_cls_bert">claf.data.dataset.seq_cls_bert (module)</a>
-</li>
       <li><a href="claf.data.dataset.html#module-claf.data.dataset.squad">claf.data.dataset.squad (module)</a>
-</li>
-      <li><a href="claf.data.dataset.html#module-claf.data.dataset.squad_bert">claf.data.dataset.squad_bert (module)</a>
-</li>
-      <li><a href="claf.data.dataset.html#module-claf.data.dataset.tok_cls_bert">claf.data.dataset.tok_cls_bert (module)</a>
 </li>
       <li><a href="claf.data.dataset.html#module-claf.data.dataset.wikisql">claf.data.dataset.wikisql (module)</a>
 </li>
@@ -606,8 +597,6 @@
 </li>
       <li><a href="claf.modules.layer.html#module-claf.modules.layer.scalar_mix">claf.modules.layer.scalar_mix (module)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="claf.tokens.html#module-claf.tokens">claf.tokens (module)</a>
 </li>
       <li><a href="claf.tokens.html#module-claf.tokens.cove">claf.tokens.cove (module)</a>
@@ -622,6 +611,8 @@
 </li>
       <li><a href="claf.tokens.embedding.html#module-claf.tokens.embedding.char_embedding">claf.tokens.embedding.char_embedding (module)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="claf.tokens.embedding.html#module-claf.tokens.embedding.cove_embedding">claf.tokens.embedding.cove_embedding (module)</a>
 </li>
       <li><a href="claf.tokens.embedding.html#module-claf.tokens.embedding.elmo_embedding">claf.tokens.embedding.elmo_embedding (module)</a>
@@ -684,6 +675,30 @@
 </li>
       <li><a href="claf.html#module-claf.utils">claf.utils (module)</a>
 </li>
+      <li><a href="claf.data.reader.bert.html#claf.data.reader.bert.cola.CoLABertReader.CLASS_DATA">CLASS_DATA (claf.data.reader.bert.cola.CoLABertReader attribute)</a>
+
+      <ul>
+        <li><a href="claf.data.reader.html#claf.data.reader.CoLABertReader.CLASS_DATA">(claf.data.reader.CoLABertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.MNLIBertReader.CLASS_DATA">(claf.data.reader.MNLIBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.MRPCBertReader.CLASS_DATA">(claf.data.reader.MRPCBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.QNLIBertReader.CLASS_DATA">(claf.data.reader.QNLIBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.QQPBertReader.CLASS_DATA">(claf.data.reader.QQPBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.RTEBertReader.CLASS_DATA">(claf.data.reader.RTEBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.SSTBertReader.CLASS_DATA">(claf.data.reader.SSTBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.SeqClsBertReader.CLASS_DATA">(claf.data.reader.SeqClsBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.WNLIBertReader.CLASS_DATA">(claf.data.reader.WNLIBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.bert.html#claf.data.reader.bert.seq_cls.SeqClsBertReader.CLASS_DATA">(claf.data.reader.bert.seq_cls.SeqClsBertReader attribute)</a>
+</li>
+      </ul></li>
       <li><a href="claf.tokens.html#claf.tokens.linguistic.NER.classes">classes (claf.tokens.linguistic.NER attribute)</a>
 
       <ul>
@@ -695,11 +710,29 @@
       <ul>
         <li><a href="claf.data.reader.html#claf.data.reader.CoLABertReader.CLS_TOKEN">(claf.data.reader.CoLABertReader attribute)</a>
 </li>
+        <li><a href="claf.data.reader.html#claf.data.reader.MNLIBertReader.CLS_TOKEN">(claf.data.reader.MNLIBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.MRPCBertReader.CLS_TOKEN">(claf.data.reader.MRPCBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.QNLIBertReader.CLS_TOKEN">(claf.data.reader.QNLIBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.QQPBertReader.CLS_TOKEN">(claf.data.reader.QQPBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.RTEBertReader.CLS_TOKEN">(claf.data.reader.RTEBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.RegressionBertReader.CLS_TOKEN">(claf.data.reader.RegressionBertReader attribute)</a>
+</li>
         <li><a href="claf.data.reader.html#claf.data.reader.SQuADBertReader.CLS_TOKEN">(claf.data.reader.SQuADBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.SSTBertReader.CLS_TOKEN">(claf.data.reader.SSTBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.STSBBertReader.CLS_TOKEN">(claf.data.reader.STSBBertReader attribute)</a>, <a href="claf.data.reader.html#claf.data.reader.STSBBertReader.CLS_TOKEN">[1]</a>
 </li>
         <li><a href="claf.data.reader.html#claf.data.reader.SeqClsBertReader.CLS_TOKEN">(claf.data.reader.SeqClsBertReader attribute)</a>
 </li>
         <li><a href="claf.data.reader.html#claf.data.reader.TokClsBertReader.CLS_TOKEN">(claf.data.reader.TokClsBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.WNLIBertReader.CLS_TOKEN">(claf.data.reader.WNLIBertReader attribute)</a>
 </li>
         <li><a href="claf.data.reader.bert.html#claf.data.reader.bert.seq_cls.SeqClsBertReader.CLS_TOKEN">(claf.data.reader.bert.seq_cls.SeqClsBertReader attribute)</a>
 </li>
@@ -735,6 +768,8 @@
       <li><a href="claf.data.dataset.html#claf.data.dataset.base.DatasetBase.collate_fn">collate_fn() (claf.data.dataset.base.DatasetBase method)</a>
 
       <ul>
+        <li><a href="claf.data.dataset.html#claf.data.dataset.RegressionBertDataset.collate_fn">(claf.data.dataset.RegressionBertDataset method)</a>
+</li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.SQuADBertDataset.collate_fn">(claf.data.dataset.SQuADBertDataset method)</a>
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.SQuADDataset.collate_fn">(claf.data.dataset.SQuADDataset method)</a>
@@ -749,13 +784,7 @@
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.seq_cls.SeqClsDataset.collate_fn">(claf.data.dataset.seq_cls.SeqClsDataset method)</a>
 </li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.seq_cls_bert.SeqClsBertDataset.collate_fn">(claf.data.dataset.seq_cls_bert.SeqClsBertDataset method)</a>
-</li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.squad.SQuADDataset.collate_fn">(claf.data.dataset.squad.SQuADDataset method)</a>
-</li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.squad_bert.SQuADBertDataset.collate_fn">(claf.data.dataset.squad_bert.SQuADBertDataset method)</a>
-</li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.tok_cls_bert.TokClsBertDataset.collate_fn">(claf.data.dataset.tok_cls_bert.TokClsBertDataset method)</a>
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.wikisql.WikiSQLDataset.collate_fn">(claf.data.dataset.wikisql.WikiSQLDataset method)</a>
 </li>
@@ -798,20 +827,6 @@
 
       <ul>
         <li><a href="claf.data.dataset.html#claf.data.dataset.SQuADDataset.context_maxlen">(claf.data.dataset.SQuADDataset attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="claf.data.reader.bert.html#claf.data.reader.bert.cola.CoLABertReader.CONTINUE_SYMBOL">CONTINUE_SYMBOL (claf.data.reader.bert.cola.CoLABertReader attribute)</a>
-
-      <ul>
-        <li><a href="claf.data.reader.html#claf.data.reader.CoLABertReader.CONTINUE_SYMBOL">(claf.data.reader.CoLABertReader attribute)</a>
-</li>
-        <li><a href="claf.data.reader.html#claf.data.reader.SeqClsBertReader.CONTINUE_SYMBOL">(claf.data.reader.SeqClsBertReader attribute)</a>
-</li>
-        <li><a href="claf.data.reader.html#claf.data.reader.TokClsBertReader.CONTINUE_SYMBOL">(claf.data.reader.TokClsBertReader attribute)</a>
-</li>
-        <li><a href="claf.data.reader.bert.html#claf.data.reader.bert.seq_cls.SeqClsBertReader.CONTINUE_SYMBOL">(claf.data.reader.bert.seq_cls.SeqClsBertReader attribute)</a>
-</li>
-        <li><a href="claf.data.reader.bert.html#claf.data.reader.bert.tok_cls.TokClsBertReader.CONTINUE_SYMBOL">(claf.data.reader.bert.tok_cls.TokClsBertReader attribute)</a>
 </li>
       </ul></li>
       <li><a href="claf.data.html#claf.data.data_handler.DataHandler.convert_cache_path">convert_cache_path() (claf.data.data_handler.DataHandler method)</a>
@@ -1294,12 +1309,8 @@
 </li>
       <li><a href="claf.tokens.html#claf.tokens.vocabulary.Vocab.get_all_tokens">get_all_tokens() (claf.tokens.vocabulary.Vocab method)</a>
 </li>
-      <li><a href="claf.data.dataset.html#claf.data.dataset.squad_bert.SQuADBertDataset.get_bert_tokens">get_bert_tokens() (claf.data.dataset.squad_bert.SQuADBertDataset method)</a>
-
-      <ul>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.SQuADBertDataset.get_bert_tokens">(claf.data.dataset.SQuADBertDataset method)</a>
+      <li><a href="claf.data.dataset.html#claf.data.dataset.SQuADBertDataset.get_bert_tokens">get_bert_tokens() (claf.data.dataset.SQuADBertDataset method)</a>
 </li>
-      </ul></li>
       <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.mixin.ReadingComprehension.get_best_span">get_best_span() (claf.model.reading_comprehension.mixin.ReadingComprehension method)</a>
 </li>
       <li><a href="claf.data.dataset.html#claf.data.dataset.seq_cls.SeqClsDataset.get_class_text_with_idx">get_class_text_with_idx() (claf.data.dataset.seq_cls.SeqClsDataset method)</a>
@@ -1308,8 +1319,6 @@
         <li><a href="claf.data.dataset.html#claf.data.dataset.SeqClsBertDataset.get_class_text_with_idx">(claf.data.dataset.SeqClsBertDataset method)</a>
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.SeqClsDataset.get_class_text_with_idx">(claf.data.dataset.SeqClsDataset method)</a>
-</li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.seq_cls_bert.SeqClsBertDataset.get_class_text_with_idx">(claf.data.dataset.seq_cls_bert.SeqClsBertDataset method)</a>
 </li>
       </ul></li>
       <li><a href="claf.machine.components.retrieval.html#claf.machine.components.retrieval.tfidf.TFIDF.get_closest">get_closest() (claf.machine.components.retrieval.tfidf.TFIDF method)</a>
@@ -1333,8 +1342,6 @@
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.SQuADDataset.get_context">(claf.data.dataset.SQuADDataset method)</a>
 </li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.squad_bert.SQuADBertDataset.get_context">(claf.data.dataset.squad_bert.SQuADBertDataset method)</a>
-</li>
       </ul></li>
       <li><a href="claf.learn.html#claf.learn.utils.TrainCounter.get_display">get_display() (claf.learn.utils.TrainCounter method)</a>
 </li>
@@ -1355,6 +1362,8 @@
       <li><a href="claf.data.dataset.html#claf.data.dataset.base.DatasetBase.get_ground_truth">get_ground_truth() (claf.data.dataset.base.DatasetBase method)</a>
 
       <ul>
+        <li><a href="claf.data.dataset.html#claf.data.dataset.RegressionBertDataset.get_ground_truth">(claf.data.dataset.RegressionBertDataset method)</a>
+</li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.SeqClsBertDataset.get_ground_truth">(claf.data.dataset.SeqClsBertDataset method)</a>
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.SeqClsDataset.get_ground_truth">(claf.data.dataset.SeqClsDataset method)</a>
@@ -1364,10 +1373,6 @@
         <li><a href="claf.data.dataset.html#claf.data.dataset.WikiSQLDataset.get_ground_truth">(claf.data.dataset.WikiSQLDataset method)</a>
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.seq_cls.SeqClsDataset.get_ground_truth">(claf.data.dataset.seq_cls.SeqClsDataset method)</a>
-</li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.seq_cls_bert.SeqClsBertDataset.get_ground_truth">(claf.data.dataset.seq_cls_bert.SeqClsBertDataset method)</a>
-</li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.tok_cls_bert.TokClsBertDataset.get_ground_truth">(claf.data.dataset.tok_cls_bert.TokClsBertDataset method)</a>
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.wikisql.WikiSQLDataset.get_ground_truth">(claf.data.dataset.wikisql.WikiSQLDataset method)</a>
 </li>
@@ -1381,10 +1386,8 @@
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.squad.SQuADDataset.get_ground_truths">(claf.data.dataset.squad.SQuADDataset method)</a>
 </li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.squad_bert.SQuADBertDataset.get_ground_truths">(claf.data.dataset.squad_bert.SQuADBertDataset method)</a>
-</li>
       </ul></li>
-      <li><a href="claf.data.dataset.html#claf.data.dataset.seq_cls.SeqClsDataset.get_id">get_id() (claf.data.dataset.seq_cls.SeqClsDataset method)</a>
+      <li><a href="claf.data.dataset.html#claf.data.dataset.RegressionBertDataset.get_id">get_id() (claf.data.dataset.RegressionBertDataset method)</a>
 
       <ul>
         <li><a href="claf.data.dataset.html#claf.data.dataset.SeqClsBertDataset.get_id">(claf.data.dataset.SeqClsBertDataset method)</a>
@@ -1395,9 +1398,7 @@
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.WikiSQLDataset.get_id">(claf.data.dataset.WikiSQLDataset method)</a>
 </li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.seq_cls_bert.SeqClsBertDataset.get_id">(claf.data.dataset.seq_cls_bert.SeqClsBertDataset method)</a>
-</li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.tok_cls_bert.TokClsBertDataset.get_id">(claf.data.dataset.tok_cls_bert.TokClsBertDataset method)</a>
+        <li><a href="claf.data.dataset.html#claf.data.dataset.seq_cls.SeqClsDataset.get_id">(claf.data.dataset.seq_cls.SeqClsDataset method)</a>
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.wikisql.WikiSQLDataset.get_id">(claf.data.dataset.wikisql.WikiSQLDataset method)</a>
 </li>
@@ -1459,8 +1460,6 @@
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.squad.SQuADDataset.get_predict">(claf.data.dataset.squad.SQuADDataset method)</a>
 </li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.squad_bert.SQuADBertDataset.get_predict">(claf.data.dataset.squad_bert.SQuADBertDataset method)</a>
-</li>
       </ul></li>
       <li><a href="claf.data.dataset.html#claf.data.dataset.squad.SQuADDataset.get_qid">get_qid() (claf.data.dataset.squad.SQuADDataset method)</a>
 
@@ -1469,16 +1468,12 @@
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.SQuADDataset.get_qid">(claf.data.dataset.SQuADDataset method)</a>
 </li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.squad_bert.SQuADBertDataset.get_qid">(claf.data.dataset.squad_bert.SQuADBertDataset method)</a>
-</li>
       </ul></li>
-      <li><a href="claf.data.dataset.html#claf.data.dataset.squad_bert.SQuADBertDataset.get_qid_index">get_qid_index() (claf.data.dataset.squad_bert.SQuADBertDataset method)</a>
-
-      <ul>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.SQuADBertDataset.get_qid_index">(claf.data.dataset.SQuADBertDataset method)</a>
+      <li><a href="claf.data.dataset.html#claf.data.dataset.SQuADBertDataset.get_qid_index">get_qid_index() (claf.data.dataset.SQuADBertDataset method)</a>
 </li>
-      </ul></li>
       <li><a href="claf.metric.html#claf.metric.squad_v2_official.get_raw_scores">get_raw_scores() (in module claf.metric.squad_v2_official)</a>
+</li>
+      <li><a href="claf.data.html#claf.data.utils.get_sequence_a">get_sequence_a() (in module claf.data.utils)</a>
 </li>
       <li><a href="claf.learn.html#claf.learn.utils.get_session_name">get_session_name() (in module claf.learn.utils)</a>
 </li>
@@ -1494,18 +1489,10 @@
       </ul></li>
       <li><a href="claf.model.html#claf.model.cls_utils.get_tag_dict">get_tag_dict() (in module claf.model.cls_utils)</a>
 </li>
-      <li><a href="claf.data.dataset.html#claf.data.dataset.tok_cls_bert.TokClsBertDataset.get_tag_text_with_idx">get_tag_text_with_idx() (claf.data.dataset.tok_cls_bert.TokClsBertDataset method)</a>
-
-      <ul>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.TokClsBertDataset.get_tag_text_with_idx">(claf.data.dataset.TokClsBertDataset method)</a>
+      <li><a href="claf.data.dataset.html#claf.data.dataset.TokClsBertDataset.get_tag_text_with_idx">get_tag_text_with_idx() (claf.data.dataset.TokClsBertDataset method)</a>
 </li>
-      </ul></li>
-      <li><a href="claf.data.dataset.html#claf.data.dataset.tok_cls_bert.TokClsBertDataset.get_tag_texts_with_idxs">get_tag_texts_with_idxs() (claf.data.dataset.tok_cls_bert.TokClsBertDataset method)</a>
-
-      <ul>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.TokClsBertDataset.get_tag_texts_with_idxs">(claf.data.dataset.TokClsBertDataset method)</a>
+      <li><a href="claf.data.dataset.html#claf.data.dataset.TokClsBertDataset.get_tag_texts_with_idxs">get_tag_texts_with_idxs() (claf.data.dataset.TokClsBertDataset method)</a>
 </li>
-      </ul></li>
       <li><a href="claf.data.dataset.html#claf.data.dataset.squad.SQuADDataset.get_text_span">get_text_span() (claf.data.dataset.squad.SQuADDataset method)</a>
 
       <ul>
@@ -1518,8 +1505,6 @@
         <li><a href="claf.data.dataset.html#claf.data.dataset.SQuADBertDataset.get_text_with_index">(claf.data.dataset.SQuADBertDataset method)</a>
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.SQuADDataset.get_text_with_index">(claf.data.dataset.SQuADDataset method)</a>
-</li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.squad_bert.SQuADBertDataset.get_text_with_index">(claf.data.dataset.squad_bert.SQuADBertDataset method)</a>
 </li>
       </ul></li>
       <li><a href="claf.tokens.html#claf.tokens.vocabulary.Vocab.get_token">get_token() (claf.tokens.vocabulary.Vocab method)</a>
@@ -1894,6 +1879,8 @@
 </li>
       <li><a href="claf.model.html#claf.model.base.ModelBase.metrics">metrics (claf.model.base.ModelBase attribute)</a>
 </li>
+      <li><a href="claf.data.reader.html#claf.data.reader.MNLIBertReader">MNLIBertReader (class in claf.data.reader)</a>
+</li>
       <li><a href="claf.learn.html#claf.learn.mode.Mode">Mode (class in claf.learn.mode)</a>
 </li>
       <li><a href="claf.config.html#claf.config.args.model">model() (in module claf.config.args)</a>
@@ -1911,6 +1898,8 @@
       <li><a href="claf.model.html#claf.model.base.ModelWithTokenEmbedder">ModelWithTokenEmbedder (class in claf.model.base)</a>
 </li>
       <li><a href="claf.machine.html#claf.machine.module.Module">Module (class in claf.machine.module)</a>
+</li>
+      <li><a href="claf.data.reader.html#claf.data.reader.MRPCBertReader">MRPCBertReader (class in claf.data.reader)</a>
 </li>
       <li><a href="claf.tokens.html#claf.tokens.cove.MTLSTM">MTLSTM (class in claf.tokens.cove)</a>
 </li>
@@ -1944,10 +1933,10 @@
         <li><a href="claf.metric.html#claf.metric.squad_v2_official.normalize_answer">(in module claf.metric.squad_v2_official)</a>
 </li>
       </ul></li>
-      <li><a href="claf.tokens.html#claf.tokens.hangul.NotHangulException">NotHangulException</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="claf.tokens.html#claf.tokens.hangul.NotHangulException">NotHangulException</a>
+</li>
       <li><a href="claf.tokens.html#claf.tokens.hangul.NotLetterException">NotLetterException</a>
 </li>
       <li><a href="claf.tokens.html#claf.tokens.hangul.NotWordException">NotWordException</a>
@@ -1961,15 +1950,9 @@
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.SeqClsDataset.num_classes">(claf.data.dataset.SeqClsDataset attribute)</a>
 </li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.seq_cls_bert.SeqClsBertDataset.num_classes">(claf.data.dataset.seq_cls_bert.SeqClsBertDataset attribute)</a>
-</li>
       </ul></li>
-      <li><a href="claf.data.dataset.html#claf.data.dataset.tok_cls_bert.TokClsBertDataset.num_tags">num_tags (claf.data.dataset.tok_cls_bert.TokClsBertDataset attribute)</a>
-
-      <ul>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.TokClsBertDataset.num_tags">(claf.data.dataset.TokClsBertDataset attribute)</a>
+      <li><a href="claf.data.dataset.html#claf.data.dataset.TokClsBertDataset.num_tags">num_tags (claf.data.dataset.TokClsBertDataset attribute)</a>
 </li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -2122,6 +2105,12 @@
         <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.qanet.QANet">(class in claf.model.reading_comprehension.qanet)</a>
 </li>
       </ul></li>
+      <li><a href="claf.data.reader.html#claf.data.reader.QNLIBertReader">QNLIBertReader (class in claf.data.reader)</a>
+</li>
+      <li><a href="claf.data.reader.html#claf.data.reader.QQPBertReader">QQPBertReader (class in claf.data.reader)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="claf.data.dataset.html#claf.data.dataset.squad.SQuADDataset.question_maxlen">question_maxlen (claf.data.dataset.squad.SQuADDataset attribute)</a>
 
       <ul>
@@ -2157,6 +2146,8 @@
       <li><a href="claf.data.reader.html#claf.data.reader.base.DataReader.read_one_example">read_one_example() (claf.data.reader.base.DataReader method)</a>
 
       <ul>
+        <li><a href="claf.data.reader.html#claf.data.reader.RegressionBertReader.read_one_example">(claf.data.reader.RegressionBertReader method)</a>
+</li>
         <li><a href="claf.data.reader.html#claf.data.reader.SQuADBertReader.read_one_example">(claf.data.reader.SQuADBertReader method)</a>
 </li>
         <li><a href="claf.data.reader.html#claf.data.reader.SQuADReader.read_one_example">(claf.data.reader.SQuADReader method)</a>
@@ -2196,6 +2187,10 @@
       </ul></li>
       <li><a href="claf.config.html#claf.config.registry.Registry">Registry (class in claf.config.registry)</a>
 </li>
+      <li><a href="claf.data.dataset.html#claf.data.dataset.RegressionBertDataset">RegressionBertDataset (class in claf.data.dataset)</a>
+</li>
+      <li><a href="claf.data.reader.html#claf.data.reader.RegressionBertReader">RegressionBertReader (class in claf.data.reader)</a>
+</li>
       <li><a href="claf.tokens.embedding.html#claf.tokens.embedding.bert_embedding.BertEmbedding.remove_cls_sep_token">remove_cls_sep_token() (claf.tokens.embedding.bert_embedding.BertEmbedding method)</a>
 
       <ul>
@@ -2219,6 +2214,8 @@
 </li>
       </ul></li>
       <li><a href="claf.data.html#claf.data.data_handler.CachePath.ROOT">ROOT (claf.data.data_handler.CachePath attribute)</a>
+</li>
+      <li><a href="claf.data.reader.html#claf.data.reader.RTEBertReader">RTEBertReader (class in claf.data.reader)</a>
 </li>
       <li><a href="claf.metric.html#claf.metric.squad_v2_official.run_precision_recall_analysis">run_precision_recall_analysis() (in module claf.metric.squad_v2_official)</a>
 </li>
@@ -2277,11 +2274,29 @@
       <ul>
         <li><a href="claf.data.reader.html#claf.data.reader.CoLABertReader.SEP_TOKEN">(claf.data.reader.CoLABertReader attribute)</a>
 </li>
+        <li><a href="claf.data.reader.html#claf.data.reader.MNLIBertReader.SEP_TOKEN">(claf.data.reader.MNLIBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.MRPCBertReader.SEP_TOKEN">(claf.data.reader.MRPCBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.QNLIBertReader.SEP_TOKEN">(claf.data.reader.QNLIBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.QQPBertReader.SEP_TOKEN">(claf.data.reader.QQPBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.RTEBertReader.SEP_TOKEN">(claf.data.reader.RTEBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.RegressionBertReader.SEP_TOKEN">(claf.data.reader.RegressionBertReader attribute)</a>
+</li>
         <li><a href="claf.data.reader.html#claf.data.reader.SQuADBertReader.SEP_TOKEN">(claf.data.reader.SQuADBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.SSTBertReader.SEP_TOKEN">(claf.data.reader.SSTBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.STSBBertReader.SEP_TOKEN">(claf.data.reader.STSBBertReader attribute)</a>, <a href="claf.data.reader.html#claf.data.reader.STSBBertReader.SEP_TOKEN">[1]</a>
 </li>
         <li><a href="claf.data.reader.html#claf.data.reader.SeqClsBertReader.SEP_TOKEN">(claf.data.reader.SeqClsBertReader attribute)</a>
 </li>
         <li><a href="claf.data.reader.html#claf.data.reader.TokClsBertReader.SEP_TOKEN">(claf.data.reader.TokClsBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.WNLIBertReader.SEP_TOKEN">(claf.data.reader.WNLIBertReader attribute)</a>
 </li>
         <li><a href="claf.data.reader.bert.html#claf.data.reader.bert.seq_cls.SeqClsBertReader.SEP_TOKEN">(claf.data.reader.bert.seq_cls.SeqClsBertReader attribute)</a>
 </li>
@@ -2297,11 +2312,7 @@
 </li>
       </ul></li>
       <li><a href="claf.data.dataset.html#claf.data.dataset.SeqClsBertDataset">SeqClsBertDataset (class in claf.data.dataset)</a>
-
-      <ul>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.seq_cls_bert.SeqClsBertDataset">(class in claf.data.dataset.seq_cls_bert)</a>
 </li>
-      </ul></li>
       <li><a href="claf.data.reader.html#claf.data.reader.SeqClsBertReader">SeqClsBertReader (class in claf.data.reader)</a>
 
       <ul>
@@ -2320,7 +2331,9 @@
         <li><a href="claf.data.reader.html#claf.data.reader.seq_cls.SeqClsReader">(class in claf.data.reader.seq_cls)</a>
 </li>
       </ul></li>
-      <li><a href="claf.data.dataset.html#claf.data.dataset.seq_cls.SeqClsDataset.sequence_maxlen">sequence_maxlen (claf.data.dataset.seq_cls.SeqClsDataset attribute)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="claf.data.dataset.html#claf.data.dataset.RegressionBertDataset.sequence_maxlen">sequence_maxlen (claf.data.dataset.RegressionBertDataset attribute)</a>
 
       <ul>
         <li><a href="claf.data.dataset.html#claf.data.dataset.SeqClsBertDataset.sequence_maxlen">(claf.data.dataset.SeqClsBertDataset attribute)</a>
@@ -2329,13 +2342,9 @@
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.TokClsBertDataset.sequence_maxlen">(claf.data.dataset.TokClsBertDataset attribute)</a>
 </li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.seq_cls_bert.SeqClsBertDataset.sequence_maxlen">(claf.data.dataset.seq_cls_bert.SeqClsBertDataset attribute)</a>
-</li>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.tok_cls_bert.TokClsBertDataset.sequence_maxlen">(claf.data.dataset.tok_cls_bert.TokClsBertDataset attribute)</a>
+        <li><a href="claf.data.dataset.html#claf.data.dataset.seq_cls.SeqClsDataset.sequence_maxlen">(claf.data.dataset.seq_cls.SeqClsDataset attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="claf.model.sequence_classification.html#claf.model.sequence_classification.mixin.SequenceClassification">SequenceClassification (class in claf.model.sequence_classification.mixin)</a>
 </li>
       <li><a href="claf.config.html#claf.config.args.set_batch_size">set_batch_size() (in module claf.config.args)</a>
@@ -2391,11 +2400,7 @@
 </li>
       </ul></li>
       <li><a href="claf.data.dataset.html#claf.data.dataset.SQuADBertDataset">SQuADBertDataset (class in claf.data.dataset)</a>
-
-      <ul>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.squad_bert.SQuADBertDataset">(class in claf.data.dataset.squad_bert)</a>
 </li>
-      </ul></li>
       <li><a href="claf.data.reader.html#claf.data.reader.SQuADBertReader">SQuADBertReader (class in claf.data.reader)</a>
 
       <ul>
@@ -2418,12 +2423,16 @@
 </li>
       <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.mixin.SQuADv2">SQuADv2 (class in claf.model.reading_comprehension.mixin)</a>
 </li>
+      <li><a href="claf.data.reader.html#claf.data.reader.SSTBertReader">SSTBertReader (class in claf.data.reader)</a>
+</li>
       <li><a href="claf.model.sequence_classification.html#claf.model.sequence_classification.StructuredSelfAttention">StructuredSelfAttention (class in claf.model.sequence_classification)</a>
 
       <ul>
         <li><a href="claf.model.sequence_classification.html#claf.model.sequence_classification.structured_self_attention.StructuredSelfAttention">(class in claf.model.sequence_classification.structured_self_attention)</a>
 </li>
       </ul></li>
+      <li><a href="claf.data.reader.html#claf.data.reader.STSBBertReader">STSBBertReader (class in claf.data.reader)</a>, <a href="claf.data.reader.html#claf.data.reader.STSBBertReader">[1]</a>
+</li>
       <li><a href="claf.tokens.tokenizer.html#claf.tokens.tokenizer.SubwordTokenizer">SubwordTokenizer (class in claf.tokens.tokenizer)</a>
 
       <ul>
@@ -2463,11 +2472,7 @@
       <li><a href="claf.tokens.html#claf.tokens.vocabulary.Vocab.to_text">to_text() (claf.tokens.vocabulary.Vocab method)</a>
 </li>
       <li><a href="claf.data.dataset.html#claf.data.dataset.TokClsBertDataset">TokClsBertDataset (class in claf.data.dataset)</a>
-
-      <ul>
-        <li><a href="claf.data.dataset.html#claf.data.dataset.tok_cls_bert.TokClsBertDataset">(class in claf.data.dataset.tok_cls_bert)</a>
 </li>
-      </ul></li>
       <li><a href="claf.data.reader.html#claf.data.reader.TokClsBertReader">TokClsBertReader (class in claf.data.reader)</a>
 
       <ul>
@@ -2539,9 +2544,27 @@
       <ul>
         <li><a href="claf.data.reader.html#claf.data.reader.CoLABertReader.UNK_TOKEN">(claf.data.reader.CoLABertReader attribute)</a>
 </li>
+        <li><a href="claf.data.reader.html#claf.data.reader.MNLIBertReader.UNK_TOKEN">(claf.data.reader.MNLIBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.MRPCBertReader.UNK_TOKEN">(claf.data.reader.MRPCBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.QNLIBertReader.UNK_TOKEN">(claf.data.reader.QNLIBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.QQPBertReader.UNK_TOKEN">(claf.data.reader.QQPBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.RTEBertReader.UNK_TOKEN">(claf.data.reader.RTEBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.RegressionBertReader.UNK_TOKEN">(claf.data.reader.RegressionBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.SSTBertReader.UNK_TOKEN">(claf.data.reader.SSTBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.STSBBertReader.UNK_TOKEN">(claf.data.reader.STSBBertReader attribute)</a>, <a href="claf.data.reader.html#claf.data.reader.STSBBertReader.UNK_TOKEN">[1]</a>
+</li>
         <li><a href="claf.data.reader.html#claf.data.reader.SeqClsBertReader.UNK_TOKEN">(claf.data.reader.SeqClsBertReader attribute)</a>
 </li>
         <li><a href="claf.data.reader.html#claf.data.reader.TokClsBertReader.UNK_TOKEN">(claf.data.reader.TokClsBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.WNLIBertReader.UNK_TOKEN">(claf.data.reader.WNLIBertReader attribute)</a>
 </li>
         <li><a href="claf.data.reader.bert.html#claf.data.reader.bert.seq_cls.SeqClsBertReader.UNK_TOKEN">(claf.data.reader.bert.seq_cls.SeqClsBertReader attribute)</a>
 </li>
@@ -2598,6 +2621,8 @@
         <li><a href="claf.data.reader.html#claf.data.reader.wikisql.WikiSQLReader">(class in claf.data.reader.wikisql)</a>
 </li>
       </ul></li>
+      <li><a href="claf.data.reader.html#claf.data.reader.WNLIBertReader">WNLIBertReader (class in claf.data.reader)</a>
+</li>
       <li><a href="claf.tokens.html#claf.tokens.token_maker.TokenMaker.WORD_TYPE">WORD_TYPE (claf.tokens.token_maker.TokenMaker attribute)</a>
 </li>
       <li><a href="claf.tokens.embedding.html#claf.tokens.embedding.WordEmbedding">WordEmbedding (class in claf.tokens.embedding)</a>

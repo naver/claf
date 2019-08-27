@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.tokens.token_embedder package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.tokens.token_embedder package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -124,6 +124,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -213,9 +214,9 @@
 <p>Token Embedder</p>
 <p>Take a tensor(indexed token) look up Embedding modules.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>token_makers: dictionary of TokenMaker (claf.token_makers.token)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_makers: dictionary of TokenMaker (claf.token_makers.token)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -231,8 +232,8 @@
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -254,9 +255,9 @@ registered hooks while the latter silently ignores them.</p>
 <p>Take a tensor(indexed token) look up Embedding modules.
 Output is concatenating all embedded tensors.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>token_makers: dictionary of TokenMaker (claf.tokens.token_maker)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_makers: dictionary of TokenMaker (claf.tokens.token_maker)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -266,8 +267,8 @@ Output is concatenating all embedded tensors.</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -289,11 +290,10 @@ registered hooks while the latter silently ignores them.</p>
 <p>Take a tensor(indexed token) look up Embedding modules.
 Inputs are seperated context and query for individual token setting.</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first">token_makers: dictionary of TokenMaker (claf.tokens.token_maker)
+<li><dl>
+<dt>Args:</dt><dd><p>token_makers: dictionary of TokenMaker (claf.tokens.token_maker)
 vocabs: dictionary of vocab</p>
-<blockquote class="last">
+<blockquote>
 <div><p>{“token_name”: Vocab (claf.token_makers.vocaburary), …}</p>
 </div></blockquote>
 </dd>
@@ -309,19 +309,17 @@ vocabs: dictionary of vocab</p>
 <dt id="claf.tokens.token_embedder.reading_comprehension_embedder.RCTokenEmbedder.forward">
 <code class="descname">forward</code><span class="sig-paren">(</span><em>context</em>, <em>query</em>, <em>context_params={}</em>, <em>query_params={}</em>, <em>query_align=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/token_embedder/reading_comprehension_embedder.html#RCTokenEmbedder.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.token_embedder.reading_comprehension_embedder.RCTokenEmbedder.forward" title="Permalink to this definition">¶</a></dt>
 <dd><ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first last">context: context inputs (eg. {“token_name1”: tensor, “token_name2”: tensor, …})
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>context: context inputs (eg. {“token_name1”: tensor, “token_name2”: tensor, …})
 query: query inputs (eg. {“token_name1”: tensor, “token_name2”: tensor, …})</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">context_params: custom context parameters
+<li><dl>
+<dt>Kwargs:</dt><dd><p>context_params: custom context parameters
 query_params: query context parameters
 query_align: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</p>
-<blockquote class="last">
+<blockquote>
 <div><p>captures the similarity between pi and each question words q_j.
 these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
 it only apply to ‘context_embed’.</p>
@@ -350,9 +348,9 @@ it only apply to ‘context_embed’.</p>
 <p>Take a tensor(indexed token) look up Embedding modules.
 Output is concatenating all embedded tensors.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>token_makers: dictionary of TokenMaker (claf.tokens.token_maker)</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_makers: dictionary of TokenMaker (claf.tokens.token_maker)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -362,8 +360,8 @@ Output is concatenating all embedded tensors.</p>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -385,11 +383,10 @@ registered hooks while the latter silently ignores them.</p>
 <p>Take a tensor(indexed token) look up Embedding modules.
 Inputs are seperated context and query for individual token setting.</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first">token_makers: dictionary of TokenMaker (claf.tokens.token_maker)
+<li><dl>
+<dt>Args:</dt><dd><p>token_makers: dictionary of TokenMaker (claf.tokens.token_maker)
 vocabs: dictionary of vocab</p>
-<blockquote class="last">
+<blockquote>
 <div><p>{“token_name”: Vocab (claf.token_makers.vocaburary), …}</p>
 </div></blockquote>
 </dd>
@@ -405,19 +402,17 @@ vocabs: dictionary of vocab</p>
 <dt id="claf.tokens.token_embedder.RCTokenEmbedder.forward">
 <code class="descname">forward</code><span class="sig-paren">(</span><em>context</em>, <em>query</em>, <em>context_params={}</em>, <em>query_params={}</em>, <em>query_align=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/token_embedder/reading_comprehension_embedder.html#RCTokenEmbedder.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.token_embedder.RCTokenEmbedder.forward" title="Permalink to this definition">¶</a></dt>
 <dd><ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first last">context: context inputs (eg. {“token_name1”: tensor, “token_name2”: tensor, …})
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>context: context inputs (eg. {“token_name1”: tensor, “token_name2”: tensor, …})
 query: query inputs (eg. {“token_name1”: tensor, “token_name2”: tensor, …})</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">context_params: custom context parameters
+<li><dl>
+<dt>Kwargs:</dt><dd><p>context_params: custom context parameters
 query_params: query context parameters
 query_align: f_align(p_i) = sum(a_ij, E(qj), where the attention score a_ij</p>
-<blockquote class="last">
+<blockquote>
 <div><p>captures the similarity between pi and each question words q_j.
 these features add soft alignments between similar but non-identical words (e.g., car and vehicle)
 it only apply to ‘context_embed’.</p>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.model.sequence_classification.mixin &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.model.sequence_classification.mixin &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
@@ -192,6 +193,7 @@
 
 <span class="kn">from</span> <span class="nn">claf.model</span> <span class="k">import</span> <span class="n">cls_utils</span>
 <span class="kn">from</span> <span class="nn">claf.metric.classification</span> <span class="k">import</span> <span class="n">macro_f1</span><span class="p">,</span> <span class="n">macro_precision</span><span class="p">,</span> <span class="n">macro_recall</span>
+<span class="kn">from</span> <span class="nn">claf.metric.glue</span> <span class="k">import</span> <span class="n">f1</span><span class="p">,</span> <span class="n">matthews_corr</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -275,13 +277,20 @@
 <span class="sd">                - &#39;accuracy&#39;: class prediction accuracy</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
+        <span class="n">pred_idx</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">pred_classes</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">target_idx</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">target_classes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">target_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">class_idx2text</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">data_id</span><span class="p">,</span> <span class="n">pred</span> <span class="ow">in</span> <span class="n">predictions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_ground_truth</span><span class="p">(</span><span class="n">data_id</span><span class="p">)</span>
 
+            <span class="n">pred_idx</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="s2">&quot;class_idx&quot;</span><span class="p">])</span>
             <span class="n">pred_classes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">class_idx2text</span><span class="p">[</span><span class="n">pred</span><span class="p">[</span><span class="s2">&quot;class_idx&quot;</span><span class="p">]])</span>
+
+            <span class="n">target_idx</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;class_idx&quot;</span><span class="p">])</span>
             <span class="n">target_classes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;class_text&quot;</span><span class="p">])</span>
 
         <span class="c1"># confusion matrix</span>
@@ -311,6 +320,13 @@
             <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">pycm_obj</span><span class="o">.</span><span class="n">Overall_ACC</span><span class="p">,</span>
         <span class="p">}</span>
 
+        <span class="k">if</span> <span class="n">target_count</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="c1"># binary class</span>
+            <span class="n">f1_metric</span> <span class="o">=</span> <span class="n">f1</span><span class="p">(</span><span class="n">pred_idx</span><span class="p">,</span> <span class="n">target_idx</span><span class="p">)</span>
+            <span class="n">metrics</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">f1_metric</span><span class="p">)</span>
+
+        <span class="n">matthews_corr_metric</span> <span class="o">=</span> <span class="n">matthews_corr</span><span class="p">(</span><span class="n">pred_idx</span><span class="p">,</span> <span class="n">target_idx</span><span class="p">)</span>
+        <span class="n">metrics</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">matthews_corr_metric</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">metrics</span></div>
 
 <div class="viewcode-block" id="SequenceClassification.write_predictions"><a class="viewcode-back" href="../../../../claf.model.sequence_classification.html#claf.model.sequence_classification.mixin.SequenceClassification.write_predictions">[docs]</a>    <span class="k">def</span> <span class="nf">write_predictions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pycm_obj</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>

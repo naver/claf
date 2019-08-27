@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.tokens package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.tokens package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -120,6 +120,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -238,13 +239,12 @@
 <code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/cove.html#MTLSTM.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.cove.MTLSTM.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>A pretrained MT-LSTM (McCann et. al. 2017).
 This LSTM was trained with 300d 840B GloVe on the WMT 2017 machine translation dataset.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><dl class="first docutils">
-<dt>inputs (Tensor): If MTLSTM handles embedding, a Long Tensor of size (batch_size, timesteps).</dt>
-<dd>Otherwise, a Float Tensor of size (batch_size, timesteps, features).</dd>
+<dl>
+<dt>Arguments:</dt><dd><dl class="simple">
+<dt>inputs (Tensor): If MTLSTM handles embedding, a Long Tensor of size (batch_size, timesteps).</dt><dd><p>Otherwise, a Float Tensor of size (batch_size, timesteps, features).</p>
+</dd>
 </dl>
-<p class="last">lengths (Long Tensor): (batch_size, lengths) lenghts of each sequence for handling padding
+<p>lengths (Long Tensor): (batch_size, lengths) lenghts of each sequence for handling padding
 hidden (Float Tensor): initial hidden state of the LSTM</p>
 </dd>
 </dl>
@@ -271,32 +271,33 @@ Parameters
 ———-
 options_file : <code class="docutils literal notranslate"><span class="pre">str</span></code>, required.</p>
 <blockquote>
-<div>ELMo JSON options file</div></blockquote>
-<dl class="docutils">
-<dt>weight_file <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">str</span></code>, required.</span></dt>
-<dd>ELMo hdf5 weight file</dd>
-<dt>num_output_representations: <code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</dt>
-<dd>The number of ELMo representation layers to output.</dd>
-<dt>requires_grad: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional</dt>
-<dd>If True, compute gradient of ELMo parameters for fine tuning.</dd>
-<dt>do_layer_norm <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional, (default=False).</span></dt>
-<dd>Should we apply layer normalization (passed to <code class="docutils literal notranslate"><span class="pre">ScalarMix</span></code>)?</dd>
-<dt>dropout <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = 0.5).</span></dt>
-<dd>The dropout to be applied to the ELMo representations.</dd>
-<dt>vocab_to_cache <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">List[str]</span></code>, optional, (default = 0.5).</span></dt>
-<dd>A list of words to pre-compute and cache character convolutions
+<div><p>ELMo JSON options file</p>
+</div></blockquote>
+<dl>
+<dt>weight_file<span class="classifier"><code class="docutils literal notranslate"><span class="pre">str</span></code>, required.</span></dt><dd><p>ELMo hdf5 weight file</p>
+</dd>
+<dt>num_output_representations: <code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</dt><dd><p>The number of ELMo representation layers to output.</p>
+</dd>
+<dt>requires_grad: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional</dt><dd><p>If True, compute gradient of ELMo parameters for fine tuning.</p>
+</dd>
+<dt>do_layer_norm<span class="classifier"><code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional, (default=False).</span></dt><dd><p>Should we apply layer normalization (passed to <code class="docutils literal notranslate"><span class="pre">ScalarMix</span></code>)?</p>
+</dd>
+<dt>dropout<span class="classifier"><code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = 0.5).</span></dt><dd><p>The dropout to be applied to the ELMo representations.</p>
+</dd>
+<dt>vocab_to_cache<span class="classifier"><code class="docutils literal notranslate"><span class="pre">List[str]</span></code>, optional, (default = 0.5).</span></dt><dd><p>A list of words to pre-compute and cache character convolutions
 for. If you use this option, Elmo expects that you pass word
 indices of shape (batch_size, timesteps) to forward, instead
 of character indices. If you use this option and pass a word which
-wasn’t pre-cached, this will break.</dd>
-<dt>module <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code>, optional, (default = None).</span></dt>
-<dd>If provided, then use this module instead of the pre-trained ELMo biLM.
+wasn’t pre-cached, this will break.</p>
+</dd>
+<dt>module<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code>, optional, (default = None).</span></dt><dd><p>If provided, then use this module instead of the pre-trained ELMo biLM.
 If using this option, then pass <code class="docutils literal notranslate"><span class="pre">None</span></code> for both <code class="docutils literal notranslate"><span class="pre">options_file</span></code>
 and <code class="docutils literal notranslate"><span class="pre">weight_file</span></code>.  The module must provide a public attribute
 <code class="docutils literal notranslate"><span class="pre">num_layers</span></code> with the number of internal layers and its <code class="docutils literal notranslate"><span class="pre">forward</span></code>
 method must return a <code class="docutils literal notranslate"><span class="pre">dict</span></code> with <code class="docutils literal notranslate"><span class="pre">activations</span></code> and <code class="docutils literal notranslate"><span class="pre">mask</span></code> keys
 (see <cite>_ElmoBilm`</cite> for an example).  Note that <code class="docutils literal notranslate"><span class="pre">requires_grad</span></code> is also
-ignored with this option.</dd>
+ignored with this option.</p>
+</dd>
 </dl>
 <dl class="method">
 <dt id="claf.tokens.elmo.Elmo.forward">
@@ -305,16 +306,18 @@ ignored with this option.</dd>
 Shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">50)</span></code> of character ids representing the current batch.
 word_inputs : <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>, required.</p>
 <blockquote>
-<div>If you passed a cached vocab, you can in addition pass a tensor of shape
-<code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code>, which represent word ids which have been pre-cached.</div></blockquote>
+<div><p>If you passed a cached vocab, you can in addition pass a tensor of shape
+<code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code>, which represent word ids which have been pre-cached.</p>
+</div></blockquote>
 <p>Dict with keys:
 <code class="docutils literal notranslate"><span class="pre">'elmo_representations'</span></code>: <code class="docutils literal notranslate"><span class="pre">List[torch.Tensor]</span></code></p>
 <blockquote>
-<div>A <code class="docutils literal notranslate"><span class="pre">num_output_representations</span></code> list of ELMo representations for the input sequence.
-Each representation is shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">embedding_dim)</span></code></div></blockquote>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">'mask'</span></code>:  <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></dt>
-<dd>Shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code> long tensor with sequence mask.</dd>
+<div><p>A <code class="docutils literal notranslate"><span class="pre">num_output_representations</span></code> list of ELMo representations for the input sequence.
+Each representation is shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">embedding_dim)</span></code></p>
+</div></blockquote>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">'mask'</span></code>:  <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></dt><dd><p>Shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code> long tensor with sequence mask.</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -349,34 +352,35 @@ Parameters
 ———-
 input_size : <code class="docutils literal notranslate"><span class="pre">int</span></code>, required</p>
 <blockquote>
-<div>The dimension of the inputs to the LSTM.</div></blockquote>
-<dl class="docutils">
-<dt>hidden_size <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required</span></dt>
-<dd>The dimension of the outputs of the LSTM.</dd>
-<dt>cell_size <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt>
-<dd>The dimension of the memory cell of the
-<code class="xref py py-class docutils literal notranslate"><span class="pre">LstmCellWithProjection</span></code>.</dd>
-<dt>num_layers <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required</span></dt>
-<dd>The number of bidirectional LSTMs to use.</dd>
-<dt>requires_grad: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional</dt>
-<dd>If True, compute gradient of ELMo parameters for fine tuning.</dd>
-<dt>recurrent_dropout_probability: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional (default = 0.0)</dt>
-<dd>The dropout probability to be used in a dropout scheme as stated in
-<a class="reference external" href="https://arxiv.org/abs/1512.05287">A Theoretically Grounded Application of Dropout in Recurrent Neural Networks</a> .</dd>
-<dt>state_projection_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt>
-<dd>The magnitude with which to clip the hidden_state after projecting it.</dd>
-<dt>memory_cell_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt>
-<dd>The magnitude with which to clip the memory cell.</dd>
+<div><p>The dimension of the inputs to the LSTM.</p>
+</div></blockquote>
+<dl>
+<dt>hidden_size<span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required</span></dt><dd><p>The dimension of the outputs of the LSTM.</p>
+</dd>
+<dt>cell_size<span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required.</span></dt><dd><p>The dimension of the memory cell of the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">LstmCellWithProjection</span></code>.</p>
+</dd>
+<dt>num_layers<span class="classifier"><code class="docutils literal notranslate"><span class="pre">int</span></code>, required</span></dt><dd><p>The number of bidirectional LSTMs to use.</p>
+</dd>
+<dt>requires_grad: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, optional</dt><dd><p>If True, compute gradient of ELMo parameters for fine tuning.</p>
+</dd>
+<dt>recurrent_dropout_probability: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional (default = 0.0)</dt><dd><p>The dropout probability to be used in a dropout scheme as stated in
+<a class="reference external" href="https://arxiv.org/abs/1512.05287">A Theoretically Grounded Application of Dropout in Recurrent Neural Networks</a> .</p>
+</dd>
+<dt>state_projection_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt><dd><p>The magnitude with which to clip the hidden_state after projecting it.</p>
+</dd>
+<dt>memory_cell_clip_value: <code class="docutils literal notranslate"><span class="pre">float</span></code>, optional, (default = None)</dt><dd><p>The magnitude with which to clip the memory cell.</p>
+</dd>
 </dl>
 <dl class="method">
 <dt id="claf.tokens.elmo.ElmoLstm.forward">
 <code class="descname">forward</code><span class="sig-paren">(</span><em>inputs: torch.Tensor</em>, <em>mask: torch.LongTensor</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="reference internal" href="_modules/claf/tokens/elmo.html#ElmoLstm.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.elmo.ElmoLstm.forward" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>inputs <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>, required.</span></dt>
-<dd>A Tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">hidden_size)</span></code>.</dd>
-<dt>mask <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.LongTensor</span></code>, required.</span></dt>
-<dd>A binary mask of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code> representing the
-non-padded elements in each sequence in the batch.</dd>
+<dd><dl>
+<dt>inputs<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>, required.</span></dt><dd><p>A Tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length,</span> <span class="pre">hidden_size)</span></code>.</p>
+</dd>
+<dt>mask<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.LongTensor</span></code>, required.</span></dt><dd><p>A binary mask of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">sequence_length)</span></code> representing the
+non-padded elements in each sequence in the batch.</p>
+</dd>
 </dl>
 <p>A <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code> of shape (num_layers, batch_size, sequence_length, hidden_size),
 where the num_layers dimension represents the LSTM output from that layer.</p>
@@ -402,23 +406,24 @@ Parameters
 ———-
 tensor : <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></p>
 <blockquote>
-<div>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code> or <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">dim)</span></code></div></blockquote>
-<dl class="docutils">
-<dt>mask <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
-<dd>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code></dd>
-<dt>sentence_begin_token: Any (anything that can be broadcast in torch for assignment)</dt>
-<dd>For 2D input, a scalar with the &lt;S&gt; id. For 3D input, a tensor with length dim.</dd>
-<dt>sentence_end_token: Any (anything that can be broadcast in torch for assignment)</dt>
-<dd>For 2D input, a scalar with the &lt;/S&gt; id. For 3D input, a tensor with length dim.</dd>
+<div><p>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code> or <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">dim)</span></code></p>
+</div></blockquote>
+<dl>
+<dt>mask<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt><dd><p>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code></p>
+</dd>
+<dt>sentence_begin_token: Any (anything that can be broadcast in torch for assignment)</dt><dd><p>For 2D input, a scalar with the &lt;S&gt; id. For 3D input, a tensor with length dim.</p>
+</dd>
+<dt>sentence_end_token: Any (anything that can be broadcast in torch for assignment)</dt><dd><p>For 2D input, a scalar with the &lt;/S&gt; id. For 3D input, a tensor with length dim.</p>
+</dd>
 </dl>
-<dl class="docutils">
-<dt>tensor_with_boundary_tokens <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
-<dd>The tensor with the appended and prepended boundary tokens. If the input was 2D,
+<dl>
+<dt>tensor_with_boundary_tokens<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt><dd><p>The tensor with the appended and prepended boundary tokens. If the input was 2D,
 it has shape (batch_size, timesteps + 2) and if the input was 3D, it has shape
-(batch_size, timesteps + 2, dim).</dd>
-<dt>new_mask <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
-<dd>The new mask for the tensor, taking into account the appended tokens
-marking the beginning and end of the sentence.</dd>
+(batch_size, timesteps + 2, dim).</p>
+</dd>
+<dt>new_mask<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt><dd><p>The new mask for the tensor, taking into account the appended tokens
+marking the beginning and end of the sentence.</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -437,16 +442,17 @@ Parameters
 ———-
 tensor : <code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></p>
 <blockquote>
-<div>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">dim)</span></code></div></blockquote>
-<dl class="docutils">
-<dt>mask <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
-<dd>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code></dd>
+<div><p>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps,</span> <span class="pre">dim)</span></code></p>
+</div></blockquote>
+<dl>
+<dt>mask<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt><dd><p>A tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps)</span></code></p>
+</dd>
 </dl>
-<dl class="docutils">
-<dt>tensor_without_boundary_tokens <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
-<dd>The tensor after removing the boundary tokens of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps</span> <span class="pre">-</span> <span class="pre">2,</span> <span class="pre">dim)</span></code></dd>
-<dt>new_mask <span class="classifier-delimiter">:</span> <span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt>
-<dd>The new mask for the tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps</span> <span class="pre">-</span> <span class="pre">2)</span></code>.</dd>
+<dl>
+<dt>tensor_without_boundary_tokens<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt><dd><p>The tensor after removing the boundary tokens of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps</span> <span class="pre">-</span> <span class="pre">2,</span> <span class="pre">dim)</span></code></p>
+</dd>
+<dt>new_mask<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code></span></dt><dd><p>The new mask for the tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch_size,</span> <span class="pre">timesteps</span> <span class="pre">-</span> <span class="pre">2)</span></code>.</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -618,27 +624,25 @@ the following entity types:
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Text Handler</p>
 <ul class="simple">
-<li>voacb and token_counter</li>
-<li>raw_features -&gt; indexed_features</li>
-<li>raw_features -&gt; tensor</li>
+<li><p>voacb and token_counter</p></li>
+<li><p>raw_features -&gt; indexed_features</p></li>
+<li><p>raw_features -&gt; tensor</p></li>
 </ul>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><dl class="first last docutils">
-<dt>token_makers: Dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>key: token_name</li>
-<li>value: TokenMaker (claf.tokens.token_maker)</li>
+<li><dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>token_makers: Dictionary consisting of</dt><dd><ul>
+<li><p>key: token_name</p></li>
+<li><p>value: TokenMaker (claf.tokens.token_maker)</p></li>
 </ul>
 </dd>
 </dl>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>lazy_indexing: Apply <cite>Lazy Evaluation</cite> to text indexing</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>lazy_indexing: Apply <cite>Lazy Evaluation</cite> to text indexing</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -671,12 +675,12 @@ the following entity types:
 <p>Token Maker (Data Transfer Object)</p>
 <p>Token Maker consists of Tokenizer, Indexer, Embedding and Vocab</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>tokenizer: Tokenizer (claf.tokens.tokenizer.base)
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>tokenizer: Tokenizer (claf.tokens.tokenizer.base)
 indexer: TokenIndexer (claf.tokens.indexer.base)
 embedding_fn: wrapper function of TokenEmbedding (claf.tokens.embedding.base)
-vocab_config: config dict of Vocab (claf.tokens.vocaburary)</dd>
+vocab_config: config dict of Vocab (claf.tokens.vocaburary)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -765,15 +769,13 @@ vocab_config: config dict of Vocab (claf.tokens.vocaburary)</dd>
 <div><p>Vocaburary Class</p>
 <p>Vocab consists of token_to_index and index_to_token.</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first last">token_name: Token name (Token and Vocab is one-to-one relationship)</p>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_name: Token name (Token and Vocab is one-to-one relationship)</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">pad_token: padding token value (eg. &lt;pad&gt;)
+<li><dl>
+<dt>Kwargs:</dt><dd><p>pad_token: padding token value (eg. &lt;pad&gt;)
 oov_token: out-of-vocaburary token value (eg. &lt;unk&gt;)
 start_token: start token value (eg. &lt;s&gt;, &lt;bos&gt;)
 end_token: end token value (eg. &lt;/s&gt;, &lt;eos&gt;)
@@ -783,15 +785,12 @@ min_count: token’s minimal frequent count.</p>
 <blockquote>
 <div><p>when you define min_count, tokens remain that bigger than min_count.</p>
 </div></blockquote>
-<dl class="last docutils">
-<dt>max_vocab_size: vocaburary’s maximun size.</dt>
-<dd><p class="first last">when you define max_vocab_size, tokens are selected according to frequent count.</p>
+<dl class="simple">
+<dt>max_vocab_size: vocaburary’s maximun size.</dt><dd><p>when you define max_vocab_size, tokens are selected according to frequent count.</p>
 </dd>
-<dt>frequent_count: get frequent_count threshold_index.</dt>
-<dd><p class="first last">(eg. frequent_count = 1000, threshold_index is the tokens that frequent_count is 999 index number.)</p>
+<dt>frequent_count: get frequent_count threshold_index.</dt><dd><p>(eg. frequent_count = 1000, threshold_index is the tokens that frequent_count is 999 index number.)</p>
 </dd>
-<dt>pretrained_path: pretrained vocab file path</dt>
-<dd><p class="first last">(format: A</p>
+<dt>pretrained_path: pretrained vocab file path</dt><dd><p>(format: A</p>
 </dd>
 </dl>
 </dd>
@@ -843,9 +842,9 @@ D
 <code class="descname">build</code><span class="sig-paren">(</span><em>token_counter</em>, <em>predefine_vocab=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/vocabulary.html#Vocab.build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.vocabulary.Vocab.build" title="Permalink to this definition">¶</a></dt>
 <dd><p>build token with token_counter</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>token_counter: (collections.Counter) token’s frequent_count Counter.</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_counter: (collections.Counter) token’s frequent_count Counter.</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -904,9 +903,9 @@ D
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.defaultdict" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.defaultdict</span></code></a></p>
 <p>Vocab DefaultDict Class</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>oov_value: out-of-vocaburary token value (eg. &lt;unk&gt;)</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>oov_value: out-of-vocaburary token value (eg. &lt;unk&gt;)</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -921,15 +920,14 @@ D
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.token_maker.TokenMaker" title="claf.tokens.token_maker.TokenMaker"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.token_maker.TokenMaker</span></code></a></p>
 <p>BERT Token
 Pre-training of Deep Bidirectional Transformers for Language Understanding</p>
-<dl class="docutils">
-<dt>example.</dt>
-<dd>hello -&gt; [‘[CLS]’, ‘he’, ‘##llo’, [SEP]] -&gt; [1, 4, 7, 2] -&gt; BERT -&gt; tensor</dd>
-<dt>consisting of</dt>
-<dd><ul class="first last simple">
-<li>tokenizer: WordTokenizer</li>
-<li>indexer: WordIndexer</li>
-<li>embedding: ELMoEmbedding (Language Modeling BiLSTM)</li>
-<li>vocab: Vocab</li>
+<dl class="simple">
+<dt>example.</dt><dd><p>hello -&gt; [‘[CLS]’, ‘he’, ‘##llo’, [SEP]] -&gt; [1, 4, 7, 2] -&gt; BERT -&gt; tensor</p>
+</dd>
+<dt>consisting of</dt><dd><ul class="simple">
+<li><p>tokenizer: WordTokenizer</p></li>
+<li><p>indexer: WordIndexer</p></li>
+<li><p>embedding: ELMoEmbedding (Language Modeling BiLSTM)</p></li>
+<li><p>vocab: Vocab</p></li>
 </ul>
 </dd>
 </dl>
@@ -942,15 +940,14 @@ Pre-training of Deep Bidirectional Transformers for Language Understanding</p>
 <p>Character Token</p>
 <p>Character-level Convolutional Networks for Text Classification
 (<a class="reference external" href="https://arxiv.org/abs/1509.01626">https://arxiv.org/abs/1509.01626</a>)</p>
-<dl class="docutils">
-<dt>example.</dt>
-<dd>hello -&gt; [‘h’, ‘e’, ‘l’, ‘l’, ‘o’] -&gt; [2, 3, 4, 4, 5] -&gt; CharCNN -&gt; tensor</dd>
-<dt>consisting of</dt>
-<dd><ul class="first last simple">
-<li>tokenizer: CharTokenizer</li>
-<li>indexer: CharIndexer</li>
-<li>embedding: CharEmbedding (CharCNN)</li>
-<li>vocab: Vocab</li>
+<dl class="simple">
+<dt>example.</dt><dd><p>hello -&gt; [‘h’, ‘e’, ‘l’, ‘l’, ‘o’] -&gt; [2, 3, 4, 4, 5] -&gt; CharCNN -&gt; tensor</p>
+</dd>
+<dt>consisting of</dt><dd><ul class="simple">
+<li><p>tokenizer: CharTokenizer</p></li>
+<li><p>indexer: CharIndexer</p></li>
+<li><p>embedding: CharEmbedding (CharCNN)</p></li>
+<li><p>vocab: Vocab</p></li>
 </ul>
 </dd>
 </dl>
@@ -963,15 +960,14 @@ Pre-training of Deep Bidirectional Transformers for Language Understanding</p>
 <p>CoVe Token</p>
 <p>Learned in Translation: Contextualized Word Vectors (McCann et. al. 2017)
 (<a class="reference external" href="https://github.com/salesforce/cove">https://github.com/salesforce/cove</a>)</p>
-<dl class="docutils">
-<dt>example.</dt>
-<dd>hello -&gt; [‘hello’] -&gt; [2] -&gt; CoVe -&gt; tensor</dd>
-<dt>consisting of</dt>
-<dd><ul class="first last simple">
-<li>tokenizer: WordTokenizer</li>
-<li>indexer: WordIndexer</li>
-<li>embedding: CoveEmbedding (Machine Translation LSTM)</li>
-<li>vocab: Vocab</li>
+<dl class="simple">
+<dt>example.</dt><dd><p>hello -&gt; [‘hello’] -&gt; [2] -&gt; CoVe -&gt; tensor</p>
+</dd>
+<dt>consisting of</dt><dd><ul class="simple">
+<li><p>tokenizer: WordTokenizer</p></li>
+<li><p>indexer: WordIndexer</p></li>
+<li><p>embedding: CoveEmbedding (Machine Translation LSTM)</p></li>
+<li><p>vocab: Vocab</p></li>
 </ul>
 </dd>
 </dl>
@@ -985,15 +981,14 @@ Pre-training of Deep Bidirectional Transformers for Language Understanding</p>
 Embedding from Language Modeling</p>
 <p>Deep contextualized word representations
 (<a class="reference external" href="https://github.com/allenai/allennlp/blob/master/allennlp/modules/elmo.py">https://github.com/allenai/allennlp/blob/master/allennlp/modules/elmo.py</a>)</p>
-<dl class="docutils">
-<dt>example.</dt>
-<dd>hello -&gt; [‘h’, ‘e’, ‘l’, ‘l’, ‘o’] -&gt; [2, 3, 4, 4, 5] -&gt; ELMo -&gt; tensor</dd>
-<dt>consisting of</dt>
-<dd><ul class="first last simple">
-<li>tokenizer: WordTokenizer</li>
-<li>indexer: WordIndexer</li>
-<li>embedding: ELMoEmbedding (Language Modeling BiLSTM)</li>
-<li>vocab: Vocab</li>
+<dl class="simple">
+<dt>example.</dt><dd><p>hello -&gt; [‘h’, ‘e’, ‘l’, ‘l’, ‘o’] -&gt; [2, 3, 4, 4, 5] -&gt; ELMo -&gt; tensor</p>
+</dd>
+<dt>consisting of</dt><dd><ul class="simple">
+<li><p>tokenizer: WordTokenizer</p></li>
+<li><p>indexer: WordIndexer</p></li>
+<li><p>embedding: ELMoEmbedding (Language Modeling BiLSTM)</p></li>
+<li><p>vocab: Vocab</p></li>
 </ul>
 </dd>
 </dl>
@@ -1006,15 +1001,14 @@ Embedding from Language Modeling</p>
 <p>Exact Match Token (Sparse Feature)</p>
 <p>Three simple binary features, indicating whether p_i can be exactly matched
 to one question word in q, either in its original, lowercase or lemma form.</p>
-<dl class="docutils">
-<dt>example.</dt>
-<dd>c: i do, q: i -&gt; [‘i’, ‘do’] -&gt; [1, 0] -&gt; tensor</dd>
-<dt>consisting of</dt>
-<dd><ul class="first last simple">
-<li>tokenizer: WordTokenizer</li>
-<li>indexer: WordIndexer</li>
-<li>embedding: SparseFeature</li>
-<li>vocab: Vocab</li>
+<dl class="simple">
+<dt>example.</dt><dd><p>c: i do, q: i -&gt; [‘i’, ‘do’] -&gt; [1, 0] -&gt; tensor</p>
+</dd>
+<dt>consisting of</dt><dd><ul class="simple">
+<li><p>tokenizer: WordTokenizer</p></li>
+<li><p>indexer: WordIndexer</p></li>
+<li><p>embedding: SparseFeature</p></li>
+<li><p>vocab: Vocab</p></li>
 </ul>
 </dd>
 </dl>
@@ -1027,15 +1021,14 @@ to one question word in q, either in its original, lowercase or lemma form.</p>
 <p>Feature Token</p>
 <p>Do not use Embedding function.
 Just pass indexed_feature</p>
-<dl class="docutils">
-<dt>example.</dt>
-<dd>hello -&gt; [‘hello’, ‘world’] -&gt; [3, 5] -&gt; tensor</dd>
-<dt>consisting of</dt>
-<dd><ul class="first last simple">
-<li>tokenizer: Tokenizer (need to define unit)</li>
-<li>indexer: WordIndexer</li>
-<li>embedding: None</li>
-<li>vocab: Vocab</li>
+<dl class="simple">
+<dt>example.</dt><dd><p>hello -&gt; [‘hello’, ‘world’] -&gt; [3, 5] -&gt; tensor</p>
+</dd>
+<dt>consisting of</dt><dd><ul class="simple">
+<li><p>tokenizer: Tokenizer (need to define unit)</p></li>
+<li><p>indexer: WordIndexer</p></li>
+<li><p>embedding: None</p></li>
+<li><p>vocab: Vocab</p></li>
 </ul>
 </dd>
 </dl>
@@ -1047,16 +1040,15 @@ Just pass indexed_feature</p>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.token_maker.TokenMaker" title="claf.tokens.token_maker.TokenMaker"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.token_maker.TokenMaker</span></code></a></p>
 <p>Frequent-Tuning Word Token</p>
 <p>word token + pre-trained word embeddings fixed and only fine-tune the N most frequent</p>
-<dl class="docutils">
-<dt>example.</dt>
-<dd>i do -&gt; [‘i’, ‘do’] -&gt; [1, 2] -&gt; Embedding Matrix -&gt; tensor
-finetuning only ‘do’</dd>
-<dt>consisting of</dt>
-<dd><ul class="first last simple">
-<li>tokenizer: WordTokenizer</li>
-<li>indexer: WordIndexer</li>
-<li>embedding: FrequentTuningWordEmbedding</li>
-<li>vocab: Vocab</li>
+<dl class="simple">
+<dt>example.</dt><dd><p>i do -&gt; [‘i’, ‘do’] -&gt; [1, 2] -&gt; Embedding Matrix -&gt; tensor
+finetuning only ‘do’</p>
+</dd>
+<dt>consisting of</dt><dd><ul class="simple">
+<li><p>tokenizer: WordTokenizer</p></li>
+<li><p>indexer: WordIndexer</p></li>
+<li><p>embedding: FrequentTuningWordEmbedding</p></li>
+<li><p>vocab: Vocab</p></li>
 </ul>
 </dd>
 </dl>
@@ -1069,15 +1061,14 @@ finetuning only ‘do’</dd>
 <p>Exact Match Token (Sparse Feature)</p>
 <p>Three simple binary features, indicating whether p_i can be exactly matched
 to one question word in q, either in its original, lowercase or lemma form.</p>
-<dl class="docutils">
-<dt>example.</dt>
-<dd>c: i do, q: i -&gt; [‘i’, ‘do’] -&gt; [1, 0] -&gt; tensor</dd>
-<dt>consisting of</dt>
-<dd><ul class="first last simple">
-<li>tokenizer: WordTokenizer</li>
-<li>indexer: WordIndexer</li>
-<li>embedding: SparseFeature</li>
-<li>vocab: Vocab</li>
+<dl class="simple">
+<dt>example.</dt><dd><p>c: i do, q: i -&gt; [‘i’, ‘do’] -&gt; [1, 0] -&gt; tensor</p>
+</dd>
+<dt>consisting of</dt><dd><ul class="simple">
+<li><p>tokenizer: WordTokenizer</p></li>
+<li><p>indexer: WordIndexer</p></li>
+<li><p>embedding: SparseFeature</p></li>
+<li><p>vocab: Vocab</p></li>
 </ul>
 </dd>
 </dl>
@@ -1089,14 +1080,14 @@ to one question word in q, either in its original, lowercase or lemma form.</p>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.token_maker.TokenMaker" title="claf.tokens.token_maker.TokenMaker"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.token_maker.TokenMaker</span></code></a></p>
 <p>Word Token (default)</p>
 <blockquote>
-<div>i do -&gt; [‘i’, ‘do’] -&gt; [1, 2] -&gt; Embedding Matrix -&gt; tensor</div></blockquote>
-<dl class="docutils">
-<dt>consisting of</dt>
-<dd><ul class="first last simple">
-<li>tokenizer: WordTokenizer</li>
-<li>indexer: WordIndexer</li>
-<li>embedding: WordEmbedding</li>
-<li>vocab: Vocab</li>
+<div><p>i do -&gt; [‘i’, ‘do’] -&gt; [1, 2] -&gt; Embedding Matrix -&gt; tensor</p>
+</div></blockquote>
+<dl class="simple">
+<dt>consisting of</dt><dd><ul class="simple">
+<li><p>tokenizer: WordTokenizer</p></li>
+<li><p>indexer: WordIndexer</p></li>
+<li><p>embedding: WordEmbedding</p></li>
+<li><p>vocab: Vocab</p></li>
 </ul>
 </dd>
 </dl>

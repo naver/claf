@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.data.reader.squad &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.data.reader.squad &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
@@ -328,10 +329,11 @@
         <span class="sd">&quot;&quot;&quot; inputs keys: question, context &quot;&quot;&quot;</span>
         <span class="n">context_text</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;context&quot;</span><span class="p">]</span>
         <span class="n">tokenized_context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">context_text</span><span class="p">)</span>
+        <span class="n">question_text</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
 
         <span class="n">features</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">features</span><span class="p">[</span><span class="s2">&quot;context&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clean_text</span><span class="p">(</span><span class="n">context_text</span><span class="p">)</span>
-        <span class="n">features</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clean_text</span><span class="p">(</span><span class="n">context_text</span><span class="p">)</span>
+        <span class="n">features</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clean_text</span><span class="p">(</span><span class="n">question_text</span><span class="p">)</span>
 
         <span class="n">helper</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;text_span&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_to_spans</span><span class="p">(</span><span class="n">context_text</span><span class="p">,</span> <span class="n">tokenized_context</span><span class="p">),</span>

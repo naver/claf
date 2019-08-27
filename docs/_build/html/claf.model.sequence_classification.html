@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.model.sequence_classification package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.model.sequence_classification package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -124,6 +124,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -214,16 +215,16 @@
 BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 (<a class="reference external" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>token_embedder: used to embed the sequence
-num_classes: number of classified classes</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_embedder: used to embed the sequence
+num_classes: number of classified classes</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>pretrained_model_name: the name of a pre-trained model
-dropout: classification layer dropout</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>pretrained_model_name: the name of a pre-trained model
+dropout: classification layer dropout</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -231,28 +232,24 @@ dropout: classification layer dropout</dd>
 <dt id="claf.model.sequence_classification.bert_for_seq_cls.BertForSeqCls.forward">
 <code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.bert_for_seq_cls.BertForSeqCls.forward" title="Permalink to this definition">¶</a></dt>
 <dd><ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first">features: feature dictionary like below.
+<li><dl>
+<dt>Args:</dt><dd><p>features: feature dictionary like below.
 {</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>“bert_input”: {</dt>
-<dd><dl class="first docutils">
-<dt>“feature”: [</dt>
-<dd><p class="first last">[3, 4, 1, 0, 0, 0, …],
+<div><dl>
+<dt>“bert_input”: {</dt><dd><dl class="simple">
+<dt>“feature”: [</dt><dd><p>[3, 4, 1, 0, 0, 0, …],
 …,</p>
 </dd>
 </dl>
-<p class="last">]</p>
+<p>]</p>
 </dd>
 </dl>
 <p>},
 “token_type”: {</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>“feature”: [</dt>
-<dd><p class="first last">[0, 0, 0, 0, 0, 0, …],
+<div><dl class="simple">
+<dt>“feature”: [</dt><dd><p>[0, 0, 0, 0, 0, 0, …],
 …,</p>
 </dd>
 </dl>
@@ -260,31 +257,29 @@ dropout: classification layer dropout</dd>
 </div></blockquote>
 <p>}</p>
 </div></blockquote>
-<p class="last">}</p>
+<p>}</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">label: label dictionary like below.
+<li><dl>
+<dt>Kwargs:</dt><dd><p>label: label dictionary like below.
 {</p>
 <blockquote>
 <div><p>“class_idx”: [2, 1, 0, 4, 5, …]
 “data_idx”: [2, 4, 5, 7, 2, 1, …]</p>
 </div></blockquote>
-<p class="last">}
+<p>}
 Do not calculate loss when there is no label. (inference/predict mode)</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns: output_dict (dict) consisting of</dt>
-<dd><ul class="first last simple">
-<li>sequence_embed: embedding vector of the sequence</li>
-<li>class_logits: representing unnormalized log probabilities of the class.</li>
-<li>class_idx: target class idx</li>
-<li>data_idx: data idx</li>
-<li>loss: a scalar loss to be optimized</li>
+<li><dl class="simple">
+<dt>Returns: output_dict (dict) consisting of</dt><dd><ul class="simple">
+<li><p>sequence_embed: embedding vector of the sequence</p></li>
+<li><p>class_logits: representing unnormalized log probabilities of the class.</p></li>
+<li><p>class_idx: target class idx</p></li>
+<li><p>data_idx: data idx</p></li>
+<li><p>loss: a scalar loss to be optimized</p></li>
 </ul>
 </dd>
 </dl>
@@ -297,18 +292,16 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.bert_for_seq_cls.BertForSeqCls.print_examples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print evaluation examples</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first">index: data index
+<li><dl>
+<dt>Args:</dt><dd><p>index: data index
 inputs: mini-batch inputs
 predictions: prediction dictionary consisting of</p>
-<blockquote class="last">
+<blockquote>
 <div><ul class="simple">
-<li>key: ‘id’ (sequence id)</li>
-<li><dl class="first docutils">
-<dt>value: dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>class_idx</li>
+<li><p>key: ‘id’ (sequence id)</p></li>
+<li><dl class="simple">
+<dt>value: dictionary consisting of</dt><dd><ul>
+<li><p>class_idx</p></li>
 </ul>
 </dd>
 </dl>
@@ -318,9 +311,8 @@ predictions: prediction dictionary consisting of</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><p class="first last">print(Sequence, Sequence Tokens, Target Class, Predicted Class)</p>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><p>print(Sequence, Sequence Tokens, Target Class, Predicted Class)</p>
 </dd>
 </dl>
 </li>
@@ -339,16 +331,13 @@ predictions: prediction dictionary consisting of</p>
 <code class="descname">make_metrics</code><span class="sig-paren">(</span><em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification.make_metrics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make metrics with prediction dictionary</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><dl class="first last docutils">
-<dt>predictions: prediction dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>key: ‘id’ (sequence id)</li>
-<li><dl class="first docutils">
-<dt>value: dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>class_idx</li>
+<li><dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>predictions: prediction dictionary consisting of</dt><dd><ul>
+<li><p>key: ‘id’ (sequence id)</p></li>
+<li><dl class="simple">
+<dt>value: dictionary consisting of</dt><dd><ul>
+<li><p>class_idx</p></li>
 </ul>
 </dd>
 </dl>
@@ -359,15 +348,13 @@ predictions: prediction dictionary consisting of</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><dl class="first last docutils">
-<dt>metrics: metric dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>‘macro_f1’: class prediction macro(unweighted mean) f1</li>
-<li>‘macro_precision’: class prediction macro(unweighted mean) precision</li>
-<li>‘macro_recall’: class prediction macro(unweighted mean) recall</li>
-<li>‘accuracy’: class prediction accuracy</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>metrics: metric dictionary consisting of</dt><dd><ul>
+<li><p>‘macro_f1’: class prediction macro(unweighted mean) f1</p></li>
+<li><p>‘macro_precision’: class prediction macro(unweighted mean) precision</p></li>
+<li><p>‘macro_recall’: class prediction macro(unweighted mean) recall</p></li>
+<li><p>‘accuracy’: class prediction accuracy</p></li>
 </ul>
 </dd>
 </dl>
@@ -382,32 +369,27 @@ predictions: prediction dictionary consisting of</p>
 <code class="descname">make_predictions</code><span class="sig-paren">(</span><em>output_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification.make_predictions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification.make_predictions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make predictions with model’s output_dict</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><dl class="first last docutils">
-<dt>output_dict: model’s output dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>sequence_embed: embedding vector of the sequence</li>
-<li>class_logits: representing unnormalized log probabilities of the class</li>
-<li>class_idx: target class idx</li>
-<li>data_idx: data idx</li>
-<li>loss: a scalar loss to be optimized</li>
+<li><dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>output_dict: model’s output dictionary consisting of</dt><dd><ul>
+<li><p>sequence_embed: embedding vector of the sequence</p></li>
+<li><p>class_logits: representing unnormalized log probabilities of the class</p></li>
+<li><p>class_idx: target class idx</p></li>
+<li><p>data_idx: data idx</p></li>
+<li><p>loss: a scalar loss to be optimized</p></li>
 </ul>
 </dd>
 </dl>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><dl class="first last docutils">
-<dt>predictions: prediction dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>key: ‘id’ (sequence id)</li>
-<li><dl class="first docutils">
-<dt>value: dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>class_idx</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>predictions: prediction dictionary consisting of</dt><dd><ul>
+<li><p>key: ‘id’ (sequence id)</p></li>
+<li><dl class="simple">
+<dt>value: dictionary consisting of</dt><dd><ul>
+<li><p>class_idx</p></li>
 </ul>
 </dd>
 </dl>
@@ -426,32 +408,29 @@ predictions: prediction dictionary consisting of</p>
 <code class="descname">predict</code><span class="sig-paren">(</span><em>output_dict</em>, <em>arguments</em>, <em>helper</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inference by raw_feature</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><dl class="first docutils">
-<dt>output_dict: model’s output dictionary consisting of</dt>
-<dd><ul class="first last simple">
-<li>sequence_embed: embedding vector of the sequence</li>
-<li>class_logits: representing unnormalized log probabilities of the class.</li>
+<li><dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>output_dict: model’s output dictionary consisting of</dt><dd><ul class="simple">
+<li><p>sequence_embed: embedding vector of the sequence</p></li>
+<li><p>class_logits: representing unnormalized log probabilities of the class.</p></li>
 </ul>
 </dd>
 </dl>
 <p>arguments: arguments dictionary consisting of user_input
 helper: dictionary to get the classification result, consisting of</p>
-<blockquote class="last">
+<blockquote>
 <div><ul class="simple">
-<li>class_idx2text: dictionary converting class_idx to class_text</li>
+<li><p>class_idx2text: dictionary converting class_idx to class_text</p></li>
 </ul>
 </div></blockquote>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns: output dict (dict) consisting of</dt>
-<dd><ul class="first last simple">
-<li>class_logits: representing unnormalized log probabilities of the class</li>
-<li>class_idx: predicted class idx</li>
-<li>class_text: predicted class text</li>
+<li><dl class="simple">
+<dt>Returns: output dict (dict) consisting of</dt><dd><ul class="simple">
+<li><p>class_logits: representing unnormalized log probabilities of the class</p></li>
+<li><p>class_idx: predicted class idx</p></li>
+<li><p>class_text: predicted class text</p></li>
 </ul>
 </dd>
 </dl>
@@ -464,18 +443,16 @@ helper: dictionary to get the classification result, consisting of</p>
 <code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification.print_examples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print evaluation examples</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first">index: data index
+<li><dl>
+<dt>Args:</dt><dd><p>index: data index
 inputs: mini-batch inputs
 predictions: prediction dictionary consisting of</p>
-<blockquote class="last">
+<blockquote>
 <div><ul class="simple">
-<li>key: ‘id’ (sequence id)</li>
-<li><dl class="first docutils">
-<dt>value: dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>class_idx</li>
+<li><p>key: ‘id’ (sequence id)</p></li>
+<li><dl class="simple">
+<dt>value: dictionary consisting of</dt><dd><ul>
+<li><p>class_idx</p></li>
 </ul>
 </dd>
 </dl>
@@ -485,9 +462,8 @@ predictions: prediction dictionary consisting of</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><p class="first last">print(Sequence, Target Class, Predicted Class)</p>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><p>print(Sequence, Target Class, Predicted Class)</p>
 </dd>
 </dl>
 </li>
@@ -510,22 +486,22 @@ predictions: prediction dictionary consisting of</p>
 A Structured Self-attentive Sentence Embedding
 (<a class="reference external" href="https://arxiv.org/abs/1703.03130">https://arxiv.org/abs/1703.03130</a>)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>token_embedder: used to embed the sequence
-num_classes: number of classified classes</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_embedder: used to embed the sequence
+num_classes: number of classified classes</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>encoding_rnn_hidden_dim: hidden dimension of rnn (unidirectional)
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>encoding_rnn_hidden_dim: hidden dimension of rnn (unidirectional)
 encoding_rnn_num_layer: the number of rnn layers
 encoding_rnn_dropout: rnn dropout probability
 attention_dim: attention dimension  # d_a in the paper
 num_attention_heads: number of attention heads  # r in the paper
 sequence_embed_dim: dimension of sequence embedding
 dropout: classification layer dropout
-penalization_coefficient: penalty coefficient for frobenius norm</dd>
+penalization_coefficient: penalty coefficient for frobenius norm</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -533,31 +509,28 @@ penalization_coefficient: penalty coefficient for frobenius norm</dd>
 <dt id="claf.model.sequence_classification.structured_self_attention.StructuredSelfAttention.forward">
 <code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.structured_self_attention.StructuredSelfAttention.forward" title="Permalink to this definition">¶</a></dt>
 <dd><ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first last">features: feature dictionary like below.
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>features: feature dictionary like below.
 {“sequence”: [0, 3, 4, 1]}</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">label: label dictionary like below.
+<li><dl>
+<dt>Kwargs:</dt><dd><p>label: label dictionary like below.
 {“class_idx”: 2, “data_idx”: 0}</p>
-<blockquote class="last">
+<blockquote>
 <div><p>Do not calculate loss when there is no label. (inference/predict mode)</p>
 </div></blockquote>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns: output_dict (dict) consisting of</dt>
-<dd><ul class="first last simple">
-<li>sequence_embed: embedding vector of the sequence</li>
-<li>class_logits: representing unnormalized log probabilities of the class.</li>
-<li>class_idx: target class idx</li>
-<li>data_idx: data idx</li>
-<li>loss: a scalar loss to be optimized</li>
+<li><dl class="simple">
+<dt>Returns: output_dict (dict) consisting of</dt><dd><ul class="simple">
+<li><p>sequence_embed: embedding vector of the sequence</p></li>
+<li><p>class_logits: representing unnormalized log probabilities of the class.</p></li>
+<li><p>class_idx: target class idx</p></li>
+<li><p>data_idx: data idx</p></li>
+<li><p>loss: a scalar loss to be optimized</p></li>
 </ul>
 </dd>
 </dl>
@@ -583,16 +556,16 @@ penalization_coefficient: penalty coefficient for frobenius norm</dd>
 BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 (<a class="reference external" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>token_embedder: used to embed the sequence
-num_classes: number of classified classes</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_embedder: used to embed the sequence
+num_classes: number of classified classes</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>pretrained_model_name: the name of a pre-trained model
-dropout: classification layer dropout</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>pretrained_model_name: the name of a pre-trained model
+dropout: classification layer dropout</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -600,28 +573,24 @@ dropout: classification layer dropout</dd>
 <dt id="claf.model.sequence_classification.BertForSeqCls.forward">
 <code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.BertForSeqCls.forward" title="Permalink to this definition">¶</a></dt>
 <dd><ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first">features: feature dictionary like below.
+<li><dl>
+<dt>Args:</dt><dd><p>features: feature dictionary like below.
 {</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>“bert_input”: {</dt>
-<dd><dl class="first docutils">
-<dt>“feature”: [</dt>
-<dd><p class="first last">[3, 4, 1, 0, 0, 0, …],
+<div><dl>
+<dt>“bert_input”: {</dt><dd><dl class="simple">
+<dt>“feature”: [</dt><dd><p>[3, 4, 1, 0, 0, 0, …],
 …,</p>
 </dd>
 </dl>
-<p class="last">]</p>
+<p>]</p>
 </dd>
 </dl>
 <p>},
 “token_type”: {</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>“feature”: [</dt>
-<dd><p class="first last">[0, 0, 0, 0, 0, 0, …],
+<div><dl class="simple">
+<dt>“feature”: [</dt><dd><p>[0, 0, 0, 0, 0, 0, …],
 …,</p>
 </dd>
 </dl>
@@ -629,31 +598,29 @@ dropout: classification layer dropout</dd>
 </div></blockquote>
 <p>}</p>
 </div></blockquote>
-<p class="last">}</p>
+<p>}</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">label: label dictionary like below.
+<li><dl>
+<dt>Kwargs:</dt><dd><p>label: label dictionary like below.
 {</p>
 <blockquote>
 <div><p>“class_idx”: [2, 1, 0, 4, 5, …]
 “data_idx”: [2, 4, 5, 7, 2, 1, …]</p>
 </div></blockquote>
-<p class="last">}
+<p>}
 Do not calculate loss when there is no label. (inference/predict mode)</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns: output_dict (dict) consisting of</dt>
-<dd><ul class="first last simple">
-<li>sequence_embed: embedding vector of the sequence</li>
-<li>class_logits: representing unnormalized log probabilities of the class.</li>
-<li>class_idx: target class idx</li>
-<li>data_idx: data idx</li>
-<li>loss: a scalar loss to be optimized</li>
+<li><dl class="simple">
+<dt>Returns: output_dict (dict) consisting of</dt><dd><ul class="simple">
+<li><p>sequence_embed: embedding vector of the sequence</p></li>
+<li><p>class_logits: representing unnormalized log probabilities of the class.</p></li>
+<li><p>class_idx: target class idx</p></li>
+<li><p>data_idx: data idx</p></li>
+<li><p>loss: a scalar loss to be optimized</p></li>
 </ul>
 </dd>
 </dl>
@@ -666,18 +633,16 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.BertForSeqCls.print_examples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print evaluation examples</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first">index: data index
+<li><dl>
+<dt>Args:</dt><dd><p>index: data index
 inputs: mini-batch inputs
 predictions: prediction dictionary consisting of</p>
-<blockquote class="last">
+<blockquote>
 <div><ul class="simple">
-<li>key: ‘id’ (sequence id)</li>
-<li><dl class="first docutils">
-<dt>value: dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>class_idx</li>
+<li><p>key: ‘id’ (sequence id)</p></li>
+<li><dl class="simple">
+<dt>value: dictionary consisting of</dt><dd><ul>
+<li><p>class_idx</p></li>
 </ul>
 </dd>
 </dl>
@@ -687,9 +652,8 @@ predictions: prediction dictionary consisting of</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><p class="first last">print(Sequence, Sequence Tokens, Target Class, Predicted Class)</p>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><p>print(Sequence, Sequence Tokens, Target Class, Predicted Class)</p>
 </dd>
 </dl>
 </li>
@@ -706,22 +670,22 @@ predictions: prediction dictionary consisting of</p>
 A Structured Self-attentive Sentence Embedding
 (<a class="reference external" href="https://arxiv.org/abs/1703.03130">https://arxiv.org/abs/1703.03130</a>)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>token_embedder: used to embed the sequence
-num_classes: number of classified classes</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_embedder: used to embed the sequence
+num_classes: number of classified classes</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>encoding_rnn_hidden_dim: hidden dimension of rnn (unidirectional)
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>encoding_rnn_hidden_dim: hidden dimension of rnn (unidirectional)
 encoding_rnn_num_layer: the number of rnn layers
 encoding_rnn_dropout: rnn dropout probability
 attention_dim: attention dimension  # d_a in the paper
 num_attention_heads: number of attention heads  # r in the paper
 sequence_embed_dim: dimension of sequence embedding
 dropout: classification layer dropout
-penalization_coefficient: penalty coefficient for frobenius norm</dd>
+penalization_coefficient: penalty coefficient for frobenius norm</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -729,31 +693,28 @@ penalization_coefficient: penalty coefficient for frobenius norm</dd>
 <dt id="claf.model.sequence_classification.StructuredSelfAttention.forward">
 <code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.StructuredSelfAttention.forward" title="Permalink to this definition">¶</a></dt>
 <dd><ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first last">features: feature dictionary like below.
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>features: feature dictionary like below.
 {“sequence”: [0, 3, 4, 1]}</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">label: label dictionary like below.
+<li><dl>
+<dt>Kwargs:</dt><dd><p>label: label dictionary like below.
 {“class_idx”: 2, “data_idx”: 0}</p>
-<blockquote class="last">
+<blockquote>
 <div><p>Do not calculate loss when there is no label. (inference/predict mode)</p>
 </div></blockquote>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns: output_dict (dict) consisting of</dt>
-<dd><ul class="first last simple">
-<li>sequence_embed: embedding vector of the sequence</li>
-<li>class_logits: representing unnormalized log probabilities of the class.</li>
-<li>class_idx: target class idx</li>
-<li>data_idx: data idx</li>
-<li>loss: a scalar loss to be optimized</li>
+<li><dl class="simple">
+<dt>Returns: output_dict (dict) consisting of</dt><dd><ul class="simple">
+<li><p>sequence_embed: embedding vector of the sequence</p></li>
+<li><p>class_logits: representing unnormalized log probabilities of the class.</p></li>
+<li><p>class_idx: target class idx</p></li>
+<li><p>data_idx: data idx</p></li>
+<li><p>loss: a scalar loss to be optimized</p></li>
 </ul>
 </dd>
 </dl>

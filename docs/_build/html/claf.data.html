@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.data package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.data package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -118,6 +118,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -228,11 +229,10 @@
 <em class="property">class </em><code class="descclassname">claf.data.batch.</code><code class="descname">Batch</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/batch.html#Batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.batch.Batch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Batch Data Transfer Object (DTO) Class</p>
-<dl class="docutils">
-<dt>dictionary consisting of</dt>
-<dd><ul class="first last simple">
-<li>features: (dict) input</li>
-<li>labels: (dict) output</li>
+<dl class="simple">
+<dt>dictionary consisting of</dt><dd><ul class="simple">
+<li><p>features: (dict) input</p></li>
+<li><p>labels: (dict) output</p></li>
 </ul>
 </dd>
 </dl>
@@ -261,14 +261,12 @@
 Minimizes amount of padding needed while producing mini-batch.</p>
 <p>FeatLabelPadCollator allows applying pad to not only features, but also labels.</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>cuda_device_id: tensor assign to cuda device id</dt>
-<dd><p class="first last">Default is None (CPU)</p>
+<li><dl>
+<dt>Kwargs:</dt><dd><dl class="simple">
+<dt>cuda_device_id: tensor assign to cuda device id</dt><dd><p>Default is None (CPU)</p>
 </dd>
 </dl>
-<p class="last">skip_keys: skip to make tensor</p>
+<p>skip_keys: skip to make tensor</p>
 </dd>
 </dl>
 </li>
@@ -287,14 +285,12 @@ Minimizes amount of padding needed while producing mini-batch.</p>
 <p>Collator apply pad and make tensor
 Minimizes amount of padding needed while producing mini-batch.</p>
 <ul>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><dl class="first docutils">
-<dt>cuda_device_id: tensor assign to cuda device id</dt>
-<dd><p class="first last">Default is None (CPU)</p>
+<li><dl>
+<dt>Kwargs:</dt><dd><dl class="simple">
+<dt>cuda_device_id: tensor assign to cuda device id</dt><dd><p>Default is None (CPU)</p>
 </dd>
 </dl>
-<p class="last">skip_keys: skip to make tensor</p>
+<p>skip_keys: skip to make tensor</p>
 </dd>
 </dl>
 </li>
@@ -312,45 +308,45 @@ Minimizes amount of padding needed while producing mini-batch.</p>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.DATASET">
-<code class="descname">DATASET</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache/dataset')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.DATASET" title="Permalink to this definition">¶</a></dt>
+<code class="descname">DATASET</code><em class="property"> = PosixPath('/Users/user/.claf_cache/dataset')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.DATASET" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.MACHINE">
-<code class="descname">MACHINE</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache/machine')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.MACHINE" title="Permalink to this definition">¶</a></dt>
+<code class="descname">MACHINE</code><em class="property"> = PosixPath('/Users/user/.claf_cache/machine')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.MACHINE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.PRETRAINED_VECTOR">
-<code class="descname">PRETRAINED_VECTOR</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache/pretrained_vector')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.PRETRAINED_VECTOR" title="Permalink to this definition">¶</a></dt>
+<code class="descname">PRETRAINED_VECTOR</code><em class="property"> = PosixPath('/Users/user/.claf_cache/pretrained_vector')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.PRETRAINED_VECTOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.ROOT">
-<code class="descname">ROOT</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.ROOT" title="Permalink to this definition">¶</a></dt>
+<code class="descname">ROOT</code><em class="property"> = PosixPath('/Users/user/.claf_cache')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.ROOT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.TOKEN_COUNTER">
-<code class="descname">TOKEN_COUNTER</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache/token_counter')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.TOKEN_COUNTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">TOKEN_COUNTER</code><em class="property"> = PosixPath('/Users/user/.claf_cache/token_counter')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.TOKEN_COUNTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.VOCAB">
-<code class="descname">VOCAB</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache/vocab')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.VOCAB" title="Permalink to this definition">¶</a></dt>
+<code class="descname">VOCAB</code><em class="property"> = PosixPath('/Users/user/.claf_cache/vocab')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.VOCAB" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="claf.data.data_handler.DataHandler">
-<em class="property">class </em><code class="descclassname">claf.data.data_handler.</code><code class="descname">DataHandler</code><span class="sig-paren">(</span><em>cache_path=PosixPath('/Users/Dongjun/.claf_cache')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.data.data_handler.</code><code class="descname">DataHandler</code><span class="sig-paren">(</span><em>cache_path=PosixPath('/Users/user/.claf_cache')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>DataHandler with CachePath</p>
 <ul class="simple">
-<li>read (from_path, from_http)</li>
-<li>dump (.msgpack or .pkl (pickle))</li>
-<li>load</li>
+<li><p>read (from_path, from_http)</p></li>
+<li><p>dump (.msgpack or .pkl (pickle))</p></li>
+<li><p>load</p></li>
 </ul>
 <dl class="method">
 <dt id="claf.data.data_handler.DataHandler.cache_token_counter">
@@ -388,31 +384,34 @@ Minimizes amount of padding needed while producing mini-batch.</p>
 <dt id="claf.data.utils.get_is_head_of_word">
 <code class="descclassname">claf.data.utils.</code><code class="descname">get_is_head_of_word</code><span class="sig-paren">(</span><em>naive_tokens</em>, <em>sequence_tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#get_is_head_of_word"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.get_is_head_of_word" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of flags whether the token is head(prefix) of naively split tokens</p>
-<dl class="docutils">
-<dt>ex) naive_tokens: [“hello.”, “how”, “are”, “you?”]</dt>
-<dd><p class="first">sequence_tokens: [“hello”, “.”, “how”, “are”, “you”, “?”]</p>
-<p class="last">=&gt; [1, 0, 1, 1, 1, 0]</p>
+<dl>
+<dt>ex) naive_tokens: [“hello.”, “how”, “are”, “you?”]</dt><dd><p>sequence_tokens: [“hello”, “.”, “how”, “are”, “you”, “?”]</p>
+<p>=&gt; [1, 0, 1, 1, 1, 0]</p>
 </dd>
 </dl>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>naive_tokens: a list of tokens, naively split by whitespace
-sequence_tokens: a list of tokens, split by ‘word_tokenizer’</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>naive_tokens: a list of tokens, naively split by whitespace
+sequence_tokens: a list of tokens, split by ‘word_tokenizer’</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Returns:</dt>
-<dd><dl class="first last docutils">
-<dt>is_head_of_word: a list with its length the same as that of ‘sequence_tokens’.</dt>
-<dd>has 1 if the tokenized word at the position is head(prefix) of a <cite>naive_token</cite>
-and 0 if otherwise.</dd>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>is_head_of_word: a list with its length the same as that of ‘sequence_tokens’.</dt><dd><p>has 1 if the tokenized word at the position is head(prefix) of a <cite>naive_token</cite>
+and 0 if otherwise.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 </li>
 </ul>
 </dd></dl>
+
+<dl class="function">
+<dt id="claf.data.utils.get_sequence_a">
+<code class="descclassname">claf.data.utils.</code><code class="descname">get_sequence_a</code><span class="sig-paren">(</span><em>example</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#get_sequence_a"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.get_sequence_a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="function">
 <dt id="claf.data.utils.get_token_dim">
@@ -440,22 +439,20 @@ and 0 if otherwise.</dd>
 <dd><p>Bert Inputs segment_ids</p>
 <p>ex) [CLS] hi [SEP] he ##llo [SEP] =&gt; 0 0 0 1 1 1</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><dl class="first last docutils">
-<dt>bert_inputs: feature dictionary consisting of</dt>
-<dd><ul class="first last">
-<li>text: text from data_reader</li>
-<li>token_name: text converted to corresponding token_type</li>
+<li><dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>bert_inputs: feature dictionary consisting of</dt><dd><ul>
+<li><p>text: text from data_reader</p></li>
+<li><p>token_name: text converted to corresponding token_type</p></li>
 </ul>
 </dd>
 </dl>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>SEP_token: SEP special token for BERT</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>SEP_token: SEP special token for BERT</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -472,10 +469,10 @@ and 0 if otherwise.</dd>
 <code class="descclassname">claf.data.utils.</code><code class="descname">sanity_check_iob</code><span class="sig-paren">(</span><em>naive_tokens</em>, <em>tag_texts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#sanity_check_iob"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.sanity_check_iob" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the IOB tags are valid.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>naive_tokens: tokens split by .split()
-tag_texts: list of tags in IOB format</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>naive_tokens: tokens split by .split()
+tag_texts: list of tags in IOB format</p>
+</dd>
 </dl>
 </li>
 </ul>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.data.data_handler &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.data.data_handler &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reports/squad.html">SQuAD</a></li>
@@ -245,7 +246,13 @@
             <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">nsml</span><span class="o">.</span><span class="n">IS_ON_NSML</span><span class="p">:</span>
-            <span class="n">path</span> <span class="o">=</span> <span class="n">nsml</span><span class="o">.</span><span class="n">DATASET_PATH</span> <span class="o">/</span> <span class="n">path</span>
+            <span class="n">dataset_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">nsml</span><span class="o">.</span><span class="n">DATASET_PATH</span><span class="p">)</span>
+
+            <span class="n">path</span> <span class="o">=</span> <span class="n">dataset_path</span> <span class="o">/</span> <span class="n">file_path</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">dataset_path</span> <span class="o">/</span> <span class="s2">&quot;train&quot;</span> <span class="o">/</span> <span class="n">file_path</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">return_path</span><span class="p">:</span>

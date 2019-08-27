@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.learn package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.learn package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -113,6 +113,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -199,10 +200,10 @@
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Experiment settings with config.</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>mode: Mode (ex. TRAIN, EVAL, INFER_EVAL, PREDICT)
-config: (NestedNamespace) Argument config according to mode</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>mode: Mode (ex. TRAIN, EVAL, INFER_EVAL, PREDICT)
+config: (NestedNamespace) Argument config according to mode</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -228,12 +229,12 @@ config: (NestedNamespace) Argument config according to mode</dd>
 <code class="descname">set_eval_inference_latency_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.set_eval_inference_latency_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.set_eval_inference_latency_mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate Inference Latency Mode</p>
 <ul class="simple">
-<li>Pipeline
+<li><p>Pipeline
 1. read raw_data (DataReader)
 2. load vocabs from checkpoint (DataReader, Token)
 3. define raw_to_tensor_fn (DataReader, Token)
 4. define and load model
-5. run!</li>
+5. run!</p></li>
 </ul>
 </dd></dl>
 
@@ -242,14 +243,14 @@ config: (NestedNamespace) Argument config according to mode</dd>
 <code class="descname">set_eval_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.set_eval_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.set_eval_mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate Mode</p>
 <ul class="simple">
-<li>Pipeline
+<li><p>Pipeline
 1. read raw_data (DataReader)
 2. load vocabs from checkpoint (DataReader, Token)
 3. indexing tokens (DataReader, Token)
 4. convert to DataSet (DataReader)
 5. create DataLoader (DataLoader)
 6. define and load model
-7. run!</li>
+7. run!</p></li>
 </ul>
 </dd></dl>
 
@@ -258,12 +259,12 @@ config: (NestedNamespace) Argument config according to mode</dd>
 <code class="descname">set_predict_mode</code><span class="sig-paren">(</span><em>preload=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.set_predict_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.set_predict_mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict Mode</p>
 <ul class="simple">
-<li>Pipeline
+<li><p>Pipeline
 1. read raw_data (Argument)
 2. load vocabs from checkpoint (DataReader, Token)
 3. define raw_to_tensor_fn (DataReader, Token)
 4. define and load model
-5. run!</li>
+5. run!</p></li>
 </ul>
 </dd></dl>
 
@@ -272,14 +273,14 @@ config: (NestedNamespace) Argument config according to mode</dd>
 <code class="descname">set_train_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.set_train_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.set_train_mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Training Mode</p>
 <ul class="simple">
-<li>Pipeline
+<li><p>Pipeline
 1. read raw_data (DataReader)
 2. build vocabs (DataReader, Token)
 3. indexing tokens (DataReader, Token)
 4. convert to DataSet (DataReader)
 5. create DataLoader (DataLoader)
 6. define model and optimizer
-7. run!</li>
+7. run!</p></li>
 </ul>
 </dd></dl>
 
@@ -364,39 +365,35 @@ config: (NestedNamespace) Argument config according to mode</dd>
 
 <span class="target" id="module-claf.learn.trainer"></span><dl class="class">
 <dt id="claf.learn.trainer.Trainer">
-<em class="property">class </em><code class="descclassname">claf.learn.trainer.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>config</em>, <em>cuda_devices</em>, <em>model</em>, <em>log_dir='logs/experiment'</em>, <em>grad_max_norm=None</em>, <em>gradient_accumulation_steps=1</em>, <em>learning_rate_scheduler=None</em>, <em>exponential_moving_average=None</em>, <em>num_epochs=20</em>, <em>early_stopping_threshold=10</em>, <em>max_eval_examples=5</em>, <em>metric_key=None</em>, <em>verbose_step_count=100</em>, <em>eval_and_save_step_count='epoch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.learn.trainer.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>model</em>, <em>config={}</em>, <em>log_dir='logs/experiment'</em>, <em>grad_max_norm=None</em>, <em>gradient_accumulation_steps=1</em>, <em>learning_rate_scheduler=None</em>, <em>exponential_moving_average=None</em>, <em>num_epochs=20</em>, <em>early_stopping_threshold=10</em>, <em>max_eval_examples=5</em>, <em>metric_key=None</em>, <em>verbose_step_count=100</em>, <em>eval_and_save_step_count='epoch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Run experiment</p>
 <ul class="simple">
-<li>train</li>
-<li>train_and_evaluate</li>
-<li>evaluate</li>
-<li>evaluate_inference_latency</li>
-<li>predict</li>
+<li><p>train</p></li>
+<li><p>train_and_evaluate</p></li>
+<li><p>evaluate</p></li>
+<li><p>evaluate_inference_latency</p></li>
+<li><p>predict</p></li>
 </ul>
 <ul>
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd><p class="first last">config: experiment overall config
-cuda_devices: cuda device ids (None is CPU, len(cuda_devices) &gt; 1, Multi-GPU)
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>config: experiment overall config
 model: Model based on torch.nn.Module</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd><p class="first">log_dir: path to directory for save model and other options
+<li><dl>
+<dt>Kwargs:</dt><dd><p>log_dir: path to directory for save model and other options
 grad_max_norm: Clips gradient norm of an iterable of parameters.
 learning_rate_scheduler: PyTorch’s Learning Rate Scheduler.</p>
 <blockquote>
 <div><p>(<a class="reference external" href="https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html">https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html</a>)</p>
 </div></blockquote>
-<dl class="docutils">
-<dt>exponential_moving_average: the moving averages of all weights of the model are maintained</dt>
-<dd><p class="first last">with the exponential decay rate of {ema}.</p>
+<dl class="simple">
+<dt>exponential_moving_average: the moving averages of all weights of the model are maintained</dt><dd><p>with the exponential decay rate of {ema}.</p>
 </dd>
 </dl>
-<p class="last">num_epochs: the number of maximun epochs (Default is 20)
+<p>num_epochs: the number of maximun epochs (Default is 20)
 early_stopping_threshold: the number of early stopping threshold (Default is 10)
 max_eval_examples: print evaluation examples
 metric_key: metric score’s control point
@@ -418,9 +415,9 @@ eval_and_save_step_count: evaluate valid_dataset then save every n step_count (D
 <dd><p>Evaluate with focusing inferece latency
 (Note: must use sorted synthetic data)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>inference_latency: raw_data -&gt; pre-processing -&gt; model -&gt; predict_value</dt>
-<dd>(elapsed_time)               (elapsed_time)</dd>
+<li><dl class="simple">
+<dt>inference_latency: raw_data -&gt; pre-processing -&gt; model -&gt; predict_value</dt><dd><p>(elapsed_time)               (elapsed_time)</p>
+</dd>
 </dl>
 </li>
 </ul>

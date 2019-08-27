@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.machine.components.retrieval package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.machine.components.retrieval package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -193,14 +194,14 @@
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>TF-IDF document retrieval model</p>
 <ul class="simple">
-<li>Term Frequency</li>
-<li>Inverse Document Frequency</li>
-<li>log(tf + 1) * log((N - Nt + 0.5) / (Nt + 0.5))</li>
+<li><p>Term Frequency</p></li>
+<li><p>Inverse Document Frequency</p></li>
+<li><p>log(tf + 1) * log((N - Nt + 0.5) / (Nt + 0.5))</p></li>
 </ul>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Kwargs:</dt>
-<dd>k: the number of top k results</dd>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>k: the number of top k results</p>
+</dd>
 </dl>
 </li>
 </ul>

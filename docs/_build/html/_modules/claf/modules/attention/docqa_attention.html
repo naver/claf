@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.modules.attention.docqa_attention &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.modules.attention.docqa_attention &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
@@ -216,7 +217,7 @@
         <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">xavier_uniform_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dot_w</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">]]))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">diag_mask</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2000</span><span class="p">))</span>  <span class="c1"># NOTE: (hard-code) max_sequence_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diag_mask</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">5000</span><span class="p">))</span>  <span class="c1"># NOTE: (hard-code) max_sequence_length</span>
 
         <span class="k">if</span> <span class="n">weight_init</span><span class="p">:</span>
             <span class="n">initializer</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_w</span><span class="p">)</span>

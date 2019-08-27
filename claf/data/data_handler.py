@@ -61,7 +61,13 @@ class DataHandler:
             return path.read_bytes().decode(encoding)
 
         if nsml.IS_ON_NSML:
-            path = nsml.DATASET_PATH / path
+            dataset_path = Path(nsml.DATASET_PATH)
+
+            path = dataset_path / file_path
+            if not path.exists():
+                path = dataset_path / "train" / file_path
+            if not path.exists():
+                raise FileNotFoundError(path)
 
         if path.exists():
             if return_path:

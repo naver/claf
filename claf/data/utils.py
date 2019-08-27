@@ -100,6 +100,15 @@ def padding_tokens(tokens, max_len=None, token_name=None, pad_value=0):
         return tokens
 
 
+def get_sequence_a(example):
+    if "sequence" in example:
+        return example["sequence"]
+    elif "sequence_a" in example:
+        return example["sequence_a"]
+    else:
+        raise ValueError("'sequence' or 'sequence_a' key is required.")
+
+
 def get_token_dim(tokens, dim=0):
     if type(tokens) == torch.Tensor:
         dim = tokens.dim()
@@ -205,10 +214,10 @@ def sanity_check_iob(naive_tokens, tag_texts):
 def get_is_head_of_word(naive_tokens, sequence_tokens):
     """
     Return a list of flags whether the token is head(prefix) of naively split tokens
-    
+
     ex) naive_tokens: ["hello.", "how", "are", "you?"]
         sequence_tokens: ["hello", ".", "how", "are", "you", "?"]
-        
+
         => [1, 0, 1, 1, 1, 0]
 
     * Args:
@@ -220,7 +229,7 @@ def get_is_head_of_word(naive_tokens, sequence_tokens):
             has 1 if the tokenized word at the position is head(prefix) of a `naive_token`
             and 0 if otherwise.
     """
-    
+
     is_head_of_word = []
     for naive_token in naive_tokens:
         consumed_chars = 0

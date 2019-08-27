@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.tokens.tokenizer.word &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.tokens.tokenizer.word &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -107,6 +107,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reports/squad.html">SQuAD</a></li>
@@ -324,7 +325,7 @@
 
     <span class="k">def</span> <span class="nf">_bert_basic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_tokenizer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">pytorch_pretrained_bert.tokenization</span> <span class="k">import</span> <span class="n">BasicTokenizer</span>
+            <span class="kn">from</span> <span class="nn">pytorch_transformers</span> <span class="k">import</span> <span class="n">BasicTokenizer</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">word_tokenizer</span> <span class="o">=</span> <span class="n">BasicTokenizer</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
 

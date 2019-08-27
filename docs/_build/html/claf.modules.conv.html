@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.modules.conv package &mdash; CLaF 0.1.0 documentation</title>
+  <title>claf.modules.conv package &mdash; CLaF 0.1.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.0
+                0.1.6
               </div>
             
           
@@ -124,6 +124,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="reports/glue.html">GLUE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/historyqa.html">HistoryQA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/korquad.html">KorQuAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reports/squad.html">SQuAD</a></li>
@@ -210,17 +211,17 @@
 <dt id="claf.modules.conv.depthwise_separable_conv.DepSepConv">
 <em class="property">class </em><code class="descclassname">claf.modules.conv.depthwise_separable_conv.</code><code class="descname">DepSepConv</code><span class="sig-paren">(</span><em>input_size=None</em>, <em>num_filters=None</em>, <em>kernel_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/depthwise_separable_conv.html#DepSepConv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.depthwise_separable_conv.DepSepConv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="docutils">
-<dt>Depthwise Separable Convolutions</dt>
-<dd>in Xception: Deep Learning with Depthwise Separable Convolutions (<a class="reference external" href="https://arxiv.org/abs/1610.02357">https://arxiv.org/abs/1610.02357</a>)</dd>
+<dl class="simple">
+<dt>Depthwise Separable Convolutions</dt><dd><p>in Xception: Deep Learning with Depthwise Separable Convolutions (<a class="reference external" href="https://arxiv.org/abs/1610.02357">https://arxiv.org/abs/1610.02357</a>)</p>
+</dd>
 </dl>
 <p>depthwise -&gt; pointwise (1x1 conv)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>input_size: the number of input tensor’s dimension
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>input_size: the number of input tensor’s dimension
 num_filters: the number of convolution filter
-kernel_size: the number of convolution kernel size</dd>
+kernel_size: the number of convolution kernel size</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -230,8 +231,8 @@ kernel_size: the number of convolution kernel size</dd>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -248,10 +249,10 @@ registered hooks while the latter silently ignores them.</p>
 <p>Convolution 1 Dimension (Faster version)
 (cf. <a class="reference external" href="https://github.com/huggingface/pytorch-openai-transformer-lm/blob/">https://github.com/huggingface/pytorch-openai-transformer-lm/blob/</a>        eafc28abdfadfa0732f03a0fc65805c5bfb2ffe7/model_pytorch.py#L45)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>input_size: the number of input tensor’s dimension
-num_filters: the number of convolution filter</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>input_size: the number of input tensor’s dimension
+num_filters: the number of convolution filter</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -261,8 +262,8 @@ num_filters: the number of convolution filter</dd>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -278,17 +279,17 @@ registered hooks while the latter silently ignores them.</p>
 <dt id="claf.modules.conv.DepSepConv">
 <em class="property">class </em><code class="descclassname">claf.modules.conv.</code><code class="descname">DepSepConv</code><span class="sig-paren">(</span><em>input_size=None</em>, <em>num_filters=None</em>, <em>kernel_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/depthwise_separable_conv.html#DepSepConv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.DepSepConv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
-<dl class="docutils">
-<dt>Depthwise Separable Convolutions</dt>
-<dd>in Xception: Deep Learning with Depthwise Separable Convolutions (<a class="reference external" href="https://arxiv.org/abs/1610.02357">https://arxiv.org/abs/1610.02357</a>)</dd>
+<dl class="simple">
+<dt>Depthwise Separable Convolutions</dt><dd><p>in Xception: Deep Learning with Depthwise Separable Convolutions (<a class="reference external" href="https://arxiv.org/abs/1610.02357">https://arxiv.org/abs/1610.02357</a>)</p>
+</dd>
 </dl>
 <p>depthwise -&gt; pointwise (1x1 conv)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>input_size: the number of input tensor’s dimension
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>input_size: the number of input tensor’s dimension
 num_filters: the number of convolution filter
-kernel_size: the number of convolution kernel size</dd>
+kernel_size: the number of convolution kernel size</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -298,8 +299,8 @@ kernel_size: the number of convolution kernel size</dd>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
@@ -316,10 +317,10 @@ registered hooks while the latter silently ignores them.</p>
 <p>Convolution 1 Dimension (Faster version)
 (cf. <a class="reference external" href="https://github.com/huggingface/pytorch-openai-transformer-lm/blob/">https://github.com/huggingface/pytorch-openai-transformer-lm/blob/</a>        eafc28abdfadfa0732f03a0fc65805c5bfb2ffe7/model_pytorch.py#L45)</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>Args:</dt>
-<dd>input_size: the number of input tensor’s dimension
-num_filters: the number of convolution filter</dd>
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>input_size: the number of input tensor’s dimension
+num_filters: the number of convolution filter</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -329,8 +330,8 @@ num_filters: the number of convolution filter</dd>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although the recipe for forward pass needs to be defined within
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
 this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
 instead of this since the former takes care of running the
 registered hooks while the latter silently ignores them.</p>
