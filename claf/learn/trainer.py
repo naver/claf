@@ -343,7 +343,7 @@ class Trainer:
         Run Epoch
 
         1. forward inputs to model
-        2. (trainig) backprobagation
+        2. (training) backpropagation
         3. update predictions
         4. make metrics
         """
