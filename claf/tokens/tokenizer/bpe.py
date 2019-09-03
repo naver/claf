@@ -1,5 +1,4 @@
 
-
 from pytorch_transformers import RobertaTokenizer
 
 from claf.data.data_handler import CachePath, DataHandler
@@ -10,9 +9,7 @@ from .base import Tokenizer
 class BPETokenizer(Tokenizer):
     """
     BPTE(Byte-Pair Encoding) Tokenizer
-
     text -> ...
-
     * Args:
         name: tokenizer name [roberta]
     """
@@ -39,3 +36,4 @@ class BPETokenizer(Tokenizer):
             self.bpe_tokenizer = RobertaTokenizer(vocab_path, merges_path, **self.config)
 
         return self.bpe_tokenizer._tokenize(text)
+

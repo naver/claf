@@ -1,5 +1,6 @@
 
 from collections import defaultdict
+import json
 
 from claf.data.data_handler import CachePath, DataHandler
 
@@ -157,7 +158,15 @@ class Vocab:
     def build_with_pretrained_file(self, token_counter):
         data_handler = DataHandler(CachePath.VOCAB)
         vocab_texts = data_handler.read(self.pretrained_path)
-        predefine_vocab = vocab_texts.split("\n")
+
+        if self.pretrained_path.endswith(".txt"):
+            predefine_vocab = vocab_texts.split("\n")
+        elif self.pretrained_path.endswith(".json"):
+            vocab_texts = json.loads(vocab_texts)  # {token: id}
+            predefine_vocab = [item[0] for item in
+                               sorted(vocab_texts.items(), key=lambda x: x[1])]
+        else:
+            raise ValueError(f"support vocab extention. .txt or .json")
 
         self.build(token_counter, predefine_vocab=predefine_vocab)
 
