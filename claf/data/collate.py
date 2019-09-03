@@ -19,13 +19,14 @@ class PadCollator:
         skip_keys: skip to make tensor
     """
 
-    def __init__(self, cuda_device_id=None, skip_keys=["text"]):
+    def __init__(self, cuda_device_id=None, pad_value=0, skip_keys=["text"]):
         self.cuda_device_id = cuda_device_id
+        self.pad_value = pad_value
         self.skip_keys = skip_keys
 
     def __call__(self, features, labels):
-        self.collate(features)
-        self.collate(labels, apply_pad=False)
+        self.collate(features, pad_value=self.pad_value)
+        self.collate(labels, apply_pad=False, pad_value=self.pad_value)
 
         return make_batch(features, labels)
 

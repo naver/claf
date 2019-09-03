@@ -18,10 +18,11 @@ class TokClsBertDataset(DatasetBase):
         helper: helper from data_reader
     """
 
-    def __init__(self, batch, helper=None):
+    def __init__(self, batch, vocab, helper=None):
         super(TokClsBertDataset, self).__init__()
 
         self.name = "tok_cls_bert"
+        self.vocab = vocab
         self.helper = helper
 
         self.tag_idx2text = helper["tag_idx2text"]
@@ -55,7 +56,7 @@ class TokClsBertDataset(DatasetBase):
     @overrides
     def collate_fn(self, cuda_device_id=None):
         """ collate: indexed features and labels -> tensor """
-        collator = FeatLabelPadCollator(cuda_device_id=cuda_device_id)
+        collator = FeatLabelPadCollator(cuda_device_id=cuda_device_id, pad_value=self.vocab.pad_index)
 
         def make_tensor_fn(data):
             data_idxs, bert_input_idxs, token_type_idxs, tagged_token_idxs, num_tokens, tag_idxs_list = zip(*data)

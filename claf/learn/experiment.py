@@ -192,11 +192,12 @@ class Experiment:
         texts = data_reader.filter_texts(datas)
 
         token_counters = text_handler.make_token_counters(texts, config=self.config)
-        text_handler.build_vocabs(token_counters)
+        vocabs = text_handler.build_vocabs(token_counters)
         text_handler.index(datas, data_reader.text_columns)
 
         # iterator
-        datasets = data_reader.convert_to_dataset(datas, helpers=helpers)  # with name
+        vocab = vocabs[next(iter(vocabs))]
+        datasets = data_reader.convert_to_dataset(datas, vocab, helpers=helpers)  # with name
 
         self.config.iterator.cuda_devices = self.config.cuda_devices
         train_loader, valid_loader, test_loader = self._create_by_factory(
@@ -390,7 +391,8 @@ class Experiment:
         text_handler.index(datas, data_reader.text_columns)
 
         # iterator
-        datasets = data_reader.convert_to_dataset(datas, helpers=helpers)  # with name
+        vocab = vocabs[next(iter(vocabs))]
+        datasets = data_reader.convert_to_dataset(datas, vocab, helpers=helpers)  # with name
 
         self.config.iterator.cuda_devices = self.config.cuda_devices
         _, valid_loader, _ = self._create_by_factory(
