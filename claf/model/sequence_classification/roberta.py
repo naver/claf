@@ -1,6 +1,6 @@
 
 from overrides import overrides
-from pytorch_transformers import BertModel
+from pytorch_transformers import RobertaModel
 import torch.nn as nn
 
 from claf.data.data_handler import CachePath
@@ -9,10 +9,10 @@ from claf.model.base import ModelWithoutTokenEmbedder
 from claf.model.sequence_classification.mixin import SequenceClassification
 
 
-@register("model:bert_for_seq_cls")
-class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
+@register("model:roberta_for_seq_cls")
+class RobertaForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
     """
-    Implementation of Single Sentence Classification model presented in
+    Implementation of Sentence Classification model presented in
     BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
     (https://arxiv.org/abs/1810.04805)
 
@@ -27,13 +27,13 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
 
     def __init__(self, token_makers, num_classes, pretrained_model_name=None, dropout=0.2):
 
-        super(BertForSeqCls, self).__init__(token_makers)
+        super(RobertaForSeqCls, self).__init__(token_makers)
 
         self.bert = True  # for optimizer's model parameters
 
         self.num_classes = num_classes
 
-        self._model = BertModel.from_pretrained(
+        self._model = RobertaModel.from_pretrained(
             pretrained_model_name, cache_dir=str(CachePath.ROOT)
         )
         self.classifier = nn.Sequential(
@@ -55,12 +55,6 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
                         ...,
                     ]
                 },
-                "token_type": {
-                    "feature": [
-                        [0, 0, 0, 0, 0, 0, ...],
-                        ...,
-                    ],
-                }
             }
 
         * Kwargs:
@@ -81,11 +75,10 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
         """
 
         bert_inputs = features["bert_input"]["feature"]
-        token_type_ids = features["token_type"]["feature"]
         attention_mask = (bert_inputs > 0).long()
 
         outputs = self._model(
-            bert_inputs, token_type_ids=token_type_ids, attention_mask=attention_mask
+            bert_inputs, token_type_ids=None, attention_mask=attention_mask
         )
         pooled_output = outputs[1]
         class_logits = self.classifier(pooled_output)
@@ -128,9 +121,9 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
         helper = self._dataset.helper
 
         sequence_a = helper["examples"][data_id]["sequence_a"]
-        sequence_a_tokens = helper["examples"][data_id]["sequence_a_sub_tokens"]
+        sequence_a_tokens = helper["examples"][data_id]["sequence_a_tokens"]
         sequence_b = helper["examples"][data_id]["sequence_b"]
-        sequence_b_tokens = helper["examples"][data_id]["sequence_b_sub_tokens"]
+        sequence_b_tokens = helper["examples"][data_id]["sequence_b_tokens"]
         target_class_text = helper["examples"][data_id]["class_text"]
 
         pred_class_idx = predictions[data_id]["class_idx"]

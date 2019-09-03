@@ -1,5 +1,5 @@
 
-from claf.model.token_classification.bert_for_tok_cls import BertForTokCls
+from claf.model.token_classification.bert import BertForTokCls
 
 # fmt: off
 

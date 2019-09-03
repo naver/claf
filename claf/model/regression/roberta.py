@@ -1,6 +1,6 @@
 
 from overrides import overrides
-from pytorch_transformers import BertModel
+from pytorch_transformers import RobertaModel
 import torch.nn as nn
 
 from claf.data.data_handler import CachePath
@@ -9,10 +9,10 @@ from claf.model.base import ModelWithoutTokenEmbedder
 from claf.model.regression.mixin import Regression
 
 
-@register("model:bert_for_reg")
-class BertForRegression(Regression, ModelWithoutTokenEmbedder):
+@register("model:roberta_for_reg")
+class RobertaForRegression(Regression, ModelWithoutTokenEmbedder):
     """
-    Implementation of Single Sentence Classification model presented in
+    Implementation of Sentence Regression model presented in
     BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
     (https://arxiv.org/abs/1810.04805)
 
@@ -26,13 +26,13 @@ class BertForRegression(Regression, ModelWithoutTokenEmbedder):
 
     def __init__(self, token_makers, pretrained_model_name=None, dropout=0.2):
 
-        super(BertForRegression, self).__init__(token_makers)
+        super(RobertaForRegression, self).__init__(token_makers)
 
         self.bert = True  # for optimizer's model parameters
 
         NUM_CLASSES = 1
 
-        self._model = BertModel.from_pretrained(
+        self._model = RobertaModel.from_pretrained(
             pretrained_model_name, cache_dir=str(CachePath.ROOT)
         )
         self.classifier = nn.Sequential(
@@ -54,12 +54,6 @@ class BertForRegression(Regression, ModelWithoutTokenEmbedder):
                         ...,
                     ]
                 },
-                "token_type": {
-                    "feature": [
-                        [0, 0, 0, 0, 0, 0, ...],
-                        ...,
-                    ],
-                }
             }
 
         * Kwargs:
@@ -80,11 +74,10 @@ class BertForRegression(Regression, ModelWithoutTokenEmbedder):
         """
 
         bert_inputs = features["bert_input"]["feature"]
-        token_type_ids = features["token_type"]["feature"]
         attention_mask = (bert_inputs > 0).long()
 
         outputs = self._model(
-            bert_inputs, token_type_ids=token_type_ids, attention_mask=attention_mask
+            bert_inputs, token_type_ids=None, attention_mask=attention_mask
         )
         pooled_output = outputs[1]
         logits = self.classifier(pooled_output)

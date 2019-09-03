@@ -6,41 +6,42 @@ import torch.nn as nn
 from claf.data.data_handler import CachePath
 from claf.decorator import register
 from claf.model.base import ModelWithoutTokenEmbedder
-from claf.model.regression.mixin import Regression
+from claf.model.sequence_classification.mixin import SequenceClassification
 
 
-@register("model:bert_for_reg")
-class BertForRegression(Regression, ModelWithoutTokenEmbedder):
+@register("model:bert_for_seq_cls")
+class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
     """
-    Implementation of Single Sentence Classification model presented in
+    Implementation of Sentence Classification model presented in
     BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
     (https://arxiv.org/abs/1810.04805)
 
     * Args:
-        token_makers: used to convert the sequence to feature
+        token_embedder: used to embed the sequence
+        num_classes: number of classified classes
 
     * Kwargs:
         pretrained_model_name: the name of a pre-trained model
         dropout: classification layer dropout
     """
 
-    def __init__(self, token_makers, pretrained_model_name=None, dropout=0.2):
+    def __init__(self, token_makers, num_classes, pretrained_model_name=None, dropout=0.2):
 
-        super(BertForRegression, self).__init__(token_makers)
+        super(BertForSeqCls, self).__init__(token_makers)
 
         self.bert = True  # for optimizer's model parameters
 
-        NUM_CLASSES = 1
+        self.num_classes = num_classes
 
         self._model = BertModel.from_pretrained(
             pretrained_model_name, cache_dir=str(CachePath.ROOT)
         )
         self.classifier = nn.Sequential(
-            nn.Dropout(dropout), nn.Linear(self._model.config.hidden_size, NUM_CLASSES)
+            nn.Dropout(dropout), nn.Linear(self._model.config.hidden_size, num_classes)
         )
         self.classifier.apply(self._model.init_weights)
 
-        self.criterion = nn.MSELoss()
+        self.criterion = nn.CrossEntropyLoss()
 
     @overrides
     def forward(self, features, labels=None):
@@ -65,17 +66,17 @@ class BertForRegression(Regression, ModelWithoutTokenEmbedder):
         * Kwargs:
             label: label dictionary like below.
             {
-                "score": [2, 1, 0, 4, 5, ...]
+                "class_idx": [2, 1, 0, 4, 5, ...]
                 "data_idx": [2, 4, 5, 7, 2, 1, ...]
             }
-            Do not calculate loss when there is no labels. (inference/predict mode)
+            Do not calculate loss when there is no label. (inference/predict mode)
 
         * Returns: output_dict (dict) consisting of
             - sequence_embed: embedding vector of the sequence
-            - logits: model's score
+            - class_logits: representing unnormalized log probabilities of the class.
 
+            - class_idx: target class idx
             - data_idx: data idx
-            - score: target score
             - loss: a scalar loss to be optimized
         """
 
@@ -87,19 +88,19 @@ class BertForRegression(Regression, ModelWithoutTokenEmbedder):
             bert_inputs, token_type_ids=token_type_ids, attention_mask=attention_mask
         )
         pooled_output = outputs[1]
-        logits = self.classifier(pooled_output)
+        class_logits = self.classifier(pooled_output)
 
-        output_dict = {"sequence_embed": pooled_output, "logits": logits}
+        output_dict = {"sequence_embed": pooled_output, "class_logits": class_logits}
 
         if labels:
+            class_idx = labels["class_idx"]
             data_idx = labels["data_idx"]
-            score = labels["score"]
 
+            output_dict["class_idx"] = class_idx
             output_dict["data_idx"] = data_idx
-            output_dict["score"] = score
 
             # Loss
-            loss = self.criterion(logits.view(-1, 1), score.view(-1, 1).float())
+            loss = self.criterion(class_logits, class_idx)
             output_dict["loss"] = loss.unsqueeze(0)  # NOTE: DataParallel concat Error
 
         return output_dict
@@ -130,9 +131,10 @@ class BertForRegression(Regression, ModelWithoutTokenEmbedder):
         sequence_a_tokens = helper["examples"][data_id]["sequence_a_tokens"]
         sequence_b = helper["examples"][data_id]["sequence_b"]
         sequence_b_tokens = helper["examples"][data_id]["sequence_b_tokens"]
+        target_class_text = helper["examples"][data_id]["class_text"]
 
-        target_score = helper["examples"][data_id]["score"]
-        pred_score = predictions[data_id]["score"]
+        pred_class_idx = predictions[data_id]["class_idx"]
+        pred_class_text = self._dataset.get_class_text_with_idx(pred_class_idx)
 
         print()
         print("- Sequence a:", sequence_a)
@@ -141,7 +143,7 @@ class BertForRegression(Regression, ModelWithoutTokenEmbedder):
             print("- Sequence b:", sequence_b)
             print("- Sequence b Tokens:", sequence_b_tokens)
         print("- Target:")
-        print("    Score:", target_score)
+        print("    Class:", target_class_text)
         print("- Predict:")
-        print("    Score:", pred_score)
+        print("    Class:", pred_class_text)
         print()
