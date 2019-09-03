@@ -23,11 +23,13 @@ class CoNLL2003BertReader(TokClsBertReader):
     """
 
     def __init__(
-            self,
-            file_paths,
-            tokenizers,
-            sequence_max_length=None,
-            ignore_tag_idx=-1,
+        self,
+        file_paths,
+        tokenizers,
+        sequence_max_length=None,
+        cls_token="[CLS]",
+        sep_token="[SEP]",
+        ignore_tag_idx=-1,
     ):
 
         super(CoNLL2003BertReader, self).__init__(
@@ -35,6 +37,8 @@ class CoNLL2003BertReader(TokClsBertReader):
             tokenizers,
             lang_code=None,
             sequence_max_length=sequence_max_length,
+            cls_token=cls_token,
+            sep_token=sep_token,
             ignore_tag_idx=ignore_tag_idx,
         )
 

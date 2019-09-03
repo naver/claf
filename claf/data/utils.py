@@ -5,6 +5,34 @@ import numpy as np
 import torch
 
 
+def make_bert_input(
+    sequence_a,
+    sequence_b,
+    bert_tokenizer,
+    max_seq_length=128,
+    data_type="train",
+    cls_token="[CLS]",
+    sep_token="[SEP]",
+    input_type="bert",
+):
+    sequence_a_tokens = bert_tokenizer.tokenize(sequence_a)
+    bert_input = [cls_token] + sequence_a_tokens + [sep_token]
+
+    if sequence_b:
+        if input_type == "roberta":
+            bert_input += [sep_token]
+
+        sequence_b_tokens = bert_tokenizer.tokenize(sequence_b)
+        bert_input += sequence_b_tokens + [sep_token]
+
+    if len(bert_input) > max_seq_length:
+        if data_type == "train":
+            return None  # for skip
+        else:
+            return bert_input[:max_seq_length-1] + [sep_token]
+    return bert_input
+
+
 def make_bert_token_types(bert_inputs, SEP_token="[SEP]"):
     """
     Bert Inputs segment_ids

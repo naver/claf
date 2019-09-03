@@ -34,9 +34,6 @@ class SQuADBertReader(DataReader):
         tokenizers: defined tokenizers config (char/word)
     """
 
-    CLS_TOKEN = "[CLS]"
-    SEP_TOKEN = "[SEP]"
-
     def __init__(
         self,
         file_paths,
@@ -45,6 +42,8 @@ class SQuADBertReader(DataReader):
         max_seq_length=384,
         context_stride=128,
         max_question_length=64,
+        cls_token="[CLS]",
+        sep_token="[SEP]",
     ):
 
         super(SQuADBertReader, self).__init__(file_paths, SQuADBertDataset)
@@ -52,6 +51,8 @@ class SQuADBertReader(DataReader):
         self.max_seq_length = max_seq_length
         self.context_stride = context_stride
         self.max_question_length = max_question_length
+        self.cls_token = cls_token
+        self.sep_token = sep_token
 
         self.text_columns = ["bert_input", "context", "question"]
 
@@ -83,8 +84,8 @@ class SQuADBertReader(DataReader):
             "file_path": file_path,
             "examples": {},
             "raw_dataset": squad,
-            "cls_token": self.CLS_TOKEN,
-            "sep_token": self.SEP_TOKEN,
+            "cls_token": self.cls_token,
+            "sep_token": self.sep_token,
 
             "model": {
                 "lang_code": self.lang_code,
@@ -247,7 +248,7 @@ class SQuADBertReader(DataReader):
         features = []
         for bert_token in bert_tokens:
             bert_input = [token.text for token in bert_token]
-            token_type = utils.make_bert_token_type(bert_input, SEP_token=self.SEP_TOKEN)
+            token_type = utils.make_bert_token_type(bert_input, SEP_token=self.sep_token)
 
             features.append(
                 {
@@ -336,11 +337,11 @@ class SQuADBertReader(DataReader):
 
         features, labels = [], []
         for (start_offset, length) in context_stride_spans:
-            bert_tokens = [Token(self.CLS_TOKEN)]
+            bert_tokens = [Token(self.cls_token)]
             bert_tokens += question_sub_tokens[: self.max_question_length]
-            bert_tokens += [Token(self.SEP_TOKEN)]
+            bert_tokens += [Token(self.sep_token)]
             bert_tokens += context_sub_tokens[start_offset : start_offset + length]
-            bert_tokens += [Token(self.SEP_TOKEN)]
+            bert_tokens += [Token(self.sep_token)]
             features.append(bert_tokens)
 
             if answer_char_start == -1 and answer_char_end == -1:

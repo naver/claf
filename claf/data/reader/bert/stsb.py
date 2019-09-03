@@ -19,15 +19,14 @@ class STSBBertReader(RegressionBertReader):
         tokenizers: defined tokenizers config
     """
 
-    CLS_TOKEN = "[CLS]"
-    SEP_TOKEN = "[SEP]"
-    UNK_TOKEN = "[UNK]"
-
     def __init__(
         self,
         file_paths,
         tokenizers,
         sequence_max_length=None,
+        cls_token="[CLS]",
+        sep_token="[SEP]",
+        input_type="bert",
         is_test=False,
     ):
 
@@ -36,6 +35,9 @@ class STSBBertReader(RegressionBertReader):
             tokenizers,
             sequence_max_length,
             label_key="score",
+            cls_token=cls_token,
+            sep_token=sep_token,
+            input_type=input_type,
             is_test=is_test,
         )
 
