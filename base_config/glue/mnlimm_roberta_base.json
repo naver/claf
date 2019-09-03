@@ -4,7 +4,10 @@
         "train_file_path": "MNLI/train.tsv",
         "valid_file_path": "MNLI/dev_mismatched.tsv",
         "mnli_bert": {
-            "sequence_max_length": 128
+            "sequence_max_length": 128,
+            "cls_token": "<s>",
+            "sep_token": "</s>",
+            "input_type": "roberta"
         }
     },
     "iterator": {
@@ -14,23 +17,20 @@
         "names": ["feature"],
         "types": ["feature"],
         "tokenizer": {
-            "subword": {
-                "name": "wordpiece",
-                "wordpiece": {
-                    "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
-                }
-            },
-            "word": {
-                "name": "bert_basic",
-                "bert_basic": {
-                    "do_lower_case": true
-                }
+            "bpe": {
+               "name": "roberta",
+               "roberta": {
+                   "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json",
+                   "merges_path": "https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt"
+               }
             }
         },
         "feature": {
             "vocab": {
-                "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt",
-                "pretrained_token": "all"
+                "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json",
+                "pretrained_token": "all",
+                "pad_token": "<pad>",
+                "oov_token": "<unk>"
             },
             "indexer": {
                 "do_tokenize": false
@@ -38,14 +38,14 @@
         }
     },
     "model": {
-        "name": "bert_for_seq_cls",
-        "bert_for_seq_cls": {
-            "pretrained_model_name": "bert-base-uncased",
+        "name": "roberta_for_seq_cls",
+        "roberta_for_seq_cls": {
+            "pretrained_model_name": "roberta-base",
             "dropout": 0.1
         }
     },
     "trainer": {
-        "log_dir": "logs/glue/mnlimm_bert_base",
+        "log_dir": "logs/glue/mnlimm_roberta_base",
         "num_epochs": 5,
         "early_stopping_threshold": 10,
         "metric_key": "accuracy",

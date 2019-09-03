@@ -1,9 +1,9 @@
  {
      "data_reader": {
-         "dataset": "cola_bert",
-         "train_file_path": "data/glue/CoLA/train.tsv",
-         "valid_file_path": "data/glue/CoLA/dev.tsv",
-         "cola_bert": {
+         "dataset": "rte_bert",
+         "train_file_path": "data/glue/RTE/train.tsv",
+         "valid_file_path": "data/glue/RTE/dev.tsv",
+         "rte_bert": {
              "sequence_max_length": 128,
              "cls_token": "<s>",
              "sep_token": "</s>",
@@ -31,9 +31,7 @@
                  "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json",
                  "pretrained_token": "all",
                  "pad_token": "<pad>",
-                 "oov_token": "<unk>",
-                 "cls_token": "<s>",
-                 "sep_token": "</s>"
+                 "oov_token": "<unk>"
              },
              "indexer": {
                  "do_tokenize": false
@@ -48,10 +46,10 @@
          }
      },
      "trainer": {
-         "log_dir": "logs/test/cola_roberta",
+         "log_dir": "logs/test/rte_roberta",
          "num_epochs": 1,
          "early_stopping_threshold": 10,
-         "metric_key": "matthews_corr",
+         "metric_key": "accuracy",
          "eval_and_save_step_count": "epoch"
      },
      "optimizer": {
@@ -62,7 +60,7 @@
          },
          "lr_scheduler_type": "warmup_linear",
          "warmup_linear": {
-             "warmup_steps": 10
+             "warmup_steps": 5
          }
      },
      "seed_num": 42

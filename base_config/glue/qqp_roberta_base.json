@@ -1,18 +1,17 @@
  {
      "data_reader": {
-         "dataset": "cola_bert",
-         "train_file_path": "data/glue/CoLA/train.tsv",
-         "valid_file_path": "data/glue/CoLA/dev.tsv",
-         "cola_bert": {
+         "dataset": "qqp_bert",
+         "train_file_path": "QQP/train.tsv",
+         "valid_file_path": "QQP/dev.tsv",
+         "qqp_bert": {
              "sequence_max_length": 128,
              "cls_token": "<s>",
              "sep_token": "</s>",
-             "input_type": "roberta",
-             "is_test": true
+             "input_type": "roberta"
          }
      },
      "iterator": {
-         "batch_size": 2
+         "batch_size": 32
      },
      "token": {
          "names": ["feature"],
@@ -31,9 +30,7 @@
                  "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json",
                  "pretrained_token": "all",
                  "pad_token": "<pad>",
-                 "oov_token": "<unk>",
-                 "cls_token": "<s>",
-                 "sep_token": "</s>"
+                 "oov_token": "<unk>"
              },
              "indexer": {
                  "do_tokenize": false
@@ -44,25 +41,21 @@
          "name": "roberta_for_seq_cls",
          "roberta_for_seq_cls": {
              "pretrained_model_name": "roberta-base",
-             "dropout": 0.0
+             "dropout": 0.1
          }
      },
      "trainer": {
-         "log_dir": "logs/test/cola_roberta",
-         "num_epochs": 1,
+         "log_dir": "logs/glue/qqp_roberta_base",
+         "num_epochs": 5,
          "early_stopping_threshold": 10,
-         "metric_key": "matthews_corr",
-         "eval_and_save_step_count": "epoch"
+         "metric_key": "f1",
+         "eval_and_save_step_count": 1000
      },
      "optimizer": {
          "learning_rate": 2e-5,
          "op_type": "adamw",
          "adamw": {
              "weight_decay": 0
-         },
-         "lr_scheduler_type": "warmup_linear",
-         "warmup_linear": {
-             "warmup_steps": 10
          }
      },
      "seed_num": 42
