@@ -46,17 +46,23 @@
      },
      "trainer": {
          "log_dir": "logs/glue/wnli_roberta_base",
-         "num_epochs": 5,
-         "early_stopping_threshold": 10,
+         "num_epochs": 10,
+         "early_stopping_threshold": 30,
          "metric_key": "accuracy",
-         "eval_and_save_step_count": 10
+         "eval_and_save_step_count": 20
      },
      "optimizer": {
          "learning_rate": 2e-5,
          "op_type": "adamw",
          "adamw": {
+             "betas": [0.9, 0.999],
+             "eps": 1e-6,
              "weight_decay": 0
+         },
+         "lr_scheduler_type": "warmup_linear",
+         "warmup_linear": {
+             "warmup_proportion": 0.06
          }
      },
-     "seed_num": 42
+     "seed_num": 21
  }
