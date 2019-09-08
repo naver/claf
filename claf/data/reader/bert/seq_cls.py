@@ -28,10 +28,6 @@ class SeqClsBertReader(DataReader):
         class_key: name of the label in .json file to use for classification
     """
 
-    CLS_TOKEN = "[CLS]"
-    SEP_TOKEN = "[SEP]"
-    UNK_TOKEN = "[UNK]"
-
     CLASS_DATA = []
 
     def __init__(
@@ -40,6 +36,9 @@ class SeqClsBertReader(DataReader):
         tokenizers,
         sequence_max_length=None,
         class_key="class",
+        cls_token="[CLS]",
+        sep_token="[SEP]",
+        input_type="bert",
         is_test=False,
     ):
 
@@ -48,11 +47,23 @@ class SeqClsBertReader(DataReader):
         self.sequence_max_length = sequence_max_length
         self.text_columns = ["bert_input", "sequence"]
 
-        if "subword" not in tokenizers:
-            raise ValueError("WordTokenizer and SubwordTokenizer is required.")
+        # Tokenizers
+        # - BERT: Word + Subword or Word + Char
+        # - RoBERTa: BPE
 
-        self.subword_tokenizer = tokenizers["subword"]
+        if input_type == "bert":
+            self.tokenizer = tokenizers.get("subword", None)
+            if self.tokenizer is None:
+                self.tokenizer["char"]
+        elif input_type == "roberta":
+            self.tokenizer = tokenizers["bpe"]
+        else:
+            raise ValueError("'bert' and 'roberta' are available input_type.")
+
         self.class_key = class_key
+        self.cls_token = cls_token
+        self.sep_token = sep_token
+        self.input_type = input_type
         self.is_test = is_test
 
     def _get_data(self, file_path, **kwargs):
@@ -107,9 +118,8 @@ class SeqClsBertReader(DataReader):
             "examples": {},
             "class_idx2text": class_idx2text,
             "class_text2idx": class_text2idx,
-            "cls_token": self.CLS_TOKEN,
-            "sep_token": self.SEP_TOKEN,
-            "unk_token": self.UNK_TOKEN,
+            "cls_token": self.cls_token,
+            "sep_token": self.sep_token,
             "model": {
                 "num_classes": len(class_idx2text),
             },
@@ -123,19 +133,23 @@ class SeqClsBertReader(DataReader):
             sequence_a = utils.get_sequence_a(example)
             sequence_b = example.get("sequence_b", None)
 
-            sequence_a_sub_tokens = self.subword_tokenizer.tokenize(sequence_a)
-            sequence_b_sub_tokens = None
-            bert_input = [self.CLS_TOKEN] + sequence_a_sub_tokens + [self.SEP_TOKEN]
+            sequence_a_tokens = self.tokenizer.tokenize(sequence_a)
+            sequence_b_tokens = None
+            if sequence_b:
+                sequence_b_tokens = self.tokenizer.tokenize(sequence_b)
 
-            if sequence_b is not None:
-                sequence_b_sub_tokens = self.subword_tokenizer.tokenize(sequence_b)
-                bert_input += sequence_b_sub_tokens + [self.SEP_TOKEN]
+            bert_input = utils.make_bert_input(
+                sequence_a,
+                sequence_b,
+                self.tokenizer,
+                max_seq_length=self.sequence_max_length,
+                data_type=data_type,
+                cls_token=self.cls_token,
+                sep_token=self.sep_token,
+                input_type=self.input_type,
+            )
 
-            if (
-                    self.sequence_max_length is not None
-                    and data_type == "train"
-                    and len(bert_input) > self.sequence_max_length
-            ):
+            if bert_input is None:
                 continue
 
             if "uid" in example:
@@ -143,6 +157,7 @@ class SeqClsBertReader(DataReader):
             else:
                 data_uid = str(uuid.uuid1())
 
+            # token_type(segment_ids) will be added in dataset
             feature_row = {
                 "id": data_uid,
                 "bert_input": bert_input,
@@ -159,9 +174,9 @@ class SeqClsBertReader(DataReader):
 
             helper["examples"][data_uid] = {
                 "sequence_a": sequence_a,
-                "sequence_a_sub_tokens": sequence_a_sub_tokens,
+                "sequence_a_tokens": sequence_a_tokens,
                 "sequence_b": sequence_b,
-                "sequence_b_sub_tokens": sequence_b_sub_tokens,
+                "sequence_b_tokens": sequence_b_tokens,
                 "class_idx": class_text2idx[class_text],
                 "class_text": class_text,
             }
@@ -176,17 +191,17 @@ class SeqClsBertReader(DataReader):
         sequence_a = utils.get_sequence_a(inputs)
         sequence_b = inputs.get("sequence_b", None)
 
-        sequence_a_sub_tokens = self.subword_tokenizer.tokenize(sequence_a)
-        bert_input = [self.CLS_TOKEN] + sequence_a_sub_tokens + [self.SEP_TOKEN]
-
-        if sequence_b:
-            sequence_b_sub_tokens = self.subword_tokenizer.tokenize(sequence_b)
-            bert_input += sequence_b_sub_tokens + [self.SEP_TOKEN]
-
-        if len(bert_input) > self.sequence_max_length:
-            bert_input = bert_input[:self.sequence_max_length-1] + [self.SEP_TOKEN]
-
-        token_type = utils.make_bert_token_type(bert_input, SEP_token=self.SEP_TOKEN)
+        bert_input = utils.make_bert_input(
+            sequence_a,
+            sequence_b,
+            self.tokenizer,
+            max_seq_length=self.sequence_max_length,
+            data_type="predict",
+            cls_token=self.cls_token,
+            sep_token=self.sep_token,
+            input_type=self.input_type,
+        )
+        token_type = utils.make_bert_token_type(bert_input, SEP_token=self.sep_token)
 
         features = []
         features.append({

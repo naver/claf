@@ -204,10 +204,6 @@
 <span class="sd">        tokenizers: defined tokenizers config</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">CLS_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;[CLS]&quot;</span>
-    <span class="n">SEP_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;[SEP]&quot;</span>
-    <span class="n">UNK_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;[UNK]&quot;</span>
-
     <span class="n">CLASS_DATA</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;contradiction&quot;</span><span class="p">,</span> <span class="s2">&quot;entailment&quot;</span><span class="p">,</span> <span class="s2">&quot;neutral&quot;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
@@ -215,6 +211,9 @@
         <span class="n">file_paths</span><span class="p">,</span>
         <span class="n">tokenizers</span><span class="p">,</span>
         <span class="n">sequence_max_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">cls_token</span><span class="o">=</span><span class="s2">&quot;[CLS]&quot;</span><span class="p">,</span>
+        <span class="n">sep_token</span><span class="o">=</span><span class="s2">&quot;[SEP]&quot;</span><span class="p">,</span>
+        <span class="n">input_type</span><span class="o">=</span><span class="s2">&quot;bert&quot;</span><span class="p">,</span>
         <span class="n">is_test</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
 
@@ -223,6 +222,9 @@
             <span class="n">tokenizers</span><span class="p">,</span>
             <span class="n">sequence_max_length</span><span class="p">,</span>
             <span class="n">class_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">cls_token</span><span class="o">=</span><span class="n">cls_token</span><span class="p">,</span>
+            <span class="n">sep_token</span><span class="o">=</span><span class="n">sep_token</span><span class="p">,</span>
+            <span class="n">input_type</span><span class="o">=</span><span class="n">input_type</span><span class="p">,</span>
             <span class="n">is_test</span><span class="o">=</span><span class="n">is_test</span><span class="p">,</span>
         <span class="p">)</span>
 

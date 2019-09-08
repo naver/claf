@@ -9,7 +9,7 @@ spacy>=2.1.4
 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.1.0/en_core_web_sm-2.1.0.tar.gz
 
 # BERT
-pytorch-transformers>=1.0.0
+pytorch-transformers==1.1.0
 
 # WikiSQL
 babel

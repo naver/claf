@@ -44,8 +44,13 @@ def make_all_tokenizers(all_tokenizer_config):
         all_tokenizer_config.get("char", None),
         parent_tokenizers={"word_tokenizer": word_tokenizer},
     )
+    bpe_tokenizer = make_tokenizer(
+        tokenizer.BPETokenizer,
+        all_tokenizer_config.get("bpe", None),
+    )
 
     return {
+        "bpe": bpe_tokenizer,
         "char": char_tokenizer,
         "subword": subword_tokenizer,
         "word": word_tokenizer,
@@ -69,7 +74,11 @@ class TokenMakersFactory(Factory):
 
     @overrides
     def create(self):
-        tokenizers = make_all_tokenizers(convert_config2dict(self.config.tokenizer))
+        if getattr(self.config, "tokenizer", None):
+            tokenizers = make_all_tokenizers(convert_config2dict(self.config.tokenizer))
+        else:
+            tokenizers = {}
+
         token_names, token_types = self.config.names, self.config.types
 
         if len(token_names) != len(token_types):

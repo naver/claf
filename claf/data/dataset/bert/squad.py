@@ -19,10 +19,11 @@ class SQuADBertDataset(DatasetBase):
         helper: helper from data_reader
     """
 
-    def __init__(self, batch, helper=None):
+    def __init__(self, batch, vocab, helper=None):
         super(SQuADBertDataset, self).__init__()
 
         self.name = "squad_bert"
+        self.vocab = vocab
         self.helper = helper
         self.raw_dataset = helper["raw_dataset"]
 
@@ -51,7 +52,7 @@ class SQuADBertDataset(DatasetBase):
     @overrides
     def collate_fn(self, cuda_device_id=None):
         """ collate: indexed features and labels -> tensor """
-        collator = PadCollator(cuda_device_id=cuda_device_id)
+        collator = PadCollator(cuda_device_id=cuda_device_id, pad_value=self.vocab.pad_index)
 
         def make_tensor_fn(data):
             bert_input_idxs, token_type_idxs, data_idxs, answer_starts, answer_ends, answerables = zip(

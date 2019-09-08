@@ -1,0 +1,70 @@
+ {
+     "data_reader": {
+         "dataset": "cola_bert",
+         "train_file_path": "CoLA/train.tsv",
+         "valid_file_path": "CoLA/dev.tsv",
+         "cola_bert": {
+             "sequence_max_length": 128,
+             "cls_token": "<s>",
+             "sep_token": "</s>",
+             "input_type": "roberta"
+         }
+     },
+     "iterator": {
+         "batch_size": 32
+     },
+     "token": {
+         "names": ["feature"],
+         "types": ["feature"],
+         "tokenizer": {
+             "bpe": {
+                "name": "roberta",
+                "roberta": {
+                    "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json",
+                    "merges_path": "https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt"
+                }
+             }
+         },
+         "feature": {
+             "vocab": {
+                 "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json",
+                 "pretrained_token": "all",
+                 "pad_token": "<pad>",
+                 "oov_token": "<unk>",
+                 "cls_token": "<s>",
+                 "sep_token": "</s>"
+             },
+             "indexer": {
+                 "do_tokenize": false
+             }
+         }
+     },
+     "model": {
+         "name": "roberta_for_seq_cls",
+         "roberta_for_seq_cls": {
+             "pretrained_model_name": "roberta-base",
+             "dropout": 0.1
+         }
+     },
+     "trainer": {
+         "log_dir": "logs/glue/cola_roberta_base",
+         "num_epochs": 10,
+         "early_stopping_threshold": 20,
+         "metric_key": "matthews_corr",
+         "eval_and_save_step_count": 100
+     },
+     "optimizer": {
+         "learning_rate": 2e-5,
+         "op_type": "adamw",
+         "adamw": {
+             "betas": [0.9, 0.999],
+             "eps": 1e-6,
+             "weight_decay": 0
+         },
+         "lr_scheduler_type": "warmup_linear",
+         "warmup_linear": {
+             "warmup_proportion": 0.06
+         }
+     },
+     "seed_num": 42
+ }

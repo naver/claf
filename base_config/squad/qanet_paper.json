@@ -92,9 +92,9 @@
              "weight_decay": 3e-7
          },
          "exponential_moving_average": 0.9999,
-         "lr_scheduler_type": "warmup",
-         "warmup": {
-             "final_step": 1000
+         "lr_scheduler_type": "warmup_linear",
+         "warmup_linear": {
+             "warmup_steps": 1000
          }
      },
      "seed_num": 2

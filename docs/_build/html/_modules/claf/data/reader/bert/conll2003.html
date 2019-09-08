@@ -208,11 +208,13 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">file_paths</span><span class="p">,</span>
-            <span class="n">tokenizers</span><span class="p">,</span>
-            <span class="n">sequence_max_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">ignore_tag_idx</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">file_paths</span><span class="p">,</span>
+        <span class="n">tokenizers</span><span class="p">,</span>
+        <span class="n">sequence_max_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">cls_token</span><span class="o">=</span><span class="s2">&quot;[CLS]&quot;</span><span class="p">,</span>
+        <span class="n">sep_token</span><span class="o">=</span><span class="s2">&quot;[SEP]&quot;</span><span class="p">,</span>
+        <span class="n">ignore_tag_idx</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="nb">super</span><span class="p">(</span><span class="n">CoNLL2003BertReader</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
@@ -220,6 +222,8 @@
             <span class="n">tokenizers</span><span class="p">,</span>
             <span class="n">lang_code</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">sequence_max_length</span><span class="o">=</span><span class="n">sequence_max_length</span><span class="p">,</span>
+            <span class="n">cls_token</span><span class="o">=</span><span class="n">cls_token</span><span class="p">,</span>
+            <span class="n">sep_token</span><span class="o">=</span><span class="n">sep_token</span><span class="p">,</span>
             <span class="n">ignore_tag_idx</span><span class="o">=</span><span class="n">ignore_tag_idx</span><span class="p">,</span>
         <span class="p">)</span>
 

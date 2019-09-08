@@ -13,6 +13,7 @@ class TokenMaker:
 
     # Token Type List
     FEATURE_TYPE = "feature"  # Do not use embedding, pass indexed_feature
+
     BERT_TYPE = "bert"
     CHAR_TYPE = "char"
     COVE_TYPE = "cove"

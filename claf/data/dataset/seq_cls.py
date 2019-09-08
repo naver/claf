@@ -19,10 +19,11 @@ class SeqClsDataset(DatasetBase):
         helper: helper from data_reader
     """
 
-    def __init__(self, batch, helper=None):
+    def __init__(self, batch, vocab, helper=None):
         super(SeqClsDataset, self).__init__()
 
         self.name = "seq_cls"
+        self.vocab = vocab
         self.helper = helper
         self.raw_dataset = helper["raw_dataset"]
 
@@ -53,7 +54,7 @@ class SeqClsDataset(DatasetBase):
     @overrides
     def collate_fn(self, cuda_device_id=None):
         """ collate: indexed features and labels -> tensor """
-        collator = PadCollator(cuda_device_id=cuda_device_id)
+        collator = PadCollator(cuda_device_id=cuda_device_id, pad_value=self.vocab.pad_index)
 
         def make_tensor_fn(data):
             data_idxs, sequence_idxs, class_idxs = zip(*data)

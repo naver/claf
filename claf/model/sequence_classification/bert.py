@@ -12,7 +12,7 @@ from claf.model.sequence_classification.mixin import SequenceClassification
 @register("model:bert_for_seq_cls")
 class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
     """
-    Implementation of Single Sentence Classification model presented in
+    Implementation of Sentence Classification model presented in
     BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
     (https://arxiv.org/abs/1810.04805)
 
@@ -100,7 +100,9 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
             output_dict["data_idx"] = data_idx
 
             # Loss
-            loss = self.criterion(class_logits, class_idx)
+            loss = self.criterion(
+                class_logits.view(-1, self.num_classes), class_idx.view(-1)
+            )
             output_dict["loss"] = loss.unsqueeze(0)  # NOTE: DataParallel concat Error
 
         return output_dict
@@ -128,9 +130,9 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
         helper = self._dataset.helper
 
         sequence_a = helper["examples"][data_id]["sequence_a"]
-        sequence_a_tokens = helper["examples"][data_id]["sequence_a_sub_tokens"]
+        sequence_a_tokens = helper["examples"][data_id]["sequence_a_tokens"]
         sequence_b = helper["examples"][data_id]["sequence_b"]
-        sequence_b_tokens = helper["examples"][data_id]["sequence_b_sub_tokens"]
+        sequence_b_tokens = helper["examples"][data_id]["sequence_b_tokens"]
         target_class_text = helper["examples"][data_id]["class_text"]
 
         pred_class_idx = predictions[data_id]["class_idx"]

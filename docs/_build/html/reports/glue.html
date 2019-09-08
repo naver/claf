@@ -203,32 +203,265 @@
 <table border="1" class="docutils">
 <thead>
 <tr>
+<th>Task (Metric)</th>
 <th>Model</th>
-<th>CoLA (Matt)</th>
-<th>MNLIm (Acc)</th>
-<th>MNLImm (Acc)</th>
-<th>MRPC (Acc/F1)</th>
-<th>QNLI (Acc)</th>
-<th>QQP (Acc/F1)</th>
-<th>RTE (Acc)</th>
-<th>SST-2 (Acc)</th>
-<th>STS-B (Pea/Spe)</th>
-<th>WNLI (Acc)</th>
+<th>Result</th>
+<th>Official Result</th>
+<th>BaseConfig</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>BERT</strong> Base, Uncased</td>
+<td><strong>CoLA</strong> (<strong>Matthew's Corr</strong>)</td>
+<td>BERT-Base</td>
 <td>59.393</td>
-<td>83.923</td>
-<td>84.306</td>
+<td>52.1 (Test set)</td>
+<td>glue/cola_bert_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>BERT-Large</td>
+<td>-</td>
+<td>60.6</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Base</td>
+<td>64.828</td>
+<td>63.6</td>
+<td>glue/cola_roberta_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>-</td>
+<td>68.0</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>MNLI</strong> (<strong>Accuracy</strong>)</td>
+<td>BERT-Base</td>
+<td>83.923/84.306</td>
+<td>84.6/83.4 (Test set)</td>
+<td>glue/mnli{m/mm}_bert_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>BERT-Large</td>
+<td>-</td>
+<td>86.6/-</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Base</td>
+<td>87.305/87.236</td>
+<td>87.6/-</td>
+<td>glue/mnli{m/mm}_roberta_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>-</td>
+<td>90.2/90.2</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>MRPC</strong> (<strong>Accuracy/F1</strong>)</td>
+<td>BERT-Base</td>
 <td>87.5/91.282</td>
+<td>88.9 (Test set)</td>
+<td>glue/mrpc_bert_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>BERT-Large</td>
+<td>-</td>
+<td>88.0</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Base</td>
+<td>87.745/91.496</td>
+<td>90.2</td>
+<td>glue/mrpc_roberta_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>-</td>
+<td>90.9</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>QNLI</strong> (<strong>Accuracy</strong>)</td>
+<td>BERT-Base</td>
 <td>88.521</td>
+<td>90.5 (Test set)</td>
+<td>glue/qnli_bert_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>BERT-Large</td>
+<td>-</td>
+<td>92.3</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Base</td>
+<td>90.597</td>
+<td>92.8</td>
+<td>glue/qnli_roberta_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>-</td>
+<td>94.7</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>QQP</strong> (<strong>Accuracy/F1</strong>)</td>
+<td>BERT-Base</td>
 <td>90.378/87.171</td>
+<td>71.2 (Test set)</td>
+<td>glue/qqp_bert_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>BERT-Large</td>
+<td>-</td>
+<td>91.3</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Base</td>
+<td>91.541/88.768</td>
+<td>91.9</td>
+<td>glue/qqp_roberta_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>-</td>
+<td>92.2</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>RTE</strong> (<strong>Accuracy</strong>)</td>
+<td>BERT-Base</td>
 <td>69.314</td>
+<td>66.4 (Test set)</td>
+<td>glue/rte_bert_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>BERT-Large</td>
+<td>-</td>
+<td>70.4</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Base</td>
+<td>73.646</td>
+<td>78.7</td>
+<td>glue/rte_roberta_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>-</td>
+<td>86.6</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>SST-2</strong> (<strong>Accuracy</strong>)</td>
+<td>BERT-Base</td>
 <td>92.546</td>
+<td>93.5 (Test set)</td>
+<td>glue/sst_bert_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>BERT-Large</td>
+<td>-</td>
+<td>93.2</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Base</td>
+<td>94.495</td>
+<td>94.8</td>
+<td>glue/sst_roberta_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>-</td>
+<td>96.4</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>STS-B</strong> (<strong>Pearson/Spearman</strong>)</td>
+<td>BERT-Base</td>
 <td>88.070/87.881</td>
+<td>85.8 (Test set)</td>
+<td>glue/stsb_bert_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>BERT-Large</td>
+<td>-</td>
+<td>90.0</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Base</td>
+<td>87.033/86.904</td>
+<td>91.2</td>
+<td>glue/stsb_roberta_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>-</td>
+<td>92.4</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>WNLI</strong> (<strong>Accuracy</strong>)</td>
+<td>BERT-Base</td>
 <td>56.338</td>
+<td>65.1 (Test set)</td>
+<td>glue/wnli_bert_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>BERT-Large</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Base</td>
+<td>60.563</td>
+<td>-</td>
+<td>glue/wnli_roberta_base.json</td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>-</td>
+<td>91.3</td>
+<td>-</td>
 </tr>
 </tbody>
 </table></div>

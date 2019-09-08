@@ -209,7 +209,7 @@
 <span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.modules.layer.highway" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.modules.layer.highway.Highway">
-<em class="property">class </em><code class="descclassname">claf.modules.layer.highway.</code><code class="descname">Highway</code><span class="sig-paren">(</span><em>input_size</em>, <em>num_layers=2</em>, <em>activation='relu'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/highway.html#Highway"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.highway.Highway" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.layer.highway.</code><code class="sig-name descname">Highway</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">num_layers=2</em>, <em class="sig-param">activation='relu'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/highway.html#Highway"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.highway.Highway" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Highway Networks (<a class="reference external" href="https://arxiv.org/abs/1505.00387">https://arxiv.org/abs/1505.00387</a>)
 <a class="reference external" href="https://github.com/allenai/allennlp/blob/master/allennlp/modules/highway.py">https://github.com/allenai/allennlp/blob/master/allennlp/modules/highway.py</a></p>
@@ -224,7 +224,7 @@ activation: Activation Function (ReLU is default)</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.layer.highway.Highway.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/highway.html#Highway.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.highway.Highway.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/highway.html#Highway.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.highway.Highway.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -240,13 +240,13 @@ registered hooks while the latter silently ignores them.</p>
 
 <span class="target" id="module-claf.modules.layer.normalization"></span><dl class="class">
 <dt id="claf.modules.layer.normalization.LayerNorm">
-<em class="property">class </em><code class="descclassname">claf.modules.layer.normalization.</code><code class="descname">LayerNorm</code><span class="sig-paren">(</span><em>normalized_shape</em>, <em>eps=1e-05</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/normalization.html#LayerNorm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.normalization.LayerNorm" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.layer.normalization.</code><code class="sig-name descname">LayerNorm</code><span class="sig-paren">(</span><em class="sig-param">normalized_shape</em>, <em class="sig-param">eps=1e-05</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/normalization.html#LayerNorm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.normalization.LayerNorm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Layer Normalization
 (<a class="reference external" href="https://arxiv.org/abs/1607.06450">https://arxiv.org/abs/1607.06450</a>)</p>
 <dl class="method">
 <dt id="claf.modules.layer.normalization.LayerNorm.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/normalization.html#LayerNorm.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.normalization.LayerNorm.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/normalization.html#LayerNorm.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.normalization.LayerNorm.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -262,7 +262,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <span class="target" id="module-claf.modules.layer.positionwise"></span><dl class="class">
 <dt id="claf.modules.layer.positionwise.PositionwiseFeedForward">
-<em class="property">class </em><code class="descclassname">claf.modules.layer.positionwise.</code><code class="descname">PositionwiseFeedForward</code><span class="sig-paren">(</span><em>input_size</em>, <em>hidden_size</em>, <em>dropout=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/positionwise.html#PositionwiseFeedForward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.positionwise.PositionwiseFeedForward" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.layer.positionwise.</code><code class="sig-name descname">PositionwiseFeedForward</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">hidden_size</em>, <em class="sig-param">dropout=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/positionwise.html#PositionwiseFeedForward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.positionwise.PositionwiseFeedForward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Pointwise Feed-Forward Layer</p>
 <ul class="simple">
@@ -280,7 +280,7 @@ hidden_size: the number of hidden size</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.layer.positionwise.PositionwiseFeedForward.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/positionwise.html#PositionwiseFeedForward.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.positionwise.PositionwiseFeedForward.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/positionwise.html#PositionwiseFeedForward.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.positionwise.PositionwiseFeedForward.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -296,7 +296,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <span class="target" id="module-claf.modules.layer.residual"></span><dl class="class">
 <dt id="claf.modules.layer.residual.ResidualConnection">
-<em class="property">class </em><code class="descclassname">claf.modules.layer.residual.</code><code class="descname">ResidualConnection</code><span class="sig-paren">(</span><em>dim</em>, <em>layer_dropout=None</em>, <em>layernorm=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/residual.html#ResidualConnection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.residual.ResidualConnection" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.layer.residual.</code><code class="sig-name descname">ResidualConnection</code><span class="sig-paren">(</span><em class="sig-param">dim</em>, <em class="sig-param">layer_dropout=None</em>, <em class="sig-param">layernorm=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/residual.html#ResidualConnection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.residual.ResidualConnection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>in Deep Residual Learning for Image Recognition (<a class="reference external" href="https://arxiv.org/abs/1512.03385">https://arxiv.org/abs/1512.03385</a>)</p>
 <p>=&gt; f(x) + x</p>
@@ -315,7 +315,7 @@ dropout: dropout probability</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.layer.residual.ResidualConnection.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>sub_layer_fn</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/residual.html#ResidualConnection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.residual.ResidualConnection.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">sub_layer_fn</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/residual.html#ResidualConnection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.residual.ResidualConnection.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -333,7 +333,7 @@ registered hooks while the latter silently ignores them.</p>
 (<a class="reference external" href="https://github.com/allenai/allennlp/blob/master/allennlp/modules/scalar_mix.py">https://github.com/allenai/allennlp/blob/master/allennlp/modules/scalar_mix.py</a>)</p>
 <dl class="class">
 <dt id="claf.modules.layer.scalar_mix.ScalarMix">
-<em class="property">class </em><code class="descclassname">claf.modules.layer.scalar_mix.</code><code class="descname">ScalarMix</code><span class="sig-paren">(</span><em>mixture_size: int</em>, <em>do_layer_norm: bool = False</em>, <em>initial_scalar_parameters: List[float] = None</em>, <em>trainable: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/scalar_mix.html#ScalarMix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.scalar_mix.ScalarMix" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.layer.scalar_mix.</code><code class="sig-name descname">ScalarMix</code><span class="sig-paren">(</span><em class="sig-param">mixture_size: int</em>, <em class="sig-param">do_layer_norm: bool = False</em>, <em class="sig-param">initial_scalar_parameters: List[float] = None</em>, <em class="sig-param">trainable: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/scalar_mix.html#ScalarMix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.scalar_mix.ScalarMix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Computes a parameterised scalar mixture of N tensors, <code class="docutils literal notranslate"><span class="pre">mixture</span> <span class="pre">=</span> <span class="pre">gamma</span> <span class="pre">*</span> <span class="pre">sum(s_k</span> <span class="pre">*</span> <span class="pre">tensor_k)</span></code>
 where <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">softmax(w)</span></code>, with <code class="docutils literal notranslate"><span class="pre">w</span></code> and <code class="docutils literal notranslate"><span class="pre">gamma</span></code> scalar parameters.
@@ -341,7 +341,7 @@ In addition, if <code class="docutils literal notranslate"><span class="pre">do_
 before weighting.</p>
 <dl class="method">
 <dt id="claf.modules.layer.scalar_mix.ScalarMix.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>tensors: List[torch.Tensor], mask: torch.Tensor = None</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="reference internal" href="_modules/claf/modules/layer/scalar_mix.html#ScalarMix.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.scalar_mix.ScalarMix.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">tensors: List[torch.Tensor], mask: torch.Tensor = None</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="reference internal" href="_modules/claf/modules/layer/scalar_mix.html#ScalarMix.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.scalar_mix.ScalarMix.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute a weighted average of the <code class="docutils literal notranslate"><span class="pre">tensors</span></code>.  The input tensors an be any shape
 with at least two dimensions, but must all be the same shape.
 When <code class="docutils literal notranslate"><span class="pre">do_layer_norm=True</span></code>, the <code class="docutils literal notranslate"><span class="pre">mask</span></code> is required input.  If the <code class="docutils literal notranslate"><span class="pre">tensors</span></code> are
@@ -358,7 +358,7 @@ When <code class="docutils literal notranslate"><span class="pre">do_layer_norm=
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.modules.layer" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.modules.layer.Highway">
-<em class="property">class </em><code class="descclassname">claf.modules.layer.</code><code class="descname">Highway</code><span class="sig-paren">(</span><em>input_size</em>, <em>num_layers=2</em>, <em>activation='relu'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/highway.html#Highway"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.Highway" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.layer.</code><code class="sig-name descname">Highway</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">num_layers=2</em>, <em class="sig-param">activation='relu'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/highway.html#Highway"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.Highway" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Highway Networks (<a class="reference external" href="https://arxiv.org/abs/1505.00387">https://arxiv.org/abs/1505.00387</a>)
 <a class="reference external" href="https://github.com/allenai/allennlp/blob/master/allennlp/modules/highway.py">https://github.com/allenai/allennlp/blob/master/allennlp/modules/highway.py</a></p>
@@ -373,7 +373,7 @@ activation: Activation Function (ReLU is default)</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.layer.Highway.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/highway.html#Highway.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.Highway.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/highway.html#Highway.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.Highway.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -389,7 +389,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="class">
 <dt id="claf.modules.layer.PositionwiseFeedForward">
-<em class="property">class </em><code class="descclassname">claf.modules.layer.</code><code class="descname">PositionwiseFeedForward</code><span class="sig-paren">(</span><em>input_size</em>, <em>hidden_size</em>, <em>dropout=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/positionwise.html#PositionwiseFeedForward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.PositionwiseFeedForward" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.layer.</code><code class="sig-name descname">PositionwiseFeedForward</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">hidden_size</em>, <em class="sig-param">dropout=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/positionwise.html#PositionwiseFeedForward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.PositionwiseFeedForward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Pointwise Feed-Forward Layer</p>
 <ul class="simple">
@@ -407,7 +407,7 @@ hidden_size: the number of hidden size</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.layer.PositionwiseFeedForward.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/positionwise.html#PositionwiseFeedForward.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.PositionwiseFeedForward.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/positionwise.html#PositionwiseFeedForward.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.PositionwiseFeedForward.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -423,7 +423,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="class">
 <dt id="claf.modules.layer.ResidualConnection">
-<em class="property">class </em><code class="descclassname">claf.modules.layer.</code><code class="descname">ResidualConnection</code><span class="sig-paren">(</span><em>dim</em>, <em>layer_dropout=None</em>, <em>layernorm=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/residual.html#ResidualConnection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.ResidualConnection" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.layer.</code><code class="sig-name descname">ResidualConnection</code><span class="sig-paren">(</span><em class="sig-param">dim</em>, <em class="sig-param">layer_dropout=None</em>, <em class="sig-param">layernorm=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/residual.html#ResidualConnection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.ResidualConnection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>in Deep Residual Learning for Image Recognition (<a class="reference external" href="https://arxiv.org/abs/1512.03385">https://arxiv.org/abs/1512.03385</a>)</p>
 <p>=&gt; f(x) + x</p>
@@ -442,7 +442,7 @@ dropout: dropout probability</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.layer.ResidualConnection.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>sub_layer_fn</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/residual.html#ResidualConnection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.ResidualConnection.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">sub_layer_fn</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/residual.html#ResidualConnection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.ResidualConnection.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -458,7 +458,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="class">
 <dt id="claf.modules.layer.ScalarMix">
-<em class="property">class </em><code class="descclassname">claf.modules.layer.</code><code class="descname">ScalarMix</code><span class="sig-paren">(</span><em>mixture_size: int</em>, <em>do_layer_norm: bool = False</em>, <em>initial_scalar_parameters: List[float] = None</em>, <em>trainable: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/scalar_mix.html#ScalarMix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.ScalarMix" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.layer.</code><code class="sig-name descname">ScalarMix</code><span class="sig-paren">(</span><em class="sig-param">mixture_size: int</em>, <em class="sig-param">do_layer_norm: bool = False</em>, <em class="sig-param">initial_scalar_parameters: List[float] = None</em>, <em class="sig-param">trainable: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/layer/scalar_mix.html#ScalarMix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.ScalarMix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Computes a parameterised scalar mixture of N tensors, <code class="docutils literal notranslate"><span class="pre">mixture</span> <span class="pre">=</span> <span class="pre">gamma</span> <span class="pre">*</span> <span class="pre">sum(s_k</span> <span class="pre">*</span> <span class="pre">tensor_k)</span></code>
 where <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">softmax(w)</span></code>, with <code class="docutils literal notranslate"><span class="pre">w</span></code> and <code class="docutils literal notranslate"><span class="pre">gamma</span></code> scalar parameters.
@@ -466,7 +466,7 @@ In addition, if <code class="docutils literal notranslate"><span class="pre">do_
 before weighting.</p>
 <dl class="method">
 <dt id="claf.modules.layer.ScalarMix.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>tensors: List[torch.Tensor], mask: torch.Tensor = None</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="reference internal" href="_modules/claf/modules/layer/scalar_mix.html#ScalarMix.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.ScalarMix.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">tensors: List[torch.Tensor], mask: torch.Tensor = None</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="reference internal" href="_modules/claf/modules/layer/scalar_mix.html#ScalarMix.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.layer.ScalarMix.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute a weighted average of the <code class="docutils literal notranslate"><span class="pre">tensors</span></code>.  The input tensors an be any shape
 with at least two dimensions, but must all be the same shape.
 When <code class="docutils literal notranslate"><span class="pre">do_layer_norm=True</span></code>, the <code class="docutils literal notranslate"><span class="pre">mask</span></code> is required input.  If the <code class="docutils literal notranslate"><span class="pre">tensors</span></code> are

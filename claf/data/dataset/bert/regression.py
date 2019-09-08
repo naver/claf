@@ -18,10 +18,11 @@ class RegressionBertDataset(DatasetBase):
         helper: helper from data_reader
     """
 
-    def __init__(self, batch, helper=None):
+    def __init__(self, batch, vocab, helper=None):
         super(RegressionBertDataset, self).__init__()
 
         self.name = "reg_bert"
+        self.vocab = vocab
         self.helper = helper
 
         # Features
@@ -47,7 +48,7 @@ class RegressionBertDataset(DatasetBase):
     @overrides
     def collate_fn(self, cuda_device_id=None):
         """ collate: indexed features and labels -> tensor """
-        collator = PadCollator(cuda_device_id=cuda_device_id)
+        collator = PadCollator(cuda_device_id=cuda_device_id, pad_value=self.vocab.pad_index)
 
         def make_tensor_fn(data):
             data_idxs, bert_input_idxs, token_type_idxs, label_scores = zip(*data)

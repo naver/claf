@@ -209,24 +209,24 @@
 <span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.tokens.tokenizer.base" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.tokens.tokenizer.base.Tokenizer">
-<em class="property">class </em><code class="descclassname">claf.tokens.tokenizer.base.</code><code class="descname">Tokenizer</code><span class="sig-paren">(</span><em>name</em>, <em>cache_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/base.html#Tokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.base.Tokenizer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.tokenizer.base.</code><code class="sig-name descname">Tokenizer</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">cache_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/base.html#Tokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.base.Tokenizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Tokenizer Base Class</p>
 <dl class="attribute">
 <dt id="claf.tokens.tokenizer.base.Tokenizer.MAX_TO_KEEP_CACHE">
-<code class="descname">MAX_TO_KEEP_CACHE</code><em class="property"> = 3</em><a class="headerlink" href="#claf.tokens.tokenizer.base.Tokenizer.MAX_TO_KEEP_CACHE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">MAX_TO_KEEP_CACHE</code><em class="property"> = 3</em><a class="headerlink" href="#claf.tokens.tokenizer.base.Tokenizer.MAX_TO_KEEP_CACHE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.tokenizer.base.Tokenizer.tokenize">
-<code class="descname">tokenize</code><span class="sig-paren">(</span><em>text</em>, <em>unit='text'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/base.html#Tokenizer.tokenize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.base.Tokenizer.tokenize" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">tokenize</code><span class="sig-paren">(</span><em class="sig-param">text</em>, <em class="sig-param">unit='text'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/base.html#Tokenizer.tokenize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.base.Tokenizer.tokenize" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <span class="target" id="module-claf.tokens.tokenizer.char"></span><dl class="class">
 <dt id="claf.tokens.tokenizer.char.CharTokenizer">
-<em class="property">class </em><code class="descclassname">claf.tokens.tokenizer.char.</code><code class="descname">CharTokenizer</code><span class="sig-paren">(</span><em>name</em>, <em>word_tokenizer</em>, <em>config={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/char.html#CharTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.char.CharTokenizer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.tokenizer.char.</code><code class="sig-name descname">CharTokenizer</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">word_tokenizer</em>, <em class="sig-param">config={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/char.html#CharTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.char.CharTokenizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.tokenizer.base.Tokenizer" title="claf.tokens.tokenizer.base.Tokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.tokenizer.base.Tokenizer</span></code></a></p>
 <p>Character Tokenizer</p>
 <p>text -&gt; word tokens -&gt; [char tokens]</p>
@@ -242,19 +242,19 @@ word_tokenizer: word tokenizer object</p>
 
 <span class="target" id="module-claf.tokens.tokenizer.pass_text"></span><dl class="class">
 <dt id="claf.tokens.tokenizer.pass_text.PassText">
-<em class="property">class </em><code class="descclassname">claf.tokens.tokenizer.pass_text.</code><code class="descname">PassText</code><a class="reference internal" href="_modules/claf/tokens/tokenizer/pass_text.html#PassText"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.pass_text.PassText" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.tokenizer.pass_text.</code><code class="sig-name descname">PassText</code><a class="reference internal" href="_modules/claf/tokens/tokenizer/pass_text.html#PassText"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.pass_text.PassText" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Pass text without tokenize</p>
 <dl class="method">
 <dt id="claf.tokens.tokenizer.pass_text.PassText.tokenize">
-<code class="descname">tokenize</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/pass_text.html#PassText.tokenize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.pass_text.PassText.tokenize" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">tokenize</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/pass_text.html#PassText.tokenize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.pass_text.PassText.tokenize" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <span class="target" id="module-claf.tokens.tokenizer.sent"></span><dl class="class">
 <dt id="claf.tokens.tokenizer.sent.SentTokenizer">
-<em class="property">class </em><code class="descclassname">claf.tokens.tokenizer.sent.</code><code class="descname">SentTokenizer</code><span class="sig-paren">(</span><em>name</em>, <em>config={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/sent.html#SentTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.sent.SentTokenizer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.tokenizer.sent.</code><code class="sig-name descname">SentTokenizer</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">config={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/sent.html#SentTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.sent.SentTokenizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.tokenizer.base.Tokenizer" title="claf.tokens.tokenizer.base.Tokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.tokenizer.base.Tokenizer</span></code></a></p>
 <p>Sentence Tokenizer</p>
 <p>text -&gt; [sent tokens]</p>
@@ -269,7 +269,7 @@ word_tokenizer: word tokenizer object</p>
 
 <span class="target" id="module-claf.tokens.tokenizer.subword"></span><dl class="class">
 <dt id="claf.tokens.tokenizer.subword.SubwordTokenizer">
-<em class="property">class </em><code class="descclassname">claf.tokens.tokenizer.subword.</code><code class="descname">SubwordTokenizer</code><span class="sig-paren">(</span><em>name</em>, <em>word_tokenizer</em>, <em>config={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/subword.html#SubwordTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.subword.SubwordTokenizer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.tokenizer.subword.</code><code class="sig-name descname">SubwordTokenizer</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">word_tokenizer</em>, <em class="sig-param">config={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/subword.html#SubwordTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.subword.SubwordTokenizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.tokenizer.base.Tokenizer" title="claf.tokens.tokenizer.base.Tokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.tokenizer.base.Tokenizer</span></code></a></p>
 <p>Subword Tokenizer</p>
 <p>text -&gt; [word tokens] -&gt; [[sub word tokens], …]</p>
@@ -284,17 +284,17 @@ word_tokenizer: word tokenizer object</p>
 
 <span class="target" id="module-claf.tokens.tokenizer.utils"></span><dl class="function">
 <dt id="claf.tokens.tokenizer.utils.create_tokenizer_with_regex">
-<code class="descclassname">claf.tokens.tokenizer.utils.</code><code class="descname">create_tokenizer_with_regex</code><span class="sig-paren">(</span><em>nlp</em>, <em>split_regex</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/utils.html#create_tokenizer_with_regex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.utils.create_tokenizer_with_regex" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">claf.tokens.tokenizer.utils.</code><code class="sig-name descname">create_tokenizer_with_regex</code><span class="sig-paren">(</span><em class="sig-param">nlp</em>, <em class="sig-param">split_regex</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/utils.html#create_tokenizer_with_regex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.utils.create_tokenizer_with_regex" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="claf.tokens.tokenizer.utils.load_spacy_model_for_tokenizer">
-<code class="descclassname">claf.tokens.tokenizer.utils.</code><code class="descname">load_spacy_model_for_tokenizer</code><span class="sig-paren">(</span><em>split_regex</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/utils.html#load_spacy_model_for_tokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.utils.load_spacy_model_for_tokenizer" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">claf.tokens.tokenizer.utils.</code><code class="sig-name descname">load_spacy_model_for_tokenizer</code><span class="sig-paren">(</span><em class="sig-param">split_regex</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/utils.html#load_spacy_model_for_tokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.utils.load_spacy_model_for_tokenizer" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <span class="target" id="module-claf.tokens.tokenizer.word"></span><dl class="class">
 <dt id="claf.tokens.tokenizer.word.WordTokenizer">
-<em class="property">class </em><code class="descclassname">claf.tokens.tokenizer.word.</code><code class="descname">WordTokenizer</code><span class="sig-paren">(</span><em>name</em>, <em>sent_tokenizer</em>, <em>config={}</em>, <em>split_with_regex=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/word.html#WordTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.word.WordTokenizer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.tokenizer.word.</code><code class="sig-name descname">WordTokenizer</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">sent_tokenizer</em>, <em class="sig-param">config={}</em>, <em class="sig-param">split_with_regex=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/word.html#WordTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.word.WordTokenizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.tokenizer.base.Tokenizer" title="claf.tokens.tokenizer.base.Tokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.tokenizer.base.Tokenizer</span></code></a></p>
 <p>Word Tokenizer</p>
 <ul class="simple">
@@ -312,7 +312,7 @@ split_with_regex: post split action. Split tokens that the tokenizer cannot spli
 </ul>
 <dl class="method">
 <dt id="claf.tokens.tokenizer.word.WordTokenizer.make_split_regex_expression">
-<code class="descname">make_split_regex_expression</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/word.html#WordTokenizer.make_split_regex_expression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.word.WordTokenizer.make_split_regex_expression" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">make_split_regex_expression</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/word.html#WordTokenizer.make_split_regex_expression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.word.WordTokenizer.make_split_regex_expression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply a small amount of extra splitting to the given tokens, this is in particular to avoid UNK tokens
 due to contraction, quotation, or other forms of puncutation. I haven’t really done tests to see
 if/how much difference this makes, but it does avoid some common UNKs I noticed in SQuAD/TriviaQA</p>
@@ -325,19 +325,31 @@ if/how much difference this makes, but it does avoid some common UNKs I noticed 
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.tokens.tokenizer" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.tokens.tokenizer.PassText">
-<em class="property">class </em><code class="descclassname">claf.tokens.tokenizer.</code><code class="descname">PassText</code><a class="reference internal" href="_modules/claf/tokens/tokenizer/pass_text.html#PassText"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.PassText" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.tokenizer.</code><code class="sig-name descname">PassText</code><a class="reference internal" href="_modules/claf/tokens/tokenizer/pass_text.html#PassText"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.PassText" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Pass text without tokenize</p>
 <dl class="method">
 <dt id="claf.tokens.tokenizer.PassText.tokenize">
-<code class="descname">tokenize</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/pass_text.html#PassText.tokenize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.PassText.tokenize" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">tokenize</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/pass_text.html#PassText.tokenize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.PassText.tokenize" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
+<dt id="claf.tokens.tokenizer.BPETokenizer">
+<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.tokenizer.</code><code class="sig-name descname">BPETokenizer</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">config={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/bpe.html#BPETokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.BPETokenizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.tokens.tokenizer.base.Tokenizer" title="claf.tokens.tokenizer.base.Tokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.tokenizer.base.Tokenizer</span></code></a></p>
+<p>BPTE(Byte-Pair Encoding) Tokenizer
+text -&gt; …
+* Args:</p>
+<blockquote>
+<div><p>name: tokenizer name [roberta]</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="class">
 <dt id="claf.tokens.tokenizer.CharTokenizer">
-<em class="property">class </em><code class="descclassname">claf.tokens.tokenizer.</code><code class="descname">CharTokenizer</code><span class="sig-paren">(</span><em>name</em>, <em>word_tokenizer</em>, <em>config={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/char.html#CharTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.CharTokenizer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.tokenizer.</code><code class="sig-name descname">CharTokenizer</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">word_tokenizer</em>, <em class="sig-param">config={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/char.html#CharTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.CharTokenizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.tokenizer.base.Tokenizer" title="claf.tokens.tokenizer.base.Tokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.tokenizer.base.Tokenizer</span></code></a></p>
 <p>Character Tokenizer</p>
 <p>text -&gt; word tokens -&gt; [char tokens]</p>
@@ -353,7 +365,7 @@ word_tokenizer: word tokenizer object</p>
 
 <dl class="class">
 <dt id="claf.tokens.tokenizer.SubwordTokenizer">
-<em class="property">class </em><code class="descclassname">claf.tokens.tokenizer.</code><code class="descname">SubwordTokenizer</code><span class="sig-paren">(</span><em>name</em>, <em>word_tokenizer</em>, <em>config={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/subword.html#SubwordTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.SubwordTokenizer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.tokenizer.</code><code class="sig-name descname">SubwordTokenizer</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">word_tokenizer</em>, <em class="sig-param">config={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/subword.html#SubwordTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.SubwordTokenizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.tokenizer.base.Tokenizer" title="claf.tokens.tokenizer.base.Tokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.tokenizer.base.Tokenizer</span></code></a></p>
 <p>Subword Tokenizer</p>
 <p>text -&gt; [word tokens] -&gt; [[sub word tokens], …]</p>
@@ -368,7 +380,7 @@ word_tokenizer: word tokenizer object</p>
 
 <dl class="class">
 <dt id="claf.tokens.tokenizer.WordTokenizer">
-<em class="property">class </em><code class="descclassname">claf.tokens.tokenizer.</code><code class="descname">WordTokenizer</code><span class="sig-paren">(</span><em>name</em>, <em>sent_tokenizer</em>, <em>config={}</em>, <em>split_with_regex=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/word.html#WordTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.WordTokenizer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.tokenizer.</code><code class="sig-name descname">WordTokenizer</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">sent_tokenizer</em>, <em class="sig-param">config={}</em>, <em class="sig-param">split_with_regex=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/word.html#WordTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.WordTokenizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.tokenizer.base.Tokenizer" title="claf.tokens.tokenizer.base.Tokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.tokenizer.base.Tokenizer</span></code></a></p>
 <p>Word Tokenizer</p>
 <ul class="simple">
@@ -386,7 +398,7 @@ split_with_regex: post split action. Split tokens that the tokenizer cannot spli
 </ul>
 <dl class="method">
 <dt id="claf.tokens.tokenizer.WordTokenizer.make_split_regex_expression">
-<code class="descname">make_split_regex_expression</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/word.html#WordTokenizer.make_split_regex_expression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.WordTokenizer.make_split_regex_expression" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">make_split_regex_expression</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/word.html#WordTokenizer.make_split_regex_expression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.WordTokenizer.make_split_regex_expression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply a small amount of extra splitting to the given tokens, this is in particular to avoid UNK tokens
 due to contraction, quotation, or other forms of puncutation. I haven’t really done tests to see
 if/how much difference this makes, but it does avoid some common UNKs I noticed in SQuAD/TriviaQA</p>
@@ -396,7 +408,7 @@ if/how much difference this makes, but it does avoid some common UNKs I noticed 
 
 <dl class="class">
 <dt id="claf.tokens.tokenizer.SentTokenizer">
-<em class="property">class </em><code class="descclassname">claf.tokens.tokenizer.</code><code class="descname">SentTokenizer</code><span class="sig-paren">(</span><em>name</em>, <em>config={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/sent.html#SentTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.SentTokenizer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.tokenizer.</code><code class="sig-name descname">SentTokenizer</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">config={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/tokenizer/sent.html#SentTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.tokenizer.SentTokenizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.tokenizer.base.Tokenizer" title="claf.tokens.tokenizer.base.Tokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.tokenizer.base.Tokenizer</span></code></a></p>
 <p>Sentence Tokenizer</p>
 <p>text -&gt; [sent tokens]</p>

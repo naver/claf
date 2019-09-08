@@ -18,7 +18,7 @@ VERSION = None
 
 REQUIRED = [
     "numpy>=1.15.0", "torch>=1.0.1", # Backends
-    "pytorch-transformers>=1.0.0",  # BERT
+    "pytorch-transformers==1.1.0",  # BERT
     "konlpy", "nltk", "spacy",  # Tokenizer
     "babel", "records",  # WikiSQL
     "h5py", "jsbeautifier", "msgpack", "overrides", "requests", "gensim", "tqdm", "tensorboardX",  # Utils

@@ -43,9 +43,24 @@ class OptimizerFactory(Factory):
 
             if "warmup" in self.lr_scheduler_type:
                 self.lr_scheduler_config["t_total"] = config.num_train_steps
+                self.set_warmup_steps(config)
 
         # EMA
         self.ema = getattr(config, "exponential_moving_average", 0)
+
+    def set_warmup_steps(self, config):
+        warmup_proportion = self.lr_scheduler_config.get("warmup_proportion", None)
+        warmup_steps = self.lr_scheduler_config.get("warmup_steps", None)
+
+        if warmup_steps and warmup_proportion:
+            raise ValueError("Check 'warmup_steps' and 'warmup_proportion'.")
+        elif not warmup_steps and warmup_proportion:
+            self.lr_scheduler_config["warmup_steps"] = int(config.num_train_steps * warmup_proportion) + 1
+            del self.lr_scheduler_config["warmup_proportion"]
+        elif warmup_steps and not warmup_proportion:
+            pass
+        else:
+            raise ValueError("Check 'warmup_steps' and 'warmup_proportion'.")
 
     @overrides
     def create(self, model):

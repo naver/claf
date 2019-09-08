@@ -19,10 +19,6 @@ class CoLABertReader(SeqClsBertReader):
         tokenizers: defined tokenizers config
     """
 
-    CLS_TOKEN = "[CLS]"
-    SEP_TOKEN = "[SEP]"
-    UNK_TOKEN = "[UNK]"
-
     CLASS_DATA = [0, 1]
 
     def __init__(
@@ -30,6 +26,9 @@ class CoLABertReader(SeqClsBertReader):
         file_paths,
         tokenizers,
         sequence_max_length=None,
+        cls_token="[CLS]",
+        sep_token="[SEP]",
+        input_type="bert",
         is_test=False,
     ):
 
@@ -38,6 +37,9 @@ class CoLABertReader(SeqClsBertReader):
             tokenizers,
             sequence_max_length,
             class_key=None,
+            cls_token=cls_token,
+            sep_token=sep_token,
+            input_type=input_type,
             is_test=is_test,
         )
 

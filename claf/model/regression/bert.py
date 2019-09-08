@@ -127,9 +127,9 @@ class BertForRegression(Regression, ModelWithoutTokenEmbedder):
         helper = self._dataset.helper
 
         sequence_a = helper["examples"][data_id]["sequence_a"]
-        sequence_a_tokens = helper["examples"][data_id]["sequence_a_sub_tokens"]
+        sequence_a_tokens = helper["examples"][data_id]["sequence_a_tokens"]
         sequence_b = helper["examples"][data_id]["sequence_b"]
-        sequence_b_tokens = helper["examples"][data_id]["sequence_b_sub_tokens"]
+        sequence_b_tokens = helper["examples"][data_id]["sequence_b_tokens"]
 
         target_score = helper["examples"][data_id]["score"]
         pred_score = predictions[data_id]["score"]

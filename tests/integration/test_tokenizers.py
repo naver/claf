@@ -3,25 +3,28 @@ import pytest
 
 import spacy
 
-from claf.tokens.tokenizer import CharTokenizer, SubwordTokenizer, WordTokenizer, SentTokenizer
+from claf.tokens.tokenizer import BPETokenizer, CharTokenizer, SubwordTokenizer, WordTokenizer, SentTokenizer
 from claf.tokens.tokenizer.utils import load_spacy_model_for_tokenizer
 
 
 @pytest.fixture
 def tokenizers(request):
     sent_name, sent_config, word_name, word_config, \
-        subword_name, subword_config, char_name, char_config = request.param
+        subword_name, subword_config, char_name, char_config, \
+        bpe_name, bpe_config = request.param
 
     sent_tokenizer = SentTokenizer(sent_name, config=sent_config)
     word_tokenizer = WordTokenizer(word_name, sent_tokenizer, config=word_config)
     subword_tokenizer = SubwordTokenizer(subword_name, word_tokenizer, config=subword_config)
     char_tokenizer = CharTokenizer(char_name, word_tokenizer, config=char_config)
+    bpe_tokenizer = BPETokenizer(bpe_name, config=bpe_config)
 
     return {
         "sent": sent_tokenizer,
         "word": word_tokenizer,
         "subword": subword_tokenizer,
         "char": char_tokenizer,
+        "bpe": bpe_tokenizer,
     }
 
 
@@ -31,7 +34,8 @@ def tokenizers(request):
     "wordpiece", {
         "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
     },
-    "character", {})],
+    "character", {},
+    "bpe", {})],
     indirect=True)
 def test_en_character_tokenize(tokenizers):
     text = "Hello World"
@@ -48,7 +52,8 @@ def test_en_character_tokenize(tokenizers):
     "wordpiece", {
         "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
     },
-    "jamo_ko", {})],
+    "jamo_ko", {},
+    "bpe", {})],
     indirect=True)
 def test_jamo_ko_tokenize(tokenizers):
     text = "안녕 세상"
@@ -66,7 +71,8 @@ def test_jamo_ko_tokenize(tokenizers):
     "wordpiece", {
         "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
     },
-    "jamo_ko", {})],
+    "jamo_ko", {},
+    "bpe", {})],
     indirect=True)
 def test_bert_uncased_en_tokenize(tokenizers):
     text = "expectancy of anyone"
@@ -82,7 +88,8 @@ def test_bert_uncased_en_tokenize(tokenizers):
     "wordpiece", {
         "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
     },
-    "character", {})],
+    "character", {},
+    "bpe", {})],
     indirect=True)
 def test_space_all_tokenize(tokenizers):
     text = "Hi Hello\tHi\rHello\nHi"
@@ -98,7 +105,8 @@ def test_space_all_tokenize(tokenizers):
     "wordpiece", {
         "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
     },
-    "character", {})],
+    "character", {},
+    "bpe", {})],
     indirect=True)
 def test_punkt_tokenize(tokenizers):
     text = "Hello World. This is punkt tokenizer."
@@ -114,7 +122,8 @@ def test_punkt_tokenize(tokenizers):
     "wordpiece", {
         "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
     },
-    "character", {})],
+    "character", {},
+    "bpe", {})],
     indirect=True)
 def test_word_with_regex_example_tokenize(tokenizers):
     text = "New York City:57–60 And Ted Ginn Jr.[citation needed]"
@@ -132,7 +141,8 @@ def test_word_with_regex_example_tokenize(tokenizers):
     "wordpiece", {
         "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
     },
-    "character", {})],
+    "character", {},
+    "bpe", {})],
     indirect=True)
 def test_spacy_model_with_regex_example_tokenize(tokenizers):
     text = "In 1096, Crusaders passing by the siege of Amalfi were joined by Bohemond of Taranto and his nephew Tancred with an army of Italo-Normans. Bohemond was the de facto leader of the Crusade during its passage through Asia Minor. After the successful Siege of Antioch in 1097, Bohemond began carving out an independent principality around that city. Tancred was instrumental in the conquest of Jerusalem and he worked for the expansion of the Crusader kingdom in Transjordan and the region of Galilee.[citation needed]"
@@ -162,3 +172,23 @@ def test_spacy_model_with_regex_example_tokenize(tokenizers):
         spacy_model_results += [token.text for token in spacy_model(sentence)]
 
     assert word_tokenizer.tokenize(text) == spacy_model_results
+
+
+@pytest.mark.parametrize("tokenizers", [(
+    "punkt", {},
+    "space_all", {},
+    "wordpiece", {
+        "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
+    },
+    "character", {},
+    "roberta", {
+        "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json",
+        "merges_path": "https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt"
+    })],
+    indirect=True)
+def test_bpe_tokenize(tokenizers):
+    text = "As you eat the most, you want the least."
+
+    tokenizer = tokenizers["bpe"]
+    results = tokenizer.tokenize(text)
+    assert results == ['As', 'Ġyou', 'Ġeat', 'Ġthe', 'Ġmost', ',', 'Ġyou', 'Ġwant', 'Ġthe', 'Ġleast', '.']

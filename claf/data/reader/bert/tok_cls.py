@@ -31,18 +31,16 @@ class TokClsBertReader(DataReader):
         ignore_tag_idx: prediction results that have this number as ground-truth idx are ignored
     """
 
-    CLS_TOKEN = "[CLS]"
-    SEP_TOKEN = "[SEP]"
-    UNK_TOKEN = "[UNK]"
-
     def __init__(
-            self,
-            file_paths,
-            tokenizers,
-            lang_code=None,
-            sequence_max_length=None,
-            tag_key="tags",
-            ignore_tag_idx=-1,
+        self,
+        file_paths,
+        tokenizers,
+        lang_code=None,
+        sequence_max_length=None,
+        tag_key="tags",
+        cls_token="[CLS]",
+        sep_token="[SEP]",
+        ignore_tag_idx=-1,
     ):
 
         super(TokClsBertReader, self).__init__(file_paths, TokClsBertDataset)
@@ -62,6 +60,8 @@ class TokClsBertReader(DataReader):
 
         self.lang_code = lang_code
         self.tag_key = tag_key
+        self.cls_token = cls_token
+        self.sep_token = sep_token
         self.ignore_tag_idx = ignore_tag_idx
 
     def _get_data(self, file_path):
@@ -112,9 +112,8 @@ class TokClsBertReader(DataReader):
             "raw_dataset": raw_dataset,
             "tag_idx2text": tag_idx2text,
             "ignore_tag_idx": self.ignore_tag_idx,
-            "cls_token": self.CLS_TOKEN,
-            "sep_token": self.SEP_TOKEN,
-            "unk_token": self.UNK_TOKEN,
+            "cls_token": self.cls_token,
+            "sep_token": self.sep_token,
             "model": {
                 "num_tags": len(tag_idx2text),
                 "ignore_tag_idx": self.ignore_tag_idx,
@@ -144,7 +143,7 @@ class TokClsBertReader(DataReader):
                         tagged_sub_token_idxs.append(curr_sub_token_idx)
                     curr_sub_token_idx += 1
 
-            bert_input = [self.CLS_TOKEN] + sequence_sub_tokens + [self.SEP_TOKEN]
+            bert_input = [self.cls_token] + sequence_sub_tokens + [self.sep_token]
 
             if (
                     self.sequence_max_length is not None
@@ -214,8 +213,8 @@ class TokClsBertReader(DataReader):
         if len(sequence_sub_tokens) > self.sequence_max_length:
             sequence_sub_tokens = sequence_sub_tokens[:self.sequence_max_length]
 
-        bert_input = [self.CLS_TOKEN] + sequence_sub_tokens + [self.SEP_TOKEN]
-        token_type = utils.make_bert_token_type(bert_input, SEP_token=self.SEP_TOKEN)
+        bert_input = [self.cls_token] + sequence_sub_tokens + [self.sep_token]
+        token_type = utils.make_bert_token_type(bert_input, SEP_token=self.sep_token)
         assert len(naive_tokens) == len(tagged_sub_token_idxs), \
             f"""Wrong tagged_sub_token_idxs: followings mismatch.
             naive_tokens: {naive_tokens}

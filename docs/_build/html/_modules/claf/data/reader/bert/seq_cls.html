@@ -213,10 +213,6 @@
 <span class="sd">        class_key: name of the label in .json file to use for classification</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">CLS_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;[CLS]&quot;</span>
-    <span class="n">SEP_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;[SEP]&quot;</span>
-    <span class="n">UNK_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;[UNK]&quot;</span>
-
     <span class="n">CLASS_DATA</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
@@ -225,6 +221,9 @@
         <span class="n">tokenizers</span><span class="p">,</span>
         <span class="n">sequence_max_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">class_key</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">,</span>
+        <span class="n">cls_token</span><span class="o">=</span><span class="s2">&quot;[CLS]&quot;</span><span class="p">,</span>
+        <span class="n">sep_token</span><span class="o">=</span><span class="s2">&quot;[SEP]&quot;</span><span class="p">,</span>
+        <span class="n">input_type</span><span class="o">=</span><span class="s2">&quot;bert&quot;</span><span class="p">,</span>
         <span class="n">is_test</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
 
@@ -233,11 +232,23 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span> <span class="o">=</span> <span class="n">sequence_max_length</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">text_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bert_input&quot;</span><span class="p">,</span> <span class="s2">&quot;sequence&quot;</span><span class="p">]</span>
 
-        <span class="k">if</span> <span class="s2">&quot;subword&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tokenizers</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;WordTokenizer and SubwordTokenizer is required.&quot;</span><span class="p">)</span>
+        <span class="c1"># Tokenizers</span>
+        <span class="c1"># - BERT: Word + Subword or Word + Char</span>
+        <span class="c1"># - RoBERTa: BPE</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span> <span class="o">=</span> <span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;subword&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">input_type</span> <span class="o">==</span> <span class="s2">&quot;bert&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;subword&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">[</span><span class="s2">&quot;char&quot;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">input_type</span> <span class="o">==</span> <span class="s2">&quot;roberta&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;bpe&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;bert&#39; and &#39;roberta&#39; are available input_type.&quot;</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">class_key</span> <span class="o">=</span> <span class="n">class_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cls_token</span> <span class="o">=</span> <span class="n">cls_token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span> <span class="o">=</span> <span class="n">sep_token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_type</span> <span class="o">=</span> <span class="n">input_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_test</span> <span class="o">=</span> <span class="n">is_test</span>
 
     <span class="k">def</span> <span class="nf">_get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -292,9 +303,8 @@
             <span class="s2">&quot;examples&quot;</span><span class="p">:</span> <span class="p">{},</span>
             <span class="s2">&quot;class_idx2text&quot;</span><span class="p">:</span> <span class="n">class_idx2text</span><span class="p">,</span>
             <span class="s2">&quot;class_text2idx&quot;</span><span class="p">:</span> <span class="n">class_text2idx</span><span class="p">,</span>
-            <span class="s2">&quot;cls_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">CLS_TOKEN</span><span class="p">,</span>
-            <span class="s2">&quot;sep_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">SEP_TOKEN</span><span class="p">,</span>
-            <span class="s2">&quot;unk_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">UNK_TOKEN</span><span class="p">,</span>
+            <span class="s2">&quot;cls_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cls_token</span><span class="p">,</span>
+            <span class="s2">&quot;sep_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span><span class="p">,</span>
             <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">&quot;num_classes&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_idx2text</span><span class="p">),</span>
             <span class="p">},</span>
@@ -308,19 +318,23 @@
             <span class="n">sequence_a</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">get_sequence_a</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
             <span class="n">sequence_b</span> <span class="o">=</span> <span class="n">example</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sequence_b&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-            <span class="n">sequence_a_sub_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">sequence_a</span><span class="p">)</span>
-            <span class="n">sequence_b_sub_tokens</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="n">bert_input</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">CLS_TOKEN</span><span class="p">]</span> <span class="o">+</span> <span class="n">sequence_a_sub_tokens</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SEP_TOKEN</span><span class="p">]</span>
+            <span class="n">sequence_a_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">sequence_a</span><span class="p">)</span>
+            <span class="n">sequence_b_tokens</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">sequence_b</span><span class="p">:</span>
+                <span class="n">sequence_b_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">sequence_b</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">sequence_b</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">sequence_b_sub_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">sequence_b</span><span class="p">)</span>
-                <span class="n">bert_input</span> <span class="o">+=</span> <span class="n">sequence_b_sub_tokens</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SEP_TOKEN</span><span class="p">]</span>
+            <span class="n">bert_input</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_bert_input</span><span class="p">(</span>
+                <span class="n">sequence_a</span><span class="p">,</span>
+                <span class="n">sequence_b</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">,</span>
+                <span class="n">max_seq_length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span><span class="p">,</span>
+                <span class="n">data_type</span><span class="o">=</span><span class="n">data_type</span><span class="p">,</span>
+                <span class="n">cls_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cls_token</span><span class="p">,</span>
+                <span class="n">sep_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span><span class="p">,</span>
+                <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">,</span>
+            <span class="p">)</span>
 
-            <span class="k">if</span> <span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                    <span class="ow">and</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s2">&quot;train&quot;</span>
-                    <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">bert_input</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span>
-            <span class="p">):</span>
+            <span class="k">if</span> <span class="n">bert_input</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">continue</span>
 
             <span class="k">if</span> <span class="s2">&quot;uid&quot;</span> <span class="ow">in</span> <span class="n">example</span><span class="p">:</span>
@@ -328,6 +342,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">data_uid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid1</span><span class="p">())</span>
 
+            <span class="c1"># token_type(segment_ids) will be added in dataset</span>
             <span class="n">feature_row</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">data_uid</span><span class="p">,</span>
                 <span class="s2">&quot;bert_input&quot;</span><span class="p">:</span> <span class="n">bert_input</span><span class="p">,</span>
@@ -344,9 +359,9 @@
 
             <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;examples&quot;</span><span class="p">][</span><span class="n">data_uid</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">&quot;sequence_a&quot;</span><span class="p">:</span> <span class="n">sequence_a</span><span class="p">,</span>
-                <span class="s2">&quot;sequence_a_sub_tokens&quot;</span><span class="p">:</span> <span class="n">sequence_a_sub_tokens</span><span class="p">,</span>
+                <span class="s2">&quot;sequence_a_tokens&quot;</span><span class="p">:</span> <span class="n">sequence_a_tokens</span><span class="p">,</span>
                 <span class="s2">&quot;sequence_b&quot;</span><span class="p">:</span> <span class="n">sequence_b</span><span class="p">,</span>
-                <span class="s2">&quot;sequence_b_sub_tokens&quot;</span><span class="p">:</span> <span class="n">sequence_b_sub_tokens</span><span class="p">,</span>
+                <span class="s2">&quot;sequence_b_tokens&quot;</span><span class="p">:</span> <span class="n">sequence_b_tokens</span><span class="p">,</span>
                 <span class="s2">&quot;class_idx&quot;</span><span class="p">:</span> <span class="n">class_text2idx</span><span class="p">[</span><span class="n">class_text</span><span class="p">],</span>
                 <span class="s2">&quot;class_text&quot;</span><span class="p">:</span> <span class="n">class_text</span><span class="p">,</span>
             <span class="p">}</span>
@@ -361,17 +376,17 @@
         <span class="n">sequence_a</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">get_sequence_a</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
         <span class="n">sequence_b</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sequence_b&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-        <span class="n">sequence_a_sub_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">sequence_a</span><span class="p">)</span>
-        <span class="n">bert_input</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">CLS_TOKEN</span><span class="p">]</span> <span class="o">+</span> <span class="n">sequence_a_sub_tokens</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SEP_TOKEN</span><span class="p">]</span>
-
-        <span class="k">if</span> <span class="n">sequence_b</span><span class="p">:</span>
-            <span class="n">sequence_b_sub_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">sequence_b</span><span class="p">)</span>
-            <span class="n">bert_input</span> <span class="o">+=</span> <span class="n">sequence_b_sub_tokens</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SEP_TOKEN</span><span class="p">]</span>
-
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bert_input</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span><span class="p">:</span>
-            <span class="n">bert_input</span> <span class="o">=</span> <span class="n">bert_input</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SEP_TOKEN</span><span class="p">]</span>
-
-        <span class="n">token_type</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_bert_token_type</span><span class="p">(</span><span class="n">bert_input</span><span class="p">,</span> <span class="n">SEP_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">SEP_TOKEN</span><span class="p">)</span>
+        <span class="n">bert_input</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_bert_input</span><span class="p">(</span>
+            <span class="n">sequence_a</span><span class="p">,</span>
+            <span class="n">sequence_b</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">,</span>
+            <span class="n">max_seq_length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span><span class="p">,</span>
+            <span class="n">data_type</span><span class="o">=</span><span class="s2">&quot;predict&quot;</span><span class="p">,</span>
+            <span class="n">cls_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cls_token</span><span class="p">,</span>
+            <span class="n">sep_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span><span class="p">,</span>
+            <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">token_type</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_bert_token_type</span><span class="p">(</span><span class="n">bert_input</span><span class="p">,</span> <span class="n">SEP_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span><span class="p">)</span>
 
         <span class="n">features</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>

@@ -1,5 +1,5 @@
 
-from claf.model.reading_comprehension.bert_for_qa import BertForQA
+from claf.model.reading_comprehension.bert import BertForQA
 from claf.model.reading_comprehension.bidaf import BiDAF
 from claf.model.reading_comprehension.bidaf_no_answer import BiDAF_No_Answer
 from claf.model.reading_comprehension.docqa import DocQA
