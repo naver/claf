@@ -196,7 +196,7 @@ class SeqClsBertReader(DataReader):
             sequence_b,
             self.tokenizer,
             max_seq_length=self.sequence_max_length,
-            data_type="infer",
+            data_type="predict",
             cls_token=self.cls_token,
             sep_token=self.sep_token,
             input_type=self.input_type,

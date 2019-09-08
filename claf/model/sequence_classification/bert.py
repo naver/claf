@@ -100,7 +100,9 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
             output_dict["data_idx"] = data_idx
 
             # Loss
-            loss = self.criterion(class_logits, class_idx)
+            loss = self.criterion(
+                class_logits.view(-1, self.num_classes), class_idx.view(-1)
+            )
             output_dict["loss"] = loss.unsqueeze(0)  # NOTE: DataParallel concat Error
 
         return output_dict
