@@ -201,7 +201,7 @@ class SeqClsBertReader(DataReader):
             sep_token=self.sep_token,
             input_type=self.input_type,
         )
-        token_type = utils.make_bert_token_type(bert_input, SEP_token=self.sep_token, input_type=self.input_type)
+        token_type = utils.make_bert_token_type(bert_input, SEP_token=self.sep_token)
 
         features = []
         features.append({
