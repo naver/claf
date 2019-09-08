@@ -161,7 +161,28 @@ Declarative experiment config (.json)
 
 ##### Defined BaseConfig
 
+```
+Base Config:
+  --base_config BASE_CONFIG
+    Use pre-defined base_config:
+    []
 
+
+    * CoNLL 2003:
+    ['conll2003/bert_large_cased']
+
+    * GLUE:
+    ['glue/qqp_roberta_base', 'glue/qnli_bert_base', 'glue/rte_bert_base', 'glue/wnli_roberta_base', 'glue/mnlim_roberta_base', 'glue/wnli_bert_base', 'glue/mnlimm_roberta_base', 'glue/cola_bert_base', 'glue/mrpc_bert_base', 'glue/mnlimm_bert_base', 'glue/stsb_bert_base', 'glue/mnlim_bert_base', 'glue/qqp_bert_base', 'glue/rte_roberta_base', 'glue/qnli_roberta_base', 'glue/sst_bert_base', 'glue/mrpc_roberta_base', 'glue/cola_roberta_base', 'glue/stsb_roberta_base', 'glue/sst_roberta_base']
+
+    * KorQuAD:
+    ['korquad/bert_base_multilingual_cased', 'korquad/bidaf', 'korquad/bert_base_multilingual_uncased', 'korquad/docqa']
+
+    * SQuAD:
+    ['squad/bert_large_uncased', 'squad/bidaf', 'squad/drqa_paper', 'squad/drqa', 'squad/bert_base_uncased', 'squad/qanet', 'squad/docqa+elmo', 'squad/bidaf_no_answer', 'squad/docqa_no_answer', 'squad/qanet_paper', 'squad/bidaf+elmo', 'squad/docqa']
+
+    * WikiSQL:
+    ['wikisql/sqlnet']
+```
 
 
 #### Evaluate

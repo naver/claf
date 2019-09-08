@@ -1535,20 +1535,21 @@ def base_config(parser):
     Use pre-defined base_config:
     {_get_define_config()}
 
-    * SQuAD:
-    {_get_define_config(category='squad')}
+
+    * CoNLL 2003:
+    {_get_define_config(category='conll2003')}
+
+    * GLUE:
+    {_get_define_config(category='glue')}
 
     * KorQuAD:
     {_get_define_config(category='korquad')}
 
+    * SQuAD:
+    {_get_define_config(category='squad')}
+
     * WikiSQL:
     {_get_define_config(category='wikisql')}
-
-    * CoLA:
-    {_get_define_config(category='cola')}
-
-    * CoNLL 2003:
-    {_get_define_config(category='conll2003')}
     """,
     )
 
