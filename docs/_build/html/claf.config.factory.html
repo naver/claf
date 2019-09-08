@@ -206,7 +206,7 @@
 <span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.config.factory.base" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.config.factory.base.Factory">
-<em class="property">class </em><code class="descclassname">claf.config.factory.base.</code><code class="descname">Factory</code><a class="reference internal" href="_modules/claf/config/factory/base.html#Factory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.base.Factory" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.config.factory.base.</code><code class="sig-name descname">Factory</code><a class="reference internal" href="_modules/claf/config/factory/base.html#Factory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.base.Factory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Factory Base Class</p>
 <p>Factory method pattern</p>
@@ -218,7 +218,7 @@ by child classes, or implemented in a base class and optionally overridden by de
 classes—rather than by calling a constructor.</p>
 <dl class="method">
 <dt id="claf.config.factory.base.Factory.create">
-<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/base.html#Factory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.base.Factory.create" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/base.html#Factory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.base.Factory.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>interface</p>
 </dd></dl>
 
@@ -226,7 +226,7 @@ classes—rather than by calling a constructor.</p>
 
 <span class="target" id="module-claf.config.factory.data_loader"></span><dl class="class">
 <dt id="claf.config.factory.data_loader.DataLoaderFactory">
-<em class="property">class </em><code class="descclassname">claf.config.factory.data_loader.</code><code class="descname">DataLoaderFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_loader.html#DataLoaderFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.data_loader.DataLoaderFactory" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.config.factory.data_loader.</code><code class="sig-name descname">DataLoaderFactory</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_loader.html#DataLoaderFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.data_loader.DataLoaderFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.config.factory.base.Factory" title="claf.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.config.factory.base.Factory</span></code></a></p>
 <p>DataLoader Factory Class</p>
 <ul class="simple">
@@ -238,20 +238,20 @@ classes—rather than by calling a constructor.</p>
 </ul>
 <dl class="method">
 <dt id="claf.config.factory.data_loader.DataLoaderFactory.create">
-<code class="descname">create</code><span class="sig-paren">(</span><em>datasets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_loader.html#DataLoaderFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.data_loader.DataLoaderFactory.create" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">datasets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_loader.html#DataLoaderFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.data_loader.DataLoaderFactory.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>create train, valid and test iterator</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.config.factory.data_loader.DataLoaderFactory.make_data_loader">
-<code class="descname">make_data_loader</code><span class="sig-paren">(</span><em>dataset</em>, <em>batch_size=32</em>, <em>shuffle=True</em>, <em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_loader.html#DataLoaderFactory.make_data_loader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.data_loader.DataLoaderFactory.make_data_loader" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">make_data_loader</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">batch_size=32</em>, <em class="sig-param">shuffle=True</em>, <em class="sig-param">cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_loader.html#DataLoaderFactory.make_data_loader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.data_loader.DataLoaderFactory.make_data_loader" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <span class="target" id="module-claf.config.factory.data_reader"></span><dl class="class">
 <dt id="claf.config.factory.data_reader.DataReaderFactory">
-<em class="property">class </em><code class="descclassname">claf.config.factory.data_reader.</code><code class="descname">DataReaderFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_reader.html#DataReaderFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.data_reader.DataReaderFactory" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.config.factory.data_reader.</code><code class="sig-name descname">DataReaderFactory</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_reader.html#DataReaderFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.data_reader.DataReaderFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.config.factory.base.Factory" title="claf.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.config.factory.base.Factory</span></code></a></p>
 <p>DataReader Factory Class</p>
 <p>Create Concrete reader according to config.dataset
@@ -265,7 +265,7 @@ Get reader from reader registries (eg. &#64;register(“reader:{reader_name}”)
 </ul>
 <dl class="method">
 <dt id="claf.config.factory.data_reader.DataReaderFactory.create">
-<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_reader.html#DataReaderFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.data_reader.DataReaderFactory.create" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_reader.html#DataReaderFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.data_reader.DataReaderFactory.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>interface</p>
 </dd></dl>
 
@@ -273,7 +273,7 @@ Get reader from reader registries (eg. &#64;register(“reader:{reader_name}”)
 
 <span class="target" id="module-claf.config.factory.model"></span><dl class="class">
 <dt id="claf.config.factory.model.ModelFactory">
-<em class="property">class </em><code class="descclassname">claf.config.factory.model.</code><code class="descname">ModelFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/model.html#ModelFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.model.ModelFactory" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.config.factory.model.</code><code class="sig-name descname">ModelFactory</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/model.html#ModelFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.model.ModelFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.config.factory.base.Factory" title="claf.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.config.factory.base.Factory</span></code></a></p>
 <p>Model Factory Class</p>
 <p>Create Concrete model according to config.model_name
@@ -287,20 +287,20 @@ Get model from model registries (eg. &#64;register(“model:{model_name}”))</p
 </ul>
 <dl class="method">
 <dt id="claf.config.factory.model.ModelFactory.create">
-<code class="descname">create</code><span class="sig-paren">(</span><em>token_makers</em>, <em>**params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/model.html#ModelFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.model.ModelFactory.create" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">token_makers</em>, <em class="sig-param">**params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/model.html#ModelFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.model.ModelFactory.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>interface</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.config.factory.model.ModelFactory.create_token_embedder">
-<code class="descname">create_token_embedder</code><span class="sig-paren">(</span><em>model</em>, <em>token_makers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/model.html#ModelFactory.create_token_embedder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.model.ModelFactory.create_token_embedder" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_token_embedder</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">token_makers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/model.html#ModelFactory.create_token_embedder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.model.ModelFactory.create_token_embedder" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <span class="target" id="module-claf.config.factory.optimizer"></span><dl class="class">
 <dt id="claf.config.factory.optimizer.OptimizerFactory">
-<em class="property">class </em><code class="descclassname">claf.config.factory.optimizer.</code><code class="descname">OptimizerFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/optimizer.html#OptimizerFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.optimizer.OptimizerFactory" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.config.factory.optimizer.</code><code class="sig-name descname">OptimizerFactory</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/optimizer.html#OptimizerFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.optimizer.OptimizerFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.config.factory.base.Factory" title="claf.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.config.factory.base.Factory</span></code></a></p>
 <p>Optimizer Factory Class</p>
 <p>include optimizer, learning_rate_scheduler and exponential_moving_average</p>
@@ -313,15 +313,20 @@ Get model from model registries (eg. &#64;register(“model:{model_name}”))</p
 </ul>
 <dl class="method">
 <dt id="claf.config.factory.optimizer.OptimizerFactory.create">
-<code class="descname">create</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/optimizer.html#OptimizerFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.optimizer.OptimizerFactory.create" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/optimizer.html#OptimizerFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.optimizer.OptimizerFactory.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>interface</p>
 </dd></dl>
+
+<dl class="method">
+<dt id="claf.config.factory.optimizer.OptimizerFactory.set_warmup_steps">
+<code class="sig-name descname">set_warmup_steps</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/optimizer.html#OptimizerFactory.set_warmup_steps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.optimizer.OptimizerFactory.set_warmup_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <span class="target" id="module-claf.config.factory.tokens"></span><dl class="class">
 <dt id="claf.config.factory.tokens.TokenMakersFactory">
-<em class="property">class </em><code class="descclassname">claf.config.factory.tokens.</code><code class="descname">TokenMakersFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/tokens.html#TokenMakersFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.tokens.TokenMakersFactory" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.config.factory.tokens.</code><code class="sig-name descname">TokenMakersFactory</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/tokens.html#TokenMakersFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.tokens.TokenMakersFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.config.factory.base.Factory" title="claf.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.config.factory.base.Factory</span></code></a></p>
 <p>TokenMakers Factory Class</p>
 <ul class="simple">
@@ -333,12 +338,12 @@ Get model from model registries (eg. &#64;register(“model:{model_name}”))</p
 </ul>
 <dl class="attribute">
 <dt id="claf.config.factory.tokens.TokenMakersFactory.LANGS">
-<code class="descname">LANGS</code><em class="property"> = ['eng', 'kor']</em><a class="headerlink" href="#claf.config.factory.tokens.TokenMakersFactory.LANGS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LANGS</code><em class="property"> = ['eng', 'kor']</em><a class="headerlink" href="#claf.config.factory.tokens.TokenMakersFactory.LANGS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.config.factory.tokens.TokenMakersFactory.create">
-<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/tokens.html#TokenMakersFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.tokens.TokenMakersFactory.create" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/tokens.html#TokenMakersFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.tokens.TokenMakersFactory.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>interface</p>
 </dd></dl>
 
@@ -346,13 +351,13 @@ Get model from model registries (eg. &#64;register(“model:{model_name}”))</p
 
 <dl class="function">
 <dt id="claf.config.factory.tokens.make_all_tokenizers">
-<code class="descclassname">claf.config.factory.tokens.</code><code class="descname">make_all_tokenizers</code><span class="sig-paren">(</span><em>all_tokenizer_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/tokens.html#make_all_tokenizers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.tokens.make_all_tokenizers" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">claf.config.factory.tokens.</code><code class="sig-name descname">make_all_tokenizers</code><span class="sig-paren">(</span><em class="sig-param">all_tokenizer_config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/tokens.html#make_all_tokenizers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.tokens.make_all_tokenizers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tokenizer is resource used all token together</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="claf.config.factory.tokens.make_tokenizer">
-<code class="descclassname">claf.config.factory.tokens.</code><code class="descname">make_tokenizer</code><span class="sig-paren">(</span><em>tokenizer_cls</em>, <em>tokenizer_config</em>, <em>parent_tokenizers={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/tokens.html#make_tokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.tokens.make_tokenizer" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">claf.config.factory.tokens.</code><code class="sig-name descname">make_tokenizer</code><span class="sig-paren">(</span><em class="sig-param">tokenizer_cls</em>, <em class="sig-param">tokenizer_config</em>, <em class="sig-param">parent_tokenizers={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/tokens.html#make_tokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.tokens.make_tokenizer" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -360,7 +365,7 @@ Get model from model registries (eg. &#64;register(“model:{model_name}”))</p
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.config.factory" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.config.factory.DataReaderFactory">
-<em class="property">class </em><code class="descclassname">claf.config.factory.</code><code class="descname">DataReaderFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_reader.html#DataReaderFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.DataReaderFactory" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.config.factory.</code><code class="sig-name descname">DataReaderFactory</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_reader.html#DataReaderFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.DataReaderFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.config.factory.base.Factory" title="claf.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.config.factory.base.Factory</span></code></a></p>
 <p>DataReader Factory Class</p>
 <p>Create Concrete reader according to config.dataset
@@ -374,7 +379,7 @@ Get reader from reader registries (eg. &#64;register(“reader:{reader_name}”)
 </ul>
 <dl class="method">
 <dt id="claf.config.factory.DataReaderFactory.create">
-<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_reader.html#DataReaderFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.DataReaderFactory.create" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_reader.html#DataReaderFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.DataReaderFactory.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>interface</p>
 </dd></dl>
 
@@ -382,7 +387,7 @@ Get reader from reader registries (eg. &#64;register(“reader:{reader_name}”)
 
 <dl class="class">
 <dt id="claf.config.factory.DataLoaderFactory">
-<em class="property">class </em><code class="descclassname">claf.config.factory.</code><code class="descname">DataLoaderFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_loader.html#DataLoaderFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.DataLoaderFactory" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.config.factory.</code><code class="sig-name descname">DataLoaderFactory</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_loader.html#DataLoaderFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.DataLoaderFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.config.factory.base.Factory" title="claf.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.config.factory.base.Factory</span></code></a></p>
 <p>DataLoader Factory Class</p>
 <ul class="simple">
@@ -394,20 +399,20 @@ Get reader from reader registries (eg. &#64;register(“reader:{reader_name}”)
 </ul>
 <dl class="method">
 <dt id="claf.config.factory.DataLoaderFactory.create">
-<code class="descname">create</code><span class="sig-paren">(</span><em>datasets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_loader.html#DataLoaderFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.DataLoaderFactory.create" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">datasets</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_loader.html#DataLoaderFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.DataLoaderFactory.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>create train, valid and test iterator</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.config.factory.DataLoaderFactory.make_data_loader">
-<code class="descname">make_data_loader</code><span class="sig-paren">(</span><em>dataset</em>, <em>batch_size=32</em>, <em>shuffle=True</em>, <em>cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_loader.html#DataLoaderFactory.make_data_loader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.DataLoaderFactory.make_data_loader" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">make_data_loader</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">batch_size=32</em>, <em class="sig-param">shuffle=True</em>, <em class="sig-param">cuda_device_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/data_loader.html#DataLoaderFactory.make_data_loader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.DataLoaderFactory.make_data_loader" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="claf.config.factory.ModelFactory">
-<em class="property">class </em><code class="descclassname">claf.config.factory.</code><code class="descname">ModelFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/model.html#ModelFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.ModelFactory" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.config.factory.</code><code class="sig-name descname">ModelFactory</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/model.html#ModelFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.ModelFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.config.factory.base.Factory" title="claf.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.config.factory.base.Factory</span></code></a></p>
 <p>Model Factory Class</p>
 <p>Create Concrete model according to config.model_name
@@ -421,20 +426,20 @@ Get model from model registries (eg. &#64;register(“model:{model_name}”))</p
 </ul>
 <dl class="method">
 <dt id="claf.config.factory.ModelFactory.create">
-<code class="descname">create</code><span class="sig-paren">(</span><em>token_makers</em>, <em>**params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/model.html#ModelFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.ModelFactory.create" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">token_makers</em>, <em class="sig-param">**params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/model.html#ModelFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.ModelFactory.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>interface</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.config.factory.ModelFactory.create_token_embedder">
-<code class="descname">create_token_embedder</code><span class="sig-paren">(</span><em>model</em>, <em>token_makers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/model.html#ModelFactory.create_token_embedder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.ModelFactory.create_token_embedder" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_token_embedder</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">token_makers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/model.html#ModelFactory.create_token_embedder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.ModelFactory.create_token_embedder" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="claf.config.factory.OptimizerFactory">
-<em class="property">class </em><code class="descclassname">claf.config.factory.</code><code class="descname">OptimizerFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/optimizer.html#OptimizerFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.OptimizerFactory" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.config.factory.</code><code class="sig-name descname">OptimizerFactory</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/optimizer.html#OptimizerFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.OptimizerFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.config.factory.base.Factory" title="claf.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.config.factory.base.Factory</span></code></a></p>
 <p>Optimizer Factory Class</p>
 <p>include optimizer, learning_rate_scheduler and exponential_moving_average</p>
@@ -447,15 +452,20 @@ Get model from model registries (eg. &#64;register(“model:{model_name}”))</p
 </ul>
 <dl class="method">
 <dt id="claf.config.factory.OptimizerFactory.create">
-<code class="descname">create</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/optimizer.html#OptimizerFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.OptimizerFactory.create" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">model</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/optimizer.html#OptimizerFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.OptimizerFactory.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>interface</p>
 </dd></dl>
+
+<dl class="method">
+<dt id="claf.config.factory.OptimizerFactory.set_warmup_steps">
+<code class="sig-name descname">set_warmup_steps</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/optimizer.html#OptimizerFactory.set_warmup_steps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.OptimizerFactory.set_warmup_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="claf.config.factory.TokenMakersFactory">
-<em class="property">class </em><code class="descclassname">claf.config.factory.</code><code class="descname">TokenMakersFactory</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/tokens.html#TokenMakersFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.TokenMakersFactory" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.config.factory.</code><code class="sig-name descname">TokenMakersFactory</code><span class="sig-paren">(</span><em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/tokens.html#TokenMakersFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.TokenMakersFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.config.factory.base.Factory" title="claf.config.factory.base.Factory"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.config.factory.base.Factory</span></code></a></p>
 <p>TokenMakers Factory Class</p>
 <ul class="simple">
@@ -467,12 +477,12 @@ Get model from model registries (eg. &#64;register(“model:{model_name}”))</p
 </ul>
 <dl class="attribute">
 <dt id="claf.config.factory.TokenMakersFactory.LANGS">
-<code class="descname">LANGS</code><em class="property"> = ['eng', 'kor']</em><a class="headerlink" href="#claf.config.factory.TokenMakersFactory.LANGS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">LANGS</code><em class="property"> = ['eng', 'kor']</em><a class="headerlink" href="#claf.config.factory.TokenMakersFactory.LANGS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.config.factory.TokenMakersFactory.create">
-<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/tokens.html#TokenMakersFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.TokenMakersFactory.create" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/config/factory/tokens.html#TokenMakersFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.config.factory.TokenMakersFactory.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>interface</p>
 </dd></dl>
 

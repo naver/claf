@@ -108,7 +108,7 @@
 <li class="toctree-l3"><a class="reference internal" href="claf.model.reading_comprehension.html">claf.model.reading_comprehension package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="claf.model.semantic_parsing.html">claf.model.semantic_parsing package</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">claf.model.sequence_classification package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#module-claf.model.sequence_classification.bert_for_seq_cls">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-claf.model.sequence_classification.mixin">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-claf.model.sequence_classification">Module contents</a></li>
 </ul>
 </li>
@@ -205,130 +205,16 @@
             
   <div class="section" id="claf-model-sequence-classification-package">
 <h1>claf.model.sequence_classification package<a class="headerlink" href="#claf-model-sequence-classification-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-claf.model.sequence_classification.bert_for_seq_cls">
-<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.model.sequence_classification.bert_for_seq_cls" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-claf.model.sequence_classification.mixin">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.model.sequence_classification.mixin" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="claf.model.sequence_classification.bert_for_seq_cls.BertForSeqCls">
-<em class="property">class </em><code class="descclassname">claf.model.sequence_classification.bert_for_seq_cls.</code><code class="descname">BertForSeqCls</code><span class="sig-paren">(</span><em>token_makers</em>, <em>num_classes</em>, <em>pretrained_model_name=None</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.bert_for_seq_cls.BertForSeqCls" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#claf.model.sequence_classification.mixin.SequenceClassification" title="claf.model.sequence_classification.mixin.SequenceClassification"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.sequence_classification.mixin.SequenceClassification</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithoutTokenEmbedder" title="claf.model.base.ModelWithoutTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithoutTokenEmbedder</span></code></a></p>
-<p>Implementation of Single Sentence Classification model presented in
-BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
-(<a class="reference external" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>)</p>
-<ul class="simple">
-<li><dl class="simple">
-<dt>Args:</dt><dd><p>token_embedder: used to embed the sequence
-num_classes: number of classified classes</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Kwargs:</dt><dd><p>pretrained_model_name: the name of a pre-trained model
-dropout: classification layer dropout</p>
-</dd>
-</dl>
-</li>
-</ul>
-<dl class="method">
-<dt id="claf.model.sequence_classification.bert_for_seq_cls.BertForSeqCls.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.bert_for_seq_cls.BertForSeqCls.forward" title="Permalink to this definition">¶</a></dt>
-<dd><ul>
-<li><dl>
-<dt>Args:</dt><dd><p>features: feature dictionary like below.
-{</p>
-<blockquote>
-<div><dl>
-<dt>“bert_input”: {</dt><dd><dl class="simple">
-<dt>“feature”: [</dt><dd><p>[3, 4, 1, 0, 0, 0, …],
-…,</p>
-</dd>
-</dl>
-<p>]</p>
-</dd>
-</dl>
-<p>},
-“token_type”: {</p>
-<blockquote>
-<div><dl class="simple">
-<dt>“feature”: [</dt><dd><p>[0, 0, 0, 0, 0, 0, …],
-…,</p>
-</dd>
-</dl>
-<p>],</p>
-</div></blockquote>
-<p>}</p>
-</div></blockquote>
-<p>}</p>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>Kwargs:</dt><dd><p>label: label dictionary like below.
-{</p>
-<blockquote>
-<div><p>“class_idx”: [2, 1, 0, 4, 5, …]
-“data_idx”: [2, 4, 5, 7, 2, 1, …]</p>
-</div></blockquote>
-<p>}
-Do not calculate loss when there is no label. (inference/predict mode)</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Returns: output_dict (dict) consisting of</dt><dd><ul class="simple">
-<li><p>sequence_embed: embedding vector of the sequence</p></li>
-<li><p>class_logits: representing unnormalized log probabilities of the class.</p></li>
-<li><p>class_idx: target class idx</p></li>
-<li><p>data_idx: data idx</p></li>
-<li><p>loss: a scalar loss to be optimized</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd></dl>
-
-<dl class="method">
-<dt id="claf.model.sequence_classification.bert_for_seq_cls.BertForSeqCls.print_examples">
-<code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.bert_for_seq_cls.BertForSeqCls.print_examples" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print evaluation examples</p>
-<ul>
-<li><dl>
-<dt>Args:</dt><dd><p>index: data index
-inputs: mini-batch inputs
-predictions: prediction dictionary consisting of</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>key: ‘id’ (sequence id)</p></li>
-<li><dl class="simple">
-<dt>value: dictionary consisting of</dt><dd><ul>
-<li><p>class_idx</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</div></blockquote>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Returns:</dt><dd><p>print(Sequence, Sequence Tokens, Target Class, Predicted Class)</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-claf.model.sequence_classification.mixin"></span><dl class="class">
 <dt id="claf.model.sequence_classification.mixin.SequenceClassification">
-<em class="property">class </em><code class="descclassname">claf.model.sequence_classification.mixin.</code><code class="descname">SequenceClassification</code><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.model.sequence_classification.mixin.</code><code class="sig-name descname">SequenceClassification</code><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Sequence Classification Mixin Class</p>
 <dl class="method">
 <dt id="claf.model.sequence_classification.mixin.SequenceClassification.make_metrics">
-<code class="descname">make_metrics</code><span class="sig-paren">(</span><em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification.make_metrics" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">make_metrics</code><span class="sig-paren">(</span><em class="sig-param">predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification.make_metrics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make metrics with prediction dictionary</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -366,7 +252,7 @@ predictions: prediction dictionary consisting of</p>
 
 <dl class="method">
 <dt id="claf.model.sequence_classification.mixin.SequenceClassification.make_predictions">
-<code class="descname">make_predictions</code><span class="sig-paren">(</span><em>output_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification.make_predictions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification.make_predictions" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">make_predictions</code><span class="sig-paren">(</span><em class="sig-param">output_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification.make_predictions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification.make_predictions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make predictions with model’s output_dict</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -405,7 +291,7 @@ predictions: prediction dictionary consisting of</p>
 
 <dl class="method">
 <dt id="claf.model.sequence_classification.mixin.SequenceClassification.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>output_dict</em>, <em>arguments</em>, <em>helper</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification.predict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">output_dict</em>, <em class="sig-param">arguments</em>, <em class="sig-param">helper</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inference by raw_feature</p>
 <ul>
 <li><dl>
@@ -440,7 +326,7 @@ helper: dictionary to get the classification result, consisting of</p>
 
 <dl class="method">
 <dt id="claf.model.sequence_classification.mixin.SequenceClassification.print_examples">
-<code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification.print_examples" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">print_examples</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">inputs</em>, <em class="sig-param">predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification.print_examples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print evaluation examples</p>
 <ul>
 <li><dl>
@@ -472,7 +358,7 @@ predictions: prediction dictionary consisting of</p>
 
 <dl class="method">
 <dt id="claf.model.sequence_classification.mixin.SequenceClassification.write_predictions">
-<code class="descname">write_predictions</code><span class="sig-paren">(</span><em>predictions</em>, <em>file_path=None</em>, <em>is_dict=True</em>, <em>pycm_obj=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification.write_predictions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification.write_predictions" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">write_predictions</code><span class="sig-paren">(</span><em class="sig-param">predictions</em>, <em class="sig-param">file_path=None</em>, <em class="sig-param">is_dict=True</em>, <em class="sig-param">pycm_obj=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/mixin.html#SequenceClassification.write_predictions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.mixin.SequenceClassification.write_predictions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Override write_predictions() in ModelBase to log confusion matrix</p>
 </dd></dl>
 
@@ -480,7 +366,7 @@ predictions: prediction dictionary consisting of</p>
 
 <span class="target" id="module-claf.model.sequence_classification.structured_self_attention"></span><dl class="class">
 <dt id="claf.model.sequence_classification.structured_self_attention.StructuredSelfAttention">
-<em class="property">class </em><code class="descclassname">claf.model.sequence_classification.structured_self_attention.</code><code class="descname">StructuredSelfAttention</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>num_classes</em>, <em>encoding_rnn_hidden_dim=300</em>, <em>encoding_rnn_num_layer=2</em>, <em>encoding_rnn_dropout=0.0</em>, <em>attention_dim=350</em>, <em>num_attention_heads=30</em>, <em>sequence_embed_dim=2000</em>, <em>dropout=0.5</em>, <em>penalization_coefficient=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.structured_self_attention.StructuredSelfAttention" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.model.sequence_classification.structured_self_attention.</code><code class="sig-name descname">StructuredSelfAttention</code><span class="sig-paren">(</span><em class="sig-param">token_embedder</em>, <em class="sig-param">num_classes</em>, <em class="sig-param">encoding_rnn_hidden_dim=300</em>, <em class="sig-param">encoding_rnn_num_layer=2</em>, <em class="sig-param">encoding_rnn_dropout=0.0</em>, <em class="sig-param">attention_dim=350</em>, <em class="sig-param">num_attention_heads=30</em>, <em class="sig-param">sequence_embed_dim=2000</em>, <em class="sig-param">dropout=0.5</em>, <em class="sig-param">penalization_coefficient=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.structured_self_attention.StructuredSelfAttention" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.sequence_classification.mixin.SequenceClassification" title="claf.model.sequence_classification.mixin.SequenceClassification"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.sequence_classification.mixin.SequenceClassification</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
 <p>Implementation of model presented in
 A Structured Self-attentive Sentence Embedding
@@ -507,7 +393,7 @@ penalization_coefficient: penalty coefficient for frobenius norm</p>
 </ul>
 <dl class="method">
 <dt id="claf.model.sequence_classification.structured_self_attention.StructuredSelfAttention.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.structured_self_attention.StructuredSelfAttention.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">features</em>, <em class="sig-param">labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.structured_self_attention.StructuredSelfAttention.forward" title="Permalink to this definition">¶</a></dt>
 <dd><ul>
 <li><dl class="simple">
 <dt>Args:</dt><dd><p>features: feature dictionary like below.
@@ -540,7 +426,7 @@ penalization_coefficient: penalty coefficient for frobenius norm</p>
 
 <dl class="method">
 <dt id="claf.model.sequence_classification.structured_self_attention.StructuredSelfAttention.penalty">
-<code class="descname">penalty</code><span class="sig-paren">(</span><em>attention</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention.penalty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.structured_self_attention.StructuredSelfAttention.penalty" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">penalty</code><span class="sig-paren">(</span><em class="sig-param">attention</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention.penalty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.structured_self_attention.StructuredSelfAttention.penalty" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -550,9 +436,9 @@ penalization_coefficient: penalty coefficient for frobenius norm</p>
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.model.sequence_classification" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.model.sequence_classification.BertForSeqCls">
-<em class="property">class </em><code class="descclassname">claf.model.sequence_classification.</code><code class="descname">BertForSeqCls</code><span class="sig-paren">(</span><em>token_makers</em>, <em>num_classes</em>, <em>pretrained_model_name=None</em>, <em>dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.BertForSeqCls" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.model.sequence_classification.</code><code class="sig-name descname">BertForSeqCls</code><span class="sig-paren">(</span><em class="sig-param">token_makers</em>, <em class="sig-param">num_classes</em>, <em class="sig-param">pretrained_model_name=None</em>, <em class="sig-param">dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/bert.html#BertForSeqCls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.BertForSeqCls" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.sequence_classification.mixin.SequenceClassification" title="claf.model.sequence_classification.mixin.SequenceClassification"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.sequence_classification.mixin.SequenceClassification</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithoutTokenEmbedder" title="claf.model.base.ModelWithoutTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithoutTokenEmbedder</span></code></a></p>
-<p>Implementation of Single Sentence Classification model presented in
+<p>Implementation of Sentence Classification model presented in
 BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 (<a class="reference external" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>)</p>
 <ul class="simple">
@@ -571,7 +457,7 @@ dropout: classification layer dropout</p>
 </ul>
 <dl class="method">
 <dt id="claf.model.sequence_classification.BertForSeqCls.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.BertForSeqCls.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">features</em>, <em class="sig-param">labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/bert.html#BertForSeqCls.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.BertForSeqCls.forward" title="Permalink to this definition">¶</a></dt>
 <dd><ul>
 <li><dl>
 <dt>Args:</dt><dd><p>features: feature dictionary like below.
@@ -630,7 +516,111 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 
 <dl class="method">
 <dt id="claf.model.sequence_classification.BertForSeqCls.print_examples">
-<code class="descname">print_examples</code><span class="sig-paren">(</span><em>index</em>, <em>inputs</em>, <em>predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/bert_for_seq_cls.html#BertForSeqCls.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.BertForSeqCls.print_examples" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">print_examples</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">inputs</em>, <em class="sig-param">predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/bert.html#BertForSeqCls.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.BertForSeqCls.print_examples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print evaluation examples</p>
+<ul>
+<li><dl>
+<dt>Args:</dt><dd><p>index: data index
+inputs: mini-batch inputs
+predictions: prediction dictionary consisting of</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>key: ‘id’ (sequence id)</p></li>
+<li><dl class="simple">
+<dt>value: dictionary consisting of</dt><dd><ul>
+<li><p>class_idx</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><p>print(Sequence, Sequence Tokens, Target Class, Predicted Class)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.model.sequence_classification.RobertaForSeqCls">
+<em class="property">class </em><code class="sig-prename descclassname">claf.model.sequence_classification.</code><code class="sig-name descname">RobertaForSeqCls</code><span class="sig-paren">(</span><em class="sig-param">token_makers</em>, <em class="sig-param">num_classes</em>, <em class="sig-param">pretrained_model_name=None</em>, <em class="sig-param">dropout=0.2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/roberta.html#RobertaForSeqCls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.RobertaForSeqCls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.sequence_classification.mixin.SequenceClassification" title="claf.model.sequence_classification.mixin.SequenceClassification"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.sequence_classification.mixin.SequenceClassification</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithoutTokenEmbedder" title="claf.model.base.ModelWithoutTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithoutTokenEmbedder</span></code></a></p>
+<p>Implementation of Sentence Classification model presented in
+BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+(<a class="reference external" href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>)</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_embedder: used to embed the sequence
+num_classes: number of classified classes</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Kwargs:</dt><dd><p>pretrained_model_name: the name of a pre-trained model
+dropout: classification layer dropout</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.sequence_classification.RobertaForSeqCls.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">features</em>, <em class="sig-param">labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/roberta.html#RobertaForSeqCls.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.RobertaForSeqCls.forward" title="Permalink to this definition">¶</a></dt>
+<dd><ul>
+<li><dl>
+<dt>Args:</dt><dd><p>features: feature dictionary like below.
+{</p>
+<blockquote>
+<div><dl>
+<dt>“bert_input”: {</dt><dd><dl class="simple">
+<dt>“feature”: [</dt><dd><p>[3, 4, 1, 0, 0, 0, …],
+…,</p>
+</dd>
+</dl>
+<p>]</p>
+</dd>
+</dl>
+<p>},</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Kwargs:</dt><dd><p>label: label dictionary like below.
+{</p>
+<blockquote>
+<div><p>“class_idx”: [2, 1, 0, 4, 5, …]
+“data_idx”: [2, 4, 5, 7, 2, 1, …]</p>
+</div></blockquote>
+<p>}
+Do not calculate loss when there is no label. (inference/predict mode)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Returns: output_dict (dict) consisting of</dt><dd><ul class="simple">
+<li><p>sequence_embed: embedding vector of the sequence</p></li>
+<li><p>class_logits: representing unnormalized log probabilities of the class.</p></li>
+<li><p>class_idx: target class idx</p></li>
+<li><p>data_idx: data idx</p></li>
+<li><p>loss: a scalar loss to be optimized</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.model.sequence_classification.RobertaForSeqCls.print_examples">
+<code class="sig-name descname">print_examples</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">inputs</em>, <em class="sig-param">predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/roberta.html#RobertaForSeqCls.print_examples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.RobertaForSeqCls.print_examples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print evaluation examples</p>
 <ul>
 <li><dl>
@@ -664,7 +654,7 @@ predictions: prediction dictionary consisting of</p>
 
 <dl class="class">
 <dt id="claf.model.sequence_classification.StructuredSelfAttention">
-<em class="property">class </em><code class="descclassname">claf.model.sequence_classification.</code><code class="descname">StructuredSelfAttention</code><span class="sig-paren">(</span><em>token_embedder</em>, <em>num_classes</em>, <em>encoding_rnn_hidden_dim=300</em>, <em>encoding_rnn_num_layer=2</em>, <em>encoding_rnn_dropout=0.0</em>, <em>attention_dim=350</em>, <em>num_attention_heads=30</em>, <em>sequence_embed_dim=2000</em>, <em>dropout=0.5</em>, <em>penalization_coefficient=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.StructuredSelfAttention" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.model.sequence_classification.</code><code class="sig-name descname">StructuredSelfAttention</code><span class="sig-paren">(</span><em class="sig-param">token_embedder</em>, <em class="sig-param">num_classes</em>, <em class="sig-param">encoding_rnn_hidden_dim=300</em>, <em class="sig-param">encoding_rnn_num_layer=2</em>, <em class="sig-param">encoding_rnn_dropout=0.0</em>, <em class="sig-param">attention_dim=350</em>, <em class="sig-param">num_attention_heads=30</em>, <em class="sig-param">sequence_embed_dim=2000</em>, <em class="sig-param">dropout=0.5</em>, <em class="sig-param">penalization_coefficient=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.StructuredSelfAttention" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.model.sequence_classification.mixin.SequenceClassification" title="claf.model.sequence_classification.mixin.SequenceClassification"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.sequence_classification.mixin.SequenceClassification</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithTokenEmbedder" title="claf.model.base.ModelWithTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithTokenEmbedder</span></code></a></p>
 <p>Implementation of model presented in
 A Structured Self-attentive Sentence Embedding
@@ -691,7 +681,7 @@ penalization_coefficient: penalty coefficient for frobenius norm</p>
 </ul>
 <dl class="method">
 <dt id="claf.model.sequence_classification.StructuredSelfAttention.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>features</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.StructuredSelfAttention.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">features</em>, <em class="sig-param">labels=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.StructuredSelfAttention.forward" title="Permalink to this definition">¶</a></dt>
 <dd><ul>
 <li><dl class="simple">
 <dt>Args:</dt><dd><p>features: feature dictionary like below.
@@ -724,7 +714,7 @@ penalization_coefficient: penalty coefficient for frobenius norm</p>
 
 <dl class="method">
 <dt id="claf.model.sequence_classification.StructuredSelfAttention.penalty">
-<code class="descname">penalty</code><span class="sig-paren">(</span><em>attention</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention.penalty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.StructuredSelfAttention.penalty" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">penalty</code><span class="sig-paren">(</span><em class="sig-param">attention</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/sequence_classification/structured_self_attention.html#StructuredSelfAttention.penalty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.sequence_classification.StructuredSelfAttention.penalty" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

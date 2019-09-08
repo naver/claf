@@ -229,8 +229,13 @@
         <span class="n">all_tokenizer_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;char&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
         <span class="n">parent_tokenizers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;word_tokenizer&quot;</span><span class="p">:</span> <span class="n">word_tokenizer</span><span class="p">},</span>
     <span class="p">)</span>
+    <span class="n">bpe_tokenizer</span> <span class="o">=</span> <span class="n">make_tokenizer</span><span class="p">(</span>
+        <span class="n">tokenizer</span><span class="o">.</span><span class="n">BPETokenizer</span><span class="p">,</span>
+        <span class="n">all_tokenizer_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;bpe&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="p">)</span>
 
     <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;bpe&quot;</span><span class="p">:</span> <span class="n">bpe_tokenizer</span><span class="p">,</span>
         <span class="s2">&quot;char&quot;</span><span class="p">:</span> <span class="n">char_tokenizer</span><span class="p">,</span>
         <span class="s2">&quot;subword&quot;</span><span class="p">:</span> <span class="n">subword_tokenizer</span><span class="p">,</span>
         <span class="s2">&quot;word&quot;</span><span class="p">:</span> <span class="n">word_tokenizer</span><span class="p">,</span>
@@ -254,7 +259,11 @@
 
 <div class="viewcode-block" id="TokenMakersFactory.create"><a class="viewcode-back" href="../../../../claf.config.factory.html#claf.config.factory.tokens.TokenMakersFactory.create">[docs]</a>    <span class="nd">@overrides</span>
     <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">tokenizers</span> <span class="o">=</span> <span class="n">make_all_tokenizers</span><span class="p">(</span><span class="n">convert_config2dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;tokenizer&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">tokenizers</span> <span class="o">=</span> <span class="n">make_all_tokenizers</span><span class="p">(</span><span class="n">convert_config2dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tokenizers</span> <span class="o">=</span> <span class="p">{}</span>
+
         <span class="n">token_names</span><span class="p">,</span> <span class="n">token_types</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">types</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">token_names</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">token_types</span><span class="p">):</span>

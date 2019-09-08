@@ -204,13 +204,14 @@
 <span class="sd">        skip_keys: skip to make tensor</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cuda_device_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cuda_device_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pad_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">skip_keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cuda_device_id</span> <span class="o">=</span> <span class="n">cuda_device_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pad_value</span> <span class="o">=</span> <span class="n">pad_value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">skip_keys</span> <span class="o">=</span> <span class="n">skip_keys</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">apply_pad</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">pad_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pad_value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">apply_pad</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pad_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pad_value</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
 

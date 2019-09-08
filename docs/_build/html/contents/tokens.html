@@ -192,20 +192,20 @@
             
   <div class="section" id="tokens">
 <h1>Tokens<a class="headerlink" href="#tokens" title="Permalink to this headline">¶</a></h1>
-<p>TokenMakers consists of Tokenizer, Indexer, Vocabulary, and Embedding Modules.<code class="docutils literal notranslate"><span class="pre">TokenMaker</span></code> is responsible for the indexing of text and the generation of the tensors through the embedding module.</p>
+<p>TokenMakers consists of Tokenizer, Indexer, Vocabulary, and Embedding Modules.<br /><code class="docutils literal notranslate"><span class="pre">TokenMaker</span></code> is responsible for the indexing of text and the generation of the tensors through the embedding module.</p>
 <div class="section" id="tokenizers">
 <h2>Tokenizers<a class="headerlink" href="#tokenizers" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Tokenizer Design</p></li>
 </ul>
-<p><img alt="../_images/tokenizers_design.png" src="../_images/tokenizers_design.png" />images</p>
+<p><img alt="images" src="../_images/tokenizers_design.png" /></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SentTokenizer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span> <span class="o">...</span>
 <span class="k">class</span> <span class="nc">WordTokenizer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">sent_tokenizer</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="o">...</span>
 <span class="k">class</span> <span class="nc">SubwordTokenizer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">word_tokenizer</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="o">...</span>
 <span class="k">class</span> <span class="nc">CharTokenizer</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">word_tokenizer</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="o">...</span>
 </pre></div>
 </div>
-<p>The Tokenizer has a dependency with the other unit’s tokenizer and the <code class="docutils literal notranslate"><span class="pre">tokenize()</span></code> function takes the input of text units.(* unit: unit of input e.g. ‘text’, ‘sentence’ and ‘word’)</p>
+<p>The Tokenizer has a dependency with the other unit’s tokenizer and the <code class="docutils literal notranslate"><span class="pre">tokenize()</span></code> function takes the input of text units.<br />(* unit: unit of input e.g. ‘text’, ‘sentence’ and ‘word’)</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">tokenizer()</span></code> example</p></li>
 </ul>
@@ -231,6 +231,12 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>BPE</td>
+<td>All (depend on vocab)</td>
+<td><strong>roberta</strong></td>
+<td>Hello World<br/>-&gt; ["ĠHello", "ĠWorld"]</td>
+</tr>
 <tr>
 <td>Char</td>
 <td>All</td>
@@ -313,6 +319,12 @@
 <td>Embeddings from Neural Machine Translation</td>
 <td><code>NMT</code></td>
 <td>- From <a href="https://github.com/salesforce/cove">Salesforce</a></td>
+</tr>
+<tr>
+<td><strong>feature</strong></td>
+<td>Do not use embedding function, just pass feature</td>
+<td><code>Feature</code></td>
+<td>-</td>
 </tr>
 <tr>
 <td><strong>word</strong></td>

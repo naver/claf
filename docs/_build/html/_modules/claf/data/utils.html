@@ -190,6 +190,34 @@
 <span class="kn">import</span> <span class="nn">torch</span>
 
 
+<div class="viewcode-block" id="make_bert_input"><a class="viewcode-back" href="../../../claf.data.html#claf.data.utils.make_bert_input">[docs]</a><span class="k">def</span> <span class="nf">make_bert_input</span><span class="p">(</span>
+    <span class="n">sequence_a</span><span class="p">,</span>
+    <span class="n">sequence_b</span><span class="p">,</span>
+    <span class="n">bert_tokenizer</span><span class="p">,</span>
+    <span class="n">max_seq_length</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+    <span class="n">data_type</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span>
+    <span class="n">cls_token</span><span class="o">=</span><span class="s2">&quot;[CLS]&quot;</span><span class="p">,</span>
+    <span class="n">sep_token</span><span class="o">=</span><span class="s2">&quot;[SEP]&quot;</span><span class="p">,</span>
+    <span class="n">input_type</span><span class="o">=</span><span class="s2">&quot;bert&quot;</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">sequence_a_tokens</span> <span class="o">=</span> <span class="n">bert_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">sequence_a</span><span class="p">)</span>
+    <span class="n">bert_input</span> <span class="o">=</span> <span class="p">[</span><span class="n">cls_token</span><span class="p">]</span> <span class="o">+</span> <span class="n">sequence_a_tokens</span> <span class="o">+</span> <span class="p">[</span><span class="n">sep_token</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">sequence_b</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">input_type</span> <span class="o">==</span> <span class="s2">&quot;roberta&quot;</span><span class="p">:</span>
+            <span class="n">bert_input</span> <span class="o">+=</span> <span class="p">[</span><span class="n">sep_token</span><span class="p">]</span>
+
+        <span class="n">sequence_b_tokens</span> <span class="o">=</span> <span class="n">bert_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">sequence_b</span><span class="p">)</span>
+        <span class="n">bert_input</span> <span class="o">+=</span> <span class="n">sequence_b_tokens</span> <span class="o">+</span> <span class="p">[</span><span class="n">sep_token</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bert_input</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_seq_length</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s2">&quot;train&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># for skip</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">bert_input</span><span class="p">[:</span><span class="n">max_seq_length</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">sep_token</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">bert_input</span></div>
+
+
 <div class="viewcode-block" id="make_bert_token_types"><a class="viewcode-back" href="../../../claf.data.html#claf.data.utils.make_bert_token_types">[docs]</a><span class="k">def</span> <span class="nf">make_bert_token_types</span><span class="p">(</span><span class="n">bert_inputs</span><span class="p">,</span> <span class="n">SEP_token</span><span class="o">=</span><span class="s2">&quot;[SEP]&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Bert Inputs segment_ids</span>

@@ -216,18 +216,16 @@
 <span class="sd">        ignore_tag_idx: prediction results that have this number as ground-truth idx are ignored</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">CLS_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;[CLS]&quot;</span>
-    <span class="n">SEP_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;[SEP]&quot;</span>
-    <span class="n">UNK_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;[UNK]&quot;</span>
-
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">file_paths</span><span class="p">,</span>
-            <span class="n">tokenizers</span><span class="p">,</span>
-            <span class="n">lang_code</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">sequence_max_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">tag_key</span><span class="o">=</span><span class="s2">&quot;tags&quot;</span><span class="p">,</span>
-            <span class="n">ignore_tag_idx</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">file_paths</span><span class="p">,</span>
+        <span class="n">tokenizers</span><span class="p">,</span>
+        <span class="n">lang_code</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">sequence_max_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">tag_key</span><span class="o">=</span><span class="s2">&quot;tags&quot;</span><span class="p">,</span>
+        <span class="n">cls_token</span><span class="o">=</span><span class="s2">&quot;[CLS]&quot;</span><span class="p">,</span>
+        <span class="n">sep_token</span><span class="o">=</span><span class="s2">&quot;[SEP]&quot;</span><span class="p">,</span>
+        <span class="n">ignore_tag_idx</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="nb">super</span><span class="p">(</span><span class="n">TokClsBertReader</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">file_paths</span><span class="p">,</span> <span class="n">TokClsBertDataset</span><span class="p">)</span>
@@ -247,6 +245,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">lang_code</span> <span class="o">=</span> <span class="n">lang_code</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tag_key</span> <span class="o">=</span> <span class="n">tag_key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cls_token</span> <span class="o">=</span> <span class="n">cls_token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span> <span class="o">=</span> <span class="n">sep_token</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ignore_tag_idx</span> <span class="o">=</span> <span class="n">ignore_tag_idx</span>
 
     <span class="k">def</span> <span class="nf">_get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
@@ -297,9 +297,8 @@
             <span class="s2">&quot;raw_dataset&quot;</span><span class="p">:</span> <span class="n">raw_dataset</span><span class="p">,</span>
             <span class="s2">&quot;tag_idx2text&quot;</span><span class="p">:</span> <span class="n">tag_idx2text</span><span class="p">,</span>
             <span class="s2">&quot;ignore_tag_idx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_tag_idx</span><span class="p">,</span>
-            <span class="s2">&quot;cls_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">CLS_TOKEN</span><span class="p">,</span>
-            <span class="s2">&quot;sep_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">SEP_TOKEN</span><span class="p">,</span>
-            <span class="s2">&quot;unk_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">UNK_TOKEN</span><span class="p">,</span>
+            <span class="s2">&quot;cls_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cls_token</span><span class="p">,</span>
+            <span class="s2">&quot;sep_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span><span class="p">,</span>
             <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">&quot;num_tags&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">tag_idx2text</span><span class="p">),</span>
                 <span class="s2">&quot;ignore_tag_idx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_tag_idx</span><span class="p">,</span>
@@ -329,7 +328,7 @@
                         <span class="n">tagged_sub_token_idxs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr_sub_token_idx</span><span class="p">)</span>
                     <span class="n">curr_sub_token_idx</span> <span class="o">+=</span> <span class="mi">1</span>
 
-            <span class="n">bert_input</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">CLS_TOKEN</span><span class="p">]</span> <span class="o">+</span> <span class="n">sequence_sub_tokens</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SEP_TOKEN</span><span class="p">]</span>
+            <span class="n">bert_input</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cls_token</span><span class="p">]</span> <span class="o">+</span> <span class="n">sequence_sub_tokens</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span><span class="p">]</span>
 
             <span class="k">if</span> <span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
@@ -399,8 +398,8 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence_sub_tokens</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span><span class="p">:</span>
             <span class="n">sequence_sub_tokens</span> <span class="o">=</span> <span class="n">sequence_sub_tokens</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span><span class="p">]</span>
 
-        <span class="n">bert_input</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">CLS_TOKEN</span><span class="p">]</span> <span class="o">+</span> <span class="n">sequence_sub_tokens</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SEP_TOKEN</span><span class="p">]</span>
-        <span class="n">token_type</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_bert_token_type</span><span class="p">(</span><span class="n">bert_input</span><span class="p">,</span> <span class="n">SEP_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">SEP_TOKEN</span><span class="p">)</span>
+        <span class="n">bert_input</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cls_token</span><span class="p">]</span> <span class="o">+</span> <span class="n">sequence_sub_tokens</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span><span class="p">]</span>
+        <span class="n">token_type</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_bert_token_type</span><span class="p">(</span><span class="n">bert_input</span><span class="p">,</span> <span class="n">SEP_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span><span class="p">)</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">naive_tokens</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">tagged_sub_token_idxs</span><span class="p">),</span> \
             <span class="n">f</span><span class="s2">&quot;&quot;&quot;Wrong tagged_sub_token_idxs: followings mismatch.</span>
 <span class="s2">            naive_tokens: </span><span class="si">{naive_tokens}</span><span class="s2"></span>

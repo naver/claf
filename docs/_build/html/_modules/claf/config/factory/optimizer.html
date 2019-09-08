@@ -228,9 +228,24 @@
 
             <span class="k">if</span> <span class="s2">&quot;warmup&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_type</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_config</span><span class="p">[</span><span class="s2">&quot;t_total&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">num_train_steps</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_warmup_steps</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
         <span class="c1"># EMA</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ema</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;exponential_moving_average&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<div class="viewcode-block" id="OptimizerFactory.set_warmup_steps"><a class="viewcode-back" href="../../../../claf.config.factory.html#claf.config.factory.optimizer.OptimizerFactory.set_warmup_steps">[docs]</a>    <span class="k">def</span> <span class="nf">set_warmup_steps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="n">warmup_proportion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;warmup_proportion&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">warmup_steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;warmup_steps&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">warmup_steps</span> <span class="ow">and</span> <span class="n">warmup_proportion</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Check &#39;warmup_steps&#39; and &#39;warmup_proportion&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">warmup_steps</span> <span class="ow">and</span> <span class="n">warmup_proportion</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_config</span><span class="p">[</span><span class="s2">&quot;warmup_steps&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">num_train_steps</span> <span class="o">*</span> <span class="n">warmup_proportion</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler_config</span><span class="p">[</span><span class="s2">&quot;warmup_proportion&quot;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">warmup_steps</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">warmup_proportion</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Check &#39;warmup_steps&#39; and &#39;warmup_proportion&#39;.&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="OptimizerFactory.create"><a class="viewcode-back" href="../../../../claf.config.factory.html#claf.config.factory.optimizer.OptimizerFactory.create">[docs]</a>    <span class="nd">@overrides</span>
     <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>

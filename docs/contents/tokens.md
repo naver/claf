@@ -39,6 +39,7 @@ e.g.) concatenate \[word; subword\] (subword tokens --average--> word token)
 
 | Text Unit | Language | Name | Example |
 | ---- | ---- | --- | --- |
+| BPE | All (depend on vocab) | **roberta** | Hello World<br/>-> ["ĠHello", "ĠWorld"] |
 | Char | All | **character** | Hello World<br/>-> ["Hello", "World"]<br/>-> [["H", "e", "l", "l", "o"], ["W", "o", "r", "l", "d"]] |
 | Char | Korean | [**jamo_ko**](https://github.com/rhobot/Hangulpy) | "안녕 세상"<br/>-> ["안녕", "세상"]<br/>-> [["ㅇ", "ㅏ", "ㄴ", "ㄴ", "ㅕ", "ㅇ"], ["ㅅ", "ㅔ", "ㅅ", "ㅏ", "ㅇ"]] |
 | Subword | All (but, need vocab.txt) | [**wordpiece**](https://github.com/huggingface/pytorch-pretrained-BERT/blob/master/pytorch_pretrained_bert/tokenization.py) | "expectancy of anyone"<br/>-> ["expectancy", "of", "anyone"]<br/>-> ["expect", "##ancy", "of", "anyone"] |
@@ -58,6 +59,7 @@ e.g.) concatenate \[word; subword\] (subword tokens --average--> word token)
 | ---- | ---- | --- | --- |
 | **char** | character -> convolution -> maxpool | `CharCNN` | - |
 | **cove** | Embeddings from Neural Machine Translation | `NMT` | - From [Salesforce](https://github.com/salesforce/cove) |
+| **feature** | Do not use embedding function, just pass feature | `Feature` | - |
 | **word** | word -> Embedding (+pretrained) | `Word2Vec` | - |
 | **frequent_word** | word token + pre-trained word embeddings fixed and only fine-tune the N most frequent | `Word2Vec` + `Fine-tune` | - |
 | **exact_match** | Three simple binary features, indicating whether p_i can be exactly matched to one question word in q, either in its original, lowercase or lemma form. | `Feature` | - Sparse or Embedding<br/> - Only for RC|

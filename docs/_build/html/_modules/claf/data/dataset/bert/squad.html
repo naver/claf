@@ -204,10 +204,11 @@
 <span class="sd">        helper: helper from data_reader</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">helper</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">vocab</span><span class="p">,</span> <span class="n">helper</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SQuADBertDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;squad_bert&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vocab</span> <span class="o">=</span> <span class="n">vocab</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">helper</span> <span class="o">=</span> <span class="n">helper</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">raw_dataset</span> <span class="o">=</span> <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;raw_dataset&quot;</span><span class="p">]</span>
 
@@ -236,7 +237,7 @@
 <div class="viewcode-block" id="SQuADBertDataset.collate_fn"><a class="viewcode-back" href="../../../../../claf.data.dataset.html#claf.data.dataset.SQuADBertDataset.collate_fn">[docs]</a>    <span class="nd">@overrides</span>
     <span class="k">def</span> <span class="nf">collate_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cuda_device_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; collate: indexed features and labels -&gt; tensor &quot;&quot;&quot;</span>
-        <span class="n">collator</span> <span class="o">=</span> <span class="n">PadCollator</span><span class="p">(</span><span class="n">cuda_device_id</span><span class="o">=</span><span class="n">cuda_device_id</span><span class="p">)</span>
+        <span class="n">collator</span> <span class="o">=</span> <span class="n">PadCollator</span><span class="p">(</span><span class="n">cuda_device_id</span><span class="o">=</span><span class="n">cuda_device_id</span><span class="p">,</span> <span class="n">pad_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">pad_index</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">make_tensor_fn</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
             <span class="n">bert_input_idxs</span><span class="p">,</span> <span class="n">token_type_idxs</span><span class="p">,</span> <span class="n">data_idxs</span><span class="p">,</span> <span class="n">answer_starts</span><span class="p">,</span> <span class="n">answer_ends</span><span class="p">,</span> <span class="n">answerables</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span>

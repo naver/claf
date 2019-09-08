@@ -187,6 +187,7 @@
   <h1>Source code for claf.tokens.vocabulary</h1><div class="highlight"><pre>
 <span></span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">json</span>
 
 <span class="kn">from</span> <span class="nn">claf.data.data_handler</span> <span class="k">import</span> <span class="n">CachePath</span><span class="p">,</span> <span class="n">DataHandler</span>
 
@@ -344,7 +345,15 @@
 <div class="viewcode-block" id="Vocab.build_with_pretrained_file"><a class="viewcode-back" href="../../../claf.tokens.html#claf.tokens.vocabulary.Vocab.build_with_pretrained_file">[docs]</a>    <span class="k">def</span> <span class="nf">build_with_pretrained_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token_counter</span><span class="p">):</span>
         <span class="n">data_handler</span> <span class="o">=</span> <span class="n">DataHandler</span><span class="p">(</span><span class="n">CachePath</span><span class="o">.</span><span class="n">VOCAB</span><span class="p">)</span>
         <span class="n">vocab_texts</span> <span class="o">=</span> <span class="n">data_handler</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pretrained_path</span><span class="p">)</span>
-        <span class="n">predefine_vocab</span> <span class="o">=</span> <span class="n">vocab_texts</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pretrained_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">):</span>
+            <span class="n">predefine_vocab</span> <span class="o">=</span> <span class="n">vocab_texts</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">pretrained_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.json&quot;</span><span class="p">):</span>
+            <span class="n">vocab_texts</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">vocab_texts</span><span class="p">)</span>  <span class="c1"># {token: id}</span>
+            <span class="n">predefine_vocab</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span>
+                               <span class="nb">sorted</span><span class="p">(</span><span class="n">vocab_texts</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;support vocab extention. .txt or .json&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">token_counter</span><span class="p">,</span> <span class="n">predefine_vocab</span><span class="o">=</span><span class="n">predefine_vocab</span><span class="p">)</span></div>
 

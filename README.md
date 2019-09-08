@@ -27,6 +27,35 @@
 - `Machine` helps to combine various modules to build a NLP Machine in one place.
     - There are knowledge-based, components and trained experiments which infer 1-example in modules.
 
+## Features
+
+- [Full Documentation](https://naver.github.io/claf/)
+- [Dataset And Model](https://naver.github.io/claf/docs/_build/html/contents/dataset_and_model.html)
+- [Pretrained Vector](https://naver.github.io/claf/docs/_build/html/contents/pretrained_vector.html)
+- [Tokens](https://naver.github.io/claf/docs/_build/html/contents/tokens.html): `Tokenizers` and `TokenMakers`
+- List of [BaseConfig](https://github.com/naver/claf#baseconfig)
+
+| Task | Language | Dataset | Model |
+| ---- | -------- | ------- | ----- |
+| Natural Language Understanding | English | [GLUE Benchmark](https://gluebenchmark.com/) | BERT, RoBERTa |
+| Named Entity Recognition | English | CoNLL 2003 | BERT |
+| Question Answering | Korean | [KorQuAD v1.0](https://korquad.github.io/category/1.0_KOR.html) | BiDAF, DocQA, BERT |
+| Question Answering | Engilsh | [SQuAD v1.1 and v2.0](https://rajpurkar.github.io/SQuAD-explorer/) | - v1.1: BiDAF, DrQA, DocQA, DocQA+ELMo, QANet <br/> - v2.0: BiDAF + No Answer, DocQA + No Answer |
+| Semantic Parsing | English | [WikiSQL](https://github.com/salesforce/WikiSQL) | SQLNet |
+
+
+- Reports
+    - [GLUE](https://naver.github.io/claf/docs/_build/html/reports/glue.html)
+    - [KorQuAD](https://naver.github.io/claf/docs/_build/html/reports/korquad.html)
+    - [SQuAD](https://naver.github.io/claf/docs/_build/html/reports/squad.html)
+    - [WikiSQL](https://naver.github.io/claf/docs/_build/html/reports/wikisql.html)
+- Summary (1-example Inference Latency)
+    - [Reading Comprehension](https://naver.github.io/claf/docs/_build/html/summary/reading_comprehension.html)
+
+
+---
+
+
 ## Table of Contents
 
 - [Installation](#installation) 
@@ -34,7 +63,6 @@
     - [Install via pip](#install-via-pip)
 - [Overview](#overview)
 - [Experiment](#experiment)
-	- [Features](#features)
 	- [Usage](#usage)
 	    - [Training](#training) 
 	    - [Evaluate](#evaluate) 
@@ -45,6 +73,9 @@
 - [Maintainers](#maintainers)
 - [Citing](#citing)
 - [License](#license)
+
+
+---
 
 
 ## Installation
@@ -74,6 +105,7 @@ Commands to install via pip
 pip install claf
 ```
 
+
 ## Overview
 
 - **Multilingual** modeling support (currently, English and Korean are supported).
@@ -83,30 +115,13 @@ pip install claf
 - The metrics for services such as "1\-example inference latency" are provided.
 - Easy to build of a NLP **Machine** by combining modules.
 
+
+
 ## Experiment
 
 - Training Flow
 
 ![images](images/claf-experiment.001.png)
-
-
-### Features
-
-- [Full Documentation](https://naver.github.io/claf/)
-- [Dataset And Model](https://naver.github.io/claf/docs/_build/html/contents/dataset_and_model.html)
-- [Pretrained Vector](https://naver.github.io/claf/docs/_build/html/contents/pretrained_vector.html)
-- [Tokens](https://naver.github.io/claf/docs/_build/html/contents/tokens.html)
-- Reports
-  - [GLUE](https://naver.github.io/claf/docs/_build/html/reports/glue.html)
-  - [HistoryQA](https://naver.github.io/claf/docs/_build/html/reports/historyqa.html)
-  - [KorQuAD](https://naver.github.io/claf/docs/_build/html/reports/korquad.html)
-  - [SQuAD](https://naver.github.io/claf/docs/_build/html/reports/squad.html)
-  - [WikiSQL](https://naver.github.io/claf/docs/_build/html/reports/wikisql.html)
-- Summary (1-example Inference Latency)
-  - [Reading Comprehension](https://naver.github.io/claf/docs/_build/html/summary/reading_comprehension.html)
-
-
----
 
 
 ### Usage
@@ -144,26 +159,10 @@ Declarative experiment config (.json)
 - Simply matching with object's parameters
 - Exists samples in `/base_config` directory
 
-```
-Base Config:
-  --base_config BASE_CONFIG
-    Use pre-defined base_config:
+##### Defined BaseConfig
 
-    * SQuAD:
-    ['squad/bert_large_uncased', 'squad/bidaf', 'squad/drqa_paper', 'squad/drqa', 'squad/bert_base_uncased', 'squad/qanet', 'squad/docqa+elmo', 'squad/bidaf_no_answer', 'squad/docqa_no_answer', 'squad/qanet_paper', 'squad/bidaf+elmo', 'squad/docqa']
 
-    * KorQuAD:
-    ['korquad/bidaf', 'korquad/docqa']
 
-    * WikiSQL:
-    ['wikisql/sqlnet']
-    
-    * CoLA:
-    ['cola/bert_large_uncased', 'cola/structured_self_attention']
-
-    * CoNLL 2003:
-    ['conll2003/bert_large_cased']
-```
 
 #### Evaluate
 
@@ -255,7 +254,7 @@ Machine Config:
     ['ko_wiki', 'nlu']
 ```
 
-#### Open QA (DrQA)
+#### Open QA (DrQA Style)
 
 DrQA is a system for reading comprehension applied to open-domain question answering. The system has to combine the challenges of document retrieval (finding the relevant documents) with that of machine comprehension of text (identifying the answers from those documents).
 
@@ -335,7 +334,7 @@ CLaF is currently maintained by
 If you use CLaF for your work, please cite:
 
 ```bibtex
-@misc{CL,
+@misc{claf,
   author = {Lee, Dongjun and Yang, Sohee and Kim, Minjeong},
   title = {CLaF: Open-Source Clova Language Framework},
   year = {2019},
