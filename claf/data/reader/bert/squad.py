@@ -8,8 +8,9 @@ from overrides import overrides
 from tqdm import tqdm
 
 from claf.data import utils
-from claf.data.dataset import SQuADBertDataset
 from claf.data.batch import make_batch
+from claf.data.dataset import SQuADBertDataset
+from claf.data.helper import Helper
 from claf.data.reader.base import DataReader
 from claf.decorator import register
 from claf.metric.squad_v1_official import normalize_answer
@@ -80,17 +81,16 @@ class SQuADBertReader(DataReader):
         if "data" in squad:
             squad = squad["data"]
 
-        helper = {
+        helper = Helper(**{
             "file_path": file_path,
-            "examples": {},
             "raw_dataset": squad,
             "cls_token": self.cls_token,
             "sep_token": self.sep_token,
+        })
+        helper.set_model_parameter({
+            "lang_code": self.lang_code,
+        })
 
-            "model": {
-                "lang_code": self.lang_code,
-            },
-        }
         features, labels = [], []
 
         for article in tqdm(squad, desc=data_type):
@@ -201,18 +201,20 @@ class SQuADBertReader(DataReader):
                         }
                         labels.append(label_row)
 
-                        if id_ not in helper["examples"]:
-                            helper["examples"][id_] = {
+                        if id_ not in helper.examples:
+                            helper.set_example(id_, {
                                 "context": context_text,
                                 "question": question_text,
                                 "answers": answer_texts,
-                            }
-                        helper["examples"][id_][f"bert_tokens_{index}"] = bert_tokens
+                            })
+                        helper.set_example(id_, {
+                            f"bert_tokens_{index}": bert_tokens,
+                        }, update=True)
 
         logger.info(
             f"tokenized_error_count - word: {word_tokenized_error_count} | subword: {subword_tokenized_error_count}"
         )
-        return make_batch(features, labels), helper
+        return make_batch(features, labels), helper.to_dict()
 
     @overrides
     def read_one_example(self, inputs):
@@ -239,11 +241,11 @@ class SQuADBertReader(DataReader):
             context_sub_tokens, question_sub_tokens, -1, -1
         )
 
-        helper = {
+        helper = Helper(**{
             "bert_token": [],
             "tokenized_context": tokenized_context,
             "token_key": "tokenized_context"  # for 1-example inference latency key
-        }
+        })
 
         features = []
         for bert_token in bert_tokens:
@@ -256,8 +258,8 @@ class SQuADBertReader(DataReader):
                     "token_type": {"feature": token_type, "text": ""},  # TODO: fix hard-code
                 }
             )
-            helper["bert_token"].append(bert_token)
-        return features, helper
+            helper.bert_token.append(bert_token)
+        return features, helper.to_dict()
 
     def _find_one_most_common(self, answers):
         answer_counter = Counter(answers)

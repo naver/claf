@@ -1,4 +1,5 @@
 
+from itertools import chain
 import json
 import logging
 import uuid
@@ -8,6 +9,7 @@ from tqdm import tqdm
 
 from claf.data.dataset import TokClsBertDataset
 from claf.data.batch import make_batch
+from claf.data.helper import Helper
 from claf.data.reader.base import DataReader
 from claf.decorator import register
 from claf.tokens.tokenizer import WordTokenizer
@@ -68,12 +70,20 @@ class TokClsBertReader(DataReader):
         data = self.data_handler.read(file_path)
         tok_cls_data = json.loads(data)
 
-        return tok_cls_data, tok_cls_data["data"]
+        return tok_cls_data["data"]
 
     def _get_tag_dicts(self, **kwargs):
         data = kwargs["data"]
+        print(data)
 
-        tag_idx2text = {tag_idx: tag_text for tag_idx, tag_text in enumerate(data[self.tag_key])}
+        if type(data) == dict:
+            tag_idx2text = {tag_idx: tag_text for tag_idx, tag_text in enumerate(data[self.tag_key])}
+        elif type(data) == list:
+            tags = sorted(list(set(chain.from_iterable(d[self.tag_key] for d in data))))
+            tag_idx2text = {tag_idx: tag_text for tag_idx, tag_text in enumerate(tags)}
+        else:
+            raise ValueError("check _get_data return type.")
+
         tag_text2idx = {tag_text: tag_idx for tag_idx, tag_text in tag_idx2text.items()}
 
         return tag_idx2text, tag_text2idx
@@ -103,28 +113,27 @@ class TokClsBertReader(DataReader):
         }
         """
 
-        data, raw_dataset = self._get_data(file_path)
+        data = self._get_data(file_path)
         tag_idx2text, tag_text2idx = self._get_tag_dicts(data=data)
 
-        helper = {
+        helper = Helper(**{
             "file_path": file_path,
-            "examples": {},
-            "raw_dataset": raw_dataset,
             "tag_idx2text": tag_idx2text,
             "ignore_tag_idx": self.ignore_tag_idx,
             "cls_token": self.cls_token,
             "sep_token": self.sep_token,
-            "model": {
-                "num_tags": len(tag_idx2text),
-                "ignore_tag_idx": self.ignore_tag_idx,
-            },
-            "predict_helper": {
-                "tag_idx2text": tag_idx2text,
-            }
-        }
+        })
+        helper.set_model_parameter({
+            "num_tags": len(tag_idx2text),
+            "ignore_tag_idx": self.ignore_tag_idx,
+        })
+        helper.set_predict_helper({
+            "tag_idx2text": tag_idx2text,
+        })
+
         features, labels = [], []
 
-        for example in tqdm(raw_dataset, desc=data_type):
+        for example in tqdm(data, desc=data_type):
             sequence_text = example["sequence"].strip().replace("\n", "")
 
             sequence_tokens = self.word_tokenizer.tokenize(sequence_text)
@@ -182,14 +191,14 @@ class TokClsBertReader(DataReader):
             }
             labels.append(label_row)
 
-            helper["examples"][data_uid] = {
+            helper.set_example(data_uid, {
                 "sequence": sequence_text,
                 "sequence_sub_tokens": sequence_sub_tokens,
                 "tag_idxs": tag_idxs,
                 "tag_texts": tag_texts,
-            }
+            })
 
-        return make_batch(features, labels), helper
+        return make_batch(features, labels), helper.to_dict()
 
     def read_one_example(self, inputs):
         """ inputs keys: sequence """

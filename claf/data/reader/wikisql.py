@@ -7,8 +7,9 @@ import uuid
 from overrides import overrides
 from tqdm import tqdm
 
-from claf.data.dataset import WikiSQLDataset
 from claf.data.batch import make_batch
+from claf.data.dataset import WikiSQLDataset
+from claf.data.helper import Helper
 from claf.data.reader.base import DataReader
 from claf.decorator import register
 from claf.metric.wikisql_lib.dbengine import DBEngine
@@ -51,7 +52,11 @@ class WikiSQLReader(DataReader):
 
         self.dbengine = DBEngine(db_path)
 
-        helper = {"file_path": file_path, "db_path": db_path, "examples": {}}
+        helper = Helper(**{
+            "file_path": file_path,
+            "db_path": db_path,
+        })
+
         features, labels = [], []
 
         sql_datas, table_data = self.load_data(file_path, table_path, data_type=data_type)
@@ -88,16 +93,16 @@ class WikiSQLReader(DataReader):
             features.append(feature_row)
             labels.append(label_row)
 
-            helper["examples"][data_uid] = {
+            helper.set_example(data_uid, {
                 "question": question,
                 "sql_query": sql_query,
                 "execution_result": execution_result,
-            }
+            })
 
             if self.is_test and len(labels) == 10:
                 break
 
-        return make_batch(features, labels), helper
+        return make_batch(features, labels), helper.to_dict()
 
     @overrides
     def read_one_example(self, inputs):

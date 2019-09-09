@@ -8,6 +8,7 @@ from tqdm import tqdm
 
 from claf.data.batch import make_batch
 from claf.data.dataset import SeqClsBertDataset
+from claf.data.helper import Helper
 from claf.data.reader.base import DataReader
 from claf.data import utils
 from claf.decorator import register
@@ -28,7 +29,7 @@ class SeqClsBertReader(DataReader):
         class_key: name of the label in .json file to use for classification
     """
 
-    CLASS_DATA = []
+    CLASS_DATA = None
 
     def __init__(
         self,
@@ -113,20 +114,20 @@ class SeqClsBertReader(DataReader):
         data = self._get_data(file_path, data_type=data_type)
         class_idx2text, class_text2idx = self._get_class_dicts(data=data)
 
-        helper = {
+        helper = Helper(**{
             "file_path": file_path,
-            "examples": {},
             "class_idx2text": class_idx2text,
             "class_text2idx": class_text2idx,
             "cls_token": self.cls_token,
             "sep_token": self.sep_token,
-            "model": {
-                "num_classes": len(class_idx2text),
-            },
-            "predict_helper": {
-                "class_idx2text": class_idx2text,
-            }
-        }
+        })
+        helper.set_model_parameter({
+            "num_classes": len(class_idx2text),
+        })
+        helper.set_predict_helper({
+            "class_idx2text": class_idx2text,
+        })
+
         features, labels = [], []
 
         for example in tqdm(data, desc=data_type):
@@ -172,19 +173,19 @@ class SeqClsBertReader(DataReader):
             }
             labels.append(label_row)
 
-            helper["examples"][data_uid] = {
+            helper.set_example(data_uid, {
                 "sequence_a": sequence_a,
                 "sequence_a_tokens": sequence_a_tokens,
                 "sequence_b": sequence_b,
                 "sequence_b_tokens": sequence_b_tokens,
                 "class_idx": class_text2idx[class_text],
                 "class_text": class_text,
-            }
+            })
 
             if self.is_test and len(features) >= 10:
                 break
 
-        return make_batch(features, labels), helper
+        return make_batch(features, labels), helper.to_dict()
 
     def read_one_example(self, inputs):
         """ inputs keys: sequence_a and sequence_b """

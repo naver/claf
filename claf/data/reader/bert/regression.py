@@ -8,6 +8,7 @@ from tqdm import tqdm
 
 from claf.data.batch import make_batch
 from claf.data.dataset import RegressionBertDataset
+from claf.data.helper import Helper
 from claf.data.reader.base import DataReader
 from claf.data import utils
 from claf.decorator import register
@@ -86,17 +87,12 @@ class RegressionBertReader(DataReader):
 
         data = self._get_data(file_path, data_type=data_type)
 
-        helper = {
+        helper = Helper(**{
             "file_path": file_path,
-            "examples": {},
             "cls_token": self.cls_token,
             "sep_token": self.sep_token,
-            "model": {
+        })
 
-            },
-            "predict_helper": {
-            }
-        }
         features, labels = [], []
 
         for example in tqdm(data, desc=data_type):
@@ -140,18 +136,18 @@ class RegressionBertReader(DataReader):
             }
             labels.append(label_row)
 
-            helper["examples"][data_uid] = {
+            helper.set_example(data_uid, {
                 "sequence_a": sequence_a,
                 "sequence_a_tokens": sequence_a_tokens,
                 "sequence_b": sequence_b,
                 "sequence_b_tokens": sequence_b_tokens,
                 "score": score,
-            }
+            })
 
             if self.is_test and len(features) >= 10:
                 break
 
-        return make_batch(features, labels), helper
+        return make_batch(features, labels), helper.to_dict()
 
     def read_one_example(self, inputs):
         """ inputs keys: sequence_a and sequence_b """
