@@ -1098,15 +1098,15 @@ def model(parser):
 
     group = parser.add_argument_group(f" # RoBERTa")
     group.add_argument(
-        "--roberta_for_seq_cls.pretrained_model_name",
-        type=str, default=None, dest="model.roberta_for_seq_cls.pretrained_model_name",
+        "--roberta_for_tok_cls.pretrained_model_name",
+        type=str, default=None, dest="model.roberta_for_tok_cls.pretrained_model_name",
         help=""" A str with the name of a pre-trained model to load selected in the list of (default: None):
                     . `roberta-base`
                     . `roberta-large` """,
     )
     group.add_argument(
-        "--roberta_for_seq_cls.dropout",
-        type=float, default=0.2, dest="model.roberta_for_seq_cls.dropout",
+        "--roberta_for_tok_cls.dropout",
+        type=float, default=0.2, dest="model.roberta_for_tok_cls.dropout",
         help=""" The prob of fc layer dropout """
     )
 
