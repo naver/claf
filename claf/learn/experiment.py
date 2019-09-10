@@ -318,6 +318,8 @@ class Experiment:
         num_gpu_state = num_gpu
         if num_gpu > 1:
             num_gpu_state += " (Multi-GPU)"
+
+        # TODO: distributed training and 16-bits training (FP16)
         logger.info(f"use_gpu: {self.config.use_gpu} num_gpu: {num_gpu_state}, distributed training: False, 16-bits training: False")
         return model
 
