@@ -6,10 +6,10 @@ import uuid
 from overrides import overrides
 from tqdm import tqdm
 
-from claf.data.batch import make_batch
 from claf.data.dataset.seq_cls import SeqClsDataset
-from claf.data.helper import Helper
+from claf.data.dto import Helper
 from claf.data.reader.base import DataReader
+from claf.data import utils
 from claf.decorator import register
 
 logger = logging.getLogger(__name__)
@@ -139,7 +139,7 @@ class SeqClsReader(DataReader):
                 "class_text": class_text,
             })
 
-        return make_batch(features, labels), helper.to_dict()
+        return utils.make_batch(features, labels), helper.to_dict()
 
     def read_one_example(self, inputs):
         """ inputs keys: sequence """

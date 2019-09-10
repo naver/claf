@@ -6,9 +6,8 @@ import uuid
 from overrides import overrides
 from tqdm import tqdm
 
-from claf.data.batch import make_batch
 from claf.data.dataset import RegressionBertDataset
-from claf.data.helper import Helper
+from claf.data.dto import BertFeature, Helper
 from claf.data.reader.base import DataReader
 from claf.data import utils
 from claf.decorator import register
@@ -147,29 +146,25 @@ class RegressionBertReader(DataReader):
             if self.is_test and len(features) >= 10:
                 break
 
-        return make_batch(features, labels), helper.to_dict()
+        return utils.make_batch(features, labels), helper.to_dict()
 
     def read_one_example(self, inputs):
         """ inputs keys: sequence_a and sequence_b """
         sequence_a = utils.get_sequence_a(inputs)
         sequence_b = inputs.get("sequence_b", None)
 
-        bert_input = utils.make_bert_input(
+        bert_feature = BertFeature()
+        bert_feature.set_input_with_speical_token(
             sequence_a,
             sequence_b,
             self.tokenizer,
             max_seq_length=self.sequence_max_length,
-            data_type="infer",
+            data_type="predict",
             cls_token=self.cls_token,
             sep_token=self.sep_token,
             input_type=self.input_type,
         )
-        token_type = utils.make_bert_token_type(bert_input, SEP_token=self.sep_token)
 
-        features = []
-        features.append({
-            "bert_input": bert_input,
-            "token_type": {"feature": token_type, "text": ""},  # TODO: fix hard-code
-        })
-
-        return features, {}
+        features = [bert_feature.to_dict()]
+        helper = {}
+        return features, helper

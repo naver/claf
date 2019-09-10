@@ -7,10 +7,10 @@ import uuid
 from overrides import overrides
 from tqdm import tqdm
 
-from claf.data.batch import make_batch
 from claf.data.dataset import WikiSQLDataset
-from claf.data.helper import Helper
+from claf.data.dto import Helper
 from claf.data.reader.base import DataReader
+from claf.data import utils
 from claf.decorator import register
 from claf.metric.wikisql_lib.dbengine import DBEngine
 from claf.metric.wikisql_lib.query import Query
@@ -102,7 +102,7 @@ class WikiSQLReader(DataReader):
             if self.is_test and len(labels) == 10:
                 break
 
-        return make_batch(features, labels), helper.to_dict()
+        return utils.make_batch(features, labels), helper.to_dict()
 
     @overrides
     def read_one_example(self, inputs):

@@ -7,11 +7,10 @@ import re
 from overrides import overrides
 from tqdm import tqdm
 
-from claf.data import utils
-from claf.data.batch import make_batch
 from claf.data.dataset import SQuADBertDataset
-from claf.data.helper import Helper
+from claf.data.dto import BertFeature, Helper
 from claf.data.reader.base import DataReader
+from claf.data import utils
 from claf.decorator import register
 from claf.metric.squad_v1_official import normalize_answer
 from claf.tokens.tokenizer import SentTokenizer, WordTokenizer
@@ -214,7 +213,7 @@ class SQuADBertReader(DataReader):
         logger.info(
             f"tokenized_error_count - word: {word_tokenized_error_count} | subword: {subword_tokenized_error_count}"
         )
-        return make_batch(features, labels), helper.to_dict()
+        return utils.make_batch(features, labels), helper.to_dict()
 
     @overrides
     def read_one_example(self, inputs):
@@ -241,23 +240,20 @@ class SQuADBertReader(DataReader):
             context_sub_tokens, question_sub_tokens, -1, -1
         )
 
+        features = []
         helper = Helper(**{
             "bert_token": [],
             "tokenized_context": tokenized_context,
             "token_key": "tokenized_context"  # for 1-example inference latency key
         })
 
-        features = []
         for bert_token in bert_tokens:
             bert_input = [token.text for token in bert_token]
-            token_type = utils.make_bert_token_type(bert_input, SEP_token=self.sep_token)
 
-            features.append(
-                {
-                    "bert_input": bert_input,
-                    "token_type": {"feature": token_type, "text": ""},  # TODO: fix hard-code
-                }
-            )
+            bert_feature = BertFeature()
+            bert_feature.set_input(bert_input)
+
+            features.append(bert_feature.to_dict())
             helper.bert_token.append(bert_token)
         return features, helper.to_dict()
 

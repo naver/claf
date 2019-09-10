@@ -8,8 +8,7 @@ from overrides import overrides
 from tqdm import tqdm
 
 from claf.data.dataset import TokClsBertDataset
-from claf.data.batch import make_batch
-from claf.data.helper import Helper
+from claf.data.dto import BertFeature, Helper
 from claf.data.reader.base import DataReader
 from claf.decorator import register
 from claf.tokens.tokenizer import WordTokenizer
@@ -198,7 +197,7 @@ class TokClsBertReader(DataReader):
                 "tag_texts": tag_texts,
             })
 
-        return make_batch(features, labels), helper.to_dict()
+        return utils.make_batch(features, labels), helper.to_dict()
 
     def read_one_example(self, inputs):
         """ inputs keys: sequence """
@@ -223,19 +222,17 @@ class TokClsBertReader(DataReader):
             sequence_sub_tokens = sequence_sub_tokens[:self.sequence_max_length]
 
         bert_input = [self.cls_token] + sequence_sub_tokens + [self.sep_token]
-        token_type = utils.make_bert_token_type(bert_input, SEP_token=self.sep_token)
         assert len(naive_tokens) == len(tagged_sub_token_idxs), \
             f"""Wrong tagged_sub_token_idxs: followings mismatch.
             naive_tokens: {naive_tokens}
             sequence_sub_tokens: {sequence_sub_tokens}
             tagged_sub_token_idxs: {tagged_sub_token_idxs}"""
 
-        features = []
-        features.append({
-            "bert_input": bert_input,
-            "token_type": {"feature": token_type, "text": ""},  # TODO: fix hard-code
-            "tagged_sub_token_idxs": {"feature": tagged_sub_token_idxs, "text": ""},  # TODO: fix hard-code
-            "num_tokens": {"feature": len(naive_tokens), "text": ""},  # TODO: fix hard-code
-        })
+        bert_feature = BertFeature()
+        bert_feature.set_input(bert_input)
+        bert_feature.set_feature("tagged_sub_token_idxs", tagged_sub_token_idxs)
+        bert_feature.set_feature("num_tokens", len(naive_tokens))
 
-        return features, {}
+        features = [bert_feature.to_dict()]
+        helper = {}
+        return features, helper

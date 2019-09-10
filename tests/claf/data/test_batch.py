@@ -1,5 +1,5 @@
 
-from claf.data.batch import Batch, make_batch
+from claf.data.utils import make_batch
 
 
 def test_make_batch():

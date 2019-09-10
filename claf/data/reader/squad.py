@@ -7,10 +7,10 @@ import re
 from overrides import overrides
 from tqdm import tqdm
 
-from claf.data.batch import make_batch
 from claf.data.dataset import SQuADDataset
-from claf.data.helper import Helper
+from claf.data.dto import Helper
 from claf.data.reader.base import DataReader
+from claf.data import utils
 from claf.decorator import register
 from claf.metric.squad_v1_official import normalize_answer
 
@@ -136,7 +136,7 @@ class SQuADReader(DataReader):
                     })
 
         logger.info(f"tokenized_error_count: {tokenized_error_count} ")
-        return make_batch(features, labels), helper.to_dict()
+        return utils.make_batch(features, labels), helper.to_dict()
 
     @overrides
     def read_one_example(self, inputs):
