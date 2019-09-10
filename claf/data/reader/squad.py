@@ -8,8 +8,9 @@ from overrides import overrides
 from tqdm import tqdm
 
 from claf.data.dataset import SQuADDataset
-from claf.data.batch import make_batch
+from claf.data.dto import Helper
 from claf.data.reader.base import DataReader
+from claf.data import utils
 from claf.decorator import register
 from claf.metric.squad_v1_official import normalize_answer
 
@@ -46,15 +47,13 @@ class SQuADReader(DataReader):
         if "data" in squad:
             squad = squad["data"]
 
-        helper = {
+        helper = Helper(**{
             "file_path": file_path,
-            "examples": {},  # qid: {context: ..., text_span: ..., question: ..., answer_texts}
             "raw_dataset": squad,
-
-            "model": {
-                "lang_code": self.lang_code,
-            },
-        }
+        })
+        helper.set_model_parameter({
+            "lang_code": self.lang_code,
+        })
 
         features, labels = [], []
 
@@ -129,15 +128,15 @@ class SQuADReader(DataReader):
                     }
                     labels.append(label_row)
 
-                    helper["examples"][id_] = {
+                    helper.set_example(id_, {
                         "context": context,
                         "text_span": text_spans,
                         "question": question,
                         "answers": answer_texts,
-                    }
+                    })
 
         logger.info(f"tokenized_error_count: {tokenized_error_count} ")
-        return make_batch(features, labels), helper
+        return utils.make_batch(features, labels), helper.to_dict()
 
     @overrides
     def read_one_example(self, inputs):

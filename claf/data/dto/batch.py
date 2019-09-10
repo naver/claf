@@ -4,10 +4,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def make_batch(features, labels):
-    return Batch(**{"features": features, "labels": labels})
-
-
 class Batch:
     """
     Batch Data Transfer Object (DTO) Class

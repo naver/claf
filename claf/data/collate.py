@@ -5,7 +5,6 @@ import torch
 from torch.autograd import Variable
 
 from claf.data import utils
-from claf.data.batch import make_batch
 
 
 class PadCollator:
@@ -28,7 +27,7 @@ class PadCollator:
         self.collate(features, pad_value=self.pad_value)
         self.collate(labels, apply_pad=False, pad_value=self.pad_value)
 
-        return make_batch(features, labels)
+        return utils.make_batch(features, labels)
 
     def collate(self, datas, apply_pad=True, pad_value=0):
         for data_name, data in datas.items():
@@ -80,7 +79,7 @@ class FeatLabelPadCollator(PadCollator):
         self.collate(labels, apply_pad=False,
                      apply_pad_labels=apply_pad_labels, apply_pad_values=apply_pad_values)
 
-        return make_batch(features, labels)
+        return utils.make_batch(features, labels)
 
     @overrides
     def collate(self, datas, apply_pad=True, apply_pad_labels=(), apply_pad_values=()):

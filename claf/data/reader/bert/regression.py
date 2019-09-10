@@ -6,8 +6,8 @@ import uuid
 from overrides import overrides
 from tqdm import tqdm
 
-from claf.data.batch import make_batch
 from claf.data.dataset import RegressionBertDataset
+from claf.data.dto import BertFeature, Helper
 from claf.data.reader.base import DataReader
 from claf.data import utils
 from claf.decorator import register
@@ -86,17 +86,12 @@ class RegressionBertReader(DataReader):
 
         data = self._get_data(file_path, data_type=data_type)
 
-        helper = {
+        helper = Helper(**{
             "file_path": file_path,
-            "examples": {},
             "cls_token": self.cls_token,
             "sep_token": self.sep_token,
-            "model": {
+        })
 
-            },
-            "predict_helper": {
-            }
-        }
         features, labels = [], []
 
         for example in tqdm(data, desc=data_type):
@@ -140,40 +135,36 @@ class RegressionBertReader(DataReader):
             }
             labels.append(label_row)
 
-            helper["examples"][data_uid] = {
+            helper.set_example(data_uid, {
                 "sequence_a": sequence_a,
                 "sequence_a_tokens": sequence_a_tokens,
                 "sequence_b": sequence_b,
                 "sequence_b_tokens": sequence_b_tokens,
                 "score": score,
-            }
+            })
 
             if self.is_test and len(features) >= 10:
                 break
 
-        return make_batch(features, labels), helper
+        return utils.make_batch(features, labels), helper.to_dict()
 
     def read_one_example(self, inputs):
         """ inputs keys: sequence_a and sequence_b """
         sequence_a = utils.get_sequence_a(inputs)
         sequence_b = inputs.get("sequence_b", None)
 
-        bert_input = utils.make_bert_input(
+        bert_feature = BertFeature()
+        bert_feature.set_input_with_speical_token(
             sequence_a,
             sequence_b,
             self.tokenizer,
             max_seq_length=self.sequence_max_length,
-            data_type="infer",
+            data_type="predict",
             cls_token=self.cls_token,
             sep_token=self.sep_token,
             input_type=self.input_type,
         )
-        token_type = utils.make_bert_token_type(bert_input, SEP_token=self.sep_token)
 
-        features = []
-        features.append({
-            "bert_input": bert_input,
-            "token_type": {"feature": token_type, "text": ""},  # TODO: fix hard-code
-        })
-
-        return features, {}
+        features = [bert_feature.to_dict()]
+        helper = {}
+        return features, helper

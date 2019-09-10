@@ -6,8 +6,8 @@ import uuid
 from overrides import overrides
 from tqdm import tqdm
 
-from claf.data.batch import make_batch
 from claf.data.dataset import SeqClsBertDataset
+from claf.data.dto import BertFeature, Helper
 from claf.data.reader.base import DataReader
 from claf.data import utils
 from claf.decorator import register
@@ -28,7 +28,7 @@ class SeqClsBertReader(DataReader):
         class_key: name of the label in .json file to use for classification
     """
 
-    CLASS_DATA = []
+    CLASS_DATA = None
 
     def __init__(
         self,
@@ -113,20 +113,20 @@ class SeqClsBertReader(DataReader):
         data = self._get_data(file_path, data_type=data_type)
         class_idx2text, class_text2idx = self._get_class_dicts(data=data)
 
-        helper = {
+        helper = Helper(**{
             "file_path": file_path,
-            "examples": {},
             "class_idx2text": class_idx2text,
             "class_text2idx": class_text2idx,
             "cls_token": self.cls_token,
             "sep_token": self.sep_token,
-            "model": {
-                "num_classes": len(class_idx2text),
-            },
-            "predict_helper": {
-                "class_idx2text": class_idx2text,
-            }
-        }
+        })
+        helper.set_model_parameter({
+            "num_classes": len(class_idx2text),
+        })
+        helper.set_predict_helper({
+            "class_idx2text": class_idx2text,
+        })
+
         features, labels = [], []
 
         for example in tqdm(data, desc=data_type):
@@ -172,26 +172,27 @@ class SeqClsBertReader(DataReader):
             }
             labels.append(label_row)
 
-            helper["examples"][data_uid] = {
+            helper.set_example(data_uid, {
                 "sequence_a": sequence_a,
                 "sequence_a_tokens": sequence_a_tokens,
                 "sequence_b": sequence_b,
                 "sequence_b_tokens": sequence_b_tokens,
                 "class_idx": class_text2idx[class_text],
                 "class_text": class_text,
-            }
+            })
 
             if self.is_test and len(features) >= 10:
                 break
 
-        return make_batch(features, labels), helper
+        return utils.make_batch(features, labels), helper.to_dict()
 
     def read_one_example(self, inputs):
         """ inputs keys: sequence_a and sequence_b """
         sequence_a = utils.get_sequence_a(inputs)
         sequence_b = inputs.get("sequence_b", None)
 
-        bert_input = utils.make_bert_input(
+        bert_feature = BertFeature()
+        bert_feature.set_input_with_speical_token(
             sequence_a,
             sequence_b,
             self.tokenizer,
@@ -201,12 +202,7 @@ class SeqClsBertReader(DataReader):
             sep_token=self.sep_token,
             input_type=self.input_type,
         )
-        token_type = utils.make_bert_token_type(bert_input, SEP_token=self.sep_token)
 
-        features = []
-        features.append({
-            "bert_input": bert_input,
-            "token_type": {"feature": token_type, "text": ""},  # TODO: fix hard-code
-        })
-
-        return features, {}
+        features = [bert_feature.to_dict()]
+        helper = {}
+        return features, helper
