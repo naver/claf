@@ -19,6 +19,8 @@ class CoLAReader(SeqClsReader):
         tokenizers: define tokenizers config (word)
     """
 
+    CLASS_DATA = [0, 1]
+
     def __init__(
             self,
             file_paths,
@@ -52,14 +54,4 @@ class CoLAReader(SeqClsReader):
                     self.class_key: str(0) if data_type == "test" else str(line_tokens[1])
                 })
 
-        return data, data
-
-    @overrides
-    def _get_class_dicts(self, **kwargs):
-        class_idx2text = {
-            class_idx: str(class_idx)
-            for class_idx in [0, 1]
-        }
-        class_text2idx = {class_text: class_idx for class_idx, class_text in class_idx2text.items()}
-
-        return class_idx2text, class_text2idx
+        return data

@@ -56,6 +56,10 @@
          "op_type": "adamw",
          "adamw": {
              "weight_decay": 0
+         },
+         "lr_scheduler_type": "warmup_linear",
+         "warmup_linear": {
+             "warmup_proportion": 0.1
          }
      },
      "seed_num": 42

@@ -25,7 +25,6 @@ class SeqClsDataset(DatasetBase):
         self.name = "seq_cls"
         self.vocab = vocab
         self.helper = helper
-        self.raw_dataset = helper["raw_dataset"]
 
         self.class_idx2text = helper["class_idx2text"]
 

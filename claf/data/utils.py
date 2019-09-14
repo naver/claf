@@ -4,6 +4,12 @@ from collections import defaultdict
 import numpy as np
 import torch
 
+from claf.data.dto.batch import Batch
+
+
+def make_batch(features, labels):
+    return Batch(**{"features": features, "labels": labels})
+
 
 def make_bert_input(
     sequence_a,

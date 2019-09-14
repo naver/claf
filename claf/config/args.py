@@ -45,6 +45,8 @@ def config(argv=None, mode=None):
 
 
 def train_config(parser, input_argv=None):
+    """ Add argument only for hyperparameter tuning. """
+
     data(parser)
     token(parser)
     model(parser)
@@ -343,6 +345,15 @@ def token(parser):
     )
 
     group = parser.add_argument_group(" # Tokenizer")
+
+    group.add_argument(
+        "--tokenizer.bpe.name",
+        type=str, default="roberta", dest="token.tokenizer.bpe.name",
+        help="""\
+    BPE Tokenizer package name [roberta]
+    Default is 'roberta' """,
+    )
+
     group.add_argument(
         "--tokenizer.char.name",
         type=str, default="character", dest="token.tokenizer.char.name",
@@ -611,11 +622,14 @@ def model(parser):
     * Reading Comprehension
       [bert_for_qa|bidaf|bidaf_no_answer|docqa|docqa_no_answer|dclaf|qanet|simple]
 
+    * Regression
+      [bert_for_reg|roberta_for_reg]
+
     * Semantic Parsing
       [sqlnet]
 
     * Sequence Classification
-      [bert_for_seq_cls|structured_self_attention]
+      [bert_for_seq_cls|roberta_for_seq_cls|structured_self_attention]
 
     * Token Classification
       [bert_for_tok_cls]
@@ -637,6 +651,20 @@ def model(parser):
     group.add_argument(
         "--bert_for_qa.answer_maxlen",
         type=int, default=None, dest="model.bert_for_qa.answer_maxlen",
+        help=""" The number of maximum answer's length (default: None)""",
+    )
+
+    group = parser.add_argument_group(f" # RoBERTa")
+    group.add_argument(
+        "--roberta_for_qa.pretrained_model_name",
+        type=str, default=None, dest="model.roberta_for_qa.pretrained_model_name",
+        help=""" A str with the name of a pre-trained model to load selected in the list of (default: None):
+                    . `roberta-base`
+                    . `roberta-large` """,
+    )
+    group.add_argument(
+        "--roberta_for_qa.answer_maxlen",
+        type=int, default=None, dest="model.roberta_for_qa.answer_maxlen",
         help=""" The number of maximum answer's length (default: None)""",
     )
 
@@ -877,27 +905,61 @@ def model(parser):
         help=""" Weight Init""",
     )
 
-    group = parser.add_argument_group(" # Dclaf")
+    group = parser.add_argument_group(" # DrQA")
     group.add_argument(
-        "--dclaf.aligned_query_embedding",
-        type=int, default=True, dest="model.dclaf.aligned_query_embedding",
+        "--drqa.aligned_query_embedding",
+        type=int, default=True, dest="model.drqa.aligned_query_embedding",
         help=""" Aligned Question Embedding  (default: True)""",
     )
     group.add_argument(
-        "--dclaf.answer_maxlen",
-        type=int, default=15, dest="model.dclaf.answer_maxlen",
+        "--drqa.answer_maxlen",
+        type=int, default=15, dest="model.drqa.answer_maxlen",
         help=""" The number of maximum answer's length (default: None)""",
     )
     group.add_argument(
-        "--dclaf.model_dim",
-        type=int, default=128, dest="model.dclaf.model_dim",
+        "--drqa.model_dim",
+        type=int, default=128, dest="model.drqa.model_dim",
         help=""" The number of document reader model dimension""",
     )
     group.add_argument(
-        "--dclaf.dropout",
-        type=int, default=0.3, dest="model.dclaf.dropout",
+        "--drqa.dropout",
+        type=int, default=0.3, dest="model.drqa.dropout",
         help=""" The number of document reader model dropout""",
     )
+
+
+    regression_title = "ㅁRegression"
+    group = parser.add_argument_group(f"{regression_title}\n # BERT for Regression")
+    group.add_argument(
+        "--bert_for_reg.pretrained_model_name",
+        type=str, default=None, dest="model.bert_for_reg.pretrained_model_name",
+        help=""" A str with the name of a pre-trained model to load selected in the list of (default: None):
+                    . `bert-base-uncased`
+                    . `bert-large-uncased`
+                    . `bert-base-cased`
+                    . `bert-base-multilingual`
+                    . `bert-base-chinese` """,
+    )
+    group.add_argument(
+        "--bert_for_reg.dropout",
+        type=float, default=0.2, dest="model.bert_for_reg.dropout",
+        help=""" The prob of fc layer dropout """
+    )
+
+    group = parser.add_argument_group(f" # RoBERTa")
+    group.add_argument(
+        "--roberta_for_reg.pretrained_model_name",
+        type=str, default=None, dest="model.roberta_for_reg.pretrained_model_name",
+        help=""" A str with the name of a pre-trained model to load selected in the list of (default: None):
+                    . `roberta-base`
+                    . `roberta-large` """,
+    )
+    group.add_argument(
+        "--roberta_for_reg.dropout",
+        type=float, default=0.2, dest="model.roberta_for_reg.dropout",
+        help=""" The prob of fc layer dropout """
+    )
+
 
     semantic_parsing_title = "ㅁSemantic Parsing"
     group = parser.add_argument_group(f"{semantic_parsing_title}\n # SQLNet")
@@ -952,6 +1014,20 @@ def model(parser):
     group.add_argument(
         "--bert_for_seq_cls.dropout",
         type=float, default=0.2, dest="model.bert_for_seq_cls.dropout",
+        help=""" The prob of fc layer dropout """
+    )
+
+    group = parser.add_argument_group(f" # RoBERTa")
+    group.add_argument(
+        "--roberta_for_seq_cls.pretrained_model_name",
+        type=str, default=None, dest="model.roberta_for_seq_cls.pretrained_model_name",
+        help=""" A str with the name of a pre-trained model to load selected in the list of (default: None):
+                    . `roberta-base`
+                    . `roberta-large` """,
+    )
+    group.add_argument(
+        "--roberta_for_seq_cls.dropout",
+        type=float, default=0.2, dest="model.roberta_for_seq_cls.dropout",
         help=""" The prob of fc layer dropout """
     )
 
@@ -1017,6 +1093,20 @@ def model(parser):
     group.add_argument(
         "--bert_for_tok_cls.dropout",
         type=float, default=0.2, dest="model.bert_for_tok_cls.dropout",
+        help=""" The prob of fc layer dropout """
+    )
+
+    group = parser.add_argument_group(f" # RoBERTa")
+    group.add_argument(
+        "--roberta_for_tok_cls.pretrained_model_name",
+        type=str, default=None, dest="model.roberta_for_tok_cls.pretrained_model_name",
+        help=""" A str with the name of a pre-trained model to load selected in the list of (default: None):
+                    . `roberta-base`
+                    . `roberta-large` """,
+    )
+    group.add_argument(
+        "--roberta_for_tok_cls.dropout",
+        type=float, default=0.2, dest="model.roberta_for_tok_cls.dropout",
         help=""" The prob of fc layer dropout """
     )
 
@@ -1089,6 +1179,7 @@ def trainer(parser):
         (http://jmlr.org/papers/v12/duchi11a.html)
     - adam: Adam: A Method for Stochastic Optimization
         (https://arxiv.org/abs/1412.6980)
+    - adamw: Adam: Adam algorithm with weight decay fix. (BertAdam)
     - sparse_adam: Implements lazy version of Adam algorithm suitable for sparse tensors.
         In this variant, only moments that show up in the gradient get updated,
         and only those portions of the gradient get applied to the parameters.
@@ -1101,7 +1192,7 @@ def trainer(parser):
     - sgd: Implements stochastic gradient descent (optionally with momentum).
         Nesterov momentum: (http://www.cs.toronto.edu/~hinton/absps/momentum.pdf)
 
-    [adadelta|adagrad|adam|sparse_adam|adamax|averaged_sgd|rmsprop|rprop|sgd]""",
+    [adadelta|adagrad|adam|adamw|sparse_adam|adamax|averaged_sgd|rmsprop|rprop|sgd]""",
     )
     group.add_argument(
         "--learning_rate",
@@ -1177,6 +1268,40 @@ def trainer(parser):
         help="""\
     weight decay (L2 penalty)
     Default: 0 """,
+    )
+
+    group = parser.add_argument_group("  # AdamW")
+    group.add_argument(
+        "--adamw.betas", nargs="+",
+        type=float, default=[0.9, 0.999], dest="optimizer.adamw.betas",
+        help="""\
+    coefficients used for computing running averages of gradient and its square
+    Default: (0.9, 0.999) """,
+    )
+    group.add_argument(
+        "--adamw.eps",
+        type=float, default=1e-6, dest="optimizer.adamw.eps",
+        help="""\
+    term added to the denominator to improve numerical stability
+    Default: 1e-8 """,
+    )
+    group.add_argument(
+        "--adamw.weight_decay",
+        type=float,
+        default=0.0,
+        dest="optimizer.adamw.weight_decay",
+        help="""\
+    weight decay (L2 penalty)
+    Default: 0 """,
+    )
+    group.add_argument(
+        "--adamw.correct_bias",
+        type=arg_str2bool,
+        default=True,
+        dest="optimizer.adamw.correct_bias",
+        help="""\
+    can be set to False to avoid correcting bias in Adam (e.g. like in Bert TF repository).
+    Default: True """,
     )
 
     group = parser.add_argument_group("  # SparseAdam")
@@ -1344,10 +1469,23 @@ def trainer(parser):
         learning rate by a factor of 2-10 once learning stagnates.
         This scheduler reads a metrics quantity and if no improvement
         is seen for a ‘patience’ number of epochs, the learning rate is reduced.
-    - warmup: a learning rate warm-up scheme with an inverse exponential increase
-         from 0.0 to {learning_rate} in the first {final_step}.
+    - warmup_constant: Linear warmup and then constant.
+        Linearly increases learning rate schedule from 0 to 1 over `warmup_steps` training steps.
+        Keeps learning rate schedule equal to 1. after warmup_steps.
+    - warmup_linear: Linear warmup and then linear decay.
+        Linearly increases learning rate from 0 to 1 over `warmup_steps` training steps.
+        Linearly decreases learning rate from 1. to 0. over remaining `t_total - warmup_steps` steps.
+    - warmup_consine: Linear warmup and then cosine decay.
+        Linearly increases learning rate from 0 to 1 over `warmup_steps` training steps.
+        Decreases learning rate from 1. to 0. over remaining `t_total - warmup_steps` steps following a cosine curve.
+        If `cycles` (default=0.5) is different from default, learning rate follows cosine function after warmup.
+    - warmup_consine_with_hard_restart: Linear warmup and then cosine cycles with hard restarts.
+        Linearly increases learning rate from 0 to 1 over `warmup_steps` training steps.
+        If `cycles` (default=1.) is different from default, learning rate follows `cycles` times a cosine decaying
+        learning rate (with hard restarts).
 
-    [step|multi_step|exponential|reduce_on_plateau|cosine|warmup]
+    [step|multi_step|exponential|reduce_on_plateau|cosine|
+        warmup_constant|warmup_linear|warmup_consine|warmup_consine_with_hard_restart]
         """,
     )
 
@@ -1499,20 +1637,82 @@ def trainer(parser):
     Default: 1e-8 """,
     )
 
-    group = parser.add_argument_group("  # WarmUpLR")
+    group = parser.add_argument_group("  # WarmUp Constant")
     group.add_argument(
-        "--warmup.final_step",
-        type=int, default=1000, dest="optimizer.warmup.final_step",
+        "--warmup_constant.warmup_steps",
+        type=int, default=None, dest="optimizer.warmup_constant.warmup_steps",
         help="""\
-    The number of steps to exponential increase the learning rate.
-    Default: 1000. """,
+    The number of steps to increase the learning rate from 0 to 1.
+    Default: None """,
     )
     group.add_argument(
-        "--warmup.last_epoch",
-        type=int, default=-1, dest="optimizer.warmup.last_epoch",
+        "--warmup_constant.last_epoch",
+        type=int, default=-1, dest="optimizer.warmup_constant.last_epoch",
         help="""\
     The index of last epoch.
     Default: -1. """
+    )
+
+    group = parser.add_argument_group("  # WarmUp Linear")
+    group.add_argument(
+        "--warmup_linear.warmup_steps",
+        type=int, default=None, dest="optimizer.warmup_linear.warmup_steps",
+        help="""\
+    The number of steps to increase the learning rate from 0 to 1.
+    Default: None """,
+    )
+    group.add_argument(
+        "--warmup_linear.last_epoch",
+        type=int, default=-1, dest="optimizer.warmup_linear.last_epoch",
+        help="""\
+    The index of last epoch.
+    Default: -1. """
+    )
+
+    group = parser.add_argument_group("  # WarmUp Cosine")
+    group.add_argument(
+        "--warmup_cosine.warmup_steps",
+        type=int, default=None, dest="optimizer.warmup_cosine.warmup_steps",
+        help="""\
+    The number of steps to increase the learning rate from 0 to 1.
+    Default: None """,
+    )
+    group.add_argument(
+        "--warmup_cosine.last_epoch",
+        type=int, default=-1, dest="optimizer.warmup_cosine.last_epoch",
+        help="""\
+    The index of last epoch.
+    Default: -1. """
+    )
+    group.add_argument(
+        "--warmup_cosine.cycles",
+        type=float, default=.5, dest="optimizer.warmup_cosine.cycles",
+        help="""\
+    If `cycles` is different from default, learning rate follows cosine function after warmup
+    Default: .5 """
+    )
+
+    group = parser.add_argument_group("  # WarmUp Cosine with hard restarts")
+    group.add_argument(
+        "--warmup_cosine_with_hard_restart.warmup_steps",
+        type=int, default=None, dest="optimizer.warmup_cosine_with_hard_restart.warmup_steps",
+        help="""\
+    The number of steps to increase the learning rate from 0 to 1.
+    Default: None """,
+    )
+    group.add_argument(
+        "--warmup_cosine_with_hard_restart.last_epoch",
+        type=int, default=-1, dest="optimizer.warmup_cosine_with_hard_restart.last_epoch",
+        help="""\
+    The index of last epoch.
+    Default: -1. """
+    )
+    group.add_argument(
+        "--warmup_cosine_with_hard_restart.cycles",
+        type=float, default=1., dest="optimizer.warmup_cosine_with_hard_restart.cycles",
+        help="""\
+    If `cycles` is different from default, learning rate follows cosine_with_hard_restart function after warmup
+    Default: 1. """
     )
 
     group = parser.add_argument_group("Exponential Moving Average")

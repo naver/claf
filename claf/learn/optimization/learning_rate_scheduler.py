@@ -23,7 +23,6 @@ def get_lr_schedulers():
         "reduce_on_plateau": torch.optim.lr_scheduler.ReduceLROnPlateau,
         "cosine": torch.optim.lr_scheduler.CosineAnnealingLR,
         "noam": NoamLR,
-        "warmup": WarmUpLR,
         "warmup_constant": WarmupConstantSchedule,
         "warmup_linear": WarmupLinearSchedule,
         "warmup_consine": WarmupCosineSchedule,
@@ -80,43 +79,6 @@ class LearningRateWithMetricsWrapper(LearningRateScheduler):
                 "must be used with a validation dataset."
             )
         self.lr_scheduler.step(metric, epoch)
-
-
-class WarmUpLR(torch.optim.lr_scheduler._LRScheduler):
-    """
-        Learning Rate Scheduler
-
-        a learning rate warm-up scheme with an inverse exponential increase
-         from 0.0 to {learning_rate} in the first {final_step}.
-
-        * Args:
-            optimizer: torch.optim.Optimizer
-            final_step: The number of steps to exponential increase the learning rate.
-    """
-
-    def __init__(self, optimizer, final_step=1000, t_total=None, last_epoch=-1):
-        super().__init__(optimizer, last_epoch=last_epoch)
-        self.final_step = final_step
-
-        learning_rate = optimizer.param_groups[0]["lr"]
-        self.crit = learning_rate / math.log2(final_step)
-
-    def get_lr(self):
-        for param_group in self.optimizer.param_groups:
-            break
-        return param_group["lr"]
-
-    def step_batch(self, num_step):
-        if num_step <= self.final_step:
-            self.adjust_lr(num_step)
-
-    def step(self, epoch=None):
-        pass
-
-    def adjust_lr(self, step):
-        lr = self.crit * math.log2(step + 1)
-        for param_group in self.optimizer.param_groups:
-            param_group["lr"] = lr
 
 
 class NoamLR(torch.optim.lr_scheduler._LRScheduler):  # pylint: disable=protected-access

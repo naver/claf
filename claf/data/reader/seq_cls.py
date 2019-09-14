@@ -7,8 +7,9 @@ from overrides import overrides
 from tqdm import tqdm
 
 from claf.data.dataset.seq_cls import SeqClsDataset
-from claf.data.batch import make_batch
+from claf.data.dto import Helper
 from claf.data.reader.base import DataReader
+from claf.data import utils
 from claf.decorator import register
 
 logger = logging.getLogger(__name__)
@@ -27,6 +28,8 @@ class SeqClsReader(DataReader):
         class_key: name of the label in .json file to use for classification
     """
 
+    CLASS_DATA = None
+
     def __init__(self, file_paths, tokenizers, sequence_max_length=None, class_key="class"):
         super(SeqClsReader, self).__init__(file_paths, SeqClsDataset)
 
@@ -43,12 +46,20 @@ class SeqClsReader(DataReader):
         data = self.data_handler.read(file_path)
         seq_cls_data = json.loads(data)
 
-        return seq_cls_data, seq_cls_data["data"]
+        return seq_cls_data["data"]
 
     def _get_class_dicts(self, **kwargs):
         seq_cls_data = kwargs["data"]
+        if self.class_key is None:
+            class_data = self.CLASS_DATA
+        else:
+            class_data = [item[self.class_key] for item in seq_cls_data]
+            class_data = list(set(class_data))  # remove duplicate
 
-        class_idx2text = {class_idx: str(class_text) for class_idx, class_text in enumerate(seq_cls_data[self.class_key])}
+        class_idx2text = {
+            class_idx: str(class_text)
+            for class_idx, class_text in enumerate(class_data)
+        }
         class_text2idx = {class_text: class_idx for class_idx, class_text in class_idx2text.items()}
 
         return class_idx2text, class_text2idx
@@ -75,26 +86,24 @@ class SeqClsReader(DataReader):
         }
         """
 
-        data, raw_dataset = self._get_data(file_path, data_type=data_type)
+        data = self._get_data(file_path, data_type=data_type)
         class_idx2text, class_text2idx = self._get_class_dicts(data=data)
 
-        helper = {
+        helper = Helper(**{
             "file_path": file_path,
-            "examples": {},
-            "raw_dataset": raw_dataset,
             "class_idx2text": class_idx2text,
             "class_text2idx": class_text2idx,
+        })
+        helper.set_model_parameter({
+            "num_classes": len(class_idx2text),
+        })
+        helper.set_predict_helper({
+            "class_idx2text": class_idx2text,
+        })
 
-            "model": {
-                "num_classes": len(class_idx2text),
-            },
-            "predict_helper": {
-                "class_idx2text": class_idx2text,
-            }
-        }
         features, labels = [], []
 
-        for example in tqdm(raw_dataset, desc=data_type):
+        for example in tqdm(data, desc=data_type):
             sequence = example["sequence"].strip().replace("\n", "")
             sequence_words = self.word_tokenizer.tokenize(sequence)
 
@@ -124,13 +133,13 @@ class SeqClsReader(DataReader):
             }
             labels.append(label_row)
 
-            helper["examples"][data_uid] = {
+            helper.set_example(data_uid, {
                 "sequence": sequence,
                 "class_idx": class_text2idx[class_text],
                 "class_text": class_text,
-            }
+            })
 
-        return make_batch(features, labels), helper
+        return utils.make_batch(features, labels), helper.to_dict()
 
     def read_one_example(self, inputs):
         """ inputs keys: sequence """
