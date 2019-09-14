@@ -34,7 +34,7 @@ class BertForTokCls(TokenClassification, ModelWithoutTokenEmbedder):
 
         super(BertForTokCls, self).__init__(token_makers)
 
-        self.bert = True  # for optimizer's model parameters
+        self.use_pytorch_transformers = True  # for optimizer's model parameters
 
         self.ignore_tag_idx = ignore_tag_idx
         self.num_tags = num_tags

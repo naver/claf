@@ -29,7 +29,7 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
 
         super(BertForSeqCls, self).__init__(token_makers)
 
-        self.bert = True  # for optimizer's model parameters
+        self.use_pytorch_transformers = True  # for optimizer's model parameters
 
         self.num_classes = num_classes
 

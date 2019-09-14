@@ -32,7 +32,7 @@ class BertForQA(SQuADv1, ModelWithoutTokenEmbedder):
         super(BertForQA, self).__init__(token_makers)
 
         self.lang_code = lang_code
-        self.bert = True  # for optimizer's model parameters
+        self.use_pytorch_transformers = True  # for optimizer's model parameters
         self.answer_maxlen = answer_maxlen
 
         self.model = BertForQuestionAnswering.from_pretrained(

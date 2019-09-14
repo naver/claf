@@ -28,7 +28,7 @@ class BertForRegression(Regression, ModelWithoutTokenEmbedder):
 
         super(BertForRegression, self).__init__(token_makers)
 
-        self.bert = True  # for optimizer's model parameters
+        self.use_pytorch_transformers = True  # for optimizer's model parameters
 
         NUM_CLASSES = 1
 

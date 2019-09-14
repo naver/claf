@@ -9,7 +9,7 @@ from claf.learn.optimization.learning_rate_scheduler import (
     LearningRateWithMetricsWrapper,
 )
 from claf.learn.optimization.optimizer import get_optimizer_by_name
-from claf.model.sequence_classification import BertForSeqCls
+from claf.model.sequence_classification import BertForSeqCls, RobertaForSeqCls
 
 from .base import Factory
 
@@ -67,8 +67,8 @@ class OptimizerFactory(Factory):
         if not issubclass(type(model), torch.nn.Module):
             raise ValueError("optimizer model is must be subclass of torch.nn.Module.")
 
-        if getattr(model, "bert", None):  # use bert or not
-            model_parameters = self._group_parameters_for_bert(model)
+        if getattr(model, "use_pytorch_transformers", False):
+            model_parameters = self._group_parameters_for_transformers(model)
         else:
             model_parameters = [param for param in model.parameters() if param.requires_grad]
 
@@ -93,16 +93,16 @@ class OptimizerFactory(Factory):
 
         return op_dict
 
-    def _group_parameters_for_bert(self, model):
+    def _group_parameters_for_transformers(self, model):
         # Prepare optimizer
         param_optimizer = list(model.named_parameters())
 
         # hack to remove pooler, which is not used
         # thus it produce None grad that break apex
-        if not isinstance(model, BertForSeqCls):
+        if not isinstance(model, BertForSeqCls) or not isinstance(model, RobertaForSeqCls):
             param_optimizer = [n for n in param_optimizer if "pooler" not in n[0]]
 
-        no_decay = ["bias", "LayerNorm.bias", "LayerNorm.weight"]
+        no_decay = ["bias", "LayerNorm.weight"]
         optimizer_grouped_parameters = [
             {
                 "params": [p for n, p in param_optimizer if not any(nd in n for nd in no_decay)],
