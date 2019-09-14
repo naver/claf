@@ -20,20 +20,12 @@
 
 # CLaF: Clova Language Framework
 
-**CLaF** is a Language Framework built on PyTorch that provides following two high-level features:
-
-- `Experiment` enables the control of training flow in general NLP by offering various `TokenMaker` methods. 
-    - CLaF is inspired by the design principle of [AllenNLP](https://github.com/allenai/allennlp) such as the higher level concepts and reusable code, but mostly based on PyTorch’s common module, so that user can easily modify the code on their demands.  
-- `Machine` helps to combine various modules to build a NLP Machine in one place.
-    - There are knowledge-based, components and trained experiments which infer 1-example in modules.
-
-## Features
 
 - [Full Documentation](https://naver.github.io/claf/)
 - [Dataset And Model](https://naver.github.io/claf/docs/_build/html/contents/dataset_and_model.html)
 - [Pretrained Vector](https://naver.github.io/claf/docs/_build/html/contents/pretrained_vector.html)
 - [Tokens](https://naver.github.io/claf/docs/_build/html/contents/tokens.html): `Tokenizers` and `TokenMakers`
-- List of [BaseConfig](https://github.com/naver/claf#baseconfig)
+- List of [BaseConfig](#baseconfig)
 
 | Task | Language | Dataset | Model |
 | ---- | -------- | ------- | ----- |
@@ -53,15 +45,22 @@
     - [Reading Comprehension](https://naver.github.io/claf/docs/_build/html/summary/reading_comprehension.html)
 
 
+- List of [MachineConfig](#machine)
+
+| Name | Language | Pipeline | Note |
+| ---- | -------- | ------- | ----- |
+| KoWiki | Korean | `Wiki Dumps` -> `Document Retrieval` -> `Reading Comprehension` | - |
+| NLU | All | `Query` -> `Intent Classification` & `Token Classification (Slot)` -> `Template Matching` | - |
+
 ---
 
 
 ## Table of Contents
-
+- [Overview](#overview)
+    - [Features](#features)
 - [Installation](#installation) 
     - [Requirements](#requirements)
     - [Install via pip](#install-via-pip)
-- [Overview](#overview)
 - [Experiment](#experiment)
 	- [Usage](#usage)
 	    - [Training](#training) 
@@ -76,6 +75,25 @@
 
 
 ---
+
+
+## Overview
+
+**CLaF** is a Language Framework built on PyTorch that provides following two high-level features:
+
+- `Experiment` enables the control of training flow in general NLP by offering various `TokenMaker` methods. 
+    - CLaF is inspired by the design principle of [AllenNLP](https://github.com/allenai/allennlp) such as the higher level concepts and reusable code, but mostly based on PyTorch’s common module, so that user can easily modify the code on their demands.  
+- `Machine` helps to combine various modules to build a NLP Machine in one place.
+    - There are knowledge-based, components and trained experiments which infer 1-example in modules.
+
+### Features
+
+- **Multilingual** modeling support (currently, English and Korean are supported).
+- Light weighted **Systemization** and Modularization.
+- Easy extension and implementation of models.
+- A wide variation of **Experiments** with reproducible and comprehensive logging
+- The metrics for services such as "1\-example inference latency" are provided.
+- Easy to build of a NLP **Machine** by combining modules.
 
 
 ## Installation
@@ -104,17 +122,6 @@ Commands to install via pip
 ```
 pip install claf
 ```
-
-
-## Overview
-
-- **Multilingual** modeling support (currently, English and Korean are supported).
-- Light weighted **Systemization** and Modularization.
-- Easy extension and implementation of models.
-- A wide variation of **Experiments** with reproducible and comprehensive logging
-- The metrics for services such as "1\-example inference latency" are provided.
-- Easy to build of a NLP **Machine** by combining modules.
-
 
 
 ## Experiment
