@@ -189,9 +189,12 @@ class Experiment:
 
         # Token & Vocab
         text_handler = TextHandler(token_makers, lazy_indexing=True)
-        texts = data_reader.filter_texts(datas)
+        if text_handler.is_all_vocab_use_pretrained():
+            token_counters = token_makers
+        else:
+            texts = data_reader.filter_texts(datas)
+            token_counters = text_handler.make_token_counters(texts, config=self.config)
 
-        token_counters = text_handler.make_token_counters(texts, config=self.config)
         vocabs = text_handler.build_vocabs(token_counters)
         text_handler.index(datas, data_reader.text_columns)
 
