@@ -119,6 +119,7 @@ class SeqClsBertReader(DataReader):
             "class_text2idx": class_text2idx,
             "cls_token": self.cls_token,
             "sep_token": self.sep_token,
+            "dataset": SeqClsBertDataset,
         })
         helper.set_model_parameter({
             "num_classes": len(class_idx2text),

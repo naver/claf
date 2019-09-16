@@ -6,6 +6,8 @@ from claf.data.reader.squad import SQuADReader
 
 from claf.data.reader.wikisql import WikiSQLReader
 
+from claf.data.reader.bert.multi_task import MultiTaskBertReader
+
 from claf.data.reader.bert.seq_cls import SeqClsBertReader
 from claf.data.reader.bert.glue.cola import CoLABertReader
 from claf.data.reader.bert.glue.mrpc import MRPCBertReader
@@ -28,6 +30,8 @@ from claf.data.reader.bert.conll2003 import CoNLL2003BertReader
 # fmt: off
 
 __all__ = [
+    "MultiTaskBertReader",
+
     "RegressionBertReader", "STSBBertReader",
 
     "SeqClsReader", "CoLAReader",
