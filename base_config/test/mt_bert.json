@@ -4,6 +4,7 @@
          "train_file_path": "train",
          "valid_file_path": "valid",
          "multitask_bert": {
+             "batch_sizes": [2, 3],
              "readers": [{
                  "dataset": "cola_bert",
                  "train_file_path": "data/glue/CoLA/train.tsv",
@@ -24,7 +25,7 @@
          }
      },
      "iterator": {
-         "batch_size": 2
+         "batch_size": 1
      },
      "token": {
          "names": ["feature"],
@@ -54,8 +55,8 @@
          }
      },
      "model": {
-         "name": "bert_for_seq_cls",
-         "bert_for_seq_cls": {
+         "name": "bert_for_multi",
+         "bert_for_multi": {
              "pretrained_model_name": "bert-base-uncased",
              "dropout": 0.0
          }

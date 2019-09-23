@@ -69,13 +69,13 @@ class DataReader:
     def convert_to_dataset(self, datas, vocab, helpers=None):
         """ Batch to Dataset """
         datasets = {}
-        features, labels = [], []
+        # features, labels = [], []
         for k, batch in datas.items():
             if batch is None:
                 continue
             datasets[k] = self.dataset_obj(batch, vocab, helper=helpers[k])
             logger.info(f"{k} dataset. {datasets[k]}")
 
-            features += batch.features
-            labels += batch.labels
+            # features += batch.features
+            # labels += batch.labels
         return datasets
