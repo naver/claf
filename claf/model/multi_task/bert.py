@@ -9,8 +9,8 @@ from claf.model.base import ModelWithoutTokenEmbedder
 from claf.model.multi_task.mixin import MultiTask
 
 
-@register("model:mt_bert")
-class MtBert(MultiTask, ModelWithoutTokenEmbedder):
+@register("model:bert_for_multi")
+class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
     """
     Implementation of Sentence Classification model presented in
     BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
@@ -27,22 +27,24 @@ class MtBert(MultiTask, ModelWithoutTokenEmbedder):
 
     def __init__(self, token_makers, tasks, pretrained_model_name=None, dropout=0.2):
 
-        super(MtBert, self).__init__(token_makers)
+        super(BertForMultiTask, self).__init__(token_makers)
 
         self.use_pytorch_transformers = True  # for optimizer's model parameters
 
+        print("tasks:", tasks)
         self.tasks = tasks
 
         self._model = BertModel.from_pretrained(
             pretrained_model_name, cache_dir=str(CachePath.ROOT)
         )
         self.classifier = nn.Sequential(
-            nn.Dropout(dropout), nn.Linear(self._model.config.hidden_size)
+            nn.Linear(self._model.config.hidden_size, self._model.config.hidden_size),
+            nn.Dropout(dropout),
         )
         self.classifier.apply(self._model.init_weights)
 
         self.task_specific_layers = nn.ModuleList(
-            [nn.Linear(t["num_classes"]) for t in tasks]
+            [nn.Linear(self._model.config.hidden_size, t["num_label"]) for t in tasks]
         )
 
         self.criterions = {
@@ -97,12 +99,17 @@ class MtBert(MultiTask, ModelWithoutTokenEmbedder):
         pooled_output = outputs[1]
 
         task_index = features["task_index"]
+        print("task_index:", task_index)
         task_specific_layer = self.task_specific_layers[task_index]
 
         pooled_output = self.classifier(pooled_output)
         logits = task_specific_layer(pooled_output)
 
-        output_dict = {"sequence_embed": pooled_output, "logits": logits}
+        output_dict = {
+            "task_index": task_index,
+            "sequence_embed": pooled_output,
+            "class_logits": logits,
+        }
 
         if labels:
             class_idx = labels["class_idx"]
@@ -112,12 +119,12 @@ class MtBert(MultiTask, ModelWithoutTokenEmbedder):
             output_dict["data_idx"] = data_idx
 
             # Loss
-            num_classes = self.tasks[task_index]["num_classes"]
+            num_label = self.tasks[task_index]["num_label"]
             task_category = self.tasks[task_index]["category"]
 
             criterion = self.criterions[task_category]
             loss = criterion(
-                logits.view(-1, num_classes), class_idx.view(-1)
+                logits.view(-1, num_label), class_idx.view(-1)
             )
             output_dict["loss"] = loss.unsqueeze(0)  # NOTE: DataParallel concat Error
 

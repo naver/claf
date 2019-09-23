@@ -40,8 +40,11 @@ class MultiTask:
         pred_class_logits = output_dict["class_logits"]
         pred_class_idxs = torch.argmax(pred_class_logits, dim=-1)
 
+        task_index = output_dict["task_index"]
+        task_dataset = self._dataset.task_datasets[task_index]
+
         predictions = {
-            self._dataset.get_id(data_idx.item()): {"class_idx": pred_class_idx.item()}
+            task_dataset.get_id(data_idx.item()): {"class_idx": pred_class_idx.item()}
             for data_idx, pred_class_idx in zip(list(data_indices.data), list(pred_class_idxs.data))
         }
 

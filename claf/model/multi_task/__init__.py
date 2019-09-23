@@ -1,11 +1,11 @@
 
-from claf.model.multi_task.mt_bert import MtBert
+from claf.model.multi_task.bert import BertForMultiTask
 
 
 # fmt: off
 
 __all__ = [
-    "MtBert"
+    "BertForMultiTask"
 ]
 
 # fmt: on
