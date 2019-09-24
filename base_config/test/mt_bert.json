@@ -62,10 +62,10 @@
          }
      },
      "trainer": {
-         "log_dir": "logs/test/cola_bert",
+         "log_dir": "logs/test/mt_bert",
          "num_epochs": 1,
          "early_stopping_threshold": 10,
-         "metric_key": "matthews_corr",
+         "metric_key": "task-1/accuracy",
          "eval_and_save_step_count": "epoch"
      },
      "optimizer": {

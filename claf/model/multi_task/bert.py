@@ -7,6 +7,7 @@ from claf.data.data_handler import CachePath
 from claf.decorator import register
 from claf.model.base import ModelWithoutTokenEmbedder
 from claf.model.multi_task.mixin import MultiTask
+from claf.model.sequence_classification.mixin import SequenceClassification
 
 
 @register("model:bert_for_multi")
@@ -30,9 +31,10 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
         super(BertForMultiTask, self).__init__(token_makers)
 
         self.use_pytorch_transformers = True  # for optimizer's model parameters
-
-        print("tasks:", tasks)
         self.tasks = tasks
+
+        self.curr_task_category = None
+        self.curr_dataset = None
 
         self._model = BertModel.from_pretrained(
             pretrained_model_name, cache_dir=str(CachePath.ROOT)
@@ -99,10 +101,12 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
         pooled_output = outputs[1]
 
         task_index = features["task_index"]
-        print("task_index:", task_index)
-        task_specific_layer = self.task_specific_layers[task_index]
+
+        self.curr_task_category = self.tasks[task_index]["category"]
+        self.curr_dataset = self._dataset.task_datasets[task_index]
 
         pooled_output = self.classifier(pooled_output)
+        task_specific_layer = self.task_specific_layers[task_index]
         logits = task_specific_layer(pooled_output)
 
         output_dict = {
@@ -120,9 +124,8 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
 
             # Loss
             num_label = self.tasks[task_index]["num_label"]
-            task_category = self.tasks[task_index]["category"]
 
-            criterion = self.criterions[task_category]
+            criterion = self.criterions[self.curr_task_category]
             loss = criterion(
                 logits.view(-1, num_label), class_idx.view(-1)
             )
@@ -132,43 +135,4 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
 
     @overrides
     def print_examples(self, index, inputs, predictions):
-        """
-        Print evaluation examples
-
-        * Args:
-            index: data index
-            inputs: mini-batch inputs
-            predictions: prediction dictionary consisting of
-                - key: 'id' (sequence id)
-                - value: dictionary consisting of
-                    - class_idx
-
-        * Returns:
-            print(Sequence, Sequence Tokens, Target Class, Predicted Class)
-        """
-
-        data_idx = inputs["labels"]["data_idx"][index].item()
-        data_id = self._dataset.get_id(data_idx)
-
-        helper = self._dataset.helper
-
-        sequence_a = helper["examples"][data_id]["sequence_a"]
-        sequence_a_tokens = helper["examples"][data_id]["sequence_a_tokens"]
-        sequence_b = helper["examples"][data_id]["sequence_b"]
-        sequence_b_tokens = helper["examples"][data_id]["sequence_b_tokens"]
-        target_class_text = helper["examples"][data_id]["class_text"]
-
-        pred_class_idx = predictions[data_id]["class_idx"]
-        pred_class_text = self._dataset.get_class_text_with_idx(pred_class_idx)
-
-        print()
-        print("- Sequence a:", sequence_a)
-        print("- Sequence a Tokens:", sequence_a_tokens)
-        if sequence_b:
-            print("- Sequence b:", sequence_b)
-            print("- Sequence b Tokens:", sequence_b_tokens)
-        print("- Target:")
-        print("    Class:", target_class_text)
-        print("- Predict:")
-        print("    Class:", pred_class_text)
-        print()
+        print("print_examples in BertForMultiTask!")

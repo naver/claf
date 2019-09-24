@@ -7,6 +7,7 @@ import pycm
 from pycm.pycm_obj import pycmVectorError
 
 from claf.model import cls_utils
+from claf.model.base import ModelBase
 from claf.metric.classification import macro_f1, macro_precision, macro_recall
 from claf.metric.glue import f1, matthews_corr
 
@@ -149,9 +150,17 @@ class SequenceClassification:
         Override write_predictions() in ModelBase to log confusion matrix
         """
 
-        super(SequenceClassification, self).write_predictions(
-            predictions, file_path=file_path, is_dict=is_dict
-        )
+        try:
+            super(SequenceClassification, self).write_predictions(
+                predictions, file_path=file_path, is_dict=is_dict
+            )
+        except AttributeError as e:
+            # TODO: Need to Fix
+            model_base = ModelBase()
+            model_base._log_dir = self._log_dir
+            model_base._train_counter = self._train_counter
+            model_base.training = self.training
+            model_base.write_predictions(predictions, file_path=file_path, is_dict=is_dict)
 
         data_type = "train" if self.training else "valid"
 
