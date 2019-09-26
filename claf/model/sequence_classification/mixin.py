@@ -9,7 +9,7 @@ from pycm.pycm_obj import pycmVectorError
 from claf.model import cls_utils
 from claf.model.base import ModelBase
 from claf.metric.classification import macro_f1, macro_precision, macro_recall
-from claf.metric.glue import f1, matthews_corr
+from claf.metric.glue import accuracy, f1, matthews_corr
 
 logger = logging.getLogger(__name__)
 
@@ -109,39 +109,8 @@ class SequenceClassification:
             target_idx.append(target["class_idx"])
             target_classes.append(target["class_text"])
 
-        # confusion matrix
-        try:
-            pycm_obj = pycm.ConfusionMatrix(
-                actual_vector=target_classes, predict_vector=pred_classes
-            )
-        except pycmVectorError as e:
-            if str(e) == "Number of the classes is lower than 2":
-                logger.warning("Number of classes in the batch is 1. Sanity check is highly recommended.")
-                return {
-                    "macro_f1": 1.,
-                    "macro_precision": 1.,
-                    "macro_recall": 1.,
-                    "accuracy": 1.,
-                }
-            elif str(e) == "Input vectors are empty":
-                return {
-                    "macro_f1": 0,
-                    "macro_precision": 0,
-                    "macro_recall": 0,
-                    "accuracy": 0,
-                }
-            else:
-                raise
-
-        self.write_predictions(
-            {"target": target_classes, "predict": pred_classes}, pycm_obj=pycm_obj
-        )
-
         metrics = {
-            "macro_f1": macro_f1(pycm_obj),
-            "macro_precision": macro_precision(pycm_obj),
-            "macro_recall": macro_recall(pycm_obj),
-            "accuracy": pycm_obj.Overall_ACC,
+            "accuracy": accuracy(pred_idx, target_idx),
         }
 
         if target_count == 2:
