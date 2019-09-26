@@ -14,10 +14,10 @@
                      "is_test": true
                  }
              }, {
-                 "dataset": "cola_bert",
-                 "train_file_path": "data/glue/CoLA/train.tsv",
-                 "valid_file_path": "data/glue/CoLA/dev.tsv",
-                 "cola_bert": {
+                 "dataset": "stsb_bert",
+                 "train_file_path": "data/glue/STS-B/train.tsv",
+                 "valid_file_path": "data/glue/STS-B/dev.tsv",
+                 "stsb_bert": {
                      "sequence_max_length": 128,
                      "is_test": true
                  }
@@ -63,9 +63,9 @@
      },
      "trainer": {
          "log_dir": "logs/test/mt_bert",
-         "num_epochs": 1,
+         "num_epochs": 2,
          "early_stopping_threshold": 10,
-         "metric_key": "task-1/accuracy",
+         "metric_key": "average",
          "eval_and_save_step_count": "epoch"
      },
      "optimizer": {

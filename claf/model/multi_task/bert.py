@@ -7,7 +7,6 @@ from claf.data.data_handler import CachePath
 from claf.decorator import register
 from claf.model.base import ModelWithoutTokenEmbedder
 from claf.model.multi_task.mixin import MultiTask
-from claf.model.sequence_classification.mixin import SequenceClassification
 
 
 @register("model:bert_for_multi")
@@ -84,7 +83,7 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
 
         * Returns: output_dict (dict) consisting of
             - sequence_embed: embedding vector of the sequence
-            - class_logits: representing unnormalized log probabilities of the class.
+            - logits: representing unnormalized log probabilities
 
             - class_idx: target class idx
             - data_idx: data idx
@@ -112,14 +111,22 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
         output_dict = {
             "task_index": task_index,
             "sequence_embed": pooled_output,
-            "class_logits": logits,
+            "logits": logits,
         }
 
         if labels:
-            class_idx = labels["class_idx"]
+            label_key = None
+            if self.curr_task_category == self.CLASSIFICATION:
+                label_key = "class_idx"
+            elif self.curr_task_category == self.REGRESSION:
+                label_key = "score"
+            else:
+                raise ValueError("task category error.")
+
+            label_value = labels[label_key]
             data_idx = labels["data_idx"]
 
-            output_dict["class_idx"] = class_idx
+            output_dict[label_key] = label_value
             output_dict["data_idx"] = data_idx
 
             # Loss
@@ -127,7 +134,7 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
 
             criterion = self.criterions[self.curr_task_category]
             loss = criterion(
-                logits.view(-1, num_label), class_idx.view(-1)
+                logits.view(-1, num_label), label_value.view(-1)
             )
             output_dict["loss"] = loss.unsqueeze(0)  # NOTE: DataParallel concat Error
 
