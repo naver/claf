@@ -19,6 +19,8 @@ class STSBBertReader(RegressionBertReader):
         tokenizers: defined tokenizers config
     """
 
+    METRIC_KEY = "pearson_spearman_corr"
+
     def __init__(
         self,
         file_paths,

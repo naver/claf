@@ -20,6 +20,7 @@ class QNLIBertReader(SeqClsBertReader):
     """
 
     CLASS_DATA = ["entailment", "not_entailment"]
+    METRIC_KEY = "accuracy"
 
     def __init__(
         self,

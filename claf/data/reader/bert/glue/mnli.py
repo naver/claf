@@ -20,6 +20,7 @@ class MNLIBertReader(SeqClsBertReader):
     """
 
     CLASS_DATA = ["contradiction", "entailment", "neutral"]
+    METRIC_KEY = "accuracy"
 
     def __init__(
         self,

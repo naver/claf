@@ -24,7 +24,7 @@ class SequenceClassification:
         * Args:
             output_dict: model's output dictionary consisting of
                 - sequence_embed: embedding vector of the sequence
-                - class_logits: representing unnormalized log probabilities of the class
+                - logits: representing unnormalized log probabilities of the class
 
                 - class_idx: target class idx
                 - data_idx: data idx
@@ -38,8 +38,8 @@ class SequenceClassification:
         """
 
         data_indices = output_dict["data_idx"]
-        pred_class_logits = output_dict["class_logits"]
-        pred_class_idxs = torch.argmax(pred_class_logits, dim=-1)
+        pred_logits = output_dict["logits"]
+        pred_class_idxs = torch.argmax(pred_logits, dim=-1)
 
         predictions = {
             self._dataset.get_id(data_idx.item()): {"class_idx": pred_class_idx.item()}
@@ -55,22 +55,22 @@ class SequenceClassification:
         * Args:
             output_dict: model's output dictionary consisting of
                 - sequence_embed: embedding vector of the sequence
-                - class_logits: representing unnormalized log probabilities of the class.
+                - logits: representing unnormalized log probabilities of the class.
             arguments: arguments dictionary consisting of user_input
             helper: dictionary to get the classification result, consisting of
                 - class_idx2text: dictionary converting class_idx to class_text
 
         * Returns: output dict (dict) consisting of
-            - class_logits: representing unnormalized log probabilities of the class
+            - logits: representing unnormalized log probabilities of the class
             - class_idx: predicted class idx
             - class_text: predicted class text
         """
 
-        class_logits = output_dict["class_logits"]
-        class_idx = class_logits.argmax(dim=-1)
+        logits = output_dict["logits"]
+        class_idx = logits.argmax(dim=-1)
 
         return {
-            "class_logits": class_logits,
+            "logits": logits,
             "class_idx": class_idx,
             "class_text": helper["class_idx2text"][class_idx.item()],
         }
@@ -123,7 +123,15 @@ class SequenceClassification:
                     "macro_recall": 1.,
                     "accuracy": 1.,
                 }
-            raise
+            elif str(e) == "Input vectors are empty":
+                return {
+                    "macro_f1": 0,
+                    "macro_precision": 0,
+                    "macro_recall": 0,
+                    "accuracy": 0,
+                }
+            else:
+                raise
 
         self.write_predictions(
             {"target": target_classes, "predict": pred_classes}, pycm_obj=pycm_obj
@@ -154,7 +162,7 @@ class SequenceClassification:
             super(SequenceClassification, self).write_predictions(
                 predictions, file_path=file_path, is_dict=is_dict
             )
-        except AttributeError as e:
+        except AttributeError:
             # TODO: Need to Fix
             model_base = ModelBase()
             model_base._log_dir = self._log_dir

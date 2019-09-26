@@ -20,6 +20,7 @@ class QQPBertReader(SeqClsBertReader):
     """
 
     CLASS_DATA = [0, 1]
+    METRIC_KEY = "f1"
 
     def __init__(
         self,

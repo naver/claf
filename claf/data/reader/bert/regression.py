@@ -25,6 +25,8 @@ class RegressionBertReader(DataReader):
         tokenizers: defined tokenizers config
     """
 
+    METRIC_KEY = None
+
     def __init__(
         self,
         file_paths,
@@ -90,6 +92,8 @@ class RegressionBertReader(DataReader):
             "file_path": file_path,
             "cls_token": self.cls_token,
             "sep_token": self.sep_token,
+            "dataset": RegressionBertDataset,
+            "metric_key": self.METRIC_KEY,
         })
 
         features, labels = [], []

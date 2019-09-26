@@ -20,6 +20,7 @@ class CoLABertReader(SeqClsBertReader):
     """
 
     CLASS_DATA = [0, 1]
+    METRIC_KEY = "matthews_corr"
 
     def __init__(
         self,

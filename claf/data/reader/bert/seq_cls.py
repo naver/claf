@@ -29,6 +29,7 @@ class SeqClsBertReader(DataReader):
     """
 
     CLASS_DATA = None
+    METRIC_KEY = None
 
     def __init__(
         self,
@@ -120,6 +121,7 @@ class SeqClsBertReader(DataReader):
             "cls_token": self.cls_token,
             "sep_token": self.sep_token,
             "dataset": SeqClsBertDataset,
+            "metric_key": self.METRIC_KEY,
         })
         helper.set_model_parameter({
             "num_classes": len(class_idx2text),

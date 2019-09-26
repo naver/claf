@@ -50,24 +50,20 @@ class MultiTaskBertReader(DataReader):
         self.tokenizers = tokenizers
         self.batch_sizes = batch_sizes
 
-        self.dataset_features = []
+        self.dataset_batches = []
         self.dataset_helpers = []
         self.tasks = []
 
         for reader in readers:
-            reader_config = NestedNamespace()
-            reader_config.load_from_json(reader)
-            reader_config.tokenizers = tokenizers
+            data_reader = self.make_data_reader(reader)
+            batches, helpers = data_reader.read()
 
-            data_reader_factory = DataReaderFactory(reader_config)
-            data_reader = data_reader_factory.create()
-
-            features, helpers = data_reader.read()
-
-            self.dataset_features.append(features)
+            self.dataset_batches.append(batches)
             self.dataset_helpers.append(helpers)
 
             task = {}
+            task["name"] = reader["dataset"]
+            task["metric_key"] = data_reader.METRIC_KEY
             if isinstance(data_reader, SeqClsBertReader):
                 task["category"] = "classification"
                 task["num_label"] = helpers["train"]["model"]["num_classes"]
@@ -77,16 +73,24 @@ class MultiTaskBertReader(DataReader):
 
             self.tasks.append(task)
 
+    def make_data_reader(self, config_dict):
+        config = NestedNamespace()
+        config.load_from_json(config_dict)
+        config.tokenizers = self.tokenizers
+
+        data_reader_factory = DataReaderFactory(config)
+        return data_reader_factory.create()
+
     @overrides
     def _read(self, file_path, data_type=None):
         """ TODO: Doc-String """
 
-        features = []
+        batches = []
         helper = Helper()
         helper.task_helpers = []
 
-        for f in self.dataset_features:
-            features.append(f[data_type])
+        for b in self.dataset_batches:
+            batches.append(b[data_type])
         for i, h in enumerate(self.dataset_helpers):
             task_helper = h[data_type]
             task_helper["batch_size"] = self.batch_sizes[i]
@@ -98,7 +102,7 @@ class MultiTaskBertReader(DataReader):
             "tasks": self.tasks,
         })
 
-        return features, helper.to_dict()
+        return batches, helper.to_dict()
 
     def read_one_example(self, inputs):
         pass

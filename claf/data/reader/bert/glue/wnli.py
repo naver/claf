@@ -20,6 +20,7 @@ class WNLIBertReader(SeqClsBertReader):
     """
 
     CLASS_DATA = [0, 1]
+    METRIC_KEY = "accuracy"
 
     def __init__(
         self,
