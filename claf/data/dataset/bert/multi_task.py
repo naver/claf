@@ -6,7 +6,6 @@ import random
 
 from claf.config.factory.data_loader import make_data_loader
 from claf.data import utils
-from claf.data.collate import PadCollator
 from claf.data.dataset.base import DatasetBase
 
 
@@ -21,7 +20,7 @@ class MultiTaskBertDataset(DatasetBase):
         helper: helper from data_reader
     """
 
-    def __init__(self, batch, vocab, helper=None):
+    def __init__(self, batches, vocab, helper=None):
         super(MultiTaskBertDataset, self).__init__()
 
         self.name = "multitask_bert"
@@ -30,48 +29,62 @@ class MultiTaskBertDataset(DatasetBase):
         task_helpers = helper["task_helpers"]
 
         self.multi_dataset_size = 0
+        self.batch_sizes = []
         self.task_datasets = []
-        self.iterators = []
-        for b, h in zip(batch, task_helpers):
+
+        for b, h in zip(batches, task_helpers):
             batch_size = h["batch_size"]
+            self.batch_sizes.append(batch_size)
+
             dataset_cls = h["dataset"]
             dataset = dataset_cls(b, vocab, helper=h)
-            data_loader = make_data_loader(dataset, batch_size=batch_size)  # TODO: cuda_device_id
-
             self.task_datasets.append(dataset)
-            self.iterators.append(iter(data_loader))
 
             task_dataset_size, remain = divmod(len(dataset), batch_size)
             if remain > 0:
                 task_dataset_size += 1
             self.multi_dataset_size += task_dataset_size
 
+        self.init_iterators()
+
+    def init_iterators(self):
+        cuda_device_id = None
+        if torch.cuda.is_available():
+            cuda_device_id = 0  # Hard-code
+
+        self.iterators = []
+        for batch_size, dataset in zip(self.batch_sizes, self.task_datasets):
+            data_loader = make_data_loader(dataset, batch_size=batch_size, cuda_device_id=cuda_device_id)  # TODO: cuda_device_id
+            self.iterators.append(iter(data_loader))
+
+        self.available_iterators = list(range(len(self.iterators)))
+
     @overrides
     def collate_fn(self, cuda_device_id=None):
-        collator = PadCollator(cuda_device_id=cuda_device_id, pad_value=self.vocab.pad_index)
 
         def pass_tensor(data):
-            print("data in collate_fn:", data)
             task_idx, tensor_datas = zip(*data)
             tensor_batch = tensor_datas[0]
 
             task_id_tensor = torch.LongTensor(list(task_idx))
-            # task_id_tensor.cuda(cuda_device_id)
+            if torch.cuda.is_available():
+                task_id_tensor.cuda(cuda_device_id)
             tensor_batch.features["task_index"] = task_id_tensor
-            print("task_idx:", task_idx[0], task_id_tensor)
-            print("tensor_batch:", tensor_batch)
             return tensor_batch
         return pass_tensor
 
     @overrides
     def __getitem__(self, index):
         # self.lazy_evaluation(index)
+        if len(self.available_iterators) == 0:
+            self.init_iterators()
 
-        random_index = random.randint(0, len(self.iterators)-1)
+        random_index = random.choice(self.available_iterators)
         task_iterator = self.iterators[random_index]
         try:
             return random_index, next(task_iterator)
         except StopIteration as e:
+            self.available_iterators.remove(random_index)
             return self.__getitem__(index)
 
     def __len__(self):
@@ -84,16 +97,3 @@ class MultiTaskBertDataset(DatasetBase):
             "dataset_count": len(self.iterators),
         }
         return json.dumps(dataset_properties, indent=4)
-
-    def get_id(self, data_index):
-        return self.data_ids[data_index]
-
-    @overrides
-    def get_ground_truth(self, data_id):
-        return self.classes[data_id]
-
-    def get_class_text_with_idx(self, class_index):
-        if class_index is None:
-            raise ValueError("class_index is required.")
-
-        return self.class_idx2text[class_index]
