@@ -4,7 +4,7 @@ from scipy.stats import pearsonr, spearmanr
 from sklearn.metrics import matthews_corrcoef, f1_score
 
 
-def accuracy(preds, labels):
+def simple_accuracy(preds, labels):
     preds = np.array(preds)
     labels = np.array(labels)
     return (preds == labels).mean()

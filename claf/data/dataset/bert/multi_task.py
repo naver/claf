@@ -95,5 +95,6 @@ class MultiTaskBertDataset(DatasetBase):
             "name": self.name,
             "total_count": self.__len__(),
             "dataset_count": len(self.iterators),
+            "task_dataset_sizes": [len(dataset) for dataset in self.task_datasets],
         }
         return json.dumps(dataset_properties, indent=4)

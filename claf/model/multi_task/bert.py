@@ -133,9 +133,12 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
             num_label = self.tasks[task_index]["num_label"]
 
             criterion = self.criterions[self.curr_task_category]
-            loss = criterion(
-                logits.view(-1, num_label), label_value.view(-1)
-            )
+
+            logits = logits.view(-1, num_label)
+            if num_label == 1:
+                label_value = label_value.view(-1, 1)
+
+            loss = criterion(logits, label_value)
             output_dict["loss"] = loss.unsqueeze(0)  # NOTE: DataParallel concat Error
 
         return output_dict

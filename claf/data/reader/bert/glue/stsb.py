@@ -58,7 +58,7 @@ class STSBBertReader(RegressionBertReader):
             if len(line_tokens) <= 1:
                 continue
             data.append({
-                "uid": f"{data_type}-{i}",
+                "uid": f"stsb-{file_path}-{data_type}-{i}",
                 "sequence_a": line_tokens[7],
                 "sequence_b": line_tokens[8],
                 "score": float(line_tokens[-1]),

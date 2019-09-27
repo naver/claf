@@ -59,7 +59,7 @@ class MRPCBertReader(SeqClsBertReader):
             if len(line_tokens) != 5:
                 continue
             data.append({
-                "uid": f"{data_type}-{i}",
+                "uid": f"mrpc-{file_path}-{data_type}-{i}",
                 "sequence_a": line_tokens[3],
                 "sequence_b": line_tokens[4],
                 self.class_key: str(line_tokens[0]),

@@ -59,7 +59,7 @@ class WNLIBertReader(SeqClsBertReader):
             if len(line_tokens) <= 1:
                 continue
             data.append({
-                "uid": f"{data_type}-{i}",
+                "uid": f"wnli-{file_path}-{data_type}-{i}",
                 "sequence_a": line_tokens[1],
                 "sequence_b": line_tokens[2],
                 self.class_key: str(line_tokens[-1]),

@@ -50,6 +50,9 @@ class MultiTask:
             task_index = v["task_index"]
             task_predictions[task_index][k] = v
 
+        # Must match task_predictions data_sizes and dataset's
+        assert [len(task_preds) for task_preds in task_predictions] == [len(dataset) for dataset in self._dataset.task_datasets]
+
         all_metrics = {"average": 0}
         for task_index, predictions in enumerate(task_predictions):
             task_category = self.tasks[task_index]["category"]

@@ -9,7 +9,7 @@ from pycm.pycm_obj import pycmVectorError
 from claf.model import cls_utils
 from claf.model.base import ModelBase
 from claf.metric.classification import macro_f1, macro_precision, macro_recall
-from claf.metric.glue import accuracy, f1, matthews_corr
+from claf.metric.glue import simple_accuracy, f1, matthews_corr
 
 logger = logging.getLogger(__name__)
 
@@ -110,7 +110,7 @@ class SequenceClassification:
             target_classes.append(target["class_text"])
 
         metrics = {
-            "accuracy": accuracy(pred_idx, target_idx),
+            "accuracy": simple_accuracy(pred_idx, target_idx),
         }
 
         if target_count == 2:
