@@ -25,28 +25,28 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
         dropout: classification layer dropout
     """
 
-    def __init__(self, token_makers, tasks, pretrained_model_name=None, dropout=0.2):
+    def __init__(self, token_makers, tasks, pretrained_model_name=None, dropouts=None):
 
         super(BertForMultiTask, self).__init__(token_makers)
 
         self.use_pytorch_transformers = True  # for optimizer's model parameters
         self.tasks = tasks
 
+        assert len(tasks) == len(dropouts)
+
         self.curr_task_category = None
         self.curr_dataset = None
 
-        self._model = BertModel.from_pretrained(
+        self.shared_layers = BertModel.from_pretrained(
             pretrained_model_name, cache_dir=str(CachePath.ROOT)
         )
-        self.classifier = nn.Sequential(
-            nn.Linear(self._model.config.hidden_size, self._model.config.hidden_size),
-            nn.Dropout(dropout),
-        )
-        self.classifier.apply(self._model.init_weights)
-
-        self.task_specific_layers = nn.ModuleList(
-            [nn.Linear(self._model.config.hidden_size, t["num_label"]) for t in tasks]
-        )
+        self.task_specific_layers = nn.ModuleList()
+        for task, dropout in zip(tasks, dropouts):
+            task_layer = nn.Sequential(
+                nn.Dropout(dropout),
+                nn.Linear(self._model.config.hidden_size, task["num_label"])
+            )
+            self.task_specific_layers.append(task_layer)
 
         self.criterions = {
             "classification": nn.CrossEntropyLoss(),
@@ -94,7 +94,7 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
         token_type_ids = features["token_type"]["feature"]
         attention_mask = (bert_inputs > 0).long()
 
-        outputs = self._model(
+        outputs = self.shared_layers(
             bert_inputs, token_type_ids=token_type_ids, attention_mask=attention_mask
         )
         pooled_output = outputs[1]
@@ -104,7 +104,6 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
         self.curr_task_category = self.tasks[task_index]["category"]
         self.curr_dataset = self._dataset.task_datasets[task_index]
 
-        pooled_output = self.classifier(pooled_output)
         task_specific_layer = self.task_specific_layers[task_index]
         logits = task_specific_layer(pooled_output)
 

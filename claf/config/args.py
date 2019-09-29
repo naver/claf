@@ -1150,9 +1150,14 @@ def trainer(parser):
         help=""" The number of training verbose""",
     )
     group.add_argument(
-        "--save_epoch_count",
-        type=int, default=1, dest="trainer.save_epoch_count",
-        help=""" The number of save epoch count""",
+        "--eval_and_save_step_count",
+        type=int, default=1, dest="trainer.eval_and_save_step_count",
+        help=""" The number of save and evaluate step_count (e.g. 'epoch' or 1000)""",
+    )
+    group.add_argument(
+        "--save_checkpoint",
+        type=arg_str2bool, default=True, dest="trainer.save_checkpoint",
+        help=""" The boolean value of save checkpoint""",
     )
     group.add_argument(
         "--log_dir",
@@ -1164,7 +1169,7 @@ def trainer(parser):
     group.add_argument(
         "--grad_max_norm",
         type=float, default=None, dest="trainer.grad_max_norm",
-        help=""" Clips gradient norm of an iterable of parameters. ()Default: None)""")
+        help=""" Clips gradient norm of an iterable of parameters. (Default: None)""")
 
     group = parser.add_argument_group("Optimizer")
     group.add_argument(
@@ -1659,6 +1664,13 @@ def trainer(parser):
         type=int, default=None, dest="optimizer.warmup_linear.warmup_steps",
         help="""\
     The number of steps to increase the learning rate from 0 to 1.
+    Default: None """,
+    )
+    group.add_argument(
+        "--warmup_linear_warmup_proportion",
+        type=float, default=None, dest="optimizer.warmup_linear.warmup_proportion",
+        help="""\
+    The number of steps (proportion of total_step) to increase the learning rate from 0 to 1.
     Default: None """,
     )
     group.add_argument(
