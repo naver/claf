@@ -44,7 +44,7 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
         for task, dropout in zip(tasks, dropouts):
             task_layer = nn.Sequential(
                 nn.Dropout(dropout),
-                nn.Linear(self._model.config.hidden_size, task["num_label"])
+                nn.Linear(self.shared_layers.config.hidden_size, task["num_label"])
             )
             self.task_specific_layers.append(task_layer)
 
