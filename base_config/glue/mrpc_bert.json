@@ -49,7 +49,7 @@
          "num_epochs": 5,
          "early_stopping_threshold": 10,
          "metric_key": "f1",
-         "eval_and_save_step_count": 100
+         "eval_and_save_step_count": 50
      },
      "optimizer": {
          "learning_rate": 2e-5,
