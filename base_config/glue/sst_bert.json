@@ -1,9 +1,9 @@
  {
      "data_reader": {
-         "dataset": "stsb_bert",
-         "train_file_path": "STS-B/train.tsv",
-         "valid_file_path": "STS-B/dev.tsv",
-         "stsb_bert": {
+         "dataset": "sst_bert",
+         "train_file_path": "SST-2/train.tsv",
+         "valid_file_path": "SST-2/dev.tsv",
+         "sst_bert": {
              "sequence_max_length": 128
          }
      },
@@ -38,29 +38,29 @@
          }
      },
      "model": {
-         "name": "bert_for_reg",
-         "bert_for_reg": {
+         "name": "bert_for_seq_cls",
+         "bert_for_seq_cls": {
              "pretrained_model_name": "bert-base-uncased",
              "dropout": 0.1
          }
      },
      "trainer": {
-         "log_dir": "logs/glue/stsb_bert_base",
+         "log_dir": "logs/glue/sst_bert_base",
          "num_epochs": 5,
          "early_stopping_threshold": 10,
-         "metric_key": "pearson_spearman_corr",
-         "eval_and_save_step_count": 100
+         "metric_key": "accuracy",
+         "eval_and_save_step_count": 1000
      },
      "optimizer": {
          "learning_rate": 2e-5,
          "op_type": "adamw",
          "adamw": {
-             "weight_decay": 0
+             "weight_decay": 0.01
          },
          "lr_scheduler_type": "warmup_linear",
          "warmup_linear": {
              "warmup_proportion": 0.1
          }
      },
-     "seed_num": 22
+     "seed_num": 42
  }

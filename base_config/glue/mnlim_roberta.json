@@ -1,9 +1,9 @@
  {
      "data_reader": {
-         "dataset": "qqp_bert",
-         "train_file_path": "QQP/train.tsv",
-         "valid_file_path": "QQP/dev.tsv",
-         "qqp_bert": {
+         "dataset": "mnli_bert",
+         "train_file_path": "MNLI/train.tsv",
+         "valid_file_path": "MNLI/dev_matched.tsv",
+         "mnli_bert": {
              "sequence_max_length": 128,
              "cls_token": "<s>",
              "sep_token": "</s>",
@@ -45,19 +45,19 @@
          }
      },
      "trainer": {
-         "log_dir": "logs/glue/qqp_roberta_base",
+         "log_dir": "logs/glue/mnlim_roberta_base",
          "num_epochs": 10,
          "early_stopping_threshold": 10,
-         "metric_key": "f1",
+         "metric_key": "accuracy",
          "eval_and_save_step_count": 1000
      },
      "optimizer": {
          "learning_rate": 2e-5,
          "op_type": "adamw",
          "adamw": {
-             "betas": [0.9, 0.999],
+             "betas": [0.9, 0.98],
              "eps": 1e-6,
-             "weight_decay": 0
+             "weight_decay": 0.1
          },
          "lr_scheduler_type": "warmup_linear",
          "warmup_linear": {

@@ -105,14 +105,13 @@
          "name": "bert_for_multi",
          "bert_for_multi": {
              "pretrained_model_name": "bert-base-uncased",
-             "dropouts": [0.05, 0.3, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+             "dropout": 0.1
          }
      },
      "trainer": {
          "log_dir": "logs/glue/mt_bert",
          "num_epochs": 10,
-         "early_stopping_threshold": 20,
-         "grad_max_norm": 1,
+         "early_stopping_threshold": 5,
          "metric_key": "average",
          "eval_and_save_step_count": 1500
      },
@@ -120,7 +119,7 @@
          "learning_rate": 2e-5,
          "op_type": "adamw",
          "adamw": {
-             "weight_decay": 0
+             "weight_decay": 0.01
          },
          "lr_scheduler_type": "warmup_linear",
          "warmup_linear": {

@@ -1,9 +1,9 @@
  {
      "data_reader": {
-         "dataset": "qnli_bert",
-         "train_file_path": "QNLI/train.tsv",
-         "valid_file_path": "QNLI/dev.tsv",
-         "qnli_bert": {
+         "dataset": "stsb_bert",
+         "train_file_path": "STS-B/train.tsv",
+         "valid_file_path": "STS-B/dev.tsv",
+         "stsb_bert": {
              "sequence_max_length": 128,
              "cls_token": "<s>",
              "sep_token": "</s>",
@@ -38,31 +38,31 @@
          }
      },
      "model": {
-         "name": "roberta_for_seq_cls",
-         "roberta_for_seq_cls": {
+         "name": "roberta_for_reg",
+         "roberta_for_reg": {
              "pretrained_model_name": "roberta-base",
              "dropout": 0.1
          }
      },
      "trainer": {
-         "log_dir": "logs/glue/qnli_roberta_base",
+         "log_dir": "logs/glue/stsb_roberta_base",
          "num_epochs": 10,
          "early_stopping_threshold": 10,
-         "metric_key": "accuracy",
-         "eval_and_save_step_count": 1000
+         "metric_key": "pearson_spearman_corr",
+         "eval_and_save_step_count": 100
      },
      "optimizer": {
          "learning_rate": 2e-5,
          "op_type": "adamw",
          "adamw": {
-             "betas": [0.9, 0.999],
+             "betas": [0.9, 0.98],
              "eps": 1e-6,
-             "weight_decay": 0
+             "weight_decay": 0.1
          },
          "lr_scheduler_type": "warmup_linear",
          "warmup_linear": {
              "warmup_proportion": 0.06
          }
      },
-     "seed_num": 42
+     "seed_num": 21
  }
