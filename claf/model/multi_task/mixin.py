@@ -14,56 +14,29 @@ class MultiTask:
     REGRESSION = "regression"
 
     def make_predictions(self, output_dict):
-        mixin_obj = None
         task_index = output_dict["task_index"].item()
-        task_category = self.tasks[task_index]["category"]
-        if task_category == self.CLASSIFICATION:
-            mixin_obj = SequenceClassification()
-        elif task_category == self.REGRESSION:
-            mixin_obj = Regression()
-        else:
-            raise ValueError("task category error.")
+        mixin_obj = self._make_task_mixin_obj(task_index)
 
-        self._set_model_properties(mixin_obj, task_index=task_index)
         predictions = mixin_obj.make_predictions(output_dict)
         for k, v in predictions.items():
-            predictions[k]["task_index"] = output_dict["task_index"]
+            predictions[k]["task_index"] = task_index
         return predictions
 
     def predict(self, output_dict, arguments, helper):
         task_index = output_dict["task_index"].item()
-        task_category = self.tasks[task_index]["category"]
-        if task_category == self.CLASSIFICATION:
-            mixin_obj = SequenceClassification()
-        elif task_category == self.REGRESSION:
-            mixin_obj = Regression()
-        else:
-            raise ValueError("task category error.")
-
-        self._set_model_properties(mixin_obj, task_index=task_index)
+        mixin_obj = self._make_task_mixin_obj(task_index)
         return mixin_obj.predict(output_dict, arguments, helper)
 
     def make_metrics(self, predictions):
-        # split predictions by task_index -> each task make_metrics then add task_index as prefix
-        task_predictions = [{} for _ in range(len(self.tasks))]  # init
-        for k, v in predictions.items():
-            task_index = v["task_index"]
-            task_predictions[task_index][k] = v
+        task_predictions = self._split_predictions_by_task_index(predictions)
 
         # Must match task_predictions data_sizes and dataset's
         assert [len(task_preds) for task_preds in task_predictions] == [len(dataset) for dataset in self._dataset.task_datasets]
 
         all_metrics = {"average": 0}
         for task_index, predictions in enumerate(task_predictions):
-            task_category = self.tasks[task_index]["category"]
-            if task_category == self.CLASSIFICATION:
-                mixin_obj = SequenceClassification()
-            elif task_category == self.REGRESSION:
-                mixin_obj = Regression()
-            else:
-                raise ValueError("task category error.")
-
-            self._set_model_properties(mixin_obj, task_index=task_index)
+            mixin_obj = self._make_task_mixin_obj(task_index)
+            mixin_obj.write_predictions(predictions)
 
             task_metrics = mixin_obj.make_metrics(predictions)
             for k, v in task_metrics.items():
@@ -77,18 +50,26 @@ class MultiTask:
         all_metrics["average"] /= len(task_predictions)
         return all_metrics
 
-    def write_predictions(self, predictions, file_path=None, is_dict=True):
-        pass
-        # if self.curr_task_category == self.CLASSIFICATION:
-            # mixin_obj = SequenceClassification()
-        # elif self.curr_task_category == self.REGRESSION:
-            # mixin_obj = Regression()
-        # else:
-            # raise ValueError("task category error.")
+    def _split_predictions_by_task_index(self, predictions):
+        """ split predictions by task_index -> each task make_metrics then add task_index as prefix """
+        task_predictions = [{} for _ in range(len(self.tasks))]  # init predictions
+        for k, v in predictions.items():
+            task_index = v["task_index"]
+            task_predictions[task_index][k] = v
+        return task_predictions
 
-        # # TODO: split predictions by task_index -> each task make_metrics then add task_index as prefix
-        # self._set_model_properties(mixin_obj)
-        # return mixin_obj.write_predictions(predictions, file_path=file_path, is_dict=is_dict)
+    def _make_task_mixin_obj(self, task_index):
+        mixin_obj = None
+        task_category = self.tasks[task_index]["category"]
+        if task_category == self.CLASSIFICATION:
+            mixin_obj = SequenceClassification()
+        elif task_category == self.REGRESSION:
+            mixin_obj = Regression()
+        else:
+            raise ValueError("task category error.")
+
+        self._set_model_properties(mixin_obj, task_index=task_index)
+        return mixin_obj
 
     def _set_model_properties(self, mixin_obj, task_index=None):
         mixin_obj._config = self.config

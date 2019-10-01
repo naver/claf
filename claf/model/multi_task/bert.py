@@ -144,4 +144,62 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
 
     @overrides
     def print_examples(self, index, inputs, predictions):
-        print("print_examples in BertForMultiTask!")
+        """
+        Print evaluation examples
+
+        * Args:
+            index: data index
+            inputs: mini-batch inputs
+            predictions: prediction dictionary consisting of
+                - key: 'id' (sequence id)
+                - value: dictionary consisting of
+                    - class_idx
+
+        * Returns:
+            print(Sequence, Sequence Tokens, Target Class, Predicted Class)
+        """
+
+        task_index = inputs["features"]["task_index"]
+        task_dataset = self._dataset.task_datasets[task_index]
+        task_category = self.tasks[task_index]["category"]
+
+        data_idx = inputs["labels"]["data_idx"][index].item()
+        data_id = task_dataset.get_id(data_idx)
+
+        helper = task_dataset.helper
+
+        sequence_a = helper["examples"][data_id]["sequence_a"]
+        sequence_a_tokens = helper["examples"][data_id]["sequence_a_tokens"]
+        sequence_b = helper["examples"][data_id]["sequence_b"]
+        sequence_b_tokens = helper["examples"][data_id]["sequence_b_tokens"]
+
+        print()
+        print("Task(Dataset) name:", self.tasks[task_index]["name"])
+        print()
+        print("- Sequence a:", sequence_a)
+        print("- Sequence a Tokens:", sequence_a_tokens)
+        if sequence_b:
+            print("- Sequence b:", sequence_b)
+            print("- Sequence b Tokens:", sequence_b_tokens)
+
+        if task_category == self.CLASSIFICATION:
+            target_class_text = helper["examples"][data_id]["class_text"]
+
+            pred_class_idx = predictions[data_id]["class_idx"]
+            pred_class_text = task_dataset.get_class_text_with_idx(pred_class_idx)
+
+            print("- Target:")
+            print("    Class:", target_class_text)
+            print("- Predict:")
+            print("    Class:", pred_class_text)
+        elif task_category == self.REGRESSION:
+            target_score = helper["examples"][data_id]["score"]
+            pred_score = predictions[data_id]["score"]
+
+            print("- Target:")
+            print("    Score:", target_score)
+            print("- Predict:")
+            print("    Score:", pred_score)
+
+        print()
+
