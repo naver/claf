@@ -74,6 +74,14 @@ class TextHandler:
             vocab.build(token_counter)
         return vocab
 
+    def is_all_vocab_use_pretrained(self):
+        for token_name, token_maker in self.token_makers.items():
+            if token_maker.vocab_config.get("pretrained_path", None) is None:
+                return False
+            if token_maker.vocab_config.get("pretrained_token", "") != Vocab.PRETRAINED_ALL:
+                return False
+        return True
+
     def make_token_counters(self, texts, config=None):
         token_counters = {}
         for token_name, token_maker in self.token_makers.items():
@@ -122,9 +130,16 @@ class TextHandler:
         indexing_start_time = time.time()
 
         for data_type, data in datas.items():
-            self._index_features(
-                data.features, text_columns, desc=f"indexing features ({data_type})"
-            )
+            if type(data) == list:
+                # Multi-Data Indexing
+                for d in data:
+                    self._index_features(
+                        d.features, text_columns, desc=f"indexing features ({data_type})"
+                    )
+            else:
+                self._index_features(
+                    data.features, text_columns, desc=f"indexing features ({data_type})"
+                )
 
         indexing_elapased_time = time.time() - indexing_start_time
         logger.info(f"Complete token indexing... elapsed_time: {indexing_elapased_time} \n")

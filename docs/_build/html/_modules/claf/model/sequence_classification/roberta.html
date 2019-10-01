@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.model.sequence_classification.roberta &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.model.sequence_classification.roberta &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -214,7 +214,7 @@
 
         <span class="nb">super</span><span class="p">(</span><span class="n">RobertaForSeqCls</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">token_makers</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">bert</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># for optimizer&#39;s model parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_pytorch_transformers</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># for optimizer&#39;s model parameters</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span> <span class="o">=</span> <span class="n">num_classes</span>
 
@@ -254,7 +254,7 @@
 
 <span class="sd">        * Returns: output_dict (dict) consisting of</span>
 <span class="sd">            - sequence_embed: embedding vector of the sequence</span>
-<span class="sd">            - class_logits: representing unnormalized log probabilities of the class.</span>
+<span class="sd">            - logits: representing unnormalized log probabilities of the class.</span>
 
 <span class="sd">            - class_idx: target class idx</span>
 <span class="sd">            - data_idx: data idx</span>
@@ -269,9 +269,9 @@
         <span class="p">)</span>
         <span class="n">sequence_output</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">pooled_output</span> <span class="o">=</span> <span class="n">sequence_output</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># take &lt;s&gt; token (equiv. to [CLS])</span>
-        <span class="n">class_logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span><span class="p">(</span><span class="n">pooled_output</span><span class="p">)</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span><span class="p">(</span><span class="n">pooled_output</span><span class="p">)</span>
 
-        <span class="n">output_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;sequence_embed&quot;</span><span class="p">:</span> <span class="n">pooled_output</span><span class="p">,</span> <span class="s2">&quot;class_logits&quot;</span><span class="p">:</span> <span class="n">class_logits</span><span class="p">}</span>
+        <span class="n">output_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;sequence_embed&quot;</span><span class="p">:</span> <span class="n">pooled_output</span><span class="p">,</span> <span class="s2">&quot;logits&quot;</span><span class="p">:</span> <span class="n">logits</span><span class="p">}</span>
 
         <span class="k">if</span> <span class="n">labels</span><span class="p">:</span>
             <span class="n">class_idx</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="s2">&quot;class_idx&quot;</span><span class="p">]</span>
@@ -282,7 +282,7 @@
 
             <span class="c1"># Loss</span>
             <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span><span class="p">(</span>
-                <span class="n">class_logits</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span><span class="p">),</span> <span class="n">class_idx</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">logits</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span><span class="p">),</span> <span class="n">class_idx</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
             <span class="p">)</span>
             <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;loss&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">loss</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># NOTE: DataParallel concat Error</span>
 

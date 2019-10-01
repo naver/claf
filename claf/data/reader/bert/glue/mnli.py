@@ -20,6 +20,7 @@ class MNLIBertReader(SeqClsBertReader):
     """
 
     CLASS_DATA = ["contradiction", "entailment", "neutral"]
+    METRIC_KEY = "accuracy"
 
     def __init__(
         self,
@@ -58,7 +59,7 @@ class MNLIBertReader(SeqClsBertReader):
             if len(line_tokens) <= 1:
                 continue
             data.append({
-                "uid": f"{data_type}-{i}",
+                "uid": f"mnli-{file_path}-{data_type}-{i}",
                 "sequence_a": line_tokens[8],
                 "sequence_b": line_tokens[9],
                 self.class_key: str(line_tokens[-1]),

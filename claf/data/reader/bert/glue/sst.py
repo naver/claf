@@ -20,6 +20,7 @@ class SSTBertReader(SeqClsBertReader):
     """
 
     CLASS_DATA = [0, 1]
+    METRIC_KEY = "accuracy"
 
     def __init__(
         self,
@@ -61,7 +62,7 @@ class SSTBertReader(SeqClsBertReader):
             if len(line_tokens) <= 1:
                 continue
             data.append({
-                "uid": f"{data_type}-{i}",
+                "uid": f"sst-{file_path}-{data_type}-{i}",
                 "sequence_a": line_tokens[0],
                 self.class_key: str(line_tokens[1]),
             })

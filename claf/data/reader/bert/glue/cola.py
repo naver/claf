@@ -20,6 +20,7 @@ class CoLABertReader(SeqClsBertReader):
     """
 
     CLASS_DATA = [0, 1]
+    METRIC_KEY = "matthews_corr"
 
     def __init__(
         self,
@@ -56,7 +57,7 @@ class CoLABertReader(SeqClsBertReader):
             if len(line_tokens) <= 3:
                 continue
             data.append({
-                "uid": f"{data_type}-{i}",
+                "uid": f"cola-{file_path}-{data_type}-{i}",
                 "sequence_a": line_tokens[3],
                 self.class_key: str(line_tokens[1])
             })

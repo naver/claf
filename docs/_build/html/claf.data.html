@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.data package &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.data package &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -106,7 +106,7 @@
 <li class="toctree-l3"><a class="reference internal" href="claf.data.reader.html">claf.data.reader package</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-claf.data.batch">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-claf.data.collate">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-claf.data">Module contents</a></li>
 </ul>
 </li>
@@ -209,7 +209,7 @@
 <li class="toctree-l1"><a class="reference internal" href="claf.data.reader.html">claf.data.reader package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="claf.data.reader.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="claf.data.reader.bert.html">claf.data.reader.bert package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="claf.data.reader.bert.html#module-claf.data.reader.bert.cola">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claf.data.reader.bert.html#module-claf.data.reader.bert.conll2003">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="claf.data.reader.bert.html#module-claf.data.reader.bert">Module contents</a></li>
 </ul>
 </li>
@@ -222,40 +222,11 @@
 </ul>
 </div>
 </div>
-<div class="section" id="module-claf.data.batch">
-<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.data.batch" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-claf.data.collate">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.data.collate" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="claf.data.batch.Batch">
-<em class="property">class </em><code class="sig-prename descclassname">claf.data.batch.</code><code class="sig-name descname">Batch</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/batch.html#Batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.batch.Batch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Batch Data Transfer Object (DTO) Class</p>
-<dl class="simple">
-<dt>dictionary consisting of</dt><dd><ul class="simple">
-<li><p>features: (dict) input</p></li>
-<li><p>labels: (dict) output</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="method">
-<dt id="claf.data.batch.Batch.sort_by_key">
-<code class="sig-name descname">sort_by_key</code><span class="sig-paren">(</span><em class="sig-param">sort_key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/batch.html#Batch.sort_by_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.batch.Batch.sort_by_key" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="claf.data.batch.Batch.to_dict">
-<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><em class="sig-param">flatten=False</em>, <em class="sig-param">recursive=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/batch.html#Batch.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.batch.Batch.to_dict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="claf.data.batch.make_batch">
-<code class="sig-prename descclassname">claf.data.batch.</code><code class="sig-name descname">make_batch</code><span class="sig-paren">(</span><em class="sig-param">features</em>, <em class="sig-param">labels</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/batch.html#make_batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.batch.make_batch" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<span class="target" id="module-claf.data.collate"></span><dl class="class">
 <dt id="claf.data.collate.FeatLabelPadCollator">
-<em class="property">class </em><code class="sig-prename descclassname">claf.data.collate.</code><code class="sig-name descname">FeatLabelPadCollator</code><span class="sig-paren">(</span><em class="sig-param">cuda_device_id=None, pad_value=0, skip_keys=['text']</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/collate.html#FeatLabelPadCollator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.collate.FeatLabelPadCollator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.data.collate.</code><code class="descname">FeatLabelPadCollator</code><span class="sig-paren">(</span><em>cuda_device_id=None, pad_value=0, skip_keys=['text']</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/collate.html#FeatLabelPadCollator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.collate.FeatLabelPadCollator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.data.collate.PadCollator" title="claf.data.collate.PadCollator"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.data.collate.PadCollator</span></code></a></p>
 <p>Collator apply pad and make tensor
 Minimizes amount of padding needed while producing mini-batch.</p>
@@ -273,14 +244,14 @@ Minimizes amount of padding needed while producing mini-batch.</p>
 </ul>
 <dl class="method">
 <dt id="claf.data.collate.FeatLabelPadCollator.collate">
-<code class="sig-name descname">collate</code><span class="sig-paren">(</span><em class="sig-param">datas</em>, <em class="sig-param">apply_pad=True</em>, <em class="sig-param">apply_pad_labels=()</em>, <em class="sig-param">apply_pad_values=()</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/collate.html#FeatLabelPadCollator.collate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.collate.FeatLabelPadCollator.collate" title="Permalink to this definition">¶</a></dt>
+<code class="descname">collate</code><span class="sig-paren">(</span><em>datas</em>, <em>apply_pad=True</em>, <em>apply_pad_labels=()</em>, <em>apply_pad_values=()</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/collate.html#FeatLabelPadCollator.collate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.collate.FeatLabelPadCollator.collate" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="claf.data.collate.PadCollator">
-<em class="property">class </em><code class="sig-prename descclassname">claf.data.collate.</code><code class="sig-name descname">PadCollator</code><span class="sig-paren">(</span><em class="sig-param">cuda_device_id=None, pad_value=0, skip_keys=['text']</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/collate.html#PadCollator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.collate.PadCollator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.data.collate.</code><code class="descname">PadCollator</code><span class="sig-paren">(</span><em>cuda_device_id=None, pad_value=0, skip_keys=['text']</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/collate.html#PadCollator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.collate.PadCollator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Collator apply pad and make tensor
 Minimizes amount of padding needed while producing mini-batch.</p>
@@ -297,50 +268,50 @@ Minimizes amount of padding needed while producing mini-batch.</p>
 </ul>
 <dl class="method">
 <dt id="claf.data.collate.PadCollator.collate">
-<code class="sig-name descname">collate</code><span class="sig-paren">(</span><em class="sig-param">datas</em>, <em class="sig-param">apply_pad=True</em>, <em class="sig-param">pad_value=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/collate.html#PadCollator.collate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.collate.PadCollator.collate" title="Permalink to this definition">¶</a></dt>
+<code class="descname">collate</code><span class="sig-paren">(</span><em>datas</em>, <em>apply_pad=True</em>, <em>pad_value=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/collate.html#PadCollator.collate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.collate.PadCollator.collate" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <span class="target" id="module-claf.data.data_handler"></span><dl class="class">
 <dt id="claf.data.data_handler.CachePath">
-<em class="property">class </em><code class="sig-prename descclassname">claf.data.data_handler.</code><code class="sig-name descname">CachePath</code><a class="reference internal" href="_modules/claf/data/data_handler.html#CachePath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.CachePath" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.data.data_handler.</code><code class="descname">CachePath</code><a class="reference internal" href="_modules/claf/data/data_handler.html#CachePath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.CachePath" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.DATASET">
-<code class="sig-name descname">DATASET</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache/dataset')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.DATASET" title="Permalink to this definition">¶</a></dt>
+<code class="descname">DATASET</code><em class="property"> = PosixPath('/Users/user/.claf_cache/dataset')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.DATASET" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.MACHINE">
-<code class="sig-name descname">MACHINE</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache/machine')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.MACHINE" title="Permalink to this definition">¶</a></dt>
+<code class="descname">MACHINE</code><em class="property"> = PosixPath('/Users/user/.claf_cache/machine')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.MACHINE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.PRETRAINED_VECTOR">
-<code class="sig-name descname">PRETRAINED_VECTOR</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache/pretrained_vector')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.PRETRAINED_VECTOR" title="Permalink to this definition">¶</a></dt>
+<code class="descname">PRETRAINED_VECTOR</code><em class="property"> = PosixPath('/Users/user/.claf_cache/pretrained_vector')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.PRETRAINED_VECTOR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.ROOT">
-<code class="sig-name descname">ROOT</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.ROOT" title="Permalink to this definition">¶</a></dt>
+<code class="descname">ROOT</code><em class="property"> = PosixPath('/Users/user/.claf_cache')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.ROOT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.TOKEN_COUNTER">
-<code class="sig-name descname">TOKEN_COUNTER</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache/token_counter')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.TOKEN_COUNTER" title="Permalink to this definition">¶</a></dt>
+<code class="descname">TOKEN_COUNTER</code><em class="property"> = PosixPath('/Users/user/.claf_cache/token_counter')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.TOKEN_COUNTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.data.data_handler.CachePath.VOCAB">
-<code class="sig-name descname">VOCAB</code><em class="property"> = PosixPath('/Users/Dongjun/.claf_cache/vocab')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.VOCAB" title="Permalink to this definition">¶</a></dt>
+<code class="descname">VOCAB</code><em class="property"> = PosixPath('/Users/user/.claf_cache/vocab')</em><a class="headerlink" href="#claf.data.data_handler.CachePath.VOCAB" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="claf.data.data_handler.DataHandler">
-<em class="property">class </em><code class="sig-prename descclassname">claf.data.data_handler.</code><code class="sig-name descname">DataHandler</code><span class="sig-paren">(</span><em class="sig-param">cache_path=PosixPath('/Users/Dongjun/.claf_cache')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.data.data_handler.</code><code class="descname">DataHandler</code><span class="sig-paren">(</span><em>cache_path=PosixPath('/Users/user/.claf_cache')</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>DataHandler with CachePath</p>
 <ul class="simple">
@@ -350,39 +321,39 @@ Minimizes amount of padding needed while producing mini-batch.</p>
 </ul>
 <dl class="method">
 <dt id="claf.data.data_handler.DataHandler.cache_token_counter">
-<code class="sig-name descname">cache_token_counter</code><span class="sig-paren">(</span><em class="sig-param">data_reader_config</em>, <em class="sig-param">tokenizer_name</em>, <em class="sig-param">obj=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.cache_token_counter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.cache_token_counter" title="Permalink to this definition">¶</a></dt>
+<code class="descname">cache_token_counter</code><span class="sig-paren">(</span><em>data_reader_config</em>, <em>tokenizer_name</em>, <em>obj=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.cache_token_counter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.cache_token_counter" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.data.data_handler.DataHandler.convert_cache_path">
-<code class="sig-name descname">convert_cache_path</code><span class="sig-paren">(</span><em class="sig-param">path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.convert_cache_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.convert_cache_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">convert_cache_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.convert_cache_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.convert_cache_path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.data.data_handler.DataHandler.dump">
-<code class="sig-name descname">dump</code><span class="sig-paren">(</span><em class="sig-param">file_path</em>, <em class="sig-param">obj</em>, <em class="sig-param">encoding='utf-8'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.dump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.dump" title="Permalink to this definition">¶</a></dt>
+<code class="descname">dump</code><span class="sig-paren">(</span><em>file_path</em>, <em>obj</em>, <em>encoding='utf-8'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.dump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.dump" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.data.data_handler.DataHandler.load">
-<code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">file_path</em>, <em class="sig-param">encoding='utf-8'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.load" title="Permalink to this definition">¶</a></dt>
+<code class="descname">load</code><span class="sig-paren">(</span><em>file_path</em>, <em>encoding='utf-8'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.load" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.data.data_handler.DataHandler.read">
-<code class="sig-name descname">read</code><span class="sig-paren">(</span><em class="sig-param">file_path</em>, <em class="sig-param">encoding='utf-8'</em>, <em class="sig-param">return_path=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.read" title="Permalink to this definition">¶</a></dt>
+<code class="descname">read</code><span class="sig-paren">(</span><em>file_path</em>, <em>encoding='utf-8'</em>, <em>return_path=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.read" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.data.data_handler.DataHandler.read_embedding">
-<code class="sig-name descname">read_embedding</code><span class="sig-paren">(</span><em class="sig-param">file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.read_embedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.read_embedding" title="Permalink to this definition">¶</a></dt>
+<code class="descname">read_embedding</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/data_handler.html#DataHandler.read_embedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.data_handler.DataHandler.read_embedding" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <span class="target" id="module-claf.data.utils"></span><dl class="function">
 <dt id="claf.data.utils.get_is_head_of_word">
-<code class="sig-prename descclassname">claf.data.utils.</code><code class="sig-name descname">get_is_head_of_word</code><span class="sig-paren">(</span><em class="sig-param">naive_tokens</em>, <em class="sig-param">sequence_tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#get_is_head_of_word"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.get_is_head_of_word" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.data.utils.</code><code class="descname">get_is_head_of_word</code><span class="sig-paren">(</span><em>naive_tokens</em>, <em>sequence_tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#get_is_head_of_word"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.get_is_head_of_word" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of flags whether the token is head(prefix) of naively split tokens</p>
 <dl>
 <dt>ex) naive_tokens: [“hello.”, “how”, “are”, “you?”]</dt><dd><p>sequence_tokens: [“hello”, “.”, “how”, “are”, “you”, “?”]</p>
@@ -410,37 +381,42 @@ and 0 if otherwise.</p>
 
 <dl class="function">
 <dt id="claf.data.utils.get_sequence_a">
-<code class="sig-prename descclassname">claf.data.utils.</code><code class="sig-name descname">get_sequence_a</code><span class="sig-paren">(</span><em class="sig-param">example</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#get_sequence_a"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.get_sequence_a" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.data.utils.</code><code class="descname">get_sequence_a</code><span class="sig-paren">(</span><em>example</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#get_sequence_a"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.get_sequence_a" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="claf.data.utils.get_token_dim">
-<code class="sig-prename descclassname">claf.data.utils.</code><code class="sig-name descname">get_token_dim</code><span class="sig-paren">(</span><em class="sig-param">tokens</em>, <em class="sig-param">dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#get_token_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.get_token_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.data.utils.</code><code class="descname">get_token_dim</code><span class="sig-paren">(</span><em>tokens</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#get_token_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.get_token_dim" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="claf.data.utils.get_token_type">
-<code class="sig-prename descclassname">claf.data.utils.</code><code class="sig-name descname">get_token_type</code><span class="sig-paren">(</span><em class="sig-param">tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#get_token_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.get_token_type" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.data.utils.</code><code class="descname">get_token_type</code><span class="sig-paren">(</span><em>tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#get_token_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.get_token_type" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="claf.data.utils.is_lazy">
-<code class="sig-prename descclassname">claf.data.utils.</code><code class="sig-name descname">is_lazy</code><span class="sig-paren">(</span><em class="sig-param">tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#is_lazy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.is_lazy" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.data.utils.</code><code class="descname">is_lazy</code><span class="sig-paren">(</span><em>tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#is_lazy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.is_lazy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="claf.data.utils.make_batch">
+<code class="descclassname">claf.data.utils.</code><code class="descname">make_batch</code><span class="sig-paren">(</span><em>features</em>, <em>labels</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#make_batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.make_batch" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="claf.data.utils.make_bert_input">
-<code class="sig-prename descclassname">claf.data.utils.</code><code class="sig-name descname">make_bert_input</code><span class="sig-paren">(</span><em class="sig-param">sequence_a</em>, <em class="sig-param">sequence_b</em>, <em class="sig-param">bert_tokenizer</em>, <em class="sig-param">max_seq_length=128</em>, <em class="sig-param">data_type='train'</em>, <em class="sig-param">cls_token='[CLS]'</em>, <em class="sig-param">sep_token='[SEP]'</em>, <em class="sig-param">input_type='bert'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#make_bert_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.make_bert_input" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.data.utils.</code><code class="descname">make_bert_input</code><span class="sig-paren">(</span><em>sequence_a</em>, <em>sequence_b</em>, <em>bert_tokenizer</em>, <em>max_seq_length=128</em>, <em>data_type='train'</em>, <em>cls_token='[CLS]'</em>, <em>sep_token='[SEP]'</em>, <em>input_type='bert'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#make_bert_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.make_bert_input" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="claf.data.utils.make_bert_token_type">
-<code class="sig-prename descclassname">claf.data.utils.</code><code class="sig-name descname">make_bert_token_type</code><span class="sig-paren">(</span><em class="sig-param">bert_input_text</em>, <em class="sig-param">SEP_token='[SEP]'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#make_bert_token_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.make_bert_token_type" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.data.utils.</code><code class="descname">make_bert_token_type</code><span class="sig-paren">(</span><em>bert_input_text</em>, <em>SEP_token='[SEP]'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#make_bert_token_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.make_bert_token_type" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="claf.data.utils.make_bert_token_types">
-<code class="sig-prename descclassname">claf.data.utils.</code><code class="sig-name descname">make_bert_token_types</code><span class="sig-paren">(</span><em class="sig-param">bert_inputs</em>, <em class="sig-param">SEP_token='[SEP]'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#make_bert_token_types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.make_bert_token_types" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.data.utils.</code><code class="descname">make_bert_token_types</code><span class="sig-paren">(</span><em>bert_inputs</em>, <em>SEP_token='[SEP]'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#make_bert_token_types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.make_bert_token_types" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bert Inputs segment_ids</p>
 <p>ex) [CLS] hi [SEP] he ##llo [SEP] =&gt; 0 0 0 1 1 1</p>
 <ul class="simple">
@@ -465,13 +441,13 @@ and 0 if otherwise.</p>
 
 <dl class="function">
 <dt id="claf.data.utils.padding_tokens">
-<code class="sig-prename descclassname">claf.data.utils.</code><code class="sig-name descname">padding_tokens</code><span class="sig-paren">(</span><em class="sig-param">tokens</em>, <em class="sig-param">max_len=None</em>, <em class="sig-param">token_name=None</em>, <em class="sig-param">pad_value=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#padding_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.padding_tokens" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.data.utils.</code><code class="descname">padding_tokens</code><span class="sig-paren">(</span><em>tokens</em>, <em>max_len=None</em>, <em>token_name=None</em>, <em>pad_value=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#padding_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.padding_tokens" title="Permalink to this definition">¶</a></dt>
 <dd><p>Padding tokens according to token’s dimension</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="claf.data.utils.sanity_check_iob">
-<code class="sig-prename descclassname">claf.data.utils.</code><code class="sig-name descname">sanity_check_iob</code><span class="sig-paren">(</span><em class="sig-param">naive_tokens</em>, <em class="sig-param">tag_texts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#sanity_check_iob"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.sanity_check_iob" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.data.utils.</code><code class="descname">sanity_check_iob</code><span class="sig-paren">(</span><em>naive_tokens</em>, <em>tag_texts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#sanity_check_iob"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.sanity_check_iob" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the IOB tags are valid.</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -485,7 +461,7 @@ tag_texts: list of tags in IOB format</p>
 
 <dl class="function">
 <dt id="claf.data.utils.transpose">
-<code class="sig-prename descclassname">claf.data.utils.</code><code class="sig-name descname">transpose</code><span class="sig-paren">(</span><em class="sig-param">list_of_dict</em>, <em class="sig-param">skip_keys=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#transpose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.transpose" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.data.utils.</code><code class="descname">transpose</code><span class="sig-paren">(</span><em>list_of_dict</em>, <em>skip_keys=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/data/utils.html#transpose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.data.utils.transpose" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>

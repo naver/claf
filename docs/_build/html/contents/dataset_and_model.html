@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Dataset and Model &mdash; CLaF 0.1.6 documentation</title>
+  <title>Dataset and Model &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -94,28 +94,33 @@
               <p class="caption"><span class="caption-text">Contents</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Dataset and Model</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#reading-comprehension">Reading Comprehension</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#multi-task">Multi-Task</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#dataset">Dataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#model">Model</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#regression">Regression</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reading-comprehension">Reading Comprehension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Model</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#semantic-parsing">Semantic Parsing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#regression">Regression</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">Model</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#sequence-classification">Sequence Classification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#semantic-parsing">Semantic Parsing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id4">Dataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">Model</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#token-classification">Token Classification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sequence-classification">Sequence Classification</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id6">Dataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id7">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#token-classification">Token Classification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Model</a></li>
 </ul>
 </li>
 </ul>
@@ -214,26 +219,47 @@
             
   <div class="section" id="dataset-and-model">
 <h1>Dataset and Model<a class="headerlink" href="#dataset-and-model" title="Permalink to this headline">¶</a></h1>
+<p><strong>Table of Contents</strong></p>
 <ul class="simple">
-<li><p>Reading Comprehension</p></li>
-<li><p>Regression</p></li>
-<li><p>Semantic Parsing</p></li>
-<li><p>Sequence Classification</p></li>
-<li><p>Token Classification</p></li>
+<li><p><a class="reference external" href="#multi-task">Multi Task</a></p></li>
+<li><p><a class="reference external" href="#reading-comprehension">Reading Comprehension</a></p></li>
+<li><p><a class="reference external" href="#regression">Regression</a></p></li>
+<li><p><a class="reference external" href="#semantic-parsing">Semantic Parsing</a></p></li>
+<li><p><a class="reference external" href="#sequence-classification">Sequence Classification</a></p></li>
+<li><p><a class="reference external" href="#token-classification">Token Classification</a></p></li>
 </ul>
 <hr class="docutils" />
-<div class="section" id="reading-comprehension">
-<h2>Reading Comprehension<a class="headerlink" href="#reading-comprehension" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="multi-task">
+<h2>Multi-Task<a class="headerlink" href="#multi-task" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="dataset">
 <h3>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gluebenchmark.com/">GLUE Benchmark</a>: The General Language Understanding Evaluation (GLUE) benchmark is a collection of resources for training, evaluating, and analyzing natural language understanding systems.</p>
+<ul>
+<li><p>CoLA, MNLI, MRPC, QNLI, QQP, RTE, SST-2, STS-B, WNLI</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="model">
+<h3>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/abs/1901.11504">Multi-Task Deep Neural Networks for Natural Language Understanding</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="reading-comprehension">
+<h2>Reading Comprehension<a class="headerlink" href="#reading-comprehension" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Dataset<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://oss.navercorp.com/ClovaAI-PJT/HistoryQA">HistoryQA</a>: Joseon History Question Answering Dataset (SQuAD Style)</p></li>
 <li><p><a class="reference external" href="https://korquad.github.io/">KorQuAD</a>: KorQuAD는 한국어 Machine Reading Comprehension을 위해 만든 데이터셋입니다. 모든 질의에 대한 답변은 해당 Wikipedia 아티클 문단의 일부 하위 영역으로 이루어집니다. Stanford Question Answering Dataset(SQuAD) v1.0과 동일한 방식으로 구성되었습니다.</p></li>
 <li><p><a class="reference external" href="https://rajpurkar.github.io/SQuAD-explorer/">SQuAD</a>: <strong>S</strong>tanford <strong>Qu</strong>estion <strong>A</strong>nswering <strong>D</strong>ataset is a reading comprehension dataset, consisting of questions posed by crowdworkers on a set of Wikipedia articles, where the answer to every question is a segment of text, or span, from the corresponding reading passage, or the question might be unanswerable.</p></li>
 </ul>
 </div>
-<div class="section" id="model">
-<h3>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>Model<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>BiDAF: <a class="reference external" href="https://arxiv.org/abs/1611.01603">Birectional Attention Flow for Machine Comprehension</a> + <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">Answer</span></code></p></li>
 <li><p><a class="reference external" href="https://arxiv.org/abs/1703.03130">A Structured Self-attentive Sentence Embedding</a></p></li>
@@ -254,8 +280,8 @@
 </ul>
 </li>
 </ul>
-<div class="section" id="id1">
-<h3>Model<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>Model<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://arxiv.org/abs/1810.04805">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></p></li>
 <li><p><a class="reference external" href="https://arxiv.org/abs/1907.11692">RoBERTa: A Robustly Optimized BERT Pretraining Approach</a></p></li>
@@ -265,14 +291,14 @@
 <hr class="docutils" />
 <div class="section" id="semantic-parsing">
 <h2>Semantic Parsing<a class="headerlink" href="#semantic-parsing" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id2">
-<h3>Dataset<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>Dataset<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/salesforce/WikiSQL">WikiSQL</a>: A large crowd-sourced dataset for developing natural language interfaces for relational databases. WikiSQL is the dataset released along with our work <a class="reference external" href="http://arxiv.org/abs/1709.00103">Seq2SQL: Generating Structured Queries from Natural Language using Reinforcement Learning</a>.</p></li>
 </ul>
 </div>
-<div class="section" id="id3">
-<h3>Model<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h3>Model<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>SQLNet: <a class="reference external" href="https://arxiv.org/abs/1711.04436">SQLNet: Generating Structured Queries From Natural Language Without Reinforcement Learning</a></p></li>
 </ul>
@@ -281,8 +307,8 @@
 <hr class="docutils" />
 <div class="section" id="sequence-classification">
 <h2>Sequence Classification<a class="headerlink" href="#sequence-classification" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id4">
-<h3>Dataset<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3>Dataset<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://gluebenchmark.com/">GLUE Benchmark</a>: The General Language Understanding Evaluation (GLUE) benchmark is a collection of resources for training, evaluating, and analyzing natural language understanding systems.</p>
 <ul>
@@ -291,8 +317,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="id5">
-<h3>Model<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>Model<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://arxiv.org/abs/1703.03130">A Structured Self-attentive Sentence Embedding</a></p></li>
 <li><p><a class="reference external" href="https://arxiv.org/abs/1810.04805">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></p></li>
@@ -303,14 +329,14 @@
 <hr class="docutils" />
 <div class="section" id="token-classification">
 <h2>Token Classification<a class="headerlink" href="#token-classification" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id6">
-<h3>Dataset<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>Dataset<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.clips.uantwerpen.be/conll2003/ner/">NER - CoNLL 2013</a>: The shared task of CoNLL-2003 concerns language-independent named entity recognition. Named entities are phrases that contain the names of persons, organizations, locations, times and quantities.</p></li>
 </ul>
 </div>
-<div class="section" id="id7">
-<h3>Model<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h3>Model<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://arxiv.org/abs/1810.04805">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></p></li>
 </ul>

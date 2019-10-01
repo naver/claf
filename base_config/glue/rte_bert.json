@@ -49,13 +49,13 @@
          "num_epochs": 5,
          "early_stopping_threshold": 10,
          "metric_key": "accuracy",
-         "eval_and_save_step_count": 50
+         "eval_and_save_step_count": 30
      },
      "optimizer": {
          "learning_rate": 2e-5,
          "op_type": "adamw",
          "adamw": {
-             "weight_decay": 0
+             "weight_decay": 0.01
          },
          "lr_scheduler_type": "warmup_linear",
          "warmup_linear": {

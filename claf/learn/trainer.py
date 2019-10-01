@@ -64,6 +64,7 @@ class Trainer:
         metric_key=None,
         verbose_step_count=100,
         eval_and_save_step_count="epoch",
+        save_checkpoint=True,
     ):
         assert metric_key is not None
 
@@ -106,6 +107,7 @@ class Trainer:
         self.metric_key = metric_key
         self.verbose_step_count = verbose_step_count
         self.eval_and_save_step_count = eval_and_save_step_count
+        self.save_checkpoint = save_checkpoint
         self.log_dir = log_dir
 
     def set_model_base_properties(self, config, log_dir):
@@ -171,6 +173,7 @@ class Trainer:
 
     def evaluate(self, data_loader):
         """ Evaluate """
+        print("evaluate:", type(data_loader), data_loader)
         eval_metrics = self._run_epoch(data_loader, is_training=False, disable_prograss_bar=False)
 
         self._report_metrics(tensorboard=False, valid_metrics=eval_metrics)
@@ -531,6 +534,9 @@ class Trainer:
                 return self.model.predict(output_dict, arguments, helper)
 
     def save(self, optimizer):
+        if not self.save_checkpoint:
+            return
+
         # set all config to model
         model = self.model
         if self.use_multi_gpu:

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.modules.conv package &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.modules.conv package &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -209,7 +209,7 @@
 <span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.modules.conv.depthwise_separable_conv" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.modules.conv.depthwise_separable_conv.DepSepConv">
-<em class="property">class </em><code class="sig-prename descclassname">claf.modules.conv.depthwise_separable_conv.</code><code class="sig-name descname">DepSepConv</code><span class="sig-paren">(</span><em class="sig-param">input_size=None</em>, <em class="sig-param">num_filters=None</em>, <em class="sig-param">kernel_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/depthwise_separable_conv.html#DepSepConv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.depthwise_separable_conv.DepSepConv" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.modules.conv.depthwise_separable_conv.</code><code class="descname">DepSepConv</code><span class="sig-paren">(</span><em>input_size=None</em>, <em>num_filters=None</em>, <em>kernel_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/depthwise_separable_conv.html#DepSepConv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.depthwise_separable_conv.DepSepConv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <dl class="simple">
 <dt>Depthwise Separable Convolutions</dt><dd><p>in Xception: Deep Learning with Depthwise Separable Convolutions (<a class="reference external" href="https://arxiv.org/abs/1610.02357">https://arxiv.org/abs/1610.02357</a>)</p>
@@ -227,7 +227,7 @@ kernel_size: the number of convolution kernel size</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.conv.depthwise_separable_conv.DepSepConv.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/depthwise_separable_conv.html#DepSepConv.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.depthwise_separable_conv.DepSepConv.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/depthwise_separable_conv.html#DepSepConv.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.depthwise_separable_conv.DepSepConv.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -243,7 +243,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <span class="target" id="module-claf.modules.conv.pointwise_conv"></span><dl class="class">
 <dt id="claf.modules.conv.pointwise_conv.PointwiseConv">
-<em class="property">class </em><code class="sig-prename descclassname">claf.modules.conv.pointwise_conv.</code><code class="sig-name descname">PointwiseConv</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">num_filters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/pointwise_conv.html#PointwiseConv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.pointwise_conv.PointwiseConv" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.modules.conv.pointwise_conv.</code><code class="descname">PointwiseConv</code><span class="sig-paren">(</span><em>input_size</em>, <em>num_filters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/pointwise_conv.html#PointwiseConv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.pointwise_conv.PointwiseConv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Pointwise Convolution (1x1 Conv)</p>
 <p>Convolution 1 Dimension (Faster version)
@@ -258,7 +258,7 @@ num_filters: the number of convolution filter</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.conv.pointwise_conv.PointwiseConv.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/pointwise_conv.html#PointwiseConv.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.pointwise_conv.PointwiseConv.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/pointwise_conv.html#PointwiseConv.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.pointwise_conv.PointwiseConv.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -277,7 +277,7 @@ registered hooks while the latter silently ignores them.</p>
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.modules.conv" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.modules.conv.DepSepConv">
-<em class="property">class </em><code class="sig-prename descclassname">claf.modules.conv.</code><code class="sig-name descname">DepSepConv</code><span class="sig-paren">(</span><em class="sig-param">input_size=None</em>, <em class="sig-param">num_filters=None</em>, <em class="sig-param">kernel_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/depthwise_separable_conv.html#DepSepConv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.DepSepConv" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.modules.conv.</code><code class="descname">DepSepConv</code><span class="sig-paren">(</span><em>input_size=None</em>, <em>num_filters=None</em>, <em>kernel_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/depthwise_separable_conv.html#DepSepConv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.DepSepConv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <dl class="simple">
 <dt>Depthwise Separable Convolutions</dt><dd><p>in Xception: Deep Learning with Depthwise Separable Convolutions (<a class="reference external" href="https://arxiv.org/abs/1610.02357">https://arxiv.org/abs/1610.02357</a>)</p>
@@ -295,7 +295,7 @@ kernel_size: the number of convolution kernel size</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.conv.DepSepConv.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/depthwise_separable_conv.html#DepSepConv.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.DepSepConv.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/depthwise_separable_conv.html#DepSepConv.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.DepSepConv.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -311,7 +311,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="class">
 <dt id="claf.modules.conv.PointwiseConv">
-<em class="property">class </em><code class="sig-prename descclassname">claf.modules.conv.</code><code class="sig-name descname">PointwiseConv</code><span class="sig-paren">(</span><em class="sig-param">input_size</em>, <em class="sig-param">num_filters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/pointwise_conv.html#PointwiseConv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.PointwiseConv" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.modules.conv.</code><code class="descname">PointwiseConv</code><span class="sig-paren">(</span><em>input_size</em>, <em>num_filters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/pointwise_conv.html#PointwiseConv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.PointwiseConv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Pointwise Convolution (1x1 Conv)</p>
 <p>Convolution 1 Dimension (Faster version)
@@ -326,7 +326,7 @@ num_filters: the number of convolution filter</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.conv.PointwiseConv.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/pointwise_conv.html#PointwiseConv.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.PointwiseConv.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/conv/pointwise_conv.html#PointwiseConv.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.conv.PointwiseConv.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">

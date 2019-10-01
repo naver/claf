@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.tokens.text_handler &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.tokens.text_handler &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -261,6 +261,14 @@
             <span class="n">vocab</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">token_counter</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">vocab</span>
 
+<div class="viewcode-block" id="TextHandler.is_all_vocab_use_pretrained"><a class="viewcode-back" href="../../../claf.tokens.html#claf.tokens.text_handler.TextHandler.is_all_vocab_use_pretrained">[docs]</a>    <span class="k">def</span> <span class="nf">is_all_vocab_use_pretrained</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">token_name</span><span class="p">,</span> <span class="n">token_maker</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_makers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">token_maker</span><span class="o">.</span><span class="n">vocab_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pretrained_path&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">token_maker</span><span class="o">.</span><span class="n">vocab_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pretrained_token&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="n">Vocab</span><span class="o">.</span><span class="n">PRETRAINED_ALL</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
 <div class="viewcode-block" id="TextHandler.make_token_counters"><a class="viewcode-back" href="../../../claf.tokens.html#claf.tokens.text_handler.TextHandler.make_token_counters">[docs]</a>    <span class="k">def</span> <span class="nf">make_token_counters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">token_counters</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">token_name</span><span class="p">,</span> <span class="n">token_maker</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_makers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -309,9 +317,16 @@
         <span class="n">indexing_start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
         <span class="k">for</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datas</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_index_features</span><span class="p">(</span>
-                <span class="n">data</span><span class="o">.</span><span class="n">features</span><span class="p">,</span> <span class="n">text_columns</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;indexing features (</span><span class="si">{data_type}</span><span class="s2">)&quot;</span>
-            <span class="p">)</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+                <span class="c1"># Multi-Data Indexing</span>
+                <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_index_features</span><span class="p">(</span>
+                        <span class="n">d</span><span class="o">.</span><span class="n">features</span><span class="p">,</span> <span class="n">text_columns</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;indexing features (</span><span class="si">{data_type}</span><span class="s2">)&quot;</span>
+                    <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_index_features</span><span class="p">(</span>
+                    <span class="n">data</span><span class="o">.</span><span class="n">features</span><span class="p">,</span> <span class="n">text_columns</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;indexing features (</span><span class="si">{data_type}</span><span class="s2">)&quot;</span>
+                <span class="p">)</span>
 
         <span class="n">indexing_elapased_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">indexing_start_time</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Complete token indexing... elapsed_time: </span><span class="si">{indexing_elapased_time}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>

@@ -20,6 +20,7 @@ class QQPBertReader(SeqClsBertReader):
     """
 
     CLASS_DATA = [0, 1]
+    METRIC_KEY = "f1"
 
     def __init__(
         self,
@@ -57,7 +58,7 @@ class QQPBertReader(SeqClsBertReader):
             line_tokens = line.split("\t")
             try:
                 data.append({
-                    "uid": f"{data_type}-{i}",
+                    "uid": f"qqp-{file_path}-{data_type}-{i}",
                     "sequence_a": line_tokens[3],
                     "sequence_b": line_tokens[4],
                     self.class_key: str(line_tokens[5])

@@ -68,7 +68,8 @@ class OptimizerFactory(Factory):
             raise ValueError("optimizer model is must be subclass of torch.nn.Module.")
 
         if getattr(model, "use_pytorch_transformers", False):
-            model_parameters = self._group_parameters_for_transformers(model)
+            weight_decay = self.optimizer_params.get("weight_decay", 0)
+            model_parameters = self._group_parameters_for_transformers(model, weight_decay=weight_decay)
         else:
             model_parameters = [param for param in model.parameters() if param.requires_grad]
 
@@ -93,7 +94,7 @@ class OptimizerFactory(Factory):
 
         return op_dict
 
-    def _group_parameters_for_transformers(self, model):
+    def _group_parameters_for_transformers(self, model, weight_decay=0):
         # Prepare optimizer
         param_optimizer = list(model.named_parameters())
 
@@ -106,7 +107,7 @@ class OptimizerFactory(Factory):
         optimizer_grouped_parameters = [
             {
                 "params": [p for n, p in param_optimizer if not any(nd in n for nd in no_decay)],
-                "weight_decay": 0.01,
+                "weight_decay": weight_decay,
             },
             {
                 "params": [p for n, p in param_optimizer if any(nd in n for nd in no_decay)],

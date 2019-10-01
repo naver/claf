@@ -1,9 +1,9 @@
  {
      "data_reader": {
-         "dataset": "mnli_bert",
-         "train_file_path": "MNLI/train.tsv",
-         "valid_file_path": "MNLI/dev_matched.tsv",
-         "mnli_bert": {
+         "dataset": "qnli_bert",
+         "train_file_path": "QNLI/train.tsv",
+         "valid_file_path": "QNLI/dev.tsv",
+         "qnli_bert": {
              "sequence_max_length": 128
          }
      },
@@ -45,7 +45,7 @@
          }
      },
      "trainer": {
-         "log_dir": "logs/glue/mnlim_bert_base",
+         "log_dir": "logs/glue/qnli_bert_base",
          "num_epochs": 5,
          "early_stopping_threshold": 10,
          "metric_key": "accuracy",
@@ -55,7 +55,7 @@
          "learning_rate": 2e-5,
          "op_type": "adamw",
          "adamw": {
-             "weight_decay": 0
+             "weight_decay": 0.01
          },
          "lr_scheduler_type": "warmup_linear",
          "warmup_linear": {

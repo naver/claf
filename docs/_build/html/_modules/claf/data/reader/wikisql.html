@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.data.reader.wikisql &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.data.reader.wikisql &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -193,8 +193,9 @@
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
 
 <span class="kn">from</span> <span class="nn">claf.data.dataset</span> <span class="k">import</span> <span class="n">WikiSQLDataset</span>
-<span class="kn">from</span> <span class="nn">claf.data.batch</span> <span class="k">import</span> <span class="n">make_batch</span>
+<span class="kn">from</span> <span class="nn">claf.data.dto</span> <span class="k">import</span> <span class="n">Helper</span>
 <span class="kn">from</span> <span class="nn">claf.data.reader.base</span> <span class="k">import</span> <span class="n">DataReader</span>
+<span class="kn">from</span> <span class="nn">claf.data</span> <span class="k">import</span> <span class="n">utils</span>
 <span class="kn">from</span> <span class="nn">claf.decorator</span> <span class="k">import</span> <span class="n">register</span>
 <span class="kn">from</span> <span class="nn">claf.metric.wikisql_lib.dbengine</span> <span class="k">import</span> <span class="n">DBEngine</span>
 <span class="kn">from</span> <span class="nn">claf.metric.wikisql_lib.query</span> <span class="k">import</span> <span class="n">Query</span>
@@ -236,7 +237,11 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">dbengine</span> <span class="o">=</span> <span class="n">DBEngine</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
 
-        <span class="n">helper</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;file_path&quot;</span><span class="p">:</span> <span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;db_path&quot;</span><span class="p">:</span> <span class="n">db_path</span><span class="p">,</span> <span class="s2">&quot;examples&quot;</span><span class="p">:</span> <span class="p">{}}</span>
+        <span class="n">helper</span> <span class="o">=</span> <span class="n">Helper</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
+            <span class="s2">&quot;file_path&quot;</span><span class="p">:</span> <span class="n">file_path</span><span class="p">,</span>
+            <span class="s2">&quot;db_path&quot;</span><span class="p">:</span> <span class="n">db_path</span><span class="p">,</span>
+        <span class="p">})</span>
+
         <span class="n">features</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 
         <span class="n">sql_datas</span><span class="p">,</span> <span class="n">table_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">table_path</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="n">data_type</span><span class="p">)</span>
@@ -273,16 +278,16 @@
             <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature_row</span><span class="p">)</span>
             <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_row</span><span class="p">)</span>
 
-            <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;examples&quot;</span><span class="p">][</span><span class="n">data_uid</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">helper</span><span class="o">.</span><span class="n">set_example</span><span class="p">(</span><span class="n">data_uid</span><span class="p">,</span> <span class="p">{</span>
                 <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">question</span><span class="p">,</span>
                 <span class="s2">&quot;sql_query&quot;</span><span class="p">:</span> <span class="n">sql_query</span><span class="p">,</span>
                 <span class="s2">&quot;execution_result&quot;</span><span class="p">:</span> <span class="n">execution_result</span><span class="p">,</span>
-            <span class="p">}</span>
+            <span class="p">})</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_test</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
                 <span class="k">break</span>
 
-        <span class="k">return</span> <span class="n">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">helper</span>
+        <span class="k">return</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">helper</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 
 <div class="viewcode-block" id="WikiSQLReader.read_one_example"><a class="viewcode-back" href="../../../../claf.data.reader.html#claf.data.reader.wikisql.WikiSQLReader.read_one_example">[docs]</a>    <span class="nd">@overrides</span>
     <span class="k">def</span> <span class="nf">read_one_example</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>

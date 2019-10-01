@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.model.sequence_classification.mixin &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.model.sequence_classification.mixin &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -192,8 +192,9 @@
 <span class="kn">from</span> <span class="nn">pycm.pycm_obj</span> <span class="k">import</span> <span class="n">pycmVectorError</span>
 
 <span class="kn">from</span> <span class="nn">claf.model</span> <span class="k">import</span> <span class="n">cls_utils</span>
+<span class="kn">from</span> <span class="nn">claf.model.base</span> <span class="k">import</span> <span class="n">ModelBase</span>
 <span class="kn">from</span> <span class="nn">claf.metric.classification</span> <span class="k">import</span> <span class="n">macro_f1</span><span class="p">,</span> <span class="n">macro_precision</span><span class="p">,</span> <span class="n">macro_recall</span>
-<span class="kn">from</span> <span class="nn">claf.metric.glue</span> <span class="k">import</span> <span class="n">f1</span><span class="p">,</span> <span class="n">matthews_corr</span>
+<span class="kn">from</span> <span class="nn">claf.metric.glue</span> <span class="k">import</span> <span class="n">simple_accuracy</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">matthews_corr</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -208,7 +209,7 @@
 <span class="sd">        * Args:</span>
 <span class="sd">            output_dict: model&#39;s output dictionary consisting of</span>
 <span class="sd">                - sequence_embed: embedding vector of the sequence</span>
-<span class="sd">                - class_logits: representing unnormalized log probabilities of the class</span>
+<span class="sd">                - logits: representing unnormalized log probabilities of the class</span>
 
 <span class="sd">                - class_idx: target class idx</span>
 <span class="sd">                - data_idx: data idx</span>
@@ -222,8 +223,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">data_indices</span> <span class="o">=</span> <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;data_idx&quot;</span><span class="p">]</span>
-        <span class="n">pred_class_logits</span> <span class="o">=</span> <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;class_logits&quot;</span><span class="p">]</span>
-        <span class="n">pred_class_idxs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">pred_class_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">pred_logits</span> <span class="o">=</span> <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;logits&quot;</span><span class="p">]</span>
+        <span class="n">pred_class_idxs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">pred_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="n">predictions</span> <span class="o">=</span> <span class="p">{</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">data_idx</span><span class="o">.</span><span class="n">item</span><span class="p">()):</span> <span class="p">{</span><span class="s2">&quot;class_idx&quot;</span><span class="p">:</span> <span class="n">pred_class_idx</span><span class="o">.</span><span class="n">item</span><span class="p">()}</span>
@@ -239,22 +240,22 @@
 <span class="sd">        * Args:</span>
 <span class="sd">            output_dict: model&#39;s output dictionary consisting of</span>
 <span class="sd">                - sequence_embed: embedding vector of the sequence</span>
-<span class="sd">                - class_logits: representing unnormalized log probabilities of the class.</span>
+<span class="sd">                - logits: representing unnormalized log probabilities of the class.</span>
 <span class="sd">            arguments: arguments dictionary consisting of user_input</span>
 <span class="sd">            helper: dictionary to get the classification result, consisting of</span>
 <span class="sd">                - class_idx2text: dictionary converting class_idx to class_text</span>
 
 <span class="sd">        * Returns: output dict (dict) consisting of</span>
-<span class="sd">            - class_logits: representing unnormalized log probabilities of the class</span>
+<span class="sd">            - logits: representing unnormalized log probabilities of the class</span>
 <span class="sd">            - class_idx: predicted class idx</span>
 <span class="sd">            - class_text: predicted class text</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">class_logits</span> <span class="o">=</span> <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;class_logits&quot;</span><span class="p">]</span>
-        <span class="n">class_idx</span> <span class="o">=</span> <span class="n">class_logits</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;logits&quot;</span><span class="p">]</span>
+        <span class="n">class_idx</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;class_logits&quot;</span><span class="p">:</span> <span class="n">class_logits</span><span class="p">,</span>
+            <span class="s2">&quot;logits&quot;</span><span class="p">:</span> <span class="n">logits</span><span class="p">,</span>
             <span class="s2">&quot;class_idx&quot;</span><span class="p">:</span> <span class="n">class_idx</span><span class="p">,</span>
             <span class="s2">&quot;class_text&quot;</span><span class="p">:</span> <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;class_idx2text&quot;</span><span class="p">][</span><span class="n">class_idx</span><span class="o">.</span><span class="n">item</span><span class="p">()],</span>
         <span class="p">}</span></div>
@@ -293,31 +294,8 @@
             <span class="n">target_idx</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;class_idx&quot;</span><span class="p">])</span>
             <span class="n">target_classes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;class_text&quot;</span><span class="p">])</span>
 
-        <span class="c1"># confusion matrix</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">pycm_obj</span> <span class="o">=</span> <span class="n">pycm</span><span class="o">.</span><span class="n">ConfusionMatrix</span><span class="p">(</span>
-                <span class="n">actual_vector</span><span class="o">=</span><span class="n">target_classes</span><span class="p">,</span> <span class="n">predict_vector</span><span class="o">=</span><span class="n">pred_classes</span>
-            <span class="p">)</span>
-        <span class="k">except</span> <span class="n">pycmVectorError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Number of the classes is lower than 2&quot;</span><span class="p">:</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Number of classes in the batch is 1. Sanity check is highly recommended.&quot;</span><span class="p">)</span>
-                <span class="k">return</span> <span class="p">{</span>
-                    <span class="s2">&quot;macro_f1&quot;</span><span class="p">:</span> <span class="mf">1.</span><span class="p">,</span>
-                    <span class="s2">&quot;macro_precision&quot;</span><span class="p">:</span> <span class="mf">1.</span><span class="p">,</span>
-                    <span class="s2">&quot;macro_recall&quot;</span><span class="p">:</span> <span class="mf">1.</span><span class="p">,</span>
-                    <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="mf">1.</span><span class="p">,</span>
-                <span class="p">}</span>
-            <span class="k">raise</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">write_predictions</span><span class="p">(</span>
-            <span class="p">{</span><span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">target_classes</span><span class="p">,</span> <span class="s2">&quot;predict&quot;</span><span class="p">:</span> <span class="n">pred_classes</span><span class="p">},</span> <span class="n">pycm_obj</span><span class="o">=</span><span class="n">pycm_obj</span>
-        <span class="p">)</span>
-
         <span class="n">metrics</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;macro_f1&quot;</span><span class="p">:</span> <span class="n">macro_f1</span><span class="p">(</span><span class="n">pycm_obj</span><span class="p">),</span>
-            <span class="s2">&quot;macro_precision&quot;</span><span class="p">:</span> <span class="n">macro_precision</span><span class="p">(</span><span class="n">pycm_obj</span><span class="p">),</span>
-            <span class="s2">&quot;macro_recall&quot;</span><span class="p">:</span> <span class="n">macro_recall</span><span class="p">(</span><span class="n">pycm_obj</span><span class="p">),</span>
-            <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">pycm_obj</span><span class="o">.</span><span class="n">Overall_ACC</span><span class="p">,</span>
+            <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">simple_accuracy</span><span class="p">(</span><span class="n">pred_idx</span><span class="p">,</span> <span class="n">target_idx</span><span class="p">),</span>
         <span class="p">}</span>
 
         <span class="k">if</span> <span class="n">target_count</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
@@ -334,9 +312,17 @@
 <span class="sd">        Override write_predictions() in ModelBase to log confusion matrix</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">SequenceClassification</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">write_predictions</span><span class="p">(</span>
-            <span class="n">predictions</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span> <span class="n">is_dict</span><span class="o">=</span><span class="n">is_dict</span>
-        <span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">(</span><span class="n">SequenceClassification</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">write_predictions</span><span class="p">(</span>
+                <span class="n">predictions</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span> <span class="n">is_dict</span><span class="o">=</span><span class="n">is_dict</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="c1"># TODO: Need to Fix</span>
+            <span class="n">model_base</span> <span class="o">=</span> <span class="n">ModelBase</span><span class="p">()</span>
+            <span class="n">model_base</span><span class="o">.</span><span class="n">_log_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_dir</span>
+            <span class="n">model_base</span><span class="o">.</span><span class="n">_train_counter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_train_counter</span>
+            <span class="n">model_base</span><span class="o">.</span><span class="n">training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span>
+            <span class="n">model_base</span><span class="o">.</span><span class="n">write_predictions</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span> <span class="n">is_dict</span><span class="o">=</span><span class="n">is_dict</span><span class="p">)</span>
 
         <span class="n">data_type</span> <span class="o">=</span> <span class="s2">&quot;train&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span> <span class="k">else</span> <span class="s2">&quot;valid&quot;</span>
 

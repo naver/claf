@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>claf.data.reader.bert.multi_task &mdash; CLaF 0.2.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contents/dataset_and_model.html">Dataset and Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contents/pretrained_vector.html">Pretrained Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contents/tokens.html">Tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../claf.config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../claf.data.html">data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../claf.learn.html">learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../claf.metric.html">metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../claf.model.html">model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../claf.modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../claf.tokens.html">tokens</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../reports/glue.html">GLUE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../reports/historyqa.html">HistoryQA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../reports/korquad.html">KorQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../reports/squad.html">SQuAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../reports/wikisql.html">WikiSQL</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Summary</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../summary/reading_comprehension.html">Reading Comprehension</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../references.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">CLaF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>claf.data.reader.bert.multi_task</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for claf.data.reader.bert.multi_task</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">overrides</span> <span class="k">import</span> <span class="n">overrides</span>
+
+<span class="kn">from</span> <span class="nn">claf.config.factory</span> <span class="k">import</span> <span class="n">DataReaderFactory</span>
+<span class="kn">from</span> <span class="nn">claf.config.namespace</span> <span class="k">import</span> <span class="n">NestedNamespace</span>
+<span class="kn">from</span> <span class="nn">claf.config.registry</span> <span class="k">import</span> <span class="n">Registry</span>
+<span class="kn">from</span> <span class="nn">claf.data.dataset</span> <span class="k">import</span> <span class="n">MultiTaskBertDataset</span>
+<span class="kn">from</span> <span class="nn">claf.data.dto</span> <span class="k">import</span> <span class="n">Helper</span>
+<span class="kn">from</span> <span class="nn">claf.data.reader.base</span> <span class="k">import</span> <span class="n">DataReader</span>
+<span class="kn">from</span> <span class="nn">claf.decorator</span> <span class="k">import</span> <span class="n">register</span>
+
+<span class="kn">from</span> <span class="nn">.seq_cls</span> <span class="k">import</span> <span class="n">SeqClsBertReader</span>
+<span class="kn">from</span> <span class="nn">.regression</span> <span class="k">import</span> <span class="n">RegressionBertReader</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="MultiTaskBertReader"><a class="viewcode-back" href="../../../../../claf.data.reader.html#claf.data.reader.MultiTaskBertReader">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="s2">&quot;reader:multitask_bert&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MultiTaskBertReader</span><span class="p">(</span><span class="n">DataReader</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    DataReader for Multi-Task using BERT</span>
+
+<span class="sd">    * Args:</span>
+<span class="sd">        file_paths: .json file paths (train and dev)</span>
+<span class="sd">        tokenizers: define tokenizers config (subword)</span>
+
+<span class="sd">    * Kwargs:</span>
+<span class="sd">        class_key: name of the label in .json file to use for classification</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CLASS_DATA</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">file_paths</span><span class="p">,</span>
+        <span class="n">tokenizers</span><span class="p">,</span>
+        <span class="n">batch_sizes</span><span class="o">=</span><span class="p">[],</span>
+        <span class="n">readers</span><span class="o">=</span><span class="p">[],</span>
+    <span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">MultiTaskBertReader</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">file_paths</span><span class="p">,</span> <span class="n">MultiTaskBertDataset</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch_sizes</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">readers</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">registry</span> <span class="o">=</span> <span class="n">Registry</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">text_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bert_input&quot;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokenizers</span> <span class="o">=</span> <span class="n">tokenizers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_sizes</span> <span class="o">=</span> <span class="n">batch_sizes</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset_batches</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset_helpers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">reader</span> <span class="ow">in</span> <span class="n">readers</span><span class="p">:</span>
+            <span class="n">data_reader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_data_reader</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>
+            <span class="n">batches</span><span class="p">,</span> <span class="n">helpers</span> <span class="o">=</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataset_batches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">batches</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataset_helpers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">helpers</span><span class="p">)</span>
+
+            <span class="n">task</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">task</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reader</span><span class="p">[</span><span class="s2">&quot;dataset&quot;</span><span class="p">]</span>
+            <span class="n">task</span><span class="p">[</span><span class="s2">&quot;metric_key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">METRIC_KEY</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_reader</span><span class="p">,</span> <span class="n">SeqClsBertReader</span><span class="p">):</span>
+                <span class="n">task</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;classification&quot;</span>
+                <span class="n">task</span><span class="p">[</span><span class="s2">&quot;num_label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">helpers</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">][</span><span class="s2">&quot;model&quot;</span><span class="p">][</span><span class="s2">&quot;num_classes&quot;</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_reader</span><span class="p">,</span> <span class="n">RegressionBertReader</span><span class="p">):</span>
+                <span class="n">task</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;regression&quot;</span>
+                <span class="n">task</span><span class="p">[</span><span class="s2">&quot;num_label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+
+<div class="viewcode-block" id="MultiTaskBertReader.make_data_reader"><a class="viewcode-back" href="../../../../../claf.data.reader.html#claf.data.reader.MultiTaskBertReader.make_data_reader">[docs]</a>    <span class="k">def</span> <span class="nf">make_data_reader</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">):</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">NestedNamespace</span><span class="p">()</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">load_from_json</span><span class="p">(</span><span class="n">config_dict</span><span class="p">)</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">tokenizers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizers</span>
+
+        <span class="n">data_reader_factory</span> <span class="o">=</span> <span class="n">DataReaderFactory</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data_reader_factory</span><span class="o">.</span><span class="n">create</span><span class="p">()</span></div>
+
+    <span class="nd">@overrides</span>
+    <span class="k">def</span> <span class="nf">_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; TODO: Doc-String &quot;&quot;&quot;</span>
+
+        <span class="n">batches</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">helper</span> <span class="o">=</span> <span class="n">Helper</span><span class="p">()</span>
+        <span class="n">helper</span><span class="o">.</span><span class="n">task_helpers</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_batches</span><span class="p">:</span>
+            <span class="n">batches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">data_type</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_helpers</span><span class="p">):</span>
+            <span class="n">task_helper</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="n">data_type</span><span class="p">]</span>
+            <span class="n">task_helper</span><span class="p">[</span><span class="s2">&quot;batch_size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_sizes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+            <span class="n">helper</span><span class="o">.</span><span class="n">task_helpers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task_helper</span><span class="p">)</span>
+
+        <span class="c1"># TODO: tasks (category - issubclasses, label_count - num_classes or labl)</span>
+        <span class="n">helper</span><span class="o">.</span><span class="n">set_model_parameter</span><span class="p">({</span>
+            <span class="s2">&quot;tasks&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">,</span>
+        <span class="p">})</span>
+
+        <span class="k">return</span> <span class="n">batches</span><span class="p">,</span> <span class="n">helper</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+<div class="viewcode-block" id="MultiTaskBertReader.read_one_example"><a class="viewcode-back" href="../../../../../claf.data.reader.html#claf.data.reader.MultiTaskBertReader.read_one_example">[docs]</a>    <span class="k">def</span> <span class="nf">read_one_example</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dongjun Lee
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

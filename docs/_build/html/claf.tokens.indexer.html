@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.tokens.indexer package &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.tokens.indexer package &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -209,26 +209,26 @@
 <span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.tokens.indexer.base" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.tokens.indexer.base.TokenIndexer">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.indexer.base.</code><code class="sig-name descname">TokenIndexer</code><span class="sig-paren">(</span><em class="sig-param">tokenizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/base.html#TokenIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.base.TokenIndexer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.indexer.base.</code><code class="descname">TokenIndexer</code><span class="sig-paren">(</span><em>tokenizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/base.html#TokenIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.base.TokenIndexer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Token Indexer</p>
 <p>indexing tokens (eg. ‘hi’ -&gt; 4)</p>
 <dl class="method">
 <dt id="claf.tokens.indexer.base.TokenIndexer.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">token</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/base.html#TokenIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.base.TokenIndexer.index" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/base.html#TokenIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.base.TokenIndexer.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>indexing function</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.indexer.base.TokenIndexer.set_vocab">
-<code class="sig-name descname">set_vocab</code><span class="sig-paren">(</span><em class="sig-param">vocab</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/base.html#TokenIndexer.set_vocab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.base.TokenIndexer.set_vocab" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set_vocab</code><span class="sig-paren">(</span><em>vocab</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/base.html#TokenIndexer.set_vocab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.base.TokenIndexer.set_vocab" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <span class="target" id="module-claf.tokens.indexer.bert_indexer"></span><dl class="class">
 <dt id="claf.tokens.indexer.bert_indexer.BertIndexer">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.indexer.bert_indexer.</code><code class="sig-name descname">BertIndexer</code><span class="sig-paren">(</span><em class="sig-param">tokenizer</em>, <em class="sig-param">do_tokenize=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/bert_indexer.html#BertIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.bert_indexer.BertIndexer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.indexer.bert_indexer.</code><code class="descname">BertIndexer</code><span class="sig-paren">(</span><em>tokenizer</em>, <em>do_tokenize=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/bert_indexer.html#BertIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.bert_indexer.BertIndexer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Bert Token Indexer</p>
 <ul class="simple">
@@ -252,7 +252,7 @@ insert_end: append end_token</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.indexer.bert_indexer.BertIndexer.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/bert_indexer.html#BertIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.bert_indexer.BertIndexer.index" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/bert_indexer.html#BertIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.bert_indexer.BertIndexer.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>indexing function</p>
 </dd></dl>
 
@@ -260,7 +260,7 @@ insert_end: append end_token</p>
 
 <span class="target" id="module-claf.tokens.indexer.char_indexer"></span><dl class="class">
 <dt id="claf.tokens.indexer.char_indexer.CharIndexer">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.indexer.char_indexer.</code><code class="sig-name descname">CharIndexer</code><span class="sig-paren">(</span><em class="sig-param">tokenizer</em>, <em class="sig-param">insert_char_start=None</em>, <em class="sig-param">insert_char_end=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/char_indexer.html#CharIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.char_indexer.CharIndexer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.indexer.char_indexer.</code><code class="descname">CharIndexer</code><span class="sig-paren">(</span><em>tokenizer</em>, <em>insert_char_start=None</em>, <em>insert_char_end=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/char_indexer.html#CharIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.char_indexer.CharIndexer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Character Token Indexer</p>
 <ul class="simple">
@@ -287,13 +287,13 @@ insert_end: append end_token</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.indexer.char_indexer.CharIndexer.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/char_indexer.html#CharIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.char_indexer.CharIndexer.index" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/char_indexer.html#CharIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.char_indexer.CharIndexer.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>indexing function</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.indexer.char_indexer.CharIndexer.index_token">
-<code class="sig-name descname">index_token</code><span class="sig-paren">(</span><em class="sig-param">chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/char_indexer.html#CharIndexer.index_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.char_indexer.CharIndexer.index_token" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index_token</code><span class="sig-paren">(</span><em>chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/char_indexer.html#CharIndexer.index_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.char_indexer.CharIndexer.index_token" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -302,77 +302,77 @@ insert_end: append end_token</p>
 (<a class="reference external" href="https://github.com/allenai/allennlp/blob/master/allennlp/data/token_indexers/elmo_indexer.py">https://github.com/allenai/allennlp/blob/master/allennlp/data/token_indexers/elmo_indexer.py</a>)</p>
 <dl class="class">
 <dt id="claf.tokens.indexer.elmo_indexer.ELMoIndexer">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.indexer.elmo_indexer.</code><code class="sig-name descname">ELMoIndexer</code><span class="sig-paren">(</span><em class="sig-param">tokenizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/elmo_indexer.html#ELMoIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.indexer.elmo_indexer.</code><code class="descname">ELMoIndexer</code><span class="sig-paren">(</span><em>tokenizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/elmo_indexer.html#ELMoIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Maps individual tokens to sequences of character ids, compatible with ELMo.
 To be consistent with previously trained models, we include it here as special of existing
 character indexers.</p>
 <dl class="attribute">
 <dt id="claf.tokens.indexer.elmo_indexer.ELMoIndexer.BOS_TOKEN">
-<code class="sig-name descname">BOS_TOKEN</code><em class="property"> = '&lt;S&gt;'</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.BOS_TOKEN" title="Permalink to this definition">¶</a></dt>
+<code class="descname">BOS_TOKEN</code><em class="property"> = '&lt;S&gt;'</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.BOS_TOKEN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.elmo_indexer.ELMoIndexer.EOS_TOKEN">
-<code class="sig-name descname">EOS_TOKEN</code><em class="property"> = '&lt;/S&gt;'</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.EOS_TOKEN" title="Permalink to this definition">¶</a></dt>
+<code class="descname">EOS_TOKEN</code><em class="property"> = '&lt;/S&gt;'</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.EOS_TOKEN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.elmo_indexer.ELMoIndexer.beginning_of_sentence_character">
-<code class="sig-name descname">beginning_of_sentence_character</code><em class="property"> = 256</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.beginning_of_sentence_character" title="Permalink to this definition">¶</a></dt>
+<code class="descname">beginning_of_sentence_character</code><em class="property"> = 256</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.beginning_of_sentence_character" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.elmo_indexer.ELMoIndexer.beginning_of_sentence_characters">
-<code class="sig-name descname">beginning_of_sentence_characters</code><em class="property"> = [258, 256, 259, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260]</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.beginning_of_sentence_characters" title="Permalink to this definition">¶</a></dt>
+<code class="descname">beginning_of_sentence_characters</code><em class="property"> = [258, 256, 259, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260]</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.beginning_of_sentence_characters" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.elmo_indexer.ELMoIndexer.beginning_of_word_character">
-<code class="sig-name descname">beginning_of_word_character</code><em class="property"> = 258</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.beginning_of_word_character" title="Permalink to this definition">¶</a></dt>
+<code class="descname">beginning_of_word_character</code><em class="property"> = 258</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.beginning_of_word_character" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.elmo_indexer.ELMoIndexer.end_of_sentence_character">
-<code class="sig-name descname">end_of_sentence_character</code><em class="property"> = 257</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.end_of_sentence_character" title="Permalink to this definition">¶</a></dt>
+<code class="descname">end_of_sentence_character</code><em class="property"> = 257</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.end_of_sentence_character" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.elmo_indexer.ELMoIndexer.end_of_sentence_characters">
-<code class="sig-name descname">end_of_sentence_characters</code><em class="property"> = [258, 257, 259, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260]</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.end_of_sentence_characters" title="Permalink to this definition">¶</a></dt>
+<code class="descname">end_of_sentence_characters</code><em class="property"> = [258, 257, 259, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260]</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.end_of_sentence_characters" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.elmo_indexer.ELMoIndexer.end_of_word_character">
-<code class="sig-name descname">end_of_word_character</code><em class="property"> = 259</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.end_of_word_character" title="Permalink to this definition">¶</a></dt>
+<code class="descname">end_of_word_character</code><em class="property"> = 259</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.end_of_word_character" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.indexer.elmo_indexer.ELMoIndexer.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/elmo_indexer.html#ELMoIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.index" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/elmo_indexer.html#ELMoIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>indexing function</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.indexer.elmo_indexer.ELMoIndexer.index_token">
-<code class="sig-name descname">index_token</code><span class="sig-paren">(</span><em class="sig-param">word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/elmo_indexer.html#ELMoIndexer.index_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.index_token" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index_token</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/elmo_indexer.html#ELMoIndexer.index_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.index_token" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.elmo_indexer.ELMoIndexer.max_word_length">
-<code class="sig-name descname">max_word_length</code><em class="property"> = 50</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.max_word_length" title="Permalink to this definition">¶</a></dt>
+<code class="descname">max_word_length</code><em class="property"> = 50</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.max_word_length" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.elmo_indexer.ELMoIndexer.padding_character">
-<code class="sig-name descname">padding_character</code><em class="property"> = 260</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.padding_character" title="Permalink to this definition">¶</a></dt>
+<code class="descname">padding_character</code><em class="property"> = 260</em><a class="headerlink" href="#claf.tokens.indexer.elmo_indexer.ELMoIndexer.padding_character" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <span class="target" id="module-claf.tokens.indexer.exact_match_indexer"></span><dl class="class">
 <dt id="claf.tokens.indexer.exact_match_indexer.ExactMatchIndexer">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.indexer.exact_match_indexer.</code><code class="sig-name descname">ExactMatchIndexer</code><span class="sig-paren">(</span><em class="sig-param">tokenizer</em>, <em class="sig-param">lower=True</em>, <em class="sig-param">lemma=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/exact_match_indexer.html#ExactMatchIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.exact_match_indexer.ExactMatchIndexer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.indexer.exact_match_indexer.</code><code class="descname">ExactMatchIndexer</code><span class="sig-paren">(</span><em>tokenizer</em>, <em>lower=True</em>, <em>lemma=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/exact_match_indexer.html#ExactMatchIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.exact_match_indexer.ExactMatchIndexer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Exact Match Token Indexer</p>
 <ul class="simple">
@@ -395,20 +395,20 @@ lemma: add lemma case feature. feature is True (0 or 1)</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.indexer.exact_match_indexer.ExactMatchIndexer.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">text</em>, <em class="sig-param">query_text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/exact_match_indexer.html#ExactMatchIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.exact_match_indexer.ExactMatchIndexer.index" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index</code><span class="sig-paren">(</span><em>text</em>, <em>query_text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/exact_match_indexer.html#ExactMatchIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.exact_match_indexer.ExactMatchIndexer.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>indexing function</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.indexer.exact_match_indexer.ExactMatchIndexer.index_token">
-<code class="sig-name descname">index_token</code><span class="sig-paren">(</span><em class="sig-param">token</em>, <em class="sig-param">query_tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/exact_match_indexer.html#ExactMatchIndexer.index_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.exact_match_indexer.ExactMatchIndexer.index_token" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index_token</code><span class="sig-paren">(</span><em>token</em>, <em>query_tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/exact_match_indexer.html#ExactMatchIndexer.index_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.exact_match_indexer.ExactMatchIndexer.index_token" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <span class="target" id="module-claf.tokens.indexer.linguistic_indexer"></span><dl class="class">
 <dt id="claf.tokens.indexer.linguistic_indexer.LinguisticIndexer">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.indexer.linguistic_indexer.</code><code class="sig-name descname">LinguisticIndexer</code><span class="sig-paren">(</span><em class="sig-param">tokenizer</em>, <em class="sig-param">pos_tag=None</em>, <em class="sig-param">ner=None</em>, <em class="sig-param">dep=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/linguistic_indexer.html#LinguisticIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.linguistic_indexer.LinguisticIndexer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.indexer.linguistic_indexer.</code><code class="descname">LinguisticIndexer</code><span class="sig-paren">(</span><em>tokenizer</em>, <em>pos_tag=None</em>, <em>ner=None</em>, <em>dep=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/linguistic_indexer.html#LinguisticIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.linguistic_indexer.LinguisticIndexer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Linguistic Token Indexer</p>
 <ul class="simple">
@@ -432,7 +432,7 @@ dep: Dependency Parser</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.indexer.linguistic_indexer.LinguisticIndexer.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/linguistic_indexer.html#LinguisticIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.linguistic_indexer.LinguisticIndexer.index" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/linguistic_indexer.html#LinguisticIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.linguistic_indexer.LinguisticIndexer.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>indexing function</p>
 </dd></dl>
 
@@ -440,7 +440,7 @@ dep: Dependency Parser</p>
 
 <span class="target" id="module-claf.tokens.indexer.word_indexer"></span><dl class="class">
 <dt id="claf.tokens.indexer.word_indexer.WordIndexer">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.indexer.word_indexer.</code><code class="sig-name descname">WordIndexer</code><span class="sig-paren">(</span><em class="sig-param">tokenizer</em>, <em class="sig-param">do_tokenize=True</em>, <em class="sig-param">lowercase=False</em>, <em class="sig-param">insert_start=None</em>, <em class="sig-param">insert_end=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/word_indexer.html#WordIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.word_indexer.WordIndexer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.indexer.word_indexer.</code><code class="descname">WordIndexer</code><span class="sig-paren">(</span><em>tokenizer</em>, <em>do_tokenize=True</em>, <em>lowercase=False</em>, <em>insert_start=None</em>, <em>insert_end=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/word_indexer.html#WordIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.word_indexer.WordIndexer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Word Token Indexer</p>
 <ul class="simple">
@@ -464,7 +464,7 @@ insert_end: append end_token</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.indexer.word_indexer.WordIndexer.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/word_indexer.html#WordIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.word_indexer.WordIndexer.index" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/word_indexer.html#WordIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.word_indexer.WordIndexer.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>indexing function</p>
 </dd></dl>
 
@@ -475,7 +475,7 @@ insert_end: append end_token</p>
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.tokens.indexer" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.tokens.indexer.BertIndexer">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.indexer.</code><code class="sig-name descname">BertIndexer</code><span class="sig-paren">(</span><em class="sig-param">tokenizer</em>, <em class="sig-param">do_tokenize=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/bert_indexer.html#BertIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.BertIndexer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.indexer.</code><code class="descname">BertIndexer</code><span class="sig-paren">(</span><em>tokenizer</em>, <em>do_tokenize=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/bert_indexer.html#BertIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.BertIndexer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Bert Token Indexer</p>
 <ul class="simple">
@@ -499,7 +499,7 @@ insert_end: append end_token</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.indexer.BertIndexer.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/bert_indexer.html#BertIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.BertIndexer.index" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/bert_indexer.html#BertIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.BertIndexer.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>indexing function</p>
 </dd></dl>
 
@@ -507,7 +507,7 @@ insert_end: append end_token</p>
 
 <dl class="class">
 <dt id="claf.tokens.indexer.CharIndexer">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.indexer.</code><code class="sig-name descname">CharIndexer</code><span class="sig-paren">(</span><em class="sig-param">tokenizer</em>, <em class="sig-param">insert_char_start=None</em>, <em class="sig-param">insert_char_end=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/char_indexer.html#CharIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.CharIndexer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.indexer.</code><code class="descname">CharIndexer</code><span class="sig-paren">(</span><em>tokenizer</em>, <em>insert_char_start=None</em>, <em>insert_char_end=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/char_indexer.html#CharIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.CharIndexer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Character Token Indexer</p>
 <ul class="simple">
@@ -534,90 +534,90 @@ insert_end: append end_token</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.indexer.CharIndexer.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/char_indexer.html#CharIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.CharIndexer.index" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/char_indexer.html#CharIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.CharIndexer.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>indexing function</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.indexer.CharIndexer.index_token">
-<code class="sig-name descname">index_token</code><span class="sig-paren">(</span><em class="sig-param">chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/char_indexer.html#CharIndexer.index_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.CharIndexer.index_token" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index_token</code><span class="sig-paren">(</span><em>chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/char_indexer.html#CharIndexer.index_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.CharIndexer.index_token" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="claf.tokens.indexer.ELMoIndexer">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.indexer.</code><code class="sig-name descname">ELMoIndexer</code><span class="sig-paren">(</span><em class="sig-param">tokenizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/elmo_indexer.html#ELMoIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.indexer.</code><code class="descname">ELMoIndexer</code><span class="sig-paren">(</span><em>tokenizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/elmo_indexer.html#ELMoIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Maps individual tokens to sequences of character ids, compatible with ELMo.
 To be consistent with previously trained models, we include it here as special of existing
 character indexers.</p>
 <dl class="attribute">
 <dt id="claf.tokens.indexer.ELMoIndexer.BOS_TOKEN">
-<code class="sig-name descname">BOS_TOKEN</code><em class="property"> = '&lt;S&gt;'</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.BOS_TOKEN" title="Permalink to this definition">¶</a></dt>
+<code class="descname">BOS_TOKEN</code><em class="property"> = '&lt;S&gt;'</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.BOS_TOKEN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.ELMoIndexer.EOS_TOKEN">
-<code class="sig-name descname">EOS_TOKEN</code><em class="property"> = '&lt;/S&gt;'</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.EOS_TOKEN" title="Permalink to this definition">¶</a></dt>
+<code class="descname">EOS_TOKEN</code><em class="property"> = '&lt;/S&gt;'</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.EOS_TOKEN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.ELMoIndexer.beginning_of_sentence_character">
-<code class="sig-name descname">beginning_of_sentence_character</code><em class="property"> = 256</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.beginning_of_sentence_character" title="Permalink to this definition">¶</a></dt>
+<code class="descname">beginning_of_sentence_character</code><em class="property"> = 256</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.beginning_of_sentence_character" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.ELMoIndexer.beginning_of_sentence_characters">
-<code class="sig-name descname">beginning_of_sentence_characters</code><em class="property"> = [258, 256, 259, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260]</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.beginning_of_sentence_characters" title="Permalink to this definition">¶</a></dt>
+<code class="descname">beginning_of_sentence_characters</code><em class="property"> = [258, 256, 259, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260]</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.beginning_of_sentence_characters" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.ELMoIndexer.beginning_of_word_character">
-<code class="sig-name descname">beginning_of_word_character</code><em class="property"> = 258</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.beginning_of_word_character" title="Permalink to this definition">¶</a></dt>
+<code class="descname">beginning_of_word_character</code><em class="property"> = 258</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.beginning_of_word_character" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.ELMoIndexer.end_of_sentence_character">
-<code class="sig-name descname">end_of_sentence_character</code><em class="property"> = 257</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.end_of_sentence_character" title="Permalink to this definition">¶</a></dt>
+<code class="descname">end_of_sentence_character</code><em class="property"> = 257</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.end_of_sentence_character" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.ELMoIndexer.end_of_sentence_characters">
-<code class="sig-name descname">end_of_sentence_characters</code><em class="property"> = [258, 257, 259, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260]</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.end_of_sentence_characters" title="Permalink to this definition">¶</a></dt>
+<code class="descname">end_of_sentence_characters</code><em class="property"> = [258, 257, 259, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260, 260]</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.end_of_sentence_characters" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.ELMoIndexer.end_of_word_character">
-<code class="sig-name descname">end_of_word_character</code><em class="property"> = 259</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.end_of_word_character" title="Permalink to this definition">¶</a></dt>
+<code class="descname">end_of_word_character</code><em class="property"> = 259</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.end_of_word_character" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.indexer.ELMoIndexer.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/elmo_indexer.html#ELMoIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.index" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/elmo_indexer.html#ELMoIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>indexing function</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.indexer.ELMoIndexer.index_token">
-<code class="sig-name descname">index_token</code><span class="sig-paren">(</span><em class="sig-param">word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/elmo_indexer.html#ELMoIndexer.index_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.index_token" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index_token</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/elmo_indexer.html#ELMoIndexer.index_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.index_token" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.ELMoIndexer.max_word_length">
-<code class="sig-name descname">max_word_length</code><em class="property"> = 50</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.max_word_length" title="Permalink to this definition">¶</a></dt>
+<code class="descname">max_word_length</code><em class="property"> = 50</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.max_word_length" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.tokens.indexer.ELMoIndexer.padding_character">
-<code class="sig-name descname">padding_character</code><em class="property"> = 260</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.padding_character" title="Permalink to this definition">¶</a></dt>
+<code class="descname">padding_character</code><em class="property"> = 260</em><a class="headerlink" href="#claf.tokens.indexer.ELMoIndexer.padding_character" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="claf.tokens.indexer.ExactMatchIndexer">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.indexer.</code><code class="sig-name descname">ExactMatchIndexer</code><span class="sig-paren">(</span><em class="sig-param">tokenizer</em>, <em class="sig-param">lower=True</em>, <em class="sig-param">lemma=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/exact_match_indexer.html#ExactMatchIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.ExactMatchIndexer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.indexer.</code><code class="descname">ExactMatchIndexer</code><span class="sig-paren">(</span><em>tokenizer</em>, <em>lower=True</em>, <em>lemma=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/exact_match_indexer.html#ExactMatchIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.ExactMatchIndexer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Exact Match Token Indexer</p>
 <ul class="simple">
@@ -640,20 +640,20 @@ lemma: add lemma case feature. feature is True (0 or 1)</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.indexer.ExactMatchIndexer.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">text</em>, <em class="sig-param">query_text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/exact_match_indexer.html#ExactMatchIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.ExactMatchIndexer.index" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index</code><span class="sig-paren">(</span><em>text</em>, <em>query_text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/exact_match_indexer.html#ExactMatchIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.ExactMatchIndexer.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>indexing function</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.indexer.ExactMatchIndexer.index_token">
-<code class="sig-name descname">index_token</code><span class="sig-paren">(</span><em class="sig-param">token</em>, <em class="sig-param">query_tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/exact_match_indexer.html#ExactMatchIndexer.index_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.ExactMatchIndexer.index_token" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index_token</code><span class="sig-paren">(</span><em>token</em>, <em>query_tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/exact_match_indexer.html#ExactMatchIndexer.index_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.ExactMatchIndexer.index_token" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="claf.tokens.indexer.LinguisticIndexer">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.indexer.</code><code class="sig-name descname">LinguisticIndexer</code><span class="sig-paren">(</span><em class="sig-param">tokenizer</em>, <em class="sig-param">pos_tag=None</em>, <em class="sig-param">ner=None</em>, <em class="sig-param">dep=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/linguistic_indexer.html#LinguisticIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.LinguisticIndexer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.indexer.</code><code class="descname">LinguisticIndexer</code><span class="sig-paren">(</span><em>tokenizer</em>, <em>pos_tag=None</em>, <em>ner=None</em>, <em>dep=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/linguistic_indexer.html#LinguisticIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.LinguisticIndexer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Linguistic Token Indexer</p>
 <ul class="simple">
@@ -677,7 +677,7 @@ dep: Dependency Parser</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.indexer.LinguisticIndexer.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/linguistic_indexer.html#LinguisticIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.LinguisticIndexer.index" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/linguistic_indexer.html#LinguisticIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.LinguisticIndexer.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>indexing function</p>
 </dd></dl>
 
@@ -685,7 +685,7 @@ dep: Dependency Parser</p>
 
 <dl class="class">
 <dt id="claf.tokens.indexer.WordIndexer">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.indexer.</code><code class="sig-name descname">WordIndexer</code><span class="sig-paren">(</span><em class="sig-param">tokenizer</em>, <em class="sig-param">do_tokenize=True</em>, <em class="sig-param">lowercase=False</em>, <em class="sig-param">insert_start=None</em>, <em class="sig-param">insert_end=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/word_indexer.html#WordIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.WordIndexer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.indexer.</code><code class="descname">WordIndexer</code><span class="sig-paren">(</span><em>tokenizer</em>, <em>do_tokenize=True</em>, <em>lowercase=False</em>, <em>insert_start=None</em>, <em>insert_end=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/word_indexer.html#WordIndexer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.WordIndexer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.indexer.base.TokenIndexer" title="claf.tokens.indexer.base.TokenIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.indexer.base.TokenIndexer</span></code></a></p>
 <p>Word Token Indexer</p>
 <ul class="simple">
@@ -709,7 +709,7 @@ insert_end: append end_token</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.indexer.WordIndexer.index">
-<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/word_indexer.html#WordIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.WordIndexer.index" title="Permalink to this definition">¶</a></dt>
+<code class="descname">index</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/indexer/word_indexer.html#WordIndexer.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.indexer.WordIndexer.index" title="Permalink to this definition">¶</a></dt>
 <dd><p>indexing function</p>
 </dd></dl>
 

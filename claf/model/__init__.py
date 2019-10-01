@@ -1,4 +1,5 @@
 
+from claf.model.multi_task import *
 from claf.model.reading_comprehension import *
 from claf.model.regression import *
 from claf.model.semantic_parsing import *

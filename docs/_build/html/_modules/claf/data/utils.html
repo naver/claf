@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.data.utils &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.data.utils &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -188,6 +188,12 @@
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="kn">from</span> <span class="nn">claf.data.dto.batch</span> <span class="k">import</span> <span class="n">Batch</span>
+
+
+<div class="viewcode-block" id="make_batch"><a class="viewcode-back" href="../../../claf.data.html#claf.data.utils.make_batch">[docs]</a><span class="k">def</span> <span class="nf">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Batch</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="n">features</span><span class="p">,</span> <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="n">labels</span><span class="p">})</span></div>
 
 
 <div class="viewcode-block" id="make_bert_input"><a class="viewcode-back" href="../../../claf.data.html#claf.data.utils.make_bert_input">[docs]</a><span class="k">def</span> <span class="nf">make_bert_input</span><span class="p">(</span>

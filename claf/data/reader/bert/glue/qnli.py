@@ -20,6 +20,7 @@ class QNLIBertReader(SeqClsBertReader):
     """
 
     CLASS_DATA = ["entailment", "not_entailment"]
+    METRIC_KEY = "accuracy"
 
     def __init__(
         self,
@@ -58,7 +59,7 @@ class QNLIBertReader(SeqClsBertReader):
             if len(line_tokens) <= 1:
                 continue
             data.append({
-                "uid": f"{data_type}-{i}",
+                "uid": f"qnli-{file_path}-{data_type}-{i}",
                 "sequence_a": line_tokens[1],
                 "sequence_b": line_tokens[2],
                 self.class_key: str(line_tokens[-1]),

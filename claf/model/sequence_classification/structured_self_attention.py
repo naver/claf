@@ -96,7 +96,7 @@ class StructuredSelfAttention(SequenceClassification, ModelWithTokenEmbedder):
 
         * Returns: output_dict (dict) consisting of
             - sequence_embed: embedding vector of the sequence
-            - class_logits: representing unnormalized log probabilities of the class.
+            - logits: representing unnormalized log probabilities of the class.
 
             - class_idx: target class idx
             - data_idx: data idx
@@ -127,9 +127,9 @@ class StructuredSelfAttention(SequenceClassification, ModelWithTokenEmbedder):
             attended_encodings.view(attended_encodings.size(0), -1)
         )  # [B, sequence_embed_dim]
 
-        class_logits = self.classifier(sequence_embed)  # [B, num_classes]
+        logits = self.classifier(sequence_embed)  # [B, num_classes]
 
-        output_dict = {"sequence_embed": sequence_embed, "class_logits": class_logits}
+        output_dict = {"sequence_embed": sequence_embed, "logits": logits}
 
         if labels:
             class_idx = labels["class_idx"]
@@ -139,7 +139,7 @@ class StructuredSelfAttention(SequenceClassification, ModelWithTokenEmbedder):
             output_dict["data_idx"] = data_idx
 
             # Loss
-            loss = self.criterion(class_logits, class_idx)
+            loss = self.criterion(logits, class_idx)
             loss += self.penalty(attention)
             output_dict["loss"] = loss.unsqueeze(0)  # NOTE: DataParallel concat Error
 

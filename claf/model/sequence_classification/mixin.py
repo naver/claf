@@ -7,8 +7,9 @@ import pycm
 from pycm.pycm_obj import pycmVectorError
 
 from claf.model import cls_utils
+from claf.model.base import ModelBase
 from claf.metric.classification import macro_f1, macro_precision, macro_recall
-from claf.metric.glue import f1, matthews_corr
+from claf.metric.glue import simple_accuracy, f1, matthews_corr
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +24,7 @@ class SequenceClassification:
         * Args:
             output_dict: model's output dictionary consisting of
                 - sequence_embed: embedding vector of the sequence
-                - class_logits: representing unnormalized log probabilities of the class
+                - logits: representing unnormalized log probabilities of the class
 
                 - class_idx: target class idx
                 - data_idx: data idx
@@ -37,8 +38,8 @@ class SequenceClassification:
         """
 
         data_indices = output_dict["data_idx"]
-        pred_class_logits = output_dict["class_logits"]
-        pred_class_idxs = torch.argmax(pred_class_logits, dim=-1)
+        pred_logits = output_dict["logits"]
+        pred_class_idxs = torch.argmax(pred_logits, dim=-1)
 
         predictions = {
             self._dataset.get_id(data_idx.item()): {"class_idx": pred_class_idx.item()}
@@ -54,22 +55,22 @@ class SequenceClassification:
         * Args:
             output_dict: model's output dictionary consisting of
                 - sequence_embed: embedding vector of the sequence
-                - class_logits: representing unnormalized log probabilities of the class.
+                - logits: representing unnormalized log probabilities of the class.
             arguments: arguments dictionary consisting of user_input
             helper: dictionary to get the classification result, consisting of
                 - class_idx2text: dictionary converting class_idx to class_text
 
         * Returns: output dict (dict) consisting of
-            - class_logits: representing unnormalized log probabilities of the class
+            - logits: representing unnormalized log probabilities of the class
             - class_idx: predicted class idx
             - class_text: predicted class text
         """
 
-        class_logits = output_dict["class_logits"]
-        class_idx = class_logits.argmax(dim=-1)
+        logits = output_dict["logits"]
+        class_idx = logits.argmax(dim=-1)
 
         return {
-            "class_logits": class_logits,
+            "logits": logits,
             "class_idx": class_idx,
             "class_text": helper["class_idx2text"][class_idx.item()],
         }
@@ -108,31 +109,8 @@ class SequenceClassification:
             target_idx.append(target["class_idx"])
             target_classes.append(target["class_text"])
 
-        # confusion matrix
-        try:
-            pycm_obj = pycm.ConfusionMatrix(
-                actual_vector=target_classes, predict_vector=pred_classes
-            )
-        except pycmVectorError as e:
-            if str(e) == "Number of the classes is lower than 2":
-                logger.warning("Number of classes in the batch is 1. Sanity check is highly recommended.")
-                return {
-                    "macro_f1": 1.,
-                    "macro_precision": 1.,
-                    "macro_recall": 1.,
-                    "accuracy": 1.,
-                }
-            raise
-
-        self.write_predictions(
-            {"target": target_classes, "predict": pred_classes}, pycm_obj=pycm_obj
-        )
-
         metrics = {
-            "macro_f1": macro_f1(pycm_obj),
-            "macro_precision": macro_precision(pycm_obj),
-            "macro_recall": macro_recall(pycm_obj),
-            "accuracy": pycm_obj.Overall_ACC,
+            "accuracy": simple_accuracy(pred_idx, target_idx),
         }
 
         if target_count == 2:
@@ -149,9 +127,17 @@ class SequenceClassification:
         Override write_predictions() in ModelBase to log confusion matrix
         """
 
-        super(SequenceClassification, self).write_predictions(
-            predictions, file_path=file_path, is_dict=is_dict
-        )
+        try:
+            super(SequenceClassification, self).write_predictions(
+                predictions, file_path=file_path, is_dict=is_dict
+            )
+        except AttributeError:
+            # TODO: Need to Fix
+            model_base = ModelBase()
+            model_base._log_dir = self._log_dir
+            model_base._train_counter = self._train_counter
+            model_base.training = self.training
+            model_base.write_predictions(predictions, file_path=file_path, is_dict=is_dict)
 
         data_type = "train" if self.training else "valid"
 

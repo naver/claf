@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.model.reading_comprehension.bert &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.model.reading_comprehension.bert &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -217,7 +217,7 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">BertForQA</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">token_makers</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">lang_code</span> <span class="o">=</span> <span class="n">lang_code</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bert</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># for optimizer&#39;s model parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_pytorch_transformers</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># for optimizer&#39;s model parameters</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">answer_maxlen</span> <span class="o">=</span> <span class="n">answer_maxlen</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">BertForQuestionAnswering</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>

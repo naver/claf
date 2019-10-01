@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.modules.encoder package &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.modules.encoder package &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -211,7 +211,7 @@
 (<a class="reference external" href="https://github.com/allenai/allennlp/blob/master/allennlp/modules/lstm_cell_with_projection.py">https://github.com/allenai/allennlp/blob/master/allennlp/modules/lstm_cell_with_projection.py</a>)</p>
 <dl class="class">
 <dt id="claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection">
-<em class="property">class </em><code class="sig-prename descclassname">claf.modules.encoder.lstm_cell_with_projection.</code><code class="sig-name descname">LstmCellWithProjection</code><span class="sig-paren">(</span><em class="sig-param">input_size: int</em>, <em class="sig-param">hidden_size: int</em>, <em class="sig-param">cell_size: int</em>, <em class="sig-param">go_forward: bool = True</em>, <em class="sig-param">recurrent_dropout_probability: float = 0.0</em>, <em class="sig-param">memory_cell_clip_value: Optional[float] = None</em>, <em class="sig-param">state_projection_clip_value: Optional[float] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.modules.encoder.lstm_cell_with_projection.</code><code class="descname">LstmCellWithProjection</code><span class="sig-paren">(</span><em>input_size: int</em>, <em>hidden_size: int</em>, <em>cell_size: int</em>, <em>go_forward: bool = True</em>, <em>recurrent_dropout_probability: float = 0.0</em>, <em>memory_cell_clip_value: Optional[float] = None</em>, <em>state_projection_clip_value: Optional[float] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>An LSTM with Recurrent Dropout and a projected and clipped hidden state and
 memory. Note: this implementation is slower than the native Pytorch LSTM because
@@ -255,7 +255,7 @@ API for returning stacked LSTM states.</p>
 </dl>
 <dl class="method">
 <dt id="claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">inputs: torch.FloatTensor, batch_lengths: List[int], initial_state: Optional[Tuple[torch.Tensor, torch.Tensor]] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs: torch.FloatTensor, batch_lengths: List[int], initial_state: Optional[Tuple[torch.Tensor, torch.Tensor]] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection.forward" title="Permalink to this definition">¶</a></dt>
 <dd><dl>
 <dt>inputs<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code>, required.</span></dt><dd><p>A tensor of shape (batch_size, num_timesteps, input_size)
 to apply the LSTM over.</p>
@@ -282,14 +282,14 @@ of the LSTM. The <code class="docutils literal notranslate"><span class="pre">st
 
 <dl class="method">
 <dt id="claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection.reset_parameters">
-<code class="sig-name descname">reset_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection.reset_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection.reset_parameters" title="Permalink to this definition">¶</a></dt>
+<code class="descname">reset_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection.reset_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.LstmCellWithProjection.reset_parameters" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="function">
 <dt id="claf.modules.encoder.lstm_cell_with_projection.block_orthogonal">
-<code class="sig-prename descclassname">claf.modules.encoder.lstm_cell_with_projection.</code><code class="sig-name descname">block_orthogonal</code><span class="sig-paren">(</span><em class="sig-param">tensor: torch.Tensor, split_sizes: List[int], gain: float = 1.0</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#block_orthogonal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.block_orthogonal" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.modules.encoder.lstm_cell_with_projection.</code><code class="descname">block_orthogonal</code><span class="sig-paren">(</span><em>tensor: torch.Tensor, split_sizes: List[int], gain: float = 1.0</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#block_orthogonal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.block_orthogonal" title="Permalink to this definition">¶</a></dt>
 <dd><p>An initializer which allows initializing model parameters in “blocks”. This is helpful
 in the case of recurrent models which use multiple gates applied to linear projections,
 which can be computed efficiently if they are concatenated together. However, they are
@@ -313,7 +313,7 @@ first dimension and 20 along the second.</p>
 
 <dl class="function">
 <dt id="claf.modules.encoder.lstm_cell_with_projection.get_dropout_mask">
-<code class="sig-prename descclassname">claf.modules.encoder.lstm_cell_with_projection.</code><code class="sig-name descname">get_dropout_mask</code><span class="sig-paren">(</span><em class="sig-param">dropout_probability: float</em>, <em class="sig-param">tensor_for_masking: torch.Tensor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#get_dropout_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.get_dropout_mask" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.modules.encoder.lstm_cell_with_projection.</code><code class="descname">get_dropout_mask</code><span class="sig-paren">(</span><em>dropout_probability: float</em>, <em>tensor_for_masking: torch.Tensor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#get_dropout_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.get_dropout_mask" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes and returns an element-wise dropout mask for a given tensor, where
 each element in the mask is dropped out with probability dropout_probability.
 Note that the mask is NOT applied to the tensor - the tensor is passed to retain
@@ -336,7 +336,7 @@ This scaling ensures expected values and variances of the output of applying thi
 
 <dl class="function">
 <dt id="claf.modules.encoder.lstm_cell_with_projection.sort_batch_by_length">
-<code class="sig-prename descclassname">claf.modules.encoder.lstm_cell_with_projection.</code><code class="sig-name descname">sort_batch_by_length</code><span class="sig-paren">(</span><em class="sig-param">tensor: torch.Tensor</em>, <em class="sig-param">sequence_lengths: torch.Tensor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#sort_batch_by_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.sort_batch_by_length" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.modules.encoder.lstm_cell_with_projection.</code><code class="descname">sort_batch_by_length</code><span class="sig-paren">(</span><em>tensor: torch.Tensor</em>, <em>sequence_lengths: torch.Tensor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#sort_batch_by_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.lstm_cell_with_projection.sort_batch_by_length" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sort a batch first tensor by some specified lengths.
 Parameters
 ———-
@@ -365,7 +365,7 @@ tensors using the same ordering.</p>
 
 <span class="target" id="module-claf.modules.encoder.positional"></span><dl class="class">
 <dt id="claf.modules.encoder.positional.PositionalEncoding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.modules.encoder.positional.</code><code class="sig-name descname">PositionalEncoding</code><span class="sig-paren">(</span><em class="sig-param">embed_dim</em>, <em class="sig-param">max_length=2000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/positional.html#PositionalEncoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.positional.PositionalEncoding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.modules.encoder.positional.</code><code class="descname">PositionalEncoding</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>max_length=2000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/positional.html#PositionalEncoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.positional.PositionalEncoding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <dl class="simple">
 <dt>Positional Encoding</dt><dd><p>in “Attention is All You Need” (<a class="reference external" href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>)</p>
@@ -388,7 +388,7 @@ expressed in terms of y, sin(x) and cos(x).</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.encoder.positional.PositionalEncoding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/positional.html#PositionalEncoding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.positional.PositionalEncoding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/positional.html#PositionalEncoding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.positional.PositionalEncoding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -407,7 +407,7 @@ registered hooks while the latter silently ignores them.</p>
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.modules.encoder" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.modules.encoder.PositionalEncoding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.modules.encoder.</code><code class="sig-name descname">PositionalEncoding</code><span class="sig-paren">(</span><em class="sig-param">embed_dim</em>, <em class="sig-param">max_length=2000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/positional.html#PositionalEncoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.PositionalEncoding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.modules.encoder.</code><code class="descname">PositionalEncoding</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>max_length=2000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/positional.html#PositionalEncoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.PositionalEncoding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <dl class="simple">
 <dt>Positional Encoding</dt><dd><p>in “Attention is All You Need” (<a class="reference external" href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>)</p>
@@ -430,7 +430,7 @@ expressed in terms of y, sin(x) and cos(x).</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.encoder.PositionalEncoding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/positional.html#PositionalEncoding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.PositionalEncoding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/positional.html#PositionalEncoding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.PositionalEncoding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -446,7 +446,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="class">
 <dt id="claf.modules.encoder.LstmCellWithProjection">
-<em class="property">class </em><code class="sig-prename descclassname">claf.modules.encoder.</code><code class="sig-name descname">LstmCellWithProjection</code><span class="sig-paren">(</span><em class="sig-param">input_size: int</em>, <em class="sig-param">hidden_size: int</em>, <em class="sig-param">cell_size: int</em>, <em class="sig-param">go_forward: bool = True</em>, <em class="sig-param">recurrent_dropout_probability: float = 0.0</em>, <em class="sig-param">memory_cell_clip_value: Optional[float] = None</em>, <em class="sig-param">state_projection_clip_value: Optional[float] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.LstmCellWithProjection" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.modules.encoder.</code><code class="descname">LstmCellWithProjection</code><span class="sig-paren">(</span><em>input_size: int</em>, <em>hidden_size: int</em>, <em>cell_size: int</em>, <em>go_forward: bool = True</em>, <em>recurrent_dropout_probability: float = 0.0</em>, <em>memory_cell_clip_value: Optional[float] = None</em>, <em>state_projection_clip_value: Optional[float] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.LstmCellWithProjection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>An LSTM with Recurrent Dropout and a projected and clipped hidden state and
 memory. Note: this implementation is slower than the native Pytorch LSTM because
@@ -490,7 +490,7 @@ API for returning stacked LSTM states.</p>
 </dl>
 <dl class="method">
 <dt id="claf.modules.encoder.LstmCellWithProjection.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">inputs: torch.FloatTensor, batch_lengths: List[int], initial_state: Optional[Tuple[torch.Tensor, torch.Tensor]] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.LstmCellWithProjection.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs: torch.FloatTensor, batch_lengths: List[int], initial_state: Optional[Tuple[torch.Tensor, torch.Tensor]] = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.LstmCellWithProjection.forward" title="Permalink to this definition">¶</a></dt>
 <dd><dl>
 <dt>inputs<span class="classifier"><code class="docutils literal notranslate"><span class="pre">torch.FloatTensor</span></code>, required.</span></dt><dd><p>A tensor of shape (batch_size, num_timesteps, input_size)
 to apply the LSTM over.</p>
@@ -517,7 +517,7 @@ of the LSTM. The <code class="docutils literal notranslate"><span class="pre">st
 
 <dl class="method">
 <dt id="claf.modules.encoder.LstmCellWithProjection.reset_parameters">
-<code class="sig-name descname">reset_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection.reset_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.LstmCellWithProjection.reset_parameters" title="Permalink to this definition">¶</a></dt>
+<code class="descname">reset_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/encoder/lstm_cell_with_projection.html#LstmCellWithProjection.reset_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.encoder.LstmCellWithProjection.reset_parameters" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

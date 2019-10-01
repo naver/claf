@@ -5,6 +5,19 @@ from torch.utils.data import DataLoader
 from .base import Factory
 
 
+def make_data_loader(dataset, batch_size=32, shuffle=True, cuda_device_id=None):
+    is_cpu = cuda_device_id is None
+
+    return DataLoader(
+        dataset,
+        batch_size=batch_size,
+        shuffle=shuffle,
+        collate_fn=dataset.collate_fn(cuda_device_id=cuda_device_id),
+        num_workers=0,
+        pin_memory=is_cpu,  # only CPU memory can be pinned
+    )
+
+
 class DataLoaderFactory(Factory):
     """
     DataLoader Factory Class
@@ -30,7 +43,7 @@ class DataLoaderFactory(Factory):
 
         train_loader = None
         if "train" in datasets:
-            train_loader = self.make_data_loader(
+            train_loader = make_data_loader(
                 datasets["train"],
                 batch_size=self.batch_size,
                 shuffle=True,
@@ -38,30 +51,18 @@ class DataLoaderFactory(Factory):
             )
         valid_loader = None
         if "valid" in datasets:
-            valid_loader = self.make_data_loader(
+            valid_loader = make_data_loader(
                 datasets["valid"],
-                batch_size=self.batch_size // 2,
+                batch_size=self.batch_size,
                 shuffle=False,
                 cuda_device_id=self.cuda_device_id,
             )
         test_loader = None
         if "test" in datasets:
-            test_loader = self.make_data_loader(
+            test_loader = make_data_loader(
                 datasets["test"],
                 batch_size=self.batch_size,
                 shuffle=False,
                 cuda_device_id=self.cuda_device_id,
             )
         return train_loader, valid_loader, test_loader
-
-    def make_data_loader(self, dataset, batch_size=32, shuffle=True, cuda_device_id=None):
-        is_cpu = cuda_device_id is None
-
-        return DataLoader(
-            dataset,
-            batch_size=batch_size,
-            shuffle=shuffle,
-            collate_fn=dataset.collate_fn(cuda_device_id=cuda_device_id),
-            num_workers=0,
-            pin_memory=is_cpu,  # only CPU memory can be pinned
-        )

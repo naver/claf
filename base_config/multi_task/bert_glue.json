@@ -1,0 +1,130 @@
+ {
+     "data_reader": {
+         "dataset": "multitask_bert",
+         "train_file_path": "train",
+         "valid_file_path": "valid",
+         "multitask_bert": {
+             "batch_sizes": [32, 32, 32, 32, 32, 32, 32, 32, 16],
+             "readers": [{
+                 "dataset": "cola_bert",
+                 "train_file_path": "CoLA/train.tsv",
+                 "valid_file_path": "CoLA/dev.tsv",
+                 "cola_bert": {
+                     "sequence_max_length": 128
+                 }
+             }, {
+                 "dataset": "mnli_bert",
+                 "train_file_path": "MNLI/train.tsv",
+                 "valid_file_path": "MNLI/dev_matched.tsv",
+                 "mnli_bert": {
+                     "sequence_max_length": 128
+                 }
+             }, {
+                 "dataset": "mrpc_bert",
+                 "train_file_path": "MRPC/train.tsv",
+                 "valid_file_path": "MRPC/dev.tsv",
+                 "mrpc_bert": {
+                     "sequence_max_length": 128
+                 }
+             }, {
+                 "dataset": "qnli_bert",
+                 "train_file_path": "QNLI/train.tsv",
+                 "valid_file_path": "QNLI/dev.tsv",
+                 "qnli_bert": {
+                     "sequence_max_length": 128
+                 }
+             }, {
+                 "dataset": "qqp_bert",
+                 "train_file_path": "QQP/train.tsv",
+                 "valid_file_path": "QQP/dev.tsv",
+                 "qqp_bert": {
+                     "sequence_max_length": 128
+                 }
+             }, {
+                 "dataset": "rte_bert",
+                 "train_file_path": "RTE/train.tsv",
+                 "valid_file_path": "RTE/dev.tsv",
+                 "rte_bert": {
+                     "sequence_max_length": 128
+                 }
+             }, {
+                 "dataset": "sst_bert",
+                 "train_file_path": "SST-2/train.tsv",
+                 "valid_file_path": "SST-2/dev.tsv",
+                 "sst_bert": {
+                     "sequence_max_length": 128
+                 }
+             }, {
+                 "dataset": "stsb_bert",
+                 "train_file_path": "STS-B/train.tsv",
+                 "valid_file_path": "STS-B/dev.tsv",
+                 "stsb_bert": {
+                     "sequence_max_length": 128
+                 }
+             }, {
+                 "dataset": "wnli_bert",
+                 "train_file_path": "WNLI/train.tsv",
+                 "valid_file_path": "WNLI/dev.tsv",
+                 "wnli_bert": {
+                     "sequence_max_length": 128
+                 }
+             }]
+         }
+     },
+     "iterator": {
+         "batch_size": 1
+     },
+     "token": {
+         "names": ["feature"],
+         "types": ["feature"],
+         "tokenizer": {
+             "subword": {
+                 "name": "wordpiece",
+                 "wordpiece": {
+                     "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
+                 }
+             },
+             "word": {
+                 "name": "bert_basic",
+                 "bert_basic": {
+                     "do_lower_case": true
+                 }
+             }
+         },
+         "feature": {
+             "vocab": {
+                 "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt",
+                 "pretrained_token": "all"
+             },
+             "indexer": {
+                 "do_tokenize": false
+             }
+         }
+     },
+     "model": {
+         "name": "bert_for_multi",
+         "bert_for_multi": {
+             "pretrained_model_name": "bert-base-uncased",
+             "dropout": 0.1
+         }
+     },
+     "trainer": {
+         "log_dir": "logs/glue/mt_bert",
+         "num_epochs": 10,
+         "early_stopping_threshold": 5,
+         "metric_key": "average",
+         "eval_and_save_step_count": 1500
+     },
+     "optimizer": {
+         "learning_rate": 2e-5,
+         "op_type": "adamw",
+         "adamw": {
+             "weight_decay": 0.01
+         },
+         "lr_scheduler_type": "warmup_linear",
+         "warmup_linear": {
+             "warmup_proportion": 0.1
+         }
+     },
+     "seed_num": 42
+ }

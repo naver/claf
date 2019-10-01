@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.data.reader.squad &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.data.reader.squad &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -193,8 +193,9 @@
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
 
 <span class="kn">from</span> <span class="nn">claf.data.dataset</span> <span class="k">import</span> <span class="n">SQuADDataset</span>
-<span class="kn">from</span> <span class="nn">claf.data.batch</span> <span class="k">import</span> <span class="n">make_batch</span>
+<span class="kn">from</span> <span class="nn">claf.data.dto</span> <span class="k">import</span> <span class="n">Helper</span>
 <span class="kn">from</span> <span class="nn">claf.data.reader.base</span> <span class="k">import</span> <span class="n">DataReader</span>
+<span class="kn">from</span> <span class="nn">claf.data</span> <span class="k">import</span> <span class="n">utils</span>
 <span class="kn">from</span> <span class="nn">claf.decorator</span> <span class="k">import</span> <span class="n">register</span>
 <span class="kn">from</span> <span class="nn">claf.metric.squad_v1_official</span> <span class="k">import</span> <span class="n">normalize_answer</span>
 
@@ -231,15 +232,13 @@
         <span class="k">if</span> <span class="s2">&quot;data&quot;</span> <span class="ow">in</span> <span class="n">squad</span><span class="p">:</span>
             <span class="n">squad</span> <span class="o">=</span> <span class="n">squad</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
 
-        <span class="n">helper</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">helper</span> <span class="o">=</span> <span class="n">Helper</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
             <span class="s2">&quot;file_path&quot;</span><span class="p">:</span> <span class="n">file_path</span><span class="p">,</span>
-            <span class="s2">&quot;examples&quot;</span><span class="p">:</span> <span class="p">{},</span>  <span class="c1"># qid: {context: ..., text_span: ..., question: ..., answer_texts}</span>
             <span class="s2">&quot;raw_dataset&quot;</span><span class="p">:</span> <span class="n">squad</span><span class="p">,</span>
-
-            <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;lang_code&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">lang_code</span><span class="p">,</span>
-            <span class="p">},</span>
-        <span class="p">}</span>
+        <span class="p">})</span>
+        <span class="n">helper</span><span class="o">.</span><span class="n">set_model_parameter</span><span class="p">({</span>
+            <span class="s2">&quot;lang_code&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">lang_code</span><span class="p">,</span>
+        <span class="p">})</span>
 
         <span class="n">features</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 
@@ -314,15 +313,15 @@
                     <span class="p">}</span>
                     <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_row</span><span class="p">)</span>
 
-                    <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;examples&quot;</span><span class="p">][</span><span class="n">id_</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="n">helper</span><span class="o">.</span><span class="n">set_example</span><span class="p">(</span><span class="n">id_</span><span class="p">,</span> <span class="p">{</span>
                         <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="n">context</span><span class="p">,</span>
                         <span class="s2">&quot;text_span&quot;</span><span class="p">:</span> <span class="n">text_spans</span><span class="p">,</span>
                         <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">question</span><span class="p">,</span>
                         <span class="s2">&quot;answers&quot;</span><span class="p">:</span> <span class="n">answer_texts</span><span class="p">,</span>
-                    <span class="p">}</span>
+                    <span class="p">})</span>
 
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;tokenized_error_count: </span><span class="si">{tokenized_error_count}</span><span class="s2"> &quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">helper</span>
+        <span class="k">return</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">helper</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 
 <div class="viewcode-block" id="SQuADReader.read_one_example"><a class="viewcode-back" href="../../../../claf.data.reader.html#claf.data.reader.squad.SQuADReader.read_one_example">[docs]</a>    <span class="nd">@overrides</span>
     <span class="k">def</span> <span class="nf">read_one_example</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>

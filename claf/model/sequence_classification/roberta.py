@@ -69,7 +69,7 @@ class RobertaForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
 
         * Returns: output_dict (dict) consisting of
             - sequence_embed: embedding vector of the sequence
-            - class_logits: representing unnormalized log probabilities of the class.
+            - logits: representing unnormalized log probabilities of the class.
 
             - class_idx: target class idx
             - data_idx: data idx
@@ -84,9 +84,9 @@ class RobertaForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
         )
         sequence_output = outputs[0]
         pooled_output = sequence_output[:, 0, :]  # take <s> token (equiv. to [CLS])
-        class_logits = self.classifier(pooled_output)
+        logits = self.classifier(pooled_output)
 
-        output_dict = {"sequence_embed": pooled_output, "class_logits": class_logits}
+        output_dict = {"sequence_embed": pooled_output, "logits": logits}
 
         if labels:
             class_idx = labels["class_idx"]
@@ -97,7 +97,7 @@ class RobertaForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
 
             # Loss
             loss = self.criterion(
-                class_logits.view(-1, self.num_classes), class_idx.view(-1)
+                logits.view(-1, self.num_classes), class_idx.view(-1)
             )
             output_dict["loss"] = loss.unsqueeze(0)  # NOTE: DataParallel concat Error
 

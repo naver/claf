@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.config.factory.data_loader &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.config.factory.data_loader &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -190,6 +190,19 @@
 <span class="kn">from</span> <span class="nn">.base</span> <span class="k">import</span> <span class="n">Factory</span>
 
 
+<div class="viewcode-block" id="make_data_loader"><a class="viewcode-back" href="../../../../claf.config.factory.html#claf.config.factory.data_loader.make_data_loader">[docs]</a><span class="k">def</span> <span class="nf">make_data_loader</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cuda_device_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">is_cpu</span> <span class="o">=</span> <span class="n">cuda_device_id</span> <span class="ow">is</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">,</span>
+        <span class="n">collate_fn</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">collate_fn</span><span class="p">(</span><span class="n">cuda_device_id</span><span class="o">=</span><span class="n">cuda_device_id</span><span class="p">),</span>
+        <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">pin_memory</span><span class="o">=</span><span class="n">is_cpu</span><span class="p">,</span>  <span class="c1"># only CPU memory can be pinned</span>
+    <span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="DataLoaderFactory"><a class="viewcode-back" href="../../../../claf.config.factory.html#claf.config.factory.data_loader.DataLoaderFactory">[docs]</a><span class="k">class</span> <span class="nc">DataLoaderFactory</span><span class="p">(</span><span class="n">Factory</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    DataLoader Factory Class</span>
@@ -215,7 +228,7 @@
 
         <span class="n">train_loader</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="s2">&quot;train&quot;</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
-            <span class="n">train_loader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_data_loader</span><span class="p">(</span>
+            <span class="n">train_loader</span> <span class="o">=</span> <span class="n">make_data_loader</span><span class="p">(</span>
                 <span class="n">datasets</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">],</span>
                 <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
                 <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -223,33 +236,21 @@
             <span class="p">)</span>
         <span class="n">valid_loader</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="s2">&quot;valid&quot;</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
-            <span class="n">valid_loader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_data_loader</span><span class="p">(</span>
+            <span class="n">valid_loader</span> <span class="o">=</span> <span class="n">make_data_loader</span><span class="p">(</span>
                 <span class="n">datasets</span><span class="p">[</span><span class="s2">&quot;valid&quot;</span><span class="p">],</span>
-                <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
                 <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                 <span class="n">cuda_device_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cuda_device_id</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="n">test_loader</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="s2">&quot;test&quot;</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
-            <span class="n">test_loader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_data_loader</span><span class="p">(</span>
+            <span class="n">test_loader</span> <span class="o">=</span> <span class="n">make_data_loader</span><span class="p">(</span>
                 <span class="n">datasets</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">],</span>
                 <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
                 <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                 <span class="n">cuda_device_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cuda_device_id</span><span class="p">,</span>
             <span class="p">)</span>
-        <span class="k">return</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">test_loader</span></div>
-
-<div class="viewcode-block" id="DataLoaderFactory.make_data_loader"><a class="viewcode-back" href="../../../../claf.config.factory.html#claf.config.factory.data_loader.DataLoaderFactory.make_data_loader">[docs]</a>    <span class="k">def</span> <span class="nf">make_data_loader</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cuda_device_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="n">is_cpu</span> <span class="o">=</span> <span class="n">cuda_device_id</span> <span class="ow">is</span> <span class="kc">None</span>
-
-        <span class="k">return</span> <span class="n">DataLoader</span><span class="p">(</span>
-            <span class="n">dataset</span><span class="p">,</span>
-            <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
-            <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">,</span>
-            <span class="n">collate_fn</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">collate_fn</span><span class="p">(</span><span class="n">cuda_device_id</span><span class="o">=</span><span class="n">cuda_device_id</span><span class="p">),</span>
-            <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-            <span class="n">pin_memory</span><span class="o">=</span><span class="n">is_cpu</span><span class="p">,</span>  <span class="c1"># only CPU memory can be pinned</span>
-        <span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">valid_loader</span><span class="p">,</span> <span class="n">test_loader</span></div></div>
 </pre></div>
 
            </div>

@@ -1,0 +1,83 @@
+ {
+     "data_reader": {
+         "dataset": "multitask_bert",
+         "train_file_path": "train",
+         "valid_file_path": "valid",
+         "multitask_bert": {
+             "batch_sizes": [2, 3],
+             "readers": [{
+                 "dataset": "cola_bert",
+                 "train_file_path": "data/glue/CoLA/train.tsv",
+                 "valid_file_path": "data/glue/CoLA/dev.tsv",
+                 "cola_bert": {
+                     "sequence_max_length": 128,
+                     "is_test": true
+                 }
+             }, {
+                 "dataset": "stsb_bert",
+                 "train_file_path": "data/glue/STS-B/train.tsv",
+                 "valid_file_path": "data/glue/STS-B/dev.tsv",
+                 "stsb_bert": {
+                     "sequence_max_length": 128,
+                     "is_test": true
+                 }
+             }]
+         }
+     },
+     "iterator": {
+         "batch_size": 1
+     },
+     "token": {
+         "names": ["feature"],
+         "types": ["feature"],
+         "tokenizer": {
+             "subword": {
+                 "name": "wordpiece",
+                 "wordpiece": {
+                     "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
+                 }
+             },
+             "word": {
+                 "name": "bert_basic",
+                 "bert_basic": {
+                     "do_lower_case": true
+                 }
+             }
+         },
+         "feature": {
+             "vocab": {
+                 "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt",
+                 "pretrained_token": "all"
+             },
+             "indexer": {
+                 "do_tokenize": false
+             }
+         }
+     },
+     "model": {
+         "name": "bert_for_multi",
+         "bert_for_multi": {
+             "pretrained_model_name": "bert-base-uncased",
+             "dropouts": [0.1, 0.2]
+         }
+     },
+     "trainer": {
+         "log_dir": "logs/test/mt_bert",
+         "num_epochs": 2,
+         "early_stopping_threshold": 10,
+         "metric_key": "average",
+         "eval_and_save_step_count": 5
+     },
+     "optimizer": {
+         "learning_rate": 2e-5,
+         "op_type": "adamw",
+         "adamw": {
+             "weight_decay": 0
+         },
+         "lr_scheduler_type": "warmup_linear",
+         "warmup_linear": {
+             "warmup_steps": 10
+         }
+     },
+     "seed_num": 42
+ }

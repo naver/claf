@@ -3,6 +3,7 @@ import logging
 
 from claf.metric.glue import pearson_and_spearman
 from claf.metric.regression import mse
+from claf.model.base import ModelBase
 
 logger = logging.getLogger(__name__)
 
@@ -86,20 +87,30 @@ class Regression:
         preds = {}
         for data_id, pred in predictions.items():
             target = self._dataset.get_ground_truth(data_id)
-
             preds[data_id] = pred["score"]
 
             pred_scores.append(pred["score"])
             target_scores.append(target["score"])
 
         self.write_predictions(preds)
-
         metrics = {"mse": mse(pred_scores, target_scores) / len(target_scores)}
 
         pearson_spearman_metrics = pearson_and_spearman(pred_scores, target_scores)
         metrics.update(pearson_spearman_metrics)
 
         return metrics
+
+    def write_predictions(self, predictions, ):
+        try:
+            super(Regression, self).write_predictions(predictions)
+        except AttributeError:
+            # TODO: Need to Fix
+            model_base = ModelBase()
+            model_base._log_dir = self._log_dir
+            model_base._train_counter = self._train_counter
+            model_base.training = self.training
+            model_base.write_predictions(predictions)
+
 
     def print_examples(self, index, inputs, predictions):
         """

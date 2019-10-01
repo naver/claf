@@ -20,7 +20,7 @@ class DataReaderFactory(Factory):
     def __init__(self, config):
         self.registry = Registry()
 
-        self.dataset = config.dataset
+        self.dataset_name = config.dataset
         file_paths = {}
         if getattr(config, "train_file_path", None) and config.train_file_path != "":
             file_paths["train"] = config.train_file_path
@@ -40,5 +40,5 @@ class DataReaderFactory(Factory):
 
     @overrides
     def create(self):
-        reader = self.registry.get(f"reader:{self.dataset.lower()}")
+        reader = self.registry.get(f"reader:{self.dataset_name.lower()}")
         return reader(**self.reader_config)
