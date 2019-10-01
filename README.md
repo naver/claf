@@ -29,12 +29,12 @@
 
 | Task | Language | Dataset | Model |
 | ---- | -------- | ------- | ----- |
-| Multi-Task Learning | English | [GLUE Benchmark](https://gluebenchmark.com/) | MT-DNN |
-| Natural Language Understanding | English | [GLUE Benchmark](https://gluebenchmark.com/) | BERT, RoBERTa |
-| Named Entity Recognition | English | CoNLL 2003 | BERT |
-| Question Answering | Korean | [KorQuAD v1.0](https://korquad.github.io/category/1.0_KOR.html) | BiDAF, DocQA, BERT |
-| Question Answering | Engilsh | [SQuAD v1.1 and v2.0](https://rajpurkar.github.io/SQuAD-explorer/) | - v1.1: BiDAF, DrQA, DocQA, DocQA+ELMo, QANet <br/> - v2.0: BiDAF + No Answer, DocQA + No Answer |
-| Semantic Parsing | English | [WikiSQL](https://github.com/salesforce/WikiSQL) | SQLNet |
+| Multi-Task Learning | English | [GLUE Benchmark](https://gluebenchmark.com/) | `MT-DNN` |
+| Natural Language Understanding | English | [GLUE Benchmark](https://gluebenchmark.com/) | `BERT`, `RoBERTa` |
+| Named Entity Recognition | English | CoNLL 2003 | `BERT` |
+| Question Answering | Korean | [KorQuAD v1.0](https://korquad.github.io/category/1.0_KOR.html) | `BiDAF`, `DocQA`, `BERT` |
+| Question Answering | Engilsh | [SQuAD v1.1 and v2.0](https://rajpurkar.github.io/SQuAD-explorer/) | - v1.1: `BiDAF`, `DrQA`, `DocQA`, `DocQA+ELMo`, `QANet` <br/> - v2.0: `BiDAF + No Answer`, `DocQA + No Answer` |
+| Semantic Parsing | English | [WikiSQL](https://github.com/salesforce/WikiSQL) | `SQLNet` |
 
 
 - Reports
