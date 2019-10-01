@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.tokens.embedding package &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.tokens.embedding package &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -209,7 +209,7 @@
 <span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.tokens.embedding.base" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.tokens.embedding.base.TokenEmbedding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.base.</code><code class="sig-name descname">TokenEmbedding</code><span class="sig-paren">(</span><em class="sig-param">vocab</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/base.html#TokenEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.base.TokenEmbedding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.base.</code><code class="descname">TokenEmbedding</code><span class="sig-paren">(</span><em>vocab</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/base.html#TokenEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.base.TokenEmbedding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Token Embedding</p>
 <p>It can be embedding matrix, language model (ELMo), neural machine translation model (CoVe) and features.</p>
@@ -222,26 +222,26 @@
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.base.TokenEmbedding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/base.html#TokenEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.base.TokenEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/base.html#TokenEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.base.TokenEmbedding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>embedding look-up</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.base.TokenEmbedding.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/base.html#TokenEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.base.TokenEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/base.html#TokenEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.base.TokenEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>get embedding dimension</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.base.TokenEmbedding.get_vocab_size">
-<code class="sig-name descname">get_vocab_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/base.html#TokenEmbedding.get_vocab_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.base.TokenEmbedding.get_vocab_size" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_vocab_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/base.html#TokenEmbedding.get_vocab_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.base.TokenEmbedding.get_vocab_size" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <span class="target" id="module-claf.tokens.embedding.bert_embedding"></span><dl class="class">
 <dt id="claf.tokens.embedding.bert_embedding.BertEmbedding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.bert_embedding.</code><code class="sig-name descname">BertEmbedding</code><span class="sig-paren">(</span><em class="sig-param">vocab</em>, <em class="sig-param">pretrained_model_name=None</em>, <em class="sig-param">trainable=False</em>, <em class="sig-param">unit='subword'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.bert_embedding.BertEmbedding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.bert_embedding.</code><code class="descname">BertEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>pretrained_model_name=None</em>, <em>trainable=False</em>, <em>unit='subword'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.bert_embedding.BertEmbedding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>BERT Embedding(Encoder)</p>
 <p>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
@@ -262,26 +262,26 @@ trainable: Finetune or fixed</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.bert_embedding.BertEmbedding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.bert_embedding.BertEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.bert_embedding.BertEmbedding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>embedding look-up</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.bert_embedding.BertEmbedding.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.bert_embedding.BertEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.bert_embedding.BertEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>get embedding dimension</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.bert_embedding.BertEmbedding.remove_cls_sep_token">
-<code class="sig-name descname">remove_cls_sep_token</code><span class="sig-paren">(</span><em class="sig-param">inputs</em>, <em class="sig-param">outputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding.remove_cls_sep_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.bert_embedding.BertEmbedding.remove_cls_sep_token" title="Permalink to this definition">¶</a></dt>
+<code class="descname">remove_cls_sep_token</code><span class="sig-paren">(</span><em>inputs</em>, <em>outputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding.remove_cls_sep_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.bert_embedding.BertEmbedding.remove_cls_sep_token" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <span class="target" id="module-claf.tokens.embedding.char_embedding"></span><dl class="class">
 <dt id="claf.tokens.embedding.char_embedding.CharEmbedding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.char_embedding.</code><code class="sig-name descname">CharEmbedding</code><span class="sig-paren">(</span><em class="sig-param">vocab, dropout=0.2, embed_dim=16, kernel_sizes=[5], num_filter=100, activation='relu'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/char_embedding.html#CharEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.char_embedding.CharEmbedding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.char_embedding.</code><code class="descname">CharEmbedding</code><span class="sig-paren">(</span><em>vocab, dropout=0.2, embed_dim=16, kernel_sizes=[5], num_filter=100, activation='relu'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/char_embedding.html#CharEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.char_embedding.CharEmbedding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>Character Embedding (CharCNN)
 (<a class="reference external" href="https://arxiv.org/abs/1509.01626">https://arxiv.org/abs/1509.01626</a>)</p>
@@ -303,13 +303,13 @@ activation: Activation Function (eg. ReLU)</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.char_embedding.CharEmbedding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/char_embedding.html#CharEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.char_embedding.CharEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/char_embedding.html#CharEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.char_embedding.CharEmbedding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>embedding look-up</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.char_embedding.CharEmbedding.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/char_embedding.html#CharEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.char_embedding.CharEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/char_embedding.html#CharEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.char_embedding.CharEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>get embedding dimension</p>
 </dd></dl>
 
@@ -317,7 +317,7 @@ activation: Activation Function (eg. ReLU)</p>
 
 <span class="target" id="module-claf.tokens.embedding.cove_embedding"></span><dl class="class">
 <dt id="claf.tokens.embedding.cove_embedding.CoveEmbedding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.cove_embedding.</code><code class="sig-name descname">CoveEmbedding</code><span class="sig-paren">(</span><em class="sig-param">vocab</em>, <em class="sig-param">glove_pretrained_path=None</em>, <em class="sig-param">model_pretrained_path=None</em>, <em class="sig-param">dropout=0.2</em>, <em class="sig-param">trainable=False</em>, <em class="sig-param">project_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/cove_embedding.html#CoveEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.cove_embedding.CoveEmbedding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.cove_embedding.</code><code class="descname">CoveEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>glove_pretrained_path=None</em>, <em>model_pretrained_path=None</em>, <em>dropout=0.2</em>, <em>trainable=False</em>, <em>project_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/cove_embedding.html#CoveEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.cove_embedding.CoveEmbedding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>Cove Embedding</p>
 <p>Learned in Translation: Contextualized Word Vectors
@@ -339,13 +339,13 @@ project_dim: The number of project (linear) dimension</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.cove_embedding.CoveEmbedding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">words</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/cove_embedding.html#CoveEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.cove_embedding.CoveEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>words</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/cove_embedding.html#CoveEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.cove_embedding.CoveEmbedding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>embedding look-up</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.cove_embedding.CoveEmbedding.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/cove_embedding.html#CoveEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.cove_embedding.CoveEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/cove_embedding.html#CoveEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.cove_embedding.CoveEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>get embedding dimension</p>
 </dd></dl>
 
@@ -353,7 +353,7 @@ project_dim: The number of project (linear) dimension</p>
 
 <span class="target" id="module-claf.tokens.embedding.elmo_embedding"></span><dl class="class">
 <dt id="claf.tokens.embedding.elmo_embedding.ELMoEmbedding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.elmo_embedding.</code><code class="sig-name descname">ELMoEmbedding</code><span class="sig-paren">(</span><em class="sig-param">vocab</em>, <em class="sig-param">options_file='elmo_2x4096_512_2048cnn_2xhighway_options.json'</em>, <em class="sig-param">weight_file='elmo_2x4096_512_2048cnn_2xhighway_weights.hdf5'</em>, <em class="sig-param">do_layer_norm=False</em>, <em class="sig-param">dropout=0.5</em>, <em class="sig-param">trainable=False</em>, <em class="sig-param">project_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/elmo_embedding.html#ELMoEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.elmo_embedding.ELMoEmbedding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.elmo_embedding.</code><code class="descname">ELMoEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>options_file='elmo_2x4096_512_2048cnn_2xhighway_options.json'</em>, <em>weight_file='elmo_2x4096_512_2048cnn_2xhighway_weights.hdf5'</em>, <em>do_layer_norm=False</em>, <em>dropout=0.5</em>, <em>trainable=False</em>, <em>project_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/elmo_embedding.html#ELMoEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.elmo_embedding.ELMoEmbedding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>ELMo Embedding
 Embedding From Language Model</p>
@@ -381,13 +381,13 @@ project_dim: The number of project (linear) dimension</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.elmo_embedding.ELMoEmbedding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/elmo_embedding.html#ELMoEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.elmo_embedding.ELMoEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/elmo_embedding.html#ELMoEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.elmo_embedding.ELMoEmbedding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>embedding look-up</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.elmo_embedding.ELMoEmbedding.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/elmo_embedding.html#ELMoEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.elmo_embedding.ELMoEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/elmo_embedding.html#ELMoEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.elmo_embedding.ELMoEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>get embedding dimension</p>
 </dd></dl>
 
@@ -395,7 +395,7 @@ project_dim: The number of project (linear) dimension</p>
 
 <span class="target" id="module-claf.tokens.embedding.frequent_word_embedding"></span><dl class="class">
 <dt id="claf.tokens.embedding.frequent_word_embedding.FrequentTuningWordEmbedding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.frequent_word_embedding.</code><code class="sig-name descname">FrequentTuningWordEmbedding</code><span class="sig-paren">(</span><em class="sig-param">vocab</em>, <em class="sig-param">dropout=0.2</em>, <em class="sig-param">embed_dim=100</em>, <em class="sig-param">padding_idx=None</em>, <em class="sig-param">max_norm=None</em>, <em class="sig-param">norm_type=2</em>, <em class="sig-param">scale_grad_by_freq=False</em>, <em class="sig-param">sparse=False</em>, <em class="sig-param">pretrained_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.frequent_word_embedding.FrequentTuningWordEmbedding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.frequent_word_embedding.</code><code class="descname">FrequentTuningWordEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>dropout=0.2</em>, <em>embed_dim=100</em>, <em>padding_idx=None</em>, <em>max_norm=None</em>, <em>norm_type=2</em>, <em>scale_grad_by_freq=False</em>, <em>sparse=False</em>, <em>pretrained_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.frequent_word_embedding.FrequentTuningWordEmbedding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>Frequent Word Finetuning Embedding
 Finetuning embedding matrix, according to ‘threshold_index’</p>
@@ -433,13 +433,13 @@ trainable: finetune or fixed</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.frequent_word_embedding.FrequentTuningWordEmbedding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">words</em>, <em class="sig-param">frequent_tuning=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.frequent_word_embedding.FrequentTuningWordEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>words</em>, <em>frequent_tuning=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.frequent_word_embedding.FrequentTuningWordEmbedding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>embedding look-up</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.frequent_word_embedding.FrequentTuningWordEmbedding.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.frequent_word_embedding.FrequentTuningWordEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.frequent_word_embedding.FrequentTuningWordEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>get embedding dimension</p>
 </dd></dl>
 
@@ -447,7 +447,7 @@ trainable: finetune or fixed</p>
 
 <span class="target" id="module-claf.tokens.embedding.sparse_feature"></span><dl class="class">
 <dt id="claf.tokens.embedding.sparse_feature.OneHotEncoding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.sparse_feature.</code><code class="sig-name descname">OneHotEncoding</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">token_name</em>, <em class="sig-param">classes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#OneHotEncoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.OneHotEncoding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.sparse_feature.</code><code class="descname">OneHotEncoding</code><span class="sig-paren">(</span><em>index</em>, <em>token_name</em>, <em>classes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#OneHotEncoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.OneHotEncoding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Sparse to one-hot encoding</p>
 <ul class="simple">
@@ -459,7 +459,7 @@ trainable: finetune or fixed</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.sparse_feature.OneHotEncoding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#OneHotEncoding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.OneHotEncoding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#OneHotEncoding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.OneHotEncoding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -473,14 +473,14 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.sparse_feature.OneHotEncoding.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#OneHotEncoding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.OneHotEncoding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#OneHotEncoding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.OneHotEncoding.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="claf.tokens.embedding.sparse_feature.SparseFeature">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.sparse_feature.</code><code class="sig-name descname">SparseFeature</code><span class="sig-paren">(</span><em class="sig-param">vocab</em>, <em class="sig-param">embed_type</em>, <em class="sig-param">feature_count</em>, <em class="sig-param">params={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.SparseFeature" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.sparse_feature.</code><code class="descname">SparseFeature</code><span class="sig-paren">(</span><em>vocab</em>, <em>embed_type</em>, <em>feature_count</em>, <em>params={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.SparseFeature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>Sparse Feature</p>
 <ol class="arabic simple">
@@ -503,13 +503,13 @@ feature_count: The number of feature count</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.sparse_feature.SparseFeature.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseFeature.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.SparseFeature.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseFeature.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.SparseFeature.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>embedding look-up</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.sparse_feature.SparseFeature.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseFeature.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.SparseFeature.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseFeature.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.SparseFeature.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>get embedding dimension</p>
 </dd></dl>
 
@@ -517,7 +517,7 @@ feature_count: The number of feature count</p>
 
 <dl class="class">
 <dt id="claf.tokens.embedding.sparse_feature.SparseToEmbedding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.sparse_feature.</code><code class="sig-name descname">SparseToEmbedding</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">token_name</em>, <em class="sig-param">classes</em>, <em class="sig-param">dropout=0</em>, <em class="sig-param">embed_dim=15</em>, <em class="sig-param">trainable=True</em>, <em class="sig-param">padding_idx=None</em>, <em class="sig-param">max_norm=None</em>, <em class="sig-param">norm_type=2</em>, <em class="sig-param">scale_grad_by_freq=False</em>, <em class="sig-param">sparse=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseToEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.SparseToEmbedding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.sparse_feature.</code><code class="descname">SparseToEmbedding</code><span class="sig-paren">(</span><em>index</em>, <em>token_name</em>, <em>classes</em>, <em>dropout=0</em>, <em>embed_dim=15</em>, <em>trainable=True</em>, <em>padding_idx=None</em>, <em>max_norm=None</em>, <em>norm_type=2</em>, <em>scale_grad_by_freq=False</em>, <em>sparse=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseToEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.SparseToEmbedding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Sparse to Embedding</p>
 <ul>
@@ -554,7 +554,7 @@ trainable: finetune or fixed</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.sparse_feature.SparseToEmbedding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseToEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.SparseToEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseToEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.SparseToEmbedding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -568,14 +568,14 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.sparse_feature.SparseToEmbedding.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseToEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.SparseToEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseToEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.sparse_feature.SparseToEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <span class="target" id="module-claf.tokens.embedding.word_embedding"></span><dl class="class">
 <dt id="claf.tokens.embedding.word_embedding.WordEmbedding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.word_embedding.</code><code class="sig-name descname">WordEmbedding</code><span class="sig-paren">(</span><em class="sig-param">vocab</em>, <em class="sig-param">dropout=0.2</em>, <em class="sig-param">embed_dim=100</em>, <em class="sig-param">padding_idx=None</em>, <em class="sig-param">max_norm=None</em>, <em class="sig-param">norm_type=2</em>, <em class="sig-param">scale_grad_by_freq=False</em>, <em class="sig-param">sparse=False</em>, <em class="sig-param">pretrained_path=None</em>, <em class="sig-param">trainable=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/word_embedding.html#WordEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.word_embedding.WordEmbedding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.word_embedding.</code><code class="descname">WordEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>dropout=0.2</em>, <em>embed_dim=100</em>, <em>padding_idx=None</em>, <em>max_norm=None</em>, <em>norm_type=2</em>, <em>scale_grad_by_freq=False</em>, <em>sparse=False</em>, <em>pretrained_path=None</em>, <em>trainable=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/word_embedding.html#WordEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.word_embedding.WordEmbedding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>Word Embedding
 Default Token Embedding</p>
@@ -613,13 +613,13 @@ trainable: finetune or fixed</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.word_embedding.WordEmbedding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">words</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/word_embedding.html#WordEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.word_embedding.WordEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>words</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/word_embedding.html#WordEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.word_embedding.WordEmbedding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>embedding look-up</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.word_embedding.WordEmbedding.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/word_embedding.html#WordEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.word_embedding.WordEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/word_embedding.html#WordEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.word_embedding.WordEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>get embedding dimension</p>
 </dd></dl>
 
@@ -630,7 +630,7 @@ trainable: finetune or fixed</p>
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.tokens.embedding" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.tokens.embedding.BertEmbedding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.</code><code class="sig-name descname">BertEmbedding</code><span class="sig-paren">(</span><em class="sig-param">vocab</em>, <em class="sig-param">pretrained_model_name=None</em>, <em class="sig-param">trainable=False</em>, <em class="sig-param">unit='subword'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.BertEmbedding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.</code><code class="descname">BertEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>pretrained_model_name=None</em>, <em>trainable=False</em>, <em>unit='subword'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.BertEmbedding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>BERT Embedding(Encoder)</p>
 <p>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
@@ -651,26 +651,26 @@ trainable: Finetune or fixed</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.BertEmbedding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.BertEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.BertEmbedding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>embedding look-up</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.BertEmbedding.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.BertEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.BertEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>get embedding dimension</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.BertEmbedding.remove_cls_sep_token">
-<code class="sig-name descname">remove_cls_sep_token</code><span class="sig-paren">(</span><em class="sig-param">inputs</em>, <em class="sig-param">outputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding.remove_cls_sep_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.BertEmbedding.remove_cls_sep_token" title="Permalink to this definition">¶</a></dt>
+<code class="descname">remove_cls_sep_token</code><span class="sig-paren">(</span><em>inputs</em>, <em>outputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/bert_embedding.html#BertEmbedding.remove_cls_sep_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.BertEmbedding.remove_cls_sep_token" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="claf.tokens.embedding.CharEmbedding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.</code><code class="sig-name descname">CharEmbedding</code><span class="sig-paren">(</span><em class="sig-param">vocab, dropout=0.2, embed_dim=16, kernel_sizes=[5], num_filter=100, activation='relu'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/char_embedding.html#CharEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.CharEmbedding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.</code><code class="descname">CharEmbedding</code><span class="sig-paren">(</span><em>vocab, dropout=0.2, embed_dim=16, kernel_sizes=[5], num_filter=100, activation='relu'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/char_embedding.html#CharEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.CharEmbedding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>Character Embedding (CharCNN)
 (<a class="reference external" href="https://arxiv.org/abs/1509.01626">https://arxiv.org/abs/1509.01626</a>)</p>
@@ -692,13 +692,13 @@ activation: Activation Function (eg. ReLU)</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.CharEmbedding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/char_embedding.html#CharEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.CharEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/char_embedding.html#CharEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.CharEmbedding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>embedding look-up</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.CharEmbedding.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/char_embedding.html#CharEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.CharEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/char_embedding.html#CharEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.CharEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>get embedding dimension</p>
 </dd></dl>
 
@@ -706,7 +706,7 @@ activation: Activation Function (eg. ReLU)</p>
 
 <dl class="class">
 <dt id="claf.tokens.embedding.CoveEmbedding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.</code><code class="sig-name descname">CoveEmbedding</code><span class="sig-paren">(</span><em class="sig-param">vocab</em>, <em class="sig-param">glove_pretrained_path=None</em>, <em class="sig-param">model_pretrained_path=None</em>, <em class="sig-param">dropout=0.2</em>, <em class="sig-param">trainable=False</em>, <em class="sig-param">project_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/cove_embedding.html#CoveEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.CoveEmbedding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.</code><code class="descname">CoveEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>glove_pretrained_path=None</em>, <em>model_pretrained_path=None</em>, <em>dropout=0.2</em>, <em>trainable=False</em>, <em>project_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/cove_embedding.html#CoveEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.CoveEmbedding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>Cove Embedding</p>
 <p>Learned in Translation: Contextualized Word Vectors
@@ -728,13 +728,13 @@ project_dim: The number of project (linear) dimension</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.CoveEmbedding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">words</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/cove_embedding.html#CoveEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.CoveEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>words</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/cove_embedding.html#CoveEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.CoveEmbedding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>embedding look-up</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.CoveEmbedding.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/cove_embedding.html#CoveEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.CoveEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/cove_embedding.html#CoveEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.CoveEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>get embedding dimension</p>
 </dd></dl>
 
@@ -742,7 +742,7 @@ project_dim: The number of project (linear) dimension</p>
 
 <dl class="class">
 <dt id="claf.tokens.embedding.ELMoEmbedding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.</code><code class="sig-name descname">ELMoEmbedding</code><span class="sig-paren">(</span><em class="sig-param">vocab</em>, <em class="sig-param">options_file='elmo_2x4096_512_2048cnn_2xhighway_options.json'</em>, <em class="sig-param">weight_file='elmo_2x4096_512_2048cnn_2xhighway_weights.hdf5'</em>, <em class="sig-param">do_layer_norm=False</em>, <em class="sig-param">dropout=0.5</em>, <em class="sig-param">trainable=False</em>, <em class="sig-param">project_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/elmo_embedding.html#ELMoEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.ELMoEmbedding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.</code><code class="descname">ELMoEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>options_file='elmo_2x4096_512_2048cnn_2xhighway_options.json'</em>, <em>weight_file='elmo_2x4096_512_2048cnn_2xhighway_weights.hdf5'</em>, <em>do_layer_norm=False</em>, <em>dropout=0.5</em>, <em>trainable=False</em>, <em>project_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/elmo_embedding.html#ELMoEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.ELMoEmbedding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>ELMo Embedding
 Embedding From Language Model</p>
@@ -770,13 +770,13 @@ project_dim: The number of project (linear) dimension</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.ELMoEmbedding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/elmo_embedding.html#ELMoEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.ELMoEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>chars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/elmo_embedding.html#ELMoEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.ELMoEmbedding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>embedding look-up</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.ELMoEmbedding.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/elmo_embedding.html#ELMoEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.ELMoEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/elmo_embedding.html#ELMoEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.ELMoEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>get embedding dimension</p>
 </dd></dl>
 
@@ -784,7 +784,7 @@ project_dim: The number of project (linear) dimension</p>
 
 <dl class="class">
 <dt id="claf.tokens.embedding.FrequentTuningWordEmbedding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.</code><code class="sig-name descname">FrequentTuningWordEmbedding</code><span class="sig-paren">(</span><em class="sig-param">vocab</em>, <em class="sig-param">dropout=0.2</em>, <em class="sig-param">embed_dim=100</em>, <em class="sig-param">padding_idx=None</em>, <em class="sig-param">max_norm=None</em>, <em class="sig-param">norm_type=2</em>, <em class="sig-param">scale_grad_by_freq=False</em>, <em class="sig-param">sparse=False</em>, <em class="sig-param">pretrained_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.FrequentTuningWordEmbedding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.</code><code class="descname">FrequentTuningWordEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>dropout=0.2</em>, <em>embed_dim=100</em>, <em>padding_idx=None</em>, <em>max_norm=None</em>, <em>norm_type=2</em>, <em>scale_grad_by_freq=False</em>, <em>sparse=False</em>, <em>pretrained_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.FrequentTuningWordEmbedding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>Frequent Word Finetuning Embedding
 Finetuning embedding matrix, according to ‘threshold_index’</p>
@@ -822,13 +822,13 @@ trainable: finetune or fixed</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.FrequentTuningWordEmbedding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">words</em>, <em class="sig-param">frequent_tuning=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.FrequentTuningWordEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>words</em>, <em>frequent_tuning=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.FrequentTuningWordEmbedding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>embedding look-up</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.FrequentTuningWordEmbedding.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.FrequentTuningWordEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/frequent_word_embedding.html#FrequentTuningWordEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.FrequentTuningWordEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>get embedding dimension</p>
 </dd></dl>
 
@@ -836,7 +836,7 @@ trainable: finetune or fixed</p>
 
 <dl class="class">
 <dt id="claf.tokens.embedding.SparseFeature">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.</code><code class="sig-name descname">SparseFeature</code><span class="sig-paren">(</span><em class="sig-param">vocab</em>, <em class="sig-param">embed_type</em>, <em class="sig-param">feature_count</em>, <em class="sig-param">params={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.SparseFeature" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.</code><code class="descname">SparseFeature</code><span class="sig-paren">(</span><em>vocab</em>, <em>embed_type</em>, <em>feature_count</em>, <em>params={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.SparseFeature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>Sparse Feature</p>
 <ol class="arabic simple">
@@ -859,13 +859,13 @@ feature_count: The number of feature count</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.SparseFeature.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseFeature.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.SparseFeature.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseFeature.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.SparseFeature.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>embedding look-up</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.SparseFeature.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseFeature.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.SparseFeature.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/sparse_feature.html#SparseFeature.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.SparseFeature.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>get embedding dimension</p>
 </dd></dl>
 
@@ -873,7 +873,7 @@ feature_count: The number of feature count</p>
 
 <dl class="class">
 <dt id="claf.tokens.embedding.WordEmbedding">
-<em class="property">class </em><code class="sig-prename descclassname">claf.tokens.embedding.</code><code class="sig-name descname">WordEmbedding</code><span class="sig-paren">(</span><em class="sig-param">vocab</em>, <em class="sig-param">dropout=0.2</em>, <em class="sig-param">embed_dim=100</em>, <em class="sig-param">padding_idx=None</em>, <em class="sig-param">max_norm=None</em>, <em class="sig-param">norm_type=2</em>, <em class="sig-param">scale_grad_by_freq=False</em>, <em class="sig-param">sparse=False</em>, <em class="sig-param">pretrained_path=None</em>, <em class="sig-param">trainable=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/word_embedding.html#WordEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.WordEmbedding" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.tokens.embedding.</code><code class="descname">WordEmbedding</code><span class="sig-paren">(</span><em>vocab</em>, <em>dropout=0.2</em>, <em>embed_dim=100</em>, <em>padding_idx=None</em>, <em>max_norm=None</em>, <em>norm_type=2</em>, <em>scale_grad_by_freq=False</em>, <em>sparse=False</em>, <em>pretrained_path=None</em>, <em>trainable=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/word_embedding.html#WordEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.WordEmbedding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#claf.tokens.embedding.base.TokenEmbedding" title="claf.tokens.embedding.base.TokenEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.tokens.embedding.base.TokenEmbedding</span></code></a></p>
 <p>Word Embedding
 Default Token Embedding</p>
@@ -911,13 +911,13 @@ trainable: finetune or fixed</p>
 </ul>
 <dl class="method">
 <dt id="claf.tokens.embedding.WordEmbedding.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">words</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/word_embedding.html#WordEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.WordEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<code class="descname">forward</code><span class="sig-paren">(</span><em>words</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/word_embedding.html#WordEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.WordEmbedding.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>embedding look-up</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.tokens.embedding.WordEmbedding.get_output_dim">
-<code class="sig-name descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/word_embedding.html#WordEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.WordEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_output_dim</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/tokens/embedding/word_embedding.html#WordEmbedding.get_output_dim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.tokens.embedding.WordEmbedding.get_output_dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>get embedding dimension</p>
 </dd></dl>
 

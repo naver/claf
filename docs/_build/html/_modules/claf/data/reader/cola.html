@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.data.reader.cola &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.data.reader.cola &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -204,6 +204,8 @@
 <span class="sd">        tokenizers: define tokenizers config (word)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="n">CLASS_DATA</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">file_paths</span><span class="p">,</span>
@@ -237,17 +239,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">class_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s2">&quot;test&quot;</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">line_tokens</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
                 <span class="p">})</span>
 
-        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">data</span>
-
-    <span class="nd">@overrides</span>
-    <span class="k">def</span> <span class="nf">_get_class_dicts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">class_idx2text</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">class_idx</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">class_idx</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">class_idx</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-        <span class="p">}</span>
-        <span class="n">class_text2idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">class_text</span><span class="p">:</span> <span class="n">class_idx</span> <span class="k">for</span> <span class="n">class_idx</span><span class="p">,</span> <span class="n">class_text</span> <span class="ow">in</span> <span class="n">class_idx2text</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-
-        <span class="k">return</span> <span class="n">class_idx2text</span><span class="p">,</span> <span class="n">class_text2idx</span></div>
+        <span class="k">return</span> <span class="n">data</span></div>
 </pre></div>
 
            </div>

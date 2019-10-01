@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.config.args &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.config.args &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -230,6 +230,8 @@
 
 
 <div class="viewcode-block" id="train_config"><a class="viewcode-back" href="../../../claf.config.html#claf.config.args.train_config">[docs]</a><span class="k">def</span> <span class="nf">train_config</span><span class="p">(</span><span class="n">parser</span><span class="p">,</span> <span class="n">input_argv</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Add argument only for hyperparameter tuning. &quot;&quot;&quot;</span>
+
     <span class="n">data</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
     <span class="n">token</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
     <span class="n">model</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
@@ -528,6 +530,15 @@
     <span class="p">)</span>
 
     <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot; # Tokenizer&quot;</span><span class="p">)</span>
+
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--tokenizer.bpe.name&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;roberta&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;token.tokenizer.bpe.name&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">    BPE Tokenizer package name [roberta]</span>
+<span class="s2">    Default is &#39;roberta&#39; &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">&quot;--tokenizer.char.name&quot;</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;character&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;token.tokenizer.char.name&quot;</span><span class="p">,</span>
@@ -796,11 +807,14 @@
 <span class="s2">    * Reading Comprehension</span>
 <span class="s2">      [bert_for_qa|bidaf|bidaf_no_answer|docqa|docqa_no_answer|dclaf|qanet|simple]</span>
 
+<span class="s2">    * Regression</span>
+<span class="s2">      [bert_for_reg|roberta_for_reg]</span>
+
 <span class="s2">    * Semantic Parsing</span>
 <span class="s2">      [sqlnet]</span>
 
 <span class="s2">    * Sequence Classification</span>
-<span class="s2">      [bert_for_seq_cls|structured_self_attention]</span>
+<span class="s2">      [bert_for_seq_cls|roberta_for_seq_cls|structured_self_attention]</span>
 
 <span class="s2">    * Token Classification</span>
 <span class="s2">      [bert_for_tok_cls]</span>
@@ -822,6 +836,20 @@
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">&quot;--bert_for_qa.answer_maxlen&quot;</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.bert_for_qa.answer_maxlen&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; The number of maximum answer&#39;s length (default: None)&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot; # RoBERTa&quot;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--roberta_for_qa.pretrained_model_name&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.roberta_for_qa.pretrained_model_name&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; A str with the name of a pre-trained model to load selected in the list of (default: None):</span>
+<span class="s2">                    . `roberta-base`</span>
+<span class="s2">                    . `roberta-large` &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--roberta_for_qa.answer_maxlen&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.roberta_for_qa.answer_maxlen&quot;</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; The number of maximum answer&#39;s length (default: None)&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
@@ -1062,27 +1090,61 @@
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; Weight Init&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot; # Dclaf&quot;</span><span class="p">)</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot; # DrQA&quot;</span><span class="p">)</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;--dclaf.aligned_query_embedding&quot;</span><span class="p">,</span>
-        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.dclaf.aligned_query_embedding&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--drqa.aligned_query_embedding&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.drqa.aligned_query_embedding&quot;</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; Aligned Question Embedding  (default: True)&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;--dclaf.answer_maxlen&quot;</span><span class="p">,</span>
-        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.dclaf.answer_maxlen&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--drqa.answer_maxlen&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.drqa.answer_maxlen&quot;</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; The number of maximum answer&#39;s length (default: None)&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;--dclaf.model_dim&quot;</span><span class="p">,</span>
-        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.dclaf.model_dim&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--drqa.model_dim&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.drqa.model_dim&quot;</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; The number of document reader model dimension&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;--dclaf.dropout&quot;</span><span class="p">,</span>
-        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.dclaf.dropout&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--drqa.dropout&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.drqa.dropout&quot;</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; The number of document reader model dropout&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
+
+
+    <span class="n">regression_title</span> <span class="o">=</span> <span class="s2">&quot;ㅁRegression&quot;</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{regression_title}</span><span class="se">\n</span><span class="s2"> # BERT for Regression&quot;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--bert_for_reg.pretrained_model_name&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.bert_for_reg.pretrained_model_name&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; A str with the name of a pre-trained model to load selected in the list of (default: None):</span>
+<span class="s2">                    . `bert-base-uncased`</span>
+<span class="s2">                    . `bert-large-uncased`</span>
+<span class="s2">                    . `bert-base-cased`</span>
+<span class="s2">                    . `bert-base-multilingual`</span>
+<span class="s2">                    . `bert-base-chinese` &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--bert_for_reg.dropout&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.bert_for_reg.dropout&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; The prob of fc layer dropout &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot; # RoBERTa&quot;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--roberta_for_reg.pretrained_model_name&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.roberta_for_reg.pretrained_model_name&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; A str with the name of a pre-trained model to load selected in the list of (default: None):</span>
+<span class="s2">                    . `roberta-base`</span>
+<span class="s2">                    . `roberta-large` &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--roberta_for_reg.dropout&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.roberta_for_reg.dropout&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; The prob of fc layer dropout &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+
 
     <span class="n">semantic_parsing_title</span> <span class="o">=</span> <span class="s2">&quot;ㅁSemantic Parsing&quot;</span>
     <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{semantic_parsing_title}</span><span class="se">\n</span><span class="s2"> # SQLNet&quot;</span><span class="p">)</span>
@@ -1137,6 +1199,20 @@
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">&quot;--bert_for_seq_cls.dropout&quot;</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.bert_for_seq_cls.dropout&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; The prob of fc layer dropout &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot; # RoBERTa&quot;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--roberta_for_seq_cls.pretrained_model_name&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.roberta_for_seq_cls.pretrained_model_name&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; A str with the name of a pre-trained model to load selected in the list of (default: None):</span>
+<span class="s2">                    . `roberta-base`</span>
+<span class="s2">                    . `roberta-large` &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--roberta_for_seq_cls.dropout&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.roberta_for_seq_cls.dropout&quot;</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; The prob of fc layer dropout &quot;&quot;&quot;</span>
     <span class="p">)</span>
 
@@ -1203,6 +1279,20 @@
         <span class="s2">&quot;--bert_for_tok_cls.dropout&quot;</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.bert_for_tok_cls.dropout&quot;</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; The prob of fc layer dropout &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot; # RoBERTa&quot;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--roberta_for_tok_cls.pretrained_model_name&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.roberta_for_tok_cls.pretrained_model_name&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; A str with the name of a pre-trained model to load selected in the list of (default: None):</span>
+<span class="s2">                    . `roberta-base`</span>
+<span class="s2">                    . `roberta-large` &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--roberta_for_tok_cls.dropout&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;model.roberta_for_tok_cls.dropout&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; The prob of fc layer dropout &quot;&quot;&quot;</span>
     <span class="p">)</span></div>
 
 
@@ -1245,9 +1335,14 @@
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; The number of training verbose&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;--save_epoch_count&quot;</span><span class="p">,</span>
-        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;trainer.save_epoch_count&quot;</span><span class="p">,</span>
-        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; The number of save epoch count&quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--eval_and_save_step_count&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;trainer.eval_and_save_step_count&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; The number of save and evaluate step_count (e.g. &#39;epoch&#39; or 1000)&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--save_checkpoint&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">arg_str2bool</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;trainer.save_checkpoint&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; The boolean value of save checkpoint&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">&quot;--log_dir&quot;</span><span class="p">,</span>
@@ -1259,7 +1354,7 @@
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">&quot;--grad_max_norm&quot;</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;trainer.grad_max_norm&quot;</span><span class="p">,</span>
-        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; Clips gradient norm of an iterable of parameters. ()Default: None)&quot;&quot;&quot;</span><span class="p">)</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; Clips gradient norm of an iterable of parameters. (Default: None)&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;Optimizer&quot;</span><span class="p">)</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
@@ -1274,6 +1369,7 @@
 <span class="s2">        (http://jmlr.org/papers/v12/duchi11a.html)</span>
 <span class="s2">    - adam: Adam: A Method for Stochastic Optimization</span>
 <span class="s2">        (https://arxiv.org/abs/1412.6980)</span>
+<span class="s2">    - adamw: Adam: Adam algorithm with weight decay fix. (BertAdam)</span>
 <span class="s2">    - sparse_adam: Implements lazy version of Adam algorithm suitable for sparse tensors.</span>
 <span class="s2">        In this variant, only moments that show up in the gradient get updated,</span>
 <span class="s2">        and only those portions of the gradient get applied to the parameters.</span>
@@ -1286,7 +1382,7 @@
 <span class="s2">    - sgd: Implements stochastic gradient descent (optionally with momentum).</span>
 <span class="s2">        Nesterov momentum: (http://www.cs.toronto.edu/~hinton/absps/momentum.pdf)</span>
 
-<span class="s2">    [adadelta|adagrad|adam|sparse_adam|adamax|averaged_sgd|rmsprop|rprop|sgd]&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">    [adadelta|adagrad|adam|adamw|sparse_adam|adamax|averaged_sgd|rmsprop|rprop|sgd]&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">&quot;--learning_rate&quot;</span><span class="p">,</span>
@@ -1362,6 +1458,40 @@
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
 <span class="s2">    weight decay (L2 penalty)</span>
 <span class="s2">    Default: 0 &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;  # AdamW&quot;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--adamw.betas&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;+&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">],</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.adamw.betas&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">    coefficients used for computing running averages of gradient and its square</span>
+<span class="s2">    Default: (0.9, 0.999) &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--adamw.eps&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.adamw.eps&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">    term added to the denominator to improve numerical stability</span>
+<span class="s2">    Default: 1e-8 &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--adamw.weight_decay&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.adamw.weight_decay&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">    weight decay (L2 penalty)</span>
+<span class="s2">    Default: 0 &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--adamw.correct_bias&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">arg_str2bool</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.adamw.correct_bias&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">    can be set to False to avoid correcting bias in Adam (e.g. like in Bert TF repository).</span>
+<span class="s2">    Default: True &quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;  # SparseAdam&quot;</span><span class="p">)</span>
@@ -1529,10 +1659,23 @@
 <span class="s2">        learning rate by a factor of 2-10 once learning stagnates.</span>
 <span class="s2">        This scheduler reads a metrics quantity and if no improvement</span>
 <span class="s2">        is seen for a ‘patience’ number of epochs, the learning rate is reduced.</span>
-<span class="s2">    - warmup: a learning rate warm-up scheme with an inverse exponential increase</span>
-<span class="s2">         from 0.0 to </span><span class="si">{learning_rate}</span><span class="s2"> in the first </span><span class="si">{final_step}</span><span class="s2">.</span>
+<span class="s2">    - warmup_constant: Linear warmup and then constant.</span>
+<span class="s2">        Linearly increases learning rate schedule from 0 to 1 over `warmup_steps` training steps.</span>
+<span class="s2">        Keeps learning rate schedule equal to 1. after warmup_steps.</span>
+<span class="s2">    - warmup_linear: Linear warmup and then linear decay.</span>
+<span class="s2">        Linearly increases learning rate from 0 to 1 over `warmup_steps` training steps.</span>
+<span class="s2">        Linearly decreases learning rate from 1. to 0. over remaining `t_total - warmup_steps` steps.</span>
+<span class="s2">    - warmup_consine: Linear warmup and then cosine decay.</span>
+<span class="s2">        Linearly increases learning rate from 0 to 1 over `warmup_steps` training steps.</span>
+<span class="s2">        Decreases learning rate from 1. to 0. over remaining `t_total - warmup_steps` steps following a cosine curve.</span>
+<span class="s2">        If `cycles` (default=0.5) is different from default, learning rate follows cosine function after warmup.</span>
+<span class="s2">    - warmup_consine_with_hard_restart: Linear warmup and then cosine cycles with hard restarts.</span>
+<span class="s2">        Linearly increases learning rate from 0 to 1 over `warmup_steps` training steps.</span>
+<span class="s2">        If `cycles` (default=1.) is different from default, learning rate follows `cycles` times a cosine decaying</span>
+<span class="s2">        learning rate (with hard restarts).</span>
 
-<span class="s2">    [step|multi_step|exponential|reduce_on_plateau|cosine|warmup]</span>
+<span class="s2">    [step|multi_step|exponential|reduce_on_plateau|cosine|</span>
+<span class="s2">        warmup_constant|warmup_linear|warmup_consine|warmup_consine_with_hard_restart]</span>
 <span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
@@ -1684,20 +1827,89 @@
 <span class="s2">    Default: 1e-8 &quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;  # WarmUpLR&quot;</span><span class="p">)</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;  # WarmUp Constant&quot;</span><span class="p">)</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;--warmup.final_step&quot;</span><span class="p">,</span>
-        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.warmup.final_step&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--warmup_constant.warmup_steps&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.warmup_constant.warmup_steps&quot;</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
-<span class="s2">    The number of steps to exponential increase the learning rate.</span>
-<span class="s2">    Default: 1000. &quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">    The number of steps to increase the learning rate from 0 to 1.</span>
+<span class="s2">    Default: None &quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;--warmup.last_epoch&quot;</span><span class="p">,</span>
-        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.warmup.last_epoch&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--warmup_constant.last_epoch&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.warmup_constant.last_epoch&quot;</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
 <span class="s2">    The index of last epoch.</span>
 <span class="s2">    Default: -1. &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;  # WarmUp Linear&quot;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--warmup_linear.warmup_steps&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.warmup_linear.warmup_steps&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">    The number of steps to increase the learning rate from 0 to 1.</span>
+<span class="s2">    Default: None &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--warmup_linear_warmup_proportion&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.warmup_linear.warmup_proportion&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">    The number of steps (proportion of total_step) to increase the learning rate from 0 to 1.</span>
+<span class="s2">    Default: None &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--warmup_linear.last_epoch&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.warmup_linear.last_epoch&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">    The index of last epoch.</span>
+<span class="s2">    Default: -1. &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;  # WarmUp Cosine&quot;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--warmup_cosine.warmup_steps&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.warmup_cosine.warmup_steps&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">    The number of steps to increase the learning rate from 0 to 1.</span>
+<span class="s2">    Default: None &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--warmup_cosine.last_epoch&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.warmup_cosine.last_epoch&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">    The index of last epoch.</span>
+<span class="s2">    Default: -1. &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--warmup_cosine.cycles&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.warmup_cosine.cycles&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">    If `cycles` is different from default, learning rate follows cosine function after warmup</span>
+<span class="s2">    Default: .5 &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;  # WarmUp Cosine with hard restarts&quot;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--warmup_cosine_with_hard_restart.warmup_steps&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.warmup_cosine_with_hard_restart.warmup_steps&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">    The number of steps to increase the learning rate from 0 to 1.</span>
+<span class="s2">    Default: None &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--warmup_cosine_with_hard_restart.last_epoch&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.warmup_cosine_with_hard_restart.last_epoch&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">    The index of last epoch.</span>
+<span class="s2">    Default: -1. &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--warmup_cosine_with_hard_restart.cycles&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;optimizer.warmup_cosine_with_hard_restart.cycles&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">    If `cycles` is different from default, learning rate follows cosine_with_hard_restart function after warmup</span>
+<span class="s2">    Default: 1. &quot;&quot;&quot;</span>
     <span class="p">)</span>
 
     <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;Exponential Moving Average&quot;</span><span class="p">)</span>
@@ -1720,20 +1932,21 @@
 <span class="s2">    Use pre-defined base_config:</span>
 <span class="s2">    {_get_define_config()}</span>
 
-<span class="s2">    * SQuAD:</span>
-<span class="s2">    {_get_define_config(category=&#39;squad&#39;)}</span>
+
+<span class="s2">    * CoNLL 2003:</span>
+<span class="s2">    {_get_define_config(category=&#39;conll2003&#39;)}</span>
+
+<span class="s2">    * GLUE:</span>
+<span class="s2">    {_get_define_config(category=&#39;glue&#39;)}</span>
 
 <span class="s2">    * KorQuAD:</span>
 <span class="s2">    {_get_define_config(category=&#39;korquad&#39;)}</span>
 
+<span class="s2">    * SQuAD:</span>
+<span class="s2">    {_get_define_config(category=&#39;squad&#39;)}</span>
+
 <span class="s2">    * WikiSQL:</span>
 <span class="s2">    {_get_define_config(category=&#39;wikisql&#39;)}</span>
-
-<span class="s2">    * CoLA:</span>
-<span class="s2">    {_get_define_config(category=&#39;cola&#39;)}</span>
-
-<span class="s2">    * CoNLL 2003:</span>
-<span class="s2">    {_get_define_config(category=&#39;conll2003&#39;)}</span>
 <span class="s2">    &quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span></div>
 

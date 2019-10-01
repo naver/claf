@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.data.reader.bert.seq_cls &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.data.reader.bert.seq_cls &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -191,8 +191,8 @@
 <span class="kn">from</span> <span class="nn">overrides</span> <span class="k">import</span> <span class="n">overrides</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
 
-<span class="kn">from</span> <span class="nn">claf.data.batch</span> <span class="k">import</span> <span class="n">make_batch</span>
 <span class="kn">from</span> <span class="nn">claf.data.dataset</span> <span class="k">import</span> <span class="n">SeqClsBertDataset</span>
+<span class="kn">from</span> <span class="nn">claf.data.dto</span> <span class="k">import</span> <span class="n">BertFeature</span><span class="p">,</span> <span class="n">Helper</span>
 <span class="kn">from</span> <span class="nn">claf.data.reader.base</span> <span class="k">import</span> <span class="n">DataReader</span>
 <span class="kn">from</span> <span class="nn">claf.data</span> <span class="k">import</span> <span class="n">utils</span>
 <span class="kn">from</span> <span class="nn">claf.decorator</span> <span class="k">import</span> <span class="n">register</span>
@@ -213,7 +213,8 @@
 <span class="sd">        class_key: name of the label in .json file to use for classification</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">CLASS_DATA</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">CLASS_DATA</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">METRIC_KEY</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -298,20 +299,22 @@
         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_data</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="n">data_type</span><span class="p">)</span>
         <span class="n">class_idx2text</span><span class="p">,</span> <span class="n">class_text2idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_class_dicts</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-        <span class="n">helper</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">helper</span> <span class="o">=</span> <span class="n">Helper</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
             <span class="s2">&quot;file_path&quot;</span><span class="p">:</span> <span class="n">file_path</span><span class="p">,</span>
-            <span class="s2">&quot;examples&quot;</span><span class="p">:</span> <span class="p">{},</span>
             <span class="s2">&quot;class_idx2text&quot;</span><span class="p">:</span> <span class="n">class_idx2text</span><span class="p">,</span>
             <span class="s2">&quot;class_text2idx&quot;</span><span class="p">:</span> <span class="n">class_text2idx</span><span class="p">,</span>
             <span class="s2">&quot;cls_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cls_token</span><span class="p">,</span>
             <span class="s2">&quot;sep_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span><span class="p">,</span>
-            <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;num_classes&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_idx2text</span><span class="p">),</span>
-            <span class="p">},</span>
-            <span class="s2">&quot;predict_helper&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;class_idx2text&quot;</span><span class="p">:</span> <span class="n">class_idx2text</span><span class="p">,</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
+            <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="n">SeqClsBertDataset</span><span class="p">,</span>
+            <span class="s2">&quot;metric_key&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">METRIC_KEY</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="n">helper</span><span class="o">.</span><span class="n">set_model_parameter</span><span class="p">({</span>
+            <span class="s2">&quot;num_classes&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_idx2text</span><span class="p">),</span>
+        <span class="p">})</span>
+        <span class="n">helper</span><span class="o">.</span><span class="n">set_predict_helper</span><span class="p">({</span>
+            <span class="s2">&quot;class_idx2text&quot;</span><span class="p">:</span> <span class="n">class_idx2text</span><span class="p">,</span>
+        <span class="p">})</span>
+
         <span class="n">features</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="n">data_type</span><span class="p">):</span>
@@ -357,26 +360,27 @@
             <span class="p">}</span>
             <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_row</span><span class="p">)</span>
 
-            <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;examples&quot;</span><span class="p">][</span><span class="n">data_uid</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">helper</span><span class="o">.</span><span class="n">set_example</span><span class="p">(</span><span class="n">data_uid</span><span class="p">,</span> <span class="p">{</span>
                 <span class="s2">&quot;sequence_a&quot;</span><span class="p">:</span> <span class="n">sequence_a</span><span class="p">,</span>
                 <span class="s2">&quot;sequence_a_tokens&quot;</span><span class="p">:</span> <span class="n">sequence_a_tokens</span><span class="p">,</span>
                 <span class="s2">&quot;sequence_b&quot;</span><span class="p">:</span> <span class="n">sequence_b</span><span class="p">,</span>
                 <span class="s2">&quot;sequence_b_tokens&quot;</span><span class="p">:</span> <span class="n">sequence_b_tokens</span><span class="p">,</span>
                 <span class="s2">&quot;class_idx&quot;</span><span class="p">:</span> <span class="n">class_text2idx</span><span class="p">[</span><span class="n">class_text</span><span class="p">],</span>
                 <span class="s2">&quot;class_text&quot;</span><span class="p">:</span> <span class="n">class_text</span><span class="p">,</span>
-            <span class="p">}</span>
+            <span class="p">})</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_test</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
                 <span class="k">break</span>
 
-        <span class="k">return</span> <span class="n">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">helper</span>
+        <span class="k">return</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">helper</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 
 <div class="viewcode-block" id="SeqClsBertReader.read_one_example"><a class="viewcode-back" href="../../../../../claf.data.reader.bert.html#claf.data.reader.SeqClsBertReader.read_one_example">[docs]</a>    <span class="k">def</span> <span class="nf">read_one_example</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; inputs keys: sequence_a and sequence_b &quot;&quot;&quot;</span>
         <span class="n">sequence_a</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">get_sequence_a</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
         <span class="n">sequence_b</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sequence_b&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-        <span class="n">bert_input</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_bert_input</span><span class="p">(</span>
+        <span class="n">bert_feature</span> <span class="o">=</span> <span class="n">BertFeature</span><span class="p">()</span>
+        <span class="n">bert_feature</span><span class="o">.</span><span class="n">set_input_with_speical_token</span><span class="p">(</span>
             <span class="n">sequence_a</span><span class="p">,</span>
             <span class="n">sequence_b</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">,</span>
@@ -386,15 +390,10 @@
             <span class="n">sep_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span><span class="p">,</span>
             <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">token_type</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_bert_token_type</span><span class="p">(</span><span class="n">bert_input</span><span class="p">,</span> <span class="n">SEP_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span><span class="p">)</span>
 
-        <span class="n">features</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s2">&quot;bert_input&quot;</span><span class="p">:</span> <span class="n">bert_input</span><span class="p">,</span>
-            <span class="s2">&quot;token_type&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;feature&quot;</span><span class="p">:</span> <span class="n">token_type</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">},</span>  <span class="c1"># TODO: fix hard-code</span>
-        <span class="p">})</span>
-
-        <span class="k">return</span> <span class="n">features</span><span class="p">,</span> <span class="p">{}</span></div></div>
+        <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">bert_feature</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()]</span>
+        <span class="n">helper</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="n">features</span><span class="p">,</span> <span class="n">helper</span></div></div>
 </pre></div>
 
            </div>

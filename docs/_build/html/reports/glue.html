@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>GLUE &mdash; CLaF 0.1.6 documentation</title>
+  <title>GLUE &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -205,7 +205,7 @@
 <tr>
 <th>Task (Metric)</th>
 <th>Model</th>
-<th>Result</th>
+<th>CLaF Result</th>
 <th>Official Result</th>
 <th>BaseConfig</th>
 </tr>
@@ -227,6 +227,20 @@
 </tr>
 <tr>
 <td></td>
+<td>MT-DNN Base</td>
+<td>54.658</td>
+<td>-</td>
+<td>multi_task/glue.json -&gt; <code>fine-fune</code></td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN Large</td>
+<td>-</td>
+<td>63.5</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
 <td>RoBERTa-Base</td>
 <td>64.828</td>
 <td>63.6</td>
@@ -240,7 +254,7 @@
 <td>-</td>
 </tr>
 <tr>
-<td><strong>MNLI</strong> (<strong>Accuracy</strong>)</td>
+<td><strong>MNLI m/mm</strong> (<strong>Accuracy</strong>)</td>
 <td>BERT-Base</td>
 <td>83.923/84.306</td>
 <td>84.6/83.4 (Test set)</td>
@@ -251,6 +265,20 @@
 <td>BERT-Large</td>
 <td>-</td>
 <td>86.6/-</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN Base</td>
+<td>84.452/84.225</td>
+<td>-</td>
+<td>multi_task/glue.json -&gt; <code>fine-fune</code></td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN Large</td>
+<td>-</td>
+<td>87.1/86.7</td>
 <td>-</td>
 </tr>
 <tr>
@@ -283,8 +311,22 @@
 </tr>
 <tr>
 <td></td>
+<td>MT-DNN Base</td>
+<td>87.5/91.005</td>
+<td>-</td>
+<td>multi_task/glue.json -&gt; <code>fine-fune</code></td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN Large</td>
+<td>-</td>
+<td>91.0/87.5</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
 <td>RoBERTa-Base</td>
-<td>87.745/91.496</td>
+<td>88.480/91.681</td>
 <td>90.2</td>
 <td>glue/mrpc_roberta_base.json</td>
 </tr>
@@ -311,8 +353,22 @@
 </tr>
 <tr>
 <td></td>
+<td>MT-DNN Base</td>
+<td>-</td>
+<td>-</td>
+<td>multi_task/glue.json -&gt; <code>fine-fune</code></td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN Large</td>
+<td>-</td>
+<td>87.1/86.7</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
 <td>RoBERTa-Base</td>
-<td>90.597</td>
+<td>90.823</td>
 <td>92.8</td>
 <td>glue/qnli_roberta_base.json</td>
 </tr>
@@ -335,6 +391,20 @@
 <td>BERT-Large</td>
 <td>-</td>
 <td>91.3</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN Base</td>
+<td>91.261/88.219</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN Large</td>
+<td>-</td>
+<td>87.1/86.7</td>
 <td>-</td>
 </tr>
 <tr>
@@ -367,6 +437,20 @@
 </tr>
 <tr>
 <td></td>
+<td>MT-DNN Base</td>
+<td>79.422</td>
+<td>-</td>
+<td>multi_task/glue.json -&gt; <code>fine-fune</code></td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN Large</td>
+<td>-</td>
+<td>83.4</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
 <td>RoBERTa-Base</td>
 <td>73.646</td>
 <td>78.7</td>
@@ -391,6 +475,20 @@
 <td>BERT-Large</td>
 <td>-</td>
 <td>93.2</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN Base</td>
+<td>93.005</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN Large</td>
+<td>-</td>
+<td>94.3</td>
 <td>-</td>
 </tr>
 <tr>
@@ -423,8 +521,22 @@
 </tr>
 <tr>
 <td></td>
+<td>MT-DNN Base</td>
+<td>88.444/88.807</td>
+<td>-</td>
+<td>multi_task/glue.json -&gt; <code>fine-fune</code></td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN Large</td>
+<td>-</td>
+<td>90.7/90.6</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
 <td>RoBERTa-Base</td>
-<td>87.033/86.904</td>
+<td>89.003/89.094</td>
 <td>91.2</td>
 <td>glue/stsb_roberta_base.json</td>
 </tr>
@@ -445,6 +557,20 @@
 <tr>
 <td></td>
 <td>BERT-Large</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN Base</td>
+<td>57.746</td>
+<td>-</td>
+<td>multi_task/glue.json -&gt; <code>fine-fune</code></td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN Large</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.data.collate &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.data.collate &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -190,7 +190,6 @@
 <span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span>
 
 <span class="kn">from</span> <span class="nn">claf.data</span> <span class="k">import</span> <span class="n">utils</span>
-<span class="kn">from</span> <span class="nn">claf.data.batch</span> <span class="k">import</span> <span class="n">make_batch</span>
 
 
 <div class="viewcode-block" id="PadCollator"><a class="viewcode-back" href="../../../claf.data.html#claf.data.collate.PadCollator">[docs]</a><span class="k">class</span> <span class="nc">PadCollator</span><span class="p">:</span>
@@ -213,7 +212,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">pad_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pad_value</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">apply_pad</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pad_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pad_value</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PadCollator.collate"><a class="viewcode-back" href="../../../claf.data.html#claf.data.collate.PadCollator.collate">[docs]</a>    <span class="k">def</span> <span class="nf">collate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datas</span><span class="p">,</span> <span class="n">apply_pad</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pad_value</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">data_name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datas</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -265,7 +264,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">apply_pad</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                      <span class="n">apply_pad_labels</span><span class="o">=</span><span class="n">apply_pad_labels</span><span class="p">,</span> <span class="n">apply_pad_values</span><span class="o">=</span><span class="n">apply_pad_values</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
 
 <div class="viewcode-block" id="FeatLabelPadCollator.collate"><a class="viewcode-back" href="../../../claf.data.html#claf.data.collate.FeatLabelPadCollator.collate">[docs]</a>    <span class="nd">@overrides</span>
     <span class="k">def</span> <span class="nf">collate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datas</span><span class="p">,</span> <span class="n">apply_pad</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">apply_pad_labels</span><span class="o">=</span><span class="p">(),</span> <span class="n">apply_pad_values</span><span class="o">=</span><span class="p">()):</span>

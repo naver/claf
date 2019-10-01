@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.learn package &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.learn package &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -196,7 +196,7 @@
 <span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.learn.experiment" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.learn.experiment.Experiment">
-<em class="property">class </em><code class="sig-prename descclassname">claf.learn.experiment.</code><code class="sig-name descname">Experiment</code><span class="sig-paren">(</span><em class="sig-param">mode</em>, <em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.learn.experiment.</code><code class="descname">Experiment</code><span class="sig-paren">(</span><em>mode</em>, <em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Experiment settings with config.</p>
 <ul class="simple">
@@ -209,24 +209,24 @@ config: (NestedNamespace) Argument config according to mode</p>
 </ul>
 <dl class="method">
 <dt id="claf.learn.experiment.Experiment.common_setting">
-<code class="sig-name descname">common_setting</code><span class="sig-paren">(</span><em class="sig-param">mode</em>, <em class="sig-param">config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.common_setting"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.common_setting" title="Permalink to this definition">¶</a></dt>
+<code class="descname">common_setting</code><span class="sig-paren">(</span><em>mode</em>, <em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.common_setting"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.common_setting" title="Permalink to this definition">¶</a></dt>
 <dd><p>Common Setting - experiment config, use_gpu and cuda_device_ids</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.learn.experiment.Experiment.load_setting">
-<code class="sig-name descname">load_setting</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.load_setting"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.load_setting" title="Permalink to this definition">¶</a></dt>
+<code class="descname">load_setting</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.load_setting"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.load_setting" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load Setting - need to load checkpoint case (ex. evaluate and predict)</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.learn.experiment.Experiment.predict">
-<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">raw_features</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.predict" title="Permalink to this definition">¶</a></dt>
+<code class="descname">predict</code><span class="sig-paren">(</span><em>raw_features</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.predict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.learn.experiment.Experiment.set_eval_inference_latency_mode">
-<code class="sig-name descname">set_eval_inference_latency_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.set_eval_inference_latency_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.set_eval_inference_latency_mode" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set_eval_inference_latency_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.set_eval_inference_latency_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.set_eval_inference_latency_mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate Inference Latency Mode</p>
 <ul class="simple">
 <li><p>Pipeline
@@ -240,7 +240,7 @@ config: (NestedNamespace) Argument config according to mode</p>
 
 <dl class="method">
 <dt id="claf.learn.experiment.Experiment.set_eval_mode">
-<code class="sig-name descname">set_eval_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.set_eval_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.set_eval_mode" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set_eval_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.set_eval_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.set_eval_mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate Mode</p>
 <ul class="simple">
 <li><p>Pipeline
@@ -256,7 +256,7 @@ config: (NestedNamespace) Argument config according to mode</p>
 
 <dl class="method">
 <dt id="claf.learn.experiment.Experiment.set_predict_mode">
-<code class="sig-name descname">set_predict_mode</code><span class="sig-paren">(</span><em class="sig-param">preload=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.set_predict_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.set_predict_mode" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set_predict_mode</code><span class="sig-paren">(</span><em>preload=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.set_predict_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.set_predict_mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict Mode</p>
 <ul class="simple">
 <li><p>Pipeline
@@ -270,7 +270,7 @@ config: (NestedNamespace) Argument config according to mode</p>
 
 <dl class="method">
 <dt id="claf.learn.experiment.Experiment.set_train_mode">
-<code class="sig-name descname">set_train_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.set_train_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.set_train_mode" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set_train_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.set_train_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.set_train_mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Training Mode</p>
 <ul class="simple">
 <li><p>Pipeline
@@ -286,78 +286,78 @@ config: (NestedNamespace) Argument config according to mode</p>
 
 <dl class="method">
 <dt id="claf.learn.experiment.Experiment.set_trainer">
-<code class="sig-name descname">set_trainer</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">op_dict={}</em>, <em class="sig-param">save_params={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.set_trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.set_trainer" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set_trainer</code><span class="sig-paren">(</span><em>model</em>, <em>op_dict={}</em>, <em>save_params={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/experiment.html#Experiment.set_trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.experiment.Experiment.set_trainer" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <span class="target" id="module-claf.learn.mode"></span><dl class="class">
 <dt id="claf.learn.mode.Mode">
-<em class="property">class </em><code class="sig-prename descclassname">claf.learn.mode.</code><code class="sig-name descname">Mode</code><a class="reference internal" href="_modules/claf/learn/mode.html#Mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.mode.Mode" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.learn.mode.</code><code class="descname">Mode</code><a class="reference internal" href="_modules/claf/learn/mode.html#Mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.mode.Mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Experiment Flag class</p>
 <dl class="attribute">
 <dt id="claf.learn.mode.Mode.EVAL">
-<code class="sig-name descname">EVAL</code><em class="property"> = 'eval'</em><a class="headerlink" href="#claf.learn.mode.Mode.EVAL" title="Permalink to this definition">¶</a></dt>
+<code class="descname">EVAL</code><em class="property"> = 'eval'</em><a class="headerlink" href="#claf.learn.mode.Mode.EVAL" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.learn.mode.Mode.INFER_EVAL">
-<code class="sig-name descname">INFER_EVAL</code><em class="property"> = 'infer_eval'</em><a class="headerlink" href="#claf.learn.mode.Mode.INFER_EVAL" title="Permalink to this definition">¶</a></dt>
+<code class="descname">INFER_EVAL</code><em class="property"> = 'infer_eval'</em><a class="headerlink" href="#claf.learn.mode.Mode.INFER_EVAL" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.learn.mode.Mode.MACHINE">
-<code class="sig-name descname">MACHINE</code><em class="property"> = 'machine'</em><a class="headerlink" href="#claf.learn.mode.Mode.MACHINE" title="Permalink to this definition">¶</a></dt>
+<code class="descname">MACHINE</code><em class="property"> = 'machine'</em><a class="headerlink" href="#claf.learn.mode.Mode.MACHINE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.learn.mode.Mode.PREDICT">
-<code class="sig-name descname">PREDICT</code><em class="property"> = 'predict'</em><a class="headerlink" href="#claf.learn.mode.Mode.PREDICT" title="Permalink to this definition">¶</a></dt>
+<code class="descname">PREDICT</code><em class="property"> = 'predict'</em><a class="headerlink" href="#claf.learn.mode.Mode.PREDICT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.learn.mode.Mode.TRAIN">
-<code class="sig-name descname">TRAIN</code><em class="property"> = 'train'</em><a class="headerlink" href="#claf.learn.mode.Mode.TRAIN" title="Permalink to this definition">¶</a></dt>
+<code class="descname">TRAIN</code><em class="property"> = 'train'</em><a class="headerlink" href="#claf.learn.mode.Mode.TRAIN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <span class="target" id="module-claf.learn.tensorboard"></span><dl class="class">
 <dt id="claf.learn.tensorboard.TensorBoard">
-<em class="property">class </em><code class="sig-prename descclassname">claf.learn.tensorboard.</code><code class="sig-name descname">TensorBoard</code><span class="sig-paren">(</span><em class="sig-param">log_dir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/tensorboard.html#TensorBoard"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.tensorboard.TensorBoard" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.learn.tensorboard.</code><code class="descname">TensorBoard</code><span class="sig-paren">(</span><em>log_dir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/tensorboard.html#TensorBoard"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.tensorboard.TensorBoard" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>TensorBoard Wrapper for Pytorch</p>
 <dl class="method">
 <dt id="claf.learn.tensorboard.TensorBoard.embedding_summary">
-<code class="sig-name descname">embedding_summary</code><span class="sig-paren">(</span><em class="sig-param">features</em>, <em class="sig-param">metadata=None</em>, <em class="sig-param">label_img=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/tensorboard.html#TensorBoard.embedding_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.tensorboard.TensorBoard.embedding_summary" title="Permalink to this definition">¶</a></dt>
+<code class="descname">embedding_summary</code><span class="sig-paren">(</span><em>features</em>, <em>metadata=None</em>, <em>label_img=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/tensorboard.html#TensorBoard.embedding_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.tensorboard.TensorBoard.embedding_summary" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.learn.tensorboard.TensorBoard.graph_summary">
-<code class="sig-name descname">graph_summary</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">input_to_model=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/tensorboard.html#TensorBoard.graph_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.tensorboard.TensorBoard.graph_summary" title="Permalink to this definition">¶</a></dt>
+<code class="descname">graph_summary</code><span class="sig-paren">(</span><em>model</em>, <em>input_to_model=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/tensorboard.html#TensorBoard.graph_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.tensorboard.TensorBoard.graph_summary" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.learn.tensorboard.TensorBoard.histogram_summary">
-<code class="sig-name descname">histogram_summary</code><span class="sig-paren">(</span><em class="sig-param">tag</em>, <em class="sig-param">values</em>, <em class="sig-param">step</em>, <em class="sig-param">bins=1000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/tensorboard.html#TensorBoard.histogram_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.tensorboard.TensorBoard.histogram_summary" title="Permalink to this definition">¶</a></dt>
+<code class="descname">histogram_summary</code><span class="sig-paren">(</span><em>tag</em>, <em>values</em>, <em>step</em>, <em>bins=1000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/tensorboard.html#TensorBoard.histogram_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.tensorboard.TensorBoard.histogram_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Log a histogram of the tensor of values.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.learn.tensorboard.TensorBoard.image_summary">
-<code class="sig-name descname">image_summary</code><span class="sig-paren">(</span><em class="sig-param">tag</em>, <em class="sig-param">images</em>, <em class="sig-param">step</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/tensorboard.html#TensorBoard.image_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.tensorboard.TensorBoard.image_summary" title="Permalink to this definition">¶</a></dt>
+<code class="descname">image_summary</code><span class="sig-paren">(</span><em>tag</em>, <em>images</em>, <em>step</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/tensorboard.html#TensorBoard.image_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.tensorboard.TensorBoard.image_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Log a list of images.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.learn.tensorboard.TensorBoard.scalar_summaries">
-<code class="sig-name descname">scalar_summaries</code><span class="sig-paren">(</span><em class="sig-param">step</em>, <em class="sig-param">summary</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/tensorboard.html#TensorBoard.scalar_summaries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.tensorboard.TensorBoard.scalar_summaries" title="Permalink to this definition">¶</a></dt>
+<code class="descname">scalar_summaries</code><span class="sig-paren">(</span><em>step</em>, <em>summary</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/tensorboard.html#TensorBoard.scalar_summaries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.tensorboard.TensorBoard.scalar_summaries" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.learn.tensorboard.TensorBoard.scalar_summary">
-<code class="sig-name descname">scalar_summary</code><span class="sig-paren">(</span><em class="sig-param">step</em>, <em class="sig-param">tag</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/tensorboard.html#TensorBoard.scalar_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.tensorboard.TensorBoard.scalar_summary" title="Permalink to this definition">¶</a></dt>
+<code class="descname">scalar_summary</code><span class="sig-paren">(</span><em>step</em>, <em>tag</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/tensorboard.html#TensorBoard.scalar_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.tensorboard.TensorBoard.scalar_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Log a scalar variable.</p>
 </dd></dl>
 
@@ -365,7 +365,7 @@ config: (NestedNamespace) Argument config according to mode</p>
 
 <span class="target" id="module-claf.learn.trainer"></span><dl class="class">
 <dt id="claf.learn.trainer.Trainer">
-<em class="property">class </em><code class="sig-prename descclassname">claf.learn.trainer.</code><code class="sig-name descname">Trainer</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">config={}</em>, <em class="sig-param">log_dir='logs/experiment'</em>, <em class="sig-param">grad_max_norm=None</em>, <em class="sig-param">gradient_accumulation_steps=1</em>, <em class="sig-param">learning_rate_scheduler=None</em>, <em class="sig-param">exponential_moving_average=None</em>, <em class="sig-param">num_epochs=20</em>, <em class="sig-param">early_stopping_threshold=10</em>, <em class="sig-param">max_eval_examples=5</em>, <em class="sig-param">metric_key=None</em>, <em class="sig-param">verbose_step_count=100</em>, <em class="sig-param">eval_and_save_step_count='epoch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.learn.trainer.</code><code class="descname">Trainer</code><span class="sig-paren">(</span><em>model</em>, <em>config={}</em>, <em>log_dir='logs/experiment'</em>, <em>grad_max_norm=None</em>, <em>gradient_accumulation_steps=1</em>, <em>learning_rate_scheduler=None</em>, <em>exponential_moving_average=None</em>, <em>num_epochs=20</em>, <em>early_stopping_threshold=10</em>, <em>max_eval_examples=5</em>, <em>metric_key=None</em>, <em>verbose_step_count=100</em>, <em>eval_and_save_step_count='epoch'</em>, <em>save_checkpoint=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Run experiment</p>
 <ul class="simple">
@@ -405,13 +405,13 @@ eval_and_save_step_count: evaluate valid_dataset then save every n step_count (D
 </ul>
 <dl class="method">
 <dt id="claf.learn.trainer.Trainer.evaluate">
-<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param">data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer.evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer.evaluate" title="Permalink to this definition">¶</a></dt>
+<code class="descname">evaluate</code><span class="sig-paren">(</span><em>data_loader</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer.evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer.evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.learn.trainer.Trainer.evaluate_inference_latency">
-<code class="sig-name descname">evaluate_inference_latency</code><span class="sig-paren">(</span><em class="sig-param">raw_examples</em>, <em class="sig-param">raw_to_tensor_fn</em>, <em class="sig-param">token_key=None</em>, <em class="sig-param">max_latency=1000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer.evaluate_inference_latency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer.evaluate_inference_latency" title="Permalink to this definition">¶</a></dt>
+<code class="descname">evaluate_inference_latency</code><span class="sig-paren">(</span><em>raw_examples</em>, <em>raw_to_tensor_fn</em>, <em>token_key=None</em>, <em>max_latency=1000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer.evaluate_inference_latency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer.evaluate_inference_latency" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate with focusing inferece latency
 (Note: must use sorted synthetic data)</p>
 <ul class="simple">
@@ -425,29 +425,29 @@ eval_and_save_step_count: evaluate valid_dataset then save every n step_count (D
 
 <dl class="method">
 <dt id="claf.learn.trainer.Trainer.predict">
-<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">raw_feature</em>, <em class="sig-param">raw_to_tensor_fn</em>, <em class="sig-param">arguments</em>, <em class="sig-param">interactive=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer.predict" title="Permalink to this definition">¶</a></dt>
+<code class="descname">predict</code><span class="sig-paren">(</span><em>raw_feature</em>, <em>raw_to_tensor_fn</em>, <em>arguments</em>, <em>interactive=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inference / Predict</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.learn.trainer.Trainer.save">
-<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">optimizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer.save" title="Permalink to this definition">¶</a></dt>
+<code class="descname">save</code><span class="sig-paren">(</span><em>optimizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer.save" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.learn.trainer.Trainer.set_model_base_properties">
-<code class="sig-name descname">set_model_base_properties</code><span class="sig-paren">(</span><em class="sig-param">config</em>, <em class="sig-param">log_dir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer.set_model_base_properties"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer.set_model_base_properties" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set_model_base_properties</code><span class="sig-paren">(</span><em>config</em>, <em>log_dir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer.set_model_base_properties"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer.set_model_base_properties" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.learn.trainer.Trainer.train">
-<code class="sig-name descname">train</code><span class="sig-paren">(</span><em class="sig-param">data_loader</em>, <em class="sig-param">optimizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer.train" title="Permalink to this definition">¶</a></dt>
+<code class="descname">train</code><span class="sig-paren">(</span><em>data_loader</em>, <em>optimizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer.train" title="Permalink to this definition">¶</a></dt>
 <dd><p>Train</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="claf.learn.trainer.Trainer.train_and_evaluate">
-<code class="sig-name descname">train_and_evaluate</code><span class="sig-paren">(</span><em class="sig-param">train_loader</em>, <em class="sig-param">valid_loader</em>, <em class="sig-param">optimizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer.train_and_evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer.train_and_evaluate" title="Permalink to this definition">¶</a></dt>
+<code class="descname">train_and_evaluate</code><span class="sig-paren">(</span><em>train_loader</em>, <em>valid_loader</em>, <em>optimizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/trainer.html#Trainer.train_and_evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.trainer.Trainer.train_and_evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Train and Evaluate</p>
 </dd></dl>
 
@@ -455,69 +455,69 @@ eval_and_save_step_count: evaluate valid_dataset then save every n step_count (D
 
 <span class="target" id="module-claf.learn.utils"></span><dl class="class">
 <dt id="claf.learn.utils.TrainCounter">
-<em class="property">class </em><code class="sig-prename descclassname">claf.learn.utils.</code><code class="sig-name descname">TrainCounter</code><span class="sig-paren">(</span><em class="sig-param">display_unit='epoch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#TrainCounter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.TrainCounter" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">claf.learn.utils.</code><code class="descname">TrainCounter</code><span class="sig-paren">(</span><em>display_unit='epoch'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#TrainCounter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.TrainCounter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="attribute">
 <dt id="claf.learn.utils.TrainCounter.epoch">
-<code class="sig-name descname">epoch</code><em class="property"> = 0</em><a class="headerlink" href="#claf.learn.utils.TrainCounter.epoch" title="Permalink to this definition">¶</a></dt>
+<code class="descname">epoch</code><em class="property"> = 0</em><a class="headerlink" href="#claf.learn.utils.TrainCounter.epoch" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.learn.utils.TrainCounter.get_display">
-<code class="sig-name descname">get_display</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#TrainCounter.get_display"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.TrainCounter.get_display" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_display</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#TrainCounter.get_display"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.TrainCounter.get_display" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.learn.utils.TrainCounter.global_step">
-<code class="sig-name descname">global_step</code><em class="property"> = 0</em><a class="headerlink" href="#claf.learn.utils.TrainCounter.global_step" title="Permalink to this definition">¶</a></dt>
+<code class="descname">global_step</code><em class="property"> = 0</em><a class="headerlink" href="#claf.learn.utils.TrainCounter.global_step" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="function">
 <dt id="claf.learn.utils.bind_nsml">
-<code class="sig-prename descclassname">claf.learn.utils.</code><code class="sig-name descname">bind_nsml</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#bind_nsml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.bind_nsml" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.learn.utils.</code><code class="descname">bind_nsml</code><span class="sig-paren">(</span><em>model</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#bind_nsml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.bind_nsml" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="claf.learn.utils.get_session_name">
-<code class="sig-prename descclassname">claf.learn.utils.</code><code class="sig-name descname">get_session_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#get_session_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.get_session_name" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.learn.utils.</code><code class="descname">get_session_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#get_session_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.get_session_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="claf.learn.utils.get_sorted_path">
-<code class="sig-prename descclassname">claf.learn.utils.</code><code class="sig-name descname">get_sorted_path</code><span class="sig-paren">(</span><em class="sig-param">checkpoint_dir</em>, <em class="sig-param">both_exist=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#get_sorted_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.get_sorted_path" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.learn.utils.</code><code class="descname">get_sorted_path</code><span class="sig-paren">(</span><em>checkpoint_dir</em>, <em>both_exist=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#get_sorted_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.get_sorted_path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="claf.learn.utils.load_model_checkpoint">
-<code class="sig-prename descclassname">claf.learn.utils.</code><code class="sig-name descname">load_model_checkpoint</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">checkpoint</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#load_model_checkpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.load_model_checkpoint" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.learn.utils.</code><code class="descname">load_model_checkpoint</code><span class="sig-paren">(</span><em>model</em>, <em>checkpoint</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#load_model_checkpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.load_model_checkpoint" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="claf.learn.utils.load_optimizer_checkpoint">
-<code class="sig-prename descclassname">claf.learn.utils.</code><code class="sig-name descname">load_optimizer_checkpoint</code><span class="sig-paren">(</span><em class="sig-param">optimizer</em>, <em class="sig-param">checkpoint</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#load_optimizer_checkpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.load_optimizer_checkpoint" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.learn.utils.</code><code class="descname">load_optimizer_checkpoint</code><span class="sig-paren">(</span><em>optimizer</em>, <em>checkpoint</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#load_optimizer_checkpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.load_optimizer_checkpoint" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="claf.learn.utils.load_vocabs">
-<code class="sig-prename descclassname">claf.learn.utils.</code><code class="sig-name descname">load_vocabs</code><span class="sig-paren">(</span><em class="sig-param">model_checkpoint</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#load_vocabs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.load_vocabs" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.learn.utils.</code><code class="descname">load_vocabs</code><span class="sig-paren">(</span><em>model_checkpoint</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#load_vocabs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.load_vocabs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="data">
 <dt id="claf.learn.utils.logger">
-<code class="sig-prename descclassname">claf.learn.utils.</code><code class="sig-name descname">logger</code><em class="property"> = &lt;Logger claf.learn.utils (WARNING)&gt;</em><a class="headerlink" href="#claf.learn.utils.logger" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.learn.utils.</code><code class="descname">logger</code><em class="property"> = &lt;Logger claf.learn.utils (WARNING)&gt;</em><a class="headerlink" href="#claf.learn.utils.logger" title="Permalink to this definition">¶</a></dt>
 <dd><p>Train Counter</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="claf.learn.utils.save_checkpoint">
-<code class="sig-prename descclassname">claf.learn.utils.</code><code class="sig-name descname">save_checkpoint</code><span class="sig-paren">(</span><em class="sig-param">path</em>, <em class="sig-param">model</em>, <em class="sig-param">optimizer</em>, <em class="sig-param">max_to_keep=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#save_checkpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.save_checkpoint" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.learn.utils.</code><code class="descname">save_checkpoint</code><span class="sig-paren">(</span><em>path</em>, <em>model</em>, <em>optimizer</em>, <em>max_to_keep=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#save_checkpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.save_checkpoint" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="claf.learn.utils.send_message_to_slack">
-<code class="sig-prename descclassname">claf.learn.utils.</code><code class="sig-name descname">send_message_to_slack</code><span class="sig-paren">(</span><em class="sig-param">webhook_url</em>, <em class="sig-param">title=None</em>, <em class="sig-param">message=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#send_message_to_slack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.send_message_to_slack" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">claf.learn.utils.</code><code class="descname">send_message_to_slack</code><span class="sig-paren">(</span><em>webhook_url</em>, <em>title=None</em>, <em>message=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/learn/utils.html#send_message_to_slack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.learn.utils.send_message_to_slack" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>

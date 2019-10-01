@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.data.reader.bert.tok_cls &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.data.reader.bert.tok_cls &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -184,6 +184,7 @@
             
   <h1>Source code for claf.data.reader.bert.tok_cls</h1><div class="highlight"><pre>
 <span></span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">chain</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">uuid</span>
@@ -192,7 +193,7 @@
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
 
 <span class="kn">from</span> <span class="nn">claf.data.dataset</span> <span class="k">import</span> <span class="n">TokClsBertDataset</span>
-<span class="kn">from</span> <span class="nn">claf.data.batch</span> <span class="k">import</span> <span class="n">make_batch</span>
+<span class="kn">from</span> <span class="nn">claf.data.dto</span> <span class="k">import</span> <span class="n">BertFeature</span><span class="p">,</span> <span class="n">Helper</span>
 <span class="kn">from</span> <span class="nn">claf.data.reader.base</span> <span class="k">import</span> <span class="n">DataReader</span>
 <span class="kn">from</span> <span class="nn">claf.decorator</span> <span class="k">import</span> <span class="n">register</span>
 <span class="kn">from</span> <span class="nn">claf.tokens.tokenizer</span> <span class="k">import</span> <span class="n">WordTokenizer</span>
@@ -253,12 +254,20 @@
         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_handler</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
         <span class="n">tok_cls_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">tok_cls_data</span><span class="p">,</span> <span class="n">tok_cls_data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">tok_cls_data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">_get_tag_dicts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-        <span class="n">tag_idx2text</span> <span class="o">=</span> <span class="p">{</span><span class="n">tag_idx</span><span class="p">:</span> <span class="n">tag_text</span> <span class="k">for</span> <span class="n">tag_idx</span><span class="p">,</span> <span class="n">tag_text</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_key</span><span class="p">])}</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">:</span>
+            <span class="n">tag_idx2text</span> <span class="o">=</span> <span class="p">{</span><span class="n">tag_idx</span><span class="p">:</span> <span class="n">tag_text</span> <span class="k">for</span> <span class="n">tag_idx</span><span class="p">,</span> <span class="n">tag_text</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_key</span><span class="p">])}</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="n">tags</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_key</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">))))</span>
+            <span class="n">tag_idx2text</span> <span class="o">=</span> <span class="p">{</span><span class="n">tag_idx</span><span class="p">:</span> <span class="n">tag_text</span> <span class="k">for</span> <span class="n">tag_idx</span><span class="p">,</span> <span class="n">tag_text</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tags</span><span class="p">)}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;check _get_data return type.&quot;</span><span class="p">)</span>
+
         <span class="n">tag_text2idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">tag_text</span><span class="p">:</span> <span class="n">tag_idx</span> <span class="k">for</span> <span class="n">tag_idx</span><span class="p">,</span> <span class="n">tag_text</span> <span class="ow">in</span> <span class="n">tag_idx2text</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
         <span class="k">return</span> <span class="n">tag_idx2text</span><span class="p">,</span> <span class="n">tag_text2idx</span>
@@ -288,28 +297,27 @@
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">data</span><span class="p">,</span> <span class="n">raw_dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_data</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_data</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
         <span class="n">tag_idx2text</span><span class="p">,</span> <span class="n">tag_text2idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_tag_dicts</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-        <span class="n">helper</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">helper</span> <span class="o">=</span> <span class="n">Helper</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
             <span class="s2">&quot;file_path&quot;</span><span class="p">:</span> <span class="n">file_path</span><span class="p">,</span>
-            <span class="s2">&quot;examples&quot;</span><span class="p">:</span> <span class="p">{},</span>
-            <span class="s2">&quot;raw_dataset&quot;</span><span class="p">:</span> <span class="n">raw_dataset</span><span class="p">,</span>
             <span class="s2">&quot;tag_idx2text&quot;</span><span class="p">:</span> <span class="n">tag_idx2text</span><span class="p">,</span>
             <span class="s2">&quot;ignore_tag_idx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_tag_idx</span><span class="p">,</span>
             <span class="s2">&quot;cls_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cls_token</span><span class="p">,</span>
             <span class="s2">&quot;sep_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span><span class="p">,</span>
-            <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;num_tags&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">tag_idx2text</span><span class="p">),</span>
-                <span class="s2">&quot;ignore_tag_idx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_tag_idx</span><span class="p">,</span>
-            <span class="p">},</span>
-            <span class="s2">&quot;predict_helper&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;tag_idx2text&quot;</span><span class="p">:</span> <span class="n">tag_idx2text</span><span class="p">,</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
+        <span class="p">})</span>
+        <span class="n">helper</span><span class="o">.</span><span class="n">set_model_parameter</span><span class="p">({</span>
+            <span class="s2">&quot;num_tags&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">tag_idx2text</span><span class="p">),</span>
+            <span class="s2">&quot;ignore_tag_idx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_tag_idx</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="n">helper</span><span class="o">.</span><span class="n">set_predict_helper</span><span class="p">({</span>
+            <span class="s2">&quot;tag_idx2text&quot;</span><span class="p">:</span> <span class="n">tag_idx2text</span><span class="p">,</span>
+        <span class="p">})</span>
+
         <span class="n">features</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 
-        <span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">raw_dataset</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="n">data_type</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="n">data_type</span><span class="p">):</span>
             <span class="n">sequence_text</span> <span class="o">=</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;sequence&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
 
             <span class="n">sequence_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">sequence_text</span><span class="p">)</span>
@@ -367,14 +375,14 @@
             <span class="p">}</span>
             <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_row</span><span class="p">)</span>
 
-            <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;examples&quot;</span><span class="p">][</span><span class="n">data_uid</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">helper</span><span class="o">.</span><span class="n">set_example</span><span class="p">(</span><span class="n">data_uid</span><span class="p">,</span> <span class="p">{</span>
                 <span class="s2">&quot;sequence&quot;</span><span class="p">:</span> <span class="n">sequence_text</span><span class="p">,</span>
                 <span class="s2">&quot;sequence_sub_tokens&quot;</span><span class="p">:</span> <span class="n">sequence_sub_tokens</span><span class="p">,</span>
                 <span class="s2">&quot;tag_idxs&quot;</span><span class="p">:</span> <span class="n">tag_idxs</span><span class="p">,</span>
                 <span class="s2">&quot;tag_texts&quot;</span><span class="p">:</span> <span class="n">tag_texts</span><span class="p">,</span>
-            <span class="p">}</span>
+            <span class="p">})</span>
 
-        <span class="k">return</span> <span class="n">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">helper</span>
+        <span class="k">return</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">helper</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 
 <div class="viewcode-block" id="TokClsBertReader.read_one_example"><a class="viewcode-back" href="../../../../../claf.data.reader.bert.html#claf.data.reader.TokClsBertReader.read_one_example">[docs]</a>    <span class="k">def</span> <span class="nf">read_one_example</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; inputs keys: sequence &quot;&quot;&quot;</span>
@@ -399,22 +407,20 @@
             <span class="n">sequence_sub_tokens</span> <span class="o">=</span> <span class="n">sequence_sub_tokens</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence_max_length</span><span class="p">]</span>
 
         <span class="n">bert_input</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cls_token</span><span class="p">]</span> <span class="o">+</span> <span class="n">sequence_sub_tokens</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span><span class="p">]</span>
-        <span class="n">token_type</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_bert_token_type</span><span class="p">(</span><span class="n">bert_input</span><span class="p">,</span> <span class="n">SEP_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sep_token</span><span class="p">)</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">naive_tokens</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">tagged_sub_token_idxs</span><span class="p">),</span> \
             <span class="n">f</span><span class="s2">&quot;&quot;&quot;Wrong tagged_sub_token_idxs: followings mismatch.</span>
 <span class="s2">            naive_tokens: </span><span class="si">{naive_tokens}</span><span class="s2"></span>
 <span class="s2">            sequence_sub_tokens: </span><span class="si">{sequence_sub_tokens}</span><span class="s2"></span>
 <span class="s2">            tagged_sub_token_idxs: </span><span class="si">{tagged_sub_token_idxs}</span><span class="s2">&quot;&quot;&quot;</span>
 
-        <span class="n">features</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s2">&quot;bert_input&quot;</span><span class="p">:</span> <span class="n">bert_input</span><span class="p">,</span>
-            <span class="s2">&quot;token_type&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;feature&quot;</span><span class="p">:</span> <span class="n">token_type</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">},</span>  <span class="c1"># TODO: fix hard-code</span>
-            <span class="s2">&quot;tagged_sub_token_idxs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;feature&quot;</span><span class="p">:</span> <span class="n">tagged_sub_token_idxs</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">},</span>  <span class="c1"># TODO: fix hard-code</span>
-            <span class="s2">&quot;num_tokens&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;feature&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">naive_tokens</span><span class="p">),</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">},</span>  <span class="c1"># TODO: fix hard-code</span>
-        <span class="p">})</span>
+        <span class="n">bert_feature</span> <span class="o">=</span> <span class="n">BertFeature</span><span class="p">()</span>
+        <span class="n">bert_feature</span><span class="o">.</span><span class="n">set_input</span><span class="p">(</span><span class="n">bert_input</span><span class="p">)</span>
+        <span class="n">bert_feature</span><span class="o">.</span><span class="n">set_feature</span><span class="p">(</span><span class="s2">&quot;tagged_sub_token_idxs&quot;</span><span class="p">,</span> <span class="n">tagged_sub_token_idxs</span><span class="p">)</span>
+        <span class="n">bert_feature</span><span class="o">.</span><span class="n">set_feature</span><span class="p">(</span><span class="s2">&quot;num_tokens&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">naive_tokens</span><span class="p">))</span>
 
-        <span class="k">return</span> <span class="n">features</span><span class="p">,</span> <span class="p">{}</span></div></div>
+        <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">bert_feature</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()]</span>
+        <span class="n">helper</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="n">features</span><span class="p">,</span> <span class="n">helper</span></div></div>
 </pre></div>
 
            </div>

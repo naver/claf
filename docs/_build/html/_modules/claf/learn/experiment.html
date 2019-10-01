@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>claf.learn.experiment &mdash; CLaF 0.1.6 documentation</title>
+  <title>claf.learn.experiment &mdash; CLaF 0.2.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.1.6
+                0.2.0
               </div>
             
           
@@ -374,9 +374,12 @@
 
         <span class="c1"># Token &amp; Vocab</span>
         <span class="n">text_handler</span> <span class="o">=</span> <span class="n">TextHandler</span><span class="p">(</span><span class="n">token_makers</span><span class="p">,</span> <span class="n">lazy_indexing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">texts</span> <span class="o">=</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">filter_texts</span><span class="p">(</span><span class="n">datas</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">text_handler</span><span class="o">.</span><span class="n">is_all_vocab_use_pretrained</span><span class="p">():</span>
+            <span class="n">token_counters</span> <span class="o">=</span> <span class="n">token_makers</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">texts</span> <span class="o">=</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">filter_texts</span><span class="p">(</span><span class="n">datas</span><span class="p">)</span>
+            <span class="n">token_counters</span> <span class="o">=</span> <span class="n">text_handler</span><span class="o">.</span><span class="n">make_token_counters</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
 
-        <span class="n">token_counters</span> <span class="o">=</span> <span class="n">text_handler</span><span class="o">.</span><span class="n">make_token_counters</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
         <span class="n">vocabs</span> <span class="o">=</span> <span class="n">text_handler</span><span class="o">.</span><span class="n">build_vocabs</span><span class="p">(</span><span class="n">token_counters</span><span class="p">)</span>
         <span class="n">text_handler</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">datas</span><span class="p">,</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">text_columns</span><span class="p">)</span>
 
@@ -503,7 +506,9 @@
         <span class="n">num_gpu_state</span> <span class="o">=</span> <span class="n">num_gpu</span>
         <span class="k">if</span> <span class="n">num_gpu</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">num_gpu_state</span> <span class="o">+=</span> <span class="s2">&quot; (Multi-GPU)&quot;</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;use_gpu: </span><span class="si">{self.config.use_gpu}</span><span class="s2"> num_gpu: </span><span class="si">{num_gpu_state}</span><span class="s2">, distributed training: False, 16-bits trainiing: False&quot;</span><span class="p">)</span>
+
+        <span class="c1"># TODO: distributed training and 16-bits training (FP16)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;use_gpu: </span><span class="si">{self.config.use_gpu}</span><span class="s2"> num_gpu: </span><span class="si">{num_gpu_state}</span><span class="s2">, distributed training: False, 16-bits training: False&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">model</span>
 
 <div class="viewcode-block" id="Experiment.set_trainer"><a class="viewcode-back" href="../../../claf.learn.html#claf.learn.experiment.Experiment.set_trainer">[docs]</a>    <span class="k">def</span> <span class="nf">set_trainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">op_dict</span><span class="o">=</span><span class="p">{},</span> <span class="n">save_params</span><span class="o">=</span><span class="p">{}):</span>
