@@ -1,17 +1,17 @@
 
 import logging
 
+from claf.model.multi_task.category import TaskCategory
 from claf.model.sequence_classification.mixin import SequenceClassification
+from claf.model.reading_comprehension.mixin import ReadingComprehension
 from claf.model.regression.mixin import Regression
+from claf.model.token_classification.mixin import TokenClassification
 
 logger = logging.getLogger(__name__)
 
 
 class MultiTask:
     """ MultiTask Mixin Class """
-
-    CLASSIFICATION = "classification"
-    REGRESSION = "regression"
 
     def make_predictions(self, output_dict):
         task_index = output_dict["task_index"].item()
@@ -61,10 +61,14 @@ class MultiTask:
     def _make_task_mixin_obj(self, task_index):
         mixin_obj = None
         task_category = self.tasks[task_index]["category"]
-        if task_category == self.CLASSIFICATION:
+        if task_category == TaskCategory.SEQUENCE_CLASSIFICATION:
             mixin_obj = SequenceClassification()
-        elif task_category == self.REGRESSION:
+        elif task_category == TaskCategory.READING_COMPREHENSION:
+            mixin_obj = ReadingComprehension()
+        elif task_category == TaskCategory.REGRESSION:
             mixin_obj = Regression()
+        elif task_category == TaskCategory.TOKEN_CLASSIFICATION:
+            mixin_obj = TokenClassification()
         else:
             raise ValueError("task category error.")
 
