@@ -45,7 +45,7 @@
          }
      },
      "trainer": {
-         "log_dir": "logs/glue/rte_roberta_base",
+         "log_dir": "logs/glue/rte_roberta",
          "num_epochs": 20,
          "early_stopping_threshold": 10,
          "metric_key": "accuracy",
