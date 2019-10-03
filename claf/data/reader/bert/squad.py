@@ -56,9 +56,6 @@ class SQuADBertReader(DataReader):
 
         self.text_columns = ["bert_input", "context", "question"]
 
-        if "subword" not in tokenizers:
-            raise ValueError("WordTokenizer and SubwordTokenizer is required.")
-
         sent_tokenizer = SentTokenizer("punkt", {})
         if lang_code == "ko":
             self.word_tokenizer = WordTokenizer("mecab_ko", sent_tokenizer, split_with_regex=True)
@@ -66,11 +63,17 @@ class SQuADBertReader(DataReader):
             self.word_tokenizer = WordTokenizer(
                 "treebank_en", sent_tokenizer, split_with_regex=True
             )
-        self.subword_tokenizer = tokenizers["subword"]
+
+        if "bpe" in tokenizers:
+            self.sub_level_tokenizer = tokenizers["bpe"]  # RoBERTa
+        elif "subword" in tokenizers:
+            self.sub_level_tokenizer = tokenizers["subword"]  # BERT
+        else:
+            raise ValueError("'bpe' or 'subword' tokenizer is required.")
 
     @overrides
     def _read(self, file_path, data_type=None):
-        word_tokenized_error_count, subword_tokenized_error_count = 0, 0
+        word_tokenized_error_count, sub_level_tokenized_error_count = 0, 0
 
         if data_type != "train":
             self.context_stride = 64  # NOTE: hard-code
@@ -106,14 +109,14 @@ class SQuADBertReader(DataReader):
 
                 context_sub_tokens = []
                 for token in context_tokens:
-                    for sub_token in self.subword_tokenizer.tokenize(token.text):
+                    for sub_token in self.sub_level_tokenizer.tokenize(token.text):
                         context_sub_tokens.append(Token(sub_token, token.text_span))
 
                 for qa in paragraph["qas"]:
                     question_text = qa["question"]
                     question_text = " ".join(self.word_tokenizer.tokenize(question_text))
                     question_sub_tokens = [
-                        Token(subword) for subword in self.subword_tokenizer.tokenize(question_text)
+                        Token(sub_token) for sub_token in self.sub_level_tokenizer.tokenize(question_text)
                     ]
 
                     id_ = qa["id"]
@@ -181,8 +184,8 @@ class SQuADBertReader(DataReader):
                         bert_answer = context_text[char_start:char_end]
 
                         if char_answer_text != bert_answer:
-                            logger.warning(f"subword_tokenized_error: {char_answer_text} ### {word_answer_text})")
-                            subword_tokenized_error_count += 1
+                            logger.warning(f"sub_level_tokenized_error: {char_answer_text} ### {word_answer_text})")
+                            sub_level_tokenized_error_count += 1
 
                         feature_row = {
                             "bert_input": [token.text for token in bert_tokens],
@@ -211,7 +214,7 @@ class SQuADBertReader(DataReader):
                         }, update=True)
 
         logger.info(
-            f"tokenized_error_count - word: {word_tokenized_error_count} | subword: {subword_tokenized_error_count}"
+            f"tokenized_error_count - word: {word_tokenized_error_count} | sub_level: {sub_level_tokenized_error_count}"
         )
         return utils.make_batch(features, labels), helper.to_dict()
 
@@ -227,13 +230,13 @@ class SQuADBertReader(DataReader):
 
         context_sub_tokens = []
         for token in context_tokens:
-            for sub_token in self.subword_tokenizer.tokenize(token.text):
+            for sub_token in self.sub_level_tokenizer.tokenize(token.text):
                 context_sub_tokens.append(Token(sub_token, token.text_span))
 
         question_text = inputs["question"]
         question_text = " ".join(self.word_tokenizer.tokenize(question_text))
         question_sub_tokens = [
-            Token(subword) for subword in self.subword_tokenizer.tokenize(question_text)
+            Token(sub_token) for sub_token in self.sub_level_tokenizer.tokenize(question_text)
         ]
 
         bert_tokens, _ = self._make_features_and_labels(
@@ -316,7 +319,7 @@ class SQuADBertReader(DataReader):
     def _make_features_and_labels(
         self, context_sub_tokens, question_sub_tokens, answer_char_start, answer_char_end
     ):
-        # subword, context_stride logic with context_max_length
+        # sub_token, context_stride logic with context_max_length
         context_max_length = (
             self.max_seq_length - len(question_sub_tokens) - 3
         )  # [CLS], [SEP], [SEP]

@@ -37,7 +37,7 @@ class RoBertaForQA(SQuADv1, ModelWithoutTokenEmbedder):
         self.model = RobertaModel.from_pretrained(
             pretrained_model_name, cache_dir=str(CachePath.ROOT)
         )
-        # TODO: append ForQuestionAnswering part
+        self.qa_outputs = nn.Linear(self.model.config.hidden_size, self.model.config.num_labels)
         self.criterion = nn.CrossEntropyLoss()
 
     @overrides
@@ -65,12 +65,18 @@ class RoBertaForQA(SQuADv1, ModelWithoutTokenEmbedder):
         """
 
         bert_inputs = features["bert_input"]["feature"]
-        token_type_ids = features["token_type"]["feature"]
         attention_mask = (bert_inputs > 0).long()
 
-        span_start_logits, span_end_logits = self.model(
-            bert_inputs, token_type_ids=token_type_ids, attention_mask=attention_mask
+        outputs = self.model(
+            bert_inputs, token_type_ids=None, attention_mask=attention_mask
         )
+        sequence_output = outputs[0]
+
+        logits = self.qa_outputs(sequence_output)
+        span_start_logits, span_end_logits = logits.split(1, dim=-1)
+
+        span_start_logits = span_start_logits.squeeze(-1)
+        span_end_logits = span_end_logits.squeeze(-1)
 
         output_dict = {
             "start_logits": span_start_logits,
