@@ -23,23 +23,23 @@
 |  | RoBERTa-Base | 87.305/87.236 | 87.6/- | glue/mnli{m/mm}_roberta_base.json |
 |  | RoBERTa-Large | - | 90.2/90.2 | - |
 | **MRPC** (**Accuracy/F1**) | BERT-Base | 87.5/91.282 | 88.9 (Test set) | glue/mrpc_bert_base.json |
-|  | BERT-Large | - | 88.0 | - |
+|  | BERT-Large | 87.255/90.845 | 88.0 | - |
 |  | MT-DNN (BERT) Base | 87.5/91.005 | - | multi_task/glue.json -> `fine-fune` |
 |  | MT-DNN (BERT) Large | - | 91.0/87.5 | - |
 |  | RoBERTa-Base | 88.480/91.681 | 90.2 | glue/mrpc_roberta_base.json |
 |  | RoBERTa-Large | 90.686/93.214 | 90.9 | - |
 | **QNLI** (**Accuracy**) | BERT-Base | 88.521 | 90.5 (Test set) | glue/qnli_bert_base.json |
-|  | BERT-Large | - | 92.3 | - |
+|  | BERT-Large | 90.440 | 92.3 | - |
 |  | MT-DNN (BERT) Base | - | - | multi_task/glue.json -> `fine-fune` |
 |  | MT-DNN (BERT) Large | - | 87.1/86.7 | - |
 |  | RoBERTa-Base | 90.823 | 92.8 | glue/qnli_roberta_base.json |
 |  | RoBERTa-Large | - | 94.7 | - |
 | **QQP** (**Accuracy/F1**) | BERT-Base | 90.378/87.171 | 71.2 (Test set) | glue/qqp_bert_base.json |
-|  | BERT-Large | - | 91.3 | - |
+|  | BERT-Large | 91.640/88.745 | 91.3 | - |
 |  | MT-DNN (BERT) Base | 91.261/88.219 | - | - |
 |  | MT-DNN (BERT) Large | - | 87.1/86.7 | - |
 |  | RoBERTa-Base | 91.541/88.768 | 91.9 | glue/qqp_roberta_base.json |
-|  | RoBERTa-Large | - | 92.2 | - |
+|  | RoBERTa-Large | 91.848/89.031 | 92.2 | - |
 | **RTE** (**Accuracy**) | BERT-Base | 69.314 | 66.4 (Test set) | glue/rte_bert_base.json |
 |  | BERT-Large | 69.675 | 70.4 | - |
 |  | MT-DNN (BERT) Base | 79.422 | - | multi_task/glue.json -> `fine-fune` |
@@ -51,7 +51,7 @@
 |  | MT-DNN (BERT) Base | 93.005 | - | - |
 |  | MT-DNN (BERT) Large | - | 94.3 | - |
 |  | RoBERTa-Base | 94.495 | 94.8 | glue/sst_roberta_base.json |
-|  | RoBERTa-Large | - | 96.4 | - |
+|  | RoBERTa-Large | 95.642 | 96.4 | - |
 | **STS-B** (**Pearson/Spearman**) | BERT-Base | 88.070/87.881 | 85.8 (Test set) | glue/stsb_bert_base.json |
 |  | BERT-Large | 90.041/89735 | 90.0 | - |
 |  | MT-DNN (BERT) Base | 88.444/88.807 | - | multi_task/glue.json -> `fine-fune` |
