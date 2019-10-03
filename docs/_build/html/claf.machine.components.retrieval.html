@@ -190,7 +190,7 @@
 <span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.machine.components.retrieval.tfidf" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.machine.components.retrieval.tfidf.TFIDF">
-<em class="property">class </em><code class="descclassname">claf.machine.components.retrieval.tfidf.</code><code class="descname">TFIDF</code><span class="sig-paren">(</span><em>texts</em>, <em>word_tokenizer</em>, <em>k=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.machine.components.retrieval.tfidf.</code><code class="sig-name descname">TFIDF</code><span class="sig-paren">(</span><em class="sig-param">texts</em>, <em class="sig-param">word_tokenizer</em>, <em class="sig-param">k=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>TF-IDF document retrieval model</p>
 <ul class="simple">
@@ -207,52 +207,52 @@
 </ul>
 <dl class="attribute">
 <dt id="claf.machine.components.retrieval.tfidf.TFIDF.INDEX_FNAME">
-<code class="descname">INDEX_FNAME</code><em class="property"> = 'similarities.index'</em><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.INDEX_FNAME" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">INDEX_FNAME</code><em class="property"> = 'similarities.index'</em><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.INDEX_FNAME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.machine.components.retrieval.tfidf.TFIDF.TFIDF_FNAME">
-<code class="descname">TFIDF_FNAME</code><em class="property"> = 'tfidf.model'</em><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.TFIDF_FNAME" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">TFIDF_FNAME</code><em class="property"> = 'tfidf.model'</em><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.TFIDF_FNAME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="claf.machine.components.retrieval.tfidf.TFIDF.VOCAB_FNAME">
-<code class="descname">VOCAB_FNAME</code><em class="property"> = 'vocab.txt'</em><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.VOCAB_FNAME" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">VOCAB_FNAME</code><em class="property"> = 'vocab.txt'</em><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.VOCAB_FNAME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.machine.components.retrieval.tfidf.TFIDF.get_closest">
-<code class="descname">get_closest</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF.get_closest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.get_closest" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_closest</code><span class="sig-paren">(</span><em class="sig-param">query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF.get_closest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.get_closest" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.machine.components.retrieval.tfidf.TFIDF.init">
-<code class="descname">init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF.init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.init" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF.init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.init" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.machine.components.retrieval.tfidf.TFIDF.init_model">
-<code class="descname">init_model</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF.init_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.init_model" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">init_model</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF.init_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.init_model" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.machine.components.retrieval.tfidf.TFIDF.load">
-<code class="descname">load</code><span class="sig-paren">(</span><em>dir_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.load" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">dir_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.load" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.machine.components.retrieval.tfidf.TFIDF.parse">
-<code class="descname">parse</code><span class="sig-paren">(</span><em>query</em>, <em>ngram=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.parse" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param">query</em>, <em class="sig-param">ngram=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.parse" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.machine.components.retrieval.tfidf.TFIDF.save">
-<code class="descname">save</code><span class="sig-paren">(</span><em>dir_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.save" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">dir_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.save" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="claf.machine.components.retrieval.tfidf.TFIDF.text_to_tfidf">
-<code class="descname">text_to_tfidf</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF.text_to_tfidf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.text_to_tfidf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">text_to_tfidf</code><span class="sig-paren">(</span><em class="sig-param">query</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/machine/components/retrieval/tfidf.html#TFIDF.text_to_tfidf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.machine.components.retrieval.tfidf.TFIDF.text_to_tfidf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a tfidf-weighted word vector from query.</p>
 <p>tfidf = log(tf + 1) * log((N - Nt + 0.5) / (Nt + 0.5))</p>
 </dd></dl>
