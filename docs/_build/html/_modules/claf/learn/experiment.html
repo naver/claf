@@ -503,7 +503,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">num_gpu</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="n">num_gpu_state</span> <span class="o">=</span> <span class="n">num_gpu</span>
+        <span class="n">num_gpu_state</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_gpu</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">num_gpu</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">num_gpu_state</span> <span class="o">+=</span> <span class="s2">&quot; (Multi-GPU)&quot;</span>
 

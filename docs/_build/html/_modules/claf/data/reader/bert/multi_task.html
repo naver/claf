@@ -195,9 +195,12 @@
 <span class="kn">from</span> <span class="nn">claf.data.dto</span> <span class="k">import</span> <span class="n">Helper</span>
 <span class="kn">from</span> <span class="nn">claf.data.reader.base</span> <span class="k">import</span> <span class="n">DataReader</span>
 <span class="kn">from</span> <span class="nn">claf.decorator</span> <span class="k">import</span> <span class="n">register</span>
+<span class="kn">from</span> <span class="nn">claf.model.multi_task.category</span> <span class="k">import</span> <span class="n">TaskCategory</span>
 
 <span class="kn">from</span> <span class="nn">.seq_cls</span> <span class="k">import</span> <span class="n">SeqClsBertReader</span>
+<span class="kn">from</span> <span class="nn">.squad</span> <span class="k">import</span> <span class="n">SQuADBertReader</span>
 <span class="kn">from</span> <span class="nn">.regression</span> <span class="k">import</span> <span class="n">RegressionBertReader</span>
+<span class="kn">from</span> <span class="nn">.tok_cls</span> <span class="k">import</span> <span class="n">TokClsBertReader</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -246,16 +249,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">dataset_batches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">batches</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dataset_helpers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">helpers</span><span class="p">)</span>
 
-            <span class="n">task</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="n">task</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reader</span><span class="p">[</span><span class="s2">&quot;dataset&quot;</span><span class="p">]</span>
-            <span class="n">task</span><span class="p">[</span><span class="s2">&quot;metric_key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">METRIC_KEY</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_reader</span><span class="p">,</span> <span class="n">SeqClsBertReader</span><span class="p">):</span>
-                <span class="n">task</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;classification&quot;</span>
-                <span class="n">task</span><span class="p">[</span><span class="s2">&quot;num_label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">helpers</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">][</span><span class="s2">&quot;model&quot;</span><span class="p">][</span><span class="s2">&quot;num_classes&quot;</span><span class="p">]</span>
-            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_reader</span><span class="p">,</span> <span class="n">RegressionBertReader</span><span class="p">):</span>
-                <span class="n">task</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;regression&quot;</span>
-                <span class="n">task</span><span class="p">[</span><span class="s2">&quot;num_label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-
+            <span class="n">dataset_name</span> <span class="o">=</span> <span class="n">reader</span><span class="p">[</span><span class="s2">&quot;dataset&quot;</span><span class="p">]</span>
+            <span class="n">helper</span> <span class="o">=</span> <span class="n">helpers</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span>
+            <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_task_by_reader</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">,</span> <span class="n">data_reader</span><span class="p">,</span> <span class="n">helper</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MultiTaskBertReader.make_data_reader"><a class="viewcode-back" href="../../../../../claf.data.reader.html#claf.data.reader.MultiTaskBertReader.make_data_reader">[docs]</a>    <span class="k">def</span> <span class="nf">make_data_reader</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_dict</span><span class="p">):</span>
@@ -265,6 +261,29 @@
 
         <span class="n">data_reader_factory</span> <span class="o">=</span> <span class="n">DataReaderFactory</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">data_reader_factory</span><span class="o">.</span><span class="n">create</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="MultiTaskBertReader.make_task_by_reader"><a class="viewcode-back" href="../../../../../claf.data.reader.html#claf.data.reader.MultiTaskBertReader.make_task_by_reader">[docs]</a>    <span class="k">def</span> <span class="nf">make_task_by_reader</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">data_reader</span><span class="p">,</span> <span class="n">helper</span><span class="p">):</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">task</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">task</span><span class="p">[</span><span class="s2">&quot;metric_key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_reader</span><span class="o">.</span><span class="n">METRIC_KEY</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_reader</span><span class="p">,</span> <span class="n">SeqClsBertReader</span><span class="p">):</span>
+            <span class="n">task</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TaskCategory</span><span class="o">.</span><span class="n">SEQUENCE_CLASSIFICATION</span>
+            <span class="n">task</span><span class="p">[</span><span class="s2">&quot;num_label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">][</span><span class="s2">&quot;num_classes&quot;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_reader</span><span class="p">,</span> <span class="n">SQuADBertReader</span><span class="p">):</span>
+            <span class="n">task</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TaskCategory</span><span class="o">.</span><span class="n">READING_COMPREHENSION</span>
+            <span class="n">task</span><span class="p">[</span><span class="s2">&quot;num_label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_reader</span><span class="p">,</span> <span class="n">RegressionBertReader</span><span class="p">):</span>
+            <span class="n">task</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TaskCategory</span><span class="o">.</span><span class="n">REGRESSION</span>
+            <span class="n">task</span><span class="p">[</span><span class="s2">&quot;num_label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_reader</span><span class="p">,</span> <span class="n">TokClsBertReader</span><span class="p">):</span>
+            <span class="n">task</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TaskCategory</span><span class="o">.</span><span class="n">TOKEN_CLASSIFICATION</span>
+            <span class="n">task</span><span class="p">[</span><span class="s2">&quot;num_label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">][</span><span class="s2">&quot;num_tags&quot;</span><span class="p">]</span>
+            <span class="n">task</span><span class="p">[</span><span class="s2">&quot;ignore_tag_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ignore_tag_idx&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Check data_reader.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">task</span></div>
 
     <span class="nd">@overrides</span>
     <span class="k">def</span> <span class="nf">_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -282,11 +301,9 @@
 
             <span class="n">helper</span><span class="o">.</span><span class="n">task_helpers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task_helper</span><span class="p">)</span>
 
-        <span class="c1"># TODO: tasks (category - issubclasses, label_count - num_classes or labl)</span>
         <span class="n">helper</span><span class="o">.</span><span class="n">set_model_parameter</span><span class="p">({</span>
             <span class="s2">&quot;tasks&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">,</span>
         <span class="p">})</span>
-
         <span class="k">return</span> <span class="n">batches</span><span class="p">,</span> <span class="n">helper</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 
 <div class="viewcode-block" id="MultiTaskBertReader.read_one_example"><a class="viewcode-back" href="../../../../../claf.data.reader.html#claf.data.reader.MultiTaskBertReader.read_one_example">[docs]</a>    <span class="k">def</span> <span class="nf">read_one_example</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>

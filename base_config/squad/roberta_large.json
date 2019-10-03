@@ -7,7 +7,9 @@
              "lang_code": "en",
              "max_seq_length": 384,
              "context_stride": 128,
-             "max_question_length": 64
+             "max_question_length": 64,
+             "cls_token": "<s>",
+             "sep_token": "</s>"
          }
      },
      "iterator": {
@@ -17,23 +19,22 @@
          "names": ["feature"],
          "types": ["feature"],
          "tokenizer": {
-             "subword": {
-                 "name": "wordpiece",
-                 "wordpiece": {
-                     "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-uncased-vocab.txt"
-                 }
-             },
-             "word": {
-                 "name": "bert_basic",
-                 "bert_basic": {
-                     "do_lower_case": true
-                 }
+             "bpe": {
+                "name": "roberta",
+                "roberta": {
+                    "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/roberta-large-vocab.json",
+                    "merges_path": "https://s3.amazonaws.com/models.huggingface.co/bert/roberta-large-merges.txt"
+                }
              }
          },
          "feature": {
              "vocab": {
-                 "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-uncased-vocab.txt",
-                 "pretrained_token": "all"
+                 "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/roberta-large-vocab.json",
+                 "pretrained_token": "all",
+                 "pad_token": "<pad>",
+                 "oov_token": "<unk>",
+                 "cls_token": "<s>",
+                 "sep_token": "</s>"
              },
              "indexer": {
                  "do_tokenize": false
@@ -41,29 +42,29 @@
          }
      },
      "model": {
-         "name": "bert_for_qa",
-         "bert_for_qa": {
-             "pretrained_model_name": "bert-large-uncased",
+         "name": "roberta_for_qa",
+         "roberta_for_qa": {
+             "pretrained_model_name": "roberta-large",
              "answer_maxlen": 30
          }
      },
      "trainer": {
-         "log_dir": "logs/squad_bert_base",
-         "num_epochs": 2,
+         "log_dir": "logs/squad_roberta_large",
+         "num_epochs": 5,
          "early_stopping_threshold": 10,
          "metric_key": "f1",
          "verbose_step_count": 100,
-         "eval_and_save_step_count": 1500
+         "eval_and_save_step_count": 1000
      },
      "optimizer": {
-         "learning_rate": 2e-5,
+         "learning_rate": 1.5e-5,
          "op_type": "adamw",
          "adamw": {
              "weight_decay": 0.01
          },
          "lr_scheduler_type": "warmup_linear",
          "warmup_linear": {
-             "warmup_proportion": 0.1
+             "warmup_proportion": 0.06
          }
      },
      "seed_num": 42

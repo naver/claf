@@ -48,7 +48,7 @@
          }
      },
      "trainer": {
-         "log_dir": "logs/squad_bert",
+         "log_dir": "logs/squad_bert_base",
          "num_epochs": 5,
          "early_stopping_threshold": 10,
          "metric_key": "f1",
@@ -63,7 +63,7 @@
          },
          "lr_scheduler_type": "warmup_linear",
          "warmup_linear": {
-             "warmup_steps": 10000
+             "warmup_proportion": 0.1
          }
      },
      "seed_num": 42

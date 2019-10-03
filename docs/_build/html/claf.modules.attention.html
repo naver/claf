@@ -209,7 +209,7 @@
 <span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-claf.modules.attention.bi_attention" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.modules.attention.bi_attention.BiAttention">
-<em class="property">class </em><code class="descclassname">claf.modules.attention.bi_attention.</code><code class="descname">BiAttention</code><span class="sig-paren">(</span><em>model_dim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/bi_attention.html#BiAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.bi_attention.BiAttention" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.attention.bi_attention.</code><code class="sig-name descname">BiAttention</code><span class="sig-paren">(</span><em class="sig-param">model_dim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/bi_attention.html#BiAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.bi_attention.BiAttention" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <dl class="simple">
 <dt>Attention Flow Layer</dt><dd><p>in BiDAF (<a class="reference external" href="https://arxiv.org/pdf/1611.01603.pdf">https://arxiv.org/pdf/1611.01603.pdf</a>)</p>
@@ -227,7 +227,7 @@ Query-to-context Attention (Q2C)</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.attention.bi_attention.BiAttention.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>context</em>, <em>context_mask</em>, <em>query</em>, <em>query_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/bi_attention.html#BiAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.bi_attention.BiAttention.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">context</em>, <em class="sig-param">context_mask</em>, <em class="sig-param">query</em>, <em class="sig-param">query_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/bi_attention.html#BiAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.bi_attention.BiAttention.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -243,7 +243,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <span class="target" id="module-claf.modules.attention.co_attention"></span><dl class="class">
 <dt id="claf.modules.attention.co_attention.CoAttention">
-<em class="property">class </em><code class="descclassname">claf.modules.attention.co_attention.</code><code class="descname">CoAttention</code><span class="sig-paren">(</span><em>embed_dim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/co_attention.html#CoAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.co_attention.CoAttention" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.attention.co_attention.</code><code class="sig-name descname">CoAttention</code><span class="sig-paren">(</span><em class="sig-param">embed_dim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/co_attention.html#CoAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.co_attention.CoAttention" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <dl class="simple">
 <dt>CoAttention encoder</dt><dd><p>in Dynamic Coattention Networks For Question Answering (<a class="reference external" href="https://arxiv.org/abs/1611.01604">https://arxiv.org/abs/1611.01604</a>)</p>
@@ -259,7 +259,7 @@ registered hooks while the latter silently ignores them.</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.attention.co_attention.CoAttention.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>context_embed</em>, <em>question_embed</em>, <em>context_mask=None</em>, <em>question_mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/co_attention.html#CoAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.co_attention.CoAttention.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">context_embed</em>, <em class="sig-param">question_embed</em>, <em class="sig-param">context_mask=None</em>, <em class="sig-param">question_mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/co_attention.html#CoAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.co_attention.CoAttention.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -275,7 +275,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <span class="target" id="module-claf.modules.attention.docqa_attention"></span><dl class="class">
 <dt id="claf.modules.attention.docqa_attention.DocQAAttention">
-<em class="property">class </em><code class="descclassname">claf.modules.attention.docqa_attention.</code><code class="descname">DocQAAttention</code><span class="sig-paren">(</span><em>rnn_dim</em>, <em>linear_dim</em>, <em>self_attn=False</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/docqa_attention.html#DocQAAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.docqa_attention.DocQAAttention" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.attention.docqa_attention.</code><code class="sig-name descname">DocQAAttention</code><span class="sig-paren">(</span><em class="sig-param">rnn_dim</em>, <em class="sig-param">linear_dim</em>, <em class="sig-param">self_attn=False</em>, <em class="sig-param">weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/docqa_attention.html#DocQAAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.docqa_attention.DocQAAttention" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <dl class="simple">
 <dt>Bi-Attention Layer + (Self-Attention)</dt><dd><p>in DocumentQA (<a class="reference external" href="https://arxiv.org/abs/1710.10723">https://arxiv.org/abs/1710.10723</a>)</p>
@@ -297,7 +297,7 @@ weight_init: (bool) weight initialization</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.attention.docqa_attention.DocQAAttention.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>x_mask</em>, <em>key</em>, <em>key_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/docqa_attention.html#DocQAAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.docqa_attention.DocQAAttention.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">x_mask</em>, <em class="sig-param">key</em>, <em class="sig-param">key_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/docqa_attention.html#DocQAAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.docqa_attention.DocQAAttention.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -313,7 +313,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <span class="target" id="module-claf.modules.attention.multi_head_attention"></span><dl class="class">
 <dt id="claf.modules.attention.multi_head_attention.MultiHeadAttention">
-<em class="property">class </em><code class="descclassname">claf.modules.attention.multi_head_attention.</code><code class="descname">MultiHeadAttention</code><span class="sig-paren">(</span><em>num_head=8</em>, <em>model_dim=100</em>, <em>dropout=0.1</em>, <em>linear_key_dim=None</em>, <em>linear_value_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/multi_head_attention.html#MultiHeadAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.multi_head_attention.MultiHeadAttention" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.attention.multi_head_attention.</code><code class="sig-name descname">MultiHeadAttention</code><span class="sig-paren">(</span><em class="sig-param">num_head=8</em>, <em class="sig-param">model_dim=100</em>, <em class="sig-param">dropout=0.1</em>, <em class="sig-param">linear_key_dim=None</em>, <em class="sig-param">linear_value_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/multi_head_attention.html#MultiHeadAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.multi_head_attention.MultiHeadAttention" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <dl class="simple">
 <dt>Transformer’s Multi-Head Attention</dt><dd><p>in “Attention is All You Need” (<a class="reference external" href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>)</p>
@@ -331,7 +331,7 @@ linear_value_dim: the number of linear value dimension</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.attention.multi_head_attention.MultiHeadAttention.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>q</em>, <em>k</em>, <em>v</em>, <em>mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/multi_head_attention.html#MultiHeadAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.multi_head_attention.MultiHeadAttention.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">q</em>, <em class="sig-param">k</em>, <em class="sig-param">v</em>, <em class="sig-param">mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/multi_head_attention.html#MultiHeadAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.multi_head_attention.MultiHeadAttention.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -348,14 +348,14 @@ registered hooks while the latter silently ignores them.</p>
 <span class="target" id="module-claf.modules.attention.seq_attention"></span><p>original code from: <a class="reference external" href="https://github.com/facebookresearch/DrQA/blob/master/drqa/reader/layers.py">https://github.com/facebookresearch/DrQA/blob/master/drqa/reader/layers.py</a></p>
 <dl class="class">
 <dt id="claf.modules.attention.seq_attention.BilinearSeqAttn">
-<em class="property">class </em><code class="descclassname">claf.modules.attention.seq_attention.</code><code class="descname">BilinearSeqAttn</code><span class="sig-paren">(</span><em>x_size</em>, <em>y_size</em>, <em>identity=False</em>, <em>normalize=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#BilinearSeqAttn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.seq_attention.BilinearSeqAttn" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.attention.seq_attention.</code><code class="sig-name descname">BilinearSeqAttn</code><span class="sig-paren">(</span><em class="sig-param">x_size</em>, <em class="sig-param">y_size</em>, <em class="sig-param">identity=False</em>, <em class="sig-param">normalize=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#BilinearSeqAttn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.seq_attention.BilinearSeqAttn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>A bilinear attention layer over a sequence X w.r.t y:
 * o_i = softmax(x_i’Wy) for x_i in X.
 Optionally don’t normalize output weights.</p>
 <dl class="method">
 <dt id="claf.modules.attention.seq_attention.BilinearSeqAttn.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>x_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#BilinearSeqAttn.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.seq_attention.BilinearSeqAttn.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em>, <em class="sig-param">x_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#BilinearSeqAttn.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.seq_attention.BilinearSeqAttn.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -371,13 +371,13 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="class">
 <dt id="claf.modules.attention.seq_attention.LinearSeqAttn">
-<em class="property">class </em><code class="descclassname">claf.modules.attention.seq_attention.</code><code class="descname">LinearSeqAttn</code><span class="sig-paren">(</span><em>input_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#LinearSeqAttn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.seq_attention.LinearSeqAttn" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.attention.seq_attention.</code><code class="sig-name descname">LinearSeqAttn</code><span class="sig-paren">(</span><em class="sig-param">input_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#LinearSeqAttn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.seq_attention.LinearSeqAttn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Self attention over a sequence:
 * o_i = softmax(Wx_i) for x_i in X.</p>
 <dl class="method">
 <dt id="claf.modules.attention.seq_attention.LinearSeqAttn.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>x_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#LinearSeqAttn.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.seq_attention.LinearSeqAttn.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">x_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#LinearSeqAttn.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.seq_attention.LinearSeqAttn.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -393,14 +393,14 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="class">
 <dt id="claf.modules.attention.seq_attention.SeqAttnMatch">
-<em class="property">class </em><code class="descclassname">claf.modules.attention.seq_attention.</code><code class="descname">SeqAttnMatch</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>identity=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#SeqAttnMatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.seq_attention.SeqAttnMatch" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.attention.seq_attention.</code><code class="sig-name descname">SeqAttnMatch</code><span class="sig-paren">(</span><em class="sig-param">embed_dim</em>, <em class="sig-param">identity=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#SeqAttnMatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.seq_attention.SeqAttnMatch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Given sequences X and Y, match sequence Y to each element in X.
 * o_i = sum(alpha_j * y_j) for i in X
 * alpha_j = softmax(y_j * x_i)</p>
 <dl class="method">
 <dt id="claf.modules.attention.seq_attention.SeqAttnMatch.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>y_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#SeqAttnMatch.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.seq_attention.SeqAttnMatch.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em>, <em class="sig-param">y_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#SeqAttnMatch.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.seq_attention.SeqAttnMatch.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -419,7 +419,7 @@ registered hooks while the latter silently ignores them.</p>
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-claf.modules.attention" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="claf.modules.attention.BiAttention">
-<em class="property">class </em><code class="descclassname">claf.modules.attention.</code><code class="descname">BiAttention</code><span class="sig-paren">(</span><em>model_dim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/bi_attention.html#BiAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.BiAttention" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.attention.</code><code class="sig-name descname">BiAttention</code><span class="sig-paren">(</span><em class="sig-param">model_dim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/bi_attention.html#BiAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.BiAttention" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <dl class="simple">
 <dt>Attention Flow Layer</dt><dd><p>in BiDAF (<a class="reference external" href="https://arxiv.org/pdf/1611.01603.pdf">https://arxiv.org/pdf/1611.01603.pdf</a>)</p>
@@ -437,7 +437,7 @@ Query-to-context Attention (Q2C)</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.attention.BiAttention.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>context</em>, <em>context_mask</em>, <em>query</em>, <em>query_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/bi_attention.html#BiAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.BiAttention.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">context</em>, <em class="sig-param">context_mask</em>, <em class="sig-param">query</em>, <em class="sig-param">query_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/bi_attention.html#BiAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.BiAttention.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -453,7 +453,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="class">
 <dt id="claf.modules.attention.CoAttention">
-<em class="property">class </em><code class="descclassname">claf.modules.attention.</code><code class="descname">CoAttention</code><span class="sig-paren">(</span><em>embed_dim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/co_attention.html#CoAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.CoAttention" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.attention.</code><code class="sig-name descname">CoAttention</code><span class="sig-paren">(</span><em class="sig-param">embed_dim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/co_attention.html#CoAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.CoAttention" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <dl class="simple">
 <dt>CoAttention encoder</dt><dd><p>in Dynamic Coattention Networks For Question Answering (<a class="reference external" href="https://arxiv.org/abs/1611.01604">https://arxiv.org/abs/1611.01604</a>)</p>
@@ -469,7 +469,7 @@ registered hooks while the latter silently ignores them.</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.attention.CoAttention.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>context_embed</em>, <em>question_embed</em>, <em>context_mask=None</em>, <em>question_mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/co_attention.html#CoAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.CoAttention.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">context_embed</em>, <em class="sig-param">question_embed</em>, <em class="sig-param">context_mask=None</em>, <em class="sig-param">question_mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/co_attention.html#CoAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.CoAttention.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -485,7 +485,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="class">
 <dt id="claf.modules.attention.MultiHeadAttention">
-<em class="property">class </em><code class="descclassname">claf.modules.attention.</code><code class="descname">MultiHeadAttention</code><span class="sig-paren">(</span><em>num_head=8</em>, <em>model_dim=100</em>, <em>dropout=0.1</em>, <em>linear_key_dim=None</em>, <em>linear_value_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/multi_head_attention.html#MultiHeadAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.MultiHeadAttention" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.attention.</code><code class="sig-name descname">MultiHeadAttention</code><span class="sig-paren">(</span><em class="sig-param">num_head=8</em>, <em class="sig-param">model_dim=100</em>, <em class="sig-param">dropout=0.1</em>, <em class="sig-param">linear_key_dim=None</em>, <em class="sig-param">linear_value_dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/multi_head_attention.html#MultiHeadAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.MultiHeadAttention" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <dl class="simple">
 <dt>Transformer’s Multi-Head Attention</dt><dd><p>in “Attention is All You Need” (<a class="reference external" href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>)</p>
@@ -503,7 +503,7 @@ linear_value_dim: the number of linear value dimension</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.attention.MultiHeadAttention.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>q</em>, <em>k</em>, <em>v</em>, <em>mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/multi_head_attention.html#MultiHeadAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.MultiHeadAttention.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">q</em>, <em class="sig-param">k</em>, <em class="sig-param">v</em>, <em class="sig-param">mask=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/multi_head_attention.html#MultiHeadAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.MultiHeadAttention.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -519,7 +519,7 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="class">
 <dt id="claf.modules.attention.DocQAAttention">
-<em class="property">class </em><code class="descclassname">claf.modules.attention.</code><code class="descname">DocQAAttention</code><span class="sig-paren">(</span><em>rnn_dim</em>, <em>linear_dim</em>, <em>self_attn=False</em>, <em>weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/docqa_attention.html#DocQAAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.DocQAAttention" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.attention.</code><code class="sig-name descname">DocQAAttention</code><span class="sig-paren">(</span><em class="sig-param">rnn_dim</em>, <em class="sig-param">linear_dim</em>, <em class="sig-param">self_attn=False</em>, <em class="sig-param">weight_init=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/docqa_attention.html#DocQAAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.DocQAAttention" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <dl class="simple">
 <dt>Bi-Attention Layer + (Self-Attention)</dt><dd><p>in DocumentQA (<a class="reference external" href="https://arxiv.org/abs/1710.10723">https://arxiv.org/abs/1710.10723</a>)</p>
@@ -541,7 +541,7 @@ weight_init: (bool) weight initialization</p>
 </ul>
 <dl class="method">
 <dt id="claf.modules.attention.DocQAAttention.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>x_mask</em>, <em>key</em>, <em>key_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/docqa_attention.html#DocQAAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.DocQAAttention.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">x_mask</em>, <em class="sig-param">key</em>, <em class="sig-param">key_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/docqa_attention.html#DocQAAttention.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.DocQAAttention.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -557,14 +557,14 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="class">
 <dt id="claf.modules.attention.SeqAttnMatch">
-<em class="property">class </em><code class="descclassname">claf.modules.attention.</code><code class="descname">SeqAttnMatch</code><span class="sig-paren">(</span><em>embed_dim</em>, <em>identity=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#SeqAttnMatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.SeqAttnMatch" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.attention.</code><code class="sig-name descname">SeqAttnMatch</code><span class="sig-paren">(</span><em class="sig-param">embed_dim</em>, <em class="sig-param">identity=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#SeqAttnMatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.SeqAttnMatch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Given sequences X and Y, match sequence Y to each element in X.
 * o_i = sum(alpha_j * y_j) for i in X
 * alpha_j = softmax(y_j * x_i)</p>
 <dl class="method">
 <dt id="claf.modules.attention.SeqAttnMatch.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>y_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#SeqAttnMatch.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.SeqAttnMatch.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em>, <em class="sig-param">y_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#SeqAttnMatch.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.SeqAttnMatch.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -580,13 +580,13 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="class">
 <dt id="claf.modules.attention.LinearSeqAttn">
-<em class="property">class </em><code class="descclassname">claf.modules.attention.</code><code class="descname">LinearSeqAttn</code><span class="sig-paren">(</span><em>input_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#LinearSeqAttn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.LinearSeqAttn" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.attention.</code><code class="sig-name descname">LinearSeqAttn</code><span class="sig-paren">(</span><em class="sig-param">input_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#LinearSeqAttn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.LinearSeqAttn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>Self attention over a sequence:
 * o_i = softmax(Wx_i) for x_i in X.</p>
 <dl class="method">
 <dt id="claf.modules.attention.LinearSeqAttn.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>x_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#LinearSeqAttn.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.LinearSeqAttn.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">x_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#LinearSeqAttn.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.LinearSeqAttn.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -602,14 +602,14 @@ registered hooks while the latter silently ignores them.</p>
 
 <dl class="class">
 <dt id="claf.modules.attention.BilinearSeqAttn">
-<em class="property">class </em><code class="descclassname">claf.modules.attention.</code><code class="descname">BilinearSeqAttn</code><span class="sig-paren">(</span><em>x_size</em>, <em>y_size</em>, <em>identity=False</em>, <em>normalize=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#BilinearSeqAttn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.BilinearSeqAttn" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">claf.modules.attention.</code><code class="sig-name descname">BilinearSeqAttn</code><span class="sig-paren">(</span><em class="sig-param">x_size</em>, <em class="sig-param">y_size</em>, <em class="sig-param">identity=False</em>, <em class="sig-param">normalize=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#BilinearSeqAttn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.BilinearSeqAttn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
 <p>A bilinear attention layer over a sequence X w.r.t y:
 * o_i = softmax(x_i’Wy) for x_i in X.
 Optionally don’t normalize output weights.</p>
 <dl class="method">
 <dt id="claf.modules.attention.BilinearSeqAttn.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>x_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#BilinearSeqAttn.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.BilinearSeqAttn.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em>, <em class="sig-param">x_mask</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/modules/attention/seq_attention.html#BilinearSeqAttn.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.modules.attention.BilinearSeqAttn.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
