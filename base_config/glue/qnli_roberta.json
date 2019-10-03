@@ -45,7 +45,7 @@
          }
      },
      "trainer": {
-         "log_dir": "logs/glue/qnli_roberta_base",
+         "log_dir": "logs/glue/qnli_roberta",
          "num_epochs": 10,
          "early_stopping_threshold": 10,
          "metric_key": "accuracy",
