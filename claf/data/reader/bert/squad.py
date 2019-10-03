@@ -64,9 +64,9 @@ class SQuADBertReader(DataReader):
                 "treebank_en", sent_tokenizer, split_with_regex=True
             )
 
-        if "bpe" in tokenizers:
+        if tokenizers["bpe"] is not None:
             self.sub_level_tokenizer = tokenizers["bpe"]  # RoBERTa
-        elif "subword" in tokenizers:
+        elif tokenizers["subword"] is not None:
             self.sub_level_tokenizer = tokenizers["subword"]  # BERT
         else:
             raise ValueError("'bpe' or 'subword' tokenizer is required.")
