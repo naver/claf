@@ -6,6 +6,7 @@ import torch.nn as nn
 from claf.data.data_handler import CachePath
 from claf.decorator import register
 from claf.model.base import ModelWithoutTokenEmbedder
+from claf.model.multi_task.category import TaskCategory
 from claf.model.multi_task.mixin import MultiTask
 
 
@@ -26,7 +27,6 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
     """
 
     def __init__(self, token_makers, tasks, pretrained_model_name=None, dropouts=None):
-
         super(BertForMultiTask, self).__init__(token_makers)
 
         self.use_pytorch_transformers = True  # for optimizer's model parameters
@@ -48,10 +48,25 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
             )
             self.task_specific_layers.append(task_layer)
 
-        self.criterions = {
-            "classification": nn.CrossEntropyLoss(),
-            "regression": nn.MSELoss(),
-        }
+        self._init_criterions(tasks)
+
+    def _init_criterions(self, tasks):
+        self.criterions = {}
+        for task_index, task in enumerate(tasks):
+            task_category = task["category"]
+
+            criterion = None
+            if task_category == TaskCategory.SEQUENCE_CLASSIFICATION or task_category == TaskCategory.READING_COMPREHENSION:
+                criterion = nn.CrossEntropyLoss()
+            elif task_category == TaskCategory.TOKEN_CLASSIFICATION:
+                ignore_tag_idx = task.get("ignore_tag_idx", 0)
+                criterion = nn.CrossEntropyLoss(ignore_index=ignore_tag_idx)
+            elif task_category == TaskCategory.REGRESSION:
+                criterion = nn.MSELoss()
+            else:
+                raise ValueError("Check task_category.")
+
+            self.criterions[task_index] = criterion
 
     @overrides
     def forward(self, features, labels=None):
@@ -104,6 +119,7 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
         self.curr_task_category = self.tasks[task_index]["category"]
         self.curr_dataset = self._dataset.task_datasets[task_index]
 
+        # TODO: add ReadingComprehension and TokenClassification forward
         task_specific_layer = self.task_specific_layers[task_index]
         logits = task_specific_layer(pooled_output)
 
@@ -115,9 +131,9 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
 
         if labels:
             label_key = None
-            if self.curr_task_category == self.CLASSIFICATION:
+            if self.curr_task_category == TaskCategory.SEQUENCE_CLASSIFICATION:
                 label_key = "class_idx"
-            elif self.curr_task_category == self.REGRESSION:
+            elif self.curr_task_category == TaskCategory.REGRESSION:
                 label_key = "score"
             else:
                 raise ValueError("task category error.")
@@ -130,8 +146,7 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
 
             # Loss
             num_label = self.tasks[task_index]["num_label"]
-
-            criterion = self.criterions[self.curr_task_category]
+            criterion = self.criterions[task_index.item()]
 
             logits = logits.view(-1, num_label)
             if num_label == 1:
@@ -182,7 +197,7 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
             print("- Sequence b:", sequence_b)
             print("- Sequence b Tokens:", sequence_b_tokens)
 
-        if task_category == self.CLASSIFICATION:
+        if task_category == TaskCategory.SEQUENCE_CLASSIFICATION:
             target_class_text = helper["examples"][data_id]["class_text"]
 
             pred_class_idx = predictions[data_id]["class_idx"]
@@ -192,7 +207,7 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
             print("    Class:", target_class_text)
             print("- Predict:")
             print("    Class:", pred_class_text)
-        elif task_category == self.REGRESSION:
+        elif task_category == TaskCategory.REGRESSION:
             target_score = helper["examples"][data_id]["score"]
             pred_score = predictions[data_id]["score"]
 

@@ -73,7 +73,6 @@ class TokClsBertReader(DataReader):
 
     def _get_tag_dicts(self, **kwargs):
         data = kwargs["data"]
-        print(data)
 
         if type(data) == dict:
             tag_idx2text = {tag_idx: tag_text for tag_idx, tag_text in enumerate(data[self.tag_key])}

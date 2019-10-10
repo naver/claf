@@ -241,9 +241,6 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">text_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bert_input&quot;</span><span class="p">,</span> <span class="s2">&quot;context&quot;</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">]</span>
 
-        <span class="k">if</span> <span class="s2">&quot;subword&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tokenizers</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;WordTokenizer and SubwordTokenizer is required.&quot;</span><span class="p">)</span>
-
         <span class="n">sent_tokenizer</span> <span class="o">=</span> <span class="n">SentTokenizer</span><span class="p">(</span><span class="s2">&quot;punkt&quot;</span><span class="p">,</span> <span class="p">{})</span>
         <span class="k">if</span> <span class="n">lang_code</span> <span class="o">==</span> <span class="s2">&quot;ko&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">word_tokenizer</span> <span class="o">=</span> <span class="n">WordTokenizer</span><span class="p">(</span><span class="s2">&quot;mecab_ko&quot;</span><span class="p">,</span> <span class="n">sent_tokenizer</span><span class="p">,</span> <span class="n">split_with_regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -251,11 +248,17 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">word_tokenizer</span> <span class="o">=</span> <span class="n">WordTokenizer</span><span class="p">(</span>
                 <span class="s2">&quot;treebank_en&quot;</span><span class="p">,</span> <span class="n">sent_tokenizer</span><span class="p">,</span> <span class="n">split_with_regex</span><span class="o">=</span><span class="kc">True</span>
             <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span> <span class="o">=</span> <span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;subword&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="s2">&quot;bpe&quot;</span> <span class="ow">in</span> <span class="n">tokenizers</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sub_level_tokenizer</span> <span class="o">=</span> <span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;bpe&quot;</span><span class="p">]</span>  <span class="c1"># RoBERTa</span>
+        <span class="k">elif</span> <span class="s2">&quot;subword&quot;</span> <span class="ow">in</span> <span class="n">tokenizers</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sub_level_tokenizer</span> <span class="o">=</span> <span class="n">tokenizers</span><span class="p">[</span><span class="s2">&quot;subword&quot;</span><span class="p">]</span>  <span class="c1"># BERT</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;bpe&#39; or &#39;subword&#39; tokenizer is required.&quot;</span><span class="p">)</span>
 
     <span class="nd">@overrides</span>
     <span class="k">def</span> <span class="nf">_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="n">word_tokenized_error_count</span><span class="p">,</span> <span class="n">subword_tokenized_error_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="n">word_tokenized_error_count</span><span class="p">,</span> <span class="n">sub_level_tokenized_error_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
 
         <span class="k">if</span> <span class="n">data_type</span> <span class="o">!=</span> <span class="s2">&quot;train&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">context_stride</span> <span class="o">=</span> <span class="mi">64</span>  <span class="c1"># NOTE: hard-code</span>
@@ -291,14 +294,14 @@
 
                 <span class="n">context_sub_tokens</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">context_tokens</span><span class="p">:</span>
-                    <span class="k">for</span> <span class="n">sub_token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">text</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">sub_token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_level_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">text</span><span class="p">):</span>
                         <span class="n">context_sub_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Token</span><span class="p">(</span><span class="n">sub_token</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">text_span</span><span class="p">))</span>
 
                 <span class="k">for</span> <span class="n">qa</span> <span class="ow">in</span> <span class="n">paragraph</span><span class="p">[</span><span class="s2">&quot;qas&quot;</span><span class="p">]:</span>
                     <span class="n">question_text</span> <span class="o">=</span> <span class="n">qa</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">]</span>
                     <span class="n">question_text</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">word_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">question_text</span><span class="p">))</span>
                     <span class="n">question_sub_tokens</span> <span class="o">=</span> <span class="p">[</span>
-                        <span class="n">Token</span><span class="p">(</span><span class="n">subword</span><span class="p">)</span> <span class="k">for</span> <span class="n">subword</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">question_text</span><span class="p">)</span>
+                        <span class="n">Token</span><span class="p">(</span><span class="n">sub_token</span><span class="p">)</span> <span class="k">for</span> <span class="n">sub_token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_level_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">question_text</span><span class="p">)</span>
                     <span class="p">]</span>
 
                     <span class="n">id_</span> <span class="o">=</span> <span class="n">qa</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
@@ -366,8 +369,8 @@
                         <span class="n">bert_answer</span> <span class="o">=</span> <span class="n">context_text</span><span class="p">[</span><span class="n">char_start</span><span class="p">:</span><span class="n">char_end</span><span class="p">]</span>
 
                         <span class="k">if</span> <span class="n">char_answer_text</span> <span class="o">!=</span> <span class="n">bert_answer</span><span class="p">:</span>
-                            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;subword_tokenized_error: </span><span class="si">{char_answer_text}</span><span class="s2"> ### </span><span class="si">{word_answer_text}</span><span class="s2">)&quot;</span><span class="p">)</span>
-                            <span class="n">subword_tokenized_error_count</span> <span class="o">+=</span> <span class="mi">1</span>
+                            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;sub_level_tokenized_error: </span><span class="si">{char_answer_text}</span><span class="s2"> ### </span><span class="si">{word_answer_text}</span><span class="s2">)&quot;</span><span class="p">)</span>
+                            <span class="n">sub_level_tokenized_error_count</span> <span class="o">+=</span> <span class="mi">1</span>
 
                         <span class="n">feature_row</span> <span class="o">=</span> <span class="p">{</span>
                             <span class="s2">&quot;bert_input&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">token</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">bert_tokens</span><span class="p">],</span>
@@ -396,7 +399,7 @@
                         <span class="p">},</span> <span class="n">update</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-            <span class="n">f</span><span class="s2">&quot;tokenized_error_count - word: </span><span class="si">{word_tokenized_error_count}</span><span class="s2"> | subword: </span><span class="si">{subword_tokenized_error_count}</span><span class="s2">&quot;</span>
+            <span class="n">f</span><span class="s2">&quot;tokenized_error_count - word: </span><span class="si">{word_tokenized_error_count}</span><span class="s2"> | sub_level: </span><span class="si">{sub_level_tokenized_error_count}</span><span class="s2">&quot;</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_batch</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">helper</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 
@@ -412,13 +415,13 @@
 
         <span class="n">context_sub_tokens</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">context_tokens</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">sub_token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">text</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">sub_token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_level_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">text</span><span class="p">):</span>
                 <span class="n">context_sub_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Token</span><span class="p">(</span><span class="n">sub_token</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">text_span</span><span class="p">))</span>
 
         <span class="n">question_text</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">]</span>
         <span class="n">question_text</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">word_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">question_text</span><span class="p">))</span>
         <span class="n">question_sub_tokens</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">Token</span><span class="p">(</span><span class="n">subword</span><span class="p">)</span> <span class="k">for</span> <span class="n">subword</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subword_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">question_text</span><span class="p">)</span>
+            <span class="n">Token</span><span class="p">(</span><span class="n">sub_token</span><span class="p">)</span> <span class="k">for</span> <span class="n">sub_token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_level_tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">question_text</span><span class="p">)</span>
         <span class="p">]</span>
 
         <span class="n">bert_tokens</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_features_and_labels</span><span class="p">(</span>
@@ -501,7 +504,7 @@
     <span class="k">def</span> <span class="nf">_make_features_and_labels</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">context_sub_tokens</span><span class="p">,</span> <span class="n">question_sub_tokens</span><span class="p">,</span> <span class="n">answer_char_start</span><span class="p">,</span> <span class="n">answer_char_end</span>
     <span class="p">):</span>
-        <span class="c1"># subword, context_stride logic with context_max_length</span>
+        <span class="c1"># sub_token, context_stride logic with context_max_length</span>
         <span class="n">context_max_length</span> <span class="o">=</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">max_seq_length</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">question_sub_tokens</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span>
         <span class="p">)</span>  <span class="c1"># [CLS], [SEP], [SEP]</span>

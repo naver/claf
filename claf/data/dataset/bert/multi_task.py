@@ -5,7 +5,6 @@ import torch
 import random
 
 from claf.config.factory.data_loader import make_data_loader
-from claf.data import utils
 from claf.data.dataset.base import DatasetBase
 
 
@@ -50,7 +49,7 @@ class MultiTaskBertDataset(DatasetBase):
     def init_iterators(self):
         cuda_device_id = None
         if torch.cuda.is_available():
-            cuda_device_id = 0  # Hard-code
+            cuda_device_id = 0  # TODO: Hard-code
 
         self.iterators = []
         for batch_size, dataset in zip(self.batch_sizes, self.task_datasets):
@@ -83,7 +82,7 @@ class MultiTaskBertDataset(DatasetBase):
         task_iterator = self.iterators[random_index]
         try:
             return random_index, next(task_iterator)
-        except StopIteration as e:
+        except StopIteration:
             self.available_iterators.remove(random_index)
             return self.__getitem__(index)
 

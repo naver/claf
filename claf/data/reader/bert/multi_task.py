@@ -10,9 +10,12 @@ from claf.data.dataset import MultiTaskBertDataset
 from claf.data.dto import Helper
 from claf.data.reader.base import DataReader
 from claf.decorator import register
+from claf.model.multi_task.category import TaskCategory
 
 from .seq_cls import SeqClsBertReader
+from .squad import SQuADBertReader
 from .regression import RegressionBertReader
+from .tok_cls import TokClsBertReader
 
 logger = logging.getLogger(__name__)
 
@@ -61,16 +64,9 @@ class MultiTaskBertReader(DataReader):
             self.dataset_batches.append(batches)
             self.dataset_helpers.append(helpers)
 
-            task = {}
-            task["name"] = reader["dataset"]
-            task["metric_key"] = data_reader.METRIC_KEY
-            if isinstance(data_reader, SeqClsBertReader):
-                task["category"] = "classification"
-                task["num_label"] = helpers["train"]["model"]["num_classes"]
-            elif isinstance(data_reader, RegressionBertReader):
-                task["category"] = "regression"
-                task["num_label"] = 1
-
+            dataset_name = reader["dataset"]
+            helper = helpers["train"]
+            task = self.make_task_by_reader(dataset_name, data_reader, helper)
             self.tasks.append(task)
 
     def make_data_reader(self, config_dict):
@@ -80,6 +76,29 @@ class MultiTaskBertReader(DataReader):
 
         data_reader_factory = DataReaderFactory(config)
         return data_reader_factory.create()
+
+    def make_task_by_reader(self, name, data_reader, helper):
+        task = {}
+        task["name"] = name
+        task["metric_key"] = data_reader.METRIC_KEY
+
+        if isinstance(data_reader, SeqClsBertReader):
+            task["category"] = TaskCategory.SEQUENCE_CLASSIFICATION
+            task["num_label"] = helper["model"]["num_classes"]
+        elif isinstance(data_reader, SQuADBertReader):
+            task["category"] = TaskCategory.READING_COMPREHENSION
+            task["num_label"] = None
+        elif isinstance(data_reader, RegressionBertReader):
+            task["category"] = TaskCategory.REGRESSION
+            task["num_label"] = 1
+        elif isinstance(data_reader, TokClsBertReader):
+            task["category"] = TaskCategory.TOKEN_CLASSIFICATION
+            task["num_label"] = helper["model"]["num_tags"]
+            task["ignore_tag_idx"] = helper["model"].get("ignore_tag_idx", 0)
+        else:
+            raise ValueError("Check data_reader.")
+
+        return task
 
     @overrides
     def _read(self, file_path, data_type=None):
@@ -97,11 +116,9 @@ class MultiTaskBertReader(DataReader):
 
             helper.task_helpers.append(task_helper)
 
-        # TODO: tasks (category - issubclasses, label_count - num_classes or labl)
         helper.set_model_parameter({
             "tasks": self.tasks,
         })
-
         return batches, helper.to_dict()
 
     def read_one_example(self, inputs):

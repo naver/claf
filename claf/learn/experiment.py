@@ -318,7 +318,7 @@ class Experiment:
         else:
             num_gpu = 0
 
-        num_gpu_state = num_gpu
+        num_gpu_state = str(num_gpu)
         if num_gpu > 1:
             num_gpu_state += " (Multi-GPU)"
 

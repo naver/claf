@@ -63,7 +63,7 @@
          },
          "lr_scheduler_type": "warmup_linear",
          "warmup_linear": {
-             "warmup_steps": 10000
+             "warmup_proportion": 0.1
          }
      },
      "seed_num": 42

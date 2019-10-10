@@ -6,12 +6,13 @@ from claf.model.reading_comprehension.docqa import DocQA
 from claf.model.reading_comprehension.docqa_no_answer import DocQA_No_Answer
 from claf.model.reading_comprehension.drqa import DrQA
 from claf.model.reading_comprehension.qanet import QANet
+from claf.model.reading_comprehension.roberta import RoBertaForQA
 
 
 # fmt: off
 
 __all__ = [
-    "BertForQA", "BiDAF", "QANet", "DocQA", "DrQA",  # SQuAD v1
+    "BertForQA", "BiDAF", "QANet", "DocQA", "DrQA", "RoBertaForQA",  # SQuAD v1
     "BiDAF_No_Answer", "DocQA_No_Answer",  # SQuAD v2
 
 ]

@@ -190,7 +190,6 @@
 <span class="kn">import</span> <span class="nn">random</span>
 
 <span class="kn">from</span> <span class="nn">claf.config.factory.data_loader</span> <span class="k">import</span> <span class="n">make_data_loader</span>
-<span class="kn">from</span> <span class="nn">claf.data</span> <span class="k">import</span> <span class="n">utils</span>
 <span class="kn">from</span> <span class="nn">claf.data.dataset.base</span> <span class="k">import</span> <span class="n">DatasetBase</span>
 
 
@@ -235,7 +234,7 @@
 <div class="viewcode-block" id="MultiTaskBertDataset.init_iterators"><a class="viewcode-back" href="../../../../../claf.data.dataset.html#claf.data.dataset.MultiTaskBertDataset.init_iterators">[docs]</a>    <span class="k">def</span> <span class="nf">init_iterators</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">cuda_device_id</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
-            <span class="n">cuda_device_id</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Hard-code</span>
+            <span class="n">cuda_device_id</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># TODO: Hard-code</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">iterators</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_sizes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_datasets</span><span class="p">):</span>
@@ -268,7 +267,7 @@
         <span class="n">task_iterator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterators</span><span class="p">[</span><span class="n">random_index</span><span class="p">]</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">random_index</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">task_iterator</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">StopIteration</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">available_iterators</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">random_index</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
 

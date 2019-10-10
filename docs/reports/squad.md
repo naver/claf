@@ -24,7 +24,8 @@
 | **QANet** | 70.918 (73.6) | 79.800 (82.7) | squad/qanet.json | - |
 | **BERT**-Base Uncased | 79.395 (80.8) | 87.130 (88.5) | squad/bert_base_uncased.json | - |
 | **BERT**-Large Uncased | - (84.1) | - (90.9) | squad/bert_large_uncased.json | - |
-
+| **RoBERTa**-Base | 82.980 | 90.459 | roberta_base.json/bert_base_uncased.json | - |
+| **RoBERTa**-Large | 88.061 (88.9) | 94.034 (94.6) | squad/roberta_large.json | - |
 
 ---
 
