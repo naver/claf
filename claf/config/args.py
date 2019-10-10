@@ -316,6 +316,32 @@ def token(parser):
     )
 
     group.add_argument(
+        "--feature.pretrained_path",
+        type=str, default=None, dest="token.feature.vocab.pretrained_path",
+        help=""" Add pretrained vocab_path""",
+    )
+    group.add_argument(
+        "--feature.pad_token",
+        type=str, default=None, dest="token.feature.vocab.pad_token",
+        help=""" Set pad_token""",
+    )
+    group.add_argument(
+        "--feature.oov_token",
+        type=str, default=None, dest="token.feature.vocab.oov_token",
+        help=""" Set oov_token""",
+    )
+    group.add_argument(
+        "--feature.cls_token",
+        type=str, default=None, dest="token.feature.vocab.cls_token",
+        help=""" Set cls_token""",
+    )
+    group.add_argument(
+        "--feature.sep_token",
+        type=str, default=None, dest="token.feature.vocab.sep_token",
+        help=""" Set sep_token""",
+    )
+
+    group.add_argument(
         "--word.pad_token",
         type=str, default=None, dest="token.word.vocab.pad_token",
         help=""" Padding Token value""",
@@ -353,6 +379,20 @@ def token(parser):
     BPE Tokenizer package name [roberta]
     Default is 'roberta' """,
     )
+    group.add_argument(
+        "--tokenizer.bpe.roberta.vocab_path",
+        type=str, default=None, dest="token.tokenizer.bpe.roberta.vocab_path",
+        help="""\
+    RoBERTa BPE Tokenizer vocab_path
+    Default is 'None' """,
+    )
+    group.add_argument(
+        "--tokenizer.bpe.roberta.merges_path",
+        type=str, default=None, dest="token.tokenizer.bpe.roberta.merges_path",
+        help="""\
+    RoBERTa BPE Tokenizer merges_path
+    Default is 'None' """,
+    )
 
     group.add_argument(
         "--tokenizer.char.name",
@@ -361,6 +401,7 @@ def token(parser):
     CharTokenizer package name [character|jamo_ko]
     Default is 'character' """,
     )
+
     group.add_argument(
         "--tokenizer.subword.name",
         type=str, default="wordpiece", dest="token.tokenizer.subword.name",
@@ -369,12 +410,13 @@ def token(parser):
     Default is 'wordpiece' """,
     )
     group.add_argument(
-        "--tokenizer.subword.wordpiece.do_lower_case",
-        type=arg_str2bool, default=True, dest="token.tokenizer.subword.wordpiece.do_lower_case",
+        "--tokenizer.subword.wordpiece.vocab_path",
+        type=str, default=None, dest="token.tokenizer.subword.wordpiece.vocab_path",
         help="""\
-    Wordpiece Tokenizer do_lower_case or not
-    Default is 'True' """,
+    Wordpiece Tokenizer vocab_path
+    Default is 'None' """,
     )
+
     group.add_argument(
         "--tokenizer.word.name",
         type=str, default="treebank_en", dest="token.tokenizer.word.name",
@@ -387,6 +429,14 @@ def token(parser):
         type=arg_str2bool, default=False, dest="token.tokenizer.word.split_with_regex",
         help=""" preprocess for SQuAD Context data (simple regex) """,
     )
+    group.add_argument(
+        "--tokenizer.word.bert_basic.do_lower_case",
+        type=arg_str2bool, default=True, dest="token.tokenizer.word.bert_basic.do_lower_case",
+        help="""\
+    Wordpiece Tokenizer do_lower_case or not
+    Default is 'True' """,
+    )
+
     group.add_argument(
         "--tokenizer.sent.name",
         type=str, default="punkt", dest="token.tokenizer.sent.name",
