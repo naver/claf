@@ -281,7 +281,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <li><p>start_logits: representing unnormalized log probabilities of the span start position.</p></li>
 <li><p>end_logits: representing unnormalized log probabilities of the span end position.</p></li>
 <li><p>best_span: the string from the original passage that the model thinks is the best answer to the question.</p></li>
-<li><p>answer_idx: the question id, mapping with answer</p></li>
+<li><p>data_idx: the question id, mapping with answer</p></li>
 <li><p>loss: A scalar loss to be optimised.</p></li>
 </ul>
 </dd>
@@ -361,7 +361,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <li><p>start_logits: representing unnormalized log probabilities of the span start position.</p></li>
 <li><p>end_logits: representing unnormalized log probabilities of the span end position.</p></li>
 <li><p>best_span: the string from the original passage that the model thinks is the best answer to the question.</p></li>
-<li><p>answer_idx: the question id, mapping with answer</p></li>
+<li><p>data_idx: the question id, mapping with answer</p></li>
 <li><p>loss: A scalar loss to be optimised.</p></li>
 </ul>
 </dd>
@@ -447,7 +447,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <li><p>start_logits: representing unnormalized log probabilities of the span start position.</p></li>
 <li><p>end_logits: representing unnormalized log probabilities of the span end position.</p></li>
 <li><p>best_span: the string from the original passage that the model thinks is the best answer to the question.</p></li>
-<li><p>answer_idx: the question id, mapping with answer</p></li>
+<li><p>data_idx: the question id, mapping with answer</p></li>
 <li><p>loss: A scalar loss to be optimised.</p></li>
 </ul>
 </dd>
@@ -554,7 +554,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <li><p>start_logits: representing unnormalized log probabilities of the span start position.</p></li>
 <li><p>end_logits: representing unnormalized log probabilities of the span end position.</p></li>
 <li><p>best_span: the string from the original passage that the model thinks is the best answer to the question.</p></li>
-<li><p>answer_idx: the question id, mapping with answer</p></li>
+<li><p>data_idx: the question id, mapping with answer</p></li>
 <li><p>loss: A scalar loss to be optimised.</p></li>
 </ul>
 </dd>
@@ -684,7 +684,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <li><p>start_logits: representing unnormalized log probabilities of the span start position.</p></li>
 <li><p>end_logits: representing unnormalized log probabilities of the span end position.</p></li>
 <li><p>best_span: the string from the original passage that the model thinks is the best answer to the question.</p></li>
-<li><p>answer_idx: the question id, mapping with answer</p></li>
+<li><p>data_idx: the question id, mapping with answer</p></li>
 <li><p>loss: A scalar loss to be optimised.</p></li>
 </ul>
 </dd>
@@ -734,7 +734,7 @@ span_end_logits: independent end logits</p>
 <li><dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
 <dt>output_dict: model’s output dictionary consisting of</dt><dd><ul>
-<li><p>answer_idx: question id</p></li>
+<li><p>data_idx: question id</p></li>
 <li><p>best_span: calculate the span_start_logits and span_end_logits to what is the best span</p></li>
 <li><p>start_logits: span start logits</p></li>
 <li><p>end_logits: span end logits</p></li>
@@ -797,6 +797,11 @@ predictions: prediction dictionary consisting of</p>
 </ul>
 </dd></dl>
 
+<dl class="method">
+<dt id="claf.model.reading_comprehension.mixin.ReadingComprehension.write_predictions">
+<code class="sig-name descname">write_predictions</code><span class="sig-paren">(</span><em class="sig-param">predictions</em>, <em class="sig-param">file_path=None</em>, <em class="sig-param">is_dict=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/mixin.html#ReadingComprehension.write_predictions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.mixin.ReadingComprehension.write_predictions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -841,6 +846,55 @@ predictions: prediction dictionary consisting of</p>
 </ul>
 </dd>
 </dl>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="claf.model.reading_comprehension.mixin.SQuADv1ForBert">
+<em class="property">class </em><code class="sig-prename descclassname">claf.model.reading_comprehension.mixin.</code><code class="sig-name descname">SQuADv1ForBert</code><a class="reference internal" href="_modules/claf/model/reading_comprehension/mixin.html#SQuADv1ForBert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.mixin.SQuADv1ForBert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a></p>
+<dl class="simple">
+<dt>Reading Comprehension Mixin Class</dt><dd><p>with SQuAD v1.1 evaluation</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Args:</dt><dd><p>token_embedder: ‘QATokenEmbedder’, Used to embed the ‘context’ and ‘question’.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="claf.model.reading_comprehension.mixin.SQuADv1ForBert.make_metrics">
+<code class="sig-name descname">make_metrics</code><span class="sig-paren">(</span><em class="sig-param">predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/mixin.html#SQuADv1ForBert.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.mixin.SQuADv1ForBert.make_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>BERT predictions need to get nbest result</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="claf.model.reading_comprehension.mixin.SQuADv1ForBert.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">output_dict</em>, <em class="sig-param">arguments</em>, <em class="sig-param">helper</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/mixin.html#SQuADv1ForBert.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.mixin.SQuADv1ForBert.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inference by raw_feature</p>
+<ul>
+<li><dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>output_dict: model’s output dictionary consisting of</dt><dd><ul class="simple">
+<li><p>data_idx: question id</p></li>
+<li><p>best_span: calculate the span_start_logits and span_end_logits to what is the best span</p></li>
+</ul>
+</dd>
+</dl>
+<p>arguments: arguments dictionary consisting of user_input
+helper: dictionary for helping get answer</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Returns:</dt><dd><p>span: predict best_span</p>
 </dd>
 </dl>
 </li>
@@ -1047,7 +1101,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <li><p>start_logits: representing unnormalized log probabilities of the span start position.</p></li>
 <li><p>end_logits: representing unnormalized log probabilities of the span end position.</p></li>
 <li><p>best_span: the string from the original passage that the model thinks is the best answer to the question.</p></li>
-<li><p>answer_idx: the question id, mapping with answer</p></li>
+<li><p>data_idx: the question id, mapping with answer</p></li>
 <li><p>loss: A scalar loss to be optimised.</p></li>
 </ul>
 </dd>
@@ -1064,7 +1118,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <dl class="class">
 <dt id="claf.model.reading_comprehension.BertForQA">
 <em class="property">class </em><code class="sig-prename descclassname">claf.model.reading_comprehension.</code><code class="sig-name descname">BertForQA</code><span class="sig-paren">(</span><em class="sig-param">token_makers</em>, <em class="sig-param">lang_code='en'</em>, <em class="sig-param">pretrained_model_name=None</em>, <em class="sig-param">answer_maxlen=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bert.html#BertForQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BertForQA" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithoutTokenEmbedder" title="claf.model.base.ModelWithoutTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithoutTokenEmbedder</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1ForBert" title="claf.model.reading_comprehension.mixin.SQuADv1ForBert"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1ForBert</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithoutTokenEmbedder" title="claf.model.base.ModelWithoutTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithoutTokenEmbedder</span></code></a></p>
 <p>Document Reader Model. <cite>Span Detector</cite></p>
 <p>Implementation of model presented in
 BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
@@ -1119,41 +1173,9 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <li><p>start_logits: representing unnormalized log probabilities of the span start position.</p></li>
 <li><p>end_logits: representing unnormalized log probabilities of the span end position.</p></li>
 <li><p>best_span: the string from the original passage that the model thinks is the best answer to the question.</p></li>
-<li><p>answer_idx: the question id, mapping with answer</p></li>
+<li><p>data_idx: the question id, mapping with answer</p></li>
 <li><p>loss: A scalar loss to be optimised.</p></li>
 </ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd></dl>
-
-<dl class="method">
-<dt id="claf.model.reading_comprehension.BertForQA.make_metrics">
-<code class="sig-name descname">make_metrics</code><span class="sig-paren">(</span><em class="sig-param">predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bert.html#BertForQA.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BertForQA.make_metrics" title="Permalink to this definition">¶</a></dt>
-<dd><p>BERT predictions need to get nbest result</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="claf.model.reading_comprehension.BertForQA.predict">
-<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">output_dict</em>, <em class="sig-param">arguments</em>, <em class="sig-param">helper</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/bert.html#BertForQA.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.BertForQA.predict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inference by raw_feature</p>
-<ul>
-<li><dl>
-<dt>Args:</dt><dd><dl class="simple">
-<dt>output_dict: model’s output dictionary consisting of</dt><dd><ul class="simple">
-<li><p>answer_idx: question id</p></li>
-<li><p>best_span: calculate the span_start_logits and span_end_logits to what is the best span</p></li>
-</ul>
-</dd>
-</dl>
-<p>arguments: arguments dictionary consisting of user_input
-helper: dictionary for helping get answer</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Returns:</dt><dd><p>span: predict best_span</p>
 </dd>
 </dl>
 </li>
@@ -1236,7 +1258,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <li><p>start_logits: representing unnormalized log probabilities of the span start position.</p></li>
 <li><p>end_logits: representing unnormalized log probabilities of the span end position.</p></li>
 <li><p>best_span: the string from the original passage that the model thinks is the best answer to the question.</p></li>
-<li><p>answer_idx: the question id, mapping with answer</p></li>
+<li><p>data_idx: the question id, mapping with answer</p></li>
 <li><p>loss: A scalar loss to be optimised.</p></li>
 </ul>
 </dd>
@@ -1340,7 +1362,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <li><p>start_logits: representing unnormalized log probabilities of the span start position.</p></li>
 <li><p>end_logits: representing unnormalized log probabilities of the span end position.</p></li>
 <li><p>best_span: the string from the original passage that the model thinks is the best answer to the question.</p></li>
-<li><p>answer_idx: the question id, mapping with answer</p></li>
+<li><p>data_idx: the question id, mapping with answer</p></li>
 <li><p>loss: A scalar loss to be optimised.</p></li>
 </ul>
 </dd>
@@ -1426,7 +1448,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <li><p>start_logits: representing unnormalized log probabilities of the span start position.</p></li>
 <li><p>end_logits: representing unnormalized log probabilities of the span end position.</p></li>
 <li><p>best_span: the string from the original passage that the model thinks is the best answer to the question.</p></li>
-<li><p>answer_idx: the question id, mapping with answer</p></li>
+<li><p>data_idx: the question id, mapping with answer</p></li>
 <li><p>loss: A scalar loss to be optimised.</p></li>
 </ul>
 </dd>
@@ -1506,7 +1528,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <li><p>start_logits: representing unnormalized log probabilities of the span start position.</p></li>
 <li><p>end_logits: representing unnormalized log probabilities of the span end position.</p></li>
 <li><p>best_span: the string from the original passage that the model thinks is the best answer to the question.</p></li>
-<li><p>answer_idx: the question id, mapping with answer</p></li>
+<li><p>data_idx: the question id, mapping with answer</p></li>
 <li><p>loss: A scalar loss to be optimised.</p></li>
 </ul>
 </dd>
@@ -1520,7 +1542,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <dl class="class">
 <dt id="claf.model.reading_comprehension.RoBertaForQA">
 <em class="property">class </em><code class="sig-prename descclassname">claf.model.reading_comprehension.</code><code class="sig-name descname">RoBertaForQA</code><span class="sig-paren">(</span><em class="sig-param">token_makers</em>, <em class="sig-param">lang_code='en'</em>, <em class="sig-param">pretrained_model_name=None</em>, <em class="sig-param">answer_maxlen=30</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/roberta.html#RoBertaForQA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.RoBertaForQA" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1" title="claf.model.reading_comprehension.mixin.SQuADv1"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithoutTokenEmbedder" title="claf.model.base.ModelWithoutTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithoutTokenEmbedder</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#claf.model.reading_comprehension.mixin.SQuADv1ForBert" title="claf.model.reading_comprehension.mixin.SQuADv1ForBert"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.reading_comprehension.mixin.SQuADv1ForBert</span></code></a>, <a class="reference internal" href="claf.model.html#claf.model.base.ModelWithoutTokenEmbedder" title="claf.model.base.ModelWithoutTokenEmbedder"><code class="xref py py-class docutils literal notranslate"><span class="pre">claf.model.base.ModelWithoutTokenEmbedder</span></code></a></p>
 <p>Document Reader Model. <cite>Span Detector</cite></p>
 <p>Implementation of model presented in
 BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
@@ -1575,41 +1597,9 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <li><p>start_logits: representing unnormalized log probabilities of the span start position.</p></li>
 <li><p>end_logits: representing unnormalized log probabilities of the span end position.</p></li>
 <li><p>best_span: the string from the original passage that the model thinks is the best answer to the question.</p></li>
-<li><p>answer_idx: the question id, mapping with answer</p></li>
+<li><p>data_idx: the question id, mapping with answer</p></li>
 <li><p>loss: A scalar loss to be optimised.</p></li>
 </ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd></dl>
-
-<dl class="method">
-<dt id="claf.model.reading_comprehension.RoBertaForQA.make_metrics">
-<code class="sig-name descname">make_metrics</code><span class="sig-paren">(</span><em class="sig-param">predictions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/roberta.html#RoBertaForQA.make_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.RoBertaForQA.make_metrics" title="Permalink to this definition">¶</a></dt>
-<dd><p>BERT predictions need to get nbest result</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="claf.model.reading_comprehension.RoBertaForQA.predict">
-<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">output_dict</em>, <em class="sig-param">arguments</em>, <em class="sig-param">helper</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/claf/model/reading_comprehension/roberta.html#RoBertaForQA.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#claf.model.reading_comprehension.RoBertaForQA.predict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inference by raw_feature</p>
-<ul>
-<li><dl>
-<dt>Args:</dt><dd><dl class="simple">
-<dt>output_dict: model’s output dictionary consisting of</dt><dd><ul class="simple">
-<li><p>answer_idx: question id</p></li>
-<li><p>best_span: calculate the span_start_logits and span_end_logits to what is the best span</p></li>
-</ul>
-</dd>
-</dl>
-<p>arguments: arguments dictionary consisting of user_input
-helper: dictionary for helping get answer</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Returns:</dt><dd><p>span: predict best_span</p>
 </dd>
 </dl>
 </li>
@@ -1687,7 +1677,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <li><p>start_logits: representing unnormalized log probabilities of the span start position.</p></li>
 <li><p>end_logits: representing unnormalized log probabilities of the span end position.</p></li>
 <li><p>best_span: the string from the original passage that the model thinks is the best answer to the question.</p></li>
-<li><p>answer_idx: the question id, mapping with answer</p></li>
+<li><p>data_idx: the question id, mapping with answer</p></li>
 <li><p>loss: A scalar loss to be optimised.</p></li>
 </ul>
 </dd>
@@ -1773,7 +1763,7 @@ Do not calculate loss when there is no label. (inference/predict mode)</p>
 <li><p>start_logits: representing unnormalized log probabilities of the span start position.</p></li>
 <li><p>end_logits: representing unnormalized log probabilities of the span end position.</p></li>
 <li><p>best_span: the string from the original passage that the model thinks is the best answer to the question.</p></li>
-<li><p>answer_idx: the question id, mapping with answer</p></li>
+<li><p>data_idx: the question id, mapping with answer</p></li>
 <li><p>loss: A scalar loss to be optimised.</p></li>
 </ul>
 </dd>

@@ -279,10 +279,10 @@
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_reader</span><span class="p">,</span> <span class="n">TokClsBertReader</span><span class="p">):</span>
             <span class="n">task</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TaskCategory</span><span class="o">.</span><span class="n">TOKEN_CLASSIFICATION</span>
             <span class="n">task</span><span class="p">[</span><span class="s2">&quot;num_label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">][</span><span class="s2">&quot;num_tags&quot;</span><span class="p">]</span>
-            <span class="n">task</span><span class="p">[</span><span class="s2">&quot;ignore_tag_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ignore_tag_idx&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Check data_reader.&quot;</span><span class="p">)</span>
 
+        <span class="n">task</span><span class="p">[</span><span class="s2">&quot;model_params&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">helper</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="p">{})</span>
         <span class="k">return</span> <span class="n">task</span></div>
 
     <span class="nd">@overrides</span>

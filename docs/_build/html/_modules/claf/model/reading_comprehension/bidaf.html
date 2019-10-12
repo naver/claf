@@ -328,7 +328,7 @@
 <span class="sd">            - start_logits: representing unnormalized log probabilities of the span start position.</span>
 <span class="sd">            - end_logits: representing unnormalized log probabilities of the span end position.</span>
 <span class="sd">            - best_span: the string from the original passage that the model thinks is the best answer to the question.</span>
-<span class="sd">            - answer_idx: the question id, mapping with answer</span>
+<span class="sd">            - data_idx: the question id, mapping with answer</span>
 <span class="sd">            - loss: A scalar loss to be optimised.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -420,11 +420,11 @@
         <span class="p">}</span>
 
         <span class="k">if</span> <span class="n">labels</span><span class="p">:</span>
-            <span class="n">answer_idx</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="s2">&quot;answer_idx&quot;</span><span class="p">]</span>
+            <span class="n">data_idx</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="s2">&quot;data_idx&quot;</span><span class="p">]</span>
             <span class="n">answer_start_idx</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="s2">&quot;answer_start_idx&quot;</span><span class="p">]</span>
             <span class="n">answer_end_idx</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="s2">&quot;answer_end_idx&quot;</span><span class="p">]</span>
 
-            <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;answer_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">answer_idx</span>
+            <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;data_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_idx</span>
 
             <span class="c1"># Loss</span>
             <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span><span class="p">(</span><span class="n">span_start_logits</span><span class="p">,</span> <span class="n">answer_start_idx</span><span class="p">)</span>

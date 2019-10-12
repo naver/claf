@@ -249,7 +249,7 @@
                 <span class="s2">&quot;token_type&quot;</span><span class="p">:</span> <span class="n">utils</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">token_type_idxs</span><span class="p">,</span> <span class="n">skip_keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]),</span>
             <span class="p">}</span>
             <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;answer_idx&quot;</span><span class="p">:</span> <span class="n">data_idxs</span><span class="p">,</span>
+                <span class="s2">&quot;data_idx&quot;</span><span class="p">:</span> <span class="n">data_idxs</span><span class="p">,</span>
                 <span class="s2">&quot;answer_start_idx&quot;</span><span class="p">:</span> <span class="n">answer_starts</span><span class="p">,</span>
                 <span class="s2">&quot;answer_end_idx&quot;</span><span class="p">:</span> <span class="n">answer_ends</span><span class="p">,</span>
                 <span class="s2">&quot;answerable&quot;</span><span class="p">:</span> <span class="n">answerables</span><span class="p">,</span>
@@ -293,6 +293,9 @@
         <span class="k">if</span> <span class="s2">&quot;#&quot;</span> <span class="ow">in</span> <span class="n">qid</span><span class="p">:</span>
             <span class="n">qid</span> <span class="o">=</span> <span class="n">qid</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">qid</span></div>
+
+<div class="viewcode-block" id="SQuADBertDataset.get_id"><a class="viewcode-back" href="../../../../../claf.data.dataset.html#claf.data.dataset.SQuADBertDataset.get_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_index</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_qid</span><span class="p">(</span><span class="n">data_index</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SQuADBertDataset.get_qid_index"><a class="viewcode-back" href="../../../../../claf.data.dataset.html#claf.data.dataset.SQuADBertDataset.get_qid_index">[docs]</a>    <span class="k">def</span> <span class="nf">get_qid_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_index</span><span class="p">):</span>
         <span class="n">qid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">qids</span><span class="p">[</span><span class="n">data_index</span><span class="p">]</span>

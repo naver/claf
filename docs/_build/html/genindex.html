@@ -1343,6 +1343,8 @@
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.SeqClsDataset.get_id">(claf.data.dataset.SeqClsDataset method)</a>
 </li>
+        <li><a href="claf.data.dataset.html#claf.data.dataset.SQuADBertDataset.get_id">(claf.data.dataset.SQuADBertDataset method)</a>
+</li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.TokClsBertDataset.get_id">(claf.data.dataset.TokClsBertDataset method)</a>
 </li>
         <li><a href="claf.data.dataset.html#claf.data.dataset.wikisql.WikiSQLDataset.get_id">(claf.data.dataset.wikisql.WikiSQLDataset method)</a>
@@ -1763,13 +1765,11 @@
       <li><a href="claf.model.html#claf.model.base.ModelBase.make_metrics">make_metrics() (claf.model.base.ModelBase method)</a>
 
       <ul>
-        <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.BertForQA.make_metrics">(claf.model.reading_comprehension.BertForQA method)</a>
-</li>
         <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.mixin.SQuADv1.make_metrics">(claf.model.reading_comprehension.mixin.SQuADv1 method)</a>
 </li>
-        <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.mixin.SQuADv2.make_metrics">(claf.model.reading_comprehension.mixin.SQuADv2 method)</a>
+        <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.mixin.SQuADv1ForBert.make_metrics">(claf.model.reading_comprehension.mixin.SQuADv1ForBert method)</a>
 </li>
-        <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.RoBertaForQA.make_metrics">(claf.model.reading_comprehension.RoBertaForQA method)</a>
+        <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.mixin.SQuADv2.make_metrics">(claf.model.reading_comprehension.mixin.SQuADv2 method)</a>
 </li>
         <li><a href="claf.model.semantic_parsing.html#claf.model.semantic_parsing.mixin.WikiSQL.make_metrics">(claf.model.semantic_parsing.mixin.WikiSQL method)</a>
 </li>
@@ -1806,10 +1806,10 @@
 </li>
       <li><a href="claf.tokens.html#claf.tokens.text_handler.TextHandler.make_token_counters">make_token_counters() (claf.tokens.text_handler.TextHandler method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="claf.config.factory.html#claf.config.factory.tokens.make_tokenizer">make_tokenizer() (in module claf.config.factory.tokens)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="claf.modules.html#claf.modules.functional.masked_log_softmax">masked_log_softmax() (in module claf.modules.functional)</a>
 </li>
       <li><a href="claf.modules.html#claf.modules.functional.masked_softmax">masked_softmax() (in module claf.modules.functional)</a>
@@ -1831,6 +1831,8 @@
       <li><a href="claf.data.reader.bert.html#claf.data.reader.bert.seq_cls.SeqClsBertReader.METRIC_KEY">METRIC_KEY (claf.data.reader.bert.seq_cls.SeqClsBertReader attribute)</a>
 
       <ul>
+        <li><a href="claf.data.reader.bert.html#claf.data.reader.bert.squad.SQuADBertReader.METRIC_KEY">(claf.data.reader.bert.squad.SQuADBertReader attribute)</a>
+</li>
         <li><a href="claf.data.reader.html#claf.data.reader.CoLABertReader.METRIC_KEY">(claf.data.reader.CoLABertReader attribute)</a>
 </li>
         <li><a href="claf.data.reader.html#claf.data.reader.MNLIBertReader.METRIC_KEY">(claf.data.reader.MNLIBertReader attribute)</a>
@@ -1846,6 +1848,8 @@
         <li><a href="claf.data.reader.html#claf.data.reader.RTEBertReader.METRIC_KEY">(claf.data.reader.RTEBertReader attribute)</a>
 </li>
         <li><a href="claf.data.reader.html#claf.data.reader.SeqClsBertReader.METRIC_KEY">(claf.data.reader.SeqClsBertReader attribute)</a>
+</li>
+        <li><a href="claf.data.reader.html#claf.data.reader.SQuADBertReader.METRIC_KEY">(claf.data.reader.SQuADBertReader attribute)</a>
 </li>
         <li><a href="claf.data.reader.html#claf.data.reader.SSTBertReader.METRIC_KEY">(claf.data.reader.SSTBertReader attribute)</a>
 </li>
@@ -2033,11 +2037,9 @@
 </li>
         <li><a href="claf.model.html#claf.model.base.ModelBase.predict">(claf.model.base.ModelBase method)</a>
 </li>
-        <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.BertForQA.predict">(claf.model.reading_comprehension.BertForQA method)</a>
-</li>
         <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.mixin.ReadingComprehension.predict">(claf.model.reading_comprehension.mixin.ReadingComprehension method)</a>
 </li>
-        <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.RoBertaForQA.predict">(claf.model.reading_comprehension.RoBertaForQA method)</a>
+        <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.mixin.SQuADv1ForBert.predict">(claf.model.reading_comprehension.mixin.SQuADv1ForBert method)</a>
 </li>
         <li><a href="claf.model.semantic_parsing.html#claf.model.semantic_parsing.mixin.WikiSQL.predict">(claf.model.semantic_parsing.mixin.WikiSQL method)</a>
 </li>
@@ -2376,6 +2378,8 @@
       </ul></li>
       <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.mixin.SQuADv1">SQuADv1 (class in claf.model.reading_comprehension.mixin)</a>
 </li>
+      <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.mixin.SQuADv1ForBert">SQuADv1ForBert (class in claf.model.reading_comprehension.mixin)</a>
+</li>
       <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.mixin.SQuADv2">SQuADv2 (class in claf.model.reading_comprehension.mixin)</a>
 </li>
       <li><a href="claf.data.reader.html#claf.data.reader.SSTBertReader">SSTBertReader (class in claf.data.reader)</a>
@@ -2567,6 +2571,8 @@
       <li><a href="claf.model.html#claf.model.base.ModelBase.write_predictions">write_predictions() (claf.model.base.ModelBase method)</a>
 
       <ul>
+        <li><a href="claf.model.reading_comprehension.html#claf.model.reading_comprehension.mixin.ReadingComprehension.write_predictions">(claf.model.reading_comprehension.mixin.ReadingComprehension method)</a>
+</li>
         <li><a href="claf.model.sequence_classification.html#claf.model.sequence_classification.mixin.SequenceClassification.write_predictions">(claf.model.sequence_classification.mixin.SequenceClassification method)</a>
 </li>
         <li><a href="claf.model.token_classification.html#claf.model.token_classification.mixin.TokenClassification.write_predictions">(claf.model.token_classification.mixin.TokenClassification method)</a>

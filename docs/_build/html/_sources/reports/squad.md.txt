@@ -14,7 +14,7 @@
 
 - Dev Set
 
-| Model | EM (paper) | F1 (paper) | BaseConfig | Note |
+| Model | EM (official) | F1 (official) | BaseConfig | Note |
 | --- | --- | --- | --- | --- |
 | **BiDAF** | 68.108 (67.7) | 77.780 (77.3) | squad/bidaf.json | - |
 | **BiDAF + ELMo** | 74.295 | 82.727 | squad/bidaf+elmo.json | - |
@@ -22,8 +22,8 @@
 | **DocQA** | 71.760 (71.513) | 80.635 (80.422) | squad/docqa.json | - |
 | **DocQA + ELMo** | 76.244 (77.5) | 84.372 (84.5) | squad/docqa+elmo.json | - |
 | **QANet** | 70.918 (73.6) | 79.800 (82.7) | squad/qanet.json | - |
-| **BERT**-Base Uncased | 79.395 (80.8) | 87.130 (88.5) | squad/bert_base_uncased.json | - |
-| **BERT**-Large Uncased | - (84.1) | - (90.9) | squad/bert_large_uncased.json | - |
+| **BERT**-Base Uncased | 79.508 (80.8) | 87.642 (88.5) | squad/bert_base_uncased.json | - |
+| **BERT**-Large Uncased | 83.254 (84.1) | 90.440 (90.9) | squad/bert_large_uncased.json | - |
 | **RoBERTa**-Base | 82.980 | 90.459 | roberta_base.json/bert_base_uncased.json | - |
 | **RoBERTa**-Large | 88.061 (88.9) | 94.034 (94.6) | squad/roberta_large.json | - |
 
@@ -34,7 +34,7 @@
 
 - Dev Set
 
-| Model | EM (paper) | F1 (paper) | BaseConfig | Note |
+| Model | EM (official) | F1 (official) | BaseConfig | Note |
 | --- | --- | --- | --- | --- |
 | **BiDAF** | 62.570 | 65.461 | squad/bidaf_no_answer.json | - |
 | **DocQA** | 61.728 | 64.489 | squad/docqa_no_answer.json | - |

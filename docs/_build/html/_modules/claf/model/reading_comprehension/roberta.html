@@ -191,11 +191,11 @@
 <span class="kn">from</span> <span class="nn">claf.data.data_handler</span> <span class="k">import</span> <span class="n">CachePath</span>
 <span class="kn">from</span> <span class="nn">claf.decorator</span> <span class="k">import</span> <span class="n">register</span>
 <span class="kn">from</span> <span class="nn">claf.model.base</span> <span class="k">import</span> <span class="n">ModelWithoutTokenEmbedder</span>
-<span class="kn">from</span> <span class="nn">claf.model.reading_comprehension.mixin</span> <span class="k">import</span> <span class="n">SQuADv1</span>
+<span class="kn">from</span> <span class="nn">claf.model.reading_comprehension.mixin</span> <span class="k">import</span> <span class="n">SQuADv1ForBert</span>
 
 
 <div class="viewcode-block" id="RoBertaForQA"><a class="viewcode-back" href="../../../../claf.model.reading_comprehension.html#claf.model.reading_comprehension.RoBertaForQA">[docs]</a><span class="nd">@register</span><span class="p">(</span><span class="s2">&quot;model:roberta_for_qa&quot;</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">RoBertaForQA</span><span class="p">(</span><span class="n">SQuADv1</span><span class="p">,</span> <span class="n">ModelWithoutTokenEmbedder</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">RoBertaForQA</span><span class="p">(</span><span class="n">SQuADv1ForBert</span><span class="p">,</span> <span class="n">ModelWithoutTokenEmbedder</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Document Reader Model. `Span Detector`</span>
 
@@ -245,7 +245,7 @@
 <span class="sd">            - start_logits: representing unnormalized log probabilities of the span start position.</span>
 <span class="sd">            - end_logits: representing unnormalized log probabilities of the span end position.</span>
 <span class="sd">            - best_span: the string from the original passage that the model thinks is the best answer to the question.</span>
-<span class="sd">            - answer_idx: the question id, mapping with answer</span>
+<span class="sd">            - data_idx: the question id, mapping with answer</span>
 <span class="sd">            - loss: A scalar loss to be optimised.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -272,11 +272,11 @@
         <span class="p">}</span>
 
         <span class="k">if</span> <span class="n">labels</span><span class="p">:</span>
-            <span class="n">answer_idx</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="s2">&quot;answer_idx&quot;</span><span class="p">]</span>
+            <span class="n">data_idx</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="s2">&quot;data_idx&quot;</span><span class="p">]</span>
             <span class="n">answer_start_idx</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="s2">&quot;answer_start_idx&quot;</span><span class="p">]</span>
             <span class="n">answer_end_idx</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="s2">&quot;answer_end_idx&quot;</span><span class="p">]</span>
 
-            <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;answer_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">answer_idx</span>
+            <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;data_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_idx</span>
 
             <span class="c1"># If we are on multi-GPU, split add a dimension</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">answer_start_idx</span><span class="o">.</span><span class="n">size</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
@@ -296,85 +296,7 @@
             <span class="n">loss</span> <span class="o">/=</span> <span class="mi">2</span>  <span class="c1"># (start + end)</span>
             <span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;loss&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">loss</span>
 
-        <span class="k">return</span> <span class="n">output_dict</span></div>
-
-<div class="viewcode-block" id="RoBertaForQA.make_metrics"><a class="viewcode-back" href="../../../../claf.model.reading_comprehension.html#claf.model.reading_comprehension.RoBertaForQA.make_metrics">[docs]</a>    <span class="nd">@overrides</span>
-    <span class="k">def</span> <span class="nf">make_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; BERT predictions need to get nbest result &quot;&quot;&quot;</span>
-
-        <span class="n">best_predictions</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">prediction</span> <span class="ow">in</span> <span class="n">predictions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">qid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="o">.</span><span class="n">get_qid</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
-
-            <span class="n">predict_text</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;predict_text&quot;</span><span class="p">]</span>
-
-            <span class="n">start_logit</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;start_logits&quot;</span><span class="p">][</span><span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;pred_span_start&quot;</span><span class="p">]]</span>
-            <span class="n">end_logit</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;end_logits&quot;</span><span class="p">][</span><span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;pred_span_end&quot;</span><span class="p">]]</span>
-            <span class="n">predict_score</span> <span class="o">=</span> <span class="n">start_logit</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">+</span> <span class="n">end_logit</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-
-            <span class="k">if</span> <span class="n">qid</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">best_predictions</span><span class="p">:</span>
-                <span class="n">best_predictions</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">best_predictions</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">predict_text</span><span class="p">,</span> <span class="n">predict_score</span><span class="p">))</span>
-
-        <span class="k">for</span> <span class="n">qid</span><span class="p">,</span> <span class="n">predictions</span> <span class="ow">in</span> <span class="n">best_predictions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">sorted_predictions</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="n">best_predictions</span><span class="p">[</span><span class="n">qid</span><span class="p">]</span> <span class="o">=</span> <span class="n">sorted_predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">write_predictions</span><span class="p">(</span><span class="n">best_predictions</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_metrics_with_official</span><span class="p">(</span><span class="n">best_predictions</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="RoBertaForQA.predict"><a class="viewcode-back" href="../../../../claf.model.reading_comprehension.html#claf.model.reading_comprehension.RoBertaForQA.predict">[docs]</a>    <span class="nd">@overrides</span>
-    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_dict</span><span class="p">,</span> <span class="n">arguments</span><span class="p">,</span> <span class="n">helper</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Inference by raw_feature</span>
-
-<span class="sd">        * Args:</span>
-<span class="sd">            output_dict: model&#39;s output dictionary consisting of</span>
-<span class="sd">                - answer_idx: question id</span>
-<span class="sd">                - best_span: calculate the span_start_logits and span_end_logits to what is the best span</span>
-<span class="sd">            arguments: arguments dictionary consisting of user_input</span>
-<span class="sd">            helper: dictionary for helping get answer</span>
-
-<span class="sd">        * Returns:</span>
-<span class="sd">            span: predict best_span</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">context_text</span> <span class="o">=</span> <span class="n">arguments</span><span class="p">[</span><span class="s2">&quot;context&quot;</span><span class="p">]</span>
-        <span class="n">bert_tokens</span> <span class="o">=</span> <span class="n">helper</span><span class="p">[</span><span class="s2">&quot;bert_token&quot;</span><span class="p">]</span>
-        <span class="n">predictions</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">(</span><span class="n">best_span</span><span class="p">,</span> <span class="n">start_logits</span><span class="p">,</span> <span class="n">end_logits</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">best_span</span><span class="p">,</span> <span class="n">start_logits</span><span class="p">,</span> <span class="n">end_logits</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
-                <span class="nb">list</span><span class="p">(</span><span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;best_span&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
-                <span class="nb">list</span><span class="p">(</span><span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;start_logits&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
-                <span class="nb">list</span><span class="p">(</span><span class="n">output_dict</span><span class="p">[</span><span class="s2">&quot;end_logits&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
-            <span class="p">)</span>
-        <span class="p">]</span>
-
-        <span class="n">best_predictions</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">prediction</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">predictions</span><span class="p">):</span>
-            <span class="n">bert_token</span> <span class="o">=</span> <span class="n">bert_tokens</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-            <span class="n">best_span</span><span class="p">,</span> <span class="n">start_logits</span><span class="p">,</span> <span class="n">end_logits</span> <span class="o">=</span> <span class="n">prediction</span>
-            <span class="n">pred_start</span><span class="p">,</span> <span class="n">pred_end</span> <span class="o">=</span> <span class="n">best_span</span>
-
-            <span class="n">predict_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-            <span class="k">if</span> <span class="p">(</span>
-                <span class="n">pred_start</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">bert_token</span><span class="p">)</span>
-                <span class="ow">and</span> <span class="n">pred_end</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">bert_token</span><span class="p">)</span>
-                <span class="ow">and</span> <span class="n">bert_token</span><span class="p">[</span><span class="n">pred_start</span><span class="p">]</span><span class="o">.</span><span class="n">text_span</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                <span class="ow">and</span> <span class="n">bert_token</span><span class="p">[</span><span class="n">pred_end</span><span class="p">]</span><span class="o">.</span><span class="n">text_span</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-            <span class="p">):</span>
-                <span class="n">char_start</span> <span class="o">=</span> <span class="n">bert_token</span><span class="p">[</span><span class="n">pred_start</span><span class="p">]</span><span class="o">.</span><span class="n">text_span</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                <span class="n">char_end</span> <span class="o">=</span> <span class="n">bert_token</span><span class="p">[</span><span class="n">pred_end</span><span class="p">]</span><span class="o">.</span><span class="n">text_span</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                <span class="n">predict_text</span> <span class="o">=</span> <span class="n">context_text</span><span class="p">[</span><span class="n">char_start</span><span class="p">:</span><span class="n">char_end</span><span class="p">]</span>
-
-            <span class="n">start_logit</span> <span class="o">=</span> <span class="n">start_logits</span><span class="p">[</span><span class="n">pred_start</span><span class="p">]</span>
-            <span class="n">end_logit</span> <span class="o">=</span> <span class="n">end_logits</span><span class="p">[</span><span class="n">pred_end</span><span class="p">]</span>
-            <span class="n">predict_score</span> <span class="o">=</span> <span class="n">start_logit</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">+</span> <span class="n">end_logit</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-
-            <span class="n">best_predictions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">predict_text</span><span class="p">,</span> <span class="n">predict_score</span><span class="p">))</span>
-
-        <span class="n">sorted_predictions</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">best_predictions</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">sorted_predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">sorted_predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]}</span></div></div>
+        <span class="k">return</span> <span class="n">output_dict</span></div></div>
 </pre></div>
 
            </div>

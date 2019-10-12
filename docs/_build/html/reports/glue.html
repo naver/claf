@@ -110,7 +110,10 @@
 <p class="caption"><span class="caption-text">Reports</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">GLUE</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#results">Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dev-set">Dev Set</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="historyqa.html">HistoryQA</a></li>
@@ -197,8 +200,10 @@
 <hr class="docutils" />
 <div class="section" id="results">
 <h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dev-set">
+<h3>Dev Set<a class="headerlink" href="#dev-set" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Dev Set</p></li>
+<li><p><strong>Base</strong> Size : 12-layer, 768-hidden, 12-heads, 110M parameters</p></li>
 </ul>
 <table border="1" class="docutils">
 <thead>
@@ -216,371 +221,386 @@
 <td>BERT-Base</td>
 <td>59.393</td>
 <td>52.1 (Test set)</td>
-<td>glue/cola_bert_base.json</td>
+<td>glue/cola_bert.json</td>
 </tr>
 <tr>
 <td></td>
-<td>BERT-Large</td>
-<td>-</td>
-<td>60.6</td>
-<td>-</td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Base</td>
+<td>MT-DNN (BERT) Base</td>
 <td>54.658</td>
 <td>-</td>
-<td>multi_task/glue.json -&gt; <code>fine-fune</code></td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Large</td>
-<td>-</td>
-<td>63.5</td>
-<td>-</td>
+<td>1. multi_task/bert_base_glue.json <br/> 2. <code>fine-fune</code></td>
 </tr>
 <tr>
 <td></td>
 <td>RoBERTa-Base</td>
 <td>64.828</td>
 <td>63.6</td>
-<td>glue/cola_roberta_base.json</td>
-</tr>
-<tr>
-<td></td>
-<td>RoBERTa-Large</td>
-<td>-</td>
-<td>68.0</td>
-<td>-</td>
+<td>glue/cola_roberta.json</td>
 </tr>
 <tr>
 <td><strong>MNLI m/mm</strong> (<strong>Accuracy</strong>)</td>
 <td>BERT-Base</td>
 <td>83.923/84.306</td>
 <td>84.6/83.4 (Test set)</td>
-<td>glue/mnli{m/mm}_bert_base.json</td>
+<td>glue/mnli{m/mm}_bert.json</td>
 </tr>
 <tr>
 <td></td>
-<td>BERT-Large</td>
-<td>-</td>
-<td>86.6/-</td>
-<td>-</td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Base</td>
+<td>MT-DNN (BERT) Base</td>
 <td>84.452/84.225</td>
 <td>-</td>
-<td>multi_task/glue.json -&gt; <code>fine-fune</code></td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Large</td>
-<td>-</td>
-<td>87.1/86.7</td>
-<td>-</td>
+<td>1. multi_task/bert_base_glue.json <br/> 2. <code>fine-fune</code></td>
 </tr>
 <tr>
 <td></td>
 <td>RoBERTa-Base</td>
 <td>87.305/87.236</td>
 <td>87.6/-</td>
-<td>glue/mnli{m/mm}_roberta_base.json</td>
-</tr>
-<tr>
-<td></td>
-<td>RoBERTa-Large</td>
-<td>-</td>
-<td>90.2/90.2</td>
-<td>-</td>
+<td>glue/mnli{m/mm}_roberta.json</td>
 </tr>
 <tr>
 <td><strong>MRPC</strong> (<strong>Accuracy/F1</strong>)</td>
 <td>BERT-Base</td>
 <td>87.5/91.282</td>
 <td>88.9 (Test set)</td>
-<td>glue/mrpc_bert_base.json</td>
+<td>glue/mrpc_bert.json</td>
 </tr>
 <tr>
 <td></td>
-<td>BERT-Large</td>
-<td>-</td>
-<td>88.0</td>
-<td>-</td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Base</td>
+<td>MT-DNN (BERT) Base</td>
 <td>87.5/91.005</td>
 <td>-</td>
-<td>multi_task/glue.json -&gt; <code>fine-fune</code></td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Large</td>
-<td>-</td>
-<td>91.0/87.5</td>
-<td>-</td>
+<td>1. multi_task/bert_base_glue.json <br/> 2. <code>fine-fune</code></td>
 </tr>
 <tr>
 <td></td>
 <td>RoBERTa-Base</td>
 <td>88.480/91.681</td>
 <td>90.2</td>
-<td>glue/mrpc_roberta_base.json</td>
-</tr>
-<tr>
-<td></td>
-<td>RoBERTa-Large</td>
-<td>-</td>
-<td>90.9</td>
-<td>-</td>
+<td>glue/mrpc_roberta.json</td>
 </tr>
 <tr>
 <td><strong>QNLI</strong> (<strong>Accuracy</strong>)</td>
 <td>BERT-Base</td>
 <td>88.521</td>
 <td>90.5 (Test set)</td>
-<td>glue/qnli_bert_base.json</td>
+<td>glue/qnli_bert.json</td>
 </tr>
 <tr>
 <td></td>
-<td>BERT-Large</td>
-<td>-</td>
-<td>92.3</td>
-<td>-</td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Base</td>
+<td>MT-DNN (BERT) Base</td>
 <td>-</td>
 <td>-</td>
-<td>multi_task/glue.json -&gt; <code>fine-fune</code></td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Large</td>
-<td>-</td>
-<td>87.1/86.7</td>
-<td>-</td>
+<td>1. multi_task/bert_base_glue.json <br/> 2. <code>fine-fune</code></td>
 </tr>
 <tr>
 <td></td>
 <td>RoBERTa-Base</td>
 <td>90.823</td>
 <td>92.8</td>
-<td>glue/qnli_roberta_base.json</td>
-</tr>
-<tr>
-<td></td>
-<td>RoBERTa-Large</td>
-<td>-</td>
-<td>94.7</td>
-<td>-</td>
+<td>glue/qnli_roberta.json</td>
 </tr>
 <tr>
 <td><strong>QQP</strong> (<strong>Accuracy/F1</strong>)</td>
 <td>BERT-Base</td>
 <td>90.378/87.171</td>
 <td>71.2 (Test set)</td>
-<td>glue/qqp_bert_base.json</td>
+<td>glue/qqp_bert.json</td>
 </tr>
 <tr>
 <td></td>
-<td>BERT-Large</td>
-<td>-</td>
-<td>91.3</td>
-<td>-</td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Base</td>
+<td>MT-DNN (BERT) Base</td>
 <td>91.261/88.219</td>
 <td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Large</td>
-<td>-</td>
-<td>87.1/86.7</td>
-<td>-</td>
+<td>1. multi_task/bert_base_glue.json <br/> 2. <code>fine-fune</code></td>
 </tr>
 <tr>
 <td></td>
 <td>RoBERTa-Base</td>
 <td>91.541/88.768</td>
 <td>91.9</td>
-<td>glue/qqp_roberta_base.json</td>
-</tr>
-<tr>
-<td></td>
-<td>RoBERTa-Large</td>
-<td>-</td>
-<td>92.2</td>
-<td>-</td>
+<td>glue/qqp_roberta.json</td>
 </tr>
 <tr>
 <td><strong>RTE</strong> (<strong>Accuracy</strong>)</td>
 <td>BERT-Base</td>
 <td>69.314</td>
 <td>66.4 (Test set)</td>
-<td>glue/rte_bert_base.json</td>
+<td>glue/rte_bert.json</td>
 </tr>
 <tr>
 <td></td>
-<td>BERT-Large</td>
-<td>-</td>
-<td>70.4</td>
-<td>-</td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Base</td>
+<td>MT-DNN (BERT) Base</td>
 <td>79.422</td>
 <td>-</td>
-<td>multi_task/glue.json -&gt; <code>fine-fune</code></td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Large</td>
-<td>-</td>
-<td>83.4</td>
-<td>-</td>
+<td>1. multi_task/bert_base_glue.json <br/> 2. <code>fine-fune</code></td>
 </tr>
 <tr>
 <td></td>
 <td>RoBERTa-Base</td>
 <td>73.646</td>
 <td>78.7</td>
-<td>glue/rte_roberta_base.json</td>
-</tr>
-<tr>
-<td></td>
-<td>RoBERTa-Large</td>
-<td>-</td>
-<td>86.6</td>
-<td>-</td>
+<td>glue/rte_roberta.json</td>
 </tr>
 <tr>
 <td><strong>SST-2</strong> (<strong>Accuracy</strong>)</td>
 <td>BERT-Base</td>
 <td>92.546</td>
 <td>93.5 (Test set)</td>
-<td>glue/sst_bert_base.json</td>
+<td>glue/sst_bert.json</td>
 </tr>
 <tr>
 <td></td>
-<td>BERT-Large</td>
-<td>-</td>
-<td>93.2</td>
-<td>-</td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Base</td>
+<td>MT-DNN (BERT) Base</td>
 <td>93.005</td>
 <td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Large</td>
-<td>-</td>
-<td>94.3</td>
-<td>-</td>
+<td>1. multi_task/bert_base_glue.json <br/> 2. <code>fine-fune</code></td>
 </tr>
 <tr>
 <td></td>
 <td>RoBERTa-Base</td>
 <td>94.495</td>
 <td>94.8</td>
-<td>glue/sst_roberta_base.json</td>
-</tr>
-<tr>
-<td></td>
-<td>RoBERTa-Large</td>
-<td>-</td>
-<td>96.4</td>
-<td>-</td>
+<td>glue/sst_roberta.json</td>
 </tr>
 <tr>
 <td><strong>STS-B</strong> (<strong>Pearson/Spearman</strong>)</td>
 <td>BERT-Base</td>
 <td>88.070/87.881</td>
 <td>85.8 (Test set)</td>
-<td>glue/stsb_bert_base.json</td>
+<td>glue/stsb_bert.json</td>
 </tr>
 <tr>
 <td></td>
-<td>BERT-Large</td>
-<td>-</td>
-<td>90.0</td>
-<td>-</td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Base</td>
+<td>MT-DNN (BERT) Base</td>
 <td>88.444/88.807</td>
 <td>-</td>
-<td>multi_task/glue.json -&gt; <code>fine-fune</code></td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Large</td>
-<td>-</td>
-<td>90.7/90.6</td>
-<td>-</td>
+<td>1. multi_task/bert_base_glue.json <br/> 2. <code>fine-fune</code></td>
 </tr>
 <tr>
 <td></td>
 <td>RoBERTa-Base</td>
 <td>89.003/89.094</td>
 <td>91.2</td>
-<td>glue/stsb_roberta_base.json</td>
-</tr>
-<tr>
-<td></td>
-<td>RoBERTa-Large</td>
-<td>-</td>
-<td>92.4</td>
-<td>-</td>
+<td>glue/stsb_roberta.json</td>
 </tr>
 <tr>
 <td><strong>WNLI</strong> (<strong>Accuracy</strong>)</td>
 <td>BERT-Base</td>
 <td>56.338</td>
 <td>65.1 (Test set)</td>
-<td>glue/wnli_bert_base.json</td>
+<td>glue/wnli_bert.json</td>
 </tr>
 <tr>
 <td></td>
-<td>BERT-Large</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Base</td>
+<td>MT-DNN (BERT) Base</td>
 <td>57.746</td>
 <td>-</td>
-<td>multi_task/glue.json -&gt; <code>fine-fune</code></td>
-</tr>
-<tr>
-<td></td>
-<td>MT-DNN Large</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
+<td>1. multi_task/bert_base_glue.json <br/> 2. <code>fine-fune</code></td>
 </tr>
 <tr>
 <td></td>
 <td>RoBERTa-Base</td>
 <td>60.563</td>
 <td>-</td>
-<td>glue/wnli_roberta_base.json</td>
+<td>glue/wnli_roberta.json</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p><strong>Large</strong> Size : 24-layer, 1024-hidden, 16-heads, 340M parameters</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Task (Metric)</th>
+<th>Model</th>
+<th>CLaF Result</th>
+<th>Official Result</th>
+<th>BaseConfig</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CoLA</strong> (<strong>Matthew's Corr</strong>)</td>
+<td>BERT-Large</td>
+<td>61.151</td>
+<td>60.6</td>
+<td>glue/cola_bert.json</td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN (BERT) Large</td>
+<td>-</td>
+<td>63.5</td>
+<td>1. multi_task/bert_large_glue.json <br/>  2. <code>fine-fune</code></td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>-</td>
+<td>68.0</td>
+<td>glue/cola_roberta.json</td>
+</tr>
+<tr>
+<td><strong>MNLI m/mm</strong> (<strong>Accuracy</strong>)</td>
+<td>BERT-Large</td>
+<td>-</td>
+<td>86.6/-</td>
+<td>glue/mnli{m/mm}_bert.json</td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN (BERT) Large</td>
+<td>-</td>
+<td>87.1/86.7</td>
+<td>1. multi_task/bert_large_glue.json <br/>  2. <code>fine-fune</code></td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>-</td>
+<td>90.2/90.2</td>
+<td>glue/mnli{m/mm}_roberta.json</td>
+</tr>
+<tr>
+<td><strong>MRPC</strong> (<strong>Accuracy/F1</strong>)</td>
+<td>BERT-Large</td>
+<td>87.255/90.845</td>
+<td>88.0</td>
+<td>glue/mrpc_bert.json</td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN (BERT) Large</td>
+<td>-</td>
+<td>91.0/87.5</td>
+<td>1. multi_task/bert_large_glue.json <br/>  2. <code>fine-fune</code></td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>90.686/93.214</td>
+<td>90.9</td>
+<td>glue/mrpc_roberta.json</td>
+</tr>
+<tr>
+<td><strong>QNLI</strong> (<strong>Accuracy</strong>)</td>
+<td>BERT-Large</td>
+<td>90.440</td>
+<td>92.3</td>
+<td>glue/qnli_bert.json</td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN (BERT) Large</td>
+<td>-</td>
+<td>87.1/86.7</td>
+<td>1. multi_task/bert_large_glue.json <br/>  2. <code>fine-fune</code></td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>-</td>
+<td>94.7</td>
+<td>glue/qnli_roberta.json</td>
+</tr>
+<tr>
+<td><strong>QQP</strong> (<strong>Accuracy/F1</strong>)</td>
+<td>BERT-Large</td>
+<td>91.640/88.745</td>
+<td>91.3</td>
+<td>glue/qqp_bert.json</td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN (BERT) Large</td>
+<td>-</td>
+<td>87.1/86.7</td>
+<td>1. multi_task/bert_large_glue.json <br/>  2. <code>fine-fune</code></td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>91.848/89.031</td>
+<td>92.2</td>
+<td>glue/qqp_roberta.json</td>
+</tr>
+<tr>
+<td><strong>RTE</strong> (<strong>Accuracy</strong>)</td>
+<td>BERT-Large</td>
+<td>69.675</td>
+<td>70.4</td>
+<td>glue/rte_bert.json</td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN (BERT) Large</td>
+<td>-</td>
+<td>83.4</td>
+<td>1. multi_task/bert_large_glue.json <br/>  2. <code>fine-fune</code></td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>84.838</td>
+<td>86.6</td>
+<td>glue/rte_roberta.json</td>
+</tr>
+<tr>
+<td><strong>SST-2</strong> (<strong>Accuracy</strong>)</td>
+<td>BERT-Large</td>
+<td>93.349</td>
+<td>93.2</td>
+<td>glue/sst_bert.json</td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN (BERT) Large</td>
+<td>-</td>
+<td>94.3</td>
+<td>1. multi_task/bert_large_glue.json <br/>  2. <code>fine-fune</code></td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>95.642</td>
+<td>96.4</td>
+<td>glue/sst_roberta.json</td>
+</tr>
+<tr>
+<td><strong>STS-B</strong> (<strong>Pearson/Spearman</strong>)</td>
+<td>BERT-Large</td>
+<td>90.041/89735</td>
+<td>90.0</td>
+<td>glue/stsb_bert.json</td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN (BERT) Large</td>
+<td>-</td>
+<td>90.7/90.6</td>
+<td>1. multi_task/bert_large_glue.json <br/>  2. <code>fine-fune</code></td>
+</tr>
+<tr>
+<td></td>
+<td>RoBERTa-Large</td>
+<td>91.980/91.764</td>
+<td>92.4</td>
+<td>glue/stsb_roberta.json</td>
+</tr>
+<tr>
+<td><strong>WNLI</strong> (<strong>Accuracy</strong>)</td>
+<td>BERT-Large</td>
+<td>59.155</td>
+<td>-</td>
+<td>glue/wnli_bert.json</td>
+</tr>
+<tr>
+<td></td>
+<td>MT-DNN (BERT) Large</td>
+<td>-</td>
+<td>-</td>
+<td>1. multi_task/bert_large_glue.json <br/>  2. <code>fine-fune</code></td>
 </tr>
 <tr>
 <td></td>
@@ -591,6 +611,7 @@
 </tr>
 </tbody>
 </table></div>
+</div>
 </div>
 
 
