@@ -45,7 +45,7 @@ class MultiTask:
 
                 task_metric_key = self.tasks[task_index]["metric_key"]
                 if k == task_metric_key:
-                    if v < 1:  # SQuAD case
+                    if v > 1:  # SQuAD case
                         v /= 100
                     all_metrics["average"] += v
 

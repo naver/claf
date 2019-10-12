@@ -29,7 +29,7 @@
 
 | Task | Language | Dataset | Model |
 | ---- | -------- | ------- | ----- |
-| Multi-Task Learning | English | [GLUE Benchmark](https://gluebenchmark.com/) | `MT-DNN` |
+| Multi-Task Learning | English | [GLUE Benchmark](https://gluebenchmark.com/), [SQuAD v1.1](https://rajpurkar.github.io/SQuAD-explorer/) | `MT-DNN (BERT)` |
 | Natural Language Understanding | English | [GLUE Benchmark](https://gluebenchmark.com/) | `BERT`, `RoBERTa` |
 | Named Entity Recognition | English | CoNLL 2003 | `BERT` |
 | Question Answering | Korean | [KorQuAD v1.0](https://korquad.github.io/category/1.0_KOR.html) | `BiDAF`, `DocQA`, `BERT` |
