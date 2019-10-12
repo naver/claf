@@ -4,7 +4,7 @@
          "train_file_path": "train",
          "valid_file_path": "valid",
          "multitask_bert": {
-             "batch_sizes": [2, 3],
+             "batch_sizes": [2, 3, 4],
              "readers": [{
                  "dataset": "cola_bert",
                  "train_file_path": "data/glue/CoLA/train.tsv",
@@ -20,6 +20,16 @@
                  "stsb_bert": {
                      "sequence_max_length": 128,
                      "is_test": true
+                 }
+             }, {
+                 "dataset": "squad_bert",
+                 "train_file_path": "data/squad/dev-v1.1.json",
+                 "valid_file_path": "data/squad/dev-v1.1.json",
+                 "squad_bert": {
+                     "lang_code": "en",
+                     "max_seq_length": 384,
+                     "context_stride": 128,
+                     "max_question_length": 64
                  }
              }]
          }
@@ -58,7 +68,7 @@
          "name": "bert_for_multi",
          "bert_for_multi": {
              "pretrained_model_name": "bert-base-uncased",
-             "dropouts": [0.1, 0.2]
+             "dropouts": [0.1, 0.2, 0]
          }
      },
      "trainer": {
@@ -66,6 +76,7 @@
          "num_epochs": 2,
          "early_stopping_threshold": 10,
          "metric_key": "average",
+         "verbose_step_count": 1,
          "eval_and_save_step_count": 5
      },
      "optimizer": {
