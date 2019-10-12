@@ -64,7 +64,7 @@ class SQuADBertDataset(DatasetBase):
                 "token_type": utils.transpose(token_type_idxs, skip_keys=["text"]),
             }
             labels = {
-                "answer_idx": data_idxs,
+                "data_idx": data_idxs,
                 "answer_start_idx": answer_starts,
                 "answer_end_idx": answer_ends,
                 "answerable": answerables,
@@ -108,6 +108,9 @@ class SQuADBertDataset(DatasetBase):
         if "#" in qid:
             qid = qid.split("#")[0]
         return qid
+
+    def get_id(self, data_index):
+        return self.get_qid(data_index)
 
     def get_qid_index(self, data_index):
         qid = self.qids[data_index]

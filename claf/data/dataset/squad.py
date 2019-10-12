@@ -62,7 +62,7 @@ class SQuADDataset(DatasetBase):
                 "question": utils.transpose(question_idxs, skip_keys=["text"]),
             }
             labels = {
-                "answer_idx": data_idxs,
+                "data_idx": data_idxs,
                 "answer_start_idx": answer_starts,
                 "answer_end_idx": answer_ends,
                 "answerable": answerables,

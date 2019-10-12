@@ -34,6 +34,8 @@ class SQuADBertReader(DataReader):
         tokenizers: defined tokenizers config (char/word)
     """
 
+    METRIC_KEY = "f1"
+
     def __init__(
         self,
         file_paths,
@@ -75,9 +77,6 @@ class SQuADBertReader(DataReader):
     def _read(self, file_path, data_type=None):
         word_tokenized_error_count, sub_level_tokenized_error_count = 0, 0
 
-        if data_type != "train":
-            self.context_stride = 64  # NOTE: hard-code
-
         data = self.data_handler.read(file_path)
         squad = json.loads(data)
         if "data" in squad:
@@ -88,12 +87,14 @@ class SQuADBertReader(DataReader):
             "raw_dataset": squad,
             "cls_token": self.cls_token,
             "sep_token": self.sep_token,
+            "dataset": SQuADBertDataset,
         })
         helper.set_model_parameter({
             "lang_code": self.lang_code,
         })
 
         features, labels = [], []
+        is_training = data_type == "train"
 
         for article in tqdm(squad, desc=data_type):
             for paragraph in article["paragraphs"]:
@@ -170,7 +171,7 @@ class SQuADBertReader(DataReader):
                         bert_tokens = feature
                         answer_start, answer_end = label
 
-                        if (
+                        if is_training and (
                             answer_start < 0
                             or answer_start >= len(bert_tokens)
                             or answer_end >= len(bert_tokens)
@@ -179,13 +180,14 @@ class SQuADBertReader(DataReader):
                         ):
                             continue
 
-                        char_start = bert_tokens[answer_start].text_span[0]
-                        char_end = bert_tokens[answer_end].text_span[1]
-                        bert_answer = context_text[char_start:char_end]
+                        if is_training:
+                            char_start = bert_tokens[answer_start].text_span[0]
+                            char_end = bert_tokens[answer_end].text_span[1]
+                            bert_answer = context_text[char_start:char_end]
 
-                        if char_answer_text != bert_answer:
-                            logger.warning(f"sub_level_tokenized_error: {char_answer_text} ### {word_answer_text})")
-                            sub_level_tokenized_error_count += 1
+                            if char_answer_text != bert_answer:
+                                logger.warning(f"sub_level_tokenized_error: {char_answer_text} ### {word_answer_text})")
+                                sub_level_tokenized_error_count += 1
 
                         feature_row = {
                             "bert_input": [token.text for token in bert_tokens],

@@ -140,7 +140,7 @@ class BiDAF_No_Answer(SQuADv2, ModelWithTokenEmbedder):
             - start_logits: representing unnormalized log probabilities of the span start position.
             - end_logits: representing unnormalized log probabilities of the span end position.
             - best_span: the string from the original passage that the model thinks is the best answer to the question.
-            - answer_idx: the question id, mapping with answer
+            - data_idx: the question id, mapping with answer
             - loss: A scalar loss to be optimised.
         """
 
@@ -239,7 +239,7 @@ class BiDAF_No_Answer(SQuADv2, ModelWithTokenEmbedder):
         }
 
         if labels:
-            answer_idx = labels["answer_idx"]
+            data_idx = labels["data_idx"]
             answer_start_idx = labels["answer_start_idx"]
             answer_end_idx = labels["answer_end_idx"]
             answerable = labels["answerable"]
@@ -249,7 +249,7 @@ class BiDAF_No_Answer(SQuADv2, ModelWithTokenEmbedder):
             answer_start_idx = answer_start_idx.masked_fill(answerable.eq(0), C_L)
             answer_end_idx = answer_end_idx.masked_fill(answerable.eq(0), C_L)
 
-            output_dict["answer_idx"] = answer_idx
+            output_dict["data_idx"] = data_idx
 
             # Loss
             loss = self.criterion(span_start_logits, answer_start_idx)

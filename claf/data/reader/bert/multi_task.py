@@ -94,10 +94,10 @@ class MultiTaskBertReader(DataReader):
         elif isinstance(data_reader, TokClsBertReader):
             task["category"] = TaskCategory.TOKEN_CLASSIFICATION
             task["num_label"] = helper["model"]["num_tags"]
-            task["ignore_tag_idx"] = helper["model"].get("ignore_tag_idx", 0)
         else:
             raise ValueError("Check data_reader.")
 
+        task["model_params"] = helper.get("model", {})
         return task
 
     @overrides
