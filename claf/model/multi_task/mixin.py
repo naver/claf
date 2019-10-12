@@ -3,7 +3,7 @@ import logging
 
 from claf.model.multi_task.category import TaskCategory
 from claf.model.sequence_classification.mixin import SequenceClassification
-from claf.model.reading_comprehension.mixin import ReadingComprehension
+from claf.model.reading_comprehension.mixin import SQuADv1ForBert
 from claf.model.regression.mixin import Regression
 from claf.model.token_classification.mixin import TokenClassification
 
@@ -45,6 +45,8 @@ class MultiTask:
 
                 task_metric_key = self.tasks[task_index]["metric_key"]
                 if k == task_metric_key:
+                    if v < 1:  # SQuAD case
+                        v /= 100
                     all_metrics["average"] += v
 
         all_metrics["average"] /= len(task_predictions)
@@ -64,7 +66,7 @@ class MultiTask:
         if task_category == TaskCategory.SEQUENCE_CLASSIFICATION:
             mixin_obj = SequenceClassification()
         elif task_category == TaskCategory.READING_COMPREHENSION:
-            mixin_obj = ReadingComprehension()
+            mixin_obj = SQuADv1ForBert()
         elif task_category == TaskCategory.REGRESSION:
             mixin_obj = Regression()
         elif task_category == TaskCategory.TOKEN_CLASSIFICATION:
@@ -85,3 +87,8 @@ class MultiTask:
         mixin_obj._train_counter = self.train_counter
         mixin_obj.training = self.training
         mixin_obj._vocabs = self.vocabs
+
+        # Helper's model_parameters
+        task = self.tasks[task_index]
+        for k, v in task["model_params"].items():
+            setattr(mixin_obj, k, v)

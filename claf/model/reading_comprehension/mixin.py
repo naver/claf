@@ -7,6 +7,7 @@ import torch.nn.functional as F
 
 from claf.decorator import arguments_required
 from claf.metric import korquad_v1_official, squad_v1_official, squad_v2_official
+from claf.model.base import ModelBase
 
 
 class ReadingComprehension:
@@ -84,7 +85,7 @@ class ReadingComprehension:
 
         * Args:
             output_dict: model's output dictionary consisting of
-                - answer_idx: question id
+                - data_idx: question id
                 - best_span: calculate the span_start_logits and span_end_logits to what is the best span
                 - start_logits: span start logits
                 - end_logits: span end logits
@@ -96,7 +97,7 @@ class ReadingComprehension:
                     predict_text, pred_span_start, pred_span_end, span_start_prob, span_end_prob
         """
 
-        data_indices = output_dict["answer_idx"]
+        data_indices = output_dict["data_idx"]
         best_word_span = output_dict["best_span"]
 
         return OrderedDict(
@@ -129,7 +130,7 @@ class ReadingComprehension:
 
         * Args:
             output_dict: model's output dictionary consisting of
-                - answer_idx: question id
+                - data_idx: question id
                 - best_span: calculate the span_start_logits and span_end_logits to what is the best span
             arguments: arguments dictionary consisting of user_input
             helper: dictionary for helping get answer
@@ -171,7 +172,7 @@ class ReadingComprehension:
         * Returns:
             print(Context, Question, Answers and Predict)
         """
-        data_index = inputs["labels"]["answer_idx"][index].item()
+        data_index = inputs["labels"]["data_idx"][index].item()
         qid = self._dataset.get_qid(data_index)
         if "#" in qid:  # bert case (qid#index)
             qid = qid.split("#")[0]
@@ -190,6 +191,21 @@ class ReadingComprehension:
         print("- Answers:", answers)
         print("- Predict:", predict_text)
         print()
+
+    def write_predictions(self, predictions, file_path=None, is_dict=True):
+        pass
+        # TODO: start and end logits (TypeError: Object of type 'Tensor' is not JSON serializable)
+        # try:
+            # super(ReadingComprehension, self).write_predictions(
+                # predictions, file_path=file_path, is_dict=is_dict
+            # )
+        # except AttributeError:
+            # # TODO: Need to Fix
+            # model_base = ModelBase()
+            # model_base._log_dir = self._log_dir
+            # model_base._train_counter = self._train_counter
+            # model_base.training = self.training
+            # model_base.write_predictions(predictions, file_path=file_path, is_dict=is_dict)
 
 
 class SQuADv1(ReadingComprehension):
@@ -244,6 +260,93 @@ class SQuADv1(ReadingComprehension):
         else:
             scores = squad_v1_official.evaluate(dataset, preds)
         return scores
+
+
+class SQuADv1ForBert(SQuADv1):
+    """
+    Reading Comprehension Mixin Class
+        with SQuAD v1.1 evaluation
+
+    * Args:
+        token_embedder: 'QATokenEmbedder', Used to embed the 'context' and 'question'.
+
+    """
+
+    def make_metrics(self, predictions):
+        """ BERT predictions need to get nbest result """
+
+        best_predictions = {}
+        for index, prediction in predictions.items():
+            qid = self._dataset.get_qid(index)
+
+            predict_text = prediction["predict_text"]
+
+            start_logit = prediction["start_logits"][prediction["pred_span_start"]]
+            end_logit = prediction["end_logits"][prediction["pred_span_end"]]
+            predict_score = start_logit.item() + end_logit.item()
+
+            if qid not in best_predictions:
+                best_predictions[qid] = []
+            best_predictions[qid].append((predict_text, predict_score))
+
+        for qid, predictions in best_predictions.items():
+            sorted_predictions = sorted(predictions, key=lambda x: x[1], reverse=True)
+            best_predictions[qid] = sorted_predictions[0][0]
+
+        self.write_predictions(best_predictions)
+        return self._make_metrics_with_official(best_predictions)
+
+    def predict(self, output_dict, arguments, helper):
+        """
+        Inference by raw_feature
+
+        * Args:
+            output_dict: model's output dictionary consisting of
+                - data_idx: question id
+                - best_span: calculate the span_start_logits and span_end_logits to what is the best span
+            arguments: arguments dictionary consisting of user_input
+            helper: dictionary for helping get answer
+
+        * Returns:
+            span: predict best_span
+        """
+
+        context_text = arguments["context"]
+        bert_tokens = helper["bert_token"]
+        predictions = [
+            (best_span, start_logits, end_logits)
+            for best_span, start_logits, end_logits in zip(
+                list(output_dict["best_span"].data),
+                list(output_dict["start_logits"].data),
+                list(output_dict["end_logits"].data),
+            )
+        ]
+
+        best_predictions = []
+        for index, prediction in enumerate(predictions):
+            bert_token = bert_tokens[index]
+            best_span, start_logits, end_logits = prediction
+            pred_start, pred_end = best_span
+
+            predict_text = ""
+            if (
+                pred_start < len(bert_token)
+                and pred_end < len(bert_token)
+                and bert_token[pred_start].text_span is not None
+                and bert_token[pred_end].text_span is not None
+            ):
+                char_start = bert_token[pred_start].text_span[0]
+                char_end = bert_token[pred_end].text_span[1]
+                predict_text = context_text[char_start:char_end]
+
+            start_logit = start_logits[pred_start]
+            end_logit = end_logits[pred_end]
+            predict_score = start_logit.item() + end_logit.item()
+
+            best_predictions.append((predict_text, predict_score))
+
+        sorted_predictions = sorted(best_predictions, key=lambda x: x[1], reverse=True)
+        return {"text": sorted_predictions[0][0], "score": sorted_predictions[0][1]}
 
 
 class SQuADv2(ReadingComprehension):

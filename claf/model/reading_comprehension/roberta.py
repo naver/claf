@@ -6,11 +6,11 @@ import torch.nn as nn
 from claf.data.data_handler import CachePath
 from claf.decorator import register
 from claf.model.base import ModelWithoutTokenEmbedder
-from claf.model.reading_comprehension.mixin import SQuADv1
+from claf.model.reading_comprehension.mixin import SQuADv1ForBert
 
 
 @register("model:roberta_for_qa")
-class RoBertaForQA(SQuADv1, ModelWithoutTokenEmbedder):
+class RoBertaForQA(SQuADv1ForBert, ModelWithoutTokenEmbedder):
     """
     Document Reader Model. `Span Detector`
 
@@ -60,7 +60,7 @@ class RoBertaForQA(SQuADv1, ModelWithoutTokenEmbedder):
             - start_logits: representing unnormalized log probabilities of the span start position.
             - end_logits: representing unnormalized log probabilities of the span end position.
             - best_span: the string from the original passage that the model thinks is the best answer to the question.
-            - answer_idx: the question id, mapping with answer
+            - data_idx: the question id, mapping with answer
             - loss: A scalar loss to be optimised.
         """
 
@@ -87,11 +87,11 @@ class RoBertaForQA(SQuADv1, ModelWithoutTokenEmbedder):
         }
 
         if labels:
-            answer_idx = labels["answer_idx"]
+            data_idx = labels["data_idx"]
             answer_start_idx = labels["answer_start_idx"]
             answer_end_idx = labels["answer_end_idx"]
 
-            output_dict["answer_idx"] = answer_idx
+            output_dict["data_idx"] = data_idx
 
             # If we are on multi-GPU, split add a dimension
             if len(answer_start_idx.size()) > 1:
@@ -112,81 +112,3 @@ class RoBertaForQA(SQuADv1, ModelWithoutTokenEmbedder):
             output_dict["loss"] = loss
 
         return output_dict
-
-    @overrides
-    def make_metrics(self, predictions):
-        """ BERT predictions need to get nbest result """
-
-        best_predictions = {}
-        for index, prediction in predictions.items():
-            qid = self._dataset.get_qid(index)
-
-            predict_text = prediction["predict_text"]
-
-            start_logit = prediction["start_logits"][prediction["pred_span_start"]]
-            end_logit = prediction["end_logits"][prediction["pred_span_end"]]
-            predict_score = start_logit.item() + end_logit.item()
-
-            if qid not in best_predictions:
-                best_predictions[qid] = []
-            best_predictions[qid].append((predict_text, predict_score))
-
-        for qid, predictions in best_predictions.items():
-            sorted_predictions = sorted(predictions, key=lambda x: x[1], reverse=True)
-            best_predictions[qid] = sorted_predictions[0][0]
-
-        self.write_predictions(best_predictions)
-        return self._make_metrics_with_official(best_predictions)
-
-    @overrides
-    def predict(self, output_dict, arguments, helper):
-        """
-        Inference by raw_feature
-
-        * Args:
-            output_dict: model's output dictionary consisting of
-                - answer_idx: question id
-                - best_span: calculate the span_start_logits and span_end_logits to what is the best span
-            arguments: arguments dictionary consisting of user_input
-            helper: dictionary for helping get answer
-
-        * Returns:
-            span: predict best_span
-        """
-
-        context_text = arguments["context"]
-        bert_tokens = helper["bert_token"]
-        predictions = [
-            (best_span, start_logits, end_logits)
-            for best_span, start_logits, end_logits in zip(
-                list(output_dict["best_span"].data),
-                list(output_dict["start_logits"].data),
-                list(output_dict["end_logits"].data),
-            )
-        ]
-
-        best_predictions = []
-        for index, prediction in enumerate(predictions):
-            bert_token = bert_tokens[index]
-            best_span, start_logits, end_logits = prediction
-            pred_start, pred_end = best_span
-
-            predict_text = ""
-            if (
-                pred_start < len(bert_token)
-                and pred_end < len(bert_token)
-                and bert_token[pred_start].text_span is not None
-                and bert_token[pred_end].text_span is not None
-            ):
-                char_start = bert_token[pred_start].text_span[0]
-                char_end = bert_token[pred_end].text_span[1]
-                predict_text = context_text[char_start:char_end]
-
-            start_logit = start_logits[pred_start]
-            end_logit = end_logits[pred_end]
-            predict_score = start_logit.item() + end_logit.item()
-
-            best_predictions.append((predict_text, predict_score))
-
-        sorted_predictions = sorted(best_predictions, key=lambda x: x[1], reverse=True)
-        return {"text": sorted_predictions[0][0], "score": sorted_predictions[0][1]}
