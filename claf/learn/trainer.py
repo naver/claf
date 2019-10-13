@@ -139,7 +139,8 @@ class Trainer:
 
             valid_metrics = None
             if self.eval_and_save_step_count == "epoch":
-                valid_metrics = self._run_epoch(valid_loader, is_training=False)
+                with torch.no_grad():
+                    valid_metrics = self._run_epoch(valid_loader, is_training=False)
                 self._check_valid_results(valid_metrics, report=False)
                 self.save(optimizer)
 
