@@ -3,13 +3,13 @@ import logging
 
 from overrides import overrides
 
-from claf.config.factory import DataReaderFactory
 from claf.config.namespace import NestedNamespace
 from claf.config.registry import Registry
 from claf.data.dataset import MultiTaskBertDataset
 from claf.data.dto import Helper
 from claf.data.reader.base import DataReader
 from claf.decorator import register
+from claf.factory import DataReaderFactory
 from claf.model.multi_task.category import TaskCategory
 
 from .seq_cls import SeqClsBertReader

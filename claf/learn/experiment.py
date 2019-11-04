@@ -6,7 +6,7 @@ from pathlib import Path
 import torch
 
 from claf import nsml
-from claf.config.factory import (
+from claf.factory import (
     DataReaderFactory,
     DataLoaderFactory,
     TokenMakersFactory,
