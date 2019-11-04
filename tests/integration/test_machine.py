@@ -82,3 +82,9 @@ def test_open_qa_with_bidaf_model(open_qa_config):
     question = utils.make_random_tokens(5)
     answer = claf_machine(question)
     answer = json.dumps(answer, indent=4, ensure_ascii=False)
+
+
+@pytest.mark.order4
+def test_remove_tested_directory():
+    test_path = "logs/test"
+    shutil.rmtree(test_path)
