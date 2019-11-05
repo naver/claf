@@ -14,7 +14,7 @@ mv mecab-ko-dic-2.1.1-20180720.tar.gz "$OUT_DIR/"
 
 cd "$OUT_DIR"
 
-tar -zxfv mecab-0.996-ko-0.9.2.tar.gz
+tar -zxvf mecab-0.996-ko-0.9.2.tar.gz
 cd mecab-0.996-ko-0.9.2
 ./configure
 make
@@ -23,8 +23,9 @@ make install
 cd ../
 
 ldconfig
-tar -zxfv mecab-ko-dic-2.1.1-20180720.tar.gz
+tar -zxvf mecab-ko-dic-2.1.1-20180720.tar.gz
 cd mecab-ko-dic-2.1.1-20180720
+./autogen.sh
 ./configure
 make
 make install
