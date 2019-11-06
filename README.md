@@ -8,7 +8,9 @@
     <a href="https://naver.github.io/claf">
         <img src="https://img.shields.io/badge/docs-passing-brightgreen.svg" alt="Documentation Status">
     </a>
-    <img src='https://travis-ci.org/naver/claf.svg?branch=master'/>
+    <a href="https://travis-ci.org/naver/claf">
+        <img src='https://travis-ci.org/naver/claf.svg?branch=master'/>
+    </a>
     <a href="https://github.com/ambv/black">
         <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code style: black">
     <a href="https://codecov.io/gh/naver/claf">
