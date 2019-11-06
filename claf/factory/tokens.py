@@ -68,25 +68,24 @@ class TokenMakersFactory(Factory):
 
     LANGS = ["eng", "kor"]
 
-    def __init__(self, config):
-        self.config = config
+    def __init__(self):
         self.registry = Registry()
 
     @overrides
-    def create(self):
-        if getattr(self.config, "tokenizer", None):
-            tokenizers = make_all_tokenizers(convert_config2dict(self.config.tokenizer))
+    def create(self, config):
+        if getattr(config, "tokenizer", None):
+            tokenizers = make_all_tokenizers(convert_config2dict(config.tokenizer))
         else:
             tokenizers = {}
 
-        token_names, token_types = self.config.names, self.config.types
+        token_names, token_types = config.names, config.types
 
         if len(token_names) != len(token_types):
             raise ValueError("token_names and token_types must be same length.")
 
         token_makers = {"tokenizers": tokenizers}
         for token_name, token_type in sorted(zip(token_names, token_types)):
-            token_config = getattr(self.config, token_name, {})
+            token_config = getattr(config, token_name, {})
             if token_config != {}:
                 token_config = convert_config2dict(token_config)
 

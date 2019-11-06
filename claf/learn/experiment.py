@@ -240,8 +240,9 @@ class Experiment:
         data_reader = self._create_by_factory(DataReaderFactory, self.config.data_reader)
         return data_reader, token_makers
 
-    def _create_by_factory(self, factory, item_config, param={}):
-        return factory(item_config).create(**param)
+    def _create_by_factory(self, factory_cls, item_config, param={}):
+        factory_obj = factory_cls()
+        return factory_obj.create(item_config, **param)
 
     def _get_num_train_steps(self, train_loader):
         train_set_size = len(train_loader.dataset)
