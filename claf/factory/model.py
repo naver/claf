@@ -20,31 +20,28 @@ class ModelFactory(Factory):
         config: model config from argument (config.model)
     """
 
-    def __init__(self, config):
+    def __init__(self):
         self.registry = Registry()
 
-        self.name = config.name
-        self.model_config = {}
-        if getattr(config, config.name, None):
-            self.model_config = vars(getattr(config, config.name))
-
-        self.is_independent = getattr(config, "independent", False)
-
     @overrides
-    def create(self, token_makers, **params):
-        model = self.registry.get(f"model:{self.name}")
+    def create(self, config, token_makers, **params):
+        name = config.name
+        model_config = {}
+        if getattr(config, config.name, None):
+            model_config = vars(getattr(config, config.name))
+
+        model = self.registry.get(f"model:{name}")
 
         if issubclass(model, ModelWithTokenEmbedder):
             token_embedder = self.create_token_embedder(model, token_makers)
-            self.model_config["token_embedder"] = token_embedder
+            model_config["token_embedder"] = token_embedder
         elif issubclass(model, ModelWithoutTokenEmbedder):
-            self.model_config["token_makers"] = token_makers
+            model_config["token_makers"] = token_makers
         else:
             raise ValueError(
                 "Model must have inheritance. (ModelWithTokenEmbedder or ModelWithoutTokenEmbedder)"
             )
-
-        return model(**self.model_config, **params)
+        return model(**model_config, **params)
 
     def create_token_embedder(self, model, token_makers):
         # 1. Specific case

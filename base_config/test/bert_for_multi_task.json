@@ -1,0 +1,96 @@
+ {
+     "data_reader": {
+         "dataset": "multitask_bert",
+         "train_file_path": "train",
+         "valid_file_path": "valid",
+         "multitask_bert": {
+             "batch_sizes": [15, 13, 11],
+             "readers": [{
+                 "dataset": "seq_cls_bert",
+                 "train_file_path": "train.tsv",
+                 "valid_file_path": "dev.tsv",
+                 "seq_cls_bert": {
+                     "sequence_max_length": 128,
+                     "is_test": true
+                 }
+             }, {
+                 "dataset": "regression_bert",
+                 "train_file_path": "train.tsv",
+                 "valid_file_path": "dev.tsv",
+                 "regression_bert": {
+                     "sequence_max_length": 128,
+                     "is_test": true
+                 }
+             }, {
+                 "dataset": "squad_bert",
+                 "train_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/train-v1.1.json",
+                 "valid_file_path": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json",
+                 "squad_bert": {
+                     "lang_code": "en",
+                     "max_seq_length": 384,
+                     "context_stride": 128,
+                     "max_question_length": 64
+                 }
+             }]
+         }
+     },
+     "iterator": {
+         "batch_size": 1
+     },
+     "token": {
+         "names": ["feature"],
+         "types": ["feature"],
+         "tokenizer": {
+             "subword": {
+                 "name": "wordpiece",
+                 "wordpiece": {
+                     "vocab_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt"
+                 }
+             },
+             "word": {
+                 "name": "bert_basic",
+                 "bert_basic": {
+                     "do_lower_case": true
+                 }
+             }
+         },
+         "feature": {
+             "vocab": {
+                 "pretrained_path": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt",
+                 "pretrained_token": "all"
+             },
+             "indexer": {
+                 "do_tokenize": false
+             }
+         }
+     },
+     "model": {
+         "name": "bert_for_multi",
+         "bert_for_multi": {
+             "pretrained_model_name": "bert-base-uncased",
+             "dropouts": [0.05, 0.3, 0.1]
+         }
+     },
+     "trainer": {
+         "log_dir": "logs/test/bert_for_multi_task",
+         "num_epochs": 1,
+         "early_stopping_threshold": 5,
+         "grad_max_norm": 1,
+         "metric_key": "average",
+         "eval_and_save_step_count": "epoch"
+     },
+     "optimizer": {
+         "learning_rate": 2e-5,
+         "op_type": "adamw",
+         "adamw": {
+             "betas": [0.9, 0.999],
+             "eps": 1e-6,
+             "weight_decay": 0.01
+         },
+         "lr_scheduler_type": "warmup_linear",
+         "warmup_linear": {
+             "warmup_proportion": 0.1
+         }
+     },
+     "seed_num": 42
+ }

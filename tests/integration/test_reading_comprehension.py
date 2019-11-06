@@ -35,7 +35,7 @@ def load_and_setting(config_path):
 
 
 @pytest.mark.order1
-def test_make_synthetic_data():
+def test_make_squad_synthetic_data():
     utils.make_squad_synthetic_data(SYNTHETIC_DATA_PATH)
     utils.write_embedding_txt(DUMMY_EMBEDDING_300D_PATH, 300)
 

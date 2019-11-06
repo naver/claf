@@ -4,10 +4,10 @@ import os
 
 from overrides import overrides
 
-from claf.config.factory.tokens import make_all_tokenizers
 from claf.config.utils import convert_config2dict
 from claf.data.data_handler import CachePath, DataHandler
 from claf.decorator import register
+from claf.factory.tokens import make_all_tokenizers
 
 from claf.machine.base import Machine
 from claf.machine.knowlege_base.docs import read_wiki_articles

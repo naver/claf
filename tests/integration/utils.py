@@ -10,7 +10,39 @@ import numpy as np
 RANDOM_TOKENS = ['kox', 'pev', 'hi', 'shemini', 'outvote', "foo", "bar", "baz", "qux"]
 
 
-def make_squad_synthetic_data(output_path):
+def make_bert_seq_cls_synthetic_data(output_path, remove_exist=True):
+
+    data = {"data": []}
+
+    for i in range(10):
+        data["data"].append({
+            "sequence_a": make_random_tokens(8),
+            "sequence_b": make_random_tokens(8),
+            "class": str(i % 2)
+        })
+
+    make_directory(output_path, remove_exist=remove_exist)
+    with open(output_path, 'w') as fp:
+        json.dump(data, fp)
+
+
+def make_bert_reg_synthetic_data(output_path, remove_exist=True):
+
+    data = {"data": []}
+
+    for i in range(10):
+        data["data"].append({
+            "sequence_a": make_random_tokens(8),
+            "sequence_b": make_random_tokens(8),
+            "score": i * 0.1
+        })
+
+    make_directory(output_path, remove_exist=remove_exist)
+    with open(output_path, 'w') as fp:
+        json.dump(data, fp)
+
+
+def make_squad_synthetic_data(output_path, remove_exist=True):
     ANSWER_TOKEN = "ANSWER"
     DATA_SIZE = 10
 
@@ -38,14 +70,17 @@ def make_squad_synthetic_data(output_path):
         article["paragraphs"].append(paragraph)
     out_squad['data'].append(article)
 
+    make_directory(output_path, remove_exist=False)
+    with open(output_path, 'w') as fp:
+        json.dump(out_squad, fp)
+
+
+def make_directory(output_path, remove_exist=True):
     dir_path = os.path.dirname(output_path)
-    if os.path.exists(dir_path):
+    if remove_exist and os.path.exists(dir_path):
         shutil.rmtree(dir_path, ignore_errors=True)
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
-    with open(output_path, 'w') as fp:
-        json.dump(out_squad, fp)
 
 
 def make_wiki_article_synthetic_data(output_dir):

@@ -3,13 +3,13 @@ import logging
 
 from overrides import overrides
 
-from claf.config.factory import DataReaderFactory
 from claf.config.namespace import NestedNamespace
 from claf.config.registry import Registry
 from claf.data.dataset import MultiTaskBertDataset
 from claf.data.dto import Helper
 from claf.data.reader.base import DataReader
 from claf.decorator import register
+from claf.factory import DataReaderFactory
 from claf.model.multi_task.category import TaskCategory
 
 from .seq_cls import SeqClsBertReader
@@ -47,8 +47,8 @@ class MultiTaskBertReader(DataReader):
         assert len(batch_sizes) == len(readers)
 
         self.registry = Registry()
-
         self.text_columns = ["bert_input"]
+        self.data_reader_factory = DataReaderFactory()
 
         self.tokenizers = tokenizers
         self.batch_sizes = batch_sizes
@@ -74,8 +74,7 @@ class MultiTaskBertReader(DataReader):
         config.load_from_json(config_dict)
         config.tokenizers = self.tokenizers
 
-        data_reader_factory = DataReaderFactory(config)
-        return data_reader_factory.create()
+        return self.data_reader_factory.create(config)
 
     def make_task_by_reader(self, name, data_reader, helper):
         task = {}

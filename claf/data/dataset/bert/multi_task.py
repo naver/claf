@@ -4,7 +4,7 @@ from overrides import overrides
 import torch
 import random
 
-from claf.config.factory.data_loader import make_data_loader
+from claf.factory.data_loader import make_data_loader
 from claf.data.dataset.base import DatasetBase
 
 
