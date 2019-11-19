@@ -112,7 +112,7 @@ class WordEmbedding(TokenEmbedding):
         file_path = self.data_handler.read(file_path, return_path=True)
         with open(file_path, "rb") as embeddings_file:
             for line in embeddings_file:
-                fields = line.decode("utf-8").rstrip().split(" ")
+                fields = line.decode("utf-8", "replace").rstrip().split(" ")
 
                 if len(fields) - 1 != self.embed_dim:
                     logger.info(
