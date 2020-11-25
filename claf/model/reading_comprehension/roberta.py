@@ -1,6 +1,6 @@
 
 from overrides import overrides
-from pytorch_transformers import RobertaModel
+from transformers import RobertaModel
 import torch.nn as nn
 
 from claf.data.data_handler import CachePath
@@ -31,7 +31,7 @@ class RoBertaForQA(SQuADv1ForBert, ModelWithoutTokenEmbedder):
         super(RoBertaForQA, self).__init__(token_makers)
 
         self.lang_code = lang_code
-        self.use_pytorch_transformers = True  # for optimizer's model parameters
+        self.use_transformers = True  # for optimizer's model parameters
         self.answer_maxlen = answer_maxlen
 
         self.model = RobertaModel.from_pretrained(

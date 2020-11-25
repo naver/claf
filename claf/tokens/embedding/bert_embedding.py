@@ -1,7 +1,7 @@
 
 from overrides import overrides
 
-from pytorch_transformers import BertModel
+from transformers import BertModel
 
 import claf.modules.functional as f
 

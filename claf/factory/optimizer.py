@@ -98,7 +98,7 @@ class OptimizerFactory(Factory):
             lr_scheduler_config = vars(lr_scheduler_config)
 
         if "warmup" in lr_scheduler_type:
-            lr_scheduler_config["t_total"] = config.num_train_steps
+            lr_scheduler_config["num_training_steps"] = config.num_train_steps
             self.set_warmup_steps(lr_scheduler_config)
 
         lr_scheduler_config["optimizer"] = optimizer
@@ -114,15 +114,17 @@ class OptimizerFactory(Factory):
     def set_warmup_steps(self, lr_scheduler_config):
         warmup_proportion = lr_scheduler_config.get("warmup_proportion", None)
         warmup_steps = lr_scheduler_config.get("warmup_steps", None)
-        total_steps = lr_scheduler_config["t_total"]
+        total_steps = lr_scheduler_config["num_training_steps"]
 
         if warmup_steps and warmup_proportion:
             raise ValueError("Check 'warmup_steps' and 'warmup_proportion'.")
         elif not warmup_steps and warmup_proportion:
-            lr_scheduler_config["warmup_steps"] = int(total_steps * warmup_proportion) + 1
+            lr_scheduler_config["num_warmup_steps"] = int(total_steps * warmup_proportion) + 1
             del lr_scheduler_config["warmup_proportion"]
         elif warmup_steps and not warmup_proportion:
-            pass
+            # v2.11.0 change (argument name: warmup_steps -> num_warmup_steps)
+            lr_scheduler_config["num_warmup_steps"] = warmup_steps
+            del lr_scheduler_config["warmup_steps"]
         else:
             raise ValueError("Check 'warmup_steps' and 'warmup_proportion'.")
 

@@ -1,6 +1,6 @@
 
 from overrides import overrides
-from pytorch_transformers import RobertaModel
+from transformers import RobertaForSequenceClassification
 import torch.nn as nn
 
 from claf.data.data_handler import CachePath
@@ -30,19 +30,11 @@ class RobertaForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
         super(RobertaForSeqCls, self).__init__(token_makers)
 
         self.use_pytorch_transformers = True  # for optimizer's model parameters
-
         self.num_classes = num_classes
 
-        self._model = RobertaModel.from_pretrained(
-            pretrained_model_name, cache_dir=str(CachePath.ROOT)
+        self.model = RobertaForSequenceClassification.from_pretrained(
+            pretrained_model_name, cache_dir=str(CachePath.ROOT), num_labels=num_classes,
         )
-        self.classifier = nn.Sequential(
-            nn.Linear(self._model.config.hidden_size, self._model.config.hidden_size),
-            nn.Dropout(dropout),
-            nn.Linear(self._model.config.hidden_size, num_classes)
-        )
-        self.classifier.apply(self._model.init_weights)
-
         self.criterion = nn.CrossEntropyLoss()
 
     @overrides
@@ -68,7 +60,6 @@ class RobertaForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
             Do not calculate loss when there is no label. (inference/predict mode)
 
         * Returns: output_dict (dict) consisting of
-            - sequence_embed: embedding vector of the sequence
             - logits: representing unnormalized log probabilities of the class.
 
             - class_idx: target class idx
@@ -79,14 +70,12 @@ class RobertaForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
         bert_inputs = features["bert_input"]["feature"]
         attention_mask = (bert_inputs > 0).long()
 
-        outputs = self._model(
+        outputs = self.model(
             bert_inputs, token_type_ids=None, attention_mask=attention_mask
         )
-        sequence_output = outputs[0]
-        pooled_output = sequence_output[:, 0, :]  # take <s> token (equiv. to [CLS])
-        logits = self.classifier(pooled_output)
+        logits = outputs[0]
 
-        output_dict = {"sequence_embed": pooled_output, "logits": logits}
+        output_dict = {"logits": logits}
 
         if labels:
             class_idx = labels["class_idx"]

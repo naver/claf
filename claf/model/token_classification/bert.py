@@ -1,7 +1,7 @@
 
 from overrides import overrides
-from pytorch_transformers import BertModel
 import torch.nn as nn
+from transformers import BertForTokenClassification
 
 from claf.data.data_handler import CachePath
 from claf.decorator import register
@@ -31,22 +31,15 @@ class BertForTokCls(TokenClassification, ModelWithoutTokenEmbedder):
     def __init__(
         self, token_makers, num_tags, ignore_tag_idx, pretrained_model_name=None, dropout=0.2
     ):
-
         super(BertForTokCls, self).__init__(token_makers)
 
-        self.use_pytorch_transformers = True  # for optimizer's model parameters
-
+        self.use_transformers = True  # for optimizer's model parameters
         self.ignore_tag_idx = ignore_tag_idx
         self.num_tags = num_tags
 
-        self._model = BertModel.from_pretrained(
-            pretrained_model_name, cache_dir=str(CachePath.ROOT)
+        self.model = BertForTokenClassification.from_pretrained(
+            pretrained_model_name, cache_dir=str(CachePath.ROOT), num_labels=num_tags,
         )
-        self.classifier = nn.Sequential(
-            nn.Dropout(dropout), nn.Linear(self._model.config.hidden_size, num_tags)
-        )
-        self.classifier.apply(self._model.init_weights)
-
         self.criterion = nn.CrossEntropyLoss(ignore_index=ignore_tag_idx)
 
     @overrides
@@ -99,21 +92,18 @@ class BertForTokCls(TokenClassification, ModelWithoutTokenEmbedder):
 
         attention_mask = (bert_inputs > 0).long()
 
-        outputs = self._model(
+        outputs = self.model(
             bert_inputs, token_type_ids=token_type_ids, attention_mask=attention_mask
         )
-        token_encodings = outputs[0]
-        pooled_output = outputs[1]
-
-        tag_logits = self.classifier(token_encodings)  # [B, L, num_tags]
+        logits = outputs[0]  # [B, L, num_tags]
 
         # gather the logits of the tagged token positions.
         gather_token_pos_idxs = tagged_sub_token_idxs.unsqueeze(-1).repeat(1, 1, self.num_tags)
-        token_tag_logits = tag_logits.gather(1, gather_token_pos_idxs)  # [B, num_tokens, num_tags]
+        token_tag_logits = logits.gather(1, gather_token_pos_idxs)  # [B, num_tokens, num_tags]
 
         sliced_token_tag_logits = [token_tag_logits[idx, :n, :] for idx, n in enumerate(num_tokens)]
 
-        output_dict = {"sequence_embed": pooled_output, "tag_logits": sliced_token_tag_logits}
+        output_dict = {"tag_logits": sliced_token_tag_logits}
 
         if labels:
             tag_idxs = labels["tag_idxs"]

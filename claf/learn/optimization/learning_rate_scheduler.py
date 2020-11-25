@@ -2,14 +2,12 @@
     https://github.com/allenai/allennlp/blob/master/allennlp/training/learning_rate_schedulers.py
 """
 
-import math
-
 from overrides import overrides
-from pytorch_transformers import (
-    WarmupConstantSchedule,
-    WarmupLinearSchedule,
-    WarmupCosineSchedule,
-    WarmupCosineWithHardRestartsSchedule,
+from transformers import (
+    get_constant_schedule_with_warmup,
+    get_linear_schedule_with_warmup,
+    get_cosine_schedule_with_warmup,
+    get_cosine_with_hard_restarts_schedule_with_warmup,
 )
 import torch
 
@@ -23,10 +21,10 @@ def get_lr_schedulers():
         "reduce_on_plateau": torch.optim.lr_scheduler.ReduceLROnPlateau,
         "cosine": torch.optim.lr_scheduler.CosineAnnealingLR,
         "noam": NoamLR,
-        "warmup_constant": WarmupConstantSchedule,
-        "warmup_linear": WarmupLinearSchedule,
-        "warmup_consine": WarmupCosineSchedule,
-        "warmup_consine_with_hard_restart": WarmupCosineWithHardRestartsSchedule,
+        "warmup_constant": get_constant_schedule_with_warmup,
+        "warmup_linear": get_linear_schedule_with_warmup,
+        "warmup_consine": get_cosine_schedule_with_warmup,
+        "warmup_consine_with_hard_restart": get_cosine_with_hard_restarts_schedule_with_warmup,
     }
 
 

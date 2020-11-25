@@ -1,5 +1,5 @@
 
-from pytorch_transformers import RobertaTokenizer
+from transformers import RobertaTokenizer
 
 from claf.data.data_handler import CachePath, DataHandler
 

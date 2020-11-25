@@ -1,7 +1,7 @@
 
 from overrides import overrides
-from pytorch_transformers import BertModel
 import torch.nn as nn
+from transformers import BertForSequenceClassification
 
 from claf.data.data_handler import CachePath
 from claf.decorator import register
@@ -29,18 +29,12 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
 
         super(BertForSeqCls, self).__init__(token_makers)
 
-        self.use_pytorch_transformers = True  # for optimizer's model parameters
-
+        self.use_transformers = True  # for optimizer's model parameters
         self.num_classes = num_classes
 
-        self._model = BertModel.from_pretrained(
-            pretrained_model_name, cache_dir=str(CachePath.ROOT)
+        self.model = BertForSequenceClassification.from_pretrained(
+            pretrained_model_name, cache_dir=str(CachePath.ROOT), num_labels=num_classes,
         )
-        self.classifier = nn.Sequential(
-            nn.Dropout(dropout), nn.Linear(self._model.config.hidden_size, num_classes)
-        )
-        self.classifier.apply(self._model.init_weights)
-
         self.criterion = nn.CrossEntropyLoss()
 
     @overrides
@@ -72,7 +66,6 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
             Do not calculate loss when there is no label. (inference/predict mode)
 
         * Returns: output_dict (dict) consisting of
-            - sequence_embed: embedding vector of the sequence
             - logits: representing unnormalized log probabilities of the class.
 
             - class_idx: target class idx
@@ -84,13 +77,12 @@ class BertForSeqCls(SequenceClassification, ModelWithoutTokenEmbedder):
         token_type_ids = features["token_type"]["feature"]
         attention_mask = (bert_inputs > 0).long()
 
-        outputs = self._model(
+        outputs = self.model(
             bert_inputs, token_type_ids=token_type_ids, attention_mask=attention_mask
         )
-        pooled_output = outputs[1]
-        logits = self.classifier(pooled_output)
+        logits = outputs[0]
 
-        output_dict = {"sequence_embed": pooled_output, "logits": logits}
+        output_dict = {"logits": logits}
 
         if labels:
             class_idx = labels["class_idx"]

@@ -1,6 +1,6 @@
 
 from overrides import overrides
-from pytorch_transformers import RobertaModel
+from transformers import RobertaForSequenceClassification
 import torch.nn as nn
 
 from claf.data.data_handler import CachePath
@@ -28,18 +28,12 @@ class RobertaForRegression(Regression, ModelWithoutTokenEmbedder):
 
         super(RobertaForRegression, self).__init__(token_makers)
 
-        self.use_pytorch_transformers = True  # for optimizer's model parameters
-
+        self.use_transformers = True  # for optimizer's model parameters
         NUM_CLASSES = 1
 
-        self._model = RobertaModel.from_pretrained(
-            pretrained_model_name, cache_dir=str(CachePath.ROOT)
+        self.model = RobertaForSequenceClassification.from_pretrained(
+            pretrained_model_name, cache_dir=str(CachePath.ROOT), num_labels=NUM_CLASSES,
         )
-        self.classifier = nn.Sequential(
-            nn.Dropout(dropout), nn.Linear(self._model.config.hidden_size, NUM_CLASSES)
-        )
-        self.classifier.apply(self._model.init_weights)
-
         self.criterion = nn.MSELoss()
 
     @overrides
@@ -76,13 +70,12 @@ class RobertaForRegression(Regression, ModelWithoutTokenEmbedder):
         bert_inputs = features["bert_input"]["feature"]
         attention_mask = (bert_inputs > 0).long()
 
-        outputs = self._model(
+        outputs = self.model(
             bert_inputs, token_type_ids=None, attention_mask=attention_mask
         )
-        pooled_output = outputs[1]
-        logits = self.classifier(pooled_output)
+        logits = outputs[0]
 
-        output_dict = {"sequence_embed": pooled_output, "logits": logits}
+        output_dict = {"logits": logits}
 
         if labels:
             data_idx = labels["data_idx"]
