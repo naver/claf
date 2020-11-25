@@ -1,7 +1,7 @@
 
 from overrides import overrides
-from pytorch_transformers import BertModel
 import torch.nn as nn
+from transformers import BertModel
 
 from claf.data.data_handler import CachePath
 from claf.decorator import register
@@ -30,7 +30,7 @@ class BertForMultiTask(MultiTask, ModelWithoutTokenEmbedder):
     def __init__(self, token_makers, tasks, pretrained_model_name=None, dropouts=None):
         super(BertForMultiTask, self).__init__(token_makers)
 
-        self.use_pytorch_transformers = True  # for optimizer's model parameters
+        self.use_transformers = True  # for optimizer's model parameters
         self.tasks = tasks
 
         assert len(tasks) == len(dropouts)

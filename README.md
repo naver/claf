@@ -104,7 +104,7 @@
 ### Requirements
 
 - Python 3.6
-- PyTorch >= 0.4.1
+- PyTorch >= 1.3.1
 - [MeCab](https://bitbucket.org/eunjeon/mecab-ko) for Korean Tokenizer
     - ```sh script/install_mecab.sh```
 
@@ -164,7 +164,7 @@ pip install claf
 
 #### BaseConfig
 
-Declarative experiment config (.json)
+Declarative experiment config (.json, .ymal)
 
 - Simply matching with object's parameters
 - Exists samples in `/base_config` directory

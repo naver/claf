@@ -1,7 +1,7 @@
 
 from overrides import overrides
-from pytorch_transformers import BertModel
 import torch.nn as nn
+from transformers import BertForSequenceClassification
 
 from claf.data.data_handler import CachePath
 from claf.decorator import register
@@ -28,18 +28,12 @@ class BertForRegression(Regression, ModelWithoutTokenEmbedder):
 
         super(BertForRegression, self).__init__(token_makers)
 
-        self.use_pytorch_transformers = True  # for optimizer's model parameters
-
+        self.use_transformers = True  # for optimizer's model parameters
         NUM_CLASSES = 1
 
-        self._model = BertModel.from_pretrained(
-            pretrained_model_name, cache_dir=str(CachePath.ROOT)
+        self.model = BertForSequenceClassification.from_pretrained(
+            pretrained_model_name, cache_dir=str(CachePath.ROOT), num_labels=NUM_CLASSES,
         )
-        self.classifier = nn.Sequential(
-            nn.Dropout(dropout), nn.Linear(self._model.config.hidden_size, NUM_CLASSES)
-        )
-        self.classifier.apply(self._model.init_weights)
-
         self.criterion = nn.MSELoss()
 
     @overrides

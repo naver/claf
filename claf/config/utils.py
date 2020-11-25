@@ -2,11 +2,40 @@
 from argparse import Namespace
 import copy
 import json
+import os
 
 import jsbeautifier
 import numpy as np
 import random
 import torch
+import yaml
+
+
+_CONFIG_EXTENSIONS = [".json", ".yaml"]
+
+
+def add_config_extension(file_path):
+    for ext in _CONFIG_EXTENSIONS:
+        if ext in file_path:
+            return file_path
+
+        full_path = file_path + ext
+        if os.path.exists(full_path):
+            return full_path
+
+    raise ValueError(f"{file_path} is not valid extensions {_CONFIG_EXTENSIONS}")
+
+
+def read_config(file_path):
+    if file_path.endswith(".json"):
+        with open(file_path, "r") as f:
+            return json.load(f)
+
+    if file_path.endswith(".yaml"):
+        with open(file_path, "r") as f:
+            return yaml.load(f)
+
+    raise ValueError(f"{file_path} is not valid extensions {_CONFIG_EXTENSIONS}")
 
 
 def pretty_json_dumps(inputs):

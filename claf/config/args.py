@@ -1,7 +1,6 @@
 
 import argparse
 from argparse import RawTextHelpFormatter
-import json
 import os
 import sys
 
@@ -35,9 +34,10 @@ def config(argv=None, mode=None):
 
         if config.machine_config is None:
             raise ValueError("--machine_config is required.")
-        machine_config_path = os.path.join("machine_config", config.machine_config + ".json")
-        with open(machine_config_path, "r") as f:
-            defined_config = json.load(f)
+
+        machine_config_path = os.path.join("machine_config", config.machine_config)
+        machine_config_path = utils.add_config_extension(machine_config_path)
+        defined_config = utils.read_config(machine_config_path)
         config.overwrite(defined_config)
         return config
 
@@ -62,9 +62,9 @@ def train_config(parser, input_argv=None):
     use_base_config = config.base_config
     # use pre-defined base_config
     if use_base_config:
-        base_config_path = os.path.join("base_config", config.base_config + ".json")
-        with open(base_config_path, "r") as f:
-            defined_config = json.load(f)
+        base_config_path = os.path.join("base_config", config.base_config)
+        base_config_path = utils.add_config_extension(base_config_path)
+        defined_config = utils.read_config()
         # config.overwrite(defined_config)
 
         config = NestedNamespace()

@@ -1,8 +1,8 @@
 
 
 from overrides import overrides
-from pytorch_transformers import BertForQuestionAnswering
 import torch.nn as nn
+from transformers import BertForQuestionAnswering
 
 from claf.data.data_handler import CachePath
 from claf.decorator import register
@@ -32,7 +32,7 @@ class BertForQA(SQuADv1ForBert, ModelWithoutTokenEmbedder):
         super(BertForQA, self).__init__(token_makers)
 
         self.lang_code = lang_code
-        self.use_pytorch_transformers = True  # for optimizer's model parameters
+        self.use_transformers = True  # for optimizer's model parameters
         self.answer_maxlen = answer_maxlen
 
         self.model = BertForQuestionAnswering.from_pretrained(

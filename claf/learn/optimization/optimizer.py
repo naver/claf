@@ -1,5 +1,5 @@
 
-from pytorch_transformers import AdamW
+from transformers import AdamW
 import torch
 
 

@@ -1,6 +1,6 @@
 
-from pytorch_transformers import WordpieceTokenizer
-from pytorch_transformers.tokenization_bert import load_vocab
+from transformers import WordpieceTokenizer
+from transformers.tokenization_bert import load_vocab
 
 
 from claf.data.data_handler import CachePath, DataHandler
