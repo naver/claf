@@ -1,11 +1,11 @@
 
-import json
 import os
 import pytest
 import shutil
 
 from claf.config.args import optimize_config, set_gpu_env
 from claf.config.namespace import NestedNamespace
+from claf.config.utils import add_config_extension, read_config
 from claf.learn.experiment import Experiment
 from claf.learn.mode import Mode
 
@@ -23,8 +23,9 @@ def test_config(request):
 
 def load_and_setting(config_path):
     config = NestedNamespace()
-    with open(config_path, "r") as f:
-        defined_config = json.load(f)
+
+    config_path = add_config_extension(config_path)
+    defined_config = read_config(config_path)
     config.load_from_json(defined_config)
     config = optimize_config(config, is_test=True)
     set_gpu_env(config)
@@ -41,7 +42,7 @@ def test_make_squad_synthetic_data():
 
 
 @pytest.mark.order2
-@pytest.mark.parametrize("test_config", ["./base_config/test/bidaf.json"], indirect=True)
+@pytest.mark.parametrize("test_config", ["./base_config/test/bidaf"], indirect=True)
 def test_train_squad_bidaf_model(test_config):
     experiment = Experiment(Mode.TRAIN, test_config)
     experiment()
@@ -105,7 +106,7 @@ def test_train_squad_qanet_model(test_config):
 
 
 @pytest.mark.order2
-@pytest.mark.parametrize("test_config", ["./base_config/test/bert_for_qa.json"], indirect=True)
+@pytest.mark.parametrize("test_config", ["./base_config/test/bert_for_qa"], indirect=True)
 def test_train_squad_bert_model(test_config):
     experiment = Experiment(Mode.TRAIN, test_config)
     experiment()

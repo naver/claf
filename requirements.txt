@@ -27,6 +27,7 @@ requests
 gensim
 tqdm
 tensorboardX
+PyYAML==5.3.1
 
 # Test, CI
 pytest>=3.6
